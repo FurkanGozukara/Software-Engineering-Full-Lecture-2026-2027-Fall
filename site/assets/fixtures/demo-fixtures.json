@@ -3162,7 +3162,7 @@
      "from": "identity",
      "to": "service",
      "label": "identity assertion: who is signed in",
-     "information": "An assertion: a fact the sign-in provider vouches for. The service trusts it within limits."
+     "information": "An assertion: a fact another system vouches for. The service trusts it within limits."
     },
     {
      "id": "room-facts",
@@ -3211,12 +3211,12 @@
    "designs": [
     {
      "id": "D1",
-     "name": "Design 1: the screen answers from its own copy of the room calendar",
+     "name": "Design 1: the screen confirms from its own copy of the room calendar",
      "short": "Design 1 · the screen decides"
     },
     {
      "id": "D2",
-     "name": "Design 2: the screen answers after one shared decision checks the stored bookings",
+     "name": "Design 2: the screen confirms after one shared decision checks the stored bookings",
      "short": "Design 2 · one shared decision"
     }
    ],

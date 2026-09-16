@@ -33,7 +33,7 @@ Fixture changes (`plan/assets/demo-fixtures.json`, checker rerun): five Week 1 B
 | `python scripts/export_pdf.py --site site --week 1` | wrote site/pdf/week-01.pdf after `html[data-print-ready="true"]` |
 | `python scripts/build_cues.py --week 1` and `--check` | 112 segments; every cue target found and every expected state matched in record=1 mode |
 | `python F:/0_tutorial_videos_project/tools/check_static_content.py cues/week-01.json` | PASS: action 99 %, static 1 %, longest static run 6 s, opening static 0 s |
-| `python scripts/check_deck_text.py --week 1` | PASS: 0 of 375 sentences flagged, 0 about proof or evidence (state names Confirmed/Rejected/Cancelled excluded as documented) |
+| `python scripts/check_deck_text.py --week 1` | PASS: 0 of 385 sentences flagged, 0 about proof or evidence. The checker flags defensive shapes (hedges, disclaimers, guarantees, arguing about proof), never single technical words; the deck uses confirmed, evidence, distinguish and verify with their ordinary meaning (user clarification, 17 September 2026) |
 | `python scripts/build_index.py --check` | index current |
 | Final combined run (`-k "w01- or w05-dependency-example or w11-latency-is-a-distribution or test_week_pdf_exists_and_reads[1]"`) | see the line appended at the end of this file |
 

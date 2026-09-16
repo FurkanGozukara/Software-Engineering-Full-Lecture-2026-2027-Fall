@@ -1307,7 +1307,7 @@
       "kind": "action",
       "seconds": 12,
       "action": "Click question-3 on Eight principles, four checks",
-      "teaches": "Check 3: Does passing one booking example show that simultaneous requests work?",
+      "teaches": "Check 3: Does passing one booking example establish correctness for simultaneous requests?",
       "scene": "principles",
       "cue_target": "principles:question-3",
       "deck_action": "click",

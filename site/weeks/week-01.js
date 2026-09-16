@@ -117,11 +117,11 @@
   // PAGE · recall and outcomes
   // =====================================================================
   const OUTCOMES = [
-    'Tell a function that runs correctly on its own apart from a service that people can depend on.',
-    'Name the stakeholders, the system boundary and the competing quality concerns of a service.',
-    'Explain why delivery and maintenance belong inside the engineering lifecycle.',
-    'Separate what you observed, what you assumed and what a check showed.',
-    'Explain one technical decision by its benefit, its cost and the people it affects.',
+    'Distinguish a locally correct function from a dependable user-facing service.',
+    'Identify stakeholders, system boundaries, and competing quality concerns.',
+    'Explain why delivery and maintenance belong in the engineering lifecycle.',
+    'Separate an observation, an assumption, and evidence supporting a claim.',
+    'Explain one technical decision in terms of benefit, cost, and affected people.',
   ];
   const WHERE_IT_APPLIES = 'A throwaway calculation on your own machine needs none of this. A shared booking service that other people depend on needs all of it. The care you take grows with the consequences of a failure and with how much you do not know yet.';
   const THROUGH_LINE = 'Every habit in this course, a precise rule, an independent check, a bounded permission, a reviewable change, is also what it takes to direct and check an automated engineering assistant. Weeks 2, 7, 8, 9, 10 and 12 each return to that for a moment; Week 13 looks at it in full.';
@@ -173,10 +173,10 @@
           { caption: `**${ARI.name}** and **${BO.name}** both want ${ROOM} from ${START} to ${END}. Each screen keeps its own copy of the room calendar, and both copies say the hour is free. Click Reserve on ${ARI.name}'s screen, or press Step.`, alt: `Calendar of room ${ROOM} with no bookings.` },
           { caption: `${ARI.name} clicks Reserve. ${ARI.name}'s screen checks its copy, finds ${START} free and shows **Confirmed**. The stored calendar now holds ${ARI.name}'s booking.`, alt: `Calendar with one booking, ${ARI.name}, ${SLOT}.` },
           { caption: `${BO.name} clicks Reserve. ${BO.name}'s copy still says free, so ${BO.name}'s screen also shows **Confirmed**. Two green confirmations for one room and one hour.`, alt: `Calendar with two bookings in the same hour: ${ARI.name} and ${BO.name}.` },
-          { prompt: { question: 'Both screens say Confirmed. What would let you decide whether the system worked?', options: ['The two screens: both said Confirmed', `The stored calendar for ${ROOM}`, `What happens at the door at ${START}`] }, caption: 'Pause here and decide. Then step to see the stored calendar.' },
-          { caption: `The stored calendar holds **two accepted bookings for ${ROOM} in the same hour**. Rule R-01 says a room never holds two accepted bookings that overlap, so the stored record is wrong even though each screen looked right.`, alt: `Calendar with two overlapping bookings marked as a conflict against rule R-01.` },
+          { prompt: { question: 'Both screens say Confirmed. What evidence would let you decide whether the system worked?', options: ['The two screens: both said Confirmed', `The stored calendar for ${ROOM}`, `What happens at the door at ${START}`] }, caption: 'Pause here and decide. Then step to see the stored calendar.' },
+          { caption: `The stored calendar holds **two confirmed bookings for ${ROOM} in the same hour**. Rule R-01 says a room has no overlapping confirmed bookings, so the stored record is wrong even though each screen looked right.`, alt: `Calendar with two overlapping bookings marked as a conflict against rule R-01.` },
           { caption: `At ${START} two people arrive at the door of ${ROOM}. One of them was promised something the service could not deliver. The screens were the appearance; the door is the consequence.` },
-          { caption: 'Each screen ran without an error. Judged against the intended outcome, one accepted booking per room and hour, the behavior failed.', principle: true },
+          { caption: 'Each screen ran without an error. Judged against the intended outcome, one confirmed booking per room and hour, the behavior failed.', principle: true },
         ] },
       { id: 'shared-decision', label: 'Changed condition: one shared decision reads the stored calendar before any screen says Confirmed', short: 'One shared decision',
         states: [
@@ -244,14 +244,14 @@
       const badgeY = top + 4 * rowH + 30;
       const conflict = s('g', { class: 'rv', 'data-show-from': '4', 'data-cond': 'each-screen-decides' });
       conflict.appendChild(s('rect', { x: left + 2, y: slotY + 2, width: W - left - 14, height: rowH - 4, rx: 12, fill: `url(#${api.uid('hatch-bad')})`, stroke: 'var(--bad)', 'stroke-width': 3, 'stroke-dasharray': '10 7' }));
-      conflict.appendChild(badge({ x: left + (W - left) / 2 - 6, y: badgeY, label: 'R-01 broken: two accepted bookings overlap', kind: 'bad' }));
+      conflict.appendChild(badge({ x: left + (W - left) / 2 - 6, y: badgeY, label: 'R-01 broken: two confirmed bookings overlap', kind: 'bad' }));
       svg.appendChild(conflict);
       const rej = s('g', { class: 'rv rv--rise', 'data-show-from': '2', 'data-cond': 'shared-decision' });
       rej.appendChild(s('rect', { x: left + 186, y: slotY + 5, width: 170, height: rowH - 10, rx: 10, fill: 'none', stroke: 'var(--bad)', 'stroke-width': 2.5, 'stroke-dasharray': '8 6' }));
       rej.appendChild(text(left + 198, slotY + 30, BO.name, { class: 'n-label', style: 'font-size:20px;fill:var(--bad)' }));
       rej.appendChild(text(left + 198, slotY + 52, 'Rejected', { class: 'n-sub', style: 'fill:var(--bad);font-weight:700;font-size:17px' }));
       rej.appendChild(text(left + 198, slotY + 71, 'room conflict', { class: 'n-sub', style: 'font-size:15px' }));
-      const keptBadge = badge({ x: left + (W - left) / 2 - 6, y: badgeY, label: 'R-01 kept: one accepted booking', kind: 'ok', cls: 'rv rv--rise' });
+      const keptBadge = badge({ x: left + (W - left) / 2 - 6, y: badgeY, label: 'R-01 kept: one confirmed booking', kind: 'ok', cls: 'rv rv--rise' });
       keptBadge.setAttribute('data-show-from', '2'); keptBadge.setAttribute('data-cond', 'shared-decision');
       svg.append(rej, keptBadge);
       h.svg = svg; h.calendar = svg;
@@ -315,7 +315,7 @@
       { cue: 'shared-step-principle', target: 'step', action: 'click', expect: 4, seconds: 8, teaches: 'The rule is kept where the bookings are stored; screens report a decision instead of making one' },
     ],
     print: [
-      { title: 'Two confirmations on screen, two overlapping bookings stored', condition: 'each-screen-decides', state: 4, note: `Rule R-01, no overlapping accepted bookings for the same room, is broken in the stored calendar although each screen showed success. Each screen decided from its own copy of the calendar, and ${BO.name}'s copy was stale.` },
+      { title: 'Two confirmations on screen, two overlapping bookings stored', condition: 'each-screen-decides', state: 4, note: `Rule R-01, no overlapping confirmed bookings for the same room, is broken in the stored calendar although each screen showed success. Each screen decided from its own copy of the calendar, and ${BO.name}'s copy was stale.` },
       { title: 'One shared decision: one confirmation, one clear rejection', condition: 'shared-decision', state: 2, note: `Rule R-01 is kept: the shared decision reads the stored calendar before any screen says Confirmed. ${BO.name} sees the reason and two alternatives.` },
       { title: 'Compare the consequences', condition: 'shared-decision', state: 3, principle: true, note: 'How the shared decision stays correct when both requests arrive in the same instant is the question for Week 6.' },
     ],
@@ -343,8 +343,8 @@
         ] },
       { id: 'notification-unavailable', label: `Changed condition: ${lower1(SB.changed_condition.label)}`, short: 'Notifications unavailable',
         states: [
-          { prompt: { question: `Notification delivery is unavailable. Which outcomes remain possible for ${ARI.name}?`, options: ['None: no booking without a message', 'The booking is stored and accepted; the message is delayed', 'The booking waits until the provider is back'] }, caption: 'Same boundary, same arrows. One dependency outside the boundary is down; room storage is unchanged.', alt: 'Context map with notification delivery marked unavailable: dashed red box and crossed arrows.' },
-          { caption: `Still possible: the decision is made and stored; ${ARI.name}'s screen shows Confirmed and says that the message is delayed. Not possible right now: the message reaching ${ARI.name}. Rule R-04: a failed notification does not undo an accepted booking, and the pending message stays visible and recoverable.`, alt: 'Checklist beside the boundary: three outcomes still possible, one not possible.' },
+          { prompt: { question: `Notification delivery is unavailable. Which outcomes remain possible for ${ARI.name}?`, options: ['None: no booking without a message', 'The booking is stored and confirmed; the message is delayed', 'The booking waits until the provider is back'] }, caption: 'Same boundary, same arrows. One dependency outside the boundary is down; room storage is unchanged.', alt: 'Context map with notification delivery marked unavailable: dashed red box and crossed arrows.' },
+          { caption: `Still possible: the decision is made and stored; ${ARI.name}'s screen shows Confirmed and says that the message is delayed. Not possible right now: the message reaching ${ARI.name}. Rule R-04: a failed notification does not undo a confirmed booking, and the pending message stays visible and recoverable.`, alt: 'Checklist beside the boundary: three outcomes still possible, one not possible.' },
           { caption: 'The boundary did not move and the dependency did not vanish. Naming it is what lets the team decide what the user sees while it is down.', principle: true },
         ] },
     ],
@@ -683,7 +683,7 @@
           { caption: `A user reports it. The booking was stored, the message never arrived, and the screen said nothing. The incident card appears at **${STAGES[5]}**.`, alt: 'Incident card at Operation.' },
           { caption: `The card moves to **${STAGES[6]}**. Incident handling: someone reads the record, finds the failed notification job, and tells the user. Two kinds of rework so far.`, alt: 'Incident card at Revision.' },
           { caption: `Back to **${STAGES[0]}** and **${STAGES[1]}**. The need is restated: a booking whose message failed must say so. The model gains a message state: sent, delayed, failed.`, alt: 'Incident card at Model.' },
-          { caption: `On to **${STAGES[2]}** and **${STAGES[3]}**. A new check: when the notification fails, the booking stays accepted and the screen shows the delayed message.`, alt: 'Incident card at Checks.' },
+          { caption: `On to **${STAGES[2]}** and **${STAGES[3]}**. A new check: when the notification fails, the booking stays confirmed and the screen shows the delayed message.`, alt: 'Incident card at Checks.' },
           { caption: `**${STAGES[4]}.** The change ships. Count the rework: ${DISCOVERY[2].rework}. Five kinds, and the user found the defect.`, alt: 'Incident card at Release; five rework items listed.' },
           { caption: '**Iteration** is going around the loop again to revisit understanding. **Increment** is the usable capability each pass adds. Move the first feedback earlier with the condition presets and compare the rework.', principle: true },
         ] },
@@ -817,7 +817,7 @@
         states: [
           { caption: `Keep the three claims and their checks. Change the workload: **${EV.counterexample.label}**.` },
           { caption: `The claim **${EV.claims[1].claim}** is unchanged, and so is the check. What the new workload exposes is an assumption: **${EV.counterexample.exposes}**. ${upper1(EV.counterexample.kept)}.` },
-          { caption: 'The third claim named its conditions, and its checks include the two-at-once case at the storage boundary, so it covers the new workload. The habit of this course: state what the checks showed and the limits they showed it under.', principle: true },
+          { caption: 'The third claim named its conditions, and its checks include the two-at-once case at the storage boundary, so it covers the new workload. The habit of this course: state the evidence and its limits together.', principle: true },
         ] },
     ],
     setup(stage, api) {
@@ -1087,10 +1087,10 @@
   // PAGE · principles and checks
   // =====================================================================
   const CHECKS = [
-    { q: 'What is wrong with two successful overlapping confirmations?', a: 'They break the intended exclusivity rule even though each screen and each request looked successful.' },
-    { q: 'Why include support staff in the stakeholder map?', a: 'Their diagnostic needs shape what the system records, documents, protects and can recover.' },
-    { q: 'Does passing one booking example show that simultaneous requests work?', a: 'No. The example covers one person at a time; the two-at-once condition was never exercised.' },
-    { q: 'Which representation answers: what happens after a timeout?', a: 'A state model when you ask which states are possible; a sequence or timeline view when you ask about one particular interaction.' },
+    { q: 'What is wrong with two successful overlapping confirmations?', a: 'They violate the intended exclusivity rule even when each screen and request appears successful.' },
+    { q: 'Why include support staff in the stakeholder map?', a: 'Their diagnostic needs influence observability, documentation, privacy, and recovery decisions.' },
+    { q: 'Does passing one booking example establish correctness for simultaneous requests?', a: 'No. The evidence does not cover that interaction condition.' },
+    { q: 'Which representation answers: what happens after a timeout?', a: 'A state model or a sequence/timeline view, depending on whether the question concerns possible states or a particular interaction.' },
   ];
   const SCENES = [twoConfirmations, systemBoundary, stakeholderLenses, qualityTradeoffs, feedbackLifecycle, evidenceNotConfidence, responsibilityAndImpact, courseEvidenceMap];
   const principles = {
@@ -1131,20 +1131,20 @@
     ['Requirement', 'A statement of what the service must do or keep true, written so that a check can show whether it holds. R-01 is one.'],
     ['Constraint', 'A condition every acceptable design must meet, such as correctness under overlapping requests.'],
     ['Quality attribute', 'A property of how the service behaves: response time, recoverability, privacy, change effort.'],
-    ['Check result', 'What a check showed, together with the conditions it ran under. Its scope is part of the result.'],
+    ['Evidence', 'What a check showed, together with the conditions it ran under. Its scope is part of the evidence.'],
     ['Lifecycle', 'The loop of need, model, implementation, checks, release, operation and revision that a service goes around repeatedly.'],
     ['Trade-off', 'A choice between alternatives under stated constraints, where each option costs something the other keeps.'],
   ];
   const SOURCES = [
     ['S01', 'IEEE Computer Society, Guide to the Software Engineering Body of Knowledge (SWEBOK V4.0a)', 'https://www.computer.org/education/bodies-of-knowledge/software-engineering'],
-    ['S02', 'ACM / IEEE-CS / AAAI, Computer Science Curricula 2023 (CS2023), published 2024', 'https://csed.acm.org/final-report/'],
+    ['S02', 'ACM / IEEE-CS / AAAI, Computer Science Curricula 2023, final report', 'https://csed.acm.org/final-report/'],
     ['S24', 'Software Engineering at Google, chapter 1: What is software engineering?', 'https://abseil.io/resources/swe-book/html/ch01.html'],
     ['S25', 'W3C, Web Content Accessibility Guidelines 2.2', 'https://www.w3.org/TR/WCAG22/'],
   ];
   const HANDOFF_SENTENCE = A['w02/ambiguous-request'].sentence; // "Make room booking fair and easy."
   const CARRIED = [
     'The context map: the booking service inside its boundary, four dependencies outside.',
-    'The no-overlap concern: one accepted booking per room and hour (R-01), kept where bookings are stored.',
+    'The no-overlap concern: one confirmed booking per room and hour (R-01), kept where bookings are stored.',
     'Open assumptions: who may record a room closure; what the user sees while a message is delayed; how the shared decision behaves when two requests arrive in the same instant.',
   ];
   const sources = {

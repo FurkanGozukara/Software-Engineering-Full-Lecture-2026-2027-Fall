@@ -9,10 +9,8 @@ walks every page, every condition and every state, collects the visible text of 
 page, adds the hidden answers of the checks page, and runs prodlib.narration_style from the
 tutorial workspace on the result.
 
-One documented exception: the on-screen state names Confirmed, Rejected and Cancelled are labels
-of the case model (19_recurring_case_and_demo_data.txt); the recording track decides that the
-deck label carries the state name while the narration says "accepted and stored". Those exact
-tokens are removed before the check so the checker does not read a state name as a hedge.
+The checker flags defensive shapes (hedges, disclaimers, guarantees, arguing about proof), never
+single technical words, so state names and course vocabulary pass as they are.
 """
 from __future__ import annotations
 
@@ -32,7 +30,6 @@ try:
 except Exception:  # noqa: BLE001
     pass
 WORKSPACE_TOOLS = Path("F:/0_tutorial_videos_project/tools")
-STATE_NAMES = re.compile(r"\b(Confirmed|Rejected|Cancelled)\b")
 
 
 def serve(root: Path):
@@ -102,7 +99,7 @@ def main() -> int:
     from prodlib import narration_style  # type: ignore
 
     lines = collect(Path(args.site).resolve(), args.week)
-    text = "\n".join(STATE_NAMES.sub("stored", ln) for ln in lines)
+    text = "\n".join(lines)
     if args.dump:
         Path(args.dump).write_text("\n".join(lines), encoding="utf-8")
     report = narration_style.check_text(text, f"week-{args.week:02d} deck text ({len(lines)} distinct lines)")
