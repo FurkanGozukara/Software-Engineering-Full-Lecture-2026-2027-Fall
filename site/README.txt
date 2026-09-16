@@ -5,17 +5,19 @@ This folder is the complete student site. It works without a network connection.
 
 START THE SITE
 --------------
-Supported route (a local HTTP server on your own computer; nothing leaves it):
+No installation, no server and no network are needed. Open index.html or any deck in
+weeks/ directly in Chrome or Edge (double-click the file). Everything the decks use is a
+plain local file: styles, scripts, the fixture data and the one chart library.
+
+A local web server is optional; it gives clean http:// links instead of file:// paths:
 
     python scripts/serve.py --root site --port 8000
-    then open http://127.0.0.1:8000/ in Chrome, Edge or Firefox
+    then open http://127.0.0.1:8000/
 
-(Run the command from the folder that contains scripts/ and site/. Python 3.10 or newer;
-no packages are needed for serving.) Opening the deck files directly by double-click
-(file://) also works in Chrome for the current decks because they use plain script tags,
-but the local server is the tested route.
+(Run it from the folder that contains scripts/ and site/; Python 3.10 or newer, no
+packages.) Any other static file server works just as well.
 
-The PDFs in pdf/ open directly; no server is needed for them.
+The PDFs in pdf/ open directly.
 
 FILES
 -----
