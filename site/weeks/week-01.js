@@ -123,29 +123,37 @@
     'Separate what you observed, what you assumed and what a check showed.',
     'Explain one technical decision by its benefit, its cost and the people it affects.',
   ];
+  const WHERE_IT_APPLIES = 'A throwaway calculation on your own machine needs none of this. A shared booking service that other people depend on needs all of it. The care you take grows with the consequences of a failure and with how much you do not know yet.';
+  const THROUGH_LINE = 'Every habit in this course, a precise rule, an independent check, a bounded permission, a reviewable change, is also what it takes to direct and check an automated engineering assistant. Weeks 2, 7, 8, 9, 10 and 12 each return to that for a moment; Week 13 looks at it in full.';
   const outcomes = {
     kind: 'page', id: 'outcomes', role: 'page',
     heading: 'What you already know, and where this lecture goes',
     lead: 'What makes working code an engineered system?',
     printRole: 'Recall and outcomes',
     build(body) {
-      const recall = el('div', { class: 'card', style: 'height:100%;display:flex;flex-direction:column;gap:14px' }, [
+      const recall = el('div', { class: 'card', style: 'display:flex;flex-direction:column;gap:12px' }, [
         el('div', { class: 'card-title' }, 'Start from a program you know'),
-        el('p', { style: 'font-size:26px;line-height:1.35' }, 'Think of a program you have written or used every week: a calculator, a to-do list, a game, a script.'),
-        el('ul', { style: 'font-size:23px;line-height:1.4;display:flex;flex-direction:column;gap:10px;color:var(--text-muted)' }, [
+        el('p', { style: 'font-size:25px;line-height:1.35' }, 'Think of a program you have written or used every week: a calculator, a to-do list, a game, a script.'),
+        el('ul', { style: 'font-size:22px;line-height:1.4;display:flex;flex-direction:column;gap:8px;color:var(--text-muted)' }, [
           el('li', {}, 'What does it do when everything goes as planned?'),
           el('li', {}, 'What could make it fail outside that happy path: a second user, a lost connection, a rule that changes, a wrong assumption?'),
           el('li', {}, 'Who else is affected when it fails: only you, or people who never saw the code?'),
         ]),
-        el('p', { class: 'rail-note', style: 'margin-top:auto' }, 'You need to be able to read a short function, an if statement and a list. No particular language, framework or tool is needed.'),
+        el('p', { class: 'rail-note' }, 'You need to be able to read a short function, an if statement and a list. No particular language, framework or tool is needed.'),
+      ]);
+      const frame = el('div', { class: 'card', style: 'display:flex;flex-direction:column;gap:10px' }, [
+        el('div', { class: 'card-title' }, 'Where this applies, and the thread that runs through the course'),
+        el('p', { style: 'font-size:21px;line-height:1.4' }, [el('b', {}, 'Where it applies. '), WHERE_IT_APPLIES]),
+        el('p', { style: 'font-size:21px;line-height:1.4' }, [el('b', {}, 'The thread. '), THROUGH_LINE]),
       ]);
       const list = el('ol', { class: 'outcome-list', 'aria-label': 'By the end of this lecture you can' }, OUTCOMES.map((o, i) => el('li', {}, [el('span', { class: 'n', 'aria-hidden': 'true' }, String(i + 1)), el('span', {}, o)])));
       const right = el('div', {}, [el('div', { class: 'card-title' }, 'By the end of this lecture you can'), list]);
-      body.appendChild(el('div', { class: 'page-columns' }, [recall, right]));
+      body.appendChild(el('div', { class: 'page-columns' }, [el('div', { style: 'display:flex;flex-direction:column;gap:16px' }, [recall, frame]), right]));
     },
     print(body) {
       body.appendChild(el('div', { class: 'print-columns' }, [
-        el('div', {}, [el('h3', {}, 'Start from a program you know'), el('p', {}, 'Think of a program you have written or used every week. What does it do when everything goes as planned? What could make it fail outside that happy path: a second user, a lost connection, a rule that changes, a wrong assumption? Who else is affected when it fails?')]),
+        el('div', {}, [el('h3', {}, 'Start from a program you know'), el('p', {}, 'Think of a program you have written or used every week. What does it do when everything goes as planned? What could make it fail outside that happy path: a second user, a lost connection, a rule that changes, a wrong assumption? Who else is affected when it fails?'),
+          el('h3', {}, 'Where this applies'), el('p', {}, WHERE_IT_APPLIES), el('h3', {}, 'The thread that runs through the course'), el('p', {}, THROUGH_LINE)]),
         el('div', {}, [el('h3', {}, 'By the end of this lecture you can'), el('ol', { class: 'outcome-list' }, OUTCOMES.map((o, i) => el('li', {}, [el('span', { class: 'n' }, String(i + 1)), el('span', {}, o)])))]),
       ]));
     },
@@ -577,7 +585,7 @@
     conditions: [
       { id: 'target-2s', baseline: true, label: `Baseline: ${lower1(QT.response_time_targets[0].label)}`, short: 'Target 2 s',
         states: [
-          { prompt: { question: 'Two designs answer a booking request. Which is better?', options: ['Design 1: it answers faster', 'Design 2: it checks the stored bookings first', 'It depends on what better has to include'] }, caption: `${QT.designs[0].name}. ${QT.designs[1].name}. Step to reveal one quality attribute at a time.` },
+          { prompt: { question: 'Two designs answer a booking request. Which is better?', options: ['Design 1: it answers faster', 'Design 2: it checks the stored bookings first', 'It depends on what better has to include'] }, caption: `${QT.designs[0].name}. ${QT.designs[1].name}. Step to reveal one quality attribute at a time. Each row says how well the service does what it must; a feature you could add or drop, such as a calendar export, is a different kind of thing and is not in this table.` },
           { caption: `**Response time.** Design 1 answers in ${QT.attributes[0].D1}, Design 2 in ${QT.attributes[0].D2}. Both values are example assumptions, and both are inside the 2 s target.` },
           { caption: `**Correctness (R-01).** Design 1 can produce ${QT.attributes[1].D1}; Design 2 produces ${QT.attributes[1].D2}. This row is not a score. It is a condition of acceptance.` },
           { caption: `**Recoverability.** After a wrong confirmation, Design 1 means ${QT.attributes[2].D1}. Design 2 has ${QT.attributes[2].D2}.` },
@@ -1118,6 +1126,7 @@
   // PAGE · handoff, terminology and sources
   // =====================================================================
   const TERMS = [
+    ['Software engineering', 'Making and changing software that people depend on, over its whole lifetime: agreeing what it must do, building, checking, running and revising it, with the consequences for other people counted in. It is about change, coordination and quality.'],
     ['Stakeholder', 'A person or group affected by the service: the person booking, room staff, support staff, a future maintainer.'],
     ['Requirement', 'A statement of what the service must do or keep true, written so that a check can show whether it holds. R-01 is one.'],
     ['Constraint', 'A condition every acceptable design must meet, such as correctness under overlapping requests.'],
@@ -1148,7 +1157,7 @@
         api.cue(el('div', { class: 'handoff' }, [el('span', { class: 'muted', style: 'font-size:20px;display:block;margin-bottom:8px;font-family:var(--font-text);font-weight:500' }, 'Week 2 starts from this request:'), el('span', { class: 'quote' }, `“${HANDOFF_SENTENCE}”`)]), 'handoff'),
         el('div', { class: 'card' }, [el('div', { class: 'card-title' }, 'Carried forward to Week 2'), el('ul', { style: 'font-size:21px;line-height:1.4;display:flex;flex-direction:column;gap:8px' }, CARRIED.map((t) => el('li', {}, t)))]),
       ]);
-      const middle = el('div', { class: 'card', style: 'min-height:0' }, [el('div', { class: 'card-title' }, 'Terms used this week'), el('dl', { class: 'term-list', style: 'grid-template-columns:1fr;font-size:18px;gap:2px' }, TERMS.flatMap(([t, d]) => [el('dt', {}, t), el('dd', {}, d)]))]);
+      const middle = el('div', { class: 'card', style: 'min-height:0' }, [el('div', { class: 'card-title' }, 'Terms used this week'), el('dl', { class: 'term-list', style: 'grid-template-columns:1fr;font-size:16.5px;gap:1px;line-height:1.32' }, TERMS.flatMap(([t, d]) => [el('dt', {}, t), el('dd', {}, d)]))]);
       const right = el('div', { class: 'card', style: 'min-height:0' }, [el('div', { class: 'card-title' }, 'Sources for this lecture'), el('ul', { class: 'source-list' }, SOURCES.map(([k, t, u]) => el('li', {}, [el('span', { class: 'key' }, k), el('span', {}, [t, ' ', el('a', { class: 'url', href: u }, u)])])))]);
       body.appendChild(el('div', { style: 'display:grid;grid-template-columns:1.05fr 0.95fr 0.9fr;gap:28px;height:100%;min-height:0' }, [left, middle, right]));
     },
