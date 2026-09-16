@@ -41,3 +41,22 @@ python scripts/export_pdf.py --site site --week 1     # or --all
 ```
 
 The site must work with the network disabled. The supported route is the local server above; do not promise that every deck works from `file://` unless that route has been tested.
+
+## Phase 0 state (17 September 2026)
+
+Built and verified: the shared shell, the complete Week 1 deck with its PDF and cue list, and the
+two shell-test scenes `weeks/week-05.html#/dependency-example` and
+`weeks/week-11.html#/latency-is-a-distribution`. Weeks 2-4, 6-10 and 12-14 are not built yet, so
+until they exist the deck and PDF tests are run filtered to the decks that exist:
+
+```
+cd plan && SE_COURSE_SITE=../site pytest -q -k "w01- or w05-dependency-example or w11-latency-is-a-distribution or test_week_pdf_exists_and_reads[1]"
+```
+
+Author-side helpers added in Phase 0 (all under `scripts/`): `sync_fixtures.py` copies the plan
+fixtures into the site (`--check` in CI), `build_index.py` regenerates `site/index.html`,
+`build_cues.py --week N` derives `cues/week-NN.json` from the deck and checks every cue target
+and expected state, `check_deck_text.py --week N` runs the workspace narration style checker over
+every visible string of a deck, and `inspect_deck.py` captures scene states and the print view for
+a native read. The per-week completion record lives next to the cue list
+(`cues/week-NN.completion.md`, `cues/week-NN.rehearsal.md`).

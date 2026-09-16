@@ -382,7 +382,9 @@ dialog.deck-dialog h2 { font-size: 30px; margin-bottom: 16px; }
 .dialog-close { position: absolute; right: 20px; top: 20px; }
 .overview-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 24px; }
 .overview-list li { display: flex; }
-.overview-link { flex: 1; display: grid; grid-template-columns: 44px 1fr auto; align-items: center; gap: 12px; text-decoration: none; color: var(--text); padding: 8px 12px; border-radius: var(--radius-sm); border: 1px solid transparent; min-height: 44px; }
+.overview-link { flex: 1; display: grid; grid-template-columns: 44px minmax(0, 1fr); grid-template-rows: auto auto; column-gap: 12px; row-gap: 2px; align-items: center; text-decoration: none; color: var(--text); padding: 8px 12px; border-radius: var(--radius-sm); border: 1px solid transparent; min-height: 44px; }
+.overview-link .num { grid-row: 1 / span 2; }
+.overview-link .id { grid-column: 2; }
 .overview-link:hover { border-color: var(--accent); background: var(--surface-2); }
 .overview-link .num { color: var(--text-soft); font-variant-numeric: tabular-nums; }
 .overview-link .id { font-family: var(--font-mono); font-size: 17px; color: var(--text-soft); }
