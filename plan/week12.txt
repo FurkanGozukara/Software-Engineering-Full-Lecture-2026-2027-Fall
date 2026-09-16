@@ -1,0 +1,252 @@
+WEEK 12 | MAINTENANCE, EVOLUTION, AND SUSTAINABLE CHANGE
+Research and curriculum date: 16 September 2026
+==============================================================================
+
+How can a useful system change without losing the behavior people rely on?
+
+Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-12.html
+
+1. PURPOSE, CASE STATE, AND SCOPE
+---------------------------------
+
+Make maintenance visible as engineering under accumulated knowledge and constraints, not merely fixing old code. Reuse the stable booking service, then introduce a small data-model change and show why rolling releases, older consumers, stored records, and support knowledge all matter.
+
+Connect maintainability with the ability to respond to necessary change. Include resource efficiency as a separate sustainability concern: compare useful work under a declared boundary, rather than equating reduced CPU time with a measured carbon reduction. [S01, S02, S23, S24, S37]
+
+2. OBSERVABLE LEARNING OUTCOMES
+-------------------------------
+
+1. Distinguish observed existing behavior from intended required behavior.
+
+2. Explain a compatibility-preserving data transition and its recovery conditions.
+
+3. Identify the future change cost and risk represented by a specific debt item.
+
+4. Prioritize maintenance using evidence about impact, uncertainty, and reversibility.
+
+5. Compare resource use per successful task without overstating environmental conclusions.
+
+3. INSTRUCTOR PREPARATION AND ENTRY CHECK
+-----------------------------------------
+
+Prepare an older booking response containing durationMinutes and a revised representation containing start and end. Both describe the same campus-local same-day interval. Show old and new readers and records in a compatibility matrix. Do not introduce time-zone migration implicitly.
+
+Prepare one behavior-preserving refactoring, one bug fix changing behavior, and a synthetic resource fixture: 100 successful searches requiring 1,000 storage reads before a change and 200 reads afterward, under the same correctness and freshness conditions. The fixture measures reads per successful search, not energy or emissions.
+
+4. ORDERED CHAPTER AND PAGE MAP
+-------------------------------
+
+Opening situation and recall/outcomes come first. The eight scenes below follow in this order. Principles/checks and sources/handoff close the deck. The normal twelve-page starting layout may expand where readability requires it.
+
+01 | Existing behavior is evidence, not automatically the requirement | Bridge
+
+week-12.html#/understand-before-changing
+
+02 | A rewrite and a refactoring carry different uncertainties | Anchor
+
+week-12.html#/safe-small-change
+
+03 | Old and new versions may need to coexist | Anchor
+
+week-12.html#/expand-migrate-contract
+
+04 | Name the future cost, not just the disliked code | Bridge
+
+week-12.html#/technical-debt-with-interest
+
+05 | The loudest complaint is not always the most important change | Anchor
+
+week-12.html#/prioritize-by-consequence
+
+06 | Removing something is also a compatibility decision | Bridge
+
+week-12.html#/dependency-and-interface-retirement
+
+07 | Doing less work is useful only if the promise still holds | Bridge
+
+week-12.html#/resource-per-useful-outcome
+
+08 | The next maintainer needs the reason and the current state | Bridge
+
+week-12.html#/evolution-record
+
+5. DETAILED SCENE TEACHING NOTES
+--------------------------------
+
+01. EXISTING BEHAVIOR IS EVIDENCE, NOT AUTOMATICALLY THE REQUIREMENT
+--------------------------------------------------------------------
+
+Bridge scene | ID: understand-before-changing
+
+VISUAL IDEA: A legacy function, observed examples, and the canonical rule appear in separate columns.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether a characterization check should preserve everything the current implementation does. Reveal the actual behavior first, including a defect accepting a 121-minute booking. Distinguish documenting what exists from endorsing it.
+
+CHANGE ONE CONDITION AND COMPARE: Change the upper-bound logic deliberately as a bug fix while preserving unrelated behavior. Compare a corrected expectation derived from R-02 with blindly freezing the defect.
+
+PRINCIPLE TO REVEAL: Understand current behavior before changing it, then decide explicitly which behavior should remain.
+
+STUDENT PDF TREATMENT: Print observed-versus-required examples and mark the intentional correction.
+
+02. A REWRITE AND A REFACTORING CARRY DIFFERENT UNCERTAINTIES
+-------------------------------------------------------------
+
+Anchor scene | ID: safe-small-change
+
+VISUAL IDEA: A change-impact graph and behavior checks accompany incremental structural changes; a full replacement appears as a comparison.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask what evidence survives when the Policy responsibility is extracted behind an interface. Reveal unchanged externally observable behavior under relevant checks and a smaller change surface. Define refactoring by preserved behavior, not by the number of edited lines.
+
+CHANGE ONE CONDITION AND COMPARE: Replace the whole booking path at once while keeping the intended feature set fixed. Compare the larger set of assumptions needing re-establishment. A rewrite can be justified, but the decision needs reasons, transition strategy, and evidence—not contempt for old code.
+
+PRINCIPLE TO REVEAL: Choose a change strategy by its uncertainty, constraints, and evidence needs, not by whether the code is new.
+
+STUDENT PDF TREATMENT: Print the two change surfaces and the behavior each strategy must re-establish.
+
+03. OLD AND NEW VERSIONS MAY NEED TO COEXIST
+--------------------------------------------
+
+Anchor scene | ID: expand-migrate-contract
+
+VISUAL IDEA: A three-stage data transition and compatibility matrix show old/new applications reading old/new representations.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether renaming a field instantly is safe while old consumers remain active. Reveal an expanded representation supporting both forms, a controlled migration, and checks that readers agree on the same duration. Show that mixed versions are a normal transition state to consider. [S23]
+
+CHANGE ONE CONDITION AND COMPARE: Remove the old representation before the old reader is retired. Compare the failure with a transition that verifies migration and consumer readiness before contraction. Show why rollback possibilities narrow after the old data path is removed.
+
+PRINCIPLE TO REVEAL: Evolution is safer when compatibility is maintained deliberately across the states that actually coexist.
+
+STUDENT PDF TREATMENT: Print each transition stage, the reader-writer matrix, and the condition required before contraction.
+
+04. NAME THE FUTURE COST, NOT JUST THE DISLIKED CODE
+----------------------------------------------------
+
+Bridge scene | ID: technical-debt-with-interest
+
+VISUAL IDEA: A debt card links a shortcut to repeated change effort, risk, and a possible repayment path.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether every defect or untidy function is technical debt. Reveal a duplicated duration rule that makes each policy update require coordinated edits and checks. Describe the specific extra future work and failure risk rather than attaching a vague debt label.
+
+CHANGE ONE CONDITION AND COMPARE: Change the expected policy-change frequency from rare to frequent. Compare the rationale for repaying this item now, while acknowledging that estimates are uncertain and other risks may dominate.
+
+PRINCIPLE TO REVEAL: A useful debt discussion identifies the deferred cost, the condition that triggers it, and the evidence supporting action.
+
+STUDENT PDF TREATMENT: Print the debt record with its assumptions and revisit trigger rather than an invented monetary total.
+
+05. THE LOUDEST COMPLAINT IS NOT ALWAYS THE MOST IMPORTANT CHANGE
+-----------------------------------------------------------------
+
+Anchor scene | ID: prioritize-by-consequence
+
+VISUAL IDEA: A small portfolio of maintenance needs is compared by user impact, exposure, change frequency, uncertainty, and reversibility.
+
+SITUATION, PREDICTION, AND MECHANISM: Offer a failing authorization edge case, an annoying display inconsistency, a fragile dependency update path, and a slow infrequent report. Ask what information is needed to prioritize them. Reveal consequences and constraints one at a time without reducing ethics or security to a decorative score.
+
+CHANGE ONE CONDITION AND COMPARE: Change only the exposure of the authorization flaw or the dependency’s support status in the fictional scenario. Compare how the priority rationale changes. Avoid making a real unsupported vulnerability claim about an actual library.
+
+PRINCIPLE TO REVEAL: Maintenance priority should respond to consequences and evidence, with assumptions open to revision.
+
+STUDENT PDF TREATMENT: Print the alternatives and a reasoned ordering under each labeled condition.
+
+06. REMOVING SOMETHING IS ALSO A COMPATIBILITY DECISION
+-------------------------------------------------------
+
+Bridge scene | ID: dependency-and-interface-retirement
+
+VISUAL IDEA: Usage evidence, deprecation communication, transition support, and removal conditions attach to an old interface.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether announcing a removal date proves consumers are ready. Reveal a remaining old client and an incomplete observation window. Connect the removal decision to actual usage, support constraints, and the earlier compatibility matrix.
+
+CHANGE ONE CONDITION AND COMPARE: Provide verified consumer migration and a tested fallback, then compare the evidence for retiring the old path. Discuss records and diagnostics retained only for a stated purpose, with policy questions left explicit rather than invented as law.
+
+PRINCIPLE TO REVEAL: Retirement requires evidence about remaining dependence and an intentional treatment of data and recovery.
+
+STUDENT PDF TREATMENT: Print the readiness conditions and remaining unknowns for the old interface.
+
+07. DOING LESS WORK IS USEFUL ONLY IF THE PROMISE STILL HOLDS
+-------------------------------------------------------------
+
+Bridge scene | ID: resource-per-useful-outcome
+
+VISUAL IDEA: Two bars show storage reads per successful search, with correctness and freshness conditions fixed beside them.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether fewer reads is automatically an improvement. Reveal 1,000 reads for 100 successful searches versus 200 for 100: 10 and 2 reads per successful search. Verify that both return the required current availability and preserve the authoritative booking decision.
+
+CHANGE ONE CONDITION AND COMPARE: Reduce reads further by serving stale results beyond the allowed freshness assumption. Compare the apparently attractive resource number with the violated user promise. Explain that a carbon claim additionally needs an appropriate energy, emissions, hardware, and system-boundary method. [S37]
+
+PRINCIPLE TO REVEAL: Compare resource use per useful outcome under equivalent requirements, and label proxies honestly.
+
+STUDENT PDF TREATMENT: Print counts, denominators, freshness assumptions, and the explicit statement that reads are not measured emissions.
+
+08. THE NEXT MAINTAINER NEEDS THE REASON AND THE CURRENT STATE
+--------------------------------------------------------------
+
+Bridge scene | ID: evolution-record
+
+VISUAL IDEA: A compact evolution record links changed requirement, migration stage, checks, rollout evidence, and remaining retirement conditions.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask what would let a new maintainer continue the transition safely. Reveal which representations exist, which readers remain, how correctness is checked, and when rollback ceases to be safe. Keep the record synchronized with actual state rather than the original intention.
+
+CHANGE ONE CONDITION AND COMPARE: Change one migration condition and update the record. Compare an obsolete confident diagram with an accurate record of the partial transition. AI beat: a repository instruction file written for automated assistants is documentation with the same obligation. If it still describes the pre-migration state, a new maintainer and an assistant will both act on stale facts.
+
+PRINCIPLE TO REVEAL: Maintainability includes preserving enough shared understanding to continue a change responsibly.
+
+STUDENT PDF TREATMENT: Print the final transition record with completed, pending, and uncertain conditions distinguished in text.
+
+6. TEACHING GUARDRAILS
+----------------------
+
+Do not call a change behavior-preserving when it changes required outputs or permissions. Characterization captures observations but does not decide which observations are desirable. A data transition needs actual compatibility checks; the words “expand-migrate-contract” are not a substitute for them. [S23]
+
+Treat technical-debt estimates as contextual, not an objective universal currency. Resource reductions do not automatically imply equal carbon reductions. The SCI reference provides a broader accounting method; this lecture uses a clearly labeled resource proxy and does not claim to calculate an SCI score. [S37]
+
+7. MISCONCEPTION AND DIAGNOSIS CLINIC
+-------------------------------------
+
+“Old code should always be replaced.” Age alone does not establish change risk or value.
+
+“A characterization test makes the old behavior correct.” It records behavior; requirements still decide what should happen.
+
+“Fewer database reads prove lower emissions.” The proxy omits energy, hardware, carbon intensity, and system-boundary information.
+
+8. IN-LECTURE CHECKS WITH ANSWERS
+---------------------------------
+
+QUESTION 1: When may the old representation be removed safely in the depicted transition?
+
+ANSWER: After relevant consumers and stored data have migrated, compatibility evidence is sufficient, and recovery implications are understood.
+
+QUESTION 2: Is fixing an incorrect boundary a pure refactoring?
+
+ANSWER: No. It intentionally changes externally observable behavior to satisfy the rule.
+
+QUESTION 3: What makes a debt item actionable?
+
+ANSWER: A specific deferred cost or risk, the conditions that cause it, a possible change, and evidence for its priority.
+
+QUESTION 4: What is the resource reduction in the declared fixture?
+
+ANSWER: Reads per successful search decrease from 10 to 2, an 80% reduction under the same stated conditions; this is not an emissions measurement.
+
+9. PDF CONTINUITY AND LECTURE ELASTICITY
+----------------------------------------
+
+WHAT THE PRINTED EXPLANATION MUST PRESERVE
+------------------------------------------
+
+Preserve migration stages and the compatibility matrix in readable separate panels. Print the distinction between observed and intended behavior, the contextual debt record, and the resource calculation. Do not collapse the transition to a single “new system” picture that hides coexistence or recovery limits.
+
+SHORTER AND LONGER MEETING ROUTES
+---------------------------------
+
+Protect incremental change reasoning, compatibility migration, and evidence-based maintenance priority. Keep resource efficiency focused on one honest metric. With extra time, remove one migration prerequisite and ask how the transition must change rather than adding a second schema example.
+
+10. HANDOFF
+-----------
+
+Carry the requirement, checks, change rationale, and maintenance constraints into Week 13. The next lecture asks whether faster code generation changes the evidence needed to accept a change.
+
+11. SOURCES AND CURRENCY NOTES
+------------------------------
+
+Primary references: S01, S02, S23, S24, S37. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.

@@ -1,0 +1,254 @@
+WEEK 01 | ENGINEERING SOFTWARE THAT PEOPLE CAN DEPEND ON
+Research and curriculum date: 16 September 2026
+==============================================================================
+
+What makes working code an engineered system?
+
+Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-01.html
+
+1. PURPOSE, CASE STATE, AND SCOPE
+---------------------------------
+
+Open with a familiar problem rather than a history of programming languages. Campus Rooms appears to reserve a room successfully, yet two people receive confirmations for the same time. The lecture gradually widens the frame from a function that runs to a service whose behavior, users, changes, and consequences must be understood.
+
+Entry knowledge is the ability to read a small function, an if-statement, and a collection. Do not require a particular programming language or familiarity with enterprise tooling. Establish vocabulary through the example: stakeholder, requirement, constraint, quality attribute, evidence, lifecycle, and trade-off. The weekly ordering is a learning sequence, not a claim that real engineering happens in fourteen isolated phases. [S01, S02, S24]
+
+State the through-line in the opening and return to it: every habit this course builds, a precise rule, an independent check, a bounded permission, a reviewable change, is also what it takes to direct and check automated engineering assistance. Weeks 2, 7, 8, 9, 10 and 12 each carry one short beat on that claim inside an existing scene, and Week 13 examines it fully. Decisions in force for the whole package are listed in 00_START_HERE.txt.
+
+2. OBSERVABLE LEARNING OUTCOMES
+-------------------------------
+
+1. Distinguish a locally correct function from a dependable user-facing service.
+
+2. Identify stakeholders, system boundaries, and competing quality concerns.
+
+3. Explain why delivery and maintenance belong in the engineering lifecycle.
+
+4. Separate an observation, an assumption, and evidence supporting a claim.
+
+5. Explain one technical decision in terms of benefit, cost, and affected people.
+
+3. INSTRUCTOR PREPARATION AND ENTRY CHECK
+-----------------------------------------
+
+Prepare a fictional booking screen, two conflicting confirmation cards, a simple room calendar, and a small map of people and systems. Use Room C101 and the 10:00-11:00 interval throughout. Keep an alternative correct outcome ready: one confirmation and one clear unavailability response. Establish that all numbers and incidents in this course are authored teaching examples unless explicitly attributed.
+
+Opening page: show only the reassuring success message and ask whether it is enough. Recall page: invite students to explain what a program they already know does and what could make it fail outside the happy path. No installation or command-line demonstration is needed.
+
+4. ORDERED CHAPTER AND PAGE MAP
+-------------------------------
+
+Opening situation and recall/outcomes come first. The eight scenes below follow in this order. Principles/checks and sources/handoff close the deck. The normal twelve-page starting layout may expand where readability requires it.
+
+01 | Two green confirmations cannot both be right | Anchor
+
+week-01.html#/two-confirmations
+
+02 | The booking button is not the whole system | Bridge
+
+week-01.html#/system-boundary
+
+03 | The same screen can serve one person and exclude another | Anchor
+
+week-01.html#/stakeholder-lenses
+
+04 | Faster is not a complete description of better | Bridge
+
+week-01.html#/quality-tradeoffs
+
+05 | A failure can teach the next requirement | Anchor
+
+week-01.html#/feedback-lifecycle
+
+06 | What would make us believe this works? | Bridge
+
+week-01.html#/evidence-not-confidence
+
+07 | Who carries the cost of an engineering shortcut? | Bridge
+
+week-01.html#/responsibility-and-impact
+
+08 | One domain, many kinds of explanation | Bridge
+
+week-01.html#/course-evidence-map
+
+5. DETAILED SCENE TEACHING NOTES
+--------------------------------
+
+01. TWO GREEN CONFIRMATIONS CANNOT BOTH BE RIGHT
+------------------------------------------------
+
+Anchor scene | ID: two-confirmations
+
+VISUAL IDEA: Two browser cards beside one shared room calendar. Three controlled beats reveal request, stored state, and user consequence.
+
+SITUATION, PREDICTION, AND MECHANISM: Situation and prediction: Ari and Bo each see “Confirmed” for C101 at 10:00. Ask, “What evidence would let us decide whether the system worked?” Reveal the calendar containing two overlapping confirmed bookings, then the people arriving at the same door. Show that an attractive interface and a successful response are not the whole behavior.
+
+CHANGE ONE CONDITION AND COMPARE: Change only the confirmation rule: a shared decision now admits one request and rejects the conflicting one. Compare inconvenience from an honest rejection with harm from a false promise. Do not explain transactions yet; preserve that question for later.
+
+PRINCIPLE TO REVEAL: Engineering judges behavior against an intended outcome and its consequences, not appearance alone.
+
+STUDENT PDF TREATMENT: Print the two-confirmation outcome and the one-confirmation outcome, with the violated rule written below both.
+
+02. THE BOOKING BUTTON IS NOT THE WHOLE SYSTEM
+----------------------------------------------
+
+Bridge scene | ID: system-boundary
+
+VISUAL IDEA: A context map with the service inside a boundary and users, campus identity, room records, and notification delivery outside.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask which parts the team can change directly. Reveal one interaction at a time and label arrows with their meaning. A student request, an identity assertion, and a notification are not interchangeable kinds of information.
+
+CHANGE ONE CONDITION AND COMPARE: Make the notification provider unavailable without changing room storage. Ask which user outcomes remain possible. Keep the boundary fixed so the class sees a dependency rather than a new diagram.
+
+PRINCIPLE TO REVEAL: A system boundary identifies responsibility and dependencies; it does not make external behavior disappear.
+
+STUDENT PDF TREATMENT: Use one labeled context map with the unavailable dependency marked by both text and a broken-line symbol.
+
+03. THE SAME SCREEN CAN SERVE ONE PERSON AND EXCLUDE ANOTHER
+------------------------------------------------------------
+
+Anchor scene | ID: stakeholder-lenses
+
+VISUAL IDEA: A stakeholder map connected to concrete concerns; an accessible keyboard path sits beside the visual interface.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask who is affected besides the person clicking Reserve. Reveal a student needing step-free access, room staff handling closures, support staff diagnosing mistakes, and a maintainer interpreting old decisions. Translate each concern into a question the system must answer.
+
+CHANGE ONE CONDITION AND COMPARE: Change the user interaction from mouse to keyboard. The visually polished version initially has no reachable confirmation control; the corrected version does. Compare task completion, not the attractiveness of the two screens. Introduce accessibility as part of whether the service works. [S25]
+
+PRINCIPLE TO REVEAL: Quality depends on the people and conditions included in the definition of success.
+
+STUDENT PDF TREATMENT: Print the stakeholder-concern table and the successful keyboard route; describe the failed route in text.
+
+04. FASTER IS NOT A COMPLETE DESCRIPTION OF BETTER
+--------------------------------------------------
+
+Bridge scene | ID: quality-tradeoffs
+
+VISUAL IDEA: A comparison table with response time, correctness, recoverability, privacy, and change effort; avoid an unexplained radar chart.
+
+SITUATION, PREDICTION, AND MECHANISM: Offer two fictional designs: immediate confirmation from an unchecked local view, and confirmation after an authoritative availability decision. Ask which is better before revealing their behavior. Separate quality attributes from optional features.
+
+CHANGE ONE CONDITION AND COMPARE: Keep correctness mandatory and change the response-time target. Discuss which optimizations preserve the rule and which merely hide a delay. Clearly label illustrative measurements and never imply that accuracy must always be traded for speed.
+
+PRINCIPLE TO REVEAL: Compare alternatives under stated constraints; some requirements are conditions of acceptance rather than points in a score.
+
+STUDENT PDF TREATMENT: Print the alternatives, assumptions, and a short rationale rather than a winner badge.
+
+05. A FAILURE CAN TEACH THE NEXT REQUIREMENT
+--------------------------------------------
+
+Anchor scene | ID: feedback-lifecycle
+
+VISUAL IDEA: A loop connecting need, model, implementation, checks, release, operation, and revision; an incident card travels through it.
+
+SITUATION, PREDICTION, AND MECHANISM: Predict where a missing “notification failed” behavior would be discovered. Reveal that it may emerge during a requirements conversation, an integration check, or operation. Follow the incident back to an updated user message and a new verification check.
+
+CHANGE ONE CONDITION AND COMPARE: Move the first useful feedback earlier while keeping the defect the same. Compare the kinds of rework involved, without presenting an invented universal cost-of-defect multiplier. Explain iteration as revisiting understanding and increment as adding usable capability.
+
+PRINCIPLE TO REVEAL: The lifecycle is a network of feedback loops, not a one-way conveyor ending when code runs.
+
+STUDENT PDF TREATMENT: Print the full loop and two annotated feedback paths, including what information changed.
+
+06. WHAT WOULD MAKE US BELIEVE THIS WORKS?
+------------------------------------------
+
+Bridge scene | ID: evidence-not-confidence
+
+VISUAL IDEA: Three columns labeled Claim, Check, and Remaining uncertainty; cards move only when a reason is supplied.
+
+SITUATION, PREDICTION, AND MECHANISM: Present “It looks right,” “It passed one example,” and “It met the stated checks under these conditions.” Ask which evidence supports which claim. Reveal a counterexample outside the tested conditions without implying that all prior testing was worthless.
+
+CHANGE ONE CONDITION AND COMPARE: Change the workload from one user to simultaneous users. Compare the unchanged claim with the newly exposed assumption. Introduce the course habit of stating both evidence and its limits.
+
+PRINCIPLE TO REVEAL: A check supports a bounded claim; confidence without scope is difficult to evaluate.
+
+STUDENT PDF TREATMENT: Print the completed claim-check-uncertainty table, retaining the counterexample.
+
+07. WHO CARRIES THE COST OF AN ENGINEERING SHORTCUT?
+----------------------------------------------------
+
+Bridge scene | ID: responsibility-and-impact
+
+VISUAL IDEA: A consequence map linking a decision to users, support effort, data exposure, and future change.
+
+SITUATION, PREDICTION, AND MECHANISM: Show a support log containing more personal information than needed to diagnose a failure. Ask who benefits and who takes the risk. Reveal an alternative containing a request identifier and failure category instead of private booking details.
+
+CHANGE ONE CONDITION AND COMPARE: Change the support question so that one additional field is genuinely needed. Compare deliberate, justified collection with collecting everything by default. Keep this an engineering discussion, not jurisdiction-specific legal advice.
+
+PRINCIPLE TO REVEAL: Professional responsibility includes the consequences imposed on people who did not make the technical choice.
+
+STUDENT PDF TREATMENT: Print the minimal diagnostic record and the rationale for each retained field.
+
+08. ONE DOMAIN, MANY KINDS OF EXPLANATION
+-----------------------------------------
+
+Bridge scene | ID: course-evidence-map
+
+VISUAL IDEA: A course map that changes representation: requirement card, state diagram, dependency graph, test table, release path, and incident timeline.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether one flowchart could explain all of these questions equally well. Reveal each representation with a single example of the question it answers. Introduce the recurring Campus Rooms case without exposing authoring tools.
+
+CHANGE ONE CONDITION AND COMPARE: Keep the booking behavior fixed and switch from “Who depends on this?” to “What happened first?” Compare the dependency graph with the sequence diagram. Then change the actor: the same booking change is drafted by an automated assistant instead of a colleague. Ask which representations and checks are no longer needed. None; that is the through-line the course returns to in Week 13.
+
+PRINCIPLE TO REVEAL: Choose a representation for the question, not a diagram style for the whole course.
+
+STUDENT PDF TREATMENT: Print the course map as a question-to-representation reference, including the row for a change drafted by an automated assistant.
+
+6. TEACHING GUARDRAILS
+----------------------
+
+Define software engineering broadly through change, coordination, quality, and the system's lifetime rather than a contest between programmers and engineers. The course does not teach that every small script needs heavyweight process. Keep process proportional to consequence and uncertainty. Treat security, accessibility, and maintainability as recurring concerns from the first week. [S01, S02, S24]
+
+In every visual, distinguish a hypothetical failure from an observed real incident. Do not use fabricated industry percentages to make the opening dramatic. The booking conflict is a counterexample that motivates inquiry, not an explanation of its implementation yet.
+
+7. MISCONCEPTION AND DIAGNOSIS CLINIC
+-------------------------------------
+
+“The interface says success, so the operation succeeded.” Ask which authoritative state supports that message.
+
+“More process always means better engineering.” Compare a disposable local calculation with a shared booking service and ask what risks differ.
+
+“Testing happens only at the end.” Revisit the feedback loop and identify an early check on a requirement.
+
+8. IN-LECTURE CHECKS WITH ANSWERS
+---------------------------------
+
+QUESTION 1: What is wrong with two successful overlapping confirmations?
+
+ANSWER: They violate the intended exclusivity rule even when each screen and request appears successful.
+
+QUESTION 2: Why include support staff in the stakeholder map?
+
+ANSWER: Their diagnostic needs influence observability, documentation, privacy, and recovery decisions.
+
+QUESTION 3: Does passing one booking example establish correctness for simultaneous requests?
+
+ANSWER: No. The evidence does not cover that interaction condition.
+
+QUESTION 4: Which representation answers “What happens after a timeout?”
+
+ANSWER: A state model or a sequence/timeline view, depending on whether the question concerns possible states or a particular interaction.
+
+9. PDF CONTINUITY AND LECTURE ELASTICITY
+----------------------------------------
+
+WHAT THE PRINTED EXPLANATION MUST PRESERVE
+------------------------------------------
+
+The student PDF should stand alone: include the conflict and corrected outcome, the stakeholder-concern table, the lifecycle feedback paths, and a small terminology panel. Put the answered understanding checks after the questions. Keep the instructor's prompting notes out of the student edition. Use “Example assumption” labels wherever a rule or number is introduced.
+
+SHORTER AND LONGER MEETING ROUTES
+---------------------------------
+
+Preserve the conflicting confirmations, stakeholder comparison, and feedback loop as the three sustained demonstrations. For a shorter meeting, combine the responsibility discussion with the stakeholder map. For a longer meeting, compare the same engineering question in a tiny local utility without introducing another elaborate business domain.
+
+10. HANDOFF
+-----------
+
+Carry forward the context map, the exclusivity concern, and a list of unresolved assumptions. Week 2 turns these into precise, testable requirements. Show one ambiguous sentence on the final page: “Make room booking fair and easy.”
+
+11. SOURCES AND CURRENCY NOTES
+------------------------------
+
+Primary references: S01, S02, S24, S25. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.

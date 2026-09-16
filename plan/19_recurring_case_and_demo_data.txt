@@ -1,0 +1,74 @@
+CAMPUS ROOMS: RECURRING CASE AND TEACHING FIXTURES
+Research and curriculum date: 16 September 2026
+==============================================================================
+
+DOMAIN AND IDENTITIES
+---------------------
+
+Campus Rooms is a fictional room-booking service, not a real university system. Ari is U-01 and Bo is U-02. Use room C101 for the main examples and C202 when a second room is needed. B-001 is a representative booking owned by U-01. Campus staff may record room closures in the explicitly defined scenario, but do not have an unstated right to cancel every booking.
+
+The recurring logical components are Booking, Policy, Room Catalog, Notification, and Storage. The default architecture is a modular application with an authoritative booking decision and separately tracked notification work. Logical modules do not automatically imply separate network services. No real personal data, credentials, or campus integration is used.
+
+CANONICAL BEHAVIORAL RULES
+--------------------------
+
+R-01 — No overlapping confirmed bookings for the same room. Intervals are half-open: [start,end). Thus 10:00–11:00 and 11:00–12:00 are adjacent, not overlapping. Different rooms do not conflict solely because their times match.
+R-02 — Booking duration is 30 through 120 minutes inclusive. Core examples use whole minutes, require end later than start, and do not impose a 30-minute slot grid. A temporary 90-minute upper bound must be labeled as a variant and reset afterward.
+R-03 — An authenticated requester may cancel their own future confirmed booking. “Future” means its start is later than the explicit current time. Already-started and other-owner cases are denied under this baseline. No general staff cancellation override is implied.
+R-04 — Notification failure does not undo a confirmed booking. Pending or failed notification work must remain visible and recoverable. Confirmation and notification are separate facts.
+R-05 — Users must be able to complete the core task with keyboard interaction and perceive meaningful status and error information. Examples demonstrate requirements and checks; they do not claim comprehensive accessibility certification.
+R-06 — Week 14 only: an effective closure blocks new confirmations overlapping its room and interval. Existing bookings remain recorded and are explicitly shown as affected, with an authorized resolution process and separately tracked communication. This is a labeled policy extension, not a retroactive rule in Weeks 1–13.
+
+Room closure is a planted thread, not a leak of R-06 into earlier weeks. It appears as a stakeholder need in Week 1, as an open question and a scheduling condition in Week 2, and as a work card in Week 4, always unresolved; R-06 is its Week 14 resolution. Authoring agents keep it an open need until then.
+
+TIME, IDENTITY, AND STATE SEMANTICS
+-----------------------------------
+
+Use campus-local same-day time examples in the core. Do not introduce daylight-saving or cross-zone conversion silently. Any such extension needs its own explicit policy and fixtures. For cancellation checks use a fixed teaching clock, such as 09:00 for a booking starting at 10:00; the at-start case uses exactly 10:00.
+
+The UI/request model may include Draft, Submitting, Confirmed, Rejected, and Unknown outcome. The baseline stored booking model contains Confirmed and Cancelled. A rejected request does not create a confirmed booking. A lost response can produce Unknown outcome in the UI even when the stored booking is Confirmed.
+
+Scope operation keys to the authenticated requester and intended action. Repeating the same key with the same payload can return the original logical result; reusing it with a different payload produces an explicit conflict in the example. This is an application contract, not a claim that a timeout means no write or that every POST is inherently idempotent.
+
+The no-overlap decision must survive concurrency. Correct local interval arithmetic is not enough. The animation must not imply that any transaction, an arbitrary row lock, or a unique room-plus-start key automatically protects every overlapping interval.
+
+QUALITY FIXTURES WITH DISTINCT BOUNDARIES
+-----------------------------------------
+
+Q-01 is the illustrative search requirement introduced in Week 2: under the declared teaching fixture and 50 concurrent users, p95 search API response time is at most 500 ms at the service boundary. It is not a claim about a browser’s complete perceived experience or an industry benchmark. Actual performance evidence requires a specified dataset, request mix, environment, run conditions, and percentile calculation; the later twenty-point example illustrates the concept only.
+
+Q-02 is the separate Week 11 illustrative objective: over seven days, at least 99% of eligible booking requests receive a correct outcome within two seconds. Eligible events are authenticated, syntactically valid booking requests reaching the stated service boundary, including legitimate room-conflict requests; health checks are excluded. A timely correct conflict rejection is good service. The fixed fixture contains 980 good events, 10 correct-but-slow results, 5 timeouts, and 5 unexpected server failures out of 1,000. The observed good-event rate is 98%, against an allowance of 10 bad events; 20 are observed.
+
+TEST AND AUTHORIZATION FIXTURES
+-------------------------------
+
+Duration cases: 29 rejected; 30 accepted; 31 accepted; 119 accepted; 120 accepted; 121 rejected, provided all other conditions are valid. Reversed or malformed intervals are separate invalid cases.
+
+Interval cases: existing C101 [10:00,11:00); candidate C101 [10:30,11:30) conflicts; candidate C101 [11:00,12:00) does not; candidate C202 [10:30,11:30) does not conflict with C101. These cases establish interval semantics, not concurrent correctness by themselves.
+
+Cancellation matrix: authenticated U-01, own confirmed B-001, now 09:00/start 10:00 is allowed. U-02 with the same booking is denied. U-01 at 10:00 is denied because the booking has started. An unauthenticated request is denied. An already-cancelled booking has a stable explicitly defined repeated response rather than another cancellation transition.
+
+FLOW AND DELIVERY FIXTURES
+--------------------------
+
+Queue model: eight equal-sized cards arrive at round 0. Implementation and review each take one round per admitted batch, limited by their declared capacities. Review can use only cards available at its round start. Newly implemented cards join review for the next round. Baseline capacities are implementation 2/review 1; comparisons use 4/1 and2/2 with identical arrivals. The included JSON records end-of-round ready, review-waiting, and completed counts. Baseline and faster-implementation both finish at round 9; faster-review finishes at round 5. These are model results, not forecasts about developers.
+
+Delivery fixture: one service, ten deployments in a seven-day window, IDs D01–D10. D03 and D08 fail and require immediate intervention. D04 and D09 are unplanned incident-driven corrective deployments. Lead times in hours are [2,4,3,5,2,6,4,3,2,9], with median 3.5. Recovery durations for the two failed deployments are 15 and 25 minutes, with median 20. Deployment frequency is 10 per seven days, or approximately 1.43/day. Change fail rate and deployment rework rate are each 2/10=20%, with distinct numerators. These are illustrative summaries using the current metric meanings, not a claim about a real team. [S17]
+
+LATENCY AND RESOURCE FIXTURES
+-----------------------------
+
+Latency Dataset A contains twenty responses at 200 ms. Dataset B contains eighteen at 100 ms and two at 1,100 ms. Both arithmetic means are 200 ms. Under nearest-rank percentile selection, p95 is the nineteenth sorted value:200 ms for A and1,100 ms for B. Print the method and sample size. This tiny fixture is not a load test validating Q-01.
+
+Resource fixture: 100 successful searches use 1,000 storage reads before a change and 200 afterward. That is 10 versus2 reads per successful search, an80% reduction under equivalent stated correctness and freshness conditions. No energy or emissions value is supplied; the chart must not label the reduction as carbon savings.
+
+RETRY MODEL
+-----------
+
+The Week 11 retry-amplification scene uses a toy model: one dependency serves at most two attempts per round, first come first served; six unique requests Q1 to Q6 arrive in round 1; the first attempt of Q6 is dropped in round 1 without a response. A request still pending at the end of a round is a timeout for its client. Under the naive policy every timed-out client immediately submits another attempt while its earlier attempts stay queued, and an attempt served for a request that already succeeded is a duplicate effect. Under the bounded policy a client resubmits at most once, only after waiting two rounds and never while the circuit is open, and reports Unknown outcome once four rounds have passed with its retry spent; the circuit opens at the end of any round with at least four timeouts and blocks submissions for two round-ends.
+
+Recorded results, recomputed by the checker: naive peaks at seven queued attempts, completes the six unique requests in round 5 with seven duplicate effects, and drains only in round 7; bounded peaks at three queued attempts, completes them in round 4 with no duplicate effects, and its circuit is open at the ends of rounds 1 and 2. The retries competed with the originals for the same capacity, which is the lesson. The model is a mechanism illustration, not a measurement, and it reuses the Week 6 operation-key idea for the duplicate effects.
+
+Any additional numbers introduced during authoring should be identified as measured, sourced, or simulated. Fix seeds where randomness is used for illustration, record the inputs, and independently verify the outputs. Repeated visits to a scene should not silently generate a different lesson.
+
+Structured data for every Anchor scene, and for the numeric Bridges, lives in the anchors block of assets/demo-fixtures.json under the key wNN/scene-id, beside the cancellation matrix and the retry model. The HTML and the PDF render from it, and tools/check_plan.py recomputes every model and checks the week text against the values the fixtures say it shows.

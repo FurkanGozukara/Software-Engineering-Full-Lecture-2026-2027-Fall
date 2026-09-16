@@ -1,0 +1,252 @@
+WEEK 07 | COLLABORATION, VERSION HISTORY, AND REVIEWABLE CHANGE
+Research and curriculum date: 16 September 2026
+==============================================================================
+
+How can several people change one system without losing intent or trust?
+
+Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-07.html
+
+1. PURPOSE, CASE STATE, AND SCOPE
+---------------------------------
+
+Move from the structure of the software to the structure of shared work. The central object is a change with a reason, a history, and evidence—not a sequence of Git commands. Make branching and merging visible, then reveal why combining text successfully does not establish that the combined behavior is correct.
+
+Keep the interface neutral: a commit graph, readable diffs, review comments, and a small evidence panel. Explain version control, code review, configuration management, and documentation as complementary forms of coordination. Students do not need accounts on a hosting platform. [S01, S02, S06, S07]
+
+2. OBSERVABLE LEARNING OUTCOMES
+-------------------------------
+
+1. Read a small commit graph and distinguish commits, branch references, and merges.
+
+2. Explain the difference between a textual conflict and an incompatible behavioral change.
+
+3. Identify the context and evidence needed to review a change.
+
+4. Explain how dependency and configuration choices affect reproducibility.
+
+5. Use history and decision records to explain why a change was made.
+
+3. INSTRUCTOR PREPARATION AND ENTRY CHECK
+-----------------------------------------
+
+Prepare a six-commit fictional history, two short readable diffs, and one deliberately misleading clean merge. Use a temporary policy variant reducing the maximum duration from 120 to 90 minutes. One branch changes the policy; another adds a hard-coded message saying 120 minutes. Label the variant clearly and restore the canonical rule after the scene.
+
+Recall the Week 5 change-impact graph. Ask how two people would discover that their apparently separate edits affect the same promise. Keep code fragments small enough to compare without scrolling; syntax coloring must not carry the meaning alone.
+
+4. ORDERED CHAPTER AND PAGE MAP
+-------------------------------
+
+Opening situation and recall/outcomes come first. The eight scenes below follow in this order. Principles/checks and sources/handoff close the deck. The normal twelve-page starting layout may expand where readability requires it.
+
+01 | History is a graph of states and relationships | Anchor
+
+week-07.html#/commit-graph
+
+02 | A conflict asks for a decision about meaning | Anchor
+
+week-07.html#/conflict-and-intent
+
+03 | No conflict does not mean no contradiction | Bridge
+
+week-07.html#/clean-merge-wrong-behavior
+
+04 | A diff is easier to judge when the claim is visible | Anchor
+
+week-07.html#/review-with-context
+
+05 | Distance from shared reality can grow quietly | Bridge
+
+week-07.html#/integration-frequency
+
+06 | A source snapshot is only part of a reproducible run | Bridge
+
+week-07.html#/same-code-different-result
+
+07 | The reason for a change should survive the conversation | Bridge
+
+week-07.html#/history-as-explanation
+
+08 | Shared confidence comes from several kinds of evidence | Bridge
+
+week-07.html#/ready-to-integrate
+
+5. DETAILED SCENE TEACHING NOTES
+--------------------------------
+
+01. HISTORY IS A GRAPH OF STATES AND RELATIONSHIPS
+--------------------------------------------------
+
+Anchor scene | ID: commit-graph
+
+VISUAL IDEA: A commit graph grows one node at a time beside a tiny snapshot of the booking policy; branch labels move separately from nodes.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether a branch is a second permanent copy of every file. Reveal commits as recorded snapshots linked to parent commits, then move a branch reference when a new commit is added. Draw time consistently but explain that graph ancestry, not horizontal position alone, determines the relationship. [S06]
+
+CHANGE ONE CONDITION AND COMPARE: Create a second line of development from the same ancestor. Compare two descendants with different changes, then reveal a merge with two parents. Contrast a fast-forward case without suggesting that every integration needs a merge commit.
+
+PRINCIPLE TO REVEAL: History records relationships between changes; branch names are movable references, not the changes themselves.
+
+STUDENT PDF TREATMENT: Print the common ancestor, divergent descendants, and merged state in three labeled panels.
+
+02. A CONFLICT ASKS FOR A DECISION ABOUT MEANING
+------------------------------------------------
+
+Anchor scene | ID: conflict-and-intent
+
+VISUAL IDEA: Two edits to one policy line appear beside the requirement they were intended to implement.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether taking the left or right version is sufficient. Reveal one edit implementing the 90-minute variant and another reorganizing the same validation. Show the shared original so the class can distinguish changed behavior from changed structure.
+
+CHANGE ONE CONDITION AND COMPARE: Resolve the text while accidentally losing the upper bound. Compare a syntactically valid result with a requirement-based resolution that preserves both the intended rule and the structural improvement. Reveal the boundary check that detects the mistake.
+
+PRINCIPLE TO REVEAL: A merge resolution must reconcile intent and verify the combined behavior, not merely remove conflict markers.
+
+STUDENT PDF TREATMENT: Print ancestor, two edits, chosen resolution, and the verification result with compact annotations.
+
+03. NO CONFLICT DOES NOT MEAN NO CONTRADICTION
+----------------------------------------------
+
+Bridge scene | ID: clean-merge-wrong-behavior
+
+VISUAL IDEA: A clean-merge indicator sits above a policy value and a user message that disagree.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether a successful merge means the feature is ready. Reveal a policy rejecting durations above 90 while the newly added message still says 120. The files differ, so the version-control tool had no textual disagreement to flag.
+
+CHANGE ONE CONDITION AND COMPARE: Replace the duplicated message value with a response derived from the same approved policy source. Compare the user-visible behavior before and after the change.
+
+PRINCIPLE TO REVEAL: Textual integration and semantic integration are different kinds of evidence.
+
+STUDENT PDF TREATMENT: Print the clean merge and the contradictory outcomes; do not leave only the green merge indicator.
+
+04. A DIFF IS EASIER TO JUDGE WHEN THE CLAIM IS VISIBLE
+-------------------------------------------------------
+
+Anchor scene | ID: review-with-context
+
+VISUAL IDEA: A review panel connects requirement, diff, checks, decision rationale, and focused comments.
+
+SITUATION, PREDICTION, AND MECHANISM: Show the diff alone and ask what a reviewer cannot yet decide. Reveal the purpose, affected rule, alternatives, and checks. Sort comments into correctness, security, design, understandability, and optional preference. Explain that automated style checks can reduce distraction, not replace judgment. [S07]
+
+CHANGE ONE CONDITION AND COMPARE: Split an unrelated rename out of the same change. Compare the reviewer’s task with and without the unrelated material, without claiming an exact universal speed improvement. Keep one substantive concern unresolved until its supporting evidence appears. AI beat: label the same diff as drafted by an automated assistant with the description “fix stuff”. Ask what changes for the reviewer. Nothing: the requirement, the checks and the rationale are still required, and the empty description is the documentation failure of scene 07 arriving early.
+
+PRINCIPLE TO REVEAL: Review is an evidence-based conversation about a change, not a vote on how convincing its author sounds.
+
+STUDENT PDF TREATMENT: Print the compact review packet and two example comments with their supporting reasons.
+
+05. DISTANCE FROM SHARED REALITY CAN GROW QUIETLY
+-------------------------------------------------
+
+Bridge scene | ID: integration-frequency
+
+VISUAL IDEA: Two timelines show the same intended changes integrated in small steps or accumulated on a long-lived branch.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask where incompatibilities would become visible. Reveal the integration points and overlapping assumptions, not just the number of commits. Explain that smaller steps still need useful checks and a safe way to keep unfinished behavior unavailable.
+
+CHANGE ONE CONDITION AND COMPARE: Introduce one contract change halfway through both timelines. Compare when each branch learns about it. Avoid presenting one branching convention as mandatory for every team.
+
+PRINCIPLE TO REVEAL: Choose a collaboration strategy that exposes incompatible assumptions early enough to act on them.
+
+STUDENT PDF TREATMENT: Print both timelines with the contract-change event and discovery points.
+
+06. A SOURCE SNAPSHOT IS ONLY PART OF A REPRODUCIBLE RUN
+--------------------------------------------------------
+
+Bridge scene | ID: same-code-different-result
+
+VISUAL IDEA: A source revision connects to dependency versions, runtime, configuration, data fixture, and build artifact.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask why the same code might behave differently on two machines. Reveal one changed dependency and one different configuration value. Distinguish a recorded version constraint from the actual resolved dependency set.
+
+CHANGE ONE CONDITION AND COMPARE: Hold the source fixed and restore the declared dependency and configuration inputs. Compare repeatability of the teaching result. Keep secrets out of the diagram and out of the repository; use placeholder references.
+
+PRINCIPLE TO REVEAL: Reproducibility requires control of the relevant inputs, not just possession of the source files.
+
+STUDENT PDF TREATMENT: Print the input manifest and the single difference responsible for the changed behavior.
+
+07. THE REASON FOR A CHANGE SHOULD SURVIVE THE CONVERSATION
+-----------------------------------------------------------
+
+Bridge scene | ID: history-as-explanation
+
+VISUAL IDEA: A short change description and decision record are linked to the commit and requirement.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask what a maintainer learns from “fix stuff.” Reveal an alternative explaining the observed problem, intended behavior, and a constraint that ruled out an obvious solution. Separate durable rationale from a transcript of every discussion.
+
+CHANGE ONE CONDITION AND COMPARE: Remove the original author from the scenario. Compare how much each record helps a future reviewer understand whether the constraint still applies.
+
+PRINCIPLE TO REVEAL: Documentation earns its place by preserving information that cannot be reliably reconstructed from the code.
+
+STUDENT PDF TREATMENT: Print the weak and improved descriptions with the useful information highlighted in words.
+
+08. SHARED CONFIDENCE COMES FROM SEVERAL KINDS OF EVIDENCE
+----------------------------------------------------------
+
+Bridge scene | ID: ready-to-integrate
+
+VISUAL IDEA: A change card collects review, checks, integration status, and remaining uncertainty without turning them into a numerical score.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask which missing evidence prevents this change from being integrated responsibly. Reveal that passing checks does not settle an unresolved authorization question, while approval does not fix a failing integration check.
+
+CHANGE ONE CONDITION AND COMPARE: Resolve the actual concern, rerun the affected checks, and compare the evidence packet. Restore the canonical 120-minute policy and show that later weeks use that baseline.
+
+PRINCIPLE TO REVEAL: Integration readiness is a justified judgment about the change and its context, not a single green indicator.
+
+STUDENT PDF TREATMENT: Print the final evidence packet and an explicit baseline-restoration note.
+
+6. TEACHING GUARDRAILS
+----------------------
+
+Do not turn the lecture into a hosting-platform tour or a memorization exercise for commands. A commit identifier identifies recorded content in its version-control context; it is not proof that the content is safe or correct. A successful merge establishes neither acceptance nor release readiness.
+
+Show behavior and intent before naming a workflow. Keep examples of branch rewriting conceptual; do not prescribe rewriting shared history without coordination. Reproducible dependency selection also does not mean a dependency is trustworthy. That distinction leads into Week 9.
+
+7. MISCONCEPTION AND DIAGNOSIS CLINIC
+-------------------------------------
+
+“Git chooses the correct business rule.” It can combine content; people and checks must resolve intended behavior.
+
+“Approval proves correctness.” Review is bounded evidence and may miss assumptions.
+
+“A small diff is automatically safe.” A one-character authorization or boundary change can have large consequences.
+
+8. IN-LECTURE CHECKS WITH ANSWERS
+---------------------------------
+
+QUESTION 1: What distinguishes a branch label from a commit?
+
+ANSWER: A branch label points to a commit and can move; the recorded commit represents a particular snapshot and ancestry.
+
+QUESTION 2: Can two changes merge cleanly and still conflict?
+
+ANSWER: Yes. Their behavior or assumptions can contradict even when the edited text does not overlap.
+
+QUESTION 3: What context should accompany a policy change?
+
+ANSWER: The intended requirement, affected behavior, relevant design constraints, and checks demonstrating the change.
+
+QUESTION 4: Why record dependency inputs?
+
+ANSWER: The same source can run differently when its resolved dependencies or configuration differ.
+
+9. PDF CONTINUITY AND LECTURE ELASTICITY
+----------------------------------------
+
+WHAT THE PRINTED EXPLANATION MUST PRESERVE
+------------------------------------------
+
+Preserve the commit graph at meaningful points, the conflict resolution, and the clean-merge counterexample. Provide readable diffs as text rather than tiny full-screen captures. The review example must retain the requirement and evidence, not only comments. State that the 90-minute rule was a temporary variant.
+
+SHORTER AND LONGER MEETING ROUTES
+---------------------------------
+
+Keep commit ancestry, semantic conflict, and contextual review as the three sustained explanations. Compress integration frequency and durable documentation into short comparisons when needed. With more time, replay the same merge after changing only one requirement; avoid a long detour into Git internals.
+
+10. HANDOFF
+-----------
+
+Carry the review packet and its unanswered question into Week 8: what makes a verification check useful, and what can a passing suite still fail to establish?
+
+11. SOURCES AND CURRENCY NOTES
+------------------------------
+
+Primary references: S01, S02, S06, S07. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.

@@ -1,0 +1,252 @@
+WEEK 11 | RELIABILITY, OBSERVABILITY, AND PERFORMANCE REASONING
+Research and curriculum date: 16 September 2026
+==============================================================================
+
+Which observation would help distinguish the possible causes of a failure?
+
+Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-11.html
+
+1. PURPOSE, CASE STATE, AND SCOPE
+---------------------------------
+
+Begin with a user-visible delay, not a dashboard. Establish the service outcome that matters, then reveal measurements, logs, and traces only when they help answer a specific diagnostic question. Keep reliability objectives, performance requirements, and delivery metrics separate: they describe different aspects of the system.
+
+Use selected concepts from service-level objectives and monitoring guidance, with logs, metrics, and traces as the three telemetry forms explored in this lecture. OpenTelemetry supports a broader set of signals; this course deliberately concentrates on these three. [S01, S02, S20, S21, S22]
+
+2. OBSERVABLE LEARNING OUTCOMES
+-------------------------------
+
+1. Define an eligible event, a good event, an indicator, and an objective for a specific service promise.
+
+2. Interpret a latency distribution without relying only on its average.
+
+3. Use correlated observations to distinguish plausible incident causes.
+
+4. Explain how retries can increase load and why recovery controls need conditions.
+
+5. Separate immediate mitigation from later causal learning.
+
+3. INSTRUCTOR PREPARATION AND ENTRY CHECK
+-----------------------------------------
+
+Prepare a fictional seven-day record of 1,000 eligible booking requests. Exactly 980 receive a correct outcome within two seconds; ten are correct but slower, five time out, and five return unexpected server failures. The illustrative objective is 99% good events, so 10 bad events are permitted by that objective and 20 are observed. Honest, timely “room unavailable” decisions count as correct outcomes.
+
+Keep the earlier Q-01 search requirement separate: p95 search API response at most 500 milliseconds with 50 concurrent users under its declared fixture. Prepare two fixed latency datasets and one correlated incident packet containing request ID, release marker, trace, queue measurement, and redacted log. None is a real campus incident.
+
+4. ORDERED CHAPTER AND PAGE MAP
+-------------------------------
+
+Opening situation and recall/outcomes come first. The eight scenes below follow in this order. Principles/checks and sources/handoff close the deck. The normal twelve-page starting layout may expand where readability requires it.
+
+01 | A successful status code is not the complete promise | Anchor
+
+week-11.html#/define-good-service
+
+02 | The average can hide the experience we need to improve | Bridge
+
+week-11.html#/latency-is-a-distribution
+
+03 | Each signal answers a different part of the question | Anchor
+
+week-11.html#/correlate-the-observations
+
+04 | A plausible story needs a distinguishing observation | Bridge
+
+week-11.html#/hypothesis-before-fix
+
+05 | Trying harder can increase the pressure on a failing dependency | Anchor
+
+week-11.html#/retry-amplification
+
+06 | Restoring a useful service and explaining a cause are different jobs | Bridge
+
+week-11.html#/mitigate-and-communicate
+
+07 | An alert should help someone decide what to do | Bridge
+
+week-11.html#/actionable-alerts
+
+08 | The explanation should improve the system, not find a scapegoat | Bridge
+
+week-11.html#/learn-after-the-incident
+
+5. DETAILED SCENE TEACHING NOTES
+--------------------------------
+
+01. A SUCCESSFUL STATUS CODE IS NOT THE COMPLETE PROMISE
+--------------------------------------------------------
+
+Anchor scene | ID: define-good-service
+
+VISUAL IDEA: Request tokens enter a good/bad classification table with eligibility, correctness, and timing visible.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether every rejected booking request is a service failure. Reveal a timely correct conflict response as a good outcome under this objective. Then classify a fast incorrect confirmation and a correct response arriving too late. The class must state the event definition before seeing the percentage. [S21]
+
+CHANGE ONE CONDITION AND COMPARE: Change only the observation: 20 of 1,000 eligible requests miss the promise. Compare 98% observed good events with the illustrative 99% objective. Explain the ten-event allowance and twenty-event consumption without treating the allowance as permission to ignore harmful failures.
+
+PRINCIPLE TO REVEAL: A reliability indicator is meaningful only after the user promise, event population, and observation window are defined.
+
+STUDENT PDF TREATMENT: Print the classifications, arithmetic, window, and objective; retain rejected-but-correct examples.
+
+02. THE AVERAGE CAN HIDE THE EXPERIENCE WE NEED TO IMPROVE
+----------------------------------------------------------
+
+Bridge scene | ID: latency-is-a-distribution
+
+VISUAL IDEA: Two empirical latency distributions share axes and units; mean and nearest-rank p95 markers are shown separately.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether equal averages imply equally responsive service. Reveal Dataset A: twenty requests at 200 ms. Dataset B: eighteen at 100 ms and two at 1,100 ms. Both average 200 ms, but their nearest-rank p95 values differ: 200 ms and 1,100 ms.
+
+CHANGE ONE CONDITION AND COMPARE: Change the comparison from the average to the tail, keeping the data fixed. Connect the result to the specific Q-01 fixture without claiming that twenty synthetic points establish real production performance.
+
+PRINCIPLE TO REVEAL: Use a distribution and a defined percentile method when the question concerns uneven user experience.
+
+STUDENT PDF TREATMENT: Print the sorted values or frequency table, both charts, sample sizes, and percentile method.
+
+03. EACH SIGNAL ANSWERS A DIFFERENT PART OF THE QUESTION
+--------------------------------------------------------
+
+Anchor scene | ID: correlate-the-observations
+
+VISUAL IDEA: One request timeline links a latency measurement, structured log entry, and distributed trace; selecting the request highlights matching records.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether a spike in aggregate latency identifies the slow component. Reveal a trace with an unusually long storage wait, then a relevant event record. Contrast what the metric suggests, what the trace localizes, and what the log explains. [S20]
+
+CHANGE ONE CONDITION AND COMPARE: Change the cause to delayed notification that is not on the confirmation path. Compare the same user report with the request trace, showing why correlation and a clear interaction model matter.
+
+PRINCIPLE TO REVEAL: Telemetry becomes useful evidence when it connects a symptom to a discriminating question about the system.
+
+STUDENT PDF TREATMENT: Print the correlated packet with a shared request identifier and a caption for what each signal supports.
+
+04. A PLAUSIBLE STORY NEEDS A DISTINGUISHING OBSERVATION
+--------------------------------------------------------
+
+Bridge scene | ID: hypothesis-before-fix
+
+VISUAL IDEA: Three candidate causes sit beside predicted observations and the evidence actually available.
+
+SITUATION, PREDICTION, AND MECHANISM: Offer slow storage, an identity dependency failure, and exhausted request capacity. Ask which observation would separate them. Reveal one trace segment and one queue measurement, then eliminate only the hypotheses contradicted by that evidence.
+
+CHANGE ONE CONDITION AND COMPARE: Remove the trace sample from the packet. Compare the weaker conclusion now justified. A missing log entry is not automatically proof that an event never happened; collection may be incomplete.
+
+PRINCIPLE TO REVEAL: Diagnosis advances by testing predictions and acknowledging gaps, not by naming the first familiar cause.
+
+STUDENT PDF TREATMENT: Print the hypothesis-prediction-evidence table and the remaining uncertainty.
+
+05. TRYING HARDER CAN INCREASE THE PRESSURE ON A FAILING DEPENDENCY
+-------------------------------------------------------------------
+
+Anchor scene | ID: retry-amplification
+
+VISUAL IDEA: A controlled queue model shows original requests and separately labeled retry attempts; arrival and completion rates are visible.
+
+SITUATION, PREDICTION, AND MECHANISM: Start with a constrained dependency and ask whether immediate repeated retries will reduce waiting. Reveal extra attempts entering the same limited capacity, with no invented promise about exact real-world timings. Preserve the distinction between unique user operations and repeated attempts.
+
+CHANGE ONE CONDITION AND COMPARE: Change to bounded retries with delay, backoff, and an explicit timeout budget; show a circuit-open state as a deliberate temporary refusal to call the unhealthy dependency. Compare queue pressure and successful outcomes under the declared toy model. Keep jitter optional and seeded for reproducible teaching.
+
+PRINCIPLE TO REVEAL: Recovery behavior must account for shared capacity and the possibility that an earlier attempt already had an effect.
+
+STUDENT PDF TREATMENT: Print the baseline and bounded-retry model, assumptions, and reminder of Week 6 idempotency.
+
+06. RESTORING A USEFUL SERVICE AND EXPLAINING A CAUSE ARE DIFFERENT JOBS
+------------------------------------------------------------------------
+
+Bridge scene | ID: mitigate-and-communicate
+
+VISUAL IDEA: An incident timeline separates detect, assess impact, mitigate, verify recovery, communicate, and investigate.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether the team must know the complete cause before reducing harm. Reveal a safe exposure rollback or capacity protection, then show the evidence used to verify improvement. Keep user communication accurate about known impact and uncertainty.
+
+CHANGE ONE CONDITION AND COMPARE: Make code rollback unsafe because of state compatibility. Compare an alternative mitigation that limits exposure or degrades a nonessential capability without breaking the booking invariant.
+
+PRINCIPLE TO REVEAL: Incident response should reduce harm, preserve evidence, and keep claims proportionate to what is known.
+
+STUDENT PDF TREATMENT: Print the timeline and the reason the selected mitigation was safe in this scenario.
+
+07. AN ALERT SHOULD HELP SOMEONE DECIDE WHAT TO DO
+--------------------------------------------------
+
+Bridge scene | ID: actionable-alerts
+
+VISUAL IDEA: A noisy stream of low-level alerts is contrasted with a user-impact signal and a short response guide.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether every CPU fluctuation should interrupt someone. Reveal the user promise, the affected service, an actionable condition, and a next diagnostic question. Avoid prescribing a universal threshold independent of workload. [S22]
+
+CHANGE ONE CONDITION AND COMPARE: Hold resource utilization high while user outcomes remain acceptable, then lower it while correctness fails. Compare resource observations with the actual service objective.
+
+PRINCIPLE TO REVEAL: Alerting should connect a meaningful condition to an appropriate response, not merely report that a number changed.
+
+STUDENT PDF TREATMENT: Print the signal-condition-response relationship and the two counterexamples.
+
+08. THE EXPLANATION SHOULD IMPROVE THE SYSTEM, NOT FIND A SCAPEGOAT
+-------------------------------------------------------------------
+
+Bridge scene | ID: learn-after-the-incident
+
+VISUAL IDEA: A causal timeline connects conditions, decisions, observations, and follow-through checks.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask what “someone made a mistake” fails to explain. Reveal missing safeguards, misleading feedback, or an untested workload assumption. Separate observed facts from hypotheses and identify which change would reduce recurrence or shorten detection.
+
+CHANGE ONE CONDITION AND COMPARE: Add a proposed action that sounds reassuring but cannot be verified. Compare it with a specific change, an owner role, and evidence showing whether the risk was reduced.
+
+PRINCIPLE TO REVEAL: Learning from an incident requires testable improvements to the conditions that shaped it.
+
+STUDENT PDF TREATMENT: Print the factual timeline and improvement-to-verification map without personal blame.
+
+6. TEACHING GUARDRAILS
+----------------------
+
+Do not use availability, correctness, latency, and deployment recovery interchangeably. The illustrative SLO’s denominator includes authenticated, syntactically valid booking requests reaching the defined service boundary, including legitimate room conflicts; it excludes health checks. Define eligibility before observing results, not afterward to improve the score.
+
+Percentiles require a stated convention and enough relevant observations for the claim being made. Use the tiny latency dataset to explain a concept, not to validate Q-01. Logs may contain sensitive material; use synthetic, minimal fields. Correlation can guide diagnosis but does not by itself establish causation.
+
+7. MISCONCEPTION AND DIAGNOSIS CLINIC
+-------------------------------------
+
+“Every rejection is an outage.” A correct, timely conflict decision can satisfy the stated service promise.
+
+“Average latency describes everyone.” Unequal distributions can share an average.
+
+“Retry until it works.” Repeated attempts can add load and duplicate effects without appropriate limits and identity semantics.
+
+8. IN-LECTURE CHECKS WITH ANSWERS
+---------------------------------
+
+QUESTION 1: What is the observed good-event rate for the declared fixture?
+
+ANSWER: 980 divided by 1,000, or 98%.
+
+QUESTION 2: How many bad events does the illustrative 99% objective allow in that window?
+
+ANSWER: Ten of 1,000; twenty are observed, so consumption is twice the allowance.
+
+QUESTION 3: Which signal helps locate where one request spent time?
+
+ANSWER: A correlated trace can localize time across the observed request path, within its sampling and instrumentation limits.
+
+QUESTION 4: Why might a high CPU reading not justify an urgent incident alert by itself?
+
+ANSWER: Its significance depends on user impact, capacity risk, and an actionable response, not the number alone.
+
+9. PDF CONTINUITY AND LECTURE ELASTICITY
+----------------------------------------
+
+WHAT THE PRINTED EXPLANATION MUST PRESERVE
+------------------------------------------
+
+Print the SLO classification rules and arithmetic, the two latency distributions, and the full correlated incident packet. Each chart needs axes, units, sample size, and synthetic-data labeling. Preserve the hypothesis table and recovery limitations so the student can follow the diagnosis without the animation.
+
+SHORTER AND LONGER MEETING ROUTES
+---------------------------------
+
+Protect service-outcome definition, correlated diagnosis, and retry amplification as the anchors. Combine mitigation, alerting, and learning into a concise incident conclusion when time is limited. Additional time should revisit a different hypothesis using the same packet rather than adding an observability-platform tour.
+
+10. HANDOFF
+-----------
+
+Carry the incident’s learning and the compatibility limitation into Week 12. The system now needs to change over time while people continue to rely on its existing behavior.
+
+11. SOURCES AND CURRENCY NOTES
+------------------------------
+
+Primary references: S01, S02, S20, S21, S22. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.

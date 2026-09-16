@@ -1,0 +1,252 @@
+WEEK 14 | CONNECTING THE LIFECYCLE THROUGH ONE ENGINEERING DECISION
+Research and curriculum date: 16 September 2026
+==============================================================================
+
+Can we explain a change from human need to operational evidence without losing the original promise?
+
+Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-14.html
+
+1. PURPOSE, CASE STATE, AND SCOPE
+---------------------------------
+
+End with an instructor-led engineering decision clinic, not a list of all previous definitions. A staff member reports that C101 must be closed for maintenance during a future interval. The class follows one bounded change across requirements, models, architecture, checks, release, operation, and learning.
+
+Use familiar representations and identifiers so the difficulty lies in connecting decisions, not decoding a new domain. Preserve explicit disagreement where evidence does not determine one universal design. The goal is a coherent explanation of what should change, what must remain true, and what would justify the decision. [S01, S02]
+
+2. OBSERVABLE LEARNING OUTCOMES
+-------------------------------
+
+1. Trace a new user need through a requirement, model, design decision, verification, and operational observation.
+
+2. Identify which established invariants remain unchanged during a new feature decision.
+
+3. Compare two change strategies under the same constraints and evidence.
+
+4. Explain a release or recovery decision with its assumptions and consequences.
+
+5. State a general engineering principle using a concrete counterexample from the course.
+
+3. INSTRUCTOR PREPARATION AND ENTRY CHECK
+-----------------------------------------
+
+Prepare a maintenance-closure request, a future room calendar containing one confirmed booking, the current architecture and requirement map, and two candidate approaches. Proposed Week 14 extension R-06: once a closure is effective, new confirmations overlapping its room and interval are rejected; existing bookings are retained, visibly marked as affected, and handled through an explicit resolution process. Do not silently grant staff cancellation authority or claim that the room remains usable.
+
+For the teaching scenario, accept this policy after the opening clarification. Owner cancellation remains governed by R-03. Notification status remains separate under R-04. Prepare one release with a missing interface cue and one dependency-failure variant. The extension is a labeled addition, not a retroactive change to earlier fixtures.
+
+4. ORDERED CHAPTER AND PAGE MAP
+-------------------------------
+
+Opening situation and recall/outcomes come first. The eight scenes below follow in this order. Principles/checks and sources/handoff close the deck. The normal twelve-page starting layout may expand where readability requires it.
+
+01 | Close the room—but what happens to the people already relying on it? | Anchor
+
+week-14.html#/new-need-old-promises
+
+02 | Each representation should answer the next unanswered question | Bridge
+
+week-14.html#/trace-the-change
+
+03 | The interface can explain the closure; the decision boundary must enforce it | Bridge
+
+week-14.html#/locate-authority
+
+04 | One new rule needs more than one friendly example | Bridge
+
+week-14.html#/verification-weave
+
+05 | What would make this change ready to expose? | Anchor
+
+week-14.html#/release-with-a-fault
+
+06 | Two reasonable designs can optimize different constraints | Anchor
+
+week-14.html#/compare-defensible-options
+
+07 | Name the principle after remembering the counterexample | Bridge
+
+week-14.html#/course-principles
+
+08 | Finish with a claim the evidence can actually support | Bridge
+
+week-14.html#/engineering-explanation
+
+5. DETAILED SCENE TEACHING NOTES
+--------------------------------
+
+01. CLOSE THE ROOM—BUT WHAT HAPPENS TO THE PEOPLE ALREADY RELYING ON IT?
+------------------------------------------------------------------------
+
+Anchor scene | ID: new-need-old-promises
+
+VISUAL IDEA: A maintenance notice overlays a future calendar, with an existing confirmed booking and a new request shown separately.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask what “disable C101” leaves ambiguous. Reveal the closure interval, who may record a closure, what new requests should see, and how existing booking holders learn that action is required. Separate preventing new promises from resolving promises already made.
+
+CHANGE ONE CONDITION AND COMPARE: Compare silent deletion of the existing booking with preserving its record and making its affected status explicit. Ask which outcome supports honest communication, traceability, and authorized resolution. Accept R-06 as the scenario’s stated policy only after showing these choices.
+
+PRINCIPLE TO REVEAL: A new requirement must address the consequences for existing users, not merely the next successful action.
+
+STUDENT PDF TREATMENT: Print the ambiguous request, accepted extension, and treatment of new versus existing bookings.
+
+02. EACH REPRESENTATION SHOULD ANSWER THE NEXT UNANSWERED QUESTION
+------------------------------------------------------------------
+
+Bridge scene | ID: trace-the-change
+
+VISUAL IDEA: A linked strip changes from requirement card to state annotation, decision table, dependency graph, and verification matrix.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask which representation would show who is permitted to record a closure and which would show request ordering. Reveal the appropriate model for each question. Connect R-06 to the existing R-01 through R-05 without inventing a one-diagram solution.
+
+CHANGE ONE CONDITION AND COMPARE: Change only the closure interval so it ends exactly when a candidate booking begins. Compare the boundary expectation with the half-open interval convention already used throughout the course.
+
+PRINCIPLE TO REVEAL: Traceability is useful when it carries meaning across representations, not when it merely adds connecting lines.
+
+STUDENT PDF TREATMENT: Print the linked trace and the adjacency example with the relevant rule labels.
+
+03. THE INTERFACE CAN EXPLAIN THE CLOSURE; THE DECISION BOUNDARY MUST ENFORCE IT
+------------------------------------------------------------------------------
+
+Bridge scene | ID: locate-authority
+
+VISUAL IDEA: Two alternatives show closure checking only in the browser or at the authoritative booking decision with an informative interface.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether a hidden room card is sufficient to prevent a new confirmation. Reveal stale client state and another valid request path. Reuse Week 9’s trust boundary and Week 6’s concurrency lesson.
+
+CHANGE ONE CONDITION AND COMPARE: Introduce a closure while a booking request is in progress. Compare an interface-only check with an authoritative decision that defines ordering between closure and confirmation. Do not pretend the exact storage mechanism is settled by drawing a lock icon.
+
+PRINCIPLE TO REVEAL: Shared promises need an enforcement point that survives alternate paths and concurrent change.
+
+STUDENT PDF TREATMENT: Print both alternatives, the interleaving, and the decision-ordering requirement.
+
+04. ONE NEW RULE NEEDS MORE THAN ONE FRIENDLY EXAMPLE
+-----------------------------------------------------
+
+Bridge scene | ID: verification-weave
+
+VISUAL IDEA: A traceability matrix links R-06 to interval boundaries, permission decisions, concurrent behavior, interface states, and notification failure.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask which checks would distinguish a plausible incomplete implementation from the intended behavior. Reveal a nonoverlap case, a closure-boundary case, a forbidden staff action, an in-flight booking, and an affected-owner message.
+
+CHANGE ONE CONDITION AND COMPARE: Make all function checks pass while omitting the affected-booking interface cue. Compare the evidence with a keyboard-accessible user journey that reveals the missing information. [S25]
+
+PRINCIPLE TO REVEAL: Build evidence around the risks and user promises that cross layers, not just the easiest function to test.
+
+STUDENT PDF TREATMENT: Print the check matrix with expected outcomes and a clear gap in the incomplete version.
+
+05. WHAT WOULD MAKE THIS CHANGE READY TO EXPOSE?
+------------------------------------------------
+
+Anchor scene | ID: release-with-a-fault
+
+VISUAL IDEA: A compact release path combines the verified artifact, compatibility state, selected exposure, and user-outcome observations.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether passing interval and permission checks justify full exposure when existing users cannot see their affected status. Reveal the incomplete release record and keep the decision paused. Add the missing accessible cue and the evidence that it is observable.
+
+CHANGE ONE CONDITION AND COMPARE: Introduce notification failure after closure is recorded. Compare a system that loses the affected-user task with one that records pending communication and continues to display the affected status. Preserve recovery responsibility without undoing the closure or deleting booking history.
+
+PRINCIPLE TO REVEAL: Release decisions must consider the whole user promise and the behavior of incomplete or failed work.
+
+STUDENT PDF TREATMENT: Print the blocked decision, corrected evidence, and notification-failure outcome.
+
+06. TWO REASONABLE DESIGNS CAN OPTIMIZE DIFFERENT CONSTRAINTS
+-------------------------------------------------------------
+
+Anchor scene | ID: compare-defensible-options
+
+VISUAL IDEA: A side-by-side decision record compares a targeted change inside the modular application with a separately deployed closure service.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask which new requirement actually needs independent deployment. Reveal benefits and costs under the fictional small-team, single-campus baseline. Compare change surface, operational boundaries, authority, and maintenance burden without using an arbitrary winner score.
+
+CHANGE ONE CONDITION AND COMPARE: Change one condition: several independent campus operators now need separate release schedules. Revisit the rationale and identify the new contract and ownership questions. Do not announce that this single condition automatically proves the distributed option is best.
+
+PRINCIPLE TO REVEAL: A defensible choice explains its assumptions, trade-offs, evidence, and conditions for reconsideration.
+
+STUDENT PDF TREATMENT: Print both decision records and the one changed condition, preserving unresolved questions.
+
+07. NAME THE PRINCIPLE AFTER REMEMBERING THE COUNTEREXAMPLE
+-----------------------------------------------------------
+
+Bridge scene | ID: course-principles
+
+VISUAL IDEA: Six concise principle cards connect to small images from earlier scenes rather than a wall of vocabulary.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask which counterexample taught each principle: false confirmation, ambiguous requirement, clean-but-wrong merge, shared test assumption, unsafe rollback, and overpowered automation. Reveal the principle only after the class recognizes the situation.
+
+CHANGE ONE CONDITION AND COMPARE: Change the domain label from room booking to a generic reservation service while keeping the underlying relationship. Compare which principles transfer and which policies must be elicited again.
+
+PRINCIPLE TO REVEAL: Conceptual understanding transfers relationships and reasoning—not an unexamined copy of another system’s rules.
+
+STUDENT PDF TREATMENT: Print each principle beside its concrete counterexample and scope.
+
+08. FINISH WITH A CLAIM THE EVIDENCE CAN ACTUALLY SUPPORT
+---------------------------------------------------------
+
+Bridge scene | ID: engineering-explanation
+
+VISUAL IDEA: A final one-page decision narrative links need, rule, design, checks, release, observation, and unresolved uncertainty.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask the class to explain why the selected closure behavior is justified. Reveal a coherent account using the evidence already shown, with explicit uncertainty about the multi-campus extension. Avoid ending with “everything is solved.”
+
+CHANGE ONE CONDITION AND COMPARE: Remove one important check or change one assumption. Compare how the final claim must narrow. Close on the habit of revising confidence when the supporting conditions change.
+
+PRINCIPLE TO REVEAL: Good engineering explanations connect decisions to evidence and remain honest about what has not been established.
+
+STUDENT PDF TREATMENT: Print the complete decision narrative and its bounded conclusion as the closing student reference.
+
+6. TEACHING GUARDRAILS
+----------------------
+
+Do not add a large new business context or introduce advanced distributed algorithms in the final lecture. The closure extension must remain clearly distinguished from the earlier baseline. Existing confirmations affected by closure are not silently canceled, and staff closure authority is not a general permission to cancel someone else’s booking.
+
+Keep the final alternatives comparable: same initial requirements, same workload, same evaluation criteria. When the condition changes, label it and recompute or reconsider only the implications it actually affects. The conclusion should not imply full security, accessibility, or reliability certification from this teaching example.
+
+7. MISCONCEPTION AND DIAGNOSIS CLINIC
+-------------------------------------
+
+“A final diagram means the design is finished forever.” It records a decision under current assumptions.
+
+“New requirements replace old guarantees automatically.” Identify which promises remain and explicitly resolve conflicts.
+
+“There is always one best architecture.” A justified choice depends on context, evidence, and trade-offs.
+
+8. IN-LECTURE CHECKS WITH ANSWERS
+---------------------------------
+
+QUESTION 1: Why retain the existing affected booking rather than silently deleting it?
+
+ANSWER: Its owner already relied on the promise; explicit affected status, history, and an authorized resolution preserve information needed to address the consequence.
+
+QUESTION 2: Where must closure and booking ordering be enforced?
+
+ANSWER: At the authoritative decision boundary with a mechanism that preserves the stated concurrent behavior.
+
+QUESTION 3: What is missing when function checks pass but users cannot perceive an affected booking?
+
+ANSWER: Evidence that the complete user-facing requirement, including accessible status information, has been satisfied.
+
+QUESTION 4: What should happen to the final engineering claim when an assumption changes?
+
+ANSWER: Reconsider the affected decision and narrow or revise the claim until appropriate evidence is available.
+
+9. PDF CONTINUITY AND LECTURE ELASTICITY
+----------------------------------------
+
+WHAT THE PRINTED EXPLANATION MUST PRESERVE
+------------------------------------------
+
+The final student PDF is a compact connected explanation of the scenario. Preserve R-06, the treatment of existing bookings, the traceability matrix, release evidence, alternative decisions, and the concluding principles. It should be readable without earlier animations, while referring to stable scene identifiers for students returning to the HTML decks.
+
+SHORTER AND LONGER MEETING ROUTES
+---------------------------------
+
+Protect consequence-aware requirements, release under a fault, and contextual design comparison as the three anchors. The other scenes connect familiar ideas rather than opening new topic families. Additional time belongs to explaining why a particular piece of evidence changes the decision, not to a new technical implementation.
+
+10. HANDOFF
+-----------
+
+The course closes with a reusable reasoning pattern: identify the promise, make assumptions visible, choose a representation, inspect a mechanism, challenge it with a changed condition, and justify the conclusion with evidence.
+
+11. SOURCES AND CURRENCY NOTES
+------------------------------
+
+Primary references: S01, S02, S25. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.

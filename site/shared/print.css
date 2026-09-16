@@ -1,0 +1,151 @@
+/* =====================================================================
+   Software Engineering course · light print stylesheet
+   Active in the ?print=1 view (body[data-print="true"]) and under @media print.
+   The print view is an explanation: each scene renders its designed print
+   panels (docs/scene-contract.md, "Query modes"); controls and navigation
+   are hidden; selected conditions are printed as text.
+   ===================================================================== */
+
+body[data-print="true"], body.print-media {
+  --bg: #ffffff;
+  --bg-2: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f2f5f8;
+  --surface-3: #e6ebf1;
+  --line: #b9c2cd;
+  --line-strong: #6b7a8c;
+  --text: #111820;
+  --text-muted: #3e4a57;
+  --text-soft: #5b6874;
+  --accent: #0b5cad;
+  --accent-strong: #08427c;
+  --accent-fill: rgba(11, 92, 173, 0.10);
+  --ok: #0a7a3e;
+  --ok-fill: rgba(10, 122, 62, 0.10);
+  --bad: #b42318;
+  --bad-fill: rgba(180, 35, 24, 0.10);
+  --warn: #7a5200;
+  --warn-fill: rgba(200, 140, 0, 0.14);
+  --violet: #5b3fb8;
+  --violet-fill: rgba(91, 63, 184, 0.10);
+  --ink-on-light: #ffffff;
+  --focus: #7a5200;
+  --shadow: none;
+  color-scheme: light;
+  background: #fff;
+  color: var(--text);
+  overflow: visible;
+  height: auto;
+}
+body[data-print="true"] .btn-reserve, body.print-media .btn-reserve { color: #fff; background: var(--accent); }
+body[data-print="true"] .status--ok .ico, body.print-media .status--ok .ico { color: #fff; }
+body[data-print="true"] .status--bad .ico, body.print-media .status--bad .ico { color: #fff; }
+body[data-print="true"] .prompt-options .opt-key, body.print-media .prompt-options .opt-key { background: var(--warn); color: #fff; }
+
+@page { size: A4 landscape; margin: 11mm 12mm 10mm 12mm; }
+
+body[data-print="true"] .deck {
+  position: static; transform: none; width: auto; height: auto; display: block; background: #fff;
+}
+body[data-print="true"] .deck-header,
+body[data-print="true"] .deck-nav,
+body[data-print="true"] [data-nav],
+body[data-print="true"] [data-control],
+body[data-print="true"] .scene-controls,
+body[data-print="true"] .deck-progress-track,
+body[data-print="true"] .skip-link,
+body[data-print="true"] dialog,
+body[data-print="true"] .scene-live,
+body[data-print="true"] .page-live { display: none !important; }
+body[data-print="true"] .deck-pages { position: static; }
+body[data-print="true"] .page { position: static; display: block; padding: 0; height: auto; }
+body[data-print="true"] .scene { position: static; display: block; }
+body[data-print="true"] .scene-print { display: block; }
+body[data-print="true"] .page-print { display: block; }
+
+/* ---------------------------------------------------------------- sheets */
+.print-page {
+  break-after: page;
+  break-inside: avoid;
+  page-break-after: always;
+  page-break-inside: avoid;
+  width: 1032px;            /* A4 landscape at 96 dpi minus margins */
+  min-height: 660px;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+  display: flex; flex-direction: column;
+  font-size: 16px;
+  color: var(--text);
+}
+.print-page:last-child { break-after: auto; page-break-after: auto; }
+.print-head { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; border-bottom: 2px solid var(--text); padding-bottom: 6px; margin-bottom: 10px; }
+.print-head .ph-week { font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-soft); font-weight: 700; }
+.print-head .ph-title { font-family: var(--font-display); font-size: 22px; font-weight: 700; line-height: 1.15; }
+.print-head .ph-role { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-soft); white-space: nowrap; font-weight: 700; }
+.print-panel-title { font-family: var(--font-display); font-size: 17px; font-weight: 600; color: var(--accent-strong); margin-bottom: 4px; }
+.print-meta { display: flex; gap: 18px; flex-wrap: wrap; font-size: 14px; color: var(--text-muted); margin-bottom: 8px; }
+.print-meta b { color: var(--text); font-weight: 600; }
+.print-meta .pm-condition::before { content: "Condition: "; color: var(--text-soft); }
+.print-meta .pm-state::before { content: "State: "; color: var(--text-soft); }
+.print-caption { font-size: 15px; line-height: 1.4; color: var(--text); margin-bottom: 8px; }
+.print-caption .state-num { display: none; }
+.print-stage { flex: 0 0 auto; align-self: center; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #fff; }
+.print-stage-inner { position: relative; background: #fff; }
+.print-stage-inner .scene-stage { position: absolute; inset: 0; }
+.print-note { font-size: 14px; color: var(--text-muted); border-left: 3px solid var(--warn); padding: 4px 10px; margin-top: 8px; line-height: 1.4; }
+.print-prompt { font-size: 15px; margin: 0 0 8px; padding: 6px 10px; border: 1px solid var(--warn); border-radius: 6px; background: var(--warn-fill); }
+.print-prompt b { color: var(--warn); }
+.print-principle { font-family: var(--font-display); font-size: 17px; font-weight: 600; margin-top: 8px; padding: 8px 12px; border-left: 4px solid var(--violet); background: var(--violet-fill); line-height: 1.3; }
+.print-principle::before { content: "Principle · "; color: var(--violet); }
+.print-foot { margin-top: auto; padding-top: 8px; display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 11.5px; color: var(--text-soft); border-top: 1px solid var(--line); }
+
+/* cover and text pages */
+.print-cover .pc-question { font-family: var(--font-display); font-size: 34px; font-weight: 700; line-height: 1.15; margin: 20px 0 8px; }
+.print-cover .pc-lead { font-size: 16px; color: var(--text-muted); max-width: 800px; margin-bottom: 18px; }
+.print-toc { width: 100%; font-size: 14px; }
+.print-toc th, .print-toc td { text-align: left; padding: 6px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.print-toc th { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-soft); }
+.print-toc .id { font-family: var(--font-mono); font-size: 12.5px; }
+.print-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.print-body { font-size: 15px; line-height: 1.45; }
+.print-body h3 { font-size: 17px; margin: 10px 0 6px; }
+.print-body ul, .print-body ol { padding-left: 1.2em; }
+.print-body li { margin-bottom: 4px; }
+.print-qa { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; }
+.print-qa li { border: 1px solid var(--line); border-radius: 6px; padding: 8px 12px; }
+.print-qa .q { font-weight: 600; display: block; margin-bottom: 4px; }
+.print-qa .a { color: var(--text-muted); border-left: 3px solid var(--ok); padding-left: 8px; display: block; }
+.print-body .term-list { font-size: 14px; }
+.print-body .term-list dt { color: var(--accent-strong); }
+.print-body .source-list { font-size: 14px; }
+.print-body .source-list .key { color: var(--warn); }
+.print-body .source-list .url { font-size: 12.5px; }
+.print-body .handoff { font-size: 22px; padding: 14px 18px; }
+.print-body .outcome-list li { font-size: 15px; padding: 6px 10px; }
+.print-body .outcome-list .n { width: 28px; height: 28px; font-size: 14px; }
+.print-body .principle-grid { gap: 8px; }
+.print-body .principle-card { min-height: 0; padding: 10px 12px; }
+.print-body .principle-card .pc-text { font-size: 14px; }
+.print-body .chip { font-size: 13px; }
+.print-body .example-tag { font-size: 11px; }
+.print-body .rail-prompt, .print-body .rail-card { padding: 10px 14px; }
+.print-body .caption-text, .print-body .prompt-q, .print-body .prompt-options li { font-size: 15px; }
+.print-body .principle-text { font-size: 17px; }
+
+/* print rendering of the live stage: everything is scaled with zoom */
+.print-stage-inner { zoom: var(--print-zoom, 0.78); }
+.print-body { zoom: 1; }
+.print-stage-inner .rv { opacity: 1; visibility: visible; transform: none; }
+.print-stage-inner .rv:not(.is-shown) { display: none !important; }
+.print-stage-inner .rv--draw .a-line { stroke-dashoffset: 0; stroke-dasharray: none; }
+.print-stage-inner .rv--draw .a-head, .print-stage-inner .rv--draw .a-label, .print-stage-inner .rv--draw .a-label-bg { opacity: 1; }
+.print-stage-inner .fx.is-focus { filter: none; }
+.print-stage-inner .n-box.is-focus rect, .print-stage-inner .n-person.is-focus circle, .print-stage-inner .n-person.is-focus path { stroke: var(--warn); }
+.print-stage-inner .browser { box-shadow: none; }
+
+@media print {
+  body { overflow: visible; height: auto; }
+  .print-page { break-after: page; }
+  .print-page:last-child { break-after: auto; }
+}

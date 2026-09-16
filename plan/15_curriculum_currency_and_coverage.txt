@@ -1,0 +1,59 @@
+CURRICULUM CURRENCY, COVERAGE, AND BOUNDARIES
+Research and curriculum date: 16 September 2026
+==============================================================================
+
+STABLE FOUNDATION; DATED CONTEMPORARY LAYER
+-------------------------------------------
+
+Use durable concepts as the course spine and date the examples, terminology, and supporting references. SWEBOK V4.0a is the identified current IEEE Computer Society guide; CS2023 is the joint ACM/IEEE-CS/AAAI curriculum reference. These support scope selection rather than a claim that fourteen meetings cover every knowledge area or satisfy a formal accreditation mapping. The SWEBOK landing page was accessible through indexed official excerpts, not an unrestricted full-guide audit. [S01, S02]
+
+The original instructional scenarios, questions, diagrams, fixtures, and weekly sequence are authored for this course. They are not reproduced from these references. The reference list supports definitions and technical guardrails; it does not imply that a source endorses every pedagogical choice.
+
+CURRENT MATERIAL INCORPORATED
+-----------------------------
+
+Security: use OWASP Top 10:2025, including the expanded attention to software supply chains and exceptional-condition handling. Teach the underlying risks, not the order of a memorized list. NIST SSDF 1.1 remains the final baseline used here; the retrieved revision proposing SSDF 1.2 is explicitly an initial public draft dated 17 December 2025. Its closed comment period does not make it final. [S13, S14, S15]
+
+Delivery: the current DORA guide uses five measures. The course uses the current names and distinguishes failed deployment recovery time from a generic all-incident recovery measure. It includes deployment rework rate rather than presenting the historical four-key formulation as unchanged. [S17]
+
+AI assistance: incorporate independent verification, shared-assumption risk, bounded actions, untrusted instructions, review capacity, and accountable maintenance. Use the 2025 DORA report and the March 2026 analysis as dated research context, not universal causal claims or fixed model rankings. Distinguish assisting development from placing a model inside the shipped service. [S18, S19, S33, S34, S35] From this revision the through-line is stated in Week 1 and carried by one short beat inside an existing scene in Weeks 2, 7, 8, 9, 10 and 12, so Week 13 deepens a familiar claim instead of opening a new topic.
+
+Workflow and accessibility: use the November 2020 Scrum Guide and May 2025 Kanban Guide editions identified in the register. Make accessible interaction and clear status communication recur throughout, with WCAG 2.2 as the cited accessibility reference. [S04, S05, S25]
+
+COVERAGE ACROSS THE FOURTEEN WEEKS
+----------------------------------
+
+Weeks 1–3 establish engineering scope, stakeholders, professional consequences, verifiable requirements, quality attributes, traceability, validation, state, data, interaction models, and accessible feedback.
+
+Weeks 4–6 connect work organization, feedback, estimation, risk, completion criteria, cohesion, coupling, contracts, refactoring, architecture views, deployment boundaries, concurrency, retries, and compatibility.
+
+Weeks 7–9 address shared history, integration, review, configuration and dependency inputs, documentation, test design, test scope, independent expectations, properties, mutation, controlled fixtures, trust boundaries, authorization, privacy, supply-chain evidence, and secure failure behavior. Week 9 also carries a licensing beat on the transitive dependency, using SPDX identifiers as vocabulary. [S42]
+
+Weeks 10–12 follow verified changes into delivery, artifact identity, configuration, exposure, recovery, service-level objectives, telemetry, diagnosis, latency, incident learning, maintenance, migrations, debt, retirement, and honest resource-efficiency measures.
+
+Weeks 13–14 apply those ideas to AI-assisted change and an integrated new requirement, reinforcing that the engineering evidence does not disappear when drafting becomes easier.
+
+Quality assurance is distributed across the sequence rather than confined to Week 8. Configuration management spans Weeks 7, 10, and 12. Security, accessibility, ethics, documentation, and uncertainty appear before and after their most concentrated scenes.
+
+WHY THIS ORDER IS DELIBERATE
+----------------------------
+
+Requirements precede model and design choices so students have something concrete to judge. State and interaction models precede concurrent failure so “unknown result” has meaning. Modularity precedes architecture so distribution is not confused with good separation. Review precedes deeper testing so students understand why checks must accompany changes. Security precedes delivery so release evidence includes permission and dependency concerns. Operation precedes maintenance so evolution responds to actual feedback. AI assistance appears after students can evaluate ordinary changes independently.
+
+Foundational topics are introduced early and revisited with a stronger question. For example, no-overlap begins as a promise, becomes a requirement, appears in a sequence, becomes a concurrent invariant, receives tests, and returns in the closure decision. This is intentional reinforcement, not fourteen unrelated mini-courses.
+
+DELIBERATE LIMITS
+-----------------
+
+Do not stretch these meetings into exhaustive UML, a design-pattern catalog, a full distributed-systems course, database-administration training, a penetration-testing course, or a vendor certification. Advanced formal verification, consensus algorithms, model training, infrastructure orchestration, and detailed environmental accounting remain outside the core sequence.
+
+An optional illustration may acknowledge one of those areas when it clarifies a boundary, but it must not become prerequisite knowledge for the next week. The course should produce a coherent conceptual foundation and evidence-based reasoning, not a claim of complete professional mastery from lecture exposure alone.
+
+Assessment, examinations, grading and assigned projects are outside this package by decision (00_START_HERE.txt). The lecture materials never mention them; the instructor handles them separately.
+
+REFRESH POLICY FOR LATER SEMESTERS
+----------------------------------
+
+Before a new run, check the official source status for SWEBOK, curriculum guidance, OWASP, NIST, workflow guides, accessibility guidance, and the delivery-measure definitions. Record edition, publication or update date, retrieval date, and final-versus-draft status. Preserve the conceptual lesson unless the evidence gives a reason to change it. The DORA publication index is the entry point for newer delivery and AI-assistance research; the re-verification task template is repo_kit/tasks/50_source_reverification.md. [S36]
+
+During visual authoring, verify supported stable versions of the selected local libraries and a supported Node.js LTS release if Node is used. Pin the tested versions for the semester instead of silently following floating “latest” dependencies. Recheck the affected scenes and PDF output after a dependency update. Sources are dated evidence, not a promise that their live pages can never change. [S26–S32, S38, S39]

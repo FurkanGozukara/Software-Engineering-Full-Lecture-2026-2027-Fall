@@ -1,0 +1,252 @@
+WEEK 06 | ARCHITECTURE, INTERACTIONS, AND DISTRIBUTED FAILURE
+Research and curriculum date: 16 September 2026
+==============================================================================
+
+What changes when a dependency becomes slow, unavailable, or uncertain?
+
+Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-06.html
+
+1. PURPOSE, CASE STATE, AND SCOPE
+---------------------------------
+
+Scale the Week 5 design from internal responsibilities to runtime structure. Compare a modular single application with a separated notification worker and with a more distributed alternative. Teach architecture through responsibility, deployability, data ownership, contracts, and failure—not through a shopping list of infrastructure products.
+
+The three main mechanisms are a request traveling across components, two concurrent booking attempts competing for one invariant, and a lost response creating an uncertain outcome. The class should leave with disciplined trade-off questions rather than a rule that a newer architectural style is always better. [S01, S02, S08, S09, S10]
+
+2. OBSERVABLE LEARNING OUTCOMES
+-------------------------------
+
+1. Distinguish a module boundary from a process or deployment boundary.
+
+2. Read context, component, and runtime views at an appropriate level.
+
+3. Explain how a concurrent check-then-write can violate a shared invariant.
+
+4. Distinguish timeout, failure, and unknown outcome.
+
+5. Compare synchronous and asynchronous interactions, including their costs.
+
+3. INSTRUCTOR PREPARATION AND ENTRY CHECK
+-----------------------------------------
+
+Prepare the same named components as Week 5 and two architecture alternatives using the same workload. Use simple C4-inspired zoom levels, explicitly explaining that a C4 container is an application or data store boundary, not necessarily an operating-system container. [S08]
+
+Prepare a deterministic interleaving: A reads available, B reads available, A confirms, B confirms. Prepare a corrected authoritative decision that prevents the overlap, plus a retry fixture where the original write succeeded but the response was lost. No actual distributed cluster is required for the lecture.
+
+4. ORDERED CHAPTER AND PAGE MAP
+-------------------------------
+
+Opening situation and recall/outcomes come first. The eight scenes below follow in this order. Principles/checks and sources/handoff close the deck. The normal twelve-page starting layout may expand where readability requires it.
+
+01 | A box can mean a responsibility, a process, or a machine | Bridge
+
+week-06.html#/architecture-zoom
+
+02 | Follow one request across real boundaries | Anchor
+
+week-06.html#/request-journey
+
+03 | More deployable pieces create more boundaries to manage | Bridge
+
+week-06.html#/monolith-and-services
+
+04 | Two individually sensible actions can violate one shared rule | Anchor
+
+week-06.html#/concurrent-booking
+
+05 | A timeout does not tell us whether a write happened | Anchor
+
+week-06.html#/retry-and-idempotency
+
+06 | A confirmed booking and a pending email can both be true | Bridge
+
+week-06.html#/async-and-consistency
+
+07 | An added field and a changed meaning are not equivalent | Bridge
+
+week-06.html#/contracts-and-evolution
+
+08 | Choose the smallest structure that protects the required promises | Bridge
+
+week-06.html#/architecture-decision
+
+5. DETAILED SCENE TEACHING NOTES
+--------------------------------
+
+01. A BOX CAN MEAN A RESPONSIBILITY, A PROCESS, OR A MACHINE
+------------------------------------------------------------
+
+Bridge scene | ID: architecture-zoom
+
+VISUAL IDEA: A controlled zoom moves from system context to runtime containers to components, preserving labels and the current question.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask what a box labeled Booking represents. Reveal three distinct meanings on separate views. Trace the same user request without pretending every component runs on its own server.
+
+CHANGE ONE CONDITION AND COMPARE: Move Notification into a separate worker while leaving Policy and Booking in one application. Compare what changed operationally with what stayed the same logically. [S08]
+
+PRINCIPLE TO REVEAL: Architecture views should state their level; logical separation does not automatically imply network separation.
+
+STUDENT PDF TREATMENT: Print the three labeled views with a brief legend defining each boundary.
+
+02. FOLLOW ONE REQUEST ACROSS REAL BOUNDARIES
+---------------------------------------------
+
+Anchor scene | ID: request-journey
+
+VISUAL IDEA: A sequence diagram and runtime map highlight the same request ID, with latency segments and failure points.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask which dependency the user is waiting for at each step. Reveal identity checking, policy validation, authoritative persistence, response, and later notification. Label the difference between a call that blocks the response and work that continues after it.
+
+CHANGE ONE CONDITION AND COMPARE: Make notification unavailable while preserving the authoritative store. Compare a design that makes all confirmation wait for email with one that records notification work separately. State the extra responsibility: pending delivery must be observable and recoverable, not merely forgotten.
+
+PRINCIPLE TO REVEAL: Interaction structure determines which failures affect which user promises.
+
+STUDENT PDF TREATMENT: Print the two request sequences with blocking and asynchronous steps labeled in text.
+
+03. MORE DEPLOYABLE PIECES CREATE MORE BOUNDARIES TO MANAGE
+-----------------------------------------------------------
+
+Bridge scene | ID: monolith-and-services
+
+VISUAL IDEA: A side-by-side architecture comparison and a qualitative trade-off table.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask what a separate service buys a small team. Reveal possible independent release or scaling benefits beside network failures, contract coordination, data ownership, and operational work. Keep the single-application version modular rather than drawing it as an unstructured blob.
+
+CHANGE ONE CONDITION AND COMPARE: Change only one condition: notification volume grows independently of booking writes. Compare the targeted benefit of separating that workload with splitting every component.
+
+PRINCIPLE TO REVEAL: Choose deployment boundaries for demonstrated needs; modularity and distribution are different decisions.
+
+STUDENT PDF TREATMENT: Print both alternatives and the changed condition, with no universal winner label.
+
+04. TWO INDIVIDUALLY SENSIBLE ACTIONS CAN VIOLATE ONE SHARED RULE
+-----------------------------------------------------------------
+
+Anchor scene | ID: concurrent-booking
+
+VISUAL IDEA: Two request lanes advance through Read, Decide, and Write beside one room calendar.
+
+SITUATION, PREDICTION, AND MECHANISM: Pause after both requests read an available interval. Ask what each will decide. Reveal two confirmations in the naive check-then-write design. The key issue is the shared invariant, not which user clicked first by a few milliseconds.
+
+CHANGE ONE CONDITION AND COMPARE: Replace the separate check and write with an authoritative, atomic enforcement strategy for the no-overlap invariant. Step the same competing requests: one confirms, the other receives a conflict or retries appropriately. Explain that isolation choices, constraints, locking, and retries must be selected correctly; merely writing “transaction” around code is not a universal fix. [S10]
+
+PRINCIPLE TO REVEAL: An invariant shared by concurrent operations needs enforcement that survives their interleavings.
+
+STUDENT PDF TREATMENT: Print the violating interleaving and corrected interleaving with the invariant beside both.
+
+05. A TIMEOUT DOES NOT TELL US WHETHER A WRITE HAPPENED
+-------------------------------------------------------
+
+Anchor scene | ID: retry-and-idempotency
+
+VISUAL IDEA: A message timeline, an operation identifier, and a stored-result panel show a lost response and retry.
+
+SITUATION, PREDICTION, AND MECHANISM: Store B-001, then lose its response. Ask whether the requester should submit a new operation. Reveal how an unrecognized retry can create a duplicate logical action. Introduce an operation key scoped to the requester and intended action.
+
+CHANGE ONE CONDITION AND COMPARE: Retry with the same key and identical request. Compare a stable stored result with repeating the effect. Then change the payload while reusing the key and show an explicit conflict. Distinguish this application mechanism from assuming every HTTP POST is idempotent or that an “exactly once” guarantee appears automatically. [S09]
+
+PRINCIPLE TO REVEAL: Retries need defined semantics for identity, repeated effects, and uncertain outcomes.
+
+STUDENT PDF TREATMENT: Print the original request, lost response, repeated request, and reconciled result, including key scope.
+
+06. A CONFIRMED BOOKING AND A PENDING EMAIL CAN BOTH BE TRUE
+------------------------------------------------------------
+
+Bridge scene | ID: async-and-consistency
+
+VISUAL IDEA: A booking record and a pending notification record advance on separate timelines.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether delayed email means the booking failed. Reveal R-04: confirmation depends on the booking decision, while notification may complete later. Show pending, delivered, and failed-delivery observations without hiding them from support.
+
+CHANGE ONE CONDITION AND COMPARE: Duplicate a delivery attempt while keeping the booking unchanged. Compare a handler that tolerates repeat work with one that produces unintended extra effects. Mention a durable handoff pattern without requiring implementation detail.
+
+PRINCIPLE TO REVEAL: Asynchronous work changes the timing and failure contract; it does not remove responsibility for completion.
+
+STUDENT PDF TREATMENT: Print the two timelines and the user-facing meaning of each combination.
+
+07. AN ADDED FIELD AND A CHANGED MEANING ARE NOT EQUIVALENT
+-----------------------------------------------------------
+
+Bridge scene | ID: contracts-and-evolution
+
+VISUAL IDEA: A request/response contract appears beside old and new consumers.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether adding a response field is always harmless. Reveal that compatibility depends on consumer behavior; strict consumers may reject additions. Contrast that with silently changing the meaning of an existing field.
+
+CHANGE ONE CONDITION AND COMPARE: Change a booking status representation and replay old and new consumers. Compare an explicit transition strategy with an abrupt breaking change.
+
+PRINCIPLE TO REVEAL: Compatibility is a relationship between actual producers and consumers, not a label on a release.
+
+STUDENT PDF TREATMENT: Print a producer-consumer compatibility matrix with the assumptions behind each cell.
+
+08. CHOOSE THE SMALLEST STRUCTURE THAT PROTECTS THE REQUIRED PROMISES
+---------------------------------------------------------------------
+
+Bridge scene | ID: architecture-decision
+
+VISUAL IDEA: A decision record ties quality scenarios, trade-offs, ownership, and failure behavior to one selected architecture.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask which evidence supports the default architecture for this case. Reveal a modular application with an authoritative store and separately recoverable notification work as a teaching baseline, not a universal prescription.
+
+CHANGE ONE CONDITION AND COMPARE: Change the constraints to multiple independently operated campuses. Identify what must be reconsidered without pretending the current lecture has solved cross-region consistency.
+
+PRINCIPLE TO REVEAL: Architecture decisions should explain which requirements they protect and which assumptions would change the choice.
+
+STUDENT PDF TREATMENT: Print the decision record with the unresolved questions and revisit triggers.
+
+6. TEACHING GUARDRAILS
+----------------------
+
+Do not teach that eventual consistency is suitable for every datum: display availability may be stale, but the canonical no-overlap decision still needs authoritative enforcement. Do not equate transactions with a guarantee at every isolation level. Locking an existing row may also fail to protect a gap when no conflicting row exists; an implementation must enforce the interval invariant, not merely a superficial uniqueness condition. [S10]
+
+A timeout is an observation at one boundary, not proof of the remote effect. Retry demonstrations use explicit operation identities and defined duplicate handling. Keep technical implementation choices open for authoring and rehearsal; preserve the semantics in every animation.
+
+7. MISCONCEPTION AND DIAGNOSIS CLINIC
+-------------------------------------
+
+“Microservices mean loose coupling.” A distributed design can still require coordinated changes and releases.
+
+“A transaction always prevents double booking.” Ask which invariant and concurrent anomaly the selected strategy actually prevents.
+
+“An error message means nothing was saved.” Revisit the lost-response timeline.
+
+8. IN-LECTURE CHECKS WITH ANSWERS
+---------------------------------
+
+QUESTION 1: Why can two availability checks both return true?
+
+ANSWER: They can observe the same earlier state before either write has been enforced.
+
+QUESTION 2: Why not block confirmation on every notification attempt?
+
+ANSWER: It couples the booking promise to an external dependency unnecessarily under R-04; separate work still needs reliable tracking.
+
+QUESTION 3: What should happen when an operation key is reused with a different payload?
+
+ANSWER: A defined conflict or rejection, not silently treating the altered request as the original operation.
+
+QUESTION 4: Is a C4 container always a Docker container?
+
+ANSWER: No. It denotes an application or data-store boundary in that model, not a specific packaging technology.
+
+9. PDF CONTINUITY AND LECTURE ELASTICITY
+----------------------------------------
+
+WHAT THE PRINTED EXPLANATION MUST PRESERVE
+------------------------------------------
+
+Preserve the successful path, dependency failure, concurrent conflict, and lost-response storyboards. Keep event numbering consistent between HTML and PDF. Include the compatibility matrix and the architecture rationale. Every asynchronous arrow must retain a caption explaining what the user can rely on before that work finishes.
+
+SHORTER AND LONGER MEETING ROUTES
+---------------------------------
+
+Preserve request dependency, concurrent booking, and retry identity as the anchors. The compatibility matrix and architecture rationale can share a page in a shorter lecture. Use extra time for a different interleaving of the same two requests rather than adding consensus algorithms or cluster operations.
+
+10. HANDOFF
+-----------
+
+Carry the contracts and decision record into Week 7. Now several developers need to change this system together without losing intent, context, or evidence.
+
+11. SOURCES AND CURRENCY NOTES
+------------------------------
+
+Primary references: S01, S02, S08, S09, S10. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.

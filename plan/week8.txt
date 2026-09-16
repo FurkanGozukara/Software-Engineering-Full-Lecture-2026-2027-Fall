@@ -1,0 +1,252 @@
+WEEK 08 | TESTING BEHAVIOR AND BUILDING CREDIBLE EVIDENCE
+Research and curriculum date: 16 September 2026
+==============================================================================
+
+Which checks would challenge our assumptions rather than merely repeat them?
+
+Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-08.html
+
+1. PURPOSE, CASE STATE, AND SCOPE
+---------------------------------
+
+Build testing from the behavior students already understand. Start with a booking-duration function that passes a friendly example but rejects a valid boundary. Connect examples, properties, interfaces, and system-level checks to the particular claims they support.
+
+The lecture should make evidence visible without presenting one test taxonomy, framework, or fixed test-pyramid ratio as a universal formula. Treat testability, independent expected results, representative conditions, and useful failure messages as engineering choices. [S01, S02, S40]
+
+2. OBSERVABLE LEARNING OUTCOMES
+-------------------------------
+
+1. Derive ordinary, boundary, and invalid cases from a stated rule.
+
+2. Choose a suitable scope for a check and explain what it leaves unexamined.
+
+3. Distinguish executing code from asserting the intended result.
+
+4. Explain a property and a small mutation-based challenge to a test suite.
+
+5. Recognize shared assumptions, uncontrolled inputs, and flaky observations.
+
+3. INSTRUCTOR PREPARATION AND ENTRY CHECK
+-----------------------------------------
+
+Prepare the canonical duration rule: whole-minute durations from 30 through 120 inclusive, with positive end-after-start ordering. Use 29, 30, 31, 119, 120, and 121 as a boundary table. Do not introduce a 30-minute slot grid. Prepare the incorrect comparison “duration < 120” and its corrected inclusive version in readable pseudocode.
+
+Prepare a clock-controlled cancellation example, an overlap example accepting adjacent intervals, and a deterministic fake notification failure. Recall the requirement-to-check links from Week 2. All results must be computed or independently verified rather than assigned to make the animation persuasive.
+
+4. ORDERED CHAPTER AND PAGE MAP
+-------------------------------
+
+Opening situation and recall/outcomes come first. The eight scenes below follow in this order. Principles/checks and sources/handoff close the deck. The normal twelve-page starting layout may expand where readability requires it.
+
+01 | One passing example can hide the wrong boundary | Anchor
+
+week-08.html#/friendly-example
+
+02 | Input categories make omissions easier to see | Bridge
+
+week-08.html#/partition-the-inputs
+
+03 | Different checks answer different questions | Anchor
+
+week-08.html#/choose-test-scope
+
+04 | The expected answer needs its own justification | Bridge
+
+week-08.html#/oracle-independence
+
+05 | A useful property describes more than one example | Anchor
+
+week-08.html#/properties-and-counterexamples
+
+06 | Executed is not the same as checked | Bridge
+
+week-08.html#/coverage-and-mutation
+
+07 | A moving clock can make a stable rule look unreliable | Bridge
+
+week-08.html#/repeatable-observation
+
+08 | A check can guide a change and later guard its meaning | Bridge
+
+week-08.html#/testing-as-feedback
+
+5. DETAILED SCENE TEACHING NOTES
+--------------------------------
+
+01. ONE PASSING EXAMPLE CAN HIDE THE WRONG BOUNDARY
+---------------------------------------------------
+
+Anchor scene | ID: friendly-example
+
+VISUAL IDEA: Input cards move through a small predicate; accepted and rejected outcomes are shown beside the requirement.
+
+SITUATION, PREDICTION, AND MECHANISM: Run 60 minutes and ask whether the rule is implemented correctly. Reveal that both the correct and incorrect comparisons pass this example. Step through 119, then pause before 120. Ask for a prediction before revealing the rejection caused by the exclusive upper bound.
+
+CHANGE ONE CONDITION AND COMPARE: Change only the comparison to inclusive and replay the same cases. Compare 120 and 121 so the fix does not accidentally remove the upper limit.
+
+PRINCIPLE TO REVEAL: Test cases should distinguish plausible incorrect behavior from the intended behavior.
+
+STUDENT PDF TREATMENT: Print the rule, both predicates, and the completed six-case boundary table.
+
+02. INPUT CATEGORIES MAKE OMISSIONS EASIER TO SEE
+-------------------------------------------------
+
+Bridge scene | ID: partition-the-inputs
+
+VISUAL IDEA: A number line and a small two-dimensional table separate valid durations, too-short values, too-long values, and malformed or reversed intervals.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether testing every minute is the only way to gain confidence. Reveal categories with shared expectations, then focus attention on boundaries where the decision changes. Add invalid input shape and end-before-start as different concerns from an out-of-range duration.
+
+CHANGE ONE CONDITION AND COMPARE: Change the rule to the explicitly labeled 90-minute variant. Compare which cases remain useful and which boundary cases must change, then restore 120.
+
+PRINCIPLE TO REVEAL: Partitions organize expectations; boundaries expose where one expectation becomes another.
+
+STUDENT PDF TREATMENT: Print the baseline partitions and a small variant annotation without mixing their expected outcomes.
+
+03. DIFFERENT CHECKS ANSWER DIFFERENT QUESTIONS
+-----------------------------------------------
+
+Anchor scene | ID: choose-test-scope
+
+VISUAL IDEA: A layered system view highlights a pure policy function, component interaction, storage enforcement, and complete user journey.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether a unit check of overlap arithmetic proves that concurrent requests cannot double-book. Reveal the missing shared-storage behavior. Place focused function checks, integration checks, and a complete booking journey where they observe their respective claims.
+
+CHANGE ONE CONDITION AND COMPARE: Replace the real notification boundary with a controlled test double. Compare faster isolation of booking behavior with the remaining uncertainty about actual integration. Show a separate contract or integration check for that uncertainty.
+
+PRINCIPLE TO REVEAL: The appropriate test scope follows the claim and failure risk, not the prestige of a test label.
+
+STUDENT PDF TREATMENT: Print a claim-to-check-scope matrix with one explicit limitation per row.
+
+04. THE EXPECTED ANSWER NEEDS ITS OWN JUSTIFICATION
+---------------------------------------------------
+
+Bridge scene | ID: oracle-independence
+
+VISUAL IDEA: Requirement, implementation, and expected-result cards form a triangle; a copied assumption is visibly traced through two cards.
+
+SITUATION, PREDICTION, AND MECHANISM: Show a test whose expected value is calculated by the same incorrect helper used in production. Ask why agreement is weak evidence. Reveal an independently derived expectation from the stated rule and a hand-checked interval example.
+
+CHANGE ONE CONDITION AND COMPARE: Change the shared helper while leaving the requirement fixed. Compare the self-confirming test with the independent check that detects the discrepancy. AI beat: name the case where the tests and the helper were drafted by the same assistant from the same misreading of R-02. Their agreement is this loop again. Week 13 returns to it as the shared-assumption scene.
+
+PRINCIPLE TO REVEAL: A test oracle—the basis for the expected result—must not simply repeat the defect being examined.
+
+STUDENT PDF TREATMENT: Print the dependency of each expected result and the independent derivation.
+
+05. A USEFUL PROPERTY DESCRIBES MORE THAN ONE EXAMPLE
+-----------------------------------------------------
+
+Anchor scene | ID: properties-and-counterexamples
+
+VISUAL IDEA: A calendar receives a controlled sequence of candidate intervals; a property panel shows whether confirmed bookings overlap.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask what should remain true after any accepted booking. Reveal the no-overlap invariant and several generated-but-fixed examples, including adjacency. Explain that property-based tools can explore many cases and help reduce a failure to a smaller counterexample. [S11]
+
+CHANGE ONE CONDITION AND COMPARE: Change the overlap predicate from strict interval intersection to a comparison that also rejects adjacency. Replay [10:00,11:00) and [11:00,12:00). Compare the property about disallowing real overlaps with a separate property that valid adjacent bookings remain possible.
+
+PRINCIPLE TO REVEAL: Properties expose classes of behavior, but the properties themselves must express the intended rule.
+
+STUDENT PDF TREATMENT: Print the properties, deterministic examples, and smallest displayed counterexample; retain half-open interval notation.
+
+06. EXECUTED IS NOT THE SAME AS CHECKED
+---------------------------------------
+
+Bridge scene | ID: coverage-and-mutation
+
+VISUAL IDEA: A coverage overlay sits beside assertions; a one-character mutation changes a boundary while execution remains similar.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask what a highlighted executed line tells us. Reveal that a test can reach the line without asserting the result that matters. Introduce mutation as intentionally changing behavior to ask whether a suite notices. [S12]
+
+CHANGE ONE CONDITION AND COMPARE: Use the exclusive-boundary mutation and first omit the 120-minute case, then add it. Compare surviving and detected changes. Mention that equivalent or irrelevant mutations can require judgment; a mutation score is not a proof of correctness.
+
+PRINCIPLE TO REVEAL: Coverage and mutation results are diagnostic signals about evidence, not substitutes for requirements.
+
+STUDENT PDF TREATMENT: Print the mutation, missing case, added assertion, and the limited conclusion supported by the result.
+
+07. A MOVING CLOCK CAN MAKE A STABLE RULE LOOK UNRELIABLE
+---------------------------------------------------------
+
+Bridge scene | ID: repeatable-observation
+
+VISUAL IDEA: Two runs share the same code but use different clocks or uncontrolled message timing; the fixture inputs are displayed.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask why “cancel before the start time” sometimes passes and sometimes fails. Reveal that the wall clock crossed the boundary between runs. Replace it with an explicit teaching clock and deterministic dependency behavior.
+
+CHANGE ONE CONDITION AND COMPARE: Keep the clock fixed and inject one genuine notification failure. Compare a repeatable meaningful failure with a test that randomly waits for enough time to pass.
+
+PRINCIPLE TO REVEAL: Control irrelevant variation so a failing check tells us something about the behavior being examined.
+
+STUDENT PDF TREATMENT: Print the uncontrolled inputs, controlled fixture, and the rule-specific result.
+
+08. A CHECK CAN GUIDE A CHANGE AND LATER GUARD ITS MEANING
+----------------------------------------------------------
+
+Bridge scene | ID: testing-as-feedback
+
+VISUAL IDEA: A short requirement-to-failing-check-to-small-change-to-recheck loop ends with a refactoring comparison.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask what should happen before fixing the exclusive upper bound. Reveal a focused failing check, a minimal correction, and rerun evidence. Explain test-first development as one way to make the expected behavior explicit, not a guarantee of good requirements.
+
+CHANGE ONE CONDITION AND COMPARE: Refactor the corrected predicate without changing its contract. Compare unchanged behavior under the checks while acknowledging untested conditions and higher-level integration evidence.
+
+PRINCIPLE TO REVEAL: Tests are feedback instruments whose value depends on the claims, observations, and assumptions they preserve.
+
+STUDENT PDF TREATMENT: Print the feedback loop and a final claim-evidence-remaining-uncertainty table.
+
+6. TEACHING GUARDRAILS
+----------------------
+
+A passing suite does not prove absence of defects. Do not imply that random generation alone finds every important case or that a test double demonstrates real integration. Coverage percentages require a defined measure and scope; avoid prescribing an arbitrary universal target. [S11, S12, S40]
+
+For interval examples use strict overlap: a.start < b.end and b.start < a.end for valid intervals. A function-level proof or test of this predicate does not establish safe concurrent storage. Keep expected results independent of the implementation and preserve the rule’s inclusivity in every table.
+
+7. MISCONCEPTION AND DIAGNOSIS CLINIC
+-------------------------------------
+
+“More tests automatically mean stronger evidence.” Repeated happy-path tests can leave the same boundary unexamined.
+
+“A mock proves the external service works.” It observes behavior under the assumptions encoded in the substitute.
+
+“Complete coverage means correct software.” Execution evidence does not establish that assertions or requirements are sufficient.
+
+8. IN-LECTURE CHECKS WITH ANSWERS
+---------------------------------
+
+QUESTION 1: Which two cases distinguish an inclusive 120-minute limit from no upper limit?
+
+ANSWER: 120 must be accepted and 121 rejected, under otherwise valid conditions.
+
+QUESTION 2: Do adjacent intervals overlap under the course rule?
+
+ANSWER: No. The end of one may equal the start of the next because the intervals are half-open.
+
+QUESTION 3: Why test the storage boundary as well as the overlap function?
+
+ANSWER: Correct local arithmetic alone does not protect the invariant against concurrent operations.
+
+QUESTION 4: Why can implementation and test agree while both are wrong?
+
+ANSWER: They may share the same mistaken assumption or calculate the expected result using the defective logic.
+
+9. PDF CONTINUITY AND LECTURE ELASTICITY
+----------------------------------------
+
+WHAT THE PRINTED EXPLANATION MUST PRESERVE
+------------------------------------------
+
+The student PDF must contain the actual input values, expected outcomes, and reasons—not only pass/fail colors. Preserve the test-scope matrix, the oracle counterexample, and the mutation comparison. Print the fixed clock value used in the cancellation scene. Include the principle and a short statement of remaining uncertainty after each major demonstration.
+
+SHORTER AND LONGER MEETING ROUTES
+---------------------------------
+
+Protect boundary reasoning, scope selection, and properties as the three anchors. Mutation and test-first feedback should remain concise rather than becoming separate framework tutorials. With additional discussion time, ask whether the current evidence supports a concurrency claim; revisit the Week 6 interleaving rather than introducing a new domain.
+
+10. HANDOFF
+-----------
+
+Carry independent checks and explicit invariants into Week 9. Correctness now includes whether an action is permitted, which data may cross a boundary, and what happens when a dependency or input cannot be trusted.
+
+11. SOURCES AND CURRENCY NOTES
+------------------------------
+
+Primary references: S01, S02, S11, S12, S40. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.

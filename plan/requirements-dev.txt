@@ -1,0 +1,6 @@
+# Plan checker, deck contract tests, PDF checks and export helpers.
+# Pin the versions actually tested when the course repository is created (17_visual_lecture_and_pdf_brief.txt).
+pytest>=8
+playwright>=1.45
+axe-playwright-python>=0.1.4
+pypdf>=4

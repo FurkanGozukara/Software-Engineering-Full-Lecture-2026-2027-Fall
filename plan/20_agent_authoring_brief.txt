@@ -1,0 +1,35 @@
+REUSABLE AUTHORING BRIEF FOR THE BUILD AGENTS
+Research and curriculum date: 16 September 2026
+==============================================================================
+
+HOW TO USE THIS BRIEF
+---------------------
+
+The course site is built by coding agents (Claude Code, Codex or another runtime; the choice is not fixed here). The agents do not read this brief as prose. They read the context files and task templates in repo_kit, which become the repository's AGENTS.md, CLAUDE.md and tasks folder when the repository is created (23_build_plan_and_schedule.txt). This file explains what those artefacts contain and how a human uses them; the rules themselves live once, in repo_kit/AGENTS.md. [S41, S43]
+
+Give an agent one task at a time with the materials it needs: the task template, the week's TXT file, the shared brief, the case guide and the fixtures. Do not load every week for every small change. Build and inspect one complete week before duplicating the shell across the course; after the shared controls and print path work, weeks are authored in parallel as the build plan describes.
+
+WHAT THE CONTEXT FILES FIX
+--------------------------
+
+repo_kit/AGENTS.md carries the rules that must never drift between agent runs: the fixtures are the only truth; one deck per week on the shared shell; the DOM and JavaScript contract in repo_kit/docs/scene-contract.md is the interface the tests read; no network at runtime and pinned local libraries; the decisions in force from 00_START_HERE.txt; the student-facing wording rules; the layout and recording requirements; and a definition of done that lists the commands to run and the inspection to perform before completion is claimed.
+
+repo_kit/CLAUDE.md imports AGENTS.md and adds only runtime-specific notes. A Codex run reads AGENTS.md directly. Any other runtime is pointed at AGENTS.md.
+
+WHAT THE TASK TEMPLATES ASK FOR
+-------------------------------
+
+repo_kit/tasks/00_shell_and_week1.md: the shared shell, Week 1 complete, and the two shell-test scenes from Weeks 5 and 11, exactly as the start-here file recommends.
+
+repo_kit/tasks/10_author_week.md: one week on the existing shell, with the three Anchors as controlled explanations, every Bridge reveal operated by a pointer for the recording, the print panels, the PDF, the cue list and a rehearsal note.
+
+repo_kit/tasks/20_revise_after_rehearsal.md: revise only what the rehearsal notes name, recheck every deck that a shared change touches, and never expand the curriculum to demonstrate a library.
+
+repo_kit/tasks/30_export_pdf.md, 40_recording_cuelists.md, 50_source_reverification.md: the export and inspection of student PDFs, the recording cue list per week, and the register re-verification before Week 1 ships.
+
+HOW A HUMAN CHECKS AN AGENT'S REPORT
+------------------------------------
+
+An agent's report must list the files produced, the commands run with their results, the library versions actually tested, and the unresolved limitations. Treat "the tests pass" as a claim to be checked by rerunning the command list in repo_kit/AGENTS.md. Treat "inspected in a browser" as a claim to be spot-checked by opening two scenes through their hash links. The completion record in 21_instructor_preflight.txt is filled from verified results only.
+
+The prompting references in the register are instructor-side context for writing these files. They are not a requirement to expose any assistant during class, and the student decks contain no live model dependency.

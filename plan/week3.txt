@@ -1,0 +1,252 @@
+WEEK 03 | MODELING BEHAVIOR, DATA, AND USER INTERACTION
+Research and curriculum date: 16 September 2026
+==============================================================================
+
+Which model answers the question we are actually asking?
+
+Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-03.html
+
+1. PURPOSE, CASE STATE, AND SCOPE
+---------------------------------
+
+Turn the requirements into complementary models rather than a tour of diagram notation. Students compare a user journey, a state model, an entity relationship view, a decision table, and a sequence diagram. The important learning is what each representation includes, omits, and can contradict.
+
+Use lightweight, clearly labeled UML-style state and sequence notation where useful, without claiming every drawing is a formally complete UML model. The model of the booking service remains independent of any language, database product, or interface framework. [S01, S02, S08]
+
+2. OBSERVABLE LEARNING OUTCOMES
+-------------------------------
+
+1. Choose a model suited to a behavior, structure, or interaction question.
+
+2. Read a state transition with an event, condition, and outcome.
+
+3. Distinguish a stored booking from a transient interface or request state.
+
+4. Explain entity identity and relationships without duplicating shared facts.
+
+5. Locate a contradiction between a requirement, a diagram, and an interface message.
+
+3. INSTRUCTOR PREPARATION AND ENTRY CHECK
+-----------------------------------------
+
+Prepare the Week 2 requirement cards and three mock screens: choose room, submit request, and observe outcome. Prepare separate diagrams for request/UI state and stored booking state. The distinction prevents “Rejected request” from silently becoming a confirmed booking record.
+
+Use synthetic IDs U-01, U-02, C101, C202, and B-001. Default stored booking states are Confirmed and Cancelled. Draft, Submitting, and Unknown outcome belong to the request/UI model. A rejected request does not create a confirmed booking.
+
+4. ORDERED CHAPTER AND PAGE MAP
+-------------------------------
+
+Opening situation and recall/outcomes come first. The eight scenes below follow in this order. Principles/checks and sources/handoff close the deck. The normal twelve-page starting layout may expand where readability requires it.
+
+01 | Follow the person before drawing the internals | Bridge
+
+week-03.html#/journey-before-boxes
+
+02 | A booking cannot be in every state at once | Anchor
+
+week-03.html#/state-machine
+
+03 | Two copies of a room name can disagree | Anchor
+
+week-03.html#/identity-and-data
+
+04 | Some rules are clearer as rows than as arrows | Bridge
+
+week-03.html#/decision-table
+
+05 | The same final state can hide different interaction histories | Anchor
+
+week-03.html#/sequence-not-state
+
+06 | Loading, empty, error, and success are different promises | Bridge
+
+week-03.html#/interface-states
+
+07 | A beautiful diagram can contradict the requirement | Bridge
+
+week-03.html#/model-consistency
+
+08 | A model is allowed to leave things out | Bridge
+
+week-03.html#/abstraction-and-zoom
+
+5. DETAILED SCENE TEACHING NOTES
+--------------------------------
+
+01. FOLLOW THE PERSON BEFORE DRAWING THE INTERNALS
+--------------------------------------------------
+
+Bridge scene | ID: journey-before-boxes
+
+VISUAL IDEA: A user journey strip with goal, action, visible feedback, and uncertainty at each step.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask what a student needs to know after pressing Reserve. Reveal the difference between “request sent,” “booking confirmed,” and “could not determine the result.” Follow one ordinary request before adding technical actors.
+
+CHANGE ONE CONDITION AND COMPARE: Remove the confirmation message but retain a successful stored booking. Compare system state with user understanding and discuss the resulting duplicate-click risk.
+
+PRINCIPLE TO REVEAL: A user journey exposes information needs that an internal component diagram can miss.
+
+STUDENT PDF TREATMENT: Print the journey with the visible message and underlying state on separate rows.
+
+02. A BOOKING CANNOT BE IN EVERY STATE AT ONCE
+----------------------------------------------
+
+Anchor scene | ID: state-machine
+
+VISUAL IDEA: Two deliberately separate state models: request/UI states above, stored booking states below. A current-state marker moves only on valid events.
+
+SITUATION, PREDICTION, AND MECHANISM: Start in Draft and ask what Submit means. Reveal Submitting, then Confirmed, Rejected, or Unknown outcome when a response is lost. Link confirmed results to a stored booking record. In the stored model, a permitted cancellation changes Confirmed to Cancelled. Label events and conditions before discussing terminology.
+
+CHANGE ONE CONDITION AND COMPARE: Change the current state to Cancelled and replay Cancel. Compare a stable, clearly defined repeated response with an accidental second state change. Ask which transitions are intentionally absent. Keep UI timeout separate from deletion of the stored booking.
+
+PRINCIPLE TO REVEAL: State models clarify which changes are possible, what triggers them, and which facts are actually known.
+
+STUDENT PDF TREATMENT: Print both models with a legend and a short example explaining why a timeout is not proof of failure.
+
+03. TWO COPIES OF A ROOM NAME CAN DISAGREE
+------------------------------------------
+
+Anchor scene | ID: identity-and-data
+
+VISUAL IDEA: Entity cards for User, Room, and Booking; relationship lines highlight identity and cardinality.
+
+SITUATION, PREDICTION, AND MECHANISM: Show two booking records containing copied room capacity values. Ask what happens when the room capacity changes. Reveal a Room entity with a stable identifier and bookings referencing it. Explain that a booking belongs to one user and one room, while each user or room can be associated with many bookings over time.
+
+CHANGE ONE CONDITION AND COMPARE: Change a room's display name while keeping its identifier. Compare stable references with matching on a mutable name. Also show a deliberately preserved historical snapshot and explain that duplication may be intentional when the meaning is historical rather than current.
+
+PRINCIPLE TO REVEAL: Model identity and the meaning of a fact before deciding where to store it.
+
+STUDENT PDF TREATMENT: Print the relationship diagram and current-fact versus historical-snapshot comparison.
+
+04. SOME RULES ARE CLEARER AS ROWS THAN AS ARROWS
+-------------------------------------------------
+
+Bridge scene | ID: decision-table
+
+VISUAL IDEA: A decision table combines membership, ownership, booking state, and start time for cancellation.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether an authenticated campus member may cancel every booking. Reveal R-03: a requester may cancel their own future confirmed booking. Fill representative allowed and denied rows, then expose a missing past-booking row.
+
+CHANGE ONE CONDITION AND COMPARE: Change only ownership while holding authentication true. Compare the decision and point to the exact rule responsible. Avoid inventing a universal staff override.
+
+PRINCIPLE TO REVEAL: A decision table makes combinations and missing cases easier to inspect.
+
+STUDENT PDF TREATMENT: Print all core rows, the rule, and a note identifying the policy boundary.
+
+05. THE SAME FINAL STATE CAN HIDE DIFFERENT INTERACTION HISTORIES
+-----------------------------------------------------------------
+
+Anchor scene | ID: sequence-not-state
+
+VISUAL IDEA: A sequence diagram with browser, booking service, authoritative store, and notification worker.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask what must happen before a true confirmation can be shown. Reveal request validation, an authoritative booking decision, persistence, and the response. Add notification as separate work after confirmation. Use numbered events and distinguish messages from elapsed time.
+
+CHANGE ONE CONDITION AND COMPARE: Lose the response after the booking has been stored. The user sees Unknown outcome while the stored record remains Confirmed. Compare this with a rejection before persistence. Preview status reconciliation without teaching the full retry mechanism yet. [S09]
+
+PRINCIPLE TO REVEAL: An interaction history explains why two apparently similar user symptoms can require different recovery actions.
+
+STUDENT PDF TREATMENT: Print the successful sequence and the lost-response sequence as two annotated panels.
+
+06. LOADING, EMPTY, ERROR, AND SUCCESS ARE DIFFERENT PROMISES
+-------------------------------------------------------------
+
+Bridge scene | ID: interface-states
+
+VISUAL IDEA: A small interface state gallery with keyboard focus and text status indicators.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask what “No rooms” means while a search is still loading. Reveal distinct Loading, Empty result, Validation error, Service unavailable, and Results states. Attach the promised meaning to each, rather than cycling through cosmetic designs.
+
+CHANGE ONE CONDITION AND COMPARE: Change one condition from an empty valid result to a failed request. Compare wording, available recovery actions, and focus movement. Make the distinction perceptible without color. [S25]
+
+PRINCIPLE TO REVEAL: An interface should communicate what is known and what the user can do next.
+
+STUDENT PDF TREATMENT: Print the state gallery with meaningful text alternatives and a recovery-action column.
+
+07. A BEAUTIFUL DIAGRAM CAN CONTRADICT THE REQUIREMENT
+------------------------------------------------------
+
+Bridge scene | ID: model-consistency
+
+VISUAL IDEA: Three synchronized panels show R-01, a sequence diagram, and the calendar after the interaction.
+
+SITUATION, PREDICTION, AND MECHANISM: Present a sequence that sends Confirmed before deciding availability. Ask students to find the contradiction. Reveal the resulting overlapping calendar and the precise message order that permitted the false promise.
+
+CHANGE ONE CONDITION AND COMPARE: Move the confirmation message after the authoritative decision while leaving the other panels intact. Compare consistency across the representations rather than awarding correctness for diagram neatness.
+
+PRINCIPLE TO REVEAL: Models are useful when their claims can be checked against one another and against intended behavior.
+
+STUDENT PDF TREATMENT: Print the flawed sequence beside the corrected one, with the contradiction named.
+
+08. A MODEL IS ALLOWED TO LEAVE THINGS OUT
+------------------------------------------
+
+Bridge scene | ID: abstraction-and-zoom
+
+VISUAL IDEA: A representation selector switches among context, sequence, state, and data views of one booking.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask which view answers “Who owns B-001?” and which answers “What happened before the timeout?” Reveal the appropriate view without suggesting that it contains every implementation detail.
+
+CHANGE ONE CONDITION AND COMPARE: Change the audience from a student using the service to a maintainer investigating the failure. Compare the information each needs and the irrelevant detail each can omit.
+
+PRINCIPLE TO REVEAL: A useful abstraction preserves what matters for its question and makes its omissions intentional.
+
+STUDENT PDF TREATMENT: Print a question-to-model matrix and the explicit limitations of each view.
+
+6. TEACHING GUARDRAILS
+----------------------
+
+A diagram is not evidence that its implementation exists or is correct. Label the level and purpose of each model. Keep arrow meanings consistent within a diagram; a dependency arrow is not automatically a message or a chronological event. Explain that class/entity representations need not become one class or one table per box.
+
+Do not collapse unknown outcome into failed operation. Preserve the distinction between a request's status and the durable booking state. Model examples are intentionally small; Week 6 returns to concurrent decisions and failure across boundaries, and Week 8 derives tests from these models.
+
+7. MISCONCEPTION AND DIAGNOSIS CLINIC
+-------------------------------------
+
+“Every noun should become a class.” Ask which identity, responsibility, or relationship the proposed class actually represents.
+
+“A sequence diagram lists all possible states.” Contrast one interaction path with the state model of permitted transitions.
+
+“An empty page means no results.” Ask whether loading and service failure were distinguished.
+
+8. IN-LECTURE CHECKS WITH ANSWERS
+---------------------------------
+
+QUESTION 1: A response times out after persistence. Is the booking necessarily absent?
+
+ANSWER: No. The requester may not know the result even though the booking exists.
+
+QUESTION 2: Why reference a room ID instead of copying its current name everywhere?
+
+ANSWER: Identity remains stable when the displayed name changes; historical snapshots should be modeled deliberately.
+
+QUESTION 3: Which model best exposes combinations of ownership and status?
+
+ANSWER: A decision table.
+
+QUESTION 4: How can a diagram be tested before code exists?
+
+ANSWER: Walk concrete examples through it and compare outcomes with requirements and complementary models.
+
+9. PDF CONTINUITY AND LECTURE ELASTICITY
+----------------------------------------
+
+WHAT THE PRINTED EXPLANATION MUST PRESERVE
+------------------------------------------
+
+The PDF should contain the separate request and booking state models, a readable entity relationship view, the cancellation table, and both sequence outcomes. Include a small notation legend. Retain the short explanatory sentence beneath each visual; arrows alone will not reproduce the explanation delivered aloud.
+
+SHORTER AND LONGER MEETING ROUTES
+---------------------------------
+
+Preserve state separation, data identity, and lost-response sequences. For a shorter lecture, combine the interface gallery with the journey discussion. For more depth, add one carefully chosen inconsistent model and let the class identify the contradictory claim before the reveal.
+
+10. HANDOFF
+-----------
+
+Carry the requirement IDs, models, and unresolved decisions into Week 4. The next question is how a team organizes and learns from the work needed to turn these descriptions into dependable behavior.
+
+11. SOURCES AND CURRENCY NOTES
+------------------------------
+
+Primary references: S01, S02, S08, S09, S25. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.

@@ -1,0 +1,56 @@
+ANALYSIS OF THE SUPPLIED BLENDER PLAN
+Research and curriculum date: 16 September 2026
+==============================================================================
+
+WHAT WAS EXAMINED
+-----------------
+
+The supplied ZIP contains fourteen weekly TXT plans, an orientation file, supporting audit and instructor guides, a source register, an asset, and backup copies of several files. The analysis used the current week1.txt through week14.txt files rather than treating .bak files as additional course weeks. It examined the shared structure, weekly progression, chapter maps, and representative detailed teaching flows.
+
+The reference is built around the recurring Lumen Field Station scene and uses approximately 80-minute meetings. Its eleven-section weekly format links purpose, outcomes, preparation, chapter order, detailed teaching notes, guardrails, diagnosis, answered checks, supplementary depth, continuity, and sources. This analysis concerns its instructional structure. It does not independently validate the Blender release or feature claims inside the supplied material.
+
+STRENGTHS RETAINED
+------------------
+
+A persistent example reduces the need to explain a new context every week. The new course retains that advantage through Campus Rooms while allowing the same behavior to be viewed through requirements, states, dependencies, tests, and operations.
+
+Observable outcomes remain at the front of every week. The instructor receives both a concise ordered map and enough detail to rehearse the explanations. Predictable errors and misconceptions are prepared in advance rather than discovered by accident during teaching. The explicit handoff keeps later lectures connected to earlier decisions.
+
+The source register and currency notes remain separate from student-facing explanation. This allows an instructor to verify terminology and technical details without turning the lecture into a citation tour. A realistic baseline duration and shorter/longer routes also remain, rather than assigning a rigid timestamp to every scene.
+
+WHAT NEEDED TRANSFORMATION
+--------------------------
+
+The Blender plan naturally emphasizes manipulating a software interface to produce an observable result. Software engineering needs a different unit of explanation: a decision and its consequences. A click sequence therefore becomes a controlled causal scene, such as changing a rule and observing which components and checks must change.
+
+The cumulative artifact in the reference becomes a cumulative case with stable rules and evidence. Students can revisit the same room-booking promise through different representations without needing to complete a prior technical construction before following the next lecture.
+
+Technical recipes become semantic guardrails and authoring intent. Exact SVG coordinates, animation APIs, component architecture, and library-specific code are deliberately left to the authoring stage. The plan specifies the claim, visible mechanism, comparison, and static interpretation—not every implementation detail.
+
+The weekly supplementary section becomes PDF continuity and lecture elasticity. Closing questions are in-lecture prediction and reasoning checks, with answers supplied for the instructor. The package concentrates on the lecture experience and its student reference version.
+
+ELEVEN-SECTION CORRESPONDENCE
+-----------------------------
+
+1. Purpose and scope remains purpose, case state, and scope.
+2. Observable learning outcomes remains observable learning outcomes.
+3. Instructor preparation remains prepared fixtures, recalled knowledge, and entry prompt.
+4. Chapter map becomes the ordered eight-scene map with stable identifiers.
+5. Detailed teaching notes becomes visual, prediction, mechanism, changed condition, principle, and PDF treatment.
+6. Technical guidance becomes conceptual and simulation guardrails.
+7. Troubleshooting becomes a misconception and diagnosis bank.
+8. Answered closing checks remains in-lecture checks with answers.
+9. Supplementary depth becomes PDF continuity and pacing flexibility.
+10. Weekly handoff remains the next question and shared case state.
+11. Sources remains dated source keys and explicit access/status notes.
+
+ADDITIONAL IMPROVEMENTS FOR THIS MEDIUM
+---------------------------------------
+
+Separate page navigation from scene state so a clicker does not accidentally reveal the answer or skip a mechanism. Define reset, replay, direct links, and re-entry once for the entire site. Include a print interpretation within every scene rather than postponing it until export.
+
+Limit each week to three substantial interactions. The remaining scenes can be matrices, simple annotated comparisons, model galleries, or short reveals. This preserves time for prediction and explanation and avoids building 112 elaborate simulations merely because the medium permits it.
+
+Use deterministic fictional fixtures and an explicit case contract. The same boundary must remain inclusive in a requirement table, test scene, AI example, and printed caption. This protects the coherence that a polished animation can otherwise hide.
+
+Not transferred: the Blender package's assessment rubric, milestones, recommended practice and student actions. This course is lecture-only and its public-facing materials carry no assessment or administration content; the decision is recorded in 00_START_HERE.txt.

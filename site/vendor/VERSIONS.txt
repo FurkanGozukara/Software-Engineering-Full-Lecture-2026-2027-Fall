@@ -1,0 +1,17 @@
+TESTED VERSIONS (Phase 0, 17 September 2026)
+============================================
+
+Runtime libraries shipped in the site
+  Chart.js                 4.5.1   vendor/chart.js/chart.umd.js
+
+Authoring and check tooling (not shipped; used to build, test and export)
+  Python                   3.10.11
+  pytest                   8.4.2
+  playwright (Python)      1.53.0   with Chromium 138.0.7204.23 (the browser the tests and the PDF export use)
+  axe-playwright-python    0.1.8    (axe-core accessibility checks in the deck tests)
+  pypdf                    6.5.0    (PDF checks)
+  PyMuPDF                  1.20.1   (author-side page rendering for print inspection only)
+  Node.js                  22.20.0  present on the authoring machine; not required by the site or the tests
+
+Decks are laid out at 1920 x 1080 logical pixels and were inspected at device scale factor 2
+(3840 x 2160 capture) in headless Chromium 138 and in Google Chrome on Windows 11.

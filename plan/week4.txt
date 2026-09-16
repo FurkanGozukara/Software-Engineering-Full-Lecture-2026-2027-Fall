@@ -1,0 +1,252 @@
+WEEK 04 | DEVELOPMENT FLOW, UNCERTAINTY, AND ENGINEERING DECISIONS
+Research and curriculum date: 16 September 2026
+==============================================================================
+
+Where is work waiting, and what would actually improve the flow?
+
+Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-04.html
+
+1. PURPOSE, CASE STATE, AND SCOPE
+---------------------------------
+
+Use a team workflow as an observable system. Explain iterative and incremental development, feedback, work-in-progress, bottlenecks, estimation, risk, and prioritization through controlled comparisons. Introduce Scrum and Kanban as identifiable approaches with different emphases, not synonyms for a board or for “being agile.” [S03, S04, S05]
+
+The case is a small team improving Campus Rooms. Students do not need to learn a commercial planning interface. Use a transparent tabletop-like simulation with labeled work cards and explicit capacities. Avoid converting every judgment into a score or implying that all engineering work has predictable service times. [S01, S02]
+
+2. OBSERVABLE LEARNING OUTCOMES
+-------------------------------
+
+1. Distinguish iteration, increments, and a single large batch of delivery.
+
+2. Locate a bottleneck using queues and completion evidence.
+
+3. Distinguish work-in-progress, throughput, cycle time, and lead time.
+
+4. Explain an estimate as conditional information rather than a guarantee.
+
+5. Choose a next action using risk, dependency, feedback value, and capacity.
+
+3. INSTRUCTOR PREPARATION AND ENTRY CHECK
+-----------------------------------------
+
+Prepare eight fictional work cards: conflict rule, duration boundary, cancellation ownership, room closure, accessible feedback, notification recovery, search response time, and support diagnosis. Use a discrete-round board with Ready, Implementing, Review, and Done. Default processing capacities are two cards per round in implementation and one in review. Cards completed in a round enter the next station for the following round, not instantly.
+
+Prepare identical arrival schedules for every comparison. A Run control may advance the model, but Step advances one labeled round; the default is paused. All timings are teaching units, not measured developer performance.
+
+4. ORDERED CHAPTER AND PAGE MAP
+-------------------------------
+
+Opening situation and recall/outcomes come first. The eight scenes below follow in this order. Principles/checks and sources/handoff close the deck. The normal twelve-page starting layout may expand where readability requires it.
+
+01 | Eight finished parts can still be one late discovery | Anchor
+
+week-04.html#/feedback-batches
+
+02 | A meeting does not create a feedback loop by itself | Bridge
+
+week-04.html#/methods-not-rituals
+
+03 | Making one stage faster can make the next queue longer | Anchor
+
+week-04.html#/queue-and-bottleneck
+
+04 | A shorter internal cycle can hide a longer external wait | Bridge
+
+week-04.html#/wip-and-time
+
+05 | A precise number can be less honest than a range | Bridge
+
+week-04.html#/estimates-with-assumptions
+
+06 | The most useful next step may be the one that reduces uncertainty | Anchor
+
+week-04.html#/risk-and-learning
+
+07 | “Coded” and “ready to rely on” are different claims | Bridge
+
+week-04.html#/definition-of-done
+
+08 | A process change is a hypothesis, too | Bridge
+
+week-04.html#/retrospective-as-test
+
+5. DETAILED SCENE TEACHING NOTES
+--------------------------------
+
+01. EIGHT FINISHED PARTS CAN STILL BE ONE LATE DISCOVERY
+--------------------------------------------------------
+
+Anchor scene | ID: feedback-batches
+
+VISUAL IDEA: Two timelines compare one large batch with small usable slices; a requirement misunderstanding is revealed at a chosen feedback point.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask when the team would learn that students need clear cancellation feedback. Reveal one timeline where everything is integrated at the end and another where a small booking-and-cancellation slice is inspected earlier. Explain the difference between adding usable capability and revising understanding.
+
+CHANGE ONE CONDITION AND COMPARE: Keep the misunderstanding constant but move the feedback point. Compare what must be reconsidered at that point. Then introduce a high-coordination integration constraint so students see that small slices still require thoughtful interfaces and sequencing.
+
+PRINCIPLE TO REVEAL: Shorter feedback loops can expose wrong assumptions earlier; useful increments must still make sense as a system.
+
+STUDENT PDF TREATMENT: Print the two timelines with discovery points, affected work, and stated assumptions.
+
+02. A MEETING DOES NOT CREATE A FEEDBACK LOOP BY ITSELF
+-------------------------------------------------------
+
+Bridge scene | ID: methods-not-rituals
+
+VISUAL IDEA: A three-column comparison of plan-driven coordination, iterative timeboxes, and flow-based policies.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask what information each approach makes visible and when decisions change. Introduce Scrum through goals, inspection, and adaptation within its defined framework, and Kanban through explicit workflow, controlling work-in-progress, and improving flow. Do not claim a generic board is the whole of either. [S04, S05]
+
+CHANGE ONE CONDITION AND COMPARE: Change the work from a planned capability to unpredictable incident arrivals. Compare which coordination mechanisms help and what policies need revision; do not declare one universal winner.
+
+PRINCIPLE TO REVEAL: Choose coordination practices for the uncertainty and constraints of the work, not for their labels.
+
+STUDENT PDF TREATMENT: Print the comparison with a note that simplified lecture examples are not complete method definitions.
+
+03. MAKING ONE STAGE FASTER CAN MAKE THE NEXT QUEUE LONGER
+----------------------------------------------------------
+
+Anchor scene | ID: queue-and-bottleneck
+
+VISUAL IDEA: A work board and a numerical queue chart share the same discrete-round data.
+
+SITUATION, PREDICTION, AND MECHANISM: Run implementation at two cards per round and review at one. Ask where the next unfinished card will wait. Reveal the review queue accumulating, with completed work counted separately from work started. Let the class predict the result before doubling implementation capacity.
+
+CHANGE ONE CONDITION AND COMPARE: Change only implementation capacity to four and replay the same arrival schedule. Compare completion rate and queue length. Restore the baseline, then change review capacity to two. Explain that the bottleneck may move once a constraint is relieved.
+
+PRINCIPLE TO REVEAL: Local activity is not the same as system throughput; improve the limiting flow, not merely the busiest-looking stage.
+
+STUDENT PDF TREATMENT: Print selected rounds and the corresponding queue/completion table, including capacities and transfer rules.
+
+04. A SHORTER INTERNAL CYCLE CAN HIDE A LONGER EXTERNAL WAIT
+------------------------------------------------------------
+
+Bridge scene | ID: wip-and-time
+
+VISUAL IDEA: Each card has arrival, start, and finish markers; a work-in-progress limit controls admission.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask which clock a stakeholder experiences. Reveal lead time from request arrival to completion and cycle time from the declared start boundary to completion. Mark the difference visually and state the boundaries before using the terms. [S05]
+
+CHANGE ONE CONDITION AND COMPARE: Reduce allowed in-progress work while keeping demand constant. Compare internal work age and the queue waiting before admission. Avoid claiming that moving waiting outside the measurement boundary is a real improvement.
+
+PRINCIPLE TO REVEAL: Timing metrics are meaningful only when their boundaries and excluded waiting are explicit.
+
+STUDENT PDF TREATMENT: Print the time markers and both waits; retain the ready queue instead of cropping it away.
+
+05. A PRECISE NUMBER CAN BE LESS HONEST THAN A RANGE
+----------------------------------------------------
+
+Bridge scene | ID: estimates-with-assumptions
+
+VISUAL IDEA: An estimate range sits beside known work, dependencies, and unresolved questions.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether “three days” means effort, elapsed time, or a commitment. Reveal the dependencies and review capacity behind the estimate. Compare a range based on several similar examples with a single unsupported number.
+
+CHANGE ONE CONDITION AND COMPARE: Change one assumption: the identity interface is not yet agreed. Widen or qualify the estimate and show the value of resolving that uncertainty. Do not turn fictional ranges into statistical confidence intervals without a model and data.
+
+PRINCIPLE TO REVEAL: An estimate is a conditional statement whose assumptions should travel with it.
+
+STUDENT PDF TREATMENT: Print the estimate with its assumptions and the condition that would trigger revision.
+
+06. THE MOST USEFUL NEXT STEP MAY BE THE ONE THAT REDUCES UNCERTAINTY
+---------------------------------------------------------------------
+
+Anchor scene | ID: risk-and-learning
+
+VISUAL IDEA: A decision table contrasts impact, uncertainty, reversibility, cost of delay, and information gained.
+
+SITUATION, PREDICTION, AND MECHANISM: Offer a visual refinement, a proof that simultaneous bookings cannot overlap, and an investigation into an unclear identity dependency. Ask what the team should learn before committing more work. Reveal what each step would clarify and what failure would cost.
+
+CHANGE ONE CONDITION AND COMPARE: Change only the reversibility of a decision: a temporary interface choice becomes a difficult data migration. Compare the amount of evidence worth seeking before proceeding. Use ordinal judgments and explanatory notes rather than multiplying invented probability scores.
+
+PRINCIPLE TO REVEAL: Prioritize not only output, but also the decisions and uncertainties that could make later work wasteful.
+
+STUDENT PDF TREATMENT: Print the decision table and a short rationale, including what remains uncertain.
+
+07. “CODED” AND “READY TO RELY ON” ARE DIFFERENT CLAIMS
+-------------------------------------------------------
+
+Bridge scene | ID: definition-of-done
+
+VISUAL IDEA: A work card accumulates evidence badges for intended behavior, review, checks, documentation, and operability.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether a cancellation change should be considered complete when the happy-path function runs. Reveal missing ownership checks and missing user feedback. Introduce a shared completion policy appropriate to this team's risk.
+
+CHANGE ONE CONDITION AND COMPARE: Change the work to an internal wording correction with no behavioral effect. Compare the relevant evidence instead of demanding identical ceremony for every change. Distinguish acceptance of a particular requirement from a broader completion policy. [S04]
+
+PRINCIPLE TO REVEAL: A shared completion policy should make quality expectations visible and proportionate.
+
+STUDENT PDF TREATMENT: Print the two changes with their relevant evidence, not an unexplained universal checklist.
+
+08. A PROCESS CHANGE IS A HYPOTHESIS, TOO
+-----------------------------------------
+
+Bridge scene | ID: retrospective-as-test
+
+VISUAL IDEA: Before-and-after panels connect a workflow observation, proposed change, measure, and possible side effect.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask what should happen after noticing a long review queue. Reveal a proposal to share review work, the expected effect, and what would count as contrary evidence. Keep the discussion about the system rather than blaming an individual.
+
+CHANGE ONE CONDITION AND COMPARE: Increase review speed but show more missed issues. Compare throughput with quality and rework. Leave the class with the idea of a balanced improvement experiment rather than one target number.
+
+PRINCIPLE TO REVEAL: Change a process deliberately, observe its consequences, and revise the explanation when the evidence disagrees.
+
+STUDENT PDF TREATMENT: Print the process hypothesis and the before/after evidence with the side effect included.
+
+6. TEACHING GUARDRAILS
+----------------------
+
+The board is a deliberately simplified queue model, not a forecast of human productivity. Work cards are similar-sized only for the core demonstration; unequal sizes are a useful later complication. Keep chart axes and simulation rounds identical across A/B runs.
+
+Do not teach story points as hours or compare teams through velocity. A work-in-progress limit does not remove incoming demand or guarantee shorter stakeholder lead time. Avoid a caricature in which plan-driven work never receives feedback or agile work needs no planning. Use the current Kanban Guide edition identified in the source register; the cited Scrum Guide is its November 2020 text. [S04, S05]
+
+7. MISCONCEPTION AND DIAGNOSIS CLINIC
+-------------------------------------
+
+“Busy people mean fast delivery.” Point to completed outcomes and the queue.
+
+“An estimate is a promise.” Ask which dependencies and uncertainties the number assumes.
+
+“A lower cycle time proves a better user experience.” Inspect the arrival-to-completion boundary and excluded waits.
+
+8. IN-LECTURE CHECKS WITH ANSWERS
+---------------------------------
+
+QUESTION 1: Review processes one item per round. Will doubling implementation necessarily double completion?
+
+ANSWER: No. Review remains the limiting stage in the stated model.
+
+QUESTION 2: What is the difference between iteration and increment?
+
+ANSWER: Iteration revisits or refines understanding or a solution; an increment adds usable capability.
+
+QUESTION 3: Why might a risky assumption deserve attention before an easy visible feature?
+
+ANSWER: Resolving it can prevent later work from relying on a false premise.
+
+QUESTION 4: What should accompany a process improvement claim?
+
+ANSWER: A baseline, a stated change, a relevant outcome measure, and attention to quality or other side effects.
+
+9. PDF CONTINUITY AND LECTURE ELASTICITY
+----------------------------------------
+
+WHAT THE PRINTED EXPLANATION MUST PRESERVE
+------------------------------------------
+
+Preserve the actual values behind every chart: rounds, capacities, queue lengths, and completed items. Include a glossary with measurement boundaries. Print the estimate assumptions and risk rationale. Do not distribute a chart that implies a measured industry result when it came from the lecture model.
+
+SHORTER AND LONGER MEETING ROUTES
+---------------------------------
+
+Preserve feedback batches, the queue simulation, and the risk comparison. The methods comparison is intentionally short. In a longer lecture, introduce different work-item sizes or an incident arrival using the same board, then examine why the earlier simplification mattered.
+
+10. HANDOFF
+-----------
+
+Carry forward one prioritized change: changing a booking policy without causing widespread edits. Week 5 examines how design structure affects the cost and safety of that change.
+
+11. SOURCES AND CURRENCY NOTES
+------------------------------
+
+Primary references: S01, S02, S03, S04, S05. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.

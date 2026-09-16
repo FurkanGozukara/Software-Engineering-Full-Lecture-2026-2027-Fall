@@ -1,0 +1,114 @@
+SHARED VISUAL LECTURE AND PDF BRIEF
+Research and curriculum date: 16 September 2026
+==============================================================================
+
+THE EXPERIENCE TO BUILD
+-----------------------
+
+Build a reusable local lecture website with a course index and exactly one student HTML deck per week. The index should show week number, central question, concise topic scope, and links to the corresponding deck and student PDF. Within each deck, provide clear page position and a scene overview. The instructor should be able to move around the lecture without losing the meaning or state of the demonstration.
+
+Use a coherent editorial style: generous spacing, large readable labels, a restrained palette, consistent diagram grammar, and a clear hierarchy between question, evidence, and principle. Most screens should feel like an explanation under examination, not a document pasted into presentation software. Keep instructor notes outside the student reading surface and do not expose the authoring assistant’s interface.
+
+Decisions in force (00_START_HERE.txt) shape the shell: English only; dark theme by default with a light print stylesheet; Python-like pseudocode for every snippet; the viewer is addressed as “you”; no assessment or administration content; every week is recorded, so the shell has a recording mode. Student-facing wording follows the channel style rules in F:/0_tutorial_videos_project/docs/channel_style_guide.md (public audience and useful content; instructional, not defensive). The plan's instructor prose is not bound by them; the deck text and the narration are.
+
+RECOMMENDED PAGINATION, NOT A RIGID SLIDE QUOTA
+-----------------------------------------------
+
+Start from twelve pages per week: an opening situation; recall and outcomes; the eight ordered scenes; a principles-and-checks page; and a sources-and-handoff page. This yields separate navigation for every meaningful scene without turning each animation beat into another slide.
+
+Allow roughly twelve to sixteen pages when a dense matrix, paired sequence, or readable code comparison genuinely needs separation. Preserve the primary scene identifier and give continuations stable suffixes. Do not squeeze a diagram to unreadable size to satisfy a number. The PDF may need additional pages for selected animation states and is not required to have the same page count as the HTML deck.
+
+Treat the scene titles in the plan as instructor labels. Student headings should usually express a question, surprising situation, or claim under examination. Reveal the formal term after its mechanism becomes understandable.
+
+CHOOSE THE REPRESENTATION FOR THE QUESTION
+------------------------------------------
+
+Use custom SVG for dependencies, commit graphs, state diagrams, sequence diagrams, highlighted paths, and controlled comparisons. Use semantic HTML tables for requirements, traceability, permissions, compatibility, and check coverage when a table is the clearest representation. Use plain readable code snippets only when examining actual behavior.
+
+Use Chart.js selectively for real numerical comparisons such as queue lengths, latency distributions, and resource counts. Give every quantitative chart units, a baseline, an observation window where relevant, and an accessible data table. Canvas content does not acquire useful text alternatives automatically. [S29, S30]
+
+Three.js is optional. It is appropriate only when spatial relationships actually improve the explanation; a rotating 3D architecture graph is not intrinsically better than a labeled 2D dependency map. Every 3D or WebGL scene needs a clear static 2D interpretation for printing and low-capability viewing. [S31]
+
+Modern browser animation with CSS, JavaScript, and the Web Animations API is sufficient for many controlled scenes. The authoring agent may choose a small additional local library when it solves a genuine need. Prefer the smallest understandable solution over a framework-heavy application shell. [S38]
+
+A STABLE CONTROL CONTRACT
+-------------------------
+
+Previous slide and Next slide always change the lecture page. They never mean “reveal the next animation beat.” Next slide is still allowed when a scene is unfinished, so an instructor can deliberately skip ahead.
+
+Step advances one meaningful state within the current scene. Back step returns to the previous scene state. At the final state, Step becomes disabled or clearly finished; it never silently advances to another slide. A continuous Run/Pause control is optional only for scenes such as queue flow, and the initial state is paused.
+
+Replay returns to the first step under the currently selected condition or comparison preset. Reset restores the canonical baseline, all default conditions, and the first paused step. These actions must not be visually or semantically interchangeable.
+
+Default re-entry behavior is deterministic: returning to a scene restores its canonical baseline, paused. A direct hash link does the same. Any optional resume behavior must be a clearly chosen mode, not hidden persistence. Leaving a scene cancels its timers and animation work so nothing continues changing offscreen.
+
+Changing a condition returns that scenario to its first paused state. Keep the comparison baseline visible or make it easy to restore. Display the selected condition in text so the class knows exactly what changed.
+
+SCENE CONTRACT FOR TESTS, RECORDING, AND PRINT
+----------------------------------------------
+
+The attribute names, query modes and the window.lecture interface that implement this control contract are defined once in repo_kit/docs/scene-contract.md (docs/scene-contract.md in the repository). The tests in tests/test_deck_contract.py, the PDF export script and the recording cue lists read those names; change them there first. The query modes are record=1 for deterministic timing without autoplay, motion=off for instant states, and print=1 for the print view, which declares html[data-print-ready="true"] when its panels have rendered. Every control and every element a cue list points at carries a cue-target attribute.
+
+NAVIGATION AND ACCESSIBILITY
+----------------------------
+
+Use stable names such as weeks/week-05.html#/dependency-example. Prefer a single horizontal lecture sequence with an optional overview rather than deep nested navigation. Reveal.js supplies useful navigation, numbering, progress, and hash-link capabilities, but its default fragments can share the next-navigation action. Custom scene state therefore needs an explicitly separate control path rather than assuming fragments automatically meet this brief. [S26, S27]
+
+All controls must work by keyboard and have meaningful accessible names, visible focus, and adequate target sizes. Do not capture arrow keys while a user is adjusting a slider or input. Do not intercept Space so broadly that native buttons stop working. Any single-letter shortcuts need a suitable focus boundary, a disable/remap option, or another conforming approach; document the actual mappings after implementation. [S25]
+
+Motion should clarify causality. Offer reduced-motion and instant-state options that preserve the same information. Never depend on color alone: use text, shape, line style, or labels. Ensure comparisons remain meaningful when printed without color. A low-motion route is a first-class explanation, not an empty scene.
+
+Lay out at 1920 by 1080 logical pixels and render correctly at device scale factor 2; the recording captures the resulting native frame under the capture_scale rule of F:/0_tutorial_videos_project/docs/tutorial_layout_policy.json. Use the whole canvas. Nothing is reserved for a presenter; the avatar overlay yields to content as the avatar block of that policy defines. Where a composition allows, leave the bottom-right corner empty so the overlay can appear more often.
+
+LOCAL OPERATION AND VERSION CHOICES
+-----------------------------------
+
+Use the latest suitable stable library versions verified at authoring time, then pin the tested versions. A supported Node.js LTS release may provide local serving and export automation, but the curriculum must not depend on knowing Node. Record what was actually used rather than asserting a version from memory. [S39]
+
+The finished site must function with internet access disabled. Store scripts, styles, icons, permitted assets, and library distributions locally; do not depend on a CDN, analytics endpoint, hosted font, embedded video, online diagram renderer, external model call, or remote image. Initial dependency acquisition during authoring is different from runtime network dependence.
+
+Provide a simple documented local-server route. A local HTTP server is not an external service. Do not promise that opening every deck through file:// will support all chosen browser-module or asset-loading behavior; either test that route or state that the supplied local launcher is the supported route. The student PDF should require no server at all.
+
+Keep the authoring workspace and private instructor material outside the distributed student directory. Include appropriate notices for redistributed libraries and any third-party assets. Use system fonts or fonts that can be lawfully supplied; this plan package contains no font files.
+
+SUGGESTED EVENTUAL WEBSITE LAYOUT
+---------------------------------
+
+software-engineering-course/              repository root (23_build_plan_and_schedule.txt)
+  AGENTS.md  CLAUDE.md  README.md         rules for the authoring agents
+  docs/scene-contract.md                  DOM and JavaScript contract the tests read
+  plan/                                   this package: TXT files, assets/demo-fixtures.json, plan_manifest.json, tools/, tests/
+  site/                                   the student distribution and nothing else
+    index.html
+    weeks/week-01.html ... week-14.html
+    shared/theme.css  print.css  lecture-controls.js  visual-components.js
+    assets/diagrams/  assets/fixtures/
+    vendor/  THIRD_PARTY_NOTICES.txt
+    pdf/week-01.pdf ... week-14.pdf
+    README.txt
+  cues/week-01.json ... week-14.json      recording cue lists (instructor side)
+  scripts/serve.py  export_pdf.py
+  tasks/                                  task templates for the recurring authoring jobs
+  .github/workflows/ci.yml
+
+This is a suggested output structure, not a prescription for every source module. One HTML per week may reference shared local assets and scripts. Keep explanatory ownership clear: shared code defines repeated control meanings and visual primitives, while each week defines its own scenes and content.
+
+A STUDENT PDF IS AN EXPLANATION, NOT AN ANIMATION CAPTURE
+---------------------------------------------------------
+
+Design print states at scene-authoring time. A typical Anchor needs baseline, pivotal mechanism, changed condition, and comparison-with-principle panels. Some can combine into two or three pages; a simple Bridge may need only one annotated final diagram. Follow the weekly scene’s stated PDF treatment rather than exporting every tiny motion frame.
+
+Retain the situation, prediction question, relevant inputs, labeled arrows, changed assumption, expected outcome, principle, and essential uncertainty. Place questions before their revealed explanations or clearly distinguish them. Hide navigation buttons, sliders, authoring notes, and operational controls. Print the values selected by those controls as readable labels.
+
+Custom canvas and WebGL content needs a deliberate print path. Numeric charts should become stable readable renderings with their underlying values. Spatial content should have a prepared 2D fallback. The printed artifact must not depend on whichever animation frame happened to be visible when export began.
+
+Reveal.js has a print stylesheet and fragment export behavior, but it does not automatically understand the intended educational states of custom simulations. Browser automation such as Playwright can drive a local export process once those states are defined. Use an explicit print view and wait for its declared ready condition rather than relying on a guessed delay. [S28, S30, S32]
+
+Maintain one source for the scene’s facts, principles, conditions, and values so HTML and PDF do not drift. Include stable scene IDs and meaningful page numbers in the PDF. Favor selectable text, readable captions, vector diagrams where practical, and a print-friendly high-contrast theme. Inspect reading order and content alternatives; a successful browser export alone does not establish an accessible tagged PDF. Keep accessible HTML available alongside the PDF.
+
+FREEDOM DURING AUTHORING
+------------------------
+
+The plan fixes learning intent, case semantics, core comparisons, control meanings, and evidence. The authoring agent can improve composition, transitions, visual metaphors, typography, component organization, and small supporting examples. It may split a crowded scene or simplify an animation when that improves comprehension.
+
+Do not let visual invention change a rule, invent a measurement, hide a failure, introduce a runtime external dependency, or replace a comparison with decoration. When choosing between more movement and a clearer static matrix, choose the matrix. The desired finish is elegant and interactive, but the measure of success is whether a student can explain why the outcomes differ.

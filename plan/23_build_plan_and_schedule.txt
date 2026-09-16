@@ -1,0 +1,41 @@
+BUILD PLAN, PARALLEL AUTHORING, AND SCHEDULE
+Research and curriculum date: 16 September 2026
+==============================================================================
+
+THE REPOSITORY
+--------------
+
+The course is built as a Git repository, local for now; the user publishes it to a remote when fitting (00_START_HERE.txt). Its root holds the files staged in repo_kit (AGENTS.md, CLAUDE.md, README.md, docs/scene-contract.md, scripts, tasks, the CI workflow and .gitignore). This plan package moves into plan/ unchanged: the TXT files, assets/demo-fixtures.json, plan_manifest.json, tools/, tests/, pytest.ini and requirements-dev.txt. The student distribution is site/ and nothing else. Recording cue lists live in cues/. The layout is drawn in repo_kit/README.md.
+
+The CI workflow runs the plan checker, the deck and PDF tests and the PDF artifact upload on every push once the repository has a GitHub remote. Until then the same commands run locally; they are listed once in repo_kit/AGENTS.md under the definition of done.
+
+THREE PHASES
+------------
+
+Phase 0, one agent, sequential: the shared shell, Week 1 complete, and the two shell-test scenes from Week 5 (dependency-example) and Week 11 (latency-is-a-distribution) inside their eventual deck files (repo_kit/tasks/00_shell_and_week1.md). Exit: the full command list passes for those decks, Week 1 has its PDF and cue list, and the instructor has rehearsed Week 1 from the deck.
+
+Phase 1, several agents in parallel: Weeks 2 to 14, one week per branch or worktree, each against the frozen shell, the contract and the tests (repo_kit/tasks/10_author_week.md). Shell changes are made only in a shell branch and rerun every existing deck's tests. A useful working set is three agents authoring three consecutive weeks while a fourth exports PDFs and writes cue lists for finished weeks.
+
+Phase 2, per week and once at the end: rehearsal revision (tasks/20), PDF export and inspection (tasks/30), cue lists (tasks/40), the copied-folder offline rehearsal from 21_instructor_preflight.txt, and the register re-verification (tasks/50) before Week 1 ships.
+
+MINIMUM VIABLE DECK
+-------------------
+
+A week may ship below its full design but never below this line: all eight scenes present with their identifiers, situation, question and principle; the three Anchors interactive with Step, Back, Replay, Reset and at least the baseline and one changed-condition preset; the five Bridges as annotated diagrams or tables whose rows appear on pointer-operated reveals; print panels for every scene and the exported PDF; the contract tests passing; the cue list passing the static-content checker. Motion polish, continuation pages, Run controls and Three.js are above the line. A deck below the line is not taught from; the instructor uses the previous week's routine and the plan's recovery route (the static explanation) while the deck is finished.
+
+SCHEDULE RELATIVE TO THE FIRST LECTURE
+--------------------------------------
+
+The first lecture date is not fixed yet; call it T0 and write the dates in when it is. Phase 0 complete and rehearsed: T0 minus 7 days. Week 1 recorded, narrated and delivered: T0 minus 2 days, or per the channel's publication plan. Week N deck, PDF and cue list ready: lecture N minus 7 days. Week N recording and narration: lecture N minus 5 to minus 2 days. Authoring runs three weeks ahead of the lectures from Week 4 on, so a late week never blocks the next lecture. Re-verification of the sources (tasks/50) is finished before Week 1 ships and repeated before any later semester.
+
+If T0 is within three weeks of today, Phase 0 starts immediately and Weeks 2 and 3 are authored at the minimum viable line first, then raised to the full design in Phase 2.
+
+ROLES OF THE TOOLS
+------------------
+
+tools/build_manifest.py derives the scene manifest that the index page, the tests and the agents read. tools/check_plan.py guards the plan: structure, links, citations, rules, spine, fixtures recomputed from the models, and manifest freshness. tests/ guards the decks against the contract, accessibility, offline operation, fixture agreement, the print signal and the PDFs. scripts/export_pdf.py produces the student PDFs from the declared print state. The workspace checkers guard the recording plan, the narration and the delivery. tools/build_combined.py regenerates the derived Markdown and PDF copies of this plan.
+
+COMPLETION RECORD
+-----------------
+
+Per week, in the repository next to the cue list: deck file, PDF file, scene identifiers, tested browser and library versions, the commands run with their results, the inspection performed, the recording deliverables of 22_recording_track.txt, and unresolved limitations. An item is marked verified only after the behavior was observed, as 21_instructor_preflight.txt requires.

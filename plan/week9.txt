@@ -1,0 +1,252 @@
+WEEK 09 | SECURITY, PRIVACY, AND TRUSTWORTHY DEPENDENCIES
+Research and curriculum date: 16 September 2026
+==============================================================================
+
+What must remain true when a request, dependency, or assumption cannot be trusted?
+
+Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-09.html
+
+1. PURPOSE, CASE STATE, AND SCOPE
+---------------------------------
+
+Treat security as part of the service’s behavior rather than an isolated scanner at the end. Return to cancellation: the interface can look correct and the duration checks can pass while a user is allowed to cancel someone else’s booking. Build the explanation around assets, trust boundaries, identity, permission, safe handling, and evidence.
+
+Use the OWASP Top 10:2025 as an awareness reference and NIST SSDF 1.1 as the final secure-development baseline in this plan. The retrieved SSDF 1.2 document is still an initial public draft, so its status belongs in instructor currency notes, not in a claim that a new final standard has been adopted. [S01, S02, S13, S14, S15]
+
+2. OBSERVABLE LEARNING OUTCOMES
+-------------------------------
+
+1. Identify an asset, trust boundary, threat, and proposed mitigation in a simple system.
+
+2. Distinguish authentication from authorization and apply ownership rules.
+
+3. Explain why validation and authoritative enforcement belong at trusted boundaries.
+
+4. Compare useful diagnostics with unnecessary personal-data exposure.
+
+5. Explain what dependency inventory and provenance evidence do and do not establish.
+
+3. INSTRUCTOR PREPARATION AND ENTRY CHECK
+-----------------------------------------
+
+Use synthetic users U-01 and U-02, with B-001 owned by U-01. Define the authenticated requester independently of any owner identifier supplied in a form. Prepare a cancellation decision matrix, a simple data-flow diagram, a redacted log comparison, and a fictional dependency chain without real vulnerability claims.
+
+Keep every demonstration local and conceptual. No external targets, real credentials, actual personal data, or live exploit tooling are needed. The aim is to reason about protected behavior and boundaries, not to rehearse attack commands.
+
+4. ORDERED CHAPTER AND PAGE MAP
+-------------------------------
+
+Opening situation and recall/outcomes come first. The eight scenes below follow in this order. Principles/checks and sources/handoff close the deck. The normal twelve-page starting layout may expand where readability requires it.
+
+01 | What are we trying to protect, and from whom? | Anchor
+
+week-09.html#/assets-and-boundaries
+
+02 | Being signed in does not authorize every action | Anchor
+
+week-09.html#/identity-is-not-permission
+
+03 | A disabled button is guidance, not a security boundary | Bridge
+
+week-09.html#/trusted-enforcement
+
+04 | Input should not acquire unintended authority | Bridge
+
+week-09.html#/data-not-instructions
+
+05 | Useful evidence does not require collecting everything | Anchor
+
+week-09.html#/privacy-and-diagnostics
+
+06 | A component brings dependencies and assumptions with it | Bridge
+
+week-09.html#/dependency-chain
+
+07 | Failure behavior can preserve or violate the promise | Bridge
+
+week-09.html#/exceptional-conditions
+
+08 | Security evidence belongs throughout the lifecycle | Bridge
+
+week-09.html#/security-through-change
+
+5. DETAILED SCENE TEACHING NOTES
+--------------------------------
+
+01. WHAT ARE WE TRYING TO PROTECT, AND FROM WHOM?
+-------------------------------------------------
+
+Anchor scene | ID: assets-and-boundaries
+
+VISUAL IDEA: A data-flow diagram marks booking records, identity assertions, browser input, storage, and notification boundaries.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask which arrows carry information the service can accept without checking. Reveal that user-supplied room, time, and booking identifiers are claims, not authority. Identify unwanted outcomes: false cancellation, data disclosure, denied service, and misleading state.
+
+CHANGE ONE CONDITION AND COMPARE: Change one condition: the browser sends a different booking identifier while the authenticated identity remains U-02. Follow the request across the same boundary and ask which decision must stop an unauthorized effect.
+
+PRINCIPLE TO REVEAL: Threat modeling connects a protected outcome to an entry point, an assumption, and a concrete control.
+
+STUDENT PDF TREATMENT: Print the boundary diagram and a small asset-threat-control table with residual questions.
+
+02. BEING SIGNED IN DOES NOT AUTHORIZE EVERY ACTION
+---------------------------------------------------
+
+Anchor scene | ID: identity-is-not-permission
+
+VISUAL IDEA: A decision matrix shows requester, owner, booking state, future start time, and cancellation result.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether U-02 may cancel B-001 simply because the request is authenticated. Reveal R-03: only the authenticated owner may cancel their own future confirmed booking in the baseline. Show the permission decision next to the requested state transition.
+
+CHANGE ONE CONDITION AND COMPARE: Change only the requester to U-01, then separately change the booking to already started. Compare these independent conditions. A staff closure role does not silently grant a cancellation override; any delegation would be an explicitly revised policy.
+
+PRINCIPLE TO REVEAL: Authentication establishes an identity claim; authorization decides whether that identity may perform this action on this resource.
+
+STUDENT PDF TREATMENT: Print the full decision matrix, including same-user but too-late rejection.
+
+03. A DISABLED BUTTON IS GUIDANCE, NOT A SECURITY BOUNDARY
+----------------------------------------------------------
+
+Bridge scene | ID: trusted-enforcement
+
+VISUAL IDEA: A polished interface sits above a service-side decision point; both paths converge on the same authoritative rule.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether hiding the Cancel button prevents an unauthorized request. Reveal that the service still receives requests independently of the visible interface. The trusted boundary must check identity, ownership, state, and time rather than relying on the button.
+
+CHANGE ONE CONDITION AND COMPARE: Bypass only the interface affordance in the illustration, without showing attack tooling. Compare a service that trusts supplied ownership with one that obtains ownership from the protected booking record.
+
+PRINCIPLE TO REVEAL: User-interface constraints help users, while trusted enforcement protects the rule when those constraints are absent.
+
+STUDENT PDF TREATMENT: Print the two paths and the same required service-side decision.
+
+04. INPUT SHOULD NOT ACQUIRE UNINTENDED AUTHORITY
+-------------------------------------------------
+
+Bridge scene | ID: data-not-instructions
+
+VISUAL IDEA: A structured request is separated into data fields and the operation interpreting them; a small query-template diagram illustrates the boundary.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask what could go wrong when a text value becomes part of the instructions used to access storage. Reveal the conceptual distinction between validated data, parameterized operations, and authorization. Explain that none replaces the other. [S13]
+
+CHANGE ONE CONDITION AND COMPARE: Keep the text value unchanged and change only how the operation treats it: as structure or as data. Compare the interpretation without providing an operational exploitation sequence. AI beat: the same boundary holds when the reader is an automated assistant. A note inside a file it reads is data, not an instruction to the reader. Week 13 examines that case as prompt injection.
+
+PRINCIPLE TO REVEAL: Validate the domain, preserve the data-versus-instruction boundary, and independently check permission.
+
+STUDENT PDF TREATMENT: Print the structured-data illustration with the three distinct responsibilities labeled.
+
+05. USEFUL EVIDENCE DOES NOT REQUIRE COLLECTING EVERYTHING
+----------------------------------------------------------
+
+Anchor scene | ID: privacy-and-diagnostics
+
+VISUAL IDEA: Two incident records are compared field by field, linked to the actual support question.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask which fields distinguish a failed notification from a failed booking. Reveal that a request identifier, outcome category, and dependency status may answer the question without a message body or private meeting description. Mark fictional identifiers as pseudonymous, not magically anonymous.
+
+CHANGE ONE CONDITION AND COMPARE: Add a narrowly justified diagnostic need and choose the minimal additional field, access restriction, and retention rationale. Compare purposeful collection with permanent detailed logging by default.
+
+PRINCIPLE TO REVEAL: Diagnostic value, access, retention, and disclosure risk should be considered together.
+
+STUDENT PDF TREATMENT: Print the before-and-after records and a field-purpose-retention rationale table, without real personal information.
+
+06. A COMPONENT BRINGS DEPENDENCIES AND ASSUMPTIONS WITH IT
+-----------------------------------------------------------
+
+Bridge scene | ID: dependency-chain
+
+VISUAL IDEA: A dependency graph expands one level, then an inventory and build-provenance card attach to the selected release.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether knowing the name of a direct library tells us everything included in a build. Reveal a transitive dependency. Explain an inventory or software bill of materials as visibility into components, and provenance as evidence about an artifact’s production. [S16]
+
+CHANGE ONE CONDITION AND COMPARE: Change one dependency version while keeping application source fixed. Compare the need to evaluate the new component, rebuild under controlled inputs, and recheck affected behavior. A familiar name, inventory entry, or signature alone does not prove safety. Licensing beat: change only the license of the transitive dependency in the fictional chain, from a permissive license to a copyleft license with a source-availability obligation. Compare what the license inventory now requires before release. Use SPDX identifiers as the vocabulary and keep this an engineering question about obligations and inventory, not legal advice. [S42]
+
+PRINCIPLE TO REVEAL: Supply-chain evidence makes dependencies inspectable; it does not eliminate the need for risk judgment and verification.
+
+STUDENT PDF TREATMENT: Print the exact fictional dependency set, the changed node, and the bounded claims of each evidence type. Add the license column with the changed identifier.
+
+07. FAILURE BEHAVIOR CAN PRESERVE OR VIOLATE THE PROMISE
+--------------------------------------------------------
+
+Bridge scene | ID: exceptional-conditions
+
+VISUAL IDEA: A permission check, booking write, and notification step each receive a separate failure card.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether every failure should have the same response. Reveal that an unavailable permission decision must not silently grant access, while an email failure must not undo a confirmed booking under R-04. State the protected property at each boundary.
+
+CHANGE ONE CONDITION AND COMPARE: Move the failure from notification to authorization while keeping the request fixed. Compare safe outcomes and user messages rather than applying a blanket “always continue” or “always roll back everything” rule.
+
+PRINCIPLE TO REVEAL: Handling failure safely requires knowing which promise each operation is responsible for preserving.
+
+STUDENT PDF TREATMENT: Print a failure-location-to-safe-outcome table with R-03 and R-04 references.
+
+08. SECURITY EVIDENCE BELONGS THROUGHOUT THE LIFECYCLE
+------------------------------------------------------
+
+Bridge scene | ID: security-through-change
+
+VISUAL IDEA: The familiar lifecycle loop receives threat questions, permission checks, review, dependency evidence, and incident feedback.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether a final scanner can discover an unstated ownership policy. Reveal distinct contributions from requirements, design, implementation checks, review, release integrity, and operation. Use a small selected set of risks rather than reciting a top-ten list.
+
+CHANGE ONE CONDITION AND COMPARE: Introduce a new delegated-cancellation policy as an explicit hypothetical. Trace which model, checks, review questions, and diagnostic fields must be reconsidered before restoring the baseline.
+
+PRINCIPLE TO REVEAL: Security is maintained through connected decisions and feedback, not added by one tool at the end.
+
+STUDENT PDF TREATMENT: Print the lifecycle evidence map and the policy-change trace.
+
+6. TEACHING GUARDRAILS
+----------------------
+
+OWASP’s Top 10 is an awareness document, not a complete application verification standard. Do not equate cryptography with authorization, input validation with all injection prevention, or an SBOM with proof of a secure build. Use the selected SLSA specification to clarify provenance and integrity claims, not to award a maturity level to the fictional system. [S13, S16]
+
+Do not present privacy examples as jurisdiction-specific legal compliance. Avoid collecting real class information for the demonstration. Keep credentials as obvious placeholders. The no-overlap invariant remains enforced at the authoritative boundary even when every requester is authenticated.
+
+7. MISCONCEPTION AND DIAGNOSIS CLINIC
+-------------------------------------
+
+“Logged in means permitted.” The owner, action, resource state, and time still matter.
+
+“The interface prevents that request.” A trusted service must enforce the rule independently.
+
+“A dependency scan proves the release is secure.” It observes a limited set of known issues and does not establish every design or behavioral property.
+
+8. IN-LECTURE CHECKS WITH ANSWERS
+---------------------------------
+
+QUESTION 1: May U-02 cancel a future booking owned by U-01 in the baseline?
+
+ANSWER: No. Authentication alone does not satisfy the ownership requirement.
+
+QUESTION 2: Why is a request identifier preferable to a full private message in this diagnostic example?
+
+ANSWER: It can connect relevant observations while avoiding content that is unnecessary for the stated support question.
+
+QUESTION 3: What does a component inventory establish?
+
+ANSWER: Which recorded components are included or expected within its defined scope; it does not by itself establish that they are safe.
+
+QUESTION 4: Should notification failure automatically cancel an already confirmed booking?
+
+ANSWER: No. Under R-04 the booking remains confirmed while notification work is explicitly pending or failed and recoverable.
+
+9. PDF CONTINUITY AND LECTURE ELASTICITY
+----------------------------------------
+
+WHAT THE PRINTED EXPLANATION MUST PRESERVE
+------------------------------------------
+
+Retain the permission matrix, trust boundaries, and safe-failure comparison. Do not use a lock icon as the only explanation of a control. Print the minimal diagnostic record with fictional-data labels and the dependency evidence limitations. Put dated standards status in the sources page rather than on every conceptual scene.
+
+SHORTER AND LONGER MEETING ROUTES
+---------------------------------
+
+Protect trust-boundary reasoning, ownership authorization, and privacy-aware diagnostics as anchors. Keep input interpretation and supply-chain evidence to one clear comparison each. Extra time belongs to changing one permission condition, not to a catalog of attack types.
+
+10. HANDOFF
+-----------
+
+Carry the review, verification, permission, and dependency evidence into Week 10. The next question is how a change reaches users while preserving the relationship between what was checked and what is released.
+
+11. SOURCES AND CURRENCY NOTES
+------------------------------
+
+Primary references: S01, S02, S13, S14, S15, S16, S42. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.

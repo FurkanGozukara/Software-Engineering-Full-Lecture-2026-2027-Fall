@@ -1,0 +1,252 @@
+WEEK 02 | FROM AMBIGUOUS REQUESTS TO VERIFIABLE REQUIREMENTS
+Research and curriculum date: 16 September 2026
+==============================================================================
+
+How would we know that a requirement has been satisfied?
+
+Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-02.html
+
+1. PURPOSE, CASE STATE, AND SCOPE
+---------------------------------
+
+Use the unresolved sentence from Week 1 to teach elicitation, scope, prioritization, acceptance criteria, and traceability. Students should experience ambiguity before hearing a definition of a good requirement. Requirements are negotiated descriptions of intended behavior and constraints, not a form whose completion guarantees understanding.
+
+The core output within the lecture is a small connected set of requirement examples for Campus Rooms. Distinguish functional behavior, quality targets, business rules, and implementation decisions. Introduce stable identifiers that reappear later in designs and verification evidence. [S01, S02]
+
+2. OBSERVABLE LEARNING OUTCOMES
+-------------------------------
+
+1. Identify ambiguity, missing stakeholders, and hidden assumptions in a request.
+
+2. Turn a request into observable behavior with boundary and failure cases.
+
+3. Distinguish a requirement from a solution decision and a supporting assumption.
+
+4. Connect a requirement to a design decision and an independent verification check.
+
+5. Explain how a changed requirement affects linked evidence.
+
+3. INSTRUCTOR PREPARATION AND ENTRY CHECK
+-----------------------------------------
+
+Prepare short stakeholder statements with deliberate disagreement: “Anyone should reserve,” “Only campus members should reserve,” and “Staff need to close rooms.” Prepare time strips showing 29, 30, 120, and 121 minutes. Keep the canonical rules in the shared case guide visible to the instructor.
+
+Use R-01 for non-overlap, R-02 for a 30-120 minute duration, R-03 for cancellation authorization, R-04 for notification independence, and R-05 for accessible completion. Requirements and examples are course-authored rules, not claims about a real university.
+
+4. ORDERED CHAPTER AND PAGE MAP
+-------------------------------
+
+Opening situation and recall/outcomes come first. The eight scenes below follow in this order. Principles/checks and sources/handoff close the deck. The normal twelve-page starting layout may expand where readability requires it.
+
+01 | One sentence, three incompatible interpretations | Anchor
+
+week-02.html#/ambiguous-request
+
+02 | An omitted user can hide an entire requirement | Bridge
+
+week-02.html#/elicitation-and-scope
+
+03 | Turn “short booking” into a rule we can examine | Anchor
+
+week-02.html#/observable-behavior
+
+04 | “Fast” needs a workload and a measurement boundary | Bridge
+
+week-02.html#/quality-with-conditions
+
+05 | A precise requirement can still describe the wrong thing | Bridge
+
+week-02.html#/acceptance-and-validation
+
+06 | A requirement should lead somewhere | Anchor
+
+week-02.html#/traceability-matrix
+
+07 | The loudest request is not automatically the next one | Bridge
+
+week-02.html#/priority-and-risk
+
+08 | A changed rule should not leave old evidence pretending to be current | Bridge
+
+week-02.html#/requirements-under-change
+
+5. DETAILED SCENE TEACHING NOTES
+--------------------------------
+
+01. ONE SENTENCE, THREE INCOMPATIBLE INTERPRETATIONS
+----------------------------------------------------
+
+Anchor scene | ID: ambiguous-request
+
+VISUAL IDEA: An editable-looking request card branches into three concrete screen outcomes; no actual language-model call is involved.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask students to predict the behavior implied by “Make booking fair.” Reveal first-come access, per-user limits, and staff-priority interpretations. Show that all three could be defended from the same sentence. Add questions about who decides, what is scarce, and what outcome matters.
+
+CHANGE ONE CONDITION AND COMPARE: Change only the stakeholder answering the question. Compare the resulting rules and surface the conflict rather than silently selecting one. Settle this lecture's scope on exclusive booking of available rooms; fairness policy remains an explicit open decision.
+
+PRINCIPLE TO REVEAL: Ambiguity is resolved through examples and stakeholder decisions, not through more confident wording.
+
+STUDENT PDF TREATMENT: Print the ambiguous sentence, the competing interpretations, and the clarified scope.
+
+02. AN OMITTED USER CAN HIDE AN ENTIRE REQUIREMENT
+--------------------------------------------------
+
+Bridge scene | ID: elicitation-and-scope
+
+VISUAL IDEA: A context map gains questions at its boundaries; facts, assumptions, and open decisions have different labels and shapes.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask what must be learned before accepting a request from a guest. Reveal questions about identity, cancellation rights, accessibility, and room closures. [S25] Separate something a stakeholder stated from something a developer inferred.
+
+CHANGE ONE CONDITION AND COMPARE: Introduce an external visitor as a new stakeholder but keep this release's campus-member boundary. Compare explicitly deferred behavior with an accidental omission.
+
+PRINCIPLE TO REVEAL: An explicit boundary and an open-question register make uncertainty discussable.
+
+STUDENT PDF TREATMENT: Print the scope boundary and a compact fact-assumption-question table.
+
+03. TURN “SHORT BOOKING” INTO A RULE WE CAN EXAMINE
+---------------------------------------------------
+
+Anchor scene | ID: observable-behavior
+
+VISUAL IDEA: A duration ruler, a requirement card, and example outcomes update together.
+
+SITUATION, PREDICTION, AND MECHANISM: Show 29, 30, 120, and 121 minute requests. Ask which should be accepted before revealing R-02: durations are at least 30 and at most 120 minutes, inclusive. Explain actor, condition, expected behavior, and rejection behavior. Keep the rule separate from a proposed slider widget.
+
+CHANGE ONE CONDITION AND COMPARE: Change only the upper limit from 120 to 90 minutes in a clearly labeled temporary variant. Compare the affected examples and restore the canonical 120-minute rule afterward. Include an invalid end-before-start request to show that one boundary rule does not describe every validity condition. Then add the AI beat: two prepared, synthetic drafting requests go to an automated assistant, one carrying the sentence “keep bookings short” and one carrying R-02. Show the two candidate rules side by side: the first invents a limit, the second implements 30 through 120 inclusive. No live model call; the candidates are authored fixtures.
+
+PRINCIPLE TO REVEAL: A useful requirement makes meaningful differences between acceptable and unacceptable outcomes visible.
+
+STUDENT PDF TREATMENT: Print the canonical rule and an input-expected-outcome table; label the 90-minute variant as a comparison only. Print the two candidate rules with the request that produced each.
+
+04. “FAST” NEEDS A WORKLOAD AND A MEASUREMENT BOUNDARY
+------------------------------------------------------
+
+Bridge scene | ID: quality-with-conditions
+
+VISUAL IDEA: A response-time distribution appears beside workload and measurement-condition cards.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether a 200 millisecond response proves the system is fast. Reveal Q-01: in the specified teaching fixture, the 95th percentile of search API response time should not exceed 500 milliseconds under 50 concurrent users. Explain that this is an authored target, not a universal service standard.
+
+CHANGE ONE CONDITION AND COMPARE: Change the workload while holding the target and code constant. Compare what was measured with what was claimed. Distinguish service-boundary response time from the student's whole browser experience.
+
+PRINCIPLE TO REVEAL: A quality requirement needs a quantity, a boundary, conditions, and an acceptance rule.
+
+STUDENT PDF TREATMENT: Print the distribution, the explicit target, the fixture assumptions, and the measurement boundary.
+
+05. A PRECISE REQUIREMENT CAN STILL DESCRIBE THE WRONG THING
+------------------------------------------------------------
+
+Bridge scene | ID: acceptance-and-validation
+
+VISUAL IDEA: A three-part strip: stakeholder need, precise statement, and observed behavior.
+
+SITUATION, PREDICTION, AND MECHANISM: Show a system that perfectly enforces a 30-minute maximum because someone transcribed the desired 120-minute maximum incorrectly. Ask whether implementation checks against the written statement would catch the misunderstanding. Reveal the original stakeholder example.
+
+CHANGE ONE CONDITION AND COMPARE: Keep the implementation unchanged and correct the intended requirement. Compare verification against a specification with validation of the intended need, acknowledging that actual practices can overlap.
+
+PRINCIPLE TO REVEAL: We must question both whether the system matches its description and whether the description matches the need.
+
+STUDENT PDF TREATMENT: Print the two questions and the mismatch connecting them.
+
+06. A REQUIREMENT SHOULD LEAD SOMEWHERE
+---------------------------------------
+
+Anchor scene | ID: traceability-matrix
+
+VISUAL IDEA: A small matrix links requirement IDs to design decisions, examples, and checks. Selecting a cell highlights its evidence chain.
+
+SITUATION, PREDICTION, AND MECHANISM: Begin with R-01 and a blank matrix. Ask what evidence should connect “no overlapping confirmations” to an implementation. Reveal an authoritative conflict decision, boundary examples, and a concurrent-request check. Add R-03 with an ownership decision and an authorization check. Explain why a matrix suits coverage better than a moving pipeline.
+
+CHANGE ONE CONDITION AND COMPARE: Change R-03 so a delegated staff role may cancel under a recorded reason. Highlight only the decisions and checks that genuinely depend on that rule. Leave unrelated duration tests unchanged and mark the new policy as a variant requiring a stakeholder decision.
+
+PRINCIPLE TO REVEAL: Traceability makes relationships inspectable; a link is useful only when its meaning and evidence are current.
+
+STUDENT PDF TREATMENT: Print the readable matrix, a legend, and the change-impact highlight with text labels.
+
+07. THE LOUDEST REQUEST IS NOT AUTOMATICALLY THE NEXT ONE
+---------------------------------------------------------
+
+Bridge scene | ID: priority-and-risk
+
+VISUAL IDEA: A decision table compares user benefit, dependency, uncertainty, consequence, and effort range.
+
+SITUATION, PREDICTION, AND MECHANISM: Offer three requests: correct duplicate confirmations, add decorative room photos, and make cancellation accessible. Ask what information is needed to prioritize them. Reveal consequences and dependencies without hiding judgments inside a mysterious score.
+
+CHANGE ONE CONDITION AND COMPARE: Change one condition: a room closure is scheduled tomorrow in the fictional scenario. Compare how urgency and risk influence order without rewriting the underlying value of the requests.
+
+PRINCIPLE TO REVEAL: Priority is a reasoned choice under constraints, not a permanent property of a feature.
+
+STUDENT PDF TREATMENT: Print the decision table and the rationale for the selected order.
+
+08. A CHANGED RULE SHOULD NOT LEAVE OLD EVIDENCE PRETENDING TO BE CURRENT
+-------------------------------------------------------------------------
+
+Bridge scene | ID: requirements-under-change
+
+VISUAL IDEA: A versioned requirement card is connected to a change note, an owner, and stale/current evidence badges.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask what must happen when a duration rule changes after tests have been written. Reveal the changed statement, its rationale, the linked examples requiring revision, and a clearly dated decision. Retain prior wording as history rather than making it disappear.
+
+CHANGE ONE CONDITION AND COMPARE: Change the request from a rule update to a wording correction that preserves behavior. Compare semantic change with editorial change and avoid triggering the same response mechanically.
+
+PRINCIPLE TO REVEAL: Manage the meaning of a change, its rationale, and its evidence together.
+
+STUDENT PDF TREATMENT: Print the before-and-after requirement and the explicit affected/unaffected list.
+
+6. TEACHING GUARDRAILS
+----------------------
+
+Use concise examples rather than a giant requirements document. Do not equate a user-story sentence with a complete specification. Acceptance examples, quality constraints, and open questions may be needed beside it. A solution such as “use a relational database” is not the same thing as “never confirm overlapping reservations.”
+
+Numerical quality targets are synthetic and bounded by a stated fixture. R-01 concerns confirmed bookings for the same room; adjacent half-open intervals do not overlap. Do not accidentally introduce a 30-minute scheduling grid: durations in this case are whole minutes within the permitted range, and start times are not restricted to half-hour boundaries.
+
+7. MISCONCEPTION AND DIAGNOSIS CLINIC
+-------------------------------------
+
+“Testable means measurable only with a number.” A concrete permission or state-transition outcome can also be checked.
+
+“A traceability matrix proves completeness.” Ask what missing requirement would have no row in the first place.
+
+“The stakeholder knows every requirement in advance.” Use examples and unexpected conditions to reveal what remains unknown.
+
+8. IN-LECTURE CHECKS WITH ANSWERS
+---------------------------------
+
+QUESTION 1: Is “Use Framework X to make booking fast” a clear behavior requirement?
+
+ANSWER: It mixes a solution choice with an underspecified quality objective; define the needed outcome and conditions separately.
+
+QUESTION 2: Should a 120-minute booking satisfy R-02?
+
+ANSWER: Yes. The upper limit is inclusive; other validity and availability checks still apply.
+
+QUESTION 3: What is missing from “Search must finish in 500 milliseconds”?
+
+ANSWER: At least the measurement boundary, workload, proportion or percentile, and conditions.
+
+QUESTION 4: What does selecting R-03 in the matrix tell us?
+
+ANSWER: Which decisions and checks are linked to cancellation authorization; those links need review when the rule changes.
+
+9. PDF CONTINUITY AND LECTURE ELASTICITY
+----------------------------------------
+
+WHAT THE PRINTED EXPLANATION MUST PRESERVE
+------------------------------------------
+
+Include a one-page requirement register, boundary examples, Q-01's measurement assumptions, and the traceability matrix. Preserve explicit “unknown” and “deferred” labels rather than replacing them with guessed facts. Temporary variants must never be confused with the course's canonical rules. In print, highlight the changed matrix cells with symbols as well as color.
+
+SHORTER AND LONGER MEETING ROUTES
+---------------------------------
+
+Preserve ambiguity, duration boundaries, and traceability as the three anchors. The prioritization comparison can be shortened to a single decision table. Extra lecture space can deepen one conflict-resolution conversation, not introduce a catalog of requirements-document formats.
+
+10. HANDOFF
+-----------
+
+Carry the requirement register and traceability matrix into Week 3. End by asking whether a written rule alone makes the sequence of booking, cancellation, and failure states understandable.
+
+11. SOURCES AND CURRENCY NOTES
+------------------------------
+
+Primary references: S01, S02, S25. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.

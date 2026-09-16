@@ -1,0 +1,252 @@
+WEEK 10 | AUTOMATED DELIVERY AND EVIDENCE-BASED RELEASE
+Research and curriculum date: 16 September 2026
+==============================================================================
+
+What evidence should travel with a change before it reaches users?
+
+Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-10.html
+
+1. PURPOSE, CASE STATE, AND SCOPE
+---------------------------------
+
+Animate the movement of a change, but keep attention on the evidence attached to it. A pipeline is not useful simply because boxes turn green. Show what each check observes, which artifact was actually checked, how configuration changes behavior, and what can be recovered when release evidence proves incomplete.
+
+Use current DORA terminology in a compact measurement scene: change lead time, deployment frequency, failed deployment recovery time, change fail rate, and deployment rework rate. Keep these at the service and delivery-system level, not as individual rankings. [S01, S02, S17]
+
+2. OBSERVABLE LEARNING OUTCOMES
+-------------------------------
+
+1. Explain continuous integration, continuous delivery, and continuous deployment without tying them to a vendor.
+
+2. Identify which evidence a release gate provides and its limitations.
+
+3. Explain why the tested artifact and production artifact must be related unambiguously.
+
+4. Compare deployment, user exposure, rollback, and forward recovery.
+
+5. Interpret a small balanced set of delivery measures with explicit denominators.
+
+3. INSTRUCTOR PREPARATION AND ENTRY CHECK
+-----------------------------------------
+
+Prepare one booking-policy correction and a second change that breaks an authorization check. Give each change, build, and release a stable identifier. Display source revision, dependency inputs, test outcomes, artifact identity, and configuration separately. Use synthetic evidence rather than a real delivery platform.
+
+For the measurement scene, use the declared ten-deployment fixture in the case guide: a seven-day window, two failed deployments requiring intervention, two unplanned corrective deployments, lead times with median 3.5 hours, and recovery durations of 15 and 25 minutes. These are teaching values, not performance benchmarks.
+
+4. ORDERED CHAPTER AND PAGE MAP
+-------------------------------
+
+Opening situation and recall/outcomes come first. The eight scenes below follow in this order. Principles/checks and sources/handoff close the deck. The normal twelve-page starting layout may expand where readability requires it.
+
+01 | A release path should make its evidence visible | Anchor
+
+week-10.html#/change-through-gates
+
+02 | Integration, readiness, and deployment are different decisions | Bridge
+
+week-10.html#/continuous-does-not-mean-uncontrolled
+
+03 | Release the thing you checked, with the intended settings | Anchor
+
+week-10.html#/artifact-and-configuration
+
+04 | Installed code and visible behavior can change at different times | Bridge
+
+week-10.html#/deployment-and-exposure
+
+05 | Undoing code does not necessarily undo effects | Anchor
+
+week-10.html#/recover-after-release
+
+06 | Count outcomes without turning one number into the goal | Bridge
+
+week-10.html#/delivery-measures
+
+07 | Passing gates does not end verification | Bridge
+
+week-10.html#/feedback-after-release
+
+08 | Ready means the remaining risk has been considered | Bridge
+
+week-10.html#/release-rationale
+
+5. DETAILED SCENE TEACHING NOTES
+--------------------------------
+
+01. A RELEASE PATH SHOULD MAKE ITS EVIDENCE VISIBLE
+---------------------------------------------------
+
+Anchor scene | ID: change-through-gates
+
+VISUAL IDEA: A change token moves through integration, build, focused checks, broader checks, artifact recording, and release decision; evidence cards remain attached.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask which stage would catch the incorrect 120-minute boundary and which would check ownership. Reveal distinct checks and pause at a failure. The token cannot advance merely because the animation has reached its next step. Explain that gate placement follows risk and feedback needs.
+
+CHANGE ONE CONDITION AND COMPARE: Fix the boundary but introduce an authorization regression. Replay the same pipeline and compare which evidence changes. Show a passing gate with an explicit scope label so it is not mistaken for a universal guarantee. AI beat: let the second change be proposed by an automated assistant. It enters the same path and is blocked by the same gate. Proposing a change and passing a gate are different authorities, which Week 13 develops as bounded action.
+
+PRINCIPLE TO REVEAL: Automation should preserve the connection between a claim, a check, its result, and the change being released.
+
+STUDENT PDF TREATMENT: Print the successful path and blocked path with the exact failed condition and artifact identity.
+
+02. INTEGRATION, READINESS, AND DEPLOYMENT ARE DIFFERENT DECISIONS
+------------------------------------------------------------------
+
+Bridge scene | ID: continuous-does-not-mean-uncontrolled
+
+VISUAL IDEA: Three lanes distinguish frequent integration, a releasable state, and automatic production deployment.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether automatically running tests is the whole meaning of continuous integration. Reveal frequent integration into shared work with useful checks. Contrast a system kept ready for release with one that automatically deploys changes passing the declared gates.
+
+CHANGE ONE CONDITION AND COMPARE: Add an explicit human release decision without changing build and verification automation. Compare continuous delivery with continuous deployment; neither label determines whether the underlying checks are sufficient.
+
+PRINCIPLE TO REVEAL: Describe which decision is automated rather than using “continuous” as a synonym for fast or safe.
+
+STUDENT PDF TREATMENT: Print the three lanes and identify the production-release decision in each.
+
+03. RELEASE THE THING YOU CHECKED, WITH THE INTENDED SETTINGS
+-------------------------------------------------------------
+
+Anchor scene | ID: artifact-and-configuration
+
+VISUAL IDEA: A recorded artifact travels through environments while configuration cards remain separate and visible.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether rebuilding from the same source later necessarily gives the same result. Reveal a changed resolved dependency. Compare promoting the recorded artifact with silently rebuilding an unverified one. Keep provenance evidence distinct from functional correctness. [S16]
+
+CHANGE ONE CONDITION AND COMPARE: Hold artifact identity fixed and change a configuration value affecting authorization or a dependency endpoint. Compare why environment-specific configuration still needs validation, even when the artifact is unchanged. Secrets remain references, never visible values.
+
+PRINCIPLE TO REVEAL: Artifact identity controls one source of uncertainty; configuration and environment behavior still need evidence.
+
+STUDENT PDF TREATMENT: Print the source-to-artifact relationship and the two configuration outcomes.
+
+04. INSTALLED CODE AND VISIBLE BEHAVIOR CAN CHANGE AT DIFFERENT TIMES
+---------------------------------------------------------------------
+
+Bridge scene | ID: deployment-and-exposure
+
+VISUAL IDEA: A release appears in the runtime map while a feature flag and a small cohort control exposure.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether deploying code must expose a new behavior to everyone immediately. Reveal a disabled path, then a labeled small-cohort rollout. Make clear that hidden code is still deployed and may carry operational or security implications.
+
+CHANGE ONE CONDITION AND COMPARE: Change cohort size while holding the artifact fixed. Compare observations from a narrow rollout with the uncertainty about other users and workloads. A small cohort is not automatically representative.
+
+PRINCIPLE TO REVEAL: Separating deployment from exposure can create additional decision points, provided the controls and observations are trustworthy.
+
+STUDENT PDF TREATMENT: Print deployment state, exposure state, and cohort assumptions in a small matrix.
+
+05. UNDOING CODE DOES NOT NECESSARILY UNDO EFFECTS
+--------------------------------------------------
+
+Anchor scene | ID: recover-after-release
+
+VISUAL IDEA: A deployment timeline sits beside database compatibility and already-sent notifications.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether returning to the previous binary restores the previous world. Reveal records written in a new format and messages already delivered. Compare a reversible code change with an irreversible external effect or incompatible schema change.
+
+CHANGE ONE CONDITION AND COMPARE: Use a compatibility-preserving transition that lets the earlier application continue reading data, then compare rollback feasibility. Where reversal is not safe, show a forward correction and explicit reconciliation rather than a magical rewind.
+
+PRINCIPLE TO REVEAL: Recovery must account for state, compatibility, and external effects—not only the application version.
+
+STUDENT PDF TREATMENT: Print the before-and-after state and a recovery-choice table with prerequisites.
+
+06. COUNT OUTCOMES WITHOUT TURNING ONE NUMBER INTO THE GOAL
+-----------------------------------------------------------
+
+Bridge scene | ID: delivery-measures
+
+VISUAL IDEA: A deployment timeline feeds five small numerical summaries with the observation window and denominators visible.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether twice as many deployments necessarily means better delivery. Reveal the ten-deployment fixture and calculate the measures from the event records. Distinguish a failed deployment from an unplanned deployment that repairs an incident; they contribute to different numerators. [S17]
+
+CHANGE ONE CONDITION AND COMPARE: Split an otherwise identical release into several bookkeeping deployments. Compare the inflated count with unchanged user value and other evidence. Explain why an honest interpretation needs context, stable definitions, and several measures.
+
+PRINCIPLE TO REVEAL: Measures support improvement when their definitions and consequences remain visible.
+
+STUDENT PDF TREATMENT: Print the event table, five results, and explicit limits of the synthetic comparison.
+
+07. PASSING GATES DOES NOT END VERIFICATION
+-------------------------------------------
+
+Bridge scene | ID: feedback-after-release
+
+VISUAL IDEA: The release path loops back from user outcomes and service observations to earlier checks and requirements.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask what happens when production traffic differs from the test fixture. Reveal a slow path absent from the earlier workload. Connect the observation to a new representative check and a revised capacity assumption rather than blaming the pipeline for not predicting everything.
+
+CHANGE ONE CONDITION AND COMPARE: Change only the workload mix. Compare why the same release artifact can behave differently and what additional evidence would distinguish code, configuration, and demand effects.
+
+PRINCIPLE TO REVEAL: Production feedback can refine the evidence model without making earlier checks pointless.
+
+STUDENT PDF TREATMENT: Print the release-to-observation-to-improved-check loop.
+
+08. READY MEANS THE REMAINING RISK HAS BEEN CONSIDERED
+------------------------------------------------------
+
+Bridge scene | ID: release-rationale
+
+VISUAL IDEA: A concise release record combines intended behavior, checked artifact, known limitations, exposure plan, and recovery conditions.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask what the release decision-maker still needs beyond a green build. Reveal the affected users, compatibility constraints, monitoring question, and recovery plan. Keep the record brief enough to read while explaining.
+
+CHANGE ONE CONDITION AND COMPARE: Remove a safe recovery path from the scenario. Compare how that changes the required evidence and exposure decision even when the tests remain unchanged.
+
+PRINCIPLE TO REVEAL: Release readiness is an evidence-based decision under stated risk, not a decorative status badge.
+
+STUDENT PDF TREATMENT: Print the release record with the missing-evidence variant and its effect on the decision.
+
+6. TEACHING GUARDRAILS
+----------------------
+
+Do not imply that a particular automation product defines continuous integration or that every deployment should automatically expose every feature. Avoid using approval as an excuse for absent verification. A stored artifact digest can support identity checks but does not establish useful behavior by itself.
+
+The DORA scene uses all five current measures, but does not blend them into an invented score or prescribe targets. Failed deployment recovery time concerns deployment failures requiring intervention; it is not a generic mean recovery time for every kind of incident. Deployment rework rate counts unplanned incident-driven deployments, not every ordinary follow-up change. [S17]
+
+7. MISCONCEPTION AND DIAGNOSIS CLINIC
+-------------------------------------
+
+“Green pipeline means safe release.” The checks have defined scope and can miss environmental or requirement assumptions.
+
+“The same source always builds the same artifact.” Relevant inputs and nondeterminism can differ.
+
+“Rollback restores everything.” Stored state, external effects, and compatibility may prevent that.
+
+8. IN-LECTURE CHECKS WITH ANSWERS
+---------------------------------
+
+QUESTION 1: What is the distinction between continuous delivery and continuous deployment here?
+
+ANSWER: A releasable state with an explicit production decision versus automatic production deployment of changes that pass the declared gates.
+
+QUESTION 2: Why keep configuration visible when promoting one artifact?
+
+ANSWER: Configuration can change behavior independently of artifact identity.
+
+QUESTION 3: What is the change fail rate in the ten-deployment fixture?
+
+ANSWER: Two of ten deployments required immediate intervention, so the rate is 20%.
+
+QUESTION 4: Does a notification already delivered disappear after code rollback?
+
+ANSWER: No. External effects need their own reconciliation or compensating behavior.
+
+9. PDF CONTINUITY AND LECTURE ELASTICITY
+----------------------------------------
+
+WHAT THE PRINTED EXPLANATION MUST PRESERVE
+------------------------------------------
+
+Preserve the failed gate, artifact identity chain, configuration comparison, and recovery prerequisites. The delivery-measure page must include data and units, not only KPI tiles. Print the release rationale with its uncertainty. The student version should not contain credentials, platform screenshots, or authoring controls.
+
+SHORTER AND LONGER MEETING ROUTES
+---------------------------------
+
+Protect gate evidence, artifact-versus-configuration, and state-aware recovery as the anchors. Keep the five-measure scene readable rather than teaching a measurement platform. Extra time can compare two recovery decisions under different compatibility conditions.
+
+10. HANDOFF
+-----------
+
+Carry the released artifact and observation questions into Week 11. Now the service is in use, and the class must distinguish a user-visible symptom from the evidence needed to explain it.
+
+11. SOURCES AND CURRENCY NOTES
+------------------------------
+
+Primary references: S01, S02, S16, S17. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.

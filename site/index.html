@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Software Engineering · 14 lectures around Campus Rooms</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="shared/index.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Software Engineering · lecture site</div>
+    <h1>Fourteen questions about one room-booking service</h1>
+    <p>Every lecture follows the same rhythm: a situation you can picture, a prediction, the mechanism revealed step by step, one changed condition, a comparison, and the principle that explains the difference. The recurring example is Campus Rooms, a fictional service that reserves campus rooms.</p>
+    <p>Each week is one interactive deck and one printable PDF. Open a deck at any scene through its link, such as <code>weeks/week-01.html#/two-confirmations</code>.</p>
+  </header>
+  <section class="how" aria-label="How to use the decks">
+    <div><b>Pages and steps are different controls.</b> Right and Left arrows change the page. Down and Up arrows step the demonstration on the page; Step never changes the page.</div>
+    <div><b>Replay and Reset are different.</b> Replay restarts the selected condition. Reset returns to the baseline condition and the first step. Reopening a scene always starts at its baseline, paused.</div>
+    <div><b>Works without a network.</b> Start the site with <code>python scripts/serve.py --root site</code> and open <code>http://127.0.0.1:8000/</code>. The PDFs open directly.</div>
+  </section>
+  <ol class="weeks" aria-label="Weeks">
+      <li class="week is-ready">
+        <div class="num"><small>Week</small>01</div>
+        <div>
+          <h2>Engineering Software That People Can Depend On</h2>
+          <p class="question">What makes working code an engineered system?</p>
+          <p class="scope"><span>1. Two green confirmations cannot both be right</span> <span>2. The booking button is not the whole system</span> <span>3. The same screen can serve one person and exclude another</span> <span>4. Faster is not a complete description of better</span> <span>5. A failure can teach the next requirement</span> <span>6. What would make us believe this works?</span> <span>7. Who carries the cost of an engineering shortcut?</span> <span>8. One domain, many kinds of explanation</span></p>
+        </div>
+        <div class="links"><a class="btn btn--primary" href="weeks/week-01.html#/two-confirmations">Open the lecture</a><span class="btn is-disabled" aria-disabled="true">PDF not yet exported</span><span class="status">Deck complete · 8 scenes</span></div>
+      </li>
+      <li class="week">
+        <div class="num"><small>Week</small>02</div>
+        <div>
+          <h2>From Ambiguous Requests To Verifiable Requirements</h2>
+          <p class="question">How would we know that a requirement has been satisfied?</p>
+          <p class="scope"><span>1. One sentence, three incompatible interpretations</span> <span>2. An omitted user can hide an entire requirement</span> <span>3. Turn “short booking” into a rule we can examine</span> <span>4. “Fast” needs a workload and a measurement boundary</span> <span>5. A precise requirement can still describe the wrong thing</span> <span>6. A requirement should lead somewhere</span> <span>7. The loudest request is not automatically the next one</span> <span>8. A changed rule should not leave old evidence pretending to be current</span></p>
+        </div>
+        <div class="links"><span class="btn is-disabled" aria-disabled="true">Deck in preparation</span><span class="btn is-disabled" aria-disabled="true">PDF not yet exported</span><span class="status">Authored in a later phase</span></div>
+      </li>
+      <li class="week">
+        <div class="num"><small>Week</small>03</div>
+        <div>
+          <h2>Modeling Behavior, Data, and User Interaction</h2>
+          <p class="question">Which model answers the question we are actually asking?</p>
+          <p class="scope"><span>1. Follow the person before drawing the internals</span> <span>2. A booking cannot be in every state at once</span> <span>3. Two copies of a room name can disagree</span> <span>4. Some rules are clearer as rows than as arrows</span> <span>5. The same final state can hide different interaction histories</span> <span>6. Loading, empty, error, and success are different promises</span> <span>7. A beautiful diagram can contradict the requirement</span> <span>8. A model is allowed to leave things out</span></p>
+        </div>
+        <div class="links"><span class="btn is-disabled" aria-disabled="true">Deck in preparation</span><span class="btn is-disabled" aria-disabled="true">PDF not yet exported</span><span class="status">Authored in a later phase</span></div>
+      </li>
+      <li class="week">
+        <div class="num"><small>Week</small>04</div>
+        <div>
+          <h2>Development Flow, Uncertainty, and Engineering Decisions</h2>
+          <p class="question">Where is work waiting, and what would actually improve the flow?</p>
+          <p class="scope"><span>1. Eight finished parts can still be one late discovery</span> <span>2. A meeting does not create a feedback loop by itself</span> <span>3. Making one stage faster can make the next queue longer</span> <span>4. A shorter internal cycle can hide a longer external wait</span> <span>5. A precise number can be less honest than a range</span> <span>6. The most useful next step may be the one that reduces uncertainty</span> <span>7. “Coded” and “ready to rely on” are different claims</span> <span>8. A process change is a hypothesis, too</span></p>
+        </div>
+        <div class="links"><span class="btn is-disabled" aria-disabled="true">Deck in preparation</span><span class="btn is-disabled" aria-disabled="true">PDF not yet exported</span><span class="status">Authored in a later phase</span></div>
+      </li>
+      <li class="week">
+        <div class="num"><small>Week</small>05</div>
+        <div>
+          <h2>Modularity, Interfaces, and the Cost of Change</h2>
+          <p class="question">When one requirement changes, which parts should need to change?</p>
+          <p class="scope"><span>1. Two designs can look identical until something changes</span> <span>2. Watch a single policy change spread</span> <span>3. A module name is not a reason for its contents to belong together</span> <span>4. A replacement fits only when its behavior fits</span> <span>5. Who should know about the replaceable detail?</span> <span>6. Change the structure without quietly changing the promise</span> <span>7. A flexible design can still be unnecessarily complicated</span> <span>8. A future maintainer needs the reason, not only the diagram</span></p>
+        </div>
+        <div class="links"><a class="btn" href="weeks/week-05.html#/dependency-example">Open the shell-test scene</a><span class="btn is-disabled" aria-disabled="true">PDF not yet exported</span><span class="status status--partial">In preparation · 1 of 8 scenes (dependency-example)</span></div>
+      </li>
+      <li class="week">
+        <div class="num"><small>Week</small>06</div>
+        <div>
+          <h2>Architecture, Interactions, and Distributed Failure</h2>
+          <p class="question">What changes when a dependency becomes slow, unavailable, or uncertain?</p>
+          <p class="scope"><span>1. A box can mean a responsibility, a process, or a machine</span> <span>2. Follow one request across real boundaries</span> <span>3. More deployable pieces create more boundaries to manage</span> <span>4. Two individually sensible actions can violate one shared rule</span> <span>5. A timeout does not tell us whether a write happened</span> <span>6. A confirmed booking and a pending email can both be true</span> <span>7. An added field and a changed meaning are not equivalent</span> <span>8. Choose the smallest structure that protects the required promises</span></p>
+        </div>
+        <div class="links"><span class="btn is-disabled" aria-disabled="true">Deck in preparation</span><span class="btn is-disabled" aria-disabled="true">PDF not yet exported</span><span class="status">Authored in a later phase</span></div>
+      </li>
+      <li class="week">
+        <div class="num"><small>Week</small>07</div>
+        <div>
+          <h2>Collaboration, Version History, and Reviewable Change</h2>
+          <p class="question">How can several people change one system without losing intent or trust?</p>
+          <p class="scope"><span>1. History is a graph of states and relationships</span> <span>2. A conflict asks for a decision about meaning</span> <span>3. No conflict does not mean no contradiction</span> <span>4. A diff is easier to judge when the claim is visible</span> <span>5. Distance from shared reality can grow quietly</span> <span>6. A source snapshot is only part of a reproducible run</span> <span>7. The reason for a change should survive the conversation</span> <span>8. Shared confidence comes from several kinds of evidence</span></p>
+        </div>
+        <div class="links"><span class="btn is-disabled" aria-disabled="true">Deck in preparation</span><span class="btn is-disabled" aria-disabled="true">PDF not yet exported</span><span class="status">Authored in a later phase</span></div>
+      </li>
+      <li class="week">
+        <div class="num"><small>Week</small>08</div>
+        <div>
+          <h2>Testing Behavior and Building Credible Evidence</h2>
+          <p class="question">Which checks would challenge our assumptions rather than merely repeat them?</p>
+          <p class="scope"><span>1. One passing example can hide the wrong boundary</span> <span>2. Input categories make omissions easier to see</span> <span>3. Different checks answer different questions</span> <span>4. The expected answer needs its own justification</span> <span>5. A useful property describes more than one example</span> <span>6. Executed is not the same as checked</span> <span>7. A moving clock can make a stable rule look unreliable</span> <span>8. A check can guide a change and later guard its meaning</span></p>
+        </div>
+        <div class="links"><span class="btn is-disabled" aria-disabled="true">Deck in preparation</span><span class="btn is-disabled" aria-disabled="true">PDF not yet exported</span><span class="status">Authored in a later phase</span></div>
+      </li>
+      <li class="week">
+        <div class="num"><small>Week</small>09</div>
+        <div>
+          <h2>Security, Privacy, and Trustworthy Dependencies</h2>
+          <p class="question">What must remain true when a request, dependency, or assumption cannot be trusted?</p>
+          <p class="scope"><span>1. What are we trying to protect, and from whom?</span> <span>2. Being signed in does not authorize every action</span> <span>3. A disabled button is guidance, not a security boundary</span> <span>4. Input should not acquire unintended authority</span> <span>5. Useful evidence does not require collecting everything</span> <span>6. A component brings dependencies and assumptions with it</span> <span>7. Failure behavior can preserve or violate the promise</span> <span>8. Security evidence belongs throughout the lifecycle</span></p>
+        </div>
+        <div class="links"><span class="btn is-disabled" aria-disabled="true">Deck in preparation</span><span class="btn is-disabled" aria-disabled="true">PDF not yet exported</span><span class="status">Authored in a later phase</span></div>
+      </li>
+      <li class="week">
+        <div class="num"><small>Week</small>10</div>
+        <div>
+          <h2>Automated Delivery and Evidence-Based Release</h2>
+          <p class="question">What evidence should travel with a change before it reaches users?</p>
+          <p class="scope"><span>1. A release path should make its evidence visible</span> <span>2. Integration, readiness, and deployment are different decisions</span> <span>3. Release the thing you checked, with the intended settings</span> <span>4. Installed code and visible behavior can change at different times</span> <span>5. Undoing code does not necessarily undo effects</span> <span>6. Count outcomes without turning one number into the goal</span> <span>7. Passing gates does not end verification</span> <span>8. Ready means the remaining risk has been considered</span></p>
+        </div>
+        <div class="links"><span class="btn is-disabled" aria-disabled="true">Deck in preparation</span><span class="btn is-disabled" aria-disabled="true">PDF not yet exported</span><span class="status">Authored in a later phase</span></div>
+      </li>
+      <li class="week">
+        <div class="num"><small>Week</small>11</div>
+        <div>
+          <h2>Reliability, Observability, and Performance Reasoning</h2>
+          <p class="question">Which observation would help distinguish the possible causes of a failure?</p>
+          <p class="scope"><span>1. A successful status code is not the complete promise</span> <span>2. The average can hide the experience we need to improve</span> <span>3. Each signal answers a different part of the question</span> <span>4. A plausible story needs a distinguishing observation</span> <span>5. Trying harder can increase the pressure on a failing dependency</span> <span>6. Restoring a useful service and explaining a cause are different jobs</span> <span>7. An alert should help someone decide what to do</span> <span>8. The explanation should improve the system, not find a scapegoat</span></p>
+        </div>
+        <div class="links"><a class="btn" href="weeks/week-11.html#/latency-is-a-distribution">Open the shell-test scene</a><span class="btn is-disabled" aria-disabled="true">PDF not yet exported</span><span class="status status--partial">In preparation · 1 of 8 scenes (latency-is-a-distribution)</span></div>
+      </li>
+      <li class="week">
+        <div class="num"><small>Week</small>12</div>
+        <div>
+          <h2>Maintenance, Evolution, and Sustainable Change</h2>
+          <p class="question">How can a useful system change without losing the behavior people rely on?</p>
+          <p class="scope"><span>1. Existing behavior is evidence, not automatically the requirement</span> <span>2. A rewrite and a refactoring carry different uncertainties</span> <span>3. Old and new versions may need to coexist</span> <span>4. Name the future cost, not just the disliked code</span> <span>5. The loudest complaint is not always the most important change</span> <span>6. Removing something is also a compatibility decision</span> <span>7. Doing less work is useful only if the promise still holds</span> <span>8. The next maintainer needs the reason and the current state</span></p>
+        </div>
+        <div class="links"><span class="btn is-disabled" aria-disabled="true">Deck in preparation</span><span class="btn is-disabled" aria-disabled="true">PDF not yet exported</span><span class="status">Authored in a later phase</span></div>
+      </li>
+      <li class="week">
+        <div class="num"><small>Week</small>13</div>
+        <div>
+          <h2>Ai-Assisted Engineering and Accountable Automation</h2>
+          <p class="question">Does plausible-looking output satisfy the intended behavior, and who can verify that?</p>
+          <p class="scope"><span>1. Readable code can implement the wrong rule</span> <span>2. Two agreeing outputs can share one mistaken premise</span> <span>3. Missing context can become an invisible design decision</span> <span>4. A useful assistant does not need every possible permission</span> <span>5. A file being read is not automatically allowed to command the reader</span> <span>6. Faster drafting can move the constraint somewhere else</span> <span>7. Someone must be able to explain the accepted change</span> <span>8. Using AI to build software is not the same as building an AI-dependent service</span></p>
+        </div>
+        <div class="links"><span class="btn is-disabled" aria-disabled="true">Deck in preparation</span><span class="btn is-disabled" aria-disabled="true">PDF not yet exported</span><span class="status">Authored in a later phase</span></div>
+      </li>
+      <li class="week">
+        <div class="num"><small>Week</small>14</div>
+        <div>
+          <h2>Connecting the Lifecycle through One Engineering Decision</h2>
+          <p class="question">Can we explain a change from human need to operational evidence without losing the original promise?</p>
+          <p class="scope"><span>1. Close the room—but what happens to the people already relying on it?</span> <span>2. Each representation should answer the next unanswered question</span> <span>3. The interface can explain the closure; the decision boundary must enforce it</span> <span>4. One new rule needs more than one friendly example</span> <span>5. What would make this change ready to expose?</span> <span>6. Two reasonable designs can optimize different constraints</span> <span>7. Name the principle after remembering the counterexample</span> <span>8. Finish with a claim the evidence can actually support</span></p>
+        </div>
+        <div class="links"><span class="btn is-disabled" aria-disabled="true">Deck in preparation</span><span class="btn is-disabled" aria-disabled="true">PDF not yet exported</span><span class="status">Authored in a later phase</span></div>
+      </li>
+  </ol>
+  <footer>
+    <p>Dark theme on screen; the PDFs use a light print layout. Keyboard help inside a deck: press <code>?</code>. All names, numbers and incidents are authored teaching examples unless a source is named on the page.</p>
+  </footer>
+</div>
+</body>
+</html>

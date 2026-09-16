@@ -1,0 +1,254 @@
+WEEK 13 | AI-ASSISTED ENGINEERING AND ACCOUNTABLE AUTOMATION
+Research and curriculum date: 16 September 2026
+==============================================================================
+
+Does plausible-looking output satisfy the intended behavior, and who can verify that?
+
+Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-13.html
+
+1. PURPOSE, CASE STATE, AND SCOPE
+---------------------------------
+
+Apply the course’s established engineering discipline to AI-assisted change. Use instructor-prepared candidate code, a requirement, an independent check, and a bounded action trace. There is no live assistant interface, product comparison, prompt-writing demonstration, account login, or external model call in the student lecture.
+
+The emphasis is neither automatic trust nor automatic rejection. A generated candidate can be useful while still requiring the same behavioral, security, integration, and maintenance evidence as any other change. Current DORA research is useful context for discussing whole-workflow effects and verification effort, but it should not be converted into a universal productivity multiplier. [S01, S02, S18, S19]
+
+Name the working vocabulary students will meet in 2026 as each mechanism appears: specification-driven development, where the precise rule is the input to drafting; repository instruction files that carry standing rules for assistants; tool permissions and sandboxes; evaluation of output that is not deterministic; cost and latency budgets for automated steps; and the shift of the engineer's work toward specifying and checking. The course's own decks were drafted by automated assistants under exactly these constraints, and scene 07 uses one of their change records as its example.
+
+2. OBSERVABLE LEARNING OUTCOMES
+-------------------------------
+
+1. Evaluate a generated candidate against explicit requirements and independent checks.
+
+2. Explain why agreement between generated code and generated tests can be weak evidence.
+
+3. Identify permissions and approval boundaries appropriate to an automated engineering action.
+
+4. Recognize untrusted content that attempts to redirect an automated workflow.
+
+5. Distinguish increased output from improved verified delivery and maintainable understanding.
+
+3. INSTRUCTOR PREPARATION AND ENTRY CHECK
+-----------------------------------------
+
+Prepare a short candidate implementing the duration rule with an exclusive 120-minute upper bound. Prepare a second candidate that trusts an owner identifier supplied by a request. Both are fictional teaching snippets, not claims about the behavior of any particular model or vendor. Include corrected versions and independently derived checks.
+
+Prepare a bounded action diagram with read, edit, local-check, and propose-change stages. Production access and secrets are outside its allowed scope. A repository note containing a misleading instruction is displayed as untrusted input, never executed. Reuse the Week 4 review-capacity model for the output-versus-flow comparison. For scene 07, prepare the compact change record of one of this course's own decks: the plan scene it implements, the assistant that drafted it, the plan checker and deck tests that ran, the human acceptance, and one unresolved limitation. Name the tools factually in that record, without comparison or endorsement.
+
+4. ORDERED CHAPTER AND PAGE MAP
+-------------------------------
+
+Opening situation and recall/outcomes come first. The eight scenes below follow in this order. Principles/checks and sources/handoff close the deck. The normal twelve-page starting layout may expand where readability requires it.
+
+01 | Readable code can implement the wrong rule | Anchor
+
+week-13.html#/plausible-candidate
+
+02 | Two agreeing outputs can share one mistaken premise | Anchor
+
+week-13.html#/shared-assumption
+
+03 | Missing context can become an invisible design decision | Bridge
+
+week-13.html#/context-and-unknowns
+
+04 | A useful assistant does not need every possible permission | Anchor
+
+week-13.html#/bounded-actions
+
+05 | A file being read is not automatically allowed to command the reader | Bridge
+
+week-13.html#/untrusted-instructions
+
+06 | Faster drafting can move the constraint somewhere else | Bridge
+
+week-13.html#/output-and-flow
+
+07 | Someone must be able to explain the accepted change | Bridge
+
+week-13.html#/provenance-and-understanding
+
+08 | Using AI to build software is not the same as building an AI-dependent service | Bridge
+
+week-13.html#/two-different-engineering-questions
+
+5. DETAILED SCENE TEACHING NOTES
+--------------------------------
+
+01. READABLE CODE CAN IMPLEMENT THE WRONG RULE
+----------------------------------------------
+
+Anchor scene | ID: plausible-candidate
+
+VISUAL IDEA: A polished candidate function sits beside R-02; input cards reveal behavior while the explanation text remains visible.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether the confident explanation and tidy structure justify acceptance. Reveal the 120-minute case rejected by “duration < 120.” Compare the prose claim with the actual observable result. Do not imply that only AI-assisted code contains this kind of defect.
+
+CHANGE ONE CONDITION AND COMPARE: Correct the boundary while keeping formatting and explanation style unchanged. Replay 120 and 121, then compare how independent evidence—not appearance or origin—changes the judgment.
+
+PRINCIPLE TO REVEAL: Accept a change for the behavior and evidence it establishes, not for how fluently it is presented.
+
+STUDENT PDF TREATMENT: Print the requirement, candidate, counterexample, correction, and independently expected outcomes.
+
+02. TWO AGREEING OUTPUTS CAN SHARE ONE MISTAKEN PREMISE
+-------------------------------------------------------
+
+Anchor scene | ID: shared-assumption
+
+VISUAL IDEA: A candidate and its accompanying tests both depend on an incorrect interpretation card; an independent requirement-derived check enters from another direction.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether generated tests passing the generated implementation settle the issue. Reveal that both exclude the 120-minute boundary. Trace their shared assumption and distinguish agreement from independence.
+
+CHANGE ONE CONDITION AND COMPARE: Add a check derived directly from the canonical inclusive rule and a separate ownership matrix. Compare the evidence when the evaluator is not simply reproducing the candidate’s logic. Multiple tools or agents are not automatically independent if they share the same mistaken specification.
+
+PRINCIPLE TO REVEAL: Independent verification needs a justified basis for expected behavior, not merely a second source of confident text.
+
+STUDENT PDF TREATMENT: Print the assumption graph and the independent counterexample with its derivation.
+
+03. MISSING CONTEXT CAN BECOME AN INVISIBLE DESIGN DECISION
+-----------------------------------------------------------
+
+Bridge scene | ID: context-and-unknowns
+
+VISUAL IDEA: A compact change brief links relevant rules, interfaces, constraints, and explicitly unresolved questions to the candidate.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask how a candidate would know whether a staff role may cancel any booking. Reveal that the baseline grants no such override. Compare a candidate inventing permission with one that leaves an explicit question for the responsible decision-maker.
+
+CHANGE ONE CONDITION AND COMPARE: Change the brief to an approved, narrowly defined delegation policy. Compare the code and checks that legitimately change with those that should remain fixed. Restore R-03 after the variant.
+
+PRINCIPLE TO REVEAL: Automation should not silently convert an unknown policy into authority.
+
+STUDENT PDF TREATMENT: Print the baseline, labeled policy variant, and the evidence required for the changed permission.
+
+04. A USEFUL ASSISTANT DOES NOT NEED EVERY POSSIBLE PERMISSION
+--------------------------------------------------------------
+
+Anchor scene | ID: bounded-actions
+
+VISUAL IDEA: An action path passes through explicit read, edit, verify, propose, and approve boundaries; available capabilities are displayed beside it.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether generating a patch requires access to production booking data or release credentials. Reveal a narrower path using synthetic fixtures and local checks. Show that proposing a change and applying a high-impact change are different authorities; the permission list and the sandbox that enforce this live outside the assistant. [S33]
+
+CHANGE ONE CONDITION AND COMPARE: Give the same imperfect candidate broad unattended production access, then compare the possible consequences with the bounded version. Keep it a diagram, not a functioning dangerous workflow. An approval button needs informative evidence to be meaningful.
+
+PRINCIPLE TO REVEAL: Limit capability, permission, and autonomy to the intended action, and enforce those limits outside the model’s judgment.
+
+STUDENT PDF TREATMENT: Print the capability matrix and the approval boundary with the evidence available at that point.
+
+05. A FILE BEING READ IS NOT AUTOMATICALLY ALLOWED TO COMMAND THE READER
+------------------------------------------------------------------------
+
+Bridge scene | ID: untrusted-instructions
+
+VISUAL IDEA: A repository note is tagged as content; a separate trusted task and permission boundary remain visible.
+
+SITUATION, PREDICTION, AND MECHANISM: Show a note claiming that the verification step should be skipped. Ask whether its location in a repository makes it authoritative. Reveal the attempt to cross from task data into workflow instruction. Introduce prompt injection as a trust-boundary problem. [S34]
+
+CHANGE ONE CONDITION AND COMPARE: Keep the note unchanged but enforce the external requirement that checks cannot be bypassed by retrieved content. Compare the attempted redirection with the allowed action path. State that text filtering alone is not a complete guarantee.
+
+PRINCIPLE TO REVEAL: Treat retrieved material as untrusted input and preserve authority boundaries around consequential actions.
+
+STUDENT PDF TREATMENT: Print the content-versus-authority diagram and the enforced check, without operational attack details.
+
+06. FASTER DRAFTING CAN MOVE THE CONSTRAINT SOMEWHERE ELSE
+----------------------------------------------------------
+
+Bridge scene | ID: output-and-flow
+
+VISUAL IDEA: The Week 4 flow board shows candidate changes, verification capacity, accepted changes, and rework separately.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether doubling candidate output doubles useful delivery. Reveal a fixed review constraint and the resulting queue in the declared toy model. Distinguish generated lines, accepted changes, time to verified behavior, and downstream defects. Connect the flow to specification-driven drafting: the precise rule from Week 2 is what shortens verification, not the generation rate.
+
+CHANGE ONE CONDITION AND COMPARE: Improve context and verification capacity rather than only generation rate. Compare whole-flow outcomes under the same arrival conditions. Use current research as context, while identifying this chart as a constructed mechanism illustration rather than measured industry results. [S19]
+
+PRINCIPLE TO REVEAL: Evaluate automation across the workflow it changes, including verification, rework, and maintainable understanding.
+
+STUDENT PDF TREATMENT: Print the model assumptions, before-and-after flow, and the limits of the numerical example.
+
+07. SOMEONE MUST BE ABLE TO EXPLAIN THE ACCEPTED CHANGE
+-------------------------------------------------------
+
+Bridge scene | ID: provenance-and-understanding
+
+VISUAL IDEA: A change record collects source context, reviewed dependencies, checks, residual questions, and a plain-language explanation.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether “the tool wrote it” answers a maintainer’s question about an authorization branch. Reveal the rationale and relevant evidence required to maintain the change. Any uncertain origin or licensing concern is marked for appropriate review rather than guessed away. Use this course's own record: the deck the class is watching was drafted by an automated assistant, checked by the plan checker and the deck tests, and accepted by the instructor, with its unresolved limitation stated.
+
+CHANGE ONE CONDITION AND COMPARE: Replace a confident but unsupported explanation with one that accurately states a limitation. Compare whether the reviewer can make a better decision, even though the wording sounds less certain.
+
+PRINCIPLE TO REVEAL: Accountability requires an understandable change record and honest limits, regardless of how the draft was produced.
+
+STUDENT PDF TREATMENT: Print the course's own compact change record and its unresolved question; name tools factually and omit tool-brand screenshots.
+
+08. USING AI TO BUILD SOFTWARE IS NOT THE SAME AS BUILDING AN AI-DEPENDENT SERVICE
+------------------------------------------------------------------------------
+
+Bridge scene | ID: two-different-engineering-questions
+
+VISUAL IDEA: Two system boundaries contrast an offline-generated code change with a runtime model inside the service.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether Campus Rooms needs an AI dependency because an assistant helped author some code. Reveal that the shipped behavior can remain ordinary deterministic software. Contrast this with adding a runtime model whose outputs and dependencies become part of the user-facing system.
+
+CHANGE ONE CONDITION AND COMPARE: Insert a hypothetical model that suggests room choices, while leaving authoritative booking and permissions outside it. Compare the additional evaluation and failure questions without expanding this course into model training. Name two of them: an evaluation set of room-choice cases with expected answers, and a regression check that reruns it whenever the prompt or the model version changes, because the output is not deterministic. NIST’s AI profile concerns AI-model and AI-system development and should not be mislabeled as a blanket coding-assistant rulebook. [S35]
+
+PRINCIPLE TO REVEAL: The engineering obligations follow the actual system boundary and consequences, not the presence of AI somewhere in the workflow.
+
+STUDENT PDF TREATMENT: Print both boundaries and the distinct claims each would require.
+
+6. TEACHING GUARDRAILS
+----------------------
+
+Do not make the lecture a contest between brands or use a live external model whose output may change during teaching. Preserve the prepared evidence and display its fictional nature. Do not imply that generated code is inherently untrustworthy while human code deserves no checks; apply the same acceptance discipline.
+
+Research findings about reported AI use or productivity are contextual, often observational or survey-based, and do not prove a causal improvement for this class or every team. Keep current research in dated notes and avoid unverified percentages. Agent safeguards need external permission enforcement, useful review evidence, and appropriate isolation; a prompt alone is not a security boundary. [S18, S19, S33, S34]
+
+7. MISCONCEPTION AND DIAGNOSIS CLINIC
+-------------------------------------
+
+“Fluent explanation means correct implementation.” Compare the explanation with the boundary result.
+
+“A second generated answer is independent verification.” It may inherit the same wrong premise or expected-result logic.
+
+“Human approval solves everything.” Approval without understandable evidence and restricted authority can become a meaningless click.
+
+8. IN-LECTURE CHECKS WITH ANSWERS
+---------------------------------
+
+QUESTION 1: What reveals the first candidate’s defect?
+
+ANSWER: An independently expected 120-minute valid booking is rejected by its exclusive upper bound.
+
+QUESTION 2: Why not grant production access merely to prepare a patch?
+
+ANSWER: It is unnecessary for the intended local action and increases possible consequences if the action is mistaken or redirected.
+
+QUESTION 3: What should happen when a repository note tells the workflow to skip required checks?
+
+ANSWER: Treat it as untrusted content; it must not override the authoritative task or externally enforced verification boundary.
+
+QUESTION 4: What distinguishes using an assistant during development from a runtime AI feature?
+
+ANSWER: In the first case the accepted artifact can operate without a model; in the second the model is part of the deployed behavior and introduces its own evaluation and dependency questions.
+
+9. PDF CONTINUITY AND LECTURE ELASTICITY
+----------------------------------------
+
+WHAT THE PRINTED EXPLANATION MUST PRESERVE
+------------------------------------------
+
+Preserve the exact candidate, failed boundary, shared-assumption graph, and capability matrix. The static version must make the independent expected result visible. Include the trust-boundary explanation and the difference between development assistance and runtime AI. No assistant interface or external service is required to understand the student PDF.
+
+SHORTER AND LONGER MEETING ROUTES
+---------------------------------
+
+Protect candidate verification, shared-assumption detection, and bounded action as the anchors. The research context belongs in a brief note, not a dense statistics lecture. Extra time can compare the ownership candidate against Week 9’s matrix rather than expanding into model architecture or prompting tricks.
+
+10. HANDOFF
+-----------
+
+Carry the full requirement-to-evidence discipline into Week 14. The final lecture brings the same system through one new operational need and asks which connected decisions must change together.
+
+11. SOURCES AND CURRENCY NOTES
+------------------------------
+
+Primary references: S01, S02, S18, S19, S33, S34, S35. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.

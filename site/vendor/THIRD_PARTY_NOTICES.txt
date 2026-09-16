@@ -1,0 +1,16 @@
+THIRD-PARTY NOTICES
+===================
+
+The student site redistributes the following library, unmodified, for offline use.
+
+Chart.js 4.5.1
+  Files:    vendor/chart.js/chart.umd.js (UMD build from the npm package chart.js@4.5.1)
+  License:  MIT License, Copyright (c) 2014-2024 Chart.js Contributors
+  Text:     vendor/chart.js/LICENSE.md
+  Source:   https://www.chartjs.org/  (package obtained from the npm registry on 16 September 2026)
+  Used by:  numeric charts only (Week 11 latency distribution); every chart has a data table beside it.
+
+Fonts: the site uses system fonts only (Segoe UI Variable / Segoe UI, Cascadia Mono / Consolas,
+with generic fallbacks). No font files are redistributed.
+
+Everything else in the site (styles, scripts, diagrams, fixtures, text) was authored for this course.

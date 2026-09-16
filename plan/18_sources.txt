@@ -1,0 +1,394 @@
+PRIMARY SOURCE REGISTER
+Research and curriculum date: 16 September 2026
+==============================================================================
+
+Primary references checked on 16 September 2026. Living documentation can change after this date. Source keys identify supporting concepts and technical guardrails, not copied lesson text. Most sources were read as HTML; the SWEBOK access limitation is recorded explicitly. No full external reference PDF audit is claimed.
+
+Authoring-library references are instructor resources. They are not dependencies students need to learn. Numerical fixtures throughout the course are original teaching data unless explicitly stated otherwise. Each entry ends with its use: curriculum sources support lecture content and are cited by at least one week; authoring sources support the build and are cited by the support files.
+
+S01 | IEEE COMPUTER SOCIETY — GUIDE TO THE SOFTWARE ENGINEERING BODY OF KNOWLEDGE
+------------------------------------------------------------------------------
+
+https://www.computer.org/education/bodies-of-knowledge/software-engineering
+
+V4.0a identified in official indexed material; version update indicated 25 September 2025. Direct page access returned 403. Used for high-level curriculum scope; no claim of a full guide audit.
+
+Use: curriculum.
+
+S02 | ACM / IEEE-CS / AAAI — COMPUTER SCIENCE CURRICULA 2023, FINAL REPORT
+--------------------------------------------------------------------------
+
+https://csed.acm.org/final-report/
+
+Final curriculum reference, published in 2024. Used for broad scope and competencies; not a formal course accreditation mapping. Do not substitute the older gamma-draft knowledge-area download for the final report.
+
+Use: curriculum.
+
+S03 | MANIFESTO FOR AGILE SOFTWARE DEVELOPMENT — PRINCIPLES
+-----------------------------------------------------------
+
+https://agilemanifesto.org/principles.html
+
+Foundational primary statement. Used for feedback and adaptation context, not as a complete process definition.
+
+Use: curriculum.
+
+S04 | SCHWABER AND SUTHERLAND — THE SCRUM GUIDE
+-----------------------------------------------
+
+https://scrumguides.org/scrum-guide.html
+
+November 2020 text. Used for a small framework comparison and completion policy; the lecture is not comprehensive Scrum instruction.
+
+Use: curriculum.
+
+S05 | THE KANBAN GUIDE
+----------------------
+
+https://kanbanguides.org/the-kanban-guide/2025.5/
+
+May 2025 edition. Used for workflow, work-in-progress, and flow-measure boundaries.
+
+Use: curriculum.
+
+S06 | PRO GIT — BASIC BRANCHING AND MERGING
+-------------------------------------------
+
+https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
+
+Officially hosted book chapter. Supports ancestry, branching, and merge concepts; no hosting-platform dependence.
+
+Use: curriculum.
+
+S07 | GOOGLE ENGINEERING PRACTICES — WHAT TO LOOK FOR IN A CODE REVIEW
+----------------------------------------------------------------------
+
+https://google.github.io/eng-practices/review/reviewer/looking-for.html
+
+Primary engineering guidance. Used for focused review questions, not a universal mandate for one organization’s workflow.
+
+Use: curriculum.
+
+S08 | SIMON BROWN — C4 MODEL
+----------------------------
+
+https://c4model.com/
+
+Primary model reference. Supports context, container, and component distinctions; a C4 container is not necessarily an operating-system container.
+
+Use: curriculum.
+
+S09 | IETF — RFC9110: HTTP SEMANTICS
+------------------------------------
+
+https://www.rfc-editor.org/rfc/rfc9110.html
+
+Published 2022. Supports method and idempotency terminology; course operation keys are an explicit application-level mechanism.
+
+Use: curriculum.
+
+S10 | POSTGRESQL — TRANSACTION ISOLATION
+----------------------------------------
+
+https://www.postgresql.org/docs/current/transaction-iso.html
+
+Living official documentation. Illustrative basis for isolation caveats; PostgreSQL is not a required course platform.
+
+Use: curriculum.
+
+S11 | HYPOTHESIS — PROPERTY-BASED TESTING DOCUMENTATION
+-------------------------------------------------------
+
+https://hypothesis.readthedocs.io/en/latest/
+
+Living primary tool documentation. Supports the testing concept; the course does not require Python or Hypothesis.
+
+Use: curriculum.
+
+S12 | STRYKER — MUTANT STATES AND METRICS
+-----------------------------------------
+
+https://stryker-mutator.io/docs/mutation-testing-elements/mutant-states-and-metrics/
+
+Primary mutation-testing documentation. Supports diagnostic interpretation, not a promise that a score proves correctness.
+
+Use: curriculum.
+
+S13 | OWASP — TOP10:2025
+------------------------
+
+https://owasp.org/Top10/2025/
+
+2025 released edition, identified as current by OWASP. Awareness guidance; not an exhaustive application verification standard.
+
+Use: curriculum.
+
+S14 | NIST — SP800-218, SECURE SOFTWARE DEVELOPMENT FRAMEWORK1.1
+----------------------------------------------------------------
+
+https://csrc.nist.gov/pubs/sp/800/218/final
+
+Final publication, February 2022. Secure-development baseline used in this plan.
+
+Use: curriculum.
+
+S15 | NIST — SP800-218 REV.1, SSDF1.2 INITIAL PUBLIC DRAFT
+----------------------------------------------------------
+
+https://csrc.nist.gov/pubs/sp/800/218/r1/ipd
+
+17 December 2025 initial public draft; comment period closed 30 January 2026. Retrieved page still labels it a draft. Currency watch item, not a replacement final standard.
+
+Use: curriculum.
+
+S16 | SLSA — SPECIFICATION V1.2
+-------------------------------
+
+https://slsa.dev/spec/v1.2/
+
+Selected published specification. Used for provenance and build-integrity concepts; no maturity-level certification is claimed.
+
+Use: curriculum.
+
+S17 | DORA — SOFTWARE DELIVERY PERFORMANCE METRICS
+--------------------------------------------------
+
+https://dora.dev/guides/dora-metrics/
+
+Updated 5 January 2026. Current five-measure terminology and service-level interpretation. Course event data are original simulations.
+
+Use: curriculum.
+
+S18 | DORA — STATE OF AI-ASSISTED SOFTWARE DEVELOPMENT2025
+----------------------------------------------------------
+
+https://dora.dev/dora-report-2025/
+
+2025 report overview. Dated research context, not a universal causal productivity estimate or a claim that no newer DORA research exists.
+
+Use: curriculum.
+
+S19 | DORA — BALANCING AI TENSIONS
+----------------------------------
+
+https://dora.dev/insights/balancing-ai-tensions/
+
+10 March 2026. Qualitative workflow and verification context; conclusions should not be generalized as guarantees for every team.
+
+Use: curriculum.
+
+S20 | OPENTELEMETRY — SIGNALS
+-----------------------------
+
+https://opentelemetry.io/docs/concepts/signals/
+
+Living official documentation. The lecture selects logs, metrics, and traces; the source covers additional signals.
+
+Use: curriculum.
+
+S21 | GOOGLE SRE — SERVICE LEVEL OBJECTIVES
+-------------------------------------------
+
+https://sre.google/sre-book/service-level-objectives/
+
+Primary practitioner reference. Supports indicator/objective distinctions; the course objective and data are fictional.
+
+Use: curriculum.
+
+S22 | GOOGLE SRE — MONITORING DISTRIBUTED SYSTEMS
+-------------------------------------------------
+
+https://sre.google/sre-book/monitoring-distributed-systems/
+
+Primary practitioner reference. Supports symptom-oriented monitoring and actionable interpretation.
+
+Use: curriculum.
+
+S23 | PRAMOD SADALAGE AND MARTIN FOWLER — EVOLUTIONARY DATABASE DESIGN
+----------------------------------------------------------------------
+
+https://martinfowler.com/articles/evodb.html
+
+Original-author reference. Supports incremental schema evolution and migration reasoning, not a prescribed database product.
+
+Use: curriculum.
+
+S24 | SOFTWARE ENGINEERING AT GOOGLE — WHAT IS SOFTWARE ENGINEERING?
+--------------------------------------------------------------------
+
+https://abseil.io/resources/swe-book/html/ch01.html
+
+Primary chapter by Titus Winters. Context for engineering across time, scale, and change; its organizational practices are not universal requirements.
+
+Use: curriculum.
+
+S25 | W3C — WEB CONTENT ACCESSIBILITY GUIDELINES2.2
+---------------------------------------------------
+
+https://www.w3.org/TR/WCAG22/
+
+W3C Recommendation; retrieved text dated 12 December 2024. Accessibility reference, not a claim of automatic conformance for future decks or this plan PDF.
+
+Use: curriculum.
+
+S26 | REVEAL.JS — CONFIGURATION
+-------------------------------
+
+https://revealjs.com/config/
+
+Living official documentation. Relevant to navigation, progress, fragment behavior, and paused presentation defaults.
+
+Use: authoring.
+
+S27 | REVEAL.JS — LINKS
+-----------------------
+
+https://revealjs.com/links/
+
+Living official documentation. Supports stable slide deep links; custom scene semantics remain the author’s responsibility.
+
+Use: authoring.
+
+S28 | REVEAL.JS — PDF EXPORT
+----------------------------
+
+https://revealjs.com/pdf-export/
+
+Living official documentation. Documents print styles, Chrome/Chromium support, notes, and fragment behavior; custom simulation print states require deliberate authoring.
+
+Use: authoring.
+
+S29 | CHART.JS — ACCESSIBILITY
+------------------------------
+
+https://www.chartjs.org/docs/latest/general/accessibility.html
+
+Living official documentation. Canvas charts need explicit accessible names or fallback content.
+
+Use: authoring.
+
+S30 | CHART.JS — RESPONSIVE CHARTS
+----------------------------------
+
+https://www.chartjs.org/docs/latest/configuration/responsive.html
+
+Living official documentation. Includes print-layout considerations; a readable print result still needs inspection.
+
+Use: authoring.
+
+S31 | THREE.JS — OFFICIAL REFERENCE ENTRY
+-----------------------------------------
+
+https://threejs.org/
+
+Primary library entry. Optional local spatial rendering only; no pinned release is prescribed before authoring.
+
+Use: authoring.
+
+S32 | PLAYWRIGHT — PAGE API, PDF OUTPUT
+---------------------------------------
+
+https://playwright.dev/docs/api/class-page#page-pdf
+
+Living official documentation. Possible local export automation; it does not choose pedagogically meaningful scene states.
+
+Use: authoring.
+
+S33 | OWASP GENAI — LLM06:2025 EXCESSIVE AGENCY
+-----------------------------------------------
+
+https://genai.owasp.org/llmrisk/llm062025-excessive-agency/
+
+Primary risk guidance. Used for capability, permission, autonomy, and approval-boundary reasoning.
+
+Use: curriculum.
+
+S34 | OWASP GENAI — LLM01:2025 PROMPT INJECTION
+-----------------------------------------------
+
+https://genai.owasp.org/llmrisk/llm01-prompt-injection/
+
+Primary risk guidance. Used for untrusted-content and authority-boundary concepts; no live exploit workflow.
+
+Use: curriculum.
+
+S35 | NIST — SP800-218A, SECURE SOFTWARE DEVELOPMENT PRACTICES FOR GENERATIVE AI AND DUAL-USE FOUNDATION MODELS
+------------------------------------------------------------------------------
+
+https://csrc.nist.gov/pubs/sp/800/218/a/final
+
+Final publication, July 2024. AI-model and AI-system development profile; not mislabeled as generic coding-assistant instructions.
+
+Use: curriculum.
+
+S36 | DORA — RESEARCH PUBLICATIONS
+----------------------------------
+
+https://dora.dev/research/publications/
+
+Living publication index consulted for current context. Distinguish an annual report’s year from newer individual publications.
+
+Use: authoring.
+
+S37 | GREEN SOFTWARE FOUNDATION — SOFTWARE CARBON INTENSITY SPECIFICATION
+-------------------------------------------------------------------------
+
+https://sci.greensoftware.foundation/
+
+Retrieved specification v1.1.0. Supports functional-unit and accounting-boundary distinctions; the course reports a resource proxy, not a calculated carbon score.
+
+Use: curriculum.
+
+S38 | MDN — WEB ANIMATIONS API
+------------------------------
+
+https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API
+
+Browser-platform reference. Optional implementation direction, not student prerequisite knowledge.
+
+Use: authoring.
+
+S39 | NODE.JS — RELEASES
+------------------------
+
+https://nodejs.org/en/about/previous-releases
+
+Official release/support listing. Check supported LTS status at authoring time and pin the tested runtime.
+
+Use: authoring.
+
+S40 | SOFTWARE ENGINEERING AT GOOGLE — TESTING OVERVIEW
+-------------------------------------------------------
+
+https://abseil.io/resources/swe-book/html/ch11.html
+
+Primary chapter on testing concepts. Used for evidence and scope framing; no universal test-ratio prescription.
+
+Use: curriculum.
+
+S41 | OPENAI — PROMPTING DOCUMENTATION, REACHED FROM CODEX DOCUMENTATION
+------------------------------------------------------------------------
+
+https://learn.chatgpt.com/docs/prompting
+
+The official Codex prompting URL redirected here when checked. Instructor-side authoring context only; no live model dependency in the student decks.
+
+Use: authoring.
+
+S42 | SPDX — LICENSE LIST
+-------------------------
+
+https://spdx.org/licenses/
+
+License List version 3.28.0, dated 20 February 2026, retrieved 16 September 2026. Used for license identifiers and the permissive-versus-copyleft vocabulary of the Week 9 licensing beat; not legal advice and not a claim about any real dependency.
+
+Use: curriculum.
+
+S43 | ANTHROPIC — CLAUDE CODE DOCUMENTATION, OVERVIEW
+------------------------------------------------------
+
+https://code.claude.com/docs/en/overview
+
+Living official documentation, retrieved 16 September 2026. Instructor-side authoring context for the agent context files and task templates in repo_kit; no live model dependency in the student decks.
+
+Use: authoring.

@@ -1,0 +1,252 @@
+WEEK 05 | MODULARITY, INTERFACES, AND THE COST OF CHANGE
+Research and curriculum date: 16 September 2026
+==============================================================================
+
+When one requirement changes, which parts should need to change?
+
+Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-05.html
+
+1. PURPOSE, CASE STATE, AND SCOPE
+---------------------------------
+
+Teach design through change propagation. Compare two deliberately small implementations with the same visible behavior, then alter one requirement and follow the dependencies. Introduce cohesion, coupling, encapsulation, interface contracts, dependency direction, and refactoring only after their effects have been seen.
+
+Keep code excerpts short and readable as pseudocode. This is not an exhaustive catalog of design patterns or a memorization session about acronyms. Students should be able to explain why a boundary is helpful, when it is costly, and what information must cross it. [S01, S02, S07, S24]
+
+2. OBSERVABLE LEARNING OUTCOMES
+-------------------------------
+
+1. Trace the effect of a requirement change through dependent components.
+
+2. Distinguish cohesive responsibility from unrelated work gathered in one module.
+
+3. Explain how an interface can hide changeable implementation details.
+
+4. Recognize why fewer lines or more abstractions do not automatically mean better design.
+
+5. Explain refactoring as structural change with preserved intended behavior.
+
+3. INSTRUCTOR PREPARATION AND ENTRY CHECK
+-----------------------------------------
+
+Prepare two fixed dependency graphs. Design A repeats duration policy in the browser, booking handler, and reminder logic. Design B has one authoritative policy component plus interface-facing validation that is explicitly non-authoritative. Use consistent component names across weeks: Booking, Policy, Room Catalog, Notification, and Storage.
+
+Prepare a 120-to-90 minute temporary policy change and a second independent change replacing the notification provider. Keep baseline requirements available so students can distinguish a demonstration variant from the canonical case.
+
+4. ORDERED CHAPTER AND PAGE MAP
+-------------------------------
+
+Opening situation and recall/outcomes come first. The eight scenes below follow in this order. Principles/checks and sources/handoff close the deck. The normal twelve-page starting layout may expand where readability requires it.
+
+01 | Two designs can look identical until something changes | Bridge
+
+week-05.html#/same-behavior-different-design
+
+02 | Watch a single policy change spread | Anchor
+
+week-05.html#/dependency-example
+
+03 | A module name is not a reason for its contents to belong together | Bridge
+
+week-05.html#/cohesion-and-responsibility
+
+04 | A replacement fits only when its behavior fits | Anchor
+
+week-05.html#/interface-contract
+
+05 | Who should know about the replaceable detail? | Bridge
+
+week-05.html#/dependency-direction
+
+06 | Change the structure without quietly changing the promise | Anchor
+
+week-05.html#/refactoring-under-checks
+
+07 | A flexible design can still be unnecessarily complicated | Bridge
+
+week-05.html#/abstraction-cost
+
+08 | A future maintainer needs the reason, not only the diagram | Bridge
+
+week-05.html#/design-rationale
+
+5. DETAILED SCENE TEACHING NOTES
+--------------------------------
+
+01. TWO DESIGNS CAN LOOK IDENTICAL UNTIL SOMETHING CHANGES
+----------------------------------------------------------
+
+Bridge scene | ID: same-behavior-different-design
+
+VISUAL IDEA: Two matching booking screens above two different internal dependency maps.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether the screens reveal which design will be easier to change. Reveal the internal responsibilities only after the class commits a prediction. Trace one successful request through each version.
+
+CHANGE ONE CONDITION AND COMPARE: Change the maximum booking duration while holding the screen and user goal constant. Stop before highlighting affected components so students identify likely edits first.
+
+PRINCIPLE TO REVEAL: Design quality becomes visible through the changes and failures a structure must accommodate.
+
+STUDENT PDF TREATMENT: Print both internal maps with the same user-visible behavior stated above them.
+
+02. WATCH A SINGLE POLICY CHANGE SPREAD
+---------------------------------------
+
+Anchor scene | ID: dependency-example
+
+VISUAL IDEA: A stable dependency graph progressively marks changed files, required rechecks, and unaffected components using distinct symbols.
+
+SITUATION, PREDICTION, AND MECHANISM: In Design A, reduce the maximum duration from 120 to 90 minutes. Ask which components contain the rule and which merely consume its result. Reveal duplicated decisions in the browser, handler, and reminder code. Show a missed copy accepting a duration that another component rejects.
+
+CHANGE ONE CONDITION AND COMPARE: Apply the same change to Design B. Highlight the authoritative policy edit and the affected interface/tests, while leaving genuinely unrelated modules untouched. Compare edit locations, revalidation needs, and inconsistency risk; do not promise that one module means only one file ever changes.
+
+PRINCIPLE TO REVEAL: Useful boundaries localize decisions while keeping their dependents and evidence visible.
+
+STUDENT PDF TREATMENT: Print the baseline graphs and changed graphs with an edit/recheck/unaffected legend.
+
+03. A MODULE NAME IS NOT A REASON FOR ITS CONTENTS TO BELONG TOGETHER
+---------------------------------------------------------------------
+
+Bridge scene | ID: cohesion-and-responsibility
+
+VISUAL IDEA: Responsibility cards cluster by reason to change rather than by file extension.
+
+SITUATION, PREDICTION, AND MECHANISM: Show a “Utilities” module containing booking rules, email formatting, date display, and storage access. Ask which tasks change for the same reason. Reveal a regrouping around meaningful responsibilities.
+
+CHANGE ONE CONDITION AND COMPARE: Add a new notification format while keeping booking policy unchanged. Compare the groups affected before and after regrouping. Acknowledge that a boundary that separates tightly related behavior can also create unnecessary coordination.
+
+PRINCIPLE TO REVEAL: Cohesion concerns meaningful related responsibility, not simply making modules small.
+
+STUDENT PDF TREATMENT: Print the responsibility grouping and the change that explains each boundary.
+
+04. A REPLACEMENT FITS ONLY WHEN ITS BEHAVIOR FITS
+--------------------------------------------------
+
+Anchor scene | ID: interface-contract
+
+VISUAL IDEA: A component plugs into a labeled interface; inputs, outputs, errors, and side effects are shown as contract cards.
+
+SITUATION, PREDICTION, AND MECHANISM: Replace a notification implementation while keeping its call shape unchanged. Ask whether matching function names guarantees compatibility. Reveal differences in failure reporting, repeated delivery, and whether the call blocks confirmation. Use R-04 to state the relevant behavior.
+
+CHANGE ONE CONDITION AND COMPARE: Change only the error behavior of the replacement. Compare a clearly reported failed notification with an implementation that throws into the booking path and undoes the user promise. Introduce preconditions, outcomes, and error expectations without a long type-system lecture.
+
+PRINCIPLE TO REVEAL: An interface contract includes behavior and failure semantics, not just matching names or parameter lists.
+
+STUDENT PDF TREATMENT: Print the two contract cards and the mismatch that breaks substitutability.
+
+05. WHO SHOULD KNOW ABOUT THE REPLACEABLE DETAIL?
+-------------------------------------------------
+
+Bridge scene | ID: dependency-direction
+
+VISUAL IDEA: A policy component and storage adapter exchange a small domain-shaped interface; dependency arrows are distinct from runtime message arrows.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask whether the booking rule should depend on a particular database client's response shape. Reveal an interface describing the domain decision instead. Keep runtime calls visible on a separate line to avoid confusing execution with source-code dependency.
+
+CHANGE ONE CONDITION AND COMPARE: Change the storage implementation while preserving the required atomic booking behavior. Compare which code needs knowledge of the change and what must still be verified.
+
+PRINCIPLE TO REVEAL: Depend on the behavior a responsibility needs, and isolate details that change for other reasons.
+
+STUDENT PDF TREATMENT: Print the source dependency view and runtime interaction view with explicit legends.
+
+06. CHANGE THE STRUCTURE WITHOUT QUIETLY CHANGING THE PROMISE
+-------------------------------------------------------------
+
+Anchor scene | ID: refactoring-under-checks
+
+VISUAL IDEA: A short pseudocode excerpt transforms in small steps beside a fixed table of expected outcomes.
+
+SITUATION, PREDICTION, AND MECHANISM: Start with duplicated duration checks and several named examples. Ask whether extracting a policy function should alter the answers. Reveal each structural change, then replay the same normal, boundary, and invalid inputs. Name refactoring only after the behavior comparison.
+
+CHANGE ONE CONDITION AND COMPARE: Introduce an accidental inclusive-boundary error during one step. The 120-minute example changes outcome. Compare a structural intention with the actual behavioral effect and restore the correct condition. Explain that checks provide evidence, not a proof of all behavior.
+
+PRINCIPLE TO REVEAL: Refactoring should preserve intended observable behavior; small steps and relevant checks make deviations easier to locate.
+
+STUDENT PDF TREATMENT: Print before/after pseudocode and the regression example that exposed the mistaken boundary.
+
+07. A FLEXIBLE DESIGN CAN STILL BE UNNECESSARILY COMPLICATED
+------------------------------------------------------------
+
+Bridge scene | ID: abstraction-cost
+
+VISUAL IDEA: A comparison matrix contrasts duplication, a small policy function, and a generic rule framework.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask which option fits two clear policy rules and a small team. Reveal setup, understanding, extension, and debugging costs as qualitative judgments. Avoid invented precision or a decorative three-dimensional score surface.
+
+CHANGE ONE CONDITION AND COMPARE: Change one condition: several independently changing policies now exist. Revisit the decision and identify what evidence might justify more structure. Keep flexibility as a costed option, not a virtue without limits.
+
+PRINCIPLE TO REVEAL: Abstraction should earn its complexity by simplifying real responsibilities or plausible change.
+
+STUDENT PDF TREATMENT: Print the alternatives and the condition under which the recommendation changes.
+
+08. A FUTURE MAINTAINER NEEDS THE REASON, NOT ONLY THE DIAGRAM
+--------------------------------------------------------------
+
+Bridge scene | ID: design-rationale
+
+VISUAL IDEA: A compact decision record connects context, alternatives, choice, consequences, and revisit trigger.
+
+SITUATION, PREDICTION, AND MECHANISM: Ask what will be missing when a maintainer sees only “Use a Policy component.” Reveal why the boundary was chosen, what it deliberately does not generalize, and which assumptions could make the choice obsolete.
+
+CHANGE ONE CONDITION AND COMPARE: Change the scope from one campus to several with different rules. Compare blindly preserving the old decision with revisiting its stated trigger.
+
+PRINCIPLE TO REVEAL: A design decision is easier to maintain when its reasoning and limits are recorded.
+
+STUDENT PDF TREATMENT: Print the concise decision record with the relevant requirement IDs.
+
+6. TEACHING GUARDRAILS
+----------------------
+
+Avoid presenting SOLID, DRY, or a pattern name as an automatic answer. Similar-looking code does not necessarily represent one shared concept, and duplicated policy is different from deliberately independent verification. A local client check may improve feedback but must not be the authority for a server-side rule.
+
+Dependency graphs should distinguish “must edit” from “must reconsider or recheck.” Lower visual edge count does not by itself establish a superior design. Keep the examples focused enough that students can trace every highlighted change. Source-code dependency direction and runtime call direction may differ; label which diagram is on screen.
+
+7. MISCONCEPTION AND DIAGNOSIS CLINIC
+-------------------------------------
+
+“Less coupling means no dependencies.” A useful system still needs dependencies; the question is which ones and on what behavior.
+
+“Refactoring means any improvement.” A feature change or changed requirement is not purely behavior-preserving restructuring.
+
+“One interface guarantees easy replacement.” Revisit error behavior, side effects, and the contract.
+
+8. IN-LECTURE CHECKS WITH ANSWERS
+---------------------------------
+
+QUESTION 1: Why is a duplicated duration rule risky?
+
+ANSWER: Copies can change inconsistently and create conflicting decisions.
+
+QUESTION 2: Does a centralized rule mean only one check is needed?
+
+ANSWER: No. Different checks should still independently examine its important behavior and integration.
+
+QUESTION 3: Why did the replacement notifier break the design despite matching parameters?
+
+ANSWER: It violated the expected failure behavior and affected confirmation.
+
+QUESTION 4: What should an architecture or design decision record preserve?
+
+ANSWER: Context, alternatives, choice, consequences, and the assumptions or triggers that warrant revisiting it.
+
+9. PDF CONTINUITY AND LECTURE ELASTICITY
+----------------------------------------
+
+WHAT THE PRINTED EXPLANATION MUST PRESERVE
+------------------------------------------
+
+The PDF must preserve both designs before and after the same change. Include the change-impact legend, the behavioral interface contract, and the refactoring check table. Do not print only the final clean diagram: the comparison is the explanation. The stable main anchor is week-05.html#/dependency-example.
+
+SHORTER AND LONGER MEETING ROUTES
+---------------------------------
+
+Preserve change propagation, behavioral contracts, and checked refactoring. In a shorter lecture, fold the abstraction-cost discussion into the decision record. Additional time can explore a second kind of change, such as replacing notification delivery, to test whether the chosen boundaries generalize.
+
+10. HANDOFF
+-----------
+
+Carry the module responsibilities, contracts, and decision record into Week 6. The next lecture asks what changes when those responsibilities cross process, network, and data-consistency boundaries.
+
+11. SOURCES AND CURRENCY NOTES
+------------------------------
+
+Primary references: S01, S02, S07, S24. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
