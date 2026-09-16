@@ -1,5 +1,20 @@
 # Software Engineering course site
 
+## Quick start (no installation)
+
+```
+git clone https://github.com/FurkanGozukara/Software-Engineering-Full-Lecture-2026-2027-Fall.git
+```
+
+Then open `site/index.html` in Chrome or Edge (double-click it) and follow the link to a lecture.
+The decks are plain HTML, CSS and JavaScript: nothing to install, no network needed. Each week's
+printable notes are in `site/pdf/`. Keyboard: Right/Left arrows change the page, Down/Up arrows step
+the demonstration, `?` shows the help. Optional local server for clean links:
+`python scripts/serve.py --root site` and open `http://127.0.0.1:8000/`.
+
+Status: Week 1 is complete (deck, PDF, cue list). The other weeks are added one at a time; the
+index marks them as in preparation until then.
+
 Fourteen interactive lecture decks and their student PDFs for an introductory software engineering course built around the fictional Campus Rooms booking service. The teaching plan is in `plan/`; the student-facing site is `site/`.
 
 ## Layout
