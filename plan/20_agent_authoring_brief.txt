@@ -21,11 +21,11 @@ WHAT THE TASK TEMPLATES ASK FOR
 
 repo_kit/tasks/00_shell_and_week1.md: the shared shell, Week 1 complete, and the two shell-test scenes from Weeks 5 and 11, exactly as the start-here file recommends.
 
-repo_kit/tasks/10_author_week.md: one week on the existing shell, with the three Anchors as controlled explanations, every Bridge reveal operated by a pointer for the recording, the print panels, the PDF, the cue list and a rehearsal note.
+repo_kit/tasks/10_author_week.md: one week on the existing shell, with the three Anchors as controlled explanations, every Bridge reveal operated by a pointer for the recording, the print panels, the PDF, the layout scan at the recording resolution and a scene guide.
 
-repo_kit/tasks/20_revise_after_rehearsal.md: revise only what the rehearsal notes name, recheck every deck that a shared change touches, and never expand the curriculum to demonstrate a library.
+repo_kit/tasks/20_revise_after_review.md: revise only what the review notes name, recheck every deck that a shared change touches, and never expand the curriculum to demonstrate a library. There is no instructor rehearsal (00_START_HERE.txt); review notes come from reading the rendered deck and PDF.
 
-repo_kit/tasks/30_export_pdf.md, 40_recording_cuelists.md, 50_source_reverification.md: the export and inspection of student PDFs, the recording cue list per week, and the register re-verification before Week 1 ships.
+repo_kit/tasks/30_export_pdf.md, 50_source_reverification.md: the export and inspection of student PDFs, and the register re-verification before Week 1 ships. There is no cue-list task: the recording agent generates its shot list and narration at run time (22_recording_track.txt).
 
 HOW A HUMAN CHECKS AN AGENT'S REPORT
 ------------------------------------

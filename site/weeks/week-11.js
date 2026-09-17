@@ -99,16 +99,6 @@
       h.statB.textContent = showP95 ? `p95 ${fmt(P95.B)} ms` : '';
       h.statB.className = showP95 ? 'bad' : '';
     },
-    cues: [
-      { cue: 'hover-equal', target: 'prompt', action: 'hover', expect: 0, seconds: 10, teaches: 'Same average: equally responsive? Pause and decide' },
-      { cue: 'step-a', target: 'step', action: 'click', expect: 1, seconds: 8, teaches: 'Dataset A: twenty responses at 200 ms' },
-      { cue: 'step-b', target: 'step', action: 'click', expect: 2, seconds: 10, teaches: 'Dataset B: eighteen at 100 ms and two at 1,100 ms' },
-      { cue: 'step-mean', target: 'step', action: 'click', expect: 3, seconds: 8, teaches: 'Both means are 200 ms' },
-      { cue: 'step-hidden-tail', target: 'step', action: 'click', expect: 4, seconds: 8, teaches: 'The average says nothing about the two slow responses' },
-      { cue: 'condition-tail', target: 'condition-compare-tail', action: 'click', expect: 0, seconds: 8, teaches: 'Change the comparison: the nearest-rank 95th percentile' },
-      { cue: 'tail-step-p95', target: 'step', action: 'click', expect: 1, seconds: 12, teaches: 'p95 200 ms against 1,100 ms with the same mean' },
-      { cue: 'tail-step-q01', target: 'step', action: 'click', expect: 2, seconds: 10, teaches: 'How the method connects to requirement Q-01 and what a real check needs' },
-    ],
     print: [
       { title: 'Two datasets with the same mean', condition: 'compare-average', state: 3, note: `Dataset A: ${N} values at ${fmt(L.A[0])} ms. Dataset B: ${L.B.filter((v) => v === 100).length} at 100 ms and ${L.B.filter((v) => v === 1100).length} at ${fmt(1100)} ms. Both means ${fmt(MEAN.A)} ms. Synthetic data; the tables list every value.` },
       { title: 'The same datasets compared by the tail', condition: 'compare-tail', state: 1, principle: true, note: `Nearest rank: sorted[ceil(0.95 × ${N}) − 1] = the ${RANK}th sorted value. p95 of A: ${fmt(P95.A)} ms; p95 of B: ${fmt(P95.B)} ms. Q-01 asks for p95 ≤ ${Q01.p95_ms_max} ms under ${Q01.concurrent_users} concurrent users at the ${Q01.boundary}; these twenty points illustrate the method.` },

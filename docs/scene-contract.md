@@ -1,6 +1,6 @@
 # Scene contract
 
-The single home of the DOM and JavaScript contract every weekly deck implements. The tests in `plan/tests/test_deck_contract.py`, the PDF export script, the recording cue lists (`22_recording_track.txt`) and the authoring agents read these names. Change a name here first, then everywhere. The teaching meaning of each control is defined in `17_visual_lecture_and_pdf_brief.txt` ("A stable control contract"); this file only fixes how it appears in the DOM.
+The single home of the DOM and JavaScript contract every weekly deck implements. The tests in `plan/tests/test_deck_contract.py`, the PDF export script, the inspection scripts, the authoring agents and the recording agents (`22_recording_track.txt`) read these names. Change a name here first, then everywhere. The teaching meaning of each control is defined in `17_visual_lecture_and_pdf_brief.txt` ("A stable control contract"); this file only fixes how it appears in the DOM.
 
 ## Pages and navigation
 
@@ -32,9 +32,9 @@ Inside the scene root:
 - Sliders are `input[type="range"][data-control="slider"]`. Arrow keys inside a slider or any input are never captured by the deck.
 - Every control has an accessible name (`aria-label` or visible text), visible focus and a target of at least 44 by 44 CSS pixels.
 
-## Cue targets for recording
+## Pointer targets
 
-Every control and every element a cue list points at, hovers or drags carries `data-cue-target="<scene-id>:<name>"`, unique within the deck. Cue lists (`cues/week-NN.json`) name only these targets.
+Every control and every element a pointer may click, hover or drag carries `data-cue-target="<scene-id>:<name>"`, unique within the deck. The attribute only names an element; it carries no order, timing or text to speak. A deck declares no cue lists, narration or recorded route: a recording agent chooses its route through the deck at run time (`22_recording_track.txt`).
 
 ## Query modes
 
@@ -52,7 +52,7 @@ lecture.step() / back() / replay() / reset()
 lecture.setCondition(presetId)
 lecture.state(sceneId)        -> {state, count, running, condition, baseline}
 lecture.activeWork()          -> number of live timers, animations and rAF loops owned by scenes; 0 after leaving a page
-lecture.cues(sceneId)         -> the scene's cue list [{cue, target, action, waitMs}] or []
+lecture.pages()               -> [{id, kind, role, heading}] for every page in deck order
 ```
 
 ## Behavior guarantees

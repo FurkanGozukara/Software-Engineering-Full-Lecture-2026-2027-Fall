@@ -13,6 +13,8 @@ Use the unresolved sentence from Week 1 to teach elicitation, scope, prioritizat
 
 The core output within the lecture is a small connected set of requirement examples for Campus Rooms. Distinguish functional behavior, quality targets, business rules, and implementation decisions. Introduce stable identifiers that reappear later in designs and verification evidence. [S01, S02]
 
+In practice (dated examples, 2026): requirements live as issues or user stories in GitHub Issues, Jira or Azure Boards, and acceptance examples are often written as Given/When/Then scenarios that tools such as Cucumber or pytest-bdd run as checks.
+
 2. OBSERVABLE LEARNING OUTCOMES
 -------------------------------
 
@@ -80,13 +82,13 @@ Anchor scene | ID: ambiguous-request
 
 VISUAL IDEA: An editable-looking request card branches into three concrete screen outcomes; no actual language-model call is involved.
 
-SITUATION, PREDICTION, AND MECHANISM: Ask students to predict the behavior implied by “Make booking fair.” Reveal first-come access, per-user limits, and staff-priority interpretations. Show that all three could be defended from the same sentence. Add questions about who decides, what is scarce, and what outcome matters.
+SITUATION, PREDICTION, AND MECHANISM: Open with the sentence Week 1 ended on, “Make room booking fair and easy.” Ask students to predict the behavior implied by “fair.” Reveal first-come access, per-user limits, and staff-priority interpretations. Show that all three could be defended from the same sentence. Add questions about who decides, what is scarce, and what outcome matters. Mark “easy” as a second, separate ambiguity (easy for whom: a keyboard user, a first-time visitor, room staff?) and record it as an open quality question for scene 04 and R-05, keeping this scene on fairness.
 
 CHANGE ONE CONDITION AND COMPARE: Change only the stakeholder answering the question. Compare the resulting rules and surface the conflict rather than silently selecting one. Settle this lecture's scope on exclusive booking of available rooms; fairness policy remains an explicit open decision.
 
 PRINCIPLE TO REVEAL: Ambiguity is resolved through examples and stakeholder decisions, not through more confident wording.
 
-STUDENT PDF TREATMENT: Print the ambiguous sentence, the competing interpretations, and the clarified scope.
+STUDENT PDF TREATMENT: Print the ambiguous sentence, the competing interpretations, the clarified scope, and the open question about “easy.”
 
 02. AN OMITTED USER CAN HIDE AN ENTIRE REQUIREMENT
 --------------------------------------------------
@@ -125,7 +127,7 @@ Bridge scene | ID: quality-with-conditions
 
 VISUAL IDEA: A response-time distribution appears beside workload and measurement-condition cards.
 
-SITUATION, PREDICTION, AND MECHANISM: Ask whether a 200 millisecond response proves the system is fast. Reveal Q-01: in the specified teaching fixture, the 95th percentile of search API response time should not exceed 500 milliseconds under 50 concurrent users. Explain that this is an authored target, not a universal service standard.
+SITUATION, PREDICTION, AND MECHANISM: Ask whether a 200 millisecond response proves the system is fast. Reveal Q-01: in the specified teaching fixture, the 95th percentile of search API response time should not exceed 500 milliseconds under 50 concurrent users. Explain that this is an authored target, not a universal service standard. Map the course's quality words to the ISO/IEC 25010:2023 characteristics, for example response time to performance efficiency and keyboard-accessible completion to interaction capability. [S46]
 
 CHANGE ONE CONDITION AND COMPARE: Change the workload while holding the target and code constant. Compare what was measured with what was claimed. Distinguish service-boundary response time from the student's whole browser experience.
 
@@ -249,4 +251,4 @@ Carry the requirement register and traceability matrix into Week 3. End by askin
 11. SOURCES AND CURRENCY NOTES
 ------------------------------
 
-Primary references: S01, S02, S25. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S25, S46. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.

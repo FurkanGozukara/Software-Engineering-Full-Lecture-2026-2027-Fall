@@ -15,6 +15,8 @@ The emphasis is neither automatic trust nor automatic rejection. A generated can
 
 Name the working vocabulary students will meet in 2026 as each mechanism appears: specification-driven development, where the precise rule is the input to drafting; repository instruction files that carry standing rules for assistants; tool permissions and sandboxes; evaluation of output that is not deterministic; cost and latency budgets for automated steps; and the shift of the engineer's work toward specifying and checking. The course's own decks were drafted by automated assistants under exactly these constraints, and scene 07 uses one of their change records as its example.
 
+In practice (dated examples, 2026): coding assistants include OpenAI Codex, Claude Code, GitHub Copilot and Cursor, and they reach tools through connectors such as MCP servers. Name them factually, without comparison or ranking.
+
 2. OBSERVABLE LEARNING OUTCOMES
 -------------------------------
 
@@ -127,7 +129,7 @@ Anchor scene | ID: bounded-actions
 
 VISUAL IDEA: An action path passes through explicit read, edit, verify, propose, and approve boundaries; available capabilities are displayed beside it.
 
-SITUATION, PREDICTION, AND MECHANISM: Ask whether generating a patch requires access to production booking data or release credentials. Reveal a narrower path using synthetic fixtures and local checks. Show that proposing a change and applying a high-impact change are different authorities; the permission list and the sandbox that enforce this live outside the assistant. [S33]
+SITUATION, PREDICTION, AND MECHANISM: Ask whether generating a patch requires access to production booking data or release credentials. Reveal a narrower path using synthetic fixtures and local checks. Show that proposing a change and applying a high-impact change are different authorities; the permission list and the sandbox that enforce this live outside the assistant. [S33] Add a row for an unreviewed tool connector, for example an MCP server: it is third-party code acting with the assistant's permissions, so it is both a dependency and a trust boundary. OWASP's list for agents names the risks it creates, tool misuse and identity and privilege abuse. [S44]
 
 CHANGE ONE CONDITION AND COMPARE: Give the same imperfect candidate broad unattended production access, then compare the possible consequences with the bounded version. Keep it a diagram, not a functioning dangerous workflow. An approval button needs informative evidence to be meaningful.
 
@@ -142,7 +144,7 @@ Bridge scene | ID: untrusted-instructions
 
 VISUAL IDEA: A repository note is tagged as content; a separate trusted task and permission boundary remain visible.
 
-SITUATION, PREDICTION, AND MECHANISM: Show a note claiming that the verification step should be skipped. Ask whether its location in a repository makes it authoritative. Reveal the attempt to cross from task data into workflow instruction. Introduce prompt injection as a trust-boundary problem. [S34]
+SITUATION, PREDICTION, AND MECHANISM: Show a note claiming that the verification step should be skipped. Ask whether its location in a repository makes it authoritative. Reveal the attempt to cross from task data into workflow instruction. Introduce prompt injection as a trust-boundary problem. [S34] Name the agent-level result as OWASP's agentic list does: goal hijack, content redirecting what the agent is trying to achieve. [S44]
 
 CHANGE ONE CONDITION AND COMPARE: Keep the note unchanged but enforce the external requirement that checks cannot be bypassed by retrieved content. Compare the attempted redirection with the allowed action path. State that text filtering alone is not a complete guarantee.
 
@@ -172,7 +174,7 @@ Bridge scene | ID: provenance-and-understanding
 
 VISUAL IDEA: A change record collects source context, reviewed dependencies, checks, residual questions, and a plain-language explanation.
 
-SITUATION, PREDICTION, AND MECHANISM: Ask whether “the tool wrote it” answers a maintainer’s question about an authorization branch. Reveal the rationale and relevant evidence required to maintain the change. Any uncertain origin or licensing concern is marked for appropriate review rather than guessed away. Use this course's own record: the deck the class is watching was drafted by an automated assistant, checked by the plan checker and the deck tests, and accepted by the instructor, with its unresolved limitation stated.
+SITUATION, PREDICTION, AND MECHANISM: Ask whether “the tool wrote it” answers a maintainer’s question about an authorization branch. Reveal the rationale and relevant evidence required to maintain the change. Any uncertain origin or licensing concern is marked for appropriate review rather than guessed away. Include one dependency question: the candidate imports textenc-turbo, a package name that exists in no registry. Code assistants are documented to invent package names, and anyone could publish a package under the invented name, so the inventory check blocks the build until a person confirms or removes the dependency. [S50] Use this course's own record: the deck the class is watching was drafted by an automated assistant, checked by the plan checker and the deck tests, and accepted by the instructor, with its unresolved limitation stated.
 
 CHANGE ONE CONDITION AND COMPARE: Replace a confident but unsupported explanation with one that accurately states a limitation. Compare whether the reviewer can make a better decision, even though the wording sounds less certain.
 
@@ -251,4 +253,4 @@ Carry the full requirement-to-evidence discipline into Week 14. The final lectur
 11. SOURCES AND CURRENCY NOTES
 ------------------------------
 
-Primary references: S01, S02, S18, S19, S33, S34, S35. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S18, S19, S33, S34, S35, S44, S50. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.

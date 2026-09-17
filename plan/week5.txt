@@ -13,6 +13,8 @@ Teach design through change propagation. Compare two deliberately small implemen
 
 Keep code excerpts short and readable as pseudocode. This is not an exhaustive catalog of design patterns or a memorization session about acronyms. Students should be able to explain why a boundary is helpful, when it is costly, and what information must cross it. [S01, S02, S07, S24]
 
+In practice (dated examples, 2026): IDEs such as VS Code and IntelliJ IDEA automate small refactorings like extracting a function, and many teams keep decision records as short Markdown files next to the code.
+
 2. OBSERVABLE LEARNING OUTCOMES
 -------------------------------
 

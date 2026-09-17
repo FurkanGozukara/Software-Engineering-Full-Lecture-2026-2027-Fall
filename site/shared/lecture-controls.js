@@ -7,10 +7,10 @@
      scene root   [data-scene][data-state][data-state-count][data-running][data-condition][data-baseline]
      controls     button[data-control="step|back|replay|reset|run"], [data-control="condition"][data-condition-id]
                   [data-condition-label], input[type=range][data-control="slider"]
-     cue targets  data-cue-target="<scene-id>:<name>" on every control and pointed-at element
+     pointer      data-cue-target="<scene-id>:<name>" on every control and element a pointer may operate
      modes        ?record=1 (fixed timing, no autoplay), ?motion=off (instant), ?print=1 (print panels,
                   html[data-print-ready="true"])
-     interface    lecture.gotoScene, step, back, replay, reset, setCondition, state, activeWork, cues
+     interface    lecture.gotoScene, step, back, replay, reset, setCondition, state, activeWork, pages
 
    A week defines its deck with lecture.deck({...}); see site/weeks/week-01.js for the shape.
    Page navigation and scene state are separate control paths: Next/Prev change the page and
@@ -255,7 +255,8 @@
       this.captionCount = el('span', { class: 'eyebrow-count' });
       this.railCaption = cue(el('div', { class: 'rail-card rail-caption' }, [el('div', { class: 'rail-eyebrow' }, [el('span', {}, 'What is happening'), this.progress, this.captionCount]), el('div', { 'aria-live': 'polite' }, this.captionText)]), 'caption');
       this.principleText = el('p', { class: 'principle-text' }, d.principle || '');
-      this.railPrinciple = cue(el('div', { class: 'rail-card rail-principle', hidden: '' }, [el('div', { class: 'rail-eyebrow' }, 'Principle'), this.principleText]), 'principle');
+      const principleShort = d.principleShort ? el('p', { class: 'principle-short' }, [el('span', { class: 'ps-label' }, 'In short'), d.principleShort]) : null;
+      this.railPrinciple = cue(el('div', { class: 'rail-card rail-principle', hidden: '' }, [el('div', { class: 'rail-eyebrow' }, 'Principle'), this.principleText, principleShort]), 'principle');
       this.railNote = el('p', { class: 'rail-note', hidden: '' });
       const rail = el('div', { class: 'scene-rail' }, [railCondition, this.railPrompt, this.railCaption, this.railPrinciple, this.railNote]);
       live.appendChild(rail);
@@ -339,7 +340,7 @@
 
   // ------------------------------------------------------------------ deck
   const deck = {
-    def: null, pages: [], scenes: {}, index: 0, cuesByPage: {}, letterShortcuts: true,
+    def: null, pages: [], scenes: {}, index: 0, letterShortcuts: true,
   };
 
   function pageIndexFromHash() {
@@ -514,7 +515,10 @@
           if (st.caption && pn.showCaption !== false) children.push(el('p', { class: 'print-caption' }, VC.rich(pn.caption || st.caption)));
           children.push(stage);
           if (pn.note) children.push(el('p', { class: 'print-note' }, pn.note));
-          if (pn.principle || (st.principle && pn.principle !== false)) children.push(el('p', { class: 'print-principle' }, def.principle));
+          if (pn.principle || (st.principle && pn.principle !== false)) {
+            children.push(el('p', { class: 'print-principle' }, def.principle));
+            if (def.principleShort) children.push(el('p', { class: 'print-principle-short' }, def.principleShort));
+          }
           const article = sheet('print-panel', children, `#/${p.id}`, def.role === 'anchor' ? 'Anchor' : 'Bridge');
           article.setAttribute('data-print-panel', '');
           article.setAttribute('data-print-condition', cond.id);
@@ -589,7 +593,6 @@
         section.setAttribute('data-scene-role', pdef.scene.role);
         const sroot = el('div', { class: 'scene', 'data-scene': pdef.scene.id });
         section.appendChild(sroot);
-        pdef.scene.cues = normalizeCues(pdef.scene.id, pdef.scene.cues);
         page.scene = new Scene(pdef.scene, sroot, deck);
         deck.scenes[pdef.scene.id] = page.scene;
       } else {
@@ -609,7 +612,6 @@
         };
         page.work = pageWork;
         if (pdef.build) pdef.build(body, page.api);
-        pdef.cues = normalizeCues(id, pdef.cues);
       }
       deck.pages.push(page);
       deck.pagesEl.appendChild(section);
@@ -634,21 +636,6 @@
     gotoPage(pageIndexFromHash(), { fromHash: true });
   }
 
-  function normalizeCues(ownerId, cues) {
-    return (cues || []).map((c) => ({
-      cue: c.cue,
-      target: c.target.includes(':') ? c.target : `${ownerId}:${c.target}`,
-      action: c.action || 'click',
-      waitMs: c.waitMs == null ? 600 : c.waitMs,
-      expect: c.expect == null ? null : c.expect,
-      kind: c.kind || 'action',
-      seconds: c.seconds || 6,
-      teaches: c.teaches || '',
-      reason: c.reason || undefined,
-      chapter: c.chapter || undefined,
-    }));
-  }
-
   // ------------------------------------------------------------------ public interface
   window.lecture = {
     mode: MODE,
@@ -666,12 +653,6 @@
       return { state: s.state, count: s.count, running: s.running, condition: s.condition, baseline: s.condition === s.baseline };
     },
     activeWork() { return work.size; },
-    cues(id) {
-      const p = deck.pages.find((pg) => pg.id === id);
-      if (!p) return [];
-      const list = p.def.kind === 'scene' ? p.def.scene.cues : p.def.cues;
-      return (list || []).map((c) => ({ ...c }));
-    },
     pages() { return deck.pages.map((p) => ({ id: p.id, kind: p.def.kind, role: p.def.kind === 'scene' ? p.def.scene.role : 'page', heading: p.def.kind === 'scene' ? p.def.scene.heading : p.def.heading })); },
     currentPage() { return deck.index; },
     inSpec,

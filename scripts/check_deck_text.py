@@ -6,8 +6,9 @@
 The deck text follows the same wording rules as the narration (22_recording_track.txt: the style
 checker is run on the deck strings as well). This script opens the deck with instant states,
 walks every page, every condition and every state, collects the visible text of the scene root or
-page, adds the hidden answers of the checks page, and runs prodlib.narration_style from the
-tutorial workspace on the result.
+page, adds the hidden answers of the checks page, then opens the print view (?print=1) and adds
+the text that only the PDF carries (cover, panel captions and notes), and runs
+prodlib.narration_style from the tutorial workspace on the result.
 
 The checker flags defensive shapes (hedges, disclaimers, guarantees, arguing about proof), never
 single technical words, so state names and course vocabulary pass as they are.
@@ -79,6 +80,10 @@ def collect(site: Path, week: int) -> list[str]:
                             page.evaluate("() => window.lecture.step()")
                         page.wait_for_timeout(30)
                         add(page.locator(f'[data-scene="{pid}"]').inner_text())
+            # the print view: text that only the student PDF carries
+            page.goto(f"{base}/weeks/week-{week:02d}.html?print=1")
+            page.wait_for_selector('html[data-print-ready="true"]', timeout=60000)
+            add(page.evaluate("() => document.body.innerText"))
             browser.close()
     finally:
         server.shutdown()

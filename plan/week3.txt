@@ -13,6 +13,8 @@ Turn the requirements into complementary models rather than a tour of diagram no
 
 Use lightweight, clearly labeled UML-style state and sequence notation where useful, without claiming every drawing is a formally complete UML model. The model of the booking service remains independent of any language, database product, or interface framework. [S01, S02, S08]
 
+In practice (dated examples, 2026): teams keep diagrams as text next to the code in Mermaid or PlantUML, draw them in draw.io, and design interface states in Figma.
+
 2. OBSERVABLE LEARNING OUTCOMES
 -------------------------------
 

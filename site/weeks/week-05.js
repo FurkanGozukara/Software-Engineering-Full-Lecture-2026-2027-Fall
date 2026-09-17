@@ -172,21 +172,6 @@
         tr.classList.toggle('is-focus', (k === 'edit' && st === 2) || (k === 'recheck' && st === 3) || (k === 'unaffected' && st === 4));
       });
     },
-    cues: [
-      { cue: 'hover-holds-rule', target: 'prompt', action: 'hover', expect: 0, seconds: 10, teaches: 'Which components hold the duration rule: pause and decide' },
-      { cue: 'step-copies', target: 'step', action: 'click', expect: 1, seconds: 10, teaches: 'Design A writes the rule three times' },
-      { cue: 'step-edit', target: 'step', action: 'click', expect: 2, seconds: 8, teaches: 'Three edit locations for one rule' },
-      { cue: 'step-recheck', target: 'step', action: 'click', expect: 3, seconds: 8, teaches: 'Three sets of checks run again' },
-      { cue: 'step-unaffected', target: 'step', action: 'click', expect: 4, seconds: 8, teaches: 'Room Catalog, Notification and Storage only consume the result' },
-      { cue: 'step-missed', target: 'step', action: 'click', expect: 5, seconds: 12, teaches: 'A missed copy: the Reminder accepts what the handler rejects' },
-      { cue: 'condition-b', target: 'condition-design-b', action: 'click', expect: 0, seconds: 8, teaches: 'Change the condition: Design B with one Policy module' },
-      { cue: 'b-step-policy', target: 'step', action: 'click', expect: 1, seconds: 10, teaches: 'The rule lives once in Policy; the UI mirrors it for early feedback' },
-      { cue: 'b-step-edit', target: 'step', action: 'click', expect: 2, seconds: 6, teaches: 'One edit location' },
-      { cue: 'b-step-recheck', target: 'step', action: 'click', expect: 3, seconds: 10, teaches: 'Rechecks remain: policy, handler integration, UI display' },
-      { cue: 'b-step-unaffected', target: 'step', action: 'click', expect: 4, seconds: 8, teaches: 'The Reminder logic is untouched because it asks Policy' },
-      { cue: 'b-step-compare', target: 'step', action: 'click', expect: 5, seconds: 12, teaches: 'Edit locations, rechecks and inconsistency risk side by side' },
-      { cue: 'b-step-principle', target: 'step', action: 'click', expect: 6, seconds: 8, teaches: 'Boundaries localize decisions and keep dependents visible' },
-    ],
     print: [
       { title: 'Design A after the change: three edits, three rechecks, one missed copy', condition: 'design-a', state: 5, note: 'Legend: thick yellow border = must edit; dashed blue border = must recheck; faded = unaffected. The Reminder still carries the old limit.' },
       { title: 'Design B after the same change: one edit, visible rechecks', condition: 'design-b', state: 5, principle: true, note: 'One module does not mean only one file ever changes: the Policy checks, the handler integration check and the UI limit display are rechecked.' },

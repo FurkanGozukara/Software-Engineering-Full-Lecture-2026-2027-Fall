@@ -52,7 +52,8 @@
     "S01",
     "S02",
     "S24",
-    "S25"
+    "S25",
+    "S46"
    ],
    "rules_cited": [],
    "scenes": [
@@ -111,12 +112,14 @@
      "link": "week-01.html#/quality-tradeoffs",
      "fixture_key": "w01/quality-tradeoffs",
      "visual_idea": "A comparison table with response time, correctness, recoverability, privacy, and change effort; avoid an unexplained radar chart.",
-     "situation": "Offer two fictional designs: immediate confirmation from an unchecked local view, and confirmation after an authoritative availability decision. Ask which is better before revealing their behavior. Separate quality attributes from optional features.",
+     "situation": "Offer two fictional designs: immediate confirmation from an unchecked local view, and confirmation after an authoritative availability decision. Ask which is better before revealing their behavior. Separate quality attributes from optional features. Name the standard vocabulary once: ISO/IEC 25010:2023 lists nine product quality characteristics, among them performance efficiency, reliability, security, interaction capability and maintainability. [S46]",
      "changed_condition": "Keep correctness mandatory and change the response-time target. Discuss which optimizations preserve the rule and which merely hide a delay. Clearly label illustrative measurements and never imply that accuracy must always be traded for speed.",
      "principle": "Compare alternatives under stated constraints; some requirements are conditions of acceptance rather than points in a score.",
      "pdf_treatment": "Print the alternatives, assumptions, and a short rationale rather than a winner badge.",
      "rules": [],
-     "sources": []
+     "sources": [
+      "S46"
+     ]
     },
     {
      "order": 5,
@@ -214,7 +217,8 @@
    "sources_cited": [
     "S01",
     "S02",
-    "S25"
+    "S25",
+    "S46"
    ],
    "rules_cited": [
     "R-01",
@@ -232,11 +236,13 @@
      "link": "week-02.html#/ambiguous-request",
      "fixture_key": "w02/ambiguous-request",
      "visual_idea": "An editable-looking request card branches into three concrete screen outcomes; no actual language-model call is involved.",
-     "situation": "Ask students to predict the behavior implied by “Make booking fair.” Reveal first-come access, per-user limits, and staff-priority interpretations. Show that all three could be defended from the same sentence. Add questions about who decides, what is scarce, and what outcome matters.",
+     "situation": "Open with the sentence Week 1 ended on, “Make room booking fair and easy.” Ask students to predict the behavior implied by “fair.” Reveal first-come access, per-user limits, and staff-priority interpretations. Show that all three could be defended from the same sentence. Add questions about who decides, what is scarce, and what outcome matters. Mark “easy” as a second, separate ambiguity (easy for whom: a keyboard user, a first-time visitor, room staff?) and record it as an open quality question for scene 04 and R-05, keeping this scene on fairness.",
      "changed_condition": "Change only the stakeholder answering the question. Compare the resulting rules and surface the conflict rather than silently selecting one. Settle this lecture's scope on exclusive booking of available rooms; fairness policy remains an explicit open decision.",
      "principle": "Ambiguity is resolved through examples and stakeholder decisions, not through more confident wording.",
-     "pdf_treatment": "Print the ambiguous sentence, the competing interpretations, and the clarified scope.",
-     "rules": [],
+     "pdf_treatment": "Print the ambiguous sentence, the competing interpretations, the clarified scope, and the open question about “easy.”",
+     "rules": [
+      "R-05"
+     ],
      "sources": []
     },
     {
@@ -281,12 +287,14 @@
      "link": "week-02.html#/quality-with-conditions",
      "fixture_key": "w02/quality-with-conditions",
      "visual_idea": "A response-time distribution appears beside workload and measurement-condition cards.",
-     "situation": "Ask whether a 200 millisecond response proves the system is fast. Reveal Q-01: in the specified teaching fixture, the 95th percentile of search API response time should not exceed 500 milliseconds under 50 concurrent users. Explain that this is an authored target, not a universal service standard.",
+     "situation": "Ask whether a 200 millisecond response proves the system is fast. Reveal Q-01: in the specified teaching fixture, the 95th percentile of search API response time should not exceed 500 milliseconds under 50 concurrent users. Explain that this is an authored target, not a universal service standard. Map the course's quality words to the ISO/IEC 25010:2023 characteristics, for example response time to performance efficiency and keyboard-accessible completion to interaction capability. [S46]",
      "changed_condition": "Change the workload while holding the target and code constant. Compare what was measured with what was claimed. Distinguish service-boundary response time from the student's whole browser experience.",
      "principle": "A quality requirement needs a quantity, a boundary, conditions, and an acceptance rule.",
      "pdf_treatment": "Print the distribution, the explicit target, the fixture assumptions, and the measurement boundary.",
      "rules": [],
-     "sources": []
+     "sources": [
+      "S46"
+     ]
     },
     {
      "order": 5,
@@ -589,7 +597,7 @@
      "link": "week-04.html#/methods-not-rituals",
      "fixture_key": "w04/methods-not-rituals",
      "visual_idea": "A three-column comparison of plan-driven coordination, iterative timeboxes, and flow-based policies.",
-     "situation": "Ask what information each approach makes visible and when decisions change. Introduce Scrum through goals, inspection, and adaptation within its defined framework, and Kanban through explicit workflow, controlling work-in-progress, and improving flow. Do not claim a generic board is the whole of either. [S04, S05]",
+     "situation": "Ask what information each approach makes visible and when decisions change. Introduce Scrum through goals, inspection, and adaptation within its defined framework, and Kanban through explicit workflow, controlling work-in-progress, and improving flow. Do not claim a generic board is the whole of either. Name Scrum's three accountabilities in one line, Product Owner, Scrum Master and Developers, as the places where decisions about value, process and the work itself are made visible, not as job titles. [S04, S05]",
      "changed_condition": "Change the work from a planned capability to unpredictable incident arrivals. Compare which coordination mechanisms help and what policies need revision; do not declare one universal winner.",
      "principle": "Choose coordination practices for the uncertainty and constraints of the work, not for their labels.",
      "pdf_treatment": "Print the comparison with a note that simplified lecture examples are not complete method definitions.",
@@ -686,7 +694,7 @@
      "link": "week-04.html#/retrospective-as-test",
      "fixture_key": "w04/retrospective-as-test",
      "visual_idea": "Before-and-after panels connect a workflow observation, proposed change, measure, and possible side effect.",
-     "situation": "Ask what should happen after noticing a long review queue. Reveal a proposal to share review work, the expected effect, and what would count as contrary evidence. Keep the discussion about the system rather than blaming an individual.",
+     "situation": "Ask what should happen after noticing a long review queue. Reveal a proposal to share review work, the expected effect, and what would count as contrary evidence. Keep the discussion about the system rather than blaming an individual, and explain why: people report delays and mistakes honestly only where reporting them is safe, so blameless discussion and psychological safety are the conditions for trustworthy process data.",
      "changed_condition": "Increase review speed but show more missed issues. Compare throughput with quality and rework. Leave the class with the idea of a balanced improvement experiment rather than one target number.",
      "principle": "Change a process deliberately, observe its consequences, and revise the explanation when the evidence disagrees.",
      "pdf_treatment": "Print the process hypothesis and the before/after evidence with the side effect included.",
@@ -1126,7 +1134,7 @@
      "link": "week-07.html#/review-with-context",
      "fixture_key": "w07/review-with-context",
      "visual_idea": "A review panel connects requirement, diff, checks, decision rationale, and focused comments.",
-     "situation": "Show the diff alone and ask what a reviewer cannot yet decide. Reveal the purpose, affected rule, alternatives, and checks. Sort comments into correctness, security, design, understandability, and optional preference. Explain that automated style checks can reduce distraction, not replace judgment. [S07]",
+     "situation": "Show the diff alone and ask what a reviewer cannot yet decide. Reveal the purpose, affected rule, alternatives, and checks. Sort comments into correctness, security, design, understandability, and optional preference. Explain that linters and formatters take style out of the conversation without replacing judgment, and that a useful comment addresses the change rather than the person and says whether it is required or optional. [S07]",
      "changed_condition": "Split an unrelated rename out of the same change. Compare the reviewer’s task with and without the unrelated material, without claiming an exact universal speed improvement. Keep one substantive concern unresolved until its supporting evidence appears. AI beat: label the same diff as drafted by an automated assistant with the description “fix stuff”. Ask what changes for the reviewer. Nothing: the requirement, the checks and the rationale are still required, and the empty description is the documentation failure of scene 07 arriving early.",
      "principle": "Review is an evidence-based conversation about a change, not a vote on how convincing its author sounds.",
      "pdf_treatment": "Print the compact review packet and two example comments with their supporting reasons.",
@@ -1173,10 +1181,10 @@
      "link": "week-07.html#/history-as-explanation",
      "fixture_key": "w07/history-as-explanation",
      "visual_idea": "A short change description and decision record are linked to the commit and requirement.",
-     "situation": "Ask what a maintainer learns from “fix stuff.” Reveal an alternative explaining the observed problem, intended behavior, and a constraint that ruled out an obvious solution. Separate durable rationale from a transcript of every discussion.",
+     "situation": "Ask what a maintainer learns from “fix stuff.” Reveal an alternative explaining the observed problem, intended behavior, and a constraint that ruled out an obvious solution. Separate durable rationale from a transcript of every discussion. Then show history as a debugging tool: when the boundary error appears and nobody knows which change introduced it, bisection checks the middle commit of the suspect range and halves the range until one change remains.",
      "changed_condition": "Remove the original author from the scenario. Compare how much each record helps a future reviewer understand whether the constraint still applies.",
      "principle": "Documentation earns its place by preserving information that cannot be reliably reconstructed from the code.",
-     "pdf_treatment": "Print the weak and improved descriptions with the useful information highlighted in words.",
+     "pdf_treatment": "Print the weak and improved descriptions with the useful information highlighted in words, and the bisection steps that located the change.",
      "rules": [],
      "sources": []
     },
@@ -1358,10 +1366,10 @@
      "link": "week-08.html#/testing-as-feedback",
      "fixture_key": "w08/testing-as-feedback",
      "visual_idea": "A short requirement-to-failing-check-to-small-change-to-recheck loop ends with a refactoring comparison.",
-     "situation": "Ask what should happen before fixing the exclusive upper bound. Reveal a focused failing check, a minimal correction, and rerun evidence. Explain test-first development as one way to make the expected behavior explicit, not a guarantee of good requirements.",
+     "situation": "Ask what should happen before fixing the exclusive upper bound. Debug in four visible moves first: reproduce the failure with the 120-minute case, shrink it to the smallest failing input, state one hypothesis about the comparison, and confirm it with one targeted observation. Then reveal a focused failing check, a minimal correction, and rerun evidence. Explain test-first development as one way to make the expected behavior explicit, not a guarantee of good requirements.",
      "changed_condition": "Refactor the corrected predicate without changing its contract. Compare unchanged behavior under the checks while acknowledging untested conditions and higher-level integration evidence.",
      "principle": "Tests are feedback instruments whose value depends on the claims, observations, and assumptions they preserve.",
-     "pdf_treatment": "Print the feedback loop and a final claim-evidence-remaining-uncertainty table.",
+     "pdf_treatment": "Print the four debugging moves, the feedback loop and a final claim-evidence-remaining-uncertainty table.",
      "rules": [],
      "sources": []
     }
@@ -1405,7 +1413,10 @@
     "S14",
     "S15",
     "S16",
-    "S42"
+    "S42",
+    "S47",
+    "S48",
+    "S49"
    ],
    "rules_cited": [
     "R-03",
@@ -1485,11 +1496,14 @@
      "fixture_key": "w09/privacy-and-diagnostics",
      "visual_idea": "Two incident records are compared field by field, linked to the actual support question.",
      "situation": "Ask which fields distinguish a failed notification from a failed booking. Reveal that a request identifier, outcome category, and dependency status may answer the question without a message body or private meeting description. Mark fictional identifiers as pseudonymous, not magically anonymous.",
-     "changed_condition": "Add a narrowly justified diagnostic need and choose the minimal additional field, access restriction, and retention rationale. Compare purposeful collection with permanent detailed logging by default.",
+     "changed_condition": "Add a narrowly justified diagnostic need and choose the minimal additional field, access restriction, and retention rationale. Compare purposeful collection with permanent detailed logging by default. Name the legal context in one line: KVKK (Law No. 6698) in Türkiye and the GDPR in the EU make collecting only what a purpose needs, and keeping it no longer than necessary, a legal duty; the lecture teaches the engineering and gives no compliance advice. [S47, S48]",
      "principle": "Diagnostic value, access, retention, and disclosure risk should be considered together.",
      "pdf_treatment": "Print the before-and-after records and a field-purpose-retention rationale table, without real personal information.",
      "rules": [],
-     "sources": []
+     "sources": [
+      "S47",
+      "S48"
+     ]
     },
     {
      "order": 6,
@@ -1500,13 +1514,14 @@
      "fixture_key": "w09/dependency-chain",
      "visual_idea": "A dependency graph expands one level, then an inventory and build-provenance card attach to the selected release.",
      "situation": "Ask whether knowing the name of a direct library tells us everything included in a build. Reveal a transitive dependency. Explain an inventory or software bill of materials as visibility into components, and provenance as evidence about an artifact’s production. [S16]",
-     "changed_condition": "Change one dependency version while keeping application source fixed. Compare the need to evaluate the new component, rebuild under controlled inputs, and recheck affected behavior. A familiar name, inventory entry, or signature alone does not prove safety. Licensing beat: change only the license of the transitive dependency in the fictional chain, from a permissive license to a copyleft license with a source-availability obligation. Compare what the license inventory now requires before release. Use SPDX identifiers as the vocabulary and keep this an engineering question about obligations and inventory, not legal advice. [S42]",
+     "changed_condition": "Change one dependency version while keeping application source fixed. Compare the need to evaluate the new component, rebuild under controlled inputs, and recheck affected behavior. A familiar name, inventory entry, or signature alone does not prove safety. Licensing beat: change only the license of the transitive dependency in the fictional chain, from a permissive license to a copyleft license with a source-availability obligation. Compare what the license inventory now requires before release. Use SPDX identifiers as the vocabulary and keep this an engineering question about obligations and inventory, not legal advice. [S42] Name the legal context in one line: the EU Cyber Resilience Act requires manufacturers of products with digital elements sold in the EU to document their components, including a software bill of materials, with reporting obligations applying from 11 September 2026. [S49]",
      "principle": "Supply-chain evidence makes dependencies inspectable; it does not eliminate the need for risk judgment and verification.",
      "pdf_treatment": "Print the exact fictional dependency set, the changed node, and the bounded claims of each evidence type. Add the license column with the changed identifier.",
      "rules": [],
      "sources": [
       "S16",
-      "S42"
+      "S42",
+      "S49"
      ]
     },
     {
@@ -1581,7 +1596,9 @@
     "S16",
     "S17"
    ],
-   "rules_cited": [],
+   "rules_cited": [
+    "R-02"
+   ],
    "scenes": [
     {
      "order": 1,
@@ -1590,12 +1607,14 @@
      "instructor_title": "A release path should make its evidence visible",
      "link": "week-10.html#/change-through-gates",
      "fixture_key": "w10/change-through-gates",
-     "visual_idea": "A change token moves through integration, build, focused checks, broader checks, artifact recording, and release decision; evidence cards remain attached.",
-     "situation": "Ask which stage would catch the incorrect 120-minute boundary and which would check ownership. Reveal distinct checks and pause at a failure. The token cannot advance merely because the animation has reached its next step. Explain that gate placement follows risk and feedback needs.",
+     "visual_idea": "A change token moves through integration, build, static checks, focused checks, broader checks, artifact recording, and release decision; evidence cards remain attached.",
+     "situation": "Ask which stage would catch the incorrect 120-minute boundary and which would check ownership. Reveal distinct checks and pause at a failure. The token cannot advance merely because the animation has reached its next step. Label the static checks with their scope: linters, type checkers and security scanners find unused code, type mismatches and known insecure patterns, but they know nothing about R-02, so a “duration < 120” comparison passes them and fails the boundary check. Explain that gate placement follows risk and feedback needs.",
      "changed_condition": "Fix the boundary but introduce an authorization regression. Replay the same pipeline and compare which evidence changes. Show a passing gate with an explicit scope label so it is not mistaken for a universal guarantee. AI beat: let the second change be proposed by an automated assistant. It enters the same path and is blocked by the same gate. Proposing a change and passing a gate are different authorities, which Week 13 develops as bounded action.",
      "principle": "Automation should preserve the connection between a claim, a check, its result, and the change being released.",
      "pdf_treatment": "Print the successful path and blocked path with the exact failed condition and artifact identity.",
-     "rules": [],
+     "rules": [
+      "R-02"
+     ],
      "sources": []
     },
     {
@@ -1729,7 +1748,7 @@
     },
     {
      "question": "How many bad events does the illustrative 99% objective allow in that window?",
-     "answer": "Ten of 1,000; twenty are observed, so consumption is twice the allowance."
+     "answer": "Ten of 1,000, which is the error budget; twenty are observed, a burn rate of 2."
     },
     {
      "question": "Which signal helps locate where one request spent time?",
@@ -1745,7 +1764,8 @@
     "S02",
     "S20",
     "S21",
-    "S22"
+    "S22",
+    "S45"
    ],
    "rules_cited": [],
    "scenes": [
@@ -1758,12 +1778,13 @@
      "fixture_key": "w11/define-good-service",
      "visual_idea": "Request tokens enter a good/bad classification table with eligibility, correctness, and timing visible.",
      "situation": "Ask whether every rejected booking request is a service failure. Reveal a timely correct conflict response as a good outcome under this objective. Then classify a fast incorrect confirmation and a correct response arriving too late. The class must state the event definition before seeing the percentage. [S21]",
-     "changed_condition": "Change only the observation: 20 of 1,000 eligible requests miss the promise. Compare 98% observed good events with the illustrative 99% objective. Explain the ten-event allowance and twenty-event consumption without treating the allowance as permission to ignore harmful failures.",
+     "changed_condition": "Change only the observation: 20 of 1,000 eligible requests miss the promise. Compare 98% observed good events with the illustrative 99% objective. Name the ten-event allowance as the error budget and the twenty observed bad events as a burn rate of 2, without treating the budget as permission to ignore harmful failures. [S45]",
      "principle": "A reliability indicator is meaningful only after the user promise, event population, and observation window are defined.",
      "pdf_treatment": "Print the classifications, arithmetic, window, and objective; retain rejected-but-correct examples.",
      "rules": [],
      "sources": [
-      "S21"
+      "S21",
+      "S45"
      ]
     },
     {
@@ -1852,12 +1873,13 @@
      "fixture_key": "w11/actionable-alerts",
      "visual_idea": "A noisy stream of low-level alerts is contrasted with a user-impact signal and a short response guide.",
      "situation": "Ask whether every CPU fluctuation should interrupt someone. Reveal the user promise, the affected service, an actionable condition, and a next diagnostic question. Avoid prescribing a universal threshold independent of workload. [S22]",
-     "changed_condition": "Hold resource utilization high while user outcomes remain acceptable, then lower it while correctness fails. Compare resource observations with the actual service objective.",
+     "changed_condition": "Hold resource utilization high while user outcomes remain acceptable, then lower it while correctness fails. Compare resource observations with the actual service objective. Then show an alert tied to the promise: a burn rate of 2 would use up the seven-day error budget in 3.5 days, which justifies a response, while a CPU reading alone does not. [S45]",
      "principle": "Alerting should connect a meaningful condition to an appropriate response, not merely report that a number changed.",
      "pdf_treatment": "Print the signal-condition-response relationship and the two counterexamples.",
      "rules": [],
      "sources": [
-      "S22"
+      "S22",
+      "S45"
      ]
     },
     {
@@ -2085,7 +2107,9 @@
     "S19",
     "S33",
     "S34",
-    "S35"
+    "S35",
+    "S44",
+    "S50"
    ],
    "rules_cited": [
     "R-02",
@@ -2149,13 +2173,14 @@
      "link": "week-13.html#/bounded-actions",
      "fixture_key": "w13/bounded-actions",
      "visual_idea": "An action path passes through explicit read, edit, verify, propose, and approve boundaries; available capabilities are displayed beside it.",
-     "situation": "Ask whether generating a patch requires access to production booking data or release credentials. Reveal a narrower path using synthetic fixtures and local checks. Show that proposing a change and applying a high-impact change are different authorities; the permission list and the sandbox that enforce this live outside the assistant. [S33]",
+     "situation": "Ask whether generating a patch requires access to production booking data or release credentials. Reveal a narrower path using synthetic fixtures and local checks. Show that proposing a change and applying a high-impact change are different authorities; the permission list and the sandbox that enforce this live outside the assistant. [S33] Add a row for an unreviewed tool connector, for example an MCP server: it is third-party code acting with the assistant's permissions, so it is both a dependency and a trust boundary. OWASP's list for agents names the risks it creates, tool misuse and identity and privilege abuse. [S44]",
      "changed_condition": "Give the same imperfect candidate broad unattended production access, then compare the possible consequences with the bounded version. Keep it a diagram, not a functioning dangerous workflow. An approval button needs informative evidence to be meaningful.",
      "principle": "Limit capability, permission, and autonomy to the intended action, and enforce those limits outside the model’s judgment.",
      "pdf_treatment": "Print the capability matrix and the approval boundary with the evidence available at that point.",
      "rules": [],
      "sources": [
-      "S33"
+      "S33",
+      "S44"
      ]
     },
     {
@@ -2166,13 +2191,14 @@
      "link": "week-13.html#/untrusted-instructions",
      "fixture_key": "w13/untrusted-instructions",
      "visual_idea": "A repository note is tagged as content; a separate trusted task and permission boundary remain visible.",
-     "situation": "Show a note claiming that the verification step should be skipped. Ask whether its location in a repository makes it authoritative. Reveal the attempt to cross from task data into workflow instruction. Introduce prompt injection as a trust-boundary problem. [S34]",
+     "situation": "Show a note claiming that the verification step should be skipped. Ask whether its location in a repository makes it authoritative. Reveal the attempt to cross from task data into workflow instruction. Introduce prompt injection as a trust-boundary problem. [S34] Name the agent-level result as OWASP's agentic list does: goal hijack, content redirecting what the agent is trying to achieve. [S44]",
      "changed_condition": "Keep the note unchanged but enforce the external requirement that checks cannot be bypassed by retrieved content. Compare the attempted redirection with the allowed action path. State that text filtering alone is not a complete guarantee.",
      "principle": "Treat retrieved material as untrusted input and preserve authority boundaries around consequential actions.",
      "pdf_treatment": "Print the content-versus-authority diagram and the enforced check, without operational attack details.",
      "rules": [],
      "sources": [
-      "S34"
+      "S34",
+      "S44"
      ]
     },
     {
@@ -2200,12 +2226,14 @@
      "link": "week-13.html#/provenance-and-understanding",
      "fixture_key": "w13/provenance-and-understanding",
      "visual_idea": "A change record collects source context, reviewed dependencies, checks, residual questions, and a plain-language explanation.",
-     "situation": "Ask whether “the tool wrote it” answers a maintainer’s question about an authorization branch. Reveal the rationale and relevant evidence required to maintain the change. Any uncertain origin or licensing concern is marked for appropriate review rather than guessed away. Use this course's own record: the deck the class is watching was drafted by an automated assistant, checked by the plan checker and the deck tests, and accepted by the instructor, with its unresolved limitation stated.",
+     "situation": "Ask whether “the tool wrote it” answers a maintainer’s question about an authorization branch. Reveal the rationale and relevant evidence required to maintain the change. Any uncertain origin or licensing concern is marked for appropriate review rather than guessed away. Include one dependency question: the candidate imports textenc-turbo, a package name that exists in no registry. Code assistants are documented to invent package names, and anyone could publish a package under the invented name, so the inventory check blocks the build until a person confirms or removes the dependency. [S50] Use this course's own record: the deck the class is watching was drafted by an automated assistant, checked by the plan checker and the deck tests, and accepted by the instructor, with its unresolved limitation stated.",
      "changed_condition": "Replace a confident but unsupported explanation with one that accurately states a limitation. Compare whether the reviewer can make a better decision, even though the wording sounds less certain.",
      "principle": "Accountability requires an understandable change record and honest limits, regardless of how the draft was produced.",
      "pdf_treatment": "Print the course's own compact change record and its unresolved question; name tools factually and omit tool-brand screenshots.",
      "rules": [],
-     "sources": []
+     "sources": [
+      "S50"
+     ]
     },
     {
      "order": 8,

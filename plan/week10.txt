@@ -13,6 +13,8 @@ Animate the movement of a change, but keep attention on the evidence attached to
 
 Use current DORA terminology in a compact measurement scene: change lead time, deployment frequency, failed deployment recovery time, change fail rate, and deployment rework rate. Keep these at the service and delivery-system level, not as individual rankings. [S01, S02, S17]
 
+In practice (dated examples, 2026): GitHub Actions and GitLab CI run the gates, container images built with Docker are common release artifacts, Terraform or OpenTofu describe environments as code, and OpenFeature or Unleash control feature flags.
+
 2. OBSERVABLE LEARNING OUTCOMES
 -------------------------------
 
@@ -78,9 +80,9 @@ week-10.html#/release-rationale
 
 Anchor scene | ID: change-through-gates
 
-VISUAL IDEA: A change token moves through integration, build, focused checks, broader checks, artifact recording, and release decision; evidence cards remain attached.
+VISUAL IDEA: A change token moves through integration, build, static checks, focused checks, broader checks, artifact recording, and release decision; evidence cards remain attached.
 
-SITUATION, PREDICTION, AND MECHANISM: Ask which stage would catch the incorrect 120-minute boundary and which would check ownership. Reveal distinct checks and pause at a failure. The token cannot advance merely because the animation has reached its next step. Explain that gate placement follows risk and feedback needs.
+SITUATION, PREDICTION, AND MECHANISM: Ask which stage would catch the incorrect 120-minute boundary and which would check ownership. Reveal distinct checks and pause at a failure. The token cannot advance merely because the animation has reached its next step. Label the static checks with their scope: linters, type checkers and security scanners find unused code, type mismatches and known insecure patterns, but they know nothing about R-02, so a “duration < 120” comparison passes them and fails the boundary check. Explain that gate placement follows risk and feedback needs.
 
 CHANGE ONE CONDITION AND COMPARE: Fix the boundary but introduce an authorization regression. Replay the same pipeline and compare which evidence changes. Show a passing gate with an explicit scope label so it is not mistaken for a universal guarantee. AI beat: let the second change be proposed by an automated assistant. It enters the same path and is blocked by the same gate. Proposing a change and passing a gate are different authorities, which Week 13 develops as bounded action.
 

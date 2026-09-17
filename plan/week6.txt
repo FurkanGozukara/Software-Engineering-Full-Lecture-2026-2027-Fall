@@ -13,6 +13,8 @@ Scale the Week 5 design from internal responsibilities to runtime structure. Com
 
 The three main mechanisms are a request traveling across components, two concurrent booking attempts competing for one invariant, and a lost response creating an uncertain outcome. The class should leave with disciplined trade-off questions rather than a rule that a newer architectural style is always better. [S01, S02, S08, S09, S10]
 
+In practice (dated examples, 2026): HTTP contracts are often described in OpenAPI; PostgreSQL can enforce a no-overlap rule for time ranges with an exclusion constraint; queued work commonly runs on RabbitMQ or Kafka; and services ship as Docker images, which are a packaging format, not the containers of the C4 model.
+
 2. OBSERVABLE LEARNING OUTCOMES
 -------------------------------
 

@@ -12,7 +12,7 @@ Checks, all derived from the TXT files and assets/demo-fixtures.json:
               support file
   rules       every R-key exists in the case file
   spine       the fourteen-row spine in 00_START_HERE.txt matches the week titles and questions
-  fixtures    recomputed queue, delivery, latency, SLO, resource, interval, duration, retry and
+  fixtures    recomputed queue, delivery, latency, SLO (with burn rate), resource, interval, duration, retry and
               snippet results equal the recorded values; every Anchor has a fixture entry;
               every value a fixture says the week text shows is present in that week
   manifest    plan_manifest.json on disk is current
@@ -175,6 +175,10 @@ def check_fixtures(rep: Report, weeks: list[dict]):
         rep.fail(where, "booking_SLO observed_bad_events does not recompute")
     if s["bad_event_allowance"] != f["booking_SLO"]["bad_event_allowance"]:
         rep.fail(where, "booking_SLO bad_event_allowance does not recompute")
+    if not close(s["burn_rate"], f["booking_SLO"]["expected_burn_rate"]):
+        rep.fail(where, f"booking_SLO expected_burn_rate: recorded {f['booking_SLO']['expected_burn_rate']}, recomputed {s['burn_rate']}")
+    if not close(s["days_to_exhaust_budget"], f["booking_SLO"]["expected_days_to_exhaust_budget"]):
+        rep.fail(where, "booking_SLO expected_days_to_exhaust_budget does not recompute")
     # resources
     r = f["resources"]
     if not close(r["before_storage_reads"] / r["successful_searches"], r["expected_reads_per_success_before"]) \

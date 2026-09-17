@@ -37,7 +37,7 @@ QUALITY FIXTURES WITH DISTINCT BOUNDARIES
 
 Q-01 is the illustrative search requirement introduced in Week 2: under the declared teaching fixture and 50 concurrent users, p95 search API response time is at most 500 ms at the service boundary. It is not a claim about a browser’s complete perceived experience or an industry benchmark. Actual performance evidence requires a specified dataset, request mix, environment, run conditions, and percentile calculation; the later twenty-point example illustrates the concept only.
 
-Q-02 is the separate Week 11 illustrative objective: over seven days, at least 99% of eligible booking requests receive a correct outcome within two seconds. Eligible events are authenticated, syntactically valid booking requests reaching the stated service boundary, including legitimate room-conflict requests; health checks are excluded. A timely correct conflict rejection is good service. The fixed fixture contains 980 good events, 10 correct-but-slow results, 5 timeouts, and 5 unexpected server failures out of 1,000. The observed good-event rate is 98%, against an allowance of 10 bad events; 20 are observed.
+Q-02 is the separate Week 11 illustrative objective: over seven days, at least 99% of eligible booking requests receive a correct outcome within two seconds. Eligible events are authenticated, syntactically valid booking requests reaching the stated service boundary, including legitimate room-conflict requests; health checks are excluded. A timely correct conflict rejection is good service. The fixed fixture contains 980 good events, 10 correct-but-slow results, 5 timeouts, and 5 unexpected server failures out of 1,000. The observed good-event rate is 98%, against an allowance of 10 bad events; 20 are observed. The allowance is the error budget. Observing twice the allowed bad-event rate is a burn rate of 2, which at a steady rate uses up the seven-day budget in 3.5 days.
 
 TEST AND AUTHORIZATION FIXTURES
 -------------------------------
@@ -68,6 +68,14 @@ RETRY MODEL
 The Week 11 retry-amplification scene uses a toy model: one dependency serves at most two attempts per round, first come first served; six unique requests Q1 to Q6 arrive in round 1; the first attempt of Q6 is dropped in round 1 without a response. A request still pending at the end of a round is a timeout for its client. Under the naive policy every timed-out client immediately submits another attempt while its earlier attempts stay queued, and an attempt served for a request that already succeeded is a duplicate effect. Under the bounded policy a client resubmits at most once, only after waiting two rounds and never while the circuit is open, and reports Unknown outcome once four rounds have passed with its retry spent; the circuit opens at the end of any round with at least four timeouts and blocks submissions for two round-ends.
 
 Recorded results, recomputed by the checker: naive peaks at seven queued attempts, completes the six unique requests in round 5 with seven duplicate effects, and drains only in round 7; bounded peaks at three queued attempts, completes them in round 4 with no duplicate effects, and its circuit is open at the ends of rounds 1 and 2. The retries competed with the originals for the same capacity, which is the lesson. The model is a mechanism illustration, not a measurement, and it reuses the Week 6 operation-key idea for the duplicate effects.
+
+INVENTED DEPENDENCY
+-------------------
+
+Week 13's change record uses textenc-turbo, a fictional package name that exists in no registry, to show a dependency invented by a code assistant. It is deliberately close to textenc, the fictional transitive dependency of Week 9; neither name refers to a real package.
+
+AUTHORING NOTES FOR ALL FIXTURES
+-------------------------------
 
 Any additional numbers introduced during authoring should be identified as measured, sourced, or simulated. Fix seeds where randomness is used for illustration, record the inputs, and independently verify the outputs. Repeated visits to a scene should not silently generate a different lesson.
 

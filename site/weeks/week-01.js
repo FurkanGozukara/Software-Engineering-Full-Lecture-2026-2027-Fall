@@ -57,6 +57,11 @@
   }
   const lower1 = (str) => str.charAt(0).toLowerCase() + str.slice(1);
   const upper1 = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+  const NUMBER_WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'];
+  const inWords = (n) => NUMBER_WORDS[n] || String(n);
+  const listAnd = (items) => (items.length < 2 ? items.join('') : `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}`);
+  /** A rule of the fictional case, labeled where the lecture first states it (plan week1.txt, section 9). */
+  const ruleIntro = (id) => `[[Rule ${id}|example assumption]]`;
 
   // =====================================================================
   // PAGE · opening situation
@@ -74,29 +79,37 @@
         field('Room', ROOM), field('Date', 'today'), field('Time', SLOT), reserve, ok,
       ] });
       win.style.cssText = 'width:560px;align-self:start;';
-      const q = el('div', reveal({ class: 'rail-card rail-prompt rv rv--rise', 'data-show-from': '1', style: 'align-self:start;max-width:640px' }), [
+      const q = el('div', reveal({ class: 'rail-card rail-prompt rv rv--rise', 'data-show-from': '1', style: 'align-self:start' }), [
         el('div', { class: 'rail-eyebrow' }, 'The question of this week'),
         el('p', { class: 'prompt-q' }, 'What would you need to see before you trust this message?'),
         el('ul', { class: 'prompt-options' }, ['The green tick and the word Confirmed', 'The stored calendar for the room', 'What happens at the door at 10:00'].map((o, i) => el('li', {}, [el('span', { class: 'opt-key', 'aria-hidden': 'true' }, String.fromCharCode(65 + i)), el('span', {}, o)]))),
         el('p', { class: 'rail-note', style: 'margin-top:12px' }, 'Keep your answer. The first scene tests it.'),
       ]);
       api.cue(q, 'question');
-      const wrap = el('div', { style: 'display:grid;grid-template-columns:560px 1fr;gap:48px;align-items:start;height:100%' }, [win, q]);
+      // the thread of the course and where it applies, revealed by a click on the opening page
+      const threadBtn = api.cue(el('button', reveal({ type: 'button', class: 'ctl-btn ctl-btn--step rv rv--rise', 'data-show-from': '1', style: 'align-self:flex-start;height:56px;font-size:22px;padding:0 20px' }), 'What does this course build?'), 'thread');
+      const thread = el('div', reveal({ class: 'rail-card rv rv--rise', 'data-show-from': '2' }), [
+        el('div', { class: 'rail-eyebrow' }, 'What this course builds'),
+        el('p', { style: 'font-size:21px;line-height:1.35' }, THROUGH_LINE),
+        el('p', { style: 'font-size:19px;line-height:1.35;margin-top:10px;color:var(--text-muted)' }, WHERE_IT_APPLIES),
+        el('p', { style: 'font-size:19px;line-height:1.35;margin-top:10px;color:var(--text-muted)' }, COURSE_ORDER),
+      ]);
+      const side = el('div', { style: 'display:flex;flex-direction:column;gap:16px;align-items:stretch;min-width:0' }, [threadBtn, thread]);
+      const wrap = el('div', { style: 'display:grid;grid-template-columns:560px 600px minmax(0,1fr);gap:40px;align-items:start;height:100%' }, [win, q, side]);
       body.appendChild(wrap);
       const apply = () => {
         const st = Number(body.getAttribute('data-state'));
         ok.classList.toggle('is-shown', st >= 1); q.classList.toggle('is-shown', st >= 1);
+        threadBtn.classList.toggle('is-shown', st >= 1); thread.classList.toggle('is-shown', st >= 2);
         reserve.setAttribute('aria-disabled', st >= 1 ? 'true' : 'false');
+        threadBtn.setAttribute('aria-disabled', st === 1 ? 'false' : 'true');
       };
       reserve.addEventListener('click', () => { if (body.getAttribute('data-state') === '0') { body.setAttribute('data-state', '1'); apply(); } });
+      threadBtn.addEventListener('click', () => { if (body.getAttribute('data-state') === '1') { body.setAttribute('data-state', '2'); apply(); } });
       body.reset = () => { body.setAttribute('data-state', '0'); apply(); };
       apply();
     },
     onEnter(body) { body.reset(); },
-    cues: [
-      { cue: 'reserve', target: 'reserve', action: 'click', expect: 1, seconds: 12, teaches: 'Ari reserves C101 for 10:00 to 11:00 and the screen answers Confirmed' },
-      { cue: 'question', target: 'question', action: 'hover', expect: 1, seconds: 8, teaches: 'The question of the week: what would you need to see before trusting the message' },
-    ],
     print(body) {
       body.appendChild(el('div', { class: 'print-columns' }, [
         el('div', {}, [
@@ -125,6 +138,8 @@
   ];
   const WHERE_IT_APPLIES = 'A throwaway calculation on your own machine needs none of this. A shared booking service that other people depend on needs all of it. The care you take grows with the consequences of a failure and with how much you do not know yet.';
   const THROUGH_LINE = 'Every habit in this course, a precise rule, an independent check, a bounded permission, a reviewable change, is also what it takes to direct and check an automated engineering assistant. Weeks 2, 7, 8, 9, 10 and 12 each return to that for a moment; Week 13 looks at it in full.';
+  // plan week1.txt, section 1: the weekly ordering is a learning sequence, not fourteen isolated phases
+  const COURSE_ORDER = 'The fourteen weeks are an order for learning, not fourteen separate phases of a project. A real project comes back to requirements, design, checks and operation again and again.';
   const outcomes = {
     kind: 'page', id: 'outcomes', role: 'page',
     heading: 'What you already know, and where this lecture goes',
@@ -147,13 +162,18 @@
         el('p', { style: 'font-size:21px;line-height:1.4' }, [el('b', {}, 'The thread. '), THROUGH_LINE]),
       ]);
       const list = el('ol', { class: 'outcome-list', 'aria-label': 'By the end of this lecture you can' }, OUTCOMES.map((o, i) => el('li', {}, [el('span', { class: 'n', 'aria-hidden': 'true' }, String(i + 1)), el('span', {}, o)])));
-      const right = el('div', {}, [el('div', { class: 'card-title' }, 'By the end of this lecture you can'), list]);
+      const order = el('div', { class: 'card', style: 'margin-top:16px;padding:14px 20px' }, [
+        el('div', { class: 'card-title', style: 'margin-bottom:6px' }, 'The order of the weeks'),
+        el('p', { style: 'font-size:21px;line-height:1.4' }, COURSE_ORDER),
+      ]);
+      const right = el('div', {}, [el('div', { class: 'card-title' }, 'By the end of this lecture you can'), list, order]);
       body.appendChild(el('div', { class: 'page-columns' }, [el('div', { style: 'display:flex;flex-direction:column;gap:16px' }, [recall, frame]), right]));
     },
     print(body) {
       body.appendChild(el('div', { class: 'print-columns' }, [
         el('div', {}, [el('h3', {}, 'Start from a program you know'), el('p', {}, 'Think of a program you have written or used every week. What does it do when everything goes as planned? What could make it fail outside that happy path: a second user, a lost connection, a rule that changes, a wrong assumption? Who else is affected when it fails?'),
-          el('h3', {}, 'Where this applies'), el('p', {}, WHERE_IT_APPLIES), el('h3', {}, 'The thread that runs through the course'), el('p', {}, THROUGH_LINE)]),
+          el('h3', {}, 'Where this applies'), el('p', {}, WHERE_IT_APPLIES), el('h3', {}, 'The thread that runs through the course'), el('p', {}, THROUGH_LINE),
+          el('h3', {}, 'The order of the weeks'), el('p', {}, COURSE_ORDER)]),
         el('div', {}, [el('h3', {}, 'By the end of this lecture you can'), el('ol', { class: 'outcome-list' }, OUTCOMES.map((o, i) => el('li', {}, [el('span', { class: 'n' }, String(i + 1)), el('span', {}, o)])))]),
       ]));
     },
@@ -167,6 +187,7 @@
     heading: 'Two green confirmations cannot both be right',
     lead: `${ARI.name} and ${BO.name} both want room ${ROOM} from ${START} to ${END}. Watch what each screen says, then what the stored calendar says.`,
     principle: 'Engineering judges behavior against an intended outcome and its consequences, not appearance alone.',
+    principleShort: 'Judge what the system does, not what the screen says.',
     conditions: [
       { id: 'each-screen-decides', baseline: true, label: 'Baseline: each screen checks its own copy of the room calendar and decides alone', short: 'Screens decide',
         states: [
@@ -174,7 +195,7 @@
           { caption: `${ARI.name} clicks Reserve. ${ARI.name}'s screen checks its copy, finds ${START} free and shows **Confirmed**. The stored calendar now holds ${ARI.name}'s booking.`, alt: `Calendar with one booking, ${ARI.name}, ${SLOT}.` },
           { caption: `${BO.name} clicks Reserve. ${BO.name}'s copy still says free, so ${BO.name}'s screen also shows **Confirmed**. Two green confirmations for one room and one hour.`, alt: `Calendar with two bookings in the same hour: ${ARI.name} and ${BO.name}.` },
           { prompt: { question: 'Both screens say Confirmed. What evidence would let you decide whether the system worked?', options: ['The two screens: both said Confirmed', `The stored calendar for ${ROOM}`, `What happens at the door at ${START}`] }, caption: 'Pause here and decide. Then step to see the stored calendar.' },
-          { caption: `The stored calendar holds **two confirmed bookings for ${ROOM} in the same hour**. Rule R-01 says a room has no overlapping confirmed bookings, so the stored record is wrong even though each screen looked right.`, alt: `Calendar with two overlapping bookings marked as a conflict against rule R-01.` },
+          { caption: `The stored calendar holds **two confirmed bookings for ${ROOM} in the same hour**. ${ruleIntro('R-01')}: a room has no overlapping confirmed bookings. The stored record breaks it, even though each screen looked right.`, alt: `Calendar with two overlapping bookings marked as a conflict against rule R-01.` },
           { caption: `At ${START} two people arrive at the door of ${ROOM}. One of them was promised something the service could not deliver. The screens were the appearance; the door is the consequence.` },
           { caption: 'Each screen ran without an error. Judged against the intended outcome, one confirmed booking per room and hour, the behavior failed.', principle: true },
         ] },
@@ -299,21 +320,6 @@
       }
       h.prevState = st; h.prevCond = cond;
     },
-    cues: [
-      { cue: 'reserve-ari', target: 'reserve-ari', action: 'click', expect: 1, seconds: 10, teaches: `${ARI.name} reserves ${ROOM} ${SLOT}; the screen shows Confirmed and the stored calendar gains one booking` },
-      { cue: 'reserve-bo', target: 'reserve-bo', action: 'click', expect: 2, seconds: 10, teaches: `${BO.name} reserves the same hour; the stale calendar copy lets a second Confirmed appear` },
-      { cue: 'step-prompt', target: 'step', action: 'click', expect: 3, seconds: 6, teaches: 'The prediction question appears: what would let you decide whether the system worked' },
-      { cue: 'hover-options', target: 'prompt', action: 'hover', expect: 3, seconds: 10, teaches: 'Pause the video and choose: the screens, the stored calendar, or the door' },
-      { cue: 'step-calendar', target: 'step', action: 'click', expect: 4, seconds: 14, teaches: 'The stored calendar shows two overlapping confirmed bookings; rule R-01 is broken' },
-      { cue: 'step-door', target: 'step', action: 'click', expect: 5, seconds: 12, teaches: 'Two people at one door: the consequence of a false promise' },
-      { cue: 'step-principle', target: 'step', action: 'click', expect: 6, seconds: 10, teaches: 'Behavior is judged against the intended outcome and its consequences, not appearance' },
-      { cue: 'condition-shared', target: 'condition-shared-decision', action: 'click', expect: 0, seconds: 8, teaches: 'Change one condition: one shared decision reads the stored calendar before any screen answers' },
-      { cue: 'shared-reserve-ari', target: 'reserve-ari', action: 'click', expect: 1, seconds: 10, teaches: `${ARI.name}'s request travels to the shared decision, is stored and confirmed` },
-      { cue: 'shared-reserve-bo', target: 'reserve-bo', action: 'click', expect: 2, seconds: 12, teaches: `${BO.name}'s request meets the stored booking and is rejected with a clear reason and alternatives` },
-      { cue: 'shared-step-compare', target: 'step', action: 'click', expect: 3, seconds: 14, teaches: 'False promise against honest rejection: who carries the cost' },
-      { cue: 'shared-hover-compare', target: 'compare', action: 'hover', expect: 3, seconds: 8, teaches: 'Reading the two outcome cards side by side' },
-      { cue: 'shared-step-principle', target: 'step', action: 'click', expect: 4, seconds: 8, teaches: 'The rule is kept where the bookings are stored; screens report a decision instead of making one' },
-    ],
     print: [
       { title: 'Two confirmations on screen, two overlapping bookings stored', condition: 'each-screen-decides', state: 4, note: `Rule R-01, no overlapping confirmed bookings for the same room, is broken in the stored calendar although each screen showed success. Each screen decided from its own copy of the calendar, and ${BO.name}'s copy was stale.` },
       { title: 'One shared decision: one confirmation, one clear rejection', condition: 'shared-decision', state: 2, note: `Rule R-01 is kept: the shared decision reads the stored calendar before any screen says Confirmed. ${BO.name} sees the reason and two alternatives.` },
@@ -330,6 +336,7 @@
     heading: 'The Reserve button is not the whole system',
     lead: 'A context map: the booking service inside a boundary, and the people and systems it depends on outside.',
     principle: 'A system boundary identifies responsibility and dependencies; it does not make external behavior disappear.',
+    principleShort: 'What sits outside your boundary still reaches your users.',
     conditions: [
       { id: 'all-available', baseline: true, label: 'Baseline: every external system available', short: 'All available',
         states: [
@@ -344,7 +351,7 @@
       { id: 'notification-unavailable', label: `Changed condition: ${lower1(SB.changed_condition.label)}`, short: 'Notifications unavailable',
         states: [
           { prompt: { question: `Notification delivery is unavailable. Which outcomes remain possible for ${ARI.name}?`, options: ['None: no booking without a message', 'The booking is stored and confirmed; the message is delayed', 'The booking waits until the provider is back'] }, caption: 'Same boundary, same arrows. One dependency outside the boundary is down; room storage is unchanged.', alt: 'Context map with notification delivery marked unavailable: dashed red box and crossed arrows.' },
-          { caption: `Still possible: the decision is made and stored; ${ARI.name}'s screen shows Confirmed and says that the message is delayed. Not possible right now: the message reaching ${ARI.name}. Rule R-04: a failed notification does not undo a confirmed booking, and the pending message stays visible and recoverable.`, alt: 'Checklist beside the boundary: three outcomes still possible, one not possible.' },
+          { caption: `Still possible: the decision is made and stored; ${ARI.name}'s screen shows Confirmed and says that the message is delayed. Not possible right now: the message reaching ${ARI.name}. ${ruleIntro('R-04')}: a failed notification does not undo a confirmed booking, and the pending message stays visible and recoverable.`, alt: 'Checklist beside the boundary: three outcomes still possible, one not possible.' },
           { caption: 'The boundary did not move and the dependency did not vanish. Naming it is what lets the team decide what the user sees while it is down.', principle: true },
         ] },
     ],
@@ -371,7 +378,7 @@
       // arrows
       const a1 = arrow(svg, { from: { x: 184, y: 330 }, to: { x: bx, y: 330 }, label: 'booking request:', kind: 'accent', cls: 'rv rv--draw', labelDy: -14 });
       a1.appendChild(text(292, 354, 'room, start, end', { class: 'a-label', 'text-anchor': 'middle', style: 'fill:var(--accent-strong)' }));
-      const a2 = arrow(svg, { from: { x: 185, y: 136 }, to: { x: bx, y: 214 }, label: ['identity assertion:', 'who is signed in'], kind: 'violet', cls: 'rv rv--draw', labelAt: 0.62, labelDy: -34, labelDx: -8 });
+      const a2 = arrow(svg, { from: { x: 310, y: 98 }, to: { x: bx, y: 214 }, label: ['identity assertion:', 'who is signed in'], kind: 'violet', cls: 'rv rv--draw', labelAt: 0, labelAnchor: 'start', labelDx: 14, labelDy: -30 });
       const a3 = arrow(svg, { from: { x: 1000, y: 244 }, to: { x: bx + bw, y: 244 }, label: ['room facts: exists,', 'capacity, step-free access'], kind: 'default', cls: 'rv rv--draw', labelAnchor: 'start', labelDx: -40, labelDy: -74 });
       const a4 = arrow(svg, { from: { x: bx + bw, y: 480 }, to: { x: 1000, y: 592 }, label: 'message to deliver', kind: 'ok', cls: 'rv rv--draw', labelAnchor: 'start', labelDx: 22, labelDy: -20 });
       const a5 = arrow(svg, { from: { x: 1125, y: 636 }, via: [{ x: 1125, y: 662 }, { x: 150, y: 662 }], to: { x: 150, y: 422 }, label: 'confirmation message', kind: 'ok', cls: 'rv rv--draw', labelDy: -12 });
@@ -379,7 +386,7 @@
       h.arrows = [a1, a2, a3, a4, a5];
       // information kind tags (baseline state 5)
       const tag = (x, y, label, kind) => { const b = badge({ x, y, label, kind, cls: 'rv rv--rise' }); b.setAttribute('data-show-from', '5'); b.setAttribute('data-cond', 'all-available'); return b; };
-      svg.append(tag(256, 270, 'asks', 'accent'), tag(310, 234, 'vouches', 'violet'), tag(1198, 662, 'reports', 'ok'), tag(1125, 304, 'reference data', 'default'));
+      svg.append(tag(256, 270, 'asks', 'accent'), tag(575, 75, 'vouches', 'violet'), tag(1198, 662, 'reports', 'ok'), tag(1125, 304, 'reference data', 'default'));
       // unavailable marking (condition B)
       const down = s('g', { class: 'rv', 'data-cond': 'notification-unavailable', 'data-show-from': '0' });
       down.appendChild(s('rect', { x: 994, y: 554, width: 262, height: 88, rx: 14, fill: 'none', stroke: 'var(--bad)', 'stroke-width': 3, 'stroke-dasharray': '10 8' }));
@@ -395,7 +402,7 @@
       const shortStill = ['Decision made and stored', 'Screen shows Confirmed', 'Screen shows: message delayed'];
       shortStill.forEach((t, i) => { list.appendChild(text(966, 386 + i * 26, '✓', { class: 'n-label', style: 'fill:var(--ok);font-size:19px' })); list.appendChild(text(990, 386 + i * 26, t, { class: 'n-sub', style: 'font-size:16px;fill:var(--text)' })); });
       list.appendChild(text(966, 464, '✕', { class: 'n-label', style: 'fill:var(--bad);font-size:19px' })); list.appendChild(text(990, 464, `Message reaches ${ARI.name} now`, { class: 'n-sub', style: 'font-size:16px;fill:var(--text)' }));
-      list.appendChild(text(966, 484, `${SB.changed_condition.rule}: a failed message does not undo a booking`, { class: 'n-sub', style: 'font-size:13.5px' }));
+      list.appendChild(text(966, 486, `${SB.changed_condition.rule}: the booking stays confirmed`, { class: 'n-sub', style: 'font-size:15px' }));
       svg.appendChild(list);
       api.cue(list, 'outcomes');
       // answer to the prompt (baseline state 6)
@@ -410,19 +417,6 @@
       h.arrows[3].classList.toggle('arrow--unavailable', view.conditionId === 'notification-unavailable');
       h.arrows[4].classList.toggle('arrow--unavailable', view.conditionId === 'notification-unavailable');
     },
-    cues: [
-      { cue: 'hover-boundary-question', target: 'prompt', action: 'hover', expect: 0, seconds: 10, teaches: 'Which parts of the map can the team change directly: pause and decide' },
-      { cue: 'step-request', target: 'step', action: 'click', expect: 1, seconds: 10, teaches: 'A booking request crosses the boundary: something a person asks for' },
-      { cue: 'step-identity', target: 'step', action: 'click', expect: 2, seconds: 10, teaches: 'An identity assertion: a fact another system vouches for' },
-      { cue: 'step-room-facts', target: 'step', action: 'click', expect: 3, seconds: 8, teaches: 'Room facts are reference data the service reads but does not own' },
-      { cue: 'step-notification', target: 'step', action: 'click', expect: 4, seconds: 10, teaches: 'The message goes out through a provider and comes back to the user as a notification' },
-      { cue: 'step-kinds', target: 'step', action: 'click', expect: 5, seconds: 12, teaches: 'Three kinds of information: asks, vouches, reports' },
-      { cue: 'step-answer', target: 'step', action: 'click', expect: 6, seconds: 10, teaches: 'Only the inside of the boundary is the team\'s to change; every crossing arrow is a dependency' },
-      { cue: 'condition-unavailable', target: 'condition-notification-unavailable', action: 'click', expect: 0, seconds: 8, teaches: 'Change one condition: notification delivery is unavailable, storage unchanged' },
-      { cue: 'hover-unavailable', target: 'unavailable', action: 'hover', expect: 0, seconds: 6, teaches: 'The unavailable dependency is marked with a broken line and the word unavailable' },
-      { cue: 'step-outcomes', target: 'step', action: 'click', expect: 1, seconds: 14, teaches: 'Which outcomes remain possible: stored and confirmed, message delayed; rule R-04' },
-      { cue: 'step-principle-2', target: 'step', action: 'click', expect: 2, seconds: 8, teaches: 'A boundary names responsibility and dependencies; it does not remove external behavior' },
-    ],
     print: [
       { title: 'The context map with every interaction labeled', condition: 'all-available', state: 5, note: 'Inside the dashed boundary: Booking, Policy, Room Catalog, Notification and Storage, the modules the team changes. Outside: students and staff, campus identity, room records and notification delivery.' },
       { title: 'One dependency unavailable: what remains possible', condition: 'notification-unavailable', state: 1, principle: true, note: `Notification delivery is marked with a broken line and the word unavailable. Still possible: ${SB.changed_condition.still_possible.join('; ')}. Not possible now: ${SB.changed_condition.no_longer_possible.join('; ')} (rule R-04).` },
@@ -438,6 +432,7 @@
     heading: 'The same screen can serve one person and exclude another',
     lead: 'Who is affected by the booking screen, and does it work for each of them?',
     principle: 'Quality depends on the people and conditions included in the definition of success.',
+    principleShort: 'If someone cannot finish the task, it does not work.',
     conditions: [
       { id: 'mouse', baseline: true, label: 'Baseline: the polished booking screen, used with a mouse', short: 'Mouse',
         states: [
@@ -457,7 +452,7 @@
           { caption: `**Tab** → the focus ring skips Reserve and leaves the page. The polished Reserve is a painted box, not a control. **${SL.keyboard_paths.flawed[2]}**`, alt: 'Focus ring leaves the screen; Reserve is marked not reachable; the task cannot be completed.' },
           { caption: 'The corrected screen appears beside it. It looks the same. Tab reaches the room list and the time fields exactly as before.', alt: 'A second, corrected screen beside the first, focus on its time fields.' },
           { caption: `**Tab** → the corrected Reserve is a real button, so the focus ring lands on it.`, alt: 'Focus ring on the Reserve button of the corrected screen.' },
-          { caption: `**Enter** → Confirmed, and the status message is announced, so a screen reader speaks it too. Rule R-05: the core task can be completed by keyboard, with status and error information you can perceive.`, alt: 'Corrected screen shows Confirmed; the status message is announced.' },
+          { caption: `**Enter** → Confirmed, and the status message is announced, so a screen reader speaks it too. ${ruleIntro('R-05')}: the core task can be completed by keyboard, with status and error information you can perceive.`, alt: 'Corrected screen shows Confirmed; the status message is announced.' },
           { caption: `Compare on **${SL.compare_on}**: the polished screen completes 0 of 1 bookings by keyboard, the corrected screen 1 of 1. Same appearance, different service.`, principle: true },
         ] },
     ],
@@ -467,19 +462,24 @@
       const base = el('div', { 'data-cond': 'mouse', style: 'position:absolute;inset:0;display:grid;grid-template-columns:540px minmax(0,1fr);gap:24px;' });
       const W = 540, H = 680;
       const svg = window.VC.svg(W, H, { label: 'Stakeholder map around the Campus Rooms booking service', uid: (x) => api.uid(x) });
-      const centre = node({ x: 165, y: 300, w: 210, h: 80, label: ['Campus Rooms', 'booking screen'] });
+      const box = { x: 165, y: 330, w: 210, h: 80 };
+      const centre = node({ x: box.x, y: box.y, w: box.w, h: box.h, label: ['Campus Rooms', 'booking screen'] });
       svg.appendChild(centre);
-      const ari = personSvg(270, 80, `${ARI.name} · clicks Reserve`); svg.appendChild(ari);
-      svg.appendChild(arrow(svg, { from: { x: 270, y: 140 }, to: { x: 270, y: 300 }, kind: 'accent', label: 'reserves a room', labelDx: -96, labelDy: 6 }));
-      const spots = [[128, 236], [412, 236], [128, 566], [412, 566]];
+      const ari = personSvg(270, 76, `${ARI.name} · clicks Reserve`); svg.appendChild(ari);
+      svg.appendChild(arrow(svg, { from: { x: 270, y: 140 }, to: { x: 270, y: box.y }, kind: 'accent' }));
+      // names sit on the outer side of each figure, so every dashed arrow runs from a figure to the box without crossing a name
+      const spots = [[128, 262], [412, 262], [128, 560], [412, 560]];
       const short = ['Student who needs', 'Room staff handling', 'Support staff diagnosing', 'Maintainer interpreting'];
       const short2 = ['step-free access', 'closures', 'mistakes', 'old decisions'];
       h.people = SL.stakeholders.map((stk, i) => {
         const [x, y] = spots[i];
+        const above = y < box.y;
         const g = s('g', { class: 'rv rv--rise', 'data-show-from': String(i + 1), 'data-focus-at': String(i + 1) });
-        const p = personSvg(x, y, short[i]); p.appendChild(text(0, 74, short2[i], { class: 'n-label', 'text-anchor': 'middle', style: 'font-size:20px' }));
-        const to = { x: x < 270 ? 165 : 375, y: y < 340 ? 316 : 364 };
-        g.appendChild(arrow(svg, { from: { x: x + (x < 270 ? 30 : -30), y: y + (y < 340 ? 12 : -46) }, to, kind: 'default', dashed: true }));
+        const p = personSvg(x, y, short[i]);
+        if (above) p.querySelector('text').setAttribute('y', '-92');
+        p.appendChild(text(0, above ? -68 : 74, short2[i], { class: 'n-label', 'text-anchor': 'middle', style: 'font-size:20px' }));
+        const to = { x: x < 270 ? box.x + 35 : box.x + box.w - 35, y: above ? box.y : box.y + box.h };
+        g.appendChild(arrow(svg, { from: { x, y: above ? y + 30 : y - 60 }, to, kind: 'default', dashed: true }));
         g.appendChild(p);
         svg.appendChild(g);
         api.cue(g, `stakeholder-${i + 1}`);
@@ -521,14 +521,25 @@
       h.flawed.win.setAttribute('data-dim-at', '5-7'); h.flawed.win.classList.add('dm');
       api.cue(h.flawed.win, 'screen-polished'); api.cue(h.fixed.win, 'screen-corrected');
       h.escape = el('div', reveal({ class: 'rv callout callout--bad', 'data-show-at': '3-6', style: 'grid-column:1;grid-row:2;font-size:19px' }), [el('b', {}, 'Focus ring:'), ' left the page and landed in the browser toolbar. Nothing on the screen accepted it after the time fields.']);
-      h.compareK = el('div', reveal({ class: 'rv rv--rise card', 'data-show-from': '7', style: 'grid-column:1 / -1;grid-row:2;padding:12px 18px' }), [
-        el('div', { class: 'card-title', style: 'margin-bottom:4px' }, `Compare on ${SL.compare_on}`),
-        table({ cls: 'data-table--compact', columns: [{ key: 'screen', label: 'Screen' }, { key: 'look', label: 'Appearance' }, { key: 'mouse', label: 'Mouse' }, { key: 'kbd', label: 'Keyboard only' }], rows: [
-          { cells: { screen: 'Polished screen', look: 'identical', mouse: el('span', { class: 'ok' }, '1 of 1 completed'), kbd: el('span', { class: 'bad' }, '0 of 1 completed') } },
-          { cells: { screen: 'Corrected screen', look: 'identical', mouse: el('span', { class: 'ok' }, '1 of 1 completed'), kbd: el('span', { class: 'ok' }, '1 of 1 completed') } },
-        ] }),
+      // the formal term after its mechanism: the comparison names accessibility (plan week1.txt, scene 3; source S25)
+      const wcag = SOURCES.find(([key]) => key === 'S25');
+      const accessibility = el('div', { style: 'min-width:0;border-left:4px solid var(--violet);padding:2px 0 2px 18px' }, [
+        el('div', { class: 'card-title', style: 'margin-bottom:6px;color:var(--violet)' }, 'The name for this difference'),
+        el('p', { style: 'font-size:20px;line-height:1.35' }, [el('b', {}, 'Accessibility'), ': you can complete the task however you use the service, with a mouse, the keyboard only or a screen reader. It is part of whether the service works.']),
+        el('p', { class: 'muted', style: 'font-size:16px;line-height:1.3;margin-top:6px' }, `Reference: ${wcag[1]} (${wcag[0]})`),
+      ]);
+      h.compareK = el('div', reveal({ class: 'rv rv--rise card', 'data-show-from': '7', style: 'grid-column:1 / -1;grid-row:2;padding:12px 18px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:26px;align-items:start' }), [
+        el('div', { style: 'min-width:0' }, [
+          el('div', { class: 'card-title', style: 'margin-bottom:4px' }, `Compare on ${SL.compare_on}`),
+          table({ cls: 'data-table--compact', columns: [{ key: 'screen', label: 'Screen' }, { key: 'look', label: 'Appearance' }, { key: 'mouse', label: 'Mouse' }, { key: 'kbd', label: 'Keyboard only' }], rows: [
+            { cells: { screen: 'Polished screen', look: 'identical', mouse: el('span', { class: 'ok' }, '1 of 1 completed'), kbd: el('span', { class: 'bad' }, '0 of 1 completed') } },
+            { cells: { screen: 'Corrected screen', look: 'identical', mouse: el('span', { class: 'ok' }, '1 of 1 completed'), kbd: el('span', { class: 'ok' }, '1 of 1 completed') } },
+          ] }),
+        ]),
+        accessibility,
       ]);
       api.cue(h.compareK, 'compare-keyboard');
+      api.cue(accessibility, 'accessibility');
       h.flawed.win.style.cssText = 'grid-column:1;grid-row:1;'; h.fixed.win.style.cssText += 'grid-column:2;grid-row:1;';
       kb.append(h.flawed.win, h.fixed.win, h.escape, h.compareK);
       stage.appendChild(kb);
@@ -550,26 +561,10 @@
       h.flawed.reserve.style.outlineOffset = st >= 3 ? '3px' : '';
       h.fixed.reserve.classList.toggle('is-focus', st === 5 || st === 6);
     },
-    cues: [
-      { cue: 'hover-who', target: 'prompt', action: 'hover', expect: 0, seconds: 10, teaches: 'Who is affected besides the person clicking Reserve: pause and decide' },
-      { cue: 'step-student', target: 'step', action: 'click', expect: 1, seconds: 12, teaches: 'A student who needs step-free access: room records need access attributes; the task must work by keyboard' },
-      { cue: 'step-staff', target: 'step', action: 'click', expect: 2, seconds: 10, teaches: 'Room staff handling closures: who may record a closure stays open until Week 14' },
-      { cue: 'step-support', target: 'step', action: 'click', expect: 3, seconds: 10, teaches: 'Support staff: which request identifier and outcome category are recorded' },
-      { cue: 'step-maintainer', target: 'step', action: 'click', expect: 4, seconds: 10, teaches: 'A maintainer: where is the decision record' },
-      { cue: 'step-table', target: 'step', action: 'click', expect: 5, seconds: 10, teaches: 'Each concern became a question the system must answer' },
-      { cue: 'step-mouse', target: 'step', action: 'click', expect: 6, seconds: 8, teaches: 'With a mouse the polished screen completes the booking' },
-      { cue: 'condition-keyboard', target: 'condition-keyboard', action: 'click', expect: 0, seconds: 8, teaches: 'Change one condition: the same screen with the keyboard only' },
-      { cue: 'kb-tab-1', target: 'step', action: 'click', expect: 1, seconds: 6, teaches: 'Tab moves the focus ring to the room list' },
-      { cue: 'kb-tab-2', target: 'step', action: 'click', expect: 2, seconds: 6, teaches: 'Tab moves the focus ring to the time fields' },
-      { cue: 'kb-tab-3', target: 'step', action: 'click', expect: 3, seconds: 12, teaches: 'Tab skips the painted Reserve box; the task cannot be completed' },
-      { cue: 'kb-corrected', target: 'step', action: 'click', expect: 4, seconds: 8, teaches: 'The corrected screen looks the same and reaches the same fields' },
-      { cue: 'kb-tab-reserve', target: 'step', action: 'click', expect: 5, seconds: 6, teaches: 'Tab reaches the real Reserve button' },
-      { cue: 'kb-enter', target: 'step', action: 'click', expect: 6, seconds: 10, teaches: 'Enter confirms the booking and the status is announced; rule R-05' },
-      { cue: 'kb-compare', target: 'step', action: 'click', expect: 7, seconds: 12, teaches: 'Compare on task completion: 0 of 1 against 1 of 1 with identical appearance' },
-    ],
     print: [
       { title: 'Who is affected and what the system must answer', condition: 'mouse', state: 5, note: 'Room closures stay an open need until Week 14: who may record a closure, and what happens to affected bookings.' },
-      { title: 'The keyboard route that completes the booking', condition: 'keyboard', state: 6, principle: true, note: `The failed route on the polished screen: ${SL.keyboard_paths.flawed.join('; ')}. The corrected route: ${SL.keyboard_paths.corrected.join('; ')}. Compare on ${SL.compare_on}.` },
+      { title: 'The keyboard route that completes the booking', condition: 'keyboard', state: 6, note: `The failed route on the polished screen: ${SL.keyboard_paths.flawed.join('; ')}. The corrected route: ${SL.keyboard_paths.corrected.join('; ')}. Compare on ${SL.compare_on}.` },
+      { title: 'Same appearance, different service: accessibility', condition: 'keyboard', state: 7, principle: true, note: 'The two screens look identical and complete the booking with a mouse. With the keyboard only, one of them completes it and the other cannot. That difference is accessibility, and it is part of whether the service works.' },
     ],
   };
 
@@ -582,6 +577,7 @@
     heading: 'Faster is not a complete description of better',
     lead: 'Two fictional designs answer the same booking request. Decide which is better before their behavior is revealed.',
     principle: 'Compare alternatives under stated constraints; some requirements are conditions of acceptance rather than points in a score.',
+    principleShort: 'Some requirements are must-haves, not points to trade.',
     conditions: [
       { id: 'target-2s', baseline: true, label: `Baseline: ${lower1(QT.response_time_targets[0].label)}`, short: 'Target 2 s',
         states: [
@@ -621,10 +617,25 @@
       });
       api.cue(tbl, 'table');
       const targetBox = el('div', { class: 'card', style: 'padding:12px 16px' }, [
-        el('div', { class: 'card-title', style: 'margin-bottom:4px' }, 'Stated constraints'),
+        el('div', { class: 'card-title', style: 'margin-bottom:4px' }, ['Stated constraints ', el('span', { class: 'example-tag' }, 'example assumptions')]),
         (h.targetText = el('p', { style: 'font-size:21px' }, '')),
         el('p', { class: 'muted', style: 'font-size:18px;margin-top:4px' }, 'Correctness (R-01): required in every case, not traded for speed.'),
       ]);
+      // the standard vocabulary, named once after the rows are revealed (plan week1.txt, scene 4; source S46)
+      const SV = QT.standard_vocabulary;
+      const attributeIds = QT.attributes.map((a) => a.id);
+      if (!SV.named_examples.every((n) => SV.characteristics.includes(n)) || SV.rows.length !== attributeIds.length
+        || !SV.rows.every((r, i) => r.attribute === attributeIds[i] && SV.characteristics.includes(r.characteristic))) {
+        throw new Error('w01/quality-tradeoffs standard_vocabulary does not match the table rows or the nine characteristics');
+      }
+      const vocab = el('div', reveal({ class: 'rv rv--rise card', 'data-cond': 'target-2s', 'data-show-from': '6', style: 'padding:12px 16px' }), [
+        el('div', { class: 'card-title', style: 'margin-bottom:4px' }, 'The standard vocabulary'),
+        el('p', { style: 'font-size:19px;line-height:1.35' }, `${SV.standard} lists ${inWords(SV.characteristics.length)} product quality characteristics, among them ${listAnd(SV.named_examples)}.`),
+        el('p', { class: 'muted', style: 'font-size:17px;margin-top:8px' }, 'The rows of this table, in those names:'),
+        el('dl', { style: 'display:grid;grid-template-columns:max-content 1fr;gap:2px 14px;margin:4px 0 0;font-size:18px;line-height:1.3' },
+          SV.rows.flatMap((r) => [el('dt', { class: 'muted', style: 'margin:0' }, r.row), el('dd', { style: 'margin:0;font-weight:600' }, r.characteristic)])),
+      ]);
+      api.cue(vocab, 'standard-vocabulary');
       const optRows = QT.under_tight_target.map((o, i) => ({
         attrs: { class: 'rv', 'data-show-from': String(i + 1), 'data-focus-at': String(i + 1) },
         cells: { option: o.option, rule: o.keeps_rule ? el('span', { class: 'ok' }, 'keeps R-01') : el('span', { class: 'bad' }, 'breaks R-01'), effect: o.effect },
@@ -632,7 +643,7 @@
       const optTbl = table({ caption: 'Options under the 0.3 s target', cls: 'data-table--compact', columns: [{ key: 'option', label: 'Option' }, { key: 'rule', label: 'Rule' }, { key: 'effect', label: 'Effect' }], rows: optRows });
       const optWrap = el('div', { 'data-cond': 'target-0-3s' }, optTbl);
       api.cue(optWrap, 'options');
-      const right = el('div', { style: 'display:flex;flex-direction:column;gap:14px;min-width:0' }, [targetBox, optWrap, el('p', { class: 'rail-note', style: 'margin-top:auto;font-size:17px' }, QT.label)]);
+      const right = el('div', { style: 'display:flex;flex-direction:column;gap:14px;min-width:0' }, [targetBox, vocab, optWrap, el('p', { class: 'rail-note', style: 'margin-top:auto;font-size:17px' }, QT.label)]);
       wrap.append(el('div', { style: 'min-width:0' }, tbl), right);
       stage.appendChild(wrap);
       h.tbl = tbl;
@@ -645,22 +656,8 @@
         h.tbl.querySelectorAll('tbody tr').forEach((tr) => { tr.classList.add('is-shown'); tr.classList.toggle('is-focus', tr.getAttribute('data-show-from') === '1' && view.state === 0); });
       }
     },
-    cues: [
-      { cue: 'hover-which-better', target: 'prompt', action: 'hover', expect: 0, seconds: 10, teaches: 'Two designs, one question: which is better, and what has better to include' },
-      { cue: 'step-response-time', target: 'step', action: 'click', expect: 1, seconds: 8, teaches: 'Response time: 0.1 s against 0.4 s, both example assumptions inside the 2 s target' },
-      { cue: 'step-correctness', target: 'step', action: 'click', expect: 2, seconds: 10, teaches: 'Correctness under overlapping requests is a condition of acceptance, not a score' },
-      { cue: 'step-recoverability', target: 'step', action: 'click', expect: 3, seconds: 8, teaches: 'Recoverability: undoing a double booking later against nothing to undo' },
-      { cue: 'step-privacy', target: 'step', action: 'click', expect: 4, seconds: 8, teaches: 'Privacy: a calendar copy on every screen against a request that only the decision reads' },
-      { cue: 'step-change-effort', target: 'step', action: 'click', expect: 5, seconds: 8, teaches: 'Change effort when the rule changes: every screen against one decision point' },
-      { cue: 'step-principle-4', target: 'step', action: 'click', expect: 6, seconds: 10, teaches: 'Compare under stated constraints; correctness removes Design 1 before speed is compared' },
-      { cue: 'condition-tight', target: 'condition-target-0-3s', action: 'click', expect: 0, seconds: 8, teaches: 'Change one condition: the target tightens to 0.3 s and Design 2 misses it' },
-      { cue: 'step-answer-early', target: 'step', action: 'click', expect: 1, seconds: 8, teaches: 'Answering before the decision returns hides the delay and gives up the rule' },
-      { cue: 'step-faster-lookup', target: 'step', action: 'click', expect: 2, seconds: 8, teaches: 'A faster lookup keeps the rule and meets the target in the example' },
-      { cue: 'step-show-checking', target: 'step', action: 'click', expect: 3, seconds: 8, teaches: 'Showing the check in progress keeps the rule and makes the wait honest' },
-      { cue: 'step-principle-4b', target: 'step', action: 'click', expect: 4, seconds: 8, teaches: 'Preserve the rule while optimizing; hiding the delay returns to Design 1' },
-    ],
     print: [
-      { title: 'Two designs under the stated constraints', condition: 'target-2s', state: 6, principle: true, note: 'No winner badge: the rows are the rationale. The response-time values are example assumptions for two fictional designs.' },
+      { title: 'Two designs under the stated constraints', condition: 'target-2s', state: 6, principle: true, note: 'Read the rows as the reasoning: Design 1 fails correctness, a condition of acceptance, so its speed never decides. The response times and the targets are example assumptions for two fictional designs.' },
       { title: 'The same designs under a 0.3 s target', condition: 'target-0-3s', state: 4, note: 'Correctness (R-01) stays required. Two options keep the rule; the first hides the delay by giving up the rule.' },
     ],
   };
@@ -671,53 +668,121 @@
   const FL = A['w01/feedback-lifecycle'];
   const STAGES = FL.stages; // Need, Model, Implementation, Checks, Release, Operation, Revision
   const DISCOVERY = FL.discovery_points; // Requirements conversation, Integration check, Operation
+  const PATHS = FL.feedback_paths; // per condition: the steps the defect's information takes, and what they change
+  // the state at which each step of a path appears, and where its label sits in the 860 by 680 loop diagram
+  const PATH_SHOW = { 'found-in-operation': [2, 3, 3, 4, 4, 5], 'found-at-check': [2, 2, 3, 3], 'found-in-conversation': [1, 2, 2, 2] };
+  const PATH_LABEL = {
+    'found-in-operation': [{ x: 196, y: 302, anchor: 'start' }, { x: 440, y: 236, anchor: 'middle' }, { x: 440, y: 261, anchor: 'middle' }, null, { x: 604, y: 452, anchor: 'end' }, null],
+    'found-at-check': [{ x: 548, y: 412, anchor: 'end' }, { x: 548, y: 437, anchor: 'end' }, null, null],
+    'found-in-conversation': [{ x: 430, y: 270, anchor: 'middle' }, { x: 592, y: 302, anchor: 'end' }, null, { x: 604, y: 452, anchor: 'end' }],
+  };
+  /** The steps of a path shown at a state, in words, for the diagram's text alternative. */
+  const pathSoFar = (cid, st) => {
+    const shown = PATHS[cid].steps.filter((_, k) => PATH_SHOW[cid][k] <= st);
+    if (!shown.length) return '';
+    return ` Path so far: ${shown.map((p) => `${p.from === p.to ? `back into ${p.from}` : `${p.from} to ${p.to}`}, ${p.kind}${p.changes ? `: ${p.changes}` : ''}`).join('; ')}.`;
+  };
+  /** The route of a path in one line, for the print note. */
+  const pathRoute = (cid) => {
+    const steps = PATHS[cid].steps;
+    const stops = [steps[0].from, ...steps.map((p) => p.to)].filter((name, k, all) => k === 0 || name !== all[k - 1]);
+    return `Path: ${stops.join(' → ')}. Dashed steps carry what was learned back into the loop; solid steps carry the change forward.`;
+  };
   const feedbackLifecycle = {
     id: 'feedback-lifecycle', role: 'anchor',
     heading: 'A failure can teach the next requirement',
     lead: `One defect: ${FL.incident.toLowerCase()}. Where is it first noticed, and what has to change afterwards?`,
     principle: 'The lifecycle is a network of feedback loops, not a one-way conveyor ending when code runs.',
+    principleShort: 'The earlier you learn, the less you redo.',
     conditions: [
       { id: 'found-in-operation', baseline: true, label: 'Baseline: the missing message is first noticed in operation, by a user', short: 'Found in operation',
         states: [
           { prompt: { question: 'Where would you first notice that a failed notification leaves the user with no message?', options: ['While talking about the need', 'At an integration check', 'In operation, when a user reports it'] }, caption: `Seven stages in a loop: ${STAGES.join(', ')}. An incident card will travel through them.`, alt: `Lifecycle loop with seven stages: ${STAGES.join(', ')}.` },
           { caption: `A user reports it. The booking was stored, the message never arrived, and the screen said nothing. The incident card appears at **${STAGES[5]}**.`, alt: 'Incident card at Operation.' },
-          { caption: `The card moves to **${STAGES[6]}**. Incident handling: someone reads the record, finds the failed notification job, and tells the user. Two kinds of rework so far.`, alt: 'Incident card at Revision.' },
-          { caption: `Back to **${STAGES[0]}** and **${STAGES[1]}**. The need is restated: a booking whose message failed must say so. The model gains a message state: sent, delayed, failed.`, alt: 'Incident card at Model.' },
-          { caption: `On to **${STAGES[2]}** and **${STAGES[3]}**. A new check: when the notification fails, the booking stays confirmed and the screen shows the delayed message.`, alt: 'Incident card at Checks.' },
-          { caption: `**${STAGES[4]}.** The change ships. Count the rework: ${DISCOVERY[2].rework}. Five kinds, and the user found the defect.`, alt: 'Incident card at Release; five rework items listed.' },
-          { caption: '**Iteration** is going around the loop again to revisit understanding. **Increment** is the usable capability each pass adds. Move the first feedback earlier with the condition presets and compare the rework.', principle: true },
+          { caption: `The card moves to **${STAGES[6]}**. Incident handling: someone reads the record, finds the failed notification job, and tells the user. Two kinds of rework so far.`, alt: `Incident card at Revision.${pathSoFar('found-in-operation', 2)}` },
+          { caption: `Back to **${STAGES[0]}** and **${STAGES[1]}**. The need is restated: a booking whose message failed must say so. The model gains a message state: sent, delayed, failed.`, alt: `Incident card at Model.${pathSoFar('found-in-operation', 3)}` },
+          { caption: `On to **${STAGES[2]}** and **${STAGES[3]}**. A new check: when the notification fails, the booking stays confirmed and the screen shows the delayed message.`, alt: `Incident card at Checks.${pathSoFar('found-in-operation', 4)}` },
+          { caption: `**${STAGES[4]}.** The change ships. Count the rework: ${DISCOVERY[2].rework}. Five kinds, and the user found the defect.`, alt: `Incident card at Release; five rework items listed.${pathSoFar('found-in-operation', 5)}` },
+          { caption: '**Iteration** is going around the loop again to revisit understanding. **Increment** is the usable capability each pass adds. Move the first feedback earlier with the condition presets and compare the rework.', principle: true, alt: `Incident card at Release.${pathSoFar('found-in-operation', 6)}` },
         ] },
       { id: 'found-at-check', label: 'Changed condition: the same defect is first noticed at an integration check', short: 'Found at a check',
         states: [
           { caption: 'Same defect, earlier feedback. The integration check runs the booking with the notification provider switched off. Where does the card start now?', alt: 'Lifecycle loop, no card yet.' },
           { caption: `The screen stays silent during the check: found. The card appears at **${STAGES[3]}**, before any user sees it.`, alt: 'Incident card at Checks.' },
-          { caption: `Back to **${STAGES[1]}** and **${STAGES[2]}**: ${DISCOVERY[1].rework}. Two kinds of rework, no incident handling, no user to apologize to.`, alt: 'Incident card at Model.' },
-          { caption: `**${STAGES[4]}** with the message state in place. Compare the rework list with the baseline.`, principle: true },
+          { caption: `Back to **${STAGES[1]}** and **${STAGES[2]}**: ${DISCOVERY[1].rework}. Two kinds of rework, no incident handling, no user to apologize to.`, alt: `Incident card at Model.${pathSoFar('found-at-check', 2)}` },
+          { caption: `**${STAGES[4]}** with the message state in place. Compare the rework list with the baseline.`, principle: true, alt: `Incident card at Release.${pathSoFar('found-at-check', 3)}` },
         ] },
       { id: 'found-in-conversation', label: 'Changed condition: the same defect is first noticed in the requirements conversation', short: 'Found in conversation',
         states: [
           { caption: 'Same defect, earliest feedback. While writing rule R-04 someone asks: what does the user see when the message fails?', alt: 'Lifecycle loop, no card yet.' },
-          { caption: `The card appears at **${STAGES[0]}**. Rework: ${DISCOVERY[0].rework}. Nothing built yet has to be undone.`, alt: 'Incident card at Need.' },
-          { caption: `The example flows into **${STAGES[1]}** and **${STAGES[3]}** as they are written. Compare the three rework lists: the same defect, three different amounts of undoing.`, principle: true },
+          { caption: `The card appears at **${STAGES[0]}**. Rework: ${DISCOVERY[0].rework}. Nothing built yet has to be undone.`, alt: `Incident card at Need.${pathSoFar('found-in-conversation', 1)}` },
+          { caption: `The example flows into **${STAGES[1]}** and **${STAGES[3]}** as they are written. Compare the three rework lists: the same defect, three different amounts of undoing.`, principle: true, alt: `Incident card at Model.${pathSoFar('found-in-conversation', 2)}` },
         ] },
     ],
     setup(stage, api) {
       const h = {};
-      const wrap = el('div', { style: 'position:absolute;inset:0;display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:22px;' });
+      const wrap = el('div', { style: 'position:absolute;inset:0;display:grid;grid-template-columns:minmax(0,1fr) 480px;gap:22px;' });
       const W = 860, H = 680;
       const svg = window.VC.svg(W, H, { label: 'Lifecycle loop', uid: (x) => api.uid(x) });
       const cx = 430, cy = 358, rx = 330, ry = 222, nw = 176, nh = 60;
       h.pos = STAGES.map((_, i) => { const ang = (-90 + i * (360 / STAGES.length)) * Math.PI / 180; return { x: cx + rx * Math.cos(ang), y: cy + ry * Math.sin(ang) }; });
-      STAGES.forEach((_, i) => {
+      const ring = STAGES.map((_, i) => {
         const a = h.pos[i], b = h.pos[(i + 1) % STAGES.length];
         const dx = b.x - a.x, dy = b.y - a.y, len = Math.hypot(dx, dy);
         const ux = dx / len, uy = dy / len;
         const from = { x: a.x + ux * 100, y: a.y + uy * 42 }, to = { x: b.x - ux * 100, y: b.y - uy * 42 };
-        svg.appendChild(arrow(svg, { from, to, kind: 'default', bend: -22 }));
+        arrow(svg, { from, to, kind: 'default', bend: -22 });
+        return { from, to };
+      });
+      // the feedback path of each condition (fixtures: feedback_paths). A step along the loop traces the loop arrow;
+      // a step back across the loop is a curve through the middle; a question raised where it is found loops back into its stage.
+      const stageAt = (name) => { const i = STAGES.indexOf(name); if (i < 0) throw new Error(`feedback path names an unknown stage: ${name}`); return i; };
+      const pathLabels = [];
+      Object.keys(PATH_SHOW).forEach((cid) => {
+        const steps = PATHS[cid] && PATHS[cid].steps;
+        if (!steps || steps.length !== PATH_SHOW[cid].length || steps.length !== PATH_LABEL[cid].length) {
+          throw new Error(`w01/feedback-lifecycle feedback_paths for ${cid} do not match the steps this scene reveals`);
+        }
+        steps.forEach((p, k) => {
+          const a = stageAt(p.from), b = stageAt(p.to), dashed = p.kind === 'feedback', show = String(PATH_SHOW[cid][k]);
+          let g;
+          if (a === b) {
+            const q = h.pos[a];
+            g = s('g', { class: `arrow arrow--warn${dashed ? ' arrow--dashed' : ''}` });
+            g.appendChild(s('path', { class: 'a-line', d: `M${q.x - 44},${q.y + nh / 2 + 2} C${q.x - 88},${q.y + 132} ${q.x + 88},${q.y + 132} ${q.x + 44},${q.y + nh / 2 + 6}`, 'marker-end': `url(#${api.uid('arrow-warn')})` }));
+            svg.appendChild(g);
+          } else if (b === (a + 1) % STAGES.length) {
+            g = arrow(svg, { from: ring[a].from, to: ring[a].to, kind: 'warn', bend: -22, dashed });
+          } else {
+            const pa = h.pos[a], pb = h.pos[b];
+            g = arrow(svg, { from: { x: pa.x - 14, y: pa.y - nh / 2 - 6 }, to: { x: pb.x - 30, y: pb.y + nh / 2 + 8 }, kind: 'warn', bend: -40, dashed });
+          }
+          g.classList.add('rv');
+          g.setAttribute('data-cond', cid); g.setAttribute('data-show-from', show);
+          g.querySelector('.a-line').style.strokeWidth = '3.2';
+          api.cue(g, `path-${cid}-${k + 1}`);
+          if (p.changes) {
+            const at = PATH_LABEL[cid][k];
+            if (!at) throw new Error(`w01/feedback-lifecycle: step ${k + 1} of ${cid} changes something but has no label position`);
+            pathLabels.push(text(at.x, at.y, p.changes, { class: 'rv path-label', 'text-anchor': at.anchor, 'data-cond': cid, 'data-show-from': show,
+              style: 'font-size:18px;font-weight:600;fill:var(--warn);paint-order:stroke;stroke:var(--bg);stroke-width:7px;stroke-linejoin:round' }));
+          }
+        });
+        // legend of the two line styles, shown with the first step of the path
+        const legend = s('g', { class: 'rv', 'data-cond': cid, 'data-show-from': String(Math.min(...PATH_SHOW[cid])) });
+        legend.appendChild(s('line', { x1: 14, y1: 22, x2: 60, y2: 22, stroke: 'var(--warn)', 'stroke-width': 3.2, 'stroke-dasharray': '10 9' }));
+        legend.appendChild(text(70, 28, 'feedback: what was learned', { style: 'font-size:17px;fill:var(--text-muted)' }));
+        legend.appendChild(s('line', { x1: 14, y1: 50, x2: 60, y2: 50, stroke: 'var(--warn)', 'stroke-width': 3.2 }));
+        legend.appendChild(text(70, 56, 'change: carried forward', { style: 'font-size:17px;fill:var(--text-muted)' }));
+        pathLabels.push(legend);
       });
       h.nodes = STAGES.map((name, i) => { const n = node({ x: h.pos[i].x - nw / 2, y: h.pos[i].y - nh / 2, w: nw, h: nh, label: name, cls: 'stage-node' }); svg.appendChild(n); api.cue(n, `stage-${name.toLowerCase()}`); return n; });
       svg.appendChild(text(cx, cy - 14, 'feedback loops', { class: 'n-kind', 'text-anchor': 'middle' }));
       svg.appendChild(text(cx, cy + 16, 'not a conveyor', { class: 'n-kind', 'text-anchor': 'middle' }));
+      svg.append(...pathLabels);
+      // the incident card sits above a stage, or below the two stages at the bottom so it never covers a path label
+      // and shifted away from the vertical middle, so it does not cover the loop arrows next to its stage
+      h.cardAt = (p) => `translate(${Math.min(W - 122, Math.max(122, p.x + Math.sign(Math.round(p.x - cx)) * 50))}px, ${p.y > cy + 100 ? p.y + 78 : p.y - 78}px)`;
       h.card = s('g', { class: 'incident-card rv', style: 'transition: transform var(--t-move) var(--ease);' });
       h.card.appendChild(s('rect', { x: -120, y: -40, width: 240, height: 80, rx: 12, fill: 'var(--warn-fill)', stroke: 'var(--warn)', 'stroke-width': 3 }));
       h.card.appendChild(text(0, -12, 'Incident', { class: 'n-kind', 'text-anchor': 'middle', style: 'fill:var(--warn)' }));
@@ -764,34 +829,18 @@
       }
       h.nodes.forEach((n, i) => n.classList.toggle('is-focus', focus.includes(i)));
       const restIdx = at('Operation');
-      if (stageIdx == null) { h.card.classList.remove('is-shown'); h.card.style.transform = `translate(${h.pos[restIdx].x}px, ${h.pos[restIdx].y - 78}px)`; }
-      else { const p = h.pos[stageIdx]; h.card.style.transform = `translate(${p.x}px, ${p.y - 78}px)`; h.card.classList.add('is-shown'); }
+      if (stageIdx == null) { h.card.classList.remove('is-shown'); h.card.style.transform = h.cardAt(h.pos[restIdx]); }
+      else { h.card.style.transform = h.cardAt(h.pos[stageIdx]); h.card.classList.add('is-shown'); }
       h.reworkList.replaceChildren(...items.map((t) => el('li', {}, t)));
       if (!items.length) h.reworkList.appendChild(el('li', { class: 'muted', style: 'list-style:none;margin-left:-1.3em' }, 'nothing yet'));
       h.reworkTitle.textContent = items.length ? `Rework after discovery · ${items.length} kind${items.length > 1 ? 's' : ''}` : 'Rework after discovery';
       h.cmpCard.classList.toggle('is-shown', showCmp);
       h.cmp.querySelectorAll('tbody tr').forEach((tr) => tr.classList.toggle('is-focus', tr.getAttribute('data-discovery') === current));
     },
-    cues: [
-      { cue: 'hover-where', target: 'prompt', action: 'hover', expect: 0, seconds: 10, teaches: 'Where would you first notice the missing message: pause and decide' },
-      { cue: 'step-operation', target: 'step', action: 'click', expect: 1, seconds: 10, teaches: 'A user reports the defect in operation; the incident card appears' },
-      { cue: 'step-revision', target: 'step', action: 'click', expect: 2, seconds: 10, teaches: 'Incident handling and user communication are the first two kinds of rework' },
-      { cue: 'step-need-model', target: 'step', action: 'click', expect: 3, seconds: 12, teaches: 'The need is restated and the model gains a message state' },
-      { cue: 'step-checks', target: 'step', action: 'click', expect: 4, seconds: 10, teaches: 'A new check: notification failure keeps the booking and shows the delayed message' },
-      { cue: 'step-release', target: 'step', action: 'click', expect: 5, seconds: 10, teaches: 'Release; five kinds of rework counted' },
-      { cue: 'step-terms', target: 'step', action: 'click', expect: 6, seconds: 10, teaches: 'Iteration revisits understanding; increment adds usable capability' },
-      { cue: 'condition-check', target: 'condition-found-at-check', action: 'click', expect: 0, seconds: 8, teaches: 'Change one condition: the defect is first noticed at an integration check' },
-      { cue: 'check-step-found', target: 'step', action: 'click', expect: 1, seconds: 8, teaches: 'The check with the provider switched off finds the silent screen' },
-      { cue: 'check-step-rework', target: 'step', action: 'click', expect: 2, seconds: 10, teaches: 'Two kinds of rework: a message state and a check' },
-      { cue: 'check-step-release', target: 'step', action: 'click', expect: 3, seconds: 8, teaches: 'Released with the message state; compare with the baseline' },
-      { cue: 'condition-conversation', target: 'condition-found-in-conversation', action: 'click', expect: 0, seconds: 8, teaches: 'Change the condition again: the defect surfaces while talking about the need' },
-      { cue: 'conv-step-found', target: 'step', action: 'click', expect: 1, seconds: 10, teaches: 'One sentence added to R-04 and one acceptance example; nothing is undone' },
-      { cue: 'conv-step-compare', target: 'step', action: 'click', expect: 2, seconds: 12, teaches: 'Three discovery points, three amounts of undoing; the loop is a network of feedback' },
-    ],
     print: [
-      { title: 'The loop and the path of a defect found in operation', condition: 'found-in-operation', state: 5, note: 'The card travelled Operation → Revision → Need and Model → Implementation and Checks → Release. Rework: incident handling, user communication, message state, check, release.' },
-      { title: 'The same defect found at an integration check', condition: 'found-at-check', state: 3, note: 'Path: Checks → Model and Implementation → Release. Rework: one message state and one check. No cost multiplier is claimed; the kinds of rework are the comparison.' },
-      { title: 'The same defect found while talking about the need', condition: 'found-in-conversation', state: 2, principle: true, note: 'Rework: one sentence added to R-04 and one acceptance example. Iteration revisits understanding; an increment adds usable capability.' },
+      { title: 'The loop and the feedback path of a defect found in operation', condition: 'found-in-operation', state: 5, note: `${pathRoute('found-in-operation')} Rework: ${DISCOVERY[2].rework}.` },
+      { title: 'The feedback path of the same defect found at an integration check', condition: 'found-at-check', state: 3, note: `${pathRoute('found-at-check')} Rework: ${DISCOVERY[1].rework}, against ${inWords(DISCOVERY[2].rework.split(', ').length)} kinds when a user found the defect.` },
+      { title: 'The feedback path of the same defect found while talking about the need', condition: 'found-in-conversation', state: 2, principle: true, note: `${pathRoute('found-in-conversation')} Rework: ${DISCOVERY[0].rework}. Iteration revisits understanding; an increment adds usable capability.` },
     ],
   };
 
@@ -804,6 +853,7 @@
     heading: 'What would make you believe this works?',
     lead: 'Three claims about the booking service. Each one deserves a check, and each check leaves something uncertain.',
     principle: 'A check supports a bounded claim; confidence without scope is difficult to evaluate.',
+    principleShort: 'A test shows what it tested. Say what it covered.',
     conditions: [
       { id: 'one-user', baseline: true, label: `Baseline: ${lower1(EV.workloads[0].label)}`, short: 'One at a time',
         states: [
@@ -851,16 +901,6 @@
         [r.claim, r.check, r.unc].forEach((n) => { n.style.boxShadow = focus ? '0 0 0 3px var(--warn)' : ''; });
       });
     },
-    cues: [
-      { cue: 'hover-claims', target: 'prompt', action: 'hover', expect: 0, seconds: 10, teaches: 'Three claims: which would you accept, and on what basis' },
-      { cue: 'step-looks-right', target: 'step', action: 'click', expect: 1, seconds: 10, teaches: 'It looks right rests on one glance at a screen and says nothing about stored state' },
-      { cue: 'step-one-example', target: 'step', action: 'click', expect: 2, seconds: 10, teaches: 'One passing example supports one example; other times, rooms and people stay open' },
-      { cue: 'step-stated-checks', target: 'step', action: 'click', expect: 3, seconds: 12, teaches: 'Stated checks under stated conditions leave a named remainder' },
-      { cue: 'step-principle-6', target: 'step', action: 'click', expect: 4, seconds: 8, teaches: 'A check supports a bounded claim' },
-      { cue: 'condition-simultaneous', target: 'condition-simultaneous-users', action: 'click', expect: 0, seconds: 8, teaches: 'Change the workload: two people request the same room in the same moment' },
-      { cue: 'step-exposed', target: 'step', action: 'click', expect: 1, seconds: 12, teaches: 'The claim and the check are unchanged; the workload exposes an assumption' },
-      { cue: 'step-covered', target: 'step', action: 'click', expect: 2, seconds: 10, teaches: 'The claim that named its conditions covers the new workload' },
-    ],
     print: [
       { title: 'Claim, check and remaining uncertainty, with the counterexample', condition: 'simultaneous-users', state: 2, principle: true, note: `Counterexample: ${EV.counterexample.label}. It exposes ${EV.counterexample.exposes}; ${EV.counterexample.kept}.` },
     ],
@@ -875,6 +915,7 @@
     heading: 'Who carries the cost of an engineering shortcut?',
     lead: `A support log entry written to answer one question: why did ${ARI.name}'s booking fail?`,
     principle: 'Professional responsibility includes the consequences imposed on people who did not make the technical choice.',
+    principleShort: 'Your shortcut becomes someone else\'s cost.',
     conditions: [
       { id: 'why-failed', baseline: true, label: `Baseline: ${lower1(RI.support_questions[0].label)}`, short: 'Why did it fail?',
         states: [
@@ -940,19 +981,6 @@
     render(h, view) {
       if (view.conditionId === 'which-room') { h.minimal.classList.add('is-shown'); h.parties.forEach((g) => g.classList.add('is-shown')); }
     },
-    cues: [
-      { cue: 'hover-log', target: 'verbose-record', action: 'hover', expect: 0, seconds: 12, teaches: 'Seven fields in the log; three answer the question, four describe the person' },
-      { cue: 'hover-who-benefits', target: 'prompt', action: 'hover', expect: 0, seconds: 8, teaches: 'Who benefits and who takes the risk: pause and decide' },
-      { cue: 'step-users', target: 'step', action: 'click', expect: 1, seconds: 8, teaches: 'Users: their details sit in a log many people can read' },
-      { cue: 'step-support', target: 'step', action: 'click', expect: 2, seconds: 8, teaches: 'Support effort: reading through personal detail to find the failure' },
-      { cue: 'step-exposure', target: 'step', action: 'click', expect: 3, seconds: 8, teaches: 'Data exposure: one copied log file exposes names and purposes' },
-      { cue: 'step-change', target: 'step', action: 'click', expect: 4, seconds: 8, teaches: 'Future change: tools grow around the personal fields' },
-      { cue: 'step-minimal', target: 'step', action: 'click', expect: 5, seconds: 12, teaches: 'The minimal record: request id, time, outcome category, each with a reason' },
-      { cue: 'step-principle-7', target: 'step', action: 'click', expect: 6, seconds: 8, teaches: 'The people in the log did not make the choice; the engineers carry the consequence' },
-      { cue: 'condition-room', target: 'condition-which-room', action: 'click', expect: 0, seconds: 8, teaches: 'Change the support question: is the failure specific to one room' },
-      { cue: 'step-room-id', target: 'step', action: 'click', expect: 1, seconds: 10, teaches: 'One field added with one written reason; the rest stays out' },
-      { cue: 'step-principle-7b', target: 'step', action: 'click', expect: 2, seconds: 6, teaches: 'Deliberate, justified collection against collecting everything by default' },
-    ],
     print: [
       { title: 'The log as first written, and the consequences it imposes', condition: 'why-failed', state: 4, note: 'Fields marked not needed describe the person, not the failure. Each red box is a consequence for people who did not choose the logging design.' },
       { title: 'The minimal diagnostic record with the rationale for each field', condition: 'which-room', state: 1, principle: true, note: 'The changed support question justified exactly one more field, room_id, with its reason. The slot, the person and the purpose stay out of the log.' },
@@ -968,6 +996,7 @@
     heading: 'One domain, many kinds of explanation',
     lead: 'The same booking service, eight questions, and the representation that answers each one. This is the map of the course.',
     principle: 'Choose a representation for the question, not a diagram style for the whole course.',
+    principleShort: 'Pick the diagram that answers your question.',
     conditions: [
       { id: 'who-depends', baseline: true, label: `Baseline: ${lower1(CM.questions[0].label)}`, short: 'Who depends?',
         states: [
@@ -1023,20 +1052,6 @@
         if (c === 'assistant-drafted' && st >= 1) { t.style.borderColor = CM.rows[i].id === 'assistant' ? 'var(--violet)' : 'var(--ok)'; }
       });
     },
-    cues: [
-      { cue: 'hover-one-flowchart', target: 'prompt', action: 'hover', expect: 0, seconds: 10, teaches: 'Could one flowchart answer every question: pause and decide' },
-      { cue: 'step-req-state', target: 'step', action: 'click', expect: 1, seconds: 12, teaches: 'Requirement card and state diagram answer the Week 2 and Week 3 questions' },
-      { cue: 'step-dep-seq', target: 'step', action: 'click', expect: 2, seconds: 12, teaches: 'Dependency graph and sequence diagram answer who depends and what happened first' },
-      { cue: 'step-tests-release', target: 'step', action: 'click', expect: 3, seconds: 12, teaches: 'Test table and release path answer which cases and what travels with a change' },
-      { cue: 'step-timeline-assistant', target: 'step', action: 'click', expect: 4, seconds: 12, teaches: 'Incident timeline, and the row for a change drafted by an assistant' },
-      { cue: 'step-highlight-dependency', target: 'step', action: 'click', expect: 5, seconds: 10, teaches: 'Who depends on this: the dependency graph answers' },
-      { cue: 'step-principle-8', target: 'step', action: 'click', expect: 6, seconds: 8, teaches: 'Choose a representation for the question' },
-      { cue: 'condition-what-first', target: 'condition-what-first', action: 'click', expect: 0, seconds: 8, teaches: 'Change the question: what happened first' },
-      { cue: 'step-sequence', target: 'step', action: 'click', expect: 1, seconds: 12, teaches: 'The sequence diagram answers time order; the dependency graph cannot' },
-      { cue: 'step-principle-8b', target: 'step', action: 'click', expect: 2, seconds: 6, teaches: 'Two questions, two representations, one service' },
-      { cue: 'condition-assistant', target: 'condition-assistant-drafted', action: 'click', expect: 0, seconds: 8, teaches: 'Change the actor: the change is drafted by an automated assistant' },
-      { cue: 'step-none', target: 'step', action: 'click', expect: 1, seconds: 14, teaches: 'None of the representations or checks become unnecessary; Week 13 returns to this' },
-    ],
     print: [
       { title: 'The course map: question to representation', condition: 'who-depends', state: 4, note: CM.rows.map((r) => `Week ${r.week}: ${r.question} → ${r.representation}.`).join(' ') },
       { title: 'The actor changes; the representations and checks stay', condition: 'assistant-drafted', state: 1, principle: true, note: 'A change drafted by an automated assistant still needs the requirement card, the state diagram, the dependency graph, the sequence, the test table, the release path and the incident timeline. Week 13 examines this in full.' },
@@ -1100,9 +1115,9 @@
     printRole: 'Principles and checks',
     build(body, api) {
       const cards = el('div', { class: 'principle-grid' }, SCENES.map((sc, i) => api.cue(el('a', { class: 'principle-card', href: `#/${sc.id}`, style: 'text-decoration:none;color:inherit' }, [
-        el('span', { class: 'pc-num' }, `${i + 1} · ${sc.role}`), el('span', { class: 'pc-text' }, sc.principle), el('span', { class: 'pc-id' }, `#/${sc.id}`),
+        el('span', { class: 'pc-num' }, `${i + 1} · ${sc.role}`), el('span', { class: 'pc-text' }, sc.principle), el('span', { class: 'pc-short' }, sc.principleShort),
       ]), `card-${i + 1}`)));
-      const qa = el('ol', { class: 'qa-list', style: 'margin-top:18px' }, CHECKS.map((c, i) => {
+      const qa = el('ol', { class: 'qa-list', style: 'margin-top:12px' }, CHECKS.map((c, i) => {
         const ans = el('p', { class: 'qa-a', id: `qa-a-${i + 1}`, hidden: '' }, c.a);
         const btn = api.cue(el('button', { type: 'button', class: 'qa-q', 'aria-expanded': 'false', 'aria-controls': `qa-a-${i + 1}` }, [el('span', {}, `${i + 1}. ${c.q}`), el('span', { class: 'tw', 'aria-hidden': 'true' }, '+')]), `question-${i + 1}`);
         btn.addEventListener('click', () => { const open = btn.getAttribute('aria-expanded') === 'true'; btn.setAttribute('aria-expanded', open ? 'false' : 'true'); if (open) ans.setAttribute('hidden', ''); else ans.removeAttribute('hidden'); });
@@ -1112,11 +1127,9 @@
       body.reset = () => body.querySelectorAll('.qa-q').forEach((b) => { b.setAttribute('aria-expanded', 'false'); document.getElementById(b.getAttribute('aria-controls')).setAttribute('hidden', ''); });
     },
     onEnter(body) { body.reset(); },
-    cues: SCENES.map((sc, i) => ({ cue: `hover-card-${i + 1}`, target: `card-${i + 1}`, action: 'hover', expect: null, seconds: 7, teaches: `Principle ${i + 1}: ${sc.principle}` }))
-      .concat(CHECKS.map((c, i) => ({ cue: `open-question-${i + 1}`, target: `question-${i + 1}`, action: 'click', expect: null, seconds: 12, teaches: `Check ${i + 1}: ${c.q}` }))),
     print(body) {
       body.appendChild(el('h3', {}, 'Principles'));
-      body.appendChild(el('div', { class: 'principle-grid' }, SCENES.map((sc, i) => el('div', { class: 'principle-card' }, [el('span', { class: 'pc-num' }, `${i + 1} · ${sc.role}`), el('span', { class: 'pc-text' }, sc.principle), el('span', { class: 'pc-id' }, `${FILE}#/${sc.id}`)]))));
+      body.appendChild(el('div', { class: 'principle-grid' }, SCENES.map((sc, i) => el('div', { class: 'principle-card' }, [el('span', { class: 'pc-num' }, `${i + 1} · ${sc.role}`), el('span', { class: 'pc-text' }, sc.principle), el('span', { class: 'pc-short' }, `In short: ${sc.principleShort}`), el('span', { class: 'pc-id' }, `${FILE}#/${sc.id}`)]))));
       body.appendChild(el('h3', {}, 'Checks: decide your answer before reading the one below each question'));
       body.appendChild(el('ol', { class: 'print-qa' }, CHECKS.map((c, i) => el('li', {}, [el('span', { class: 'q' }, `${i + 1}. ${c.q}`), el('span', { class: 'a' }, c.a)]))));
     },
@@ -1128,9 +1141,10 @@
   const TERMS = [
     ['Software engineering', 'Making and changing software that people depend on, over its whole lifetime: agreeing what it must do, building, checking, running and revising it, with the consequences for other people counted in. It is about change, coordination and quality.'],
     ['Stakeholder', 'A person or group affected by the service: the person booking, room staff, support staff, a future maintainer.'],
+    ['Accessibility', 'You can complete the task however you use the service: a mouse, the keyboard only or a screen reader. Part of whether the service works.'],
     ['Requirement', 'A statement of what the service must do or keep true, written so that a check can show whether it holds. R-01 is one.'],
     ['Constraint', 'A condition every acceptable design must meet, such as correctness under overlapping requests.'],
-    ['Quality attribute', 'A property of how the service behaves: response time, recoverability, privacy, change effort.'],
+    ['Quality attribute', 'A property of how the service behaves: response time, recoverability, privacy, change effort. ISO/IEC 25010:2023 groups them into nine product quality characteristics.'],
     ['Evidence', 'What a check showed, together with the conditions it ran under. Its scope is part of the evidence.'],
     ['Lifecycle', 'The loop of need, model, implementation, checks, release, operation and revision that a service goes around repeatedly.'],
     ['Trade-off', 'A choice between alternatives under stated constraints, where each option costs something the other keeps.'],
@@ -1140,7 +1154,13 @@
     ['S02', 'ACM / IEEE-CS / AAAI, Computer Science Curricula 2023, final report', 'https://csed.acm.org/final-report/'],
     ['S24', 'Software Engineering at Google, chapter 1: What is software engineering?', 'https://abseil.io/resources/swe-book/html/ch01.html'],
     ['S25', 'W3C, Web Content Accessibility Guidelines 2.2', 'https://www.w3.org/TR/WCAG22/'],
+    ['S46', 'ISO/IEC 25010:2023, SQuaRE product quality model', 'https://www.iso.org/standard/78176.html'],
   ];
+  const IN_PRACTICE = 'Teams keep requirements and incident reports in issue trackers such as GitHub Issues or Jira, check accessibility with axe or Lighthouse next to a keyboard-only walk-through, and draw context maps in Mermaid or draw.io.';
+  // tools are named as dated examples (plan 00_START_HERE.txt); the year is the research date of the fixtures
+  const PRACTICE_YEAR = (String(F.metadata && F.metadata.date).match(/\b(\d{4})\b/) || [])[1];
+  if (!PRACTICE_YEAR) throw new Error('fixtures metadata.date carries no year for the dated In practice examples');
+  const IN_PRACTICE_TITLE = `In practice · examples from ${PRACTICE_YEAR}`;
   const HANDOFF_SENTENCE = A['w02/ambiguous-request'].sentence; // "Make room booking fair and easy."
   const CARRIED = [
     'The context map: the booking service inside its boundary, four dependencies outside.',
@@ -1156,25 +1176,25 @@
       const left = el('div', { style: 'display:flex;flex-direction:column;gap:18px;min-height:0' }, [
         api.cue(el('div', { class: 'handoff' }, [el('span', { class: 'muted', style: 'font-size:20px;display:block;margin-bottom:8px;font-family:var(--font-text);font-weight:500' }, 'Week 2 starts from this request:'), el('span', { class: 'quote' }, `“${HANDOFF_SENTENCE}”`)]), 'handoff'),
         el('div', { class: 'card' }, [el('div', { class: 'card-title' }, 'Carried forward to Week 2'), el('ul', { style: 'font-size:21px;line-height:1.4;display:flex;flex-direction:column;gap:8px' }, CARRIED.map((t) => el('li', {}, t)))]),
+        el('div', { class: 'card' }, [el('div', { class: 'card-title' }, IN_PRACTICE_TITLE), el('p', { style: 'font-size:20px;line-height:1.4' }, IN_PRACTICE)]),
       ]);
-      const middle = el('div', { class: 'card', style: 'min-height:0' }, [el('div', { class: 'card-title' }, 'Terms used this week'), el('dl', { class: 'term-list', style: 'grid-template-columns:1fr;font-size:16.5px;gap:1px;line-height:1.32' }, TERMS.flatMap(([t, d]) => [el('dt', {}, t), el('dd', {}, d)]))]);
+      // nine terms: two balanced columns, each term kept whole
+      const middle = el('div', { class: 'card', style: 'min-height:0' }, [el('div', { class: 'card-title' }, 'Terms used this week'), el('dl', { class: 'term-list', style: 'display:block;column-count:2;column-gap:24px;font-size:16.5px;line-height:1.3' }, TERMS.map(([t, d]) => el('div', { style: 'break-inside:avoid' }, [el('dt', {}, t), el('dd', {}, d)])))]);
       const right = el('div', { class: 'card', style: 'min-height:0' }, [el('div', { class: 'card-title' }, 'Sources for this lecture'), el('ul', { class: 'source-list' }, SOURCES.map(([k, t, u]) => el('li', {}, [el('span', { class: 'key' }, k), el('span', {}, [t, ' ', el('a', { class: 'url', href: u }, u)])])))]);
-      body.appendChild(el('div', { style: 'display:grid;grid-template-columns:1.05fr 0.95fr 0.9fr;gap:28px;height:100%;min-height:0' }, [left, middle, right]));
+      body.appendChild(el('div', { style: 'display:grid;grid-template-columns:640px minmax(0,1fr) 470px;gap:28px;height:100%;min-height:0' }, [left, middle, right]));
     },
-    cues: [
-      { cue: 'hover-handoff', target: 'handoff', action: 'hover', expect: null, seconds: 8, teaches: 'Week 2 starts from the sentence: make room booking fair and easy' },
-      { cue: 'sources-static', target: 'handoff', action: 'hover', expect: null, kind: 'static', seconds: 6, reason: 'The sources page holds only reference text; the recorded route narrates the handoff question over the final pointer pass and puts the sources in the video description (22_recording_track.txt).', teaches: 'Where to read more: the four sources of this week' },
-    ],
     print(body) {
       body.appendChild(el('div', { class: 'print-columns' }, [
         el('div', {}, [
           el('div', { class: 'handoff' }, [el('span', { class: 'muted', style: 'display:block;font-size:14px' }, 'Week 2 starts from this request:'), el('span', { class: 'quote' }, `“${HANDOFF_SENTENCE}”`)]),
           el('h3', {}, 'Carried forward to Week 2'),
           el('ul', {}, CARRIED.map((t) => el('li', {}, t))),
+          el('h3', {}, IN_PRACTICE_TITLE),
+          el('p', {}, IN_PRACTICE),
           el('h3', {}, 'Sources for this lecture'),
           el('ul', { class: 'source-list' }, SOURCES.map(([k, t, u]) => el('li', {}, [el('span', { class: 'key' }, k), el('span', {}, [t, ' ', el('span', { class: 'url' }, u)])]))),
         ]),
-        el('div', {}, [el('h3', {}, 'Terms used this week'), el('dl', { class: 'term-list' }, TERMS.flatMap(([t, d]) => [el('dt', {}, t), el('dd', {}, d)]))]),
+        el('div', {}, [el('h3', {}, 'Terms used this week'), el('dl', { class: 'term-list', style: 'display:block;column-count:2;column-gap:18px' }, TERMS.map(([t, d]) => el('div', { style: 'break-inside:avoid' }, [el('dt', {}, t), el('dd', {}, d)])))]),
       ]));
     },
   };
@@ -1187,7 +1207,7 @@
     title: 'Engineering software that people can depend on',
     question: 'What makes working code an engineered system?',
     coverLead: 'Student notes for lecture 1. Every scene shows a situation, asks you to predict, reveals the mechanism, changes one condition, compares the outcomes and names the principle. The pages that follow keep the selected states of each scene with their captions.',
-    coverNote: 'Campus Rooms is a fictional room-booking service; every name, number and incident is a teaching example unless a source is named. Values marked example assumption are illustrative, not measurements.',
+    coverNote: 'Campus Rooms is a fictional room-booking service; every name, number and incident is a teaching example unless a source is named. Rules and values marked example assumption belong to that example: they are illustrative, not measurements or real policies.',
     pages: [
       opening,
       outcomes,

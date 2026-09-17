@@ -30,14 +30,21 @@
     node.appendChild(typeof children === 'string' || typeof children === 'number' ? document.createTextNode(String(children)) : children);
     return node;
   }
-  /** "text with **bold** and `code`" -> nodes */
+  /**
+   * "text with **bold**, `code` and [[tags]]" -> nodes. [[example assumption]] renders the example tag;
+   * [[Rule R-01|example assumption]] keeps the words before the bar and the tag together on one line.
+   */
   function rich(text) {
     const out = [];
-    String(text).split(/(\*\*[^*]+\*\*|`[^`]+`)/g).forEach((part) => {
+    String(text).split(/(\*\*[^*]+\*\*|`[^`]+`|\[\[[^\]]+\]\])/g).forEach((part) => {
       if (!part) return;
       if (part.startsWith('**')) out.push(el('strong', {}, part.slice(2, -2)));
       else if (part.startsWith('`')) out.push(el('code', {}, part.slice(1, -1)));
-      else out.push(document.createTextNode(part));
+      else if (part.startsWith('[[')) {
+        const [label, tag] = part.slice(2, -2).split('|');
+        out.push(tag === undefined ? el('span', { class: 'example-tag' }, label)
+          : el('span', { style: 'white-space:nowrap' }, [label, ' ', el('span', { class: 'example-tag' }, tag)]));
+      } else out.push(document.createTextNode(part));
     });
     return out;
   }

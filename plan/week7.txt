@@ -13,6 +13,8 @@ Move from the structure of the software to the structure of shared work. The cen
 
 Keep the interface neutral: a commit graph, readable diffs, review comments, and a small evidence panel. Explain version control, code review, configuration management, and documentation as complementary forms of coordination. Students do not need accounts on a hosting platform. [S01, S02, S06, S07]
 
+In practice (dated examples, 2026): Git records the history; GitHub and GitLab host the pull or merge requests where review happens; lockfiles such as package-lock.json or uv.lock record the resolved dependency set; linters and formatters such as Ruff, ESLint and Prettier run before a human reviews the change.
+
 2. OBSERVABLE LEARNING OUTCOMES
 -------------------------------
 
@@ -125,7 +127,7 @@ Anchor scene | ID: review-with-context
 
 VISUAL IDEA: A review panel connects requirement, diff, checks, decision rationale, and focused comments.
 
-SITUATION, PREDICTION, AND MECHANISM: Show the diff alone and ask what a reviewer cannot yet decide. Reveal the purpose, affected rule, alternatives, and checks. Sort comments into correctness, security, design, understandability, and optional preference. Explain that automated style checks can reduce distraction, not replace judgment. [S07]
+SITUATION, PREDICTION, AND MECHANISM: Show the diff alone and ask what a reviewer cannot yet decide. Reveal the purpose, affected rule, alternatives, and checks. Sort comments into correctness, security, design, understandability, and optional preference. Explain that linters and formatters take style out of the conversation without replacing judgment, and that a useful comment addresses the change rather than the person and says whether it is required or optional. [S07]
 
 CHANGE ONE CONDITION AND COMPARE: Split an unrelated rename out of the same change. Compare the reviewer’s task with and without the unrelated material, without claiming an exact universal speed improvement. Keep one substantive concern unresolved until its supporting evidence appears. AI beat: label the same diff as drafted by an automated assistant with the description “fix stuff”. Ask what changes for the reviewer. Nothing: the requirement, the checks and the rationale are still required, and the empty description is the documentation failure of scene 07 arriving early.
 
@@ -170,13 +172,13 @@ Bridge scene | ID: history-as-explanation
 
 VISUAL IDEA: A short change description and decision record are linked to the commit and requirement.
 
-SITUATION, PREDICTION, AND MECHANISM: Ask what a maintainer learns from “fix stuff.” Reveal an alternative explaining the observed problem, intended behavior, and a constraint that ruled out an obvious solution. Separate durable rationale from a transcript of every discussion.
+SITUATION, PREDICTION, AND MECHANISM: Ask what a maintainer learns from “fix stuff.” Reveal an alternative explaining the observed problem, intended behavior, and a constraint that ruled out an obvious solution. Separate durable rationale from a transcript of every discussion. Then show history as a debugging tool: when the boundary error appears and nobody knows which change introduced it, bisection checks the middle commit of the suspect range and halves the range until one change remains.
 
 CHANGE ONE CONDITION AND COMPARE: Remove the original author from the scenario. Compare how much each record helps a future reviewer understand whether the constraint still applies.
 
 PRINCIPLE TO REVEAL: Documentation earns its place by preserving information that cannot be reliably reconstructed from the code.
 
-STUDENT PDF TREATMENT: Print the weak and improved descriptions with the useful information highlighted in words.
+STUDENT PDF TREATMENT: Print the weak and improved descriptions with the useful information highlighted in words, and the bisection steps that located the change.
 
 08. SHARED CONFIDENCE COMES FROM SEVERAL KINDS OF EVIDENCE
 ----------------------------------------------------------

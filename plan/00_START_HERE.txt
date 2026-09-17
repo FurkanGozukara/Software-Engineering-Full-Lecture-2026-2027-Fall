@@ -66,15 +66,19 @@ DECISIONS IN FORCE (16 SEPTEMBER 2026)
 
 Recorded here once; other files refer to this list instead of restating it.
 
-Lecture-only course. There is no lab, homework or project track in the package. Assessment, examinations, grading and assigned projects are handled by the instructor outside these materials and are never mentioned in the decks, PDFs or narration. If student repository use is ever needed, students register personal GitHub accounts.
+Lecture-only course. There is no lab, homework or project track in the package. Assessment, examinations, grading, homework and assigned projects are handled by the instructor outside these materials and are never mentioned in the decks, PDFs or narration.
 
 AI-assisted engineering is the through-line: framed in Week 1, carried by one beat inside an existing scene in Weeks 2, 7, 8, 9, 10 and 12, examined in Week 13 with synthetic candidate code only. The decks may state that the course's own materials were drafted by automated assistants, and Week 13 uses one of those change records as its provenance example, naming tools factually.
 
 Everything is in English; there is no other language edition. The dark theme is the default and the print stylesheet is light. Every code snippet is Python-like pseudocode. Diagram grammar, type scale and palette are left to the authoring agents within the visual brief.
 
-Every week is recorded as a narrated video under the tutorial workspace rules (22_recording_track.txt): full canvas with the presenter overlay yielding to content, every reveal operated by a real pointer, cue lists that double as shot lists, and narration written under the instructional rule with no allowance for this course's vocabulary.
+Tools and products may be named as dated examples, in each week's "In practice" paragraph (Section 1) and wherever a name helps a student connect a concept to everyday work. No step, diagram or snippet depends on a particular tool, and tools are named factually, without ranking.
 
-The plan is machine-checkable. The TXT files are the single source; plan_manifest.json and the combined Markdown and PDF are derived; every Anchor scene has structured fixture data; tools/check_plan.py and the tests run before any change is accepted.
+Every week is recorded as a narrated video under the tutorial workspace rules (22_recording_track.txt): 3840 by 2160 at 60 fps, full canvas with the presenter overlay yielding to content, every reveal operated by a real pointer, and deck text and narration under the instructional stance defined in that file. There is no instructor rehearsal: a deck is accepted on its automated checks and a native read of its states rendered at the recording resolution.
+
+No speaking cues (17 September 2026). The package and the repository hold no cue lists, shot lists, narration text or briefs, planned durations or recorded routes. The recording agent analyzes the week's plan, the fixtures and the deck at run time and generates the shot list, the narration and speech, and the tutorial itself (22_recording_track.txt).
+
+The plan is machine-checkable. The TXT files are the single source; plan_manifest.json and the combined Markdown and PDF are derived and checked for freshness; every Anchor scene has structured fixture data; tools/check_plan.py and the tests run before any change is accepted.
 
 The course repository starts as local Git and is published to a remote when the instructor sees fit; the CI workflow activates then. The first lecture date is not fixed, so the schedule in 23_build_plan_and_schedule.txt is relative to it. The stack of any future Campus Rooms reference implementation is decided later.
 
@@ -89,7 +93,7 @@ week1.txt through week14.txt: individual lecture briefs; the only source for the
 19_recurring_case_and_demo_data.txt: case rules, planted threads, and the meaning of every teaching model.
 20_agent_authoring_brief.txt: how the build agents are briefed; the rules themselves live in repo_kit/AGENTS.md.
 21_instructor_preflight.txt: acceptance checks, and which of them the tests automate.
-22_recording_track.txt: how every week is recorded as a narrated video under the tutorial workspace rules.
+22_recording_track.txt: what the decks provide for recording, and what the recording agent generates at run time under the tutorial workspace rules.
 23_build_plan_and_schedule.txt: repository, three phases, parallel authoring, minimum viable deck, schedule.
 assets/demo-fixtures.json: the teaching truth: fixtures and structured data for every Anchor scene.
 plan_manifest.json: derived scene manifest; regenerate with tools/build_manifest.py, never edit by hand.

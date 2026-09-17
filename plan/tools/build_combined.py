@@ -2,15 +2,19 @@
 
   python tools/build_combined.py            write Software_Engineering_14_Week_Plan.md (+ .pdf when Chromium is available)
   python tools/build_combined.py --no-pdf
+  python tools/build_combined.py --check    exit 1 when the Markdown or the PDF is stale
 
 The TXT files are the single source. The Markdown and the PDF are derived reading copies
 and carry a notice saying so; never edit them by hand. The PDF is produced through
 Playwright's Chromium when the package is installed (pip install -r requirements-dev.txt;
-python -m playwright install chromium); otherwise only the Markdown is written.
+python -m playwright install chromium); otherwise only the Markdown is written. A PDF build
+records the SHA-256 of the Markdown it was built from in Software_Engineering_14_Week_Plan.pdf.built-from,
+which is how --check knows the PDF is current without comparing PDF bytes.
 """
 from __future__ import annotations
 
 import argparse
+import hashlib
 import html
 import re
 import sys
@@ -112,12 +116,27 @@ p{margin:0 0 6pt}.notice{font-size:9pt;color:#555;border:1px solid #bbb;padding:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--no-pdf", action="store_true")
+    parser.add_argument("--check", action="store_true", help="exit 1 when the Markdown or the PDF is stale")
     args = parser.parse_args()
     texts = [(name, read(ROOT / name)) for name in ORDER if (ROOT / name).exists()]
     md = ["# Software Engineering: a 14-week visual lecture plan", "", f"> {NOTICE}", ""]
     md += [to_markdown(name, text) for name, text in texts]
+    md_text = "\n".join(md)
+    digest = hashlib.sha256(md_text.encode("utf-8")).hexdigest()
     md_path = ROOT / "Software_Engineering_14_Week_Plan.md"
-    md_path.write_text("\n".join(md), encoding="utf-8")
+    stamp_path = ROOT / "Software_Engineering_14_Week_Plan.pdf.built-from"
+    if args.check:
+        stale = []
+        if not md_path.exists() or read(md_path) != md_text:
+            stale.append(md_path.name)
+        if not stamp_path.exists() or stamp_path.read_text(encoding="utf-8").strip() != digest:
+            stale.append("Software_Engineering_14_Week_Plan.pdf")
+        if stale:
+            print(f"STALE {stale}: run python tools/build_combined.py")
+            return 1
+        print("OK combined plan copies are current")
+        return 0
+    md_path.write_text(md_text, encoding="utf-8")
     print(f"wrote {md_path}")
     if args.no_pdf:
         return 0
@@ -139,6 +158,7 @@ def main() -> int:
                 page.goto(tmp.resolve().as_uri())
                 page.pdf(path=str(pdf_path), format="A4", print_background=True, prefer_css_page_size=True)
                 browser.close()
+            stamp_path.write_text(digest + "\n", encoding="utf-8")
             print(f"wrote {pdf_path} (Playwright Chromium)")
         else:
             chrome = find_chrome()
@@ -150,6 +170,7 @@ def main() -> int:
             subprocess.run([chrome, "--headless=new", "--disable-gpu", "--no-pdf-header-footer",
                             f"--print-to-pdf={pdf_path}", tmp.resolve().as_uri()],
                            check=True, capture_output=True, timeout=300)
+            stamp_path.write_text(digest + "\n", encoding="utf-8")
             print(f"wrote {pdf_path} (Chrome headless)")
     except Exception as exc:  # noqa: BLE001
         print(f"PDF not regenerated: {exc}")

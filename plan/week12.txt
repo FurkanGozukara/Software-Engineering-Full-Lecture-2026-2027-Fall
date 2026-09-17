@@ -13,6 +13,8 @@ Make maintenance visible as engineering under accumulated knowledge and constrai
 
 Connect maintainability with the ability to respond to necessary change. Include resource efficiency as a separate sustainability concern: compare useful work under a declared boundary, rather than equating reduced CPU time with a measured carbon reduction. [S01, S02, S23, S24, S37]
 
+In practice (dated examples, 2026): Renovate and Dependabot propose dependency updates as reviewable changes, Flyway and Liquibase apply database migrations one step at a time, and feature flags keep old and new paths switchable during a transition.
+
 2. OBSERVABLE LEARNING OUTCOMES
 -------------------------------
 

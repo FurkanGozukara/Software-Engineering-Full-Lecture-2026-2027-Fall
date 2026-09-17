@@ -56,10 +56,14 @@ def nearest_rank(values: list[float], p: float) -> float:
 def slo_summary(slo: dict) -> dict:
     n = slo["eligible_requests"]
     bad = slo["correct_but_slow"] + slo["timeouts"] + slo["unexpected_server_failures"]
+    # burn rate: observed bad-event rate relative to the rate the objective allows (the error budget rate)
+    burn_rate = (bad / n) / (1 - slo["objective_good_fraction"])
     return {
         "good_fraction": slo["good_correct_within_2s"] / n,
         "observed_bad_events": bad,
         "bad_event_allowance": round((1 - slo["objective_good_fraction"]) * n),
+        "burn_rate": burn_rate,
+        "days_to_exhaust_budget": slo["window_days"] / burn_rate,
         "adds_up": slo["good_correct_within_2s"] + bad == n,
     }
 

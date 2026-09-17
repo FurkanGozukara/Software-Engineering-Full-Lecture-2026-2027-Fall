@@ -13,6 +13,8 @@ End with an instructor-led engineering decision clinic, not a list of all previo
 
 Use familiar representations and identifiers so the difficulty lies in connecting decisions, not decoding a new domain. Preserve explicit disagreement where evidence does not determine one universal design. The goal is a coherent explanation of what should change, what must remain true, and what would justify the decision. [S01, S02]
 
+In practice (dated examples, 2026): the closure change travels through the tools named in earlier weeks, an issue in GitHub Issues or Jira, a reviewed pull request, CI gates in GitHub Actions, a feature flag for exposure, and OpenTelemetry signals after release.
+
 2. OBSERVABLE LEARNING OUTCOMES
 -------------------------------
 

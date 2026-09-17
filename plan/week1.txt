@@ -15,6 +15,8 @@ Entry knowledge is the ability to read a small function, an if-statement, and a 
 
 State the through-line in the opening and return to it: every habit this course builds, a precise rule, an independent check, a bounded permission, a reviewable change, is also what it takes to direct and check automated engineering assistance. Weeks 2, 7, 8, 9, 10 and 12 each carry one short beat on that claim inside an existing scene, and Week 13 examines it fully. Decisions in force for the whole package are listed in 00_START_HERE.txt.
 
+In practice (dated examples, 2026): teams keep requirements and incident reports in issue trackers such as GitHub Issues or Jira, check accessibility with axe or Lighthouse next to a keyboard-only walk-through, and draw context maps in Mermaid or draw.io.
+
 2. OBSERVABLE LEARNING OUTCOMES
 -------------------------------
 
@@ -127,7 +129,7 @@ Bridge scene | ID: quality-tradeoffs
 
 VISUAL IDEA: A comparison table with response time, correctness, recoverability, privacy, and change effort; avoid an unexplained radar chart.
 
-SITUATION, PREDICTION, AND MECHANISM: Offer two fictional designs: immediate confirmation from an unchecked local view, and confirmation after an authoritative availability decision. Ask which is better before revealing their behavior. Separate quality attributes from optional features.
+SITUATION, PREDICTION, AND MECHANISM: Offer two fictional designs: immediate confirmation from an unchecked local view, and confirmation after an authoritative availability decision. Ask which is better before revealing their behavior. Separate quality attributes from optional features. Name the standard vocabulary once: ISO/IEC 25010:2023 lists nine product quality characteristics, among them performance efficiency, reliability, security, interaction capability and maintainability. [S46]
 
 CHANGE ONE CONDITION AND COMPARE: Keep correctness mandatory and change the response-time target. Discuss which optimizations preserve the rule and which merely hide a delay. Clearly label illustrative measurements and never imply that accuracy must always be traded for speed.
 
@@ -251,4 +253,4 @@ Carry forward the context map, the exclusivity concern, and a list of unresolved
 11. SOURCES AND CURRENCY NOTES
 ------------------------------
 
-Primary references: S01, S02, S24, S25. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S24, S25, S46. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.

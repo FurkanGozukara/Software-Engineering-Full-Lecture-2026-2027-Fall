@@ -3,7 +3,7 @@
   "kind": "Original fictional teaching fixtures, not real performance data",
   "date": "16 September 2026",
   "purpose": "Inputs and independently checked expected values for later authoring; not executable lecture scenes.",
-  "extended": "16 September 2026: pseudocode_language, cancellation_matrix, retry_model and an anchors block with structured data for all 42 Anchor scenes and the numeric Bridges (Proposal 4). Keys are wNN/scene-id. week_text_shows lists strings the week TXT must contain; deck_shows lists strings the rendered scene must show; snippets are executable Python-like fixtures recomputed by tools/check_plan.py. 17 September 2026 (Phase 0 authoring): w01 Bridge fixtures added for system-boundary, quality-tradeoffs (simulated example values), evidence-not-confidence, responsibility-and-impact and course-evidence-map so that every Week 1 scene renders from this file."
+  "extended": "16 September 2026: pseudocode_language, cancellation_matrix, retry_model and an anchors block with structured data for all 42 Anchor scenes and the numeric Bridges (Proposal 4). Keys are wNN/scene-id. week_text_shows lists strings the week TXT must contain; deck_shows lists strings the rendered scene must show; snippets are executable Python-like fixtures recomputed by tools/check_plan.py. 17 September 2026 (Phase 0 authoring): w01 Bridge fixtures added for system-boundary, quality-tradeoffs (simulated example values), evidence-not-confidence, responsibility-and-impact and course-evidence-map so that every Week 1 scene renders from this file. 17 September 2026 (plan revision): w02/ambiguous-request week_text_shows; booking_SLO expected_burn_rate and expected_days_to_exhaust_budget (recomputed by tools/check_plan.py); w10/change-through-gates static checks gate; w13/bounded-actions unreviewed tool connector capability; w13/provenance-and-understanding invented dependency. 17 September 2026 (Week 1 plan coverage): w01/quality-tradeoffs standard_vocabulary (sourced, S46) with week_text_shows and a deck_shows value; w01/feedback-lifecycle feedback_paths (authored structure: the path each discovery point's information takes and what it changes) with deck_shows."
  },
  "case": {
   "service": "Campus Rooms",
@@ -565,6 +565,8 @@
   "expected_good_fraction": 0.98,
   "bad_event_allowance": 10,
   "observed_bad_events": 20,
+  "expected_burn_rate": 2.0,
+  "expected_days_to_exhaust_budget": 3.5,
   "eligibility": "Authenticated syntactically valid booking requests at defined service boundary, including legitimate conflicts; excludes health checks."
  },
  "resources": {
@@ -977,7 +979,107 @@
      "rework": "incident handling, user communication, message state, check, release"
     }
    ],
-   "changed_condition": "first useful feedback moved earlier; defect unchanged"
+   "changed_condition": "first useful feedback moved earlier; defect unchanged",
+   "feedback_paths": {
+    "kind": "authored structure (for each discovery point: the stages the defect's information passes through, feedback first, then the change it causes, and what changes on the way); no measurements",
+    "found-in-operation": {
+     "discovered_at": "Operation",
+     "steps": [
+      {
+       "from": "Operation",
+       "to": "Revision",
+       "kind": "feedback",
+       "changes": "user report: no message arrived"
+      },
+      {
+       "from": "Revision",
+       "to": "Need",
+       "kind": "feedback",
+       "changes": "need: say when a message fails"
+      },
+      {
+       "from": "Need",
+       "to": "Model",
+       "kind": "change",
+       "changes": "model: sent, delayed, failed"
+      },
+      {
+       "from": "Model",
+       "to": "Implementation",
+       "kind": "change"
+      },
+      {
+       "from": "Implementation",
+       "to": "Checks",
+       "kind": "change",
+       "changes": "new check: booking stays, delay shown"
+      },
+      {
+       "from": "Checks",
+       "to": "Release",
+       "kind": "change"
+      }
+     ]
+    },
+    "found-at-check": {
+     "discovered_at": "Checks",
+     "steps": [
+      {
+       "from": "Checks",
+       "to": "Model",
+       "kind": "feedback",
+       "changes": "check result: the screen stays silent"
+      },
+      {
+       "from": "Model",
+       "to": "Implementation",
+       "kind": "change",
+       "changes": "model: sent, delayed, failed"
+      },
+      {
+       "from": "Implementation",
+       "to": "Checks",
+       "kind": "change"
+      },
+      {
+       "from": "Checks",
+       "to": "Release",
+       "kind": "change"
+      }
+     ]
+    },
+    "found-in-conversation": {
+     "discovered_at": "Need",
+     "steps": [
+      {
+       "from": "Need",
+       "to": "Need",
+       "kind": "feedback",
+       "changes": "question: what does the user see?"
+      },
+      {
+       "from": "Need",
+       "to": "Model",
+       "kind": "change",
+       "changes": "R-04: one more sentence"
+      },
+      {
+       "from": "Model",
+       "to": "Implementation",
+       "kind": "change"
+      },
+      {
+       "from": "Implementation",
+       "to": "Checks",
+       "kind": "change",
+       "changes": "acceptance example → check"
+      }
+     ]
+    }
+   },
+   "deck_shows": [
+    "need: say when a message fails"
+   ]
   },
   "w02/ambiguous-request": {
    "sentence": "Make room booking fair and easy.",
@@ -995,7 +1097,10 @@
      "rule": "Staff requests take priority over student bookings"
     }
    ],
-   "settled_scope": "exclusive booking of available rooms; fairness policy remains an explicit open decision"
+   "settled_scope": "exclusive booking of available rooms; fairness policy remains an explicit open decision",
+   "week_text_shows": [
+    "Make room booking fair and easy."
+   ]
   },
   "w02/observable-behavior": {
    "rule": "R-02",
@@ -2341,6 +2446,7 @@
    "gates": [
     "integration",
     "build",
+    "static checks",
     "focused checks",
     "broader checks",
     "artifact recording",
@@ -2354,6 +2460,7 @@
      "results": {
       "integration": "pass",
       "build": "pass",
+      "static checks": "pass",
       "focused checks": "pass",
       "broader checks": "pass",
       "artifact recording": "recorded",
@@ -2368,6 +2475,7 @@
      "results": {
       "integration": "pass",
       "build": "pass",
+      "static checks": "pass",
       "focused checks": "pass",
       "broader checks": "fail: authorization matrix, U-02 may cancel B-001",
       "artifact recording": "not released",
@@ -2378,6 +2486,11 @@
    "deck_shows": [
     "A-101",
     "A-102"
+   ],
+   "static_checks_scope": "linters, type checkers and security scanners find unused code, type mismatches and known insecure patterns; they know nothing about R-02 or R-03",
+   "week_text_shows": [
+    "static checks",
+    "“duration < 120” comparison passes them"
    ]
   },
   "w10/artifact-and-configuration": {
@@ -2480,7 +2593,10 @@
     "1,000 eligible booking requests",
     "980",
     "99% good events",
-    "98%"
+    "98%",
+    "error budget",
+    "burn rate of 2",
+    "3.5 days"
    ],
    "deck_shows": [
     "980",
@@ -2989,7 +3105,8 @@
      "network": false,
      "production data": false,
      "release credentials": false,
-     "apply to main without approval": false
+     "apply to main without approval": false,
+     "unreviewed tool connectors (for example an MCP server)": false
     },
     "broad": {
      "read repository": true,
@@ -2998,7 +3115,8 @@
      "network": true,
      "production data": true,
      "release credentials": true,
-     "apply to main without approval": true
+     "apply to main without approval": true,
+     "unreviewed tool connectors (for example an MCP server)": true
     }
    },
    "consequence_under_broad": "the exclusive-bound candidate reaches production unattended; a repository note can redirect the workflow",
@@ -3020,7 +3138,17 @@
      "unresolved limitation"
     ],
     "naming": "tools named factually, no comparison or endorsement"
-   }
+   },
+   "invented_dependency": {
+    "import": "textenc-turbo",
+    "exists_in_registry": false,
+    "risk": "anyone can publish a package under a name a code assistant invented",
+    "blocked_by": "inventory check before build",
+    "resolution": "a person confirms or removes the dependency"
+   },
+   "week_text_shows": [
+    "textenc-turbo"
+   ]
   },
   "w14/new-need-old-promises": {
    "closure": {
@@ -3296,9 +3424,63 @@
      "effect": "the wait is visible; nobody is misled"
     }
    ],
+   "standard_vocabulary": {
+    "kind": "sourced (S46: the nine product quality characteristics of the standard); the rows list is an authored reading of this table's attributes in the standard's names",
+    "source": "S46",
+    "standard": "ISO/IEC 25010:2023",
+    "characteristics": [
+     "functional suitability",
+     "performance efficiency",
+     "compatibility",
+     "interaction capability",
+     "reliability",
+     "security",
+     "maintainability",
+     "flexibility",
+     "safety"
+    ],
+    "named_examples": [
+     "performance efficiency",
+     "reliability",
+     "security",
+     "interaction capability",
+     "maintainability"
+    ],
+    "rows": [
+     {
+      "attribute": "response-time",
+      "row": "Response time",
+      "characteristic": "performance efficiency"
+     },
+     {
+      "attribute": "correctness",
+      "row": "Correctness",
+      "characteristic": "functional suitability"
+     },
+     {
+      "attribute": "recoverability",
+      "row": "Recoverability",
+      "characteristic": "reliability"
+     },
+     {
+      "attribute": "privacy",
+      "row": "Privacy",
+      "characteristic": "security"
+     },
+     {
+      "attribute": "change-effort",
+      "row": "Change effort",
+      "characteristic": "maintainability"
+     }
+    ]
+   },
+   "week_text_shows": [
+    "ISO/IEC 25010:2023 lists nine product quality characteristics"
+   ],
    "deck_shows": [
     "0.1 s",
-    "0.4 s"
+    "0.4 s",
+    "nine product quality characteristics"
    ]
   },
   "w01/evidence-not-confidence": {

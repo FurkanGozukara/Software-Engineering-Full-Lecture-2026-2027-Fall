@@ -12,7 +12,7 @@ printable notes are in `site/pdf/`. Keyboard: Right/Left arrows change the page,
 the demonstration, `?` shows the help. Optional local server for clean links:
 `python scripts/serve.py --root site` and open `http://127.0.0.1:8000/`.
 
-Status: Week 1 is complete (deck, PDF, cue list). The other weeks are added one at a time; the
+Status: Week 1 is complete (deck, PDF, scene guide). The other weeks are added one at a time; the
 index marks them as in preparation until then.
 
 Fourteen interactive lecture decks and their student PDFs for an introductory software engineering course built around the fictional Campus Rooms booking service. The teaching plan is in `plan/`; the student-facing site is `site/`.
@@ -32,7 +32,7 @@ site/                         the student distribution, and nothing else
   assets/                     diagrams and a copy of the fixture data the decks render
   pdf/week-01.pdf ...         student PDFs exported from the print view
   README.txt                  how to start the site offline
-cues/week-NN.json             recording cue lists (instructor side, see plan/22_recording_track.txt)
+notes/week-NN.*.md            instructor scene guides and completion records (no cue lists or narration)
 scripts/serve.py              local server; scripts/export_pdf.py: print-view PDF export
 tasks/                        task templates for the recurring authoring jobs
 .github/workflows/ci.yml      the same checks on every push once the repository has a remote
@@ -45,7 +45,9 @@ pip install -r plan/requirements-dev.txt
 python -m playwright install chromium
 python plan/tools/build_manifest.py --check
 python plan/tools/check_plan.py
+python plan/tools/build_combined.py --check
 cd plan && SE_COURSE_SITE=../site pytest -q
+python scripts/inspect_deck.py --layout --week 1 --out build/inspect/week-01
 ```
 
 ## Serve and export
@@ -59,7 +61,7 @@ The site must work with the network disabled. The supported route is the local s
 
 ## Phase 0 state (17 September 2026)
 
-Built and verified: the shared shell, the complete Week 1 deck with its PDF and cue list, and the
+Built and verified: the shared shell, the complete Week 1 deck with its PDF and scene guide, and the
 two shell-test scenes `weeks/week-05.html#/dependency-example` and
 `weeks/week-11.html#/latency-is-a-distribution`. Weeks 2-4, 6-10 and 12-14 are not built yet, so
 until they exist the deck and PDF tests are run filtered to the decks that exist:
@@ -70,8 +72,13 @@ cd plan && SE_COURSE_SITE=../site pytest -q -k "w01- or w05-dependency-example o
 
 Author-side helpers added in Phase 0 (all under `scripts/`): `sync_fixtures.py` copies the plan
 fixtures into the site (`--check` in CI), `build_index.py` regenerates `site/index.html`,
-`build_cues.py --week N` derives `cues/week-NN.json` from the deck and checks every cue target
-and expected state, `check_deck_text.py --week N` runs the workspace narration style checker over
-every visible string of a deck, and `inspect_deck.py` captures scene states and the print view for
-a native read. The per-week completion record lives next to the cue list
-(`cues/week-NN.completion.md`, `cues/week-NN.rehearsal.md`).
+`check_deck_text.py --week N` runs the workspace narration style checker over
+every visible string of a deck and of its print view, and `inspect_deck.py` captures scene states and
+the print view for a native read; with `--layout` it scans every state at 3840 by 2160 for
+overlapping, overflowing and escaping text (`--shots` saves one capture per state). The per-week
+completion record and scene guide live in `notes/` (`notes/week-NN.completion.md`,
+`notes/week-NN.scene-guide.md`). There is no instructor rehearsal.
+
+The repository holds no speaking cues: no cue lists, shot lists, narration, planned durations or
+recorded routes. A recording agent analyzes the plan and the deck at run time and generates the
+shot list, the narration and speech, and the tutorial (`plan/22_recording_track.txt`).

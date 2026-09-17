@@ -8,57 +8,40 @@ SCOPE AND WHERE THE RULES LIVE
 Every week is recorded (decision in 00_START_HERE.txt). The recordings follow the tutorial workspace rules, each of which lives in one file there and is not repeated here:
 
 F:/0_tutorial_videos_project/AGENTS.md: the rule index and the runtime mapping.
-F:/0_tutorial_videos_project/docs/natural_tutorial_workflow.md: planning order (shot list, checker, record, narrate from what happened), action over static content, continuous narration.
+F:/0_tutorial_videos_project/docs/natural_tutorial_workflow.md: planning order (audio first: the narration is written and synthesized before the final take, and the take is recorded to it), action over static content, continuous narration.
 F:/0_tutorial_videos_project/docs/channel_style_guide.md: opening structure, narration voice, public audience and useful content, instructional not defensive.
 F:/0_tutorial_videos_project/docs/tutorial_layout_policy.json: canvas, capture_scale, avatar, static_content caps, narration_stream, media_formats, resolve_frame_rates, delivery_preflight.
 F:/0_tutorial_videos_project/docs/production_playbook.md: pre-take desktop hygiene, showing a Command Prompt, pre-delivery preflight, frame-rate preflight, Resolve procedures, publication deliverables.
 Checkers in that workspace: tools/check_static_content.py, tools/check_narration_style.py, tools/check_narration_coverage.py, tools/preflight_delivery.py, tools/scan_offline_frames.py.
 
-The lecture decks are the screen being recorded. A deck is not a slide show in the sense of those rules only when a hand operates it on camera: a picture that changes by itself is static under the action-over-static rule, and a pointer clicking Step, selecting a condition preset, hovering a node or dragging a slider is action. Everything below follows from that.
+The lecture decks are the screen being recorded. A deck is not a slide show in the sense of those rules only when a hand operates it on camera: a picture that changes by itself is static under the action-over-static rule, and a pointer clicking Step, selecting a condition preset, hovering a node or dragging a slider is action.
+
+NO SPEAKING CUES IN THIS REPOSITORY
+-----------------------------------
+
+The repository and this plan hold no speaking cues (decision in 00_START_HERE.txt): no cue lists or shot lists, no narration text or narration briefs, no lines about what a moment of the deck teaches, no planned durations, and no recorded route that fixes which pages are shown or skipped, what is said over a page, or how a video opens and closes. Decks, fixtures, plan files, scene guides and completion records do not carry them, and authoring agents do not add them.
+
+The recording agent generates all of it at run time. It first analyzes the week: plan/weekN.txt in full, plan_manifest.json, the case guide (19_recurring_case_and_demo_data.txt), the fixtures the deck renders, the scene guide, and the deck itself, operated in record=1 mode and rendered at 3840 by 2160. From that analysis it decides the route through the deck, writes the shot list and the narration, synthesizes the speech and records the tutorial, in the planning order and under the checks of the workspace rules above. What it writes for one recording stays with that recording in the tutorial workspace; it does not come back into this repository as cues for later runs.
 
 WHAT THE DECK PROVIDES FOR RECORDING
 ------------------------------------
 
-The shell implements the recording items of repo_kit/docs/scene-contract.md: the record=1 mode with deterministic timing and no autoplay, a cue target attribute on every control and every element a cue points at, hovers or drags, and the window.lecture interface. The deck is laid out at 1920 by 1080 logical pixels and rendered in Chrome at device scale factor 2, which gives the native 3840 by 2160 capture the capture_scale rule requires. The dark theme is the default (00_START_HERE.txt).
+The shell implements the recording items of docs/scene-contract.md: the record=1 mode with deterministic timing and no autoplay, a pointer-target attribute (data-cue-target) on every control and every element a pointer may click, hover or drag, and the window.lecture interface, which lists the pages and reports each scene's state. The deck is laid out at 1920 by 1080 logical pixels and rendered in Chrome at device scale factor 2, which gives the native 3840 by 2160 capture the capture_scale rule requires; takes are captured at 60 fps. The dark theme is the default (00_START_HERE.txt).
 
 The deck uses the whole canvas. Nothing is reserved for the presenter; the avatar overlay yields wherever the footage shows content in its rectangle, as the avatar block of the layout policy defines. Where a composition allows, the shell leaves the bottom-right corner empty so the overlay can appear more often. This is a preference, not a reservation.
 
-Every reveal is operated. Anchors advance by Step clicks. Bridge rows, cells and arrows appear on a click or hover of their cue target, never on a timer, so a Bridge counts as action when the pointer operates it. A running model (queue flow, retry amplification) counts as a process while its progress is visible on screen and is started by a visible Run click.
+Every reveal is operated. Anchors advance by Step clicks. Bridge rows, cells and arrows appear on a click or hover of their pointer target, never on a timer, so a Bridge counts as action when the pointer operates it. A running model (queue flow, retry amplification) counts as a process while its progress is visible on screen and is started by a visible Run click. In record=1 mode the deck never advances on its own and never draws a synthetic cursor; the real pointer moves with real input events.
 
-CUE LIST EQUALS SHOT LIST
--------------------------
+The deck is deterministic, so no separate rehearsal is recorded or performed (00_START_HERE.txt). For its analysis the recording agent can render every page, condition and state at 3840 by 2160 with python scripts/inspect_deck.py --layout --week NN --shots --out <folder> and read the captures natively, and it serves the deck with python scripts/serve.py --root site.
 
-Each week has one cue list, cues/week-NN.json in the repository, written in the workspace shot-list format (F:/0_tutorial_videos_project/docs/templates/shot_list.example.json): fps, then segments with id, chapter, kind (action, process or static), seconds, action, teaches, and a reason for every static segment. Four fields are added per segment for the deck: scene (the scene identifier), cue_target (the data-cue-target value), deck_action (click, hover, drag or key), and expect_state (the data-state value after the action). One segment per pointer action or per running process, in lecture order. No spoken text belongs in the cue list; narration is written after the recording.
-
-The authoring agent derives the cue list from plan_manifest.json and the scene notes (repo_kit/tasks/40_recording_cuelists.md). Before the first take, the workspace checker must pass on it: python F:/0_tutorial_videos_project/tools/check_static_content.py cues/week-NN.json. The same checker runs on the assembled plan before delivery.
-
-What a scene's cues contain:
-
-Anchor: the pointer operates the situation (Week 1 clicks Reserve on two booking cards); the prediction prompt is a hover across the options, narrated later as a request to pause the video and decide; Step clicks reveal the mechanism one state each; a preset click changes the condition and returns to the first state; Step clicks through the changed condition; a hover across the comparison; a final Step reveals the principle.
-
-Bridge: a click or hover reveals each row, cell or arrow; one click changes the condition; a final click reveals the principle.
-
-Opening of every video: the first Anchor's situation is operated inside the opening window that the channel opening structure and the static_content caps define. There is no title card and no outcomes list on screen. The deck's recall-and-outcomes page is skipped in the recorded route or replaced by a pointer pass over the course map.
-
-Closing: the principles page is operated as a pointer pass over its cards. The sources-and-handoff page is static; in the recorded route the handoff question is narrated over the final pointer pass and the sources go into the video description (channel description template). This is a production decision recorded here, not a rule of the workspace.
-
-DRIVER AND CAPTURE
-------------------
-
-Real input events move the real pointer. The cue list is performed by the host automation route the workspace already uses (the computer-use skill, or a lecture-local helper in the pattern of projects/masters_generative_ai/week01/tools), which reads cues/week-NN.json and clicks, hovers or drags each cue target in Chrome, then waits for the expected state. The deck never draws a synthetic cursor and never advances on its own in record=1 mode.
-
-Chrome shows the user's own profile under the sensitive-data rule (C:/Users/Furkan/.codex/AGENTS.md); the deck is served by scripts/serve.py from the repository. OBS records; the take is remuxed per media_formats; Resolve, frame rates, editable text and the preflight follow the playbook. One take per Anchor or per scene; cue identifiers map to takes in the edit plan.
-
-NARRATION UNDER THE EXISTING RULES
+WORDING OF DECK TEXT AND NARRATION
 ----------------------------------
 
-Narration is written after the recording from what happened, one unit per cue, generated with the shared voice contract, fitted to the footage as the continuous-narration rule requires, and checked with the coverage and style checkers. We teach, so the narration is confident and sure (decision of 16 September 2026, clarified 17 September 2026: the rule is the stance, not a word list). The course's technical words are spoken as instruction with their ordinary meaning: verify, confirm, evidence, distinguish, establish, record. "Confirmed" is said as the state it is. What stays out of the narration is the defensive shape: does not prove, no guarantee, another configuration may differ, we do not claim, record the evidence for a report. Address the viewer as "you"; never students, class, exam or grade; no production logistics in speech.
+We teach, so the narration is confident and sure (decision of 16 September 2026, clarified 17 September 2026: the rule is the stance, not a word list). The course's technical words are used as instruction with their ordinary meaning: verify, confirm, evidence, distinguish, establish, record. What stays out is the defensive shape: does not prove, no guarantee, another configuration may differ, we do not claim, record the evidence for a report. The viewer is addressed as "you"; never students, class, exam or grade; no production logistics in speech.
 
-The prediction pause is narrated ("pause the video now and decide which of the three you expect"), then the reveal follows; there is no silence. A stretch with nothing worth saying is cut, never left quiet.
-
-The deck text follows the same wording rules, and the style checker is run on the deck strings as well as on the narration units.
+The deck text follows the same wording rules, and the style checker is run on the deck strings (python scripts/check_deck_text.py) as well as on the narration the recording agent generates.
 
 DELIVERABLES PER RECORDED WEEK
 ------------------------------
 
-cues/week-NN.json passing the static-content checker; the remuxed takes; the edit plan; narration units passing the style checker; the placement passing the coverage checker; the Resolve project and timeline exports, the separate SRT and source mapping; the pre-delivery preflight report; the post-render offline-frame scan report. Each is listed in the week's completion record (21_instructor_preflight.txt) with what was actually checked.
+Generated at run time and kept with the recording in the tutorial workspace: the shot list passing the static-content checker, the 3840 by 2160 state captures, the narration units passing the style checker, the synthesized units, the takes recorded to them and remuxed, the edit plan, the placement passing the coverage checker, the Resolve project and timeline exports, the separate SRT and source mapping, the pre-delivery preflight report and the post-render check reports. The week's completion record (notes/week-NN.completion.md, 21_instructor_preflight.txt) names where they are and what was actually checked.

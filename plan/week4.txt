@@ -13,6 +13,8 @@ Use a team workflow as an observable system. Explain iterative and incremental d
 
 The case is a small team improving Campus Rooms. Students do not need to learn a commercial planning interface. Use a transparent tabletop-like simulation with labeled work cards and explicit capacities. Avoid converting every judgment into a score or implying that all engineering work has predictable service times. [S01, S02]
 
+In practice (dated examples, 2026): boards and queues live in tools such as Jira, GitHub Projects, Linear or Trello, whose reports chart the same work-in-progress, cycle-time and throughput measures this lecture builds by hand.
+
 2. OBSERVABLE LEARNING OUTCOMES
 -------------------------------
 
@@ -95,7 +97,7 @@ Bridge scene | ID: methods-not-rituals
 
 VISUAL IDEA: A three-column comparison of plan-driven coordination, iterative timeboxes, and flow-based policies.
 
-SITUATION, PREDICTION, AND MECHANISM: Ask what information each approach makes visible and when decisions change. Introduce Scrum through goals, inspection, and adaptation within its defined framework, and Kanban through explicit workflow, controlling work-in-progress, and improving flow. Do not claim a generic board is the whole of either. [S04, S05]
+SITUATION, PREDICTION, AND MECHANISM: Ask what information each approach makes visible and when decisions change. Introduce Scrum through goals, inspection, and adaptation within its defined framework, and Kanban through explicit workflow, controlling work-in-progress, and improving flow. Do not claim a generic board is the whole of either. Name Scrum's three accountabilities in one line, Product Owner, Scrum Master and Developers, as the places where decisions about value, process and the work itself are made visible, not as job titles. [S04, S05]
 
 CHANGE ONE CONDITION AND COMPARE: Change the work from a planned capability to unpredictable incident arrivals. Compare which coordination mechanisms help and what policies need revision; do not declare one universal winner.
 
@@ -185,7 +187,7 @@ Bridge scene | ID: retrospective-as-test
 
 VISUAL IDEA: Before-and-after panels connect a workflow observation, proposed change, measure, and possible side effect.
 
-SITUATION, PREDICTION, AND MECHANISM: Ask what should happen after noticing a long review queue. Reveal a proposal to share review work, the expected effect, and what would count as contrary evidence. Keep the discussion about the system rather than blaming an individual.
+SITUATION, PREDICTION, AND MECHANISM: Ask what should happen after noticing a long review queue. Reveal a proposal to share review work, the expected effect, and what would count as contrary evidence. Keep the discussion about the system rather than blaming an individual, and explain why: people report delays and mistakes honestly only where reporting them is safe, so blameless discussion and psychological safety are the conditions for trustworthy process data.
 
 CHANGE ONE CONDITION AND COMPARE: Increase review speed but show more missed issues. Compare throughput with quality and rework. Leave the class with the idea of a balanced improvement experiment rather than one target number.
 

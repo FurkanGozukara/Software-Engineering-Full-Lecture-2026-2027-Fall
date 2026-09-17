@@ -47,7 +47,7 @@ Changing a condition returns that scenario to its first paused state. Keep the c
 SCENE CONTRACT FOR TESTS, RECORDING, AND PRINT
 ----------------------------------------------
 
-The attribute names, query modes and the window.lecture interface that implement this control contract are defined once in repo_kit/docs/scene-contract.md (docs/scene-contract.md in the repository). The tests in tests/test_deck_contract.py, the PDF export script and the recording cue lists read those names; change them there first. The query modes are record=1 for deterministic timing without autoplay, motion=off for instant states, and print=1 for the print view, which declares html[data-print-ready="true"] when its panels have rendered. Every control and every element a cue list points at carries a cue-target attribute.
+The attribute names, query modes and the window.lecture interface that implement this control contract are defined once in repo_kit/docs/scene-contract.md (docs/scene-contract.md in the repository). The tests in tests/test_deck_contract.py, the PDF export script and the recording agents read those names; change them there first. The query modes are record=1 for deterministic timing without autoplay, motion=off for instant states, and print=1 for the print view, which declares html[data-print-ready="true"] when its panels have rendered. Every control and every element a pointer may operate carries a pointer-target attribute; the deck declares no cue lists or narration (22_recording_track.txt).
 
 NAVIGATION AND ACCESSIBILITY
 ----------------------------
@@ -86,7 +86,7 @@ software-engineering-course/              repository root (23_build_plan_and_sch
     vendor/  THIRD_PARTY_NOTICES.txt
     pdf/week-01.pdf ... week-14.pdf
     README.txt
-  cues/week-01.json ... week-14.json      recording cue lists (instructor side)
+  notes/week-01.scene-guide.md ...        instructor scene guides and completion records
   scripts/serve.py  export_pdf.py
   tasks/                                  task templates for the recurring authoring jobs
   .github/workflows/ci.yml

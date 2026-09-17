@@ -50,21 +50,25 @@ Before authoring the whole course, establish the common shell and fully realize 
 
 Recorded here once; other files refer to this list instead of restating it.
 
-Lecture-only course. There is no lab, homework or project track in the package. Assessment, examinations, grading and assigned projects are handled by the instructor outside these materials and are never mentioned in the decks, PDFs or narration. If student repository use is ever needed, students register personal GitHub accounts.
+Lecture-only course. There is no lab, homework or project track in the package. Assessment, examinations, grading, homework and assigned projects are handled by the instructor outside these materials and are never mentioned in the decks, PDFs or narration.
 
 AI-assisted engineering is the through-line: framed in Week 1, carried by one beat inside an existing scene in Weeks 2, 7, 8, 9, 10 and 12, examined in Week 13 with synthetic candidate code only. The decks may state that the course's own materials were drafted by automated assistants, and Week 13 uses one of those change records as its provenance example, naming tools factually.
 
 Everything is in English; there is no other language edition. The dark theme is the default and the print stylesheet is light. Every code snippet is Python-like pseudocode. Diagram grammar, type scale and palette are left to the authoring agents within the visual brief.
 
-Every week is recorded as a narrated video under the tutorial workspace rules (22_recording_track.txt): full canvas with the presenter overlay yielding to content, every reveal operated by a real pointer, cue lists that double as shot lists, and narration written under the instructional rule with no allowance for this course's vocabulary.
+Tools and products may be named as dated examples, in each week's "In practice" paragraph (Section 1) and wherever a name helps a student connect a concept to everyday work. No step, diagram or snippet depends on a particular tool, and tools are named factually, without ranking.
 
-The plan is machine-checkable. The TXT files are the single source; plan_manifest.json and the combined Markdown and PDF are derived; every Anchor scene has structured fixture data; tools/check_plan.py and the tests run before any change is accepted.
+Every week is recorded as a narrated video under the tutorial workspace rules (22_recording_track.txt): 3840 by 2160 at 60 fps, full canvas with the presenter overlay yielding to content, every reveal operated by a real pointer, and deck text and narration under the instructional stance defined in that file. There is no instructor rehearsal: a deck is accepted on its automated checks and a native read of its states rendered at the recording resolution.
+
+No speaking cues (17 September 2026). The package and the repository hold no cue lists, shot lists, narration text or briefs, planned durations or recorded routes. The recording agent analyzes the week's plan, the fixtures and the deck at run time and generates the shot list, the narration and speech, and the tutorial itself (22_recording_track.txt).
+
+The plan is machine-checkable. The TXT files are the single source; plan_manifest.json and the combined Markdown and PDF are derived and checked for freshness; every Anchor scene has structured fixture data; tools/check_plan.py and the tests run before any change is accepted.
 
 The course repository starts as local Git and is published to a remote when the instructor sees fit; the CI workflow activates then. The first lecture date is not fixed, so the schedule in 23_build_plan_and_schedule.txt is relative to it. The stack of any future Campus Rooms reference implementation is decided later.
 
 ### PACKAGE MAP
 
-week1.txt through week14.txt: individual lecture briefs; the only source for the weekly content. 15_curriculum_currency_and_coverage.txt: current references, coverage, and deliberate boundaries. 16_reference_plan_analysis.txt: what was retained and transformed from the Blender package. 17_visual_lecture_and_pdf_brief.txt: shared experience, control meanings, local operation, and print expectations. 18_sources.txt: primary source register with each entry's use (curriculum or authoring) and access limitations. 19_recurring_case_and_demo_data.txt: case rules, planted threads, and the meaning of every teaching model. 20_agent_authoring_brief.txt: how the build agents are briefed; the rules themselves live in repo_kit/AGENTS.md. 21_instructor_preflight.txt: acceptance checks, and which of them the tests automate. 22_recording_track.txt: how every week is recorded as a narrated video under the tutorial workspace rules. 23_build_plan_and_schedule.txt: repository, three phases, parallel authoring, minimum viable deck, schedule. assets/demo-fixtures.json: the teaching truth: fixtures and structured data for every Anchor scene. plan_manifest.json: derived scene manifest; regenerate with tools/build_manifest.py, never edit by hand. tools/: build_manifest.py, check_plan.py, build_combined.py and models.py (see tools/README.txt). tests/: the plan checker as a test, the deck contract tests and the PDF checks (pytest.ini, requirements-dev.txt). repo_kit/: files staged for the course repository: AGENTS.md, CLAUDE.md, README.md, docs/scene-contract.md, scripts, tasks, the CI workflow. Software_Engineering_14_Week_Plan.md and .pdf: derived reading copies regenerated by tools/build_combined.py.
+week1.txt through week14.txt: individual lecture briefs; the only source for the weekly content. 15_curriculum_currency_and_coverage.txt: current references, coverage, and deliberate boundaries. 16_reference_plan_analysis.txt: what was retained and transformed from the Blender package. 17_visual_lecture_and_pdf_brief.txt: shared experience, control meanings, local operation, and print expectations. 18_sources.txt: primary source register with each entry's use (curriculum or authoring) and access limitations. 19_recurring_case_and_demo_data.txt: case rules, planted threads, and the meaning of every teaching model. 20_agent_authoring_brief.txt: how the build agents are briefed; the rules themselves live in repo_kit/AGENTS.md. 21_instructor_preflight.txt: acceptance checks, and which of them the tests automate. 22_recording_track.txt: what the decks provide for recording, and what the recording agent generates at run time under the tutorial workspace rules. 23_build_plan_and_schedule.txt: repository, three phases, parallel authoring, minimum viable deck, schedule. assets/demo-fixtures.json: the teaching truth: fixtures and structured data for every Anchor scene. plan_manifest.json: derived scene manifest; regenerate with tools/build_manifest.py, never edit by hand. tools/: build_manifest.py, check_plan.py, build_combined.py and models.py (see tools/README.txt). tests/: the plan checker as a test, the deck contract tests and the PDF checks (pytest.ini, requirements-dev.txt). repo_kit/: files staged for the course repository: AGENTS.md, CLAUDE.md, README.md, docs/scene-contract.md, scripts, tasks, the CI workflow. Software_Engineering_14_Week_Plan.md and .pdf: derived reading copies regenerated by tools/build_combined.py.
 
 # WEEK 01 | ENGINEERING SOFTWARE THAT PEOPLE CAN DEPEND ON
 
@@ -81,6 +85,8 @@ Open with a familiar problem rather than a history of programming languages. Cam
 Entry knowledge is the ability to read a small function, an if-statement, and a collection. Do not require a particular programming language or familiarity with enterprise tooling. Establish vocabulary through the example: stakeholder, requirement, constraint, quality attribute, evidence, lifecycle, and trade-off. The weekly ordering is a learning sequence, not a claim that real engineering happens in fourteen isolated phases. [S01, S02, S24]
 
 State the through-line in the opening and return to it: every habit this course builds, a precise rule, an independent check, a bounded permission, a reviewable change, is also what it takes to direct and check automated engineering assistance. Weeks 2, 7, 8, 9, 10 and 12 each carry one short beat on that claim inside an existing scene, and Week 13 examines it fully. Decisions in force for the whole package are listed in 00_START_HERE.txt.
+
+In practice (dated examples, 2026): teams keep requirements and incident reports in issue trackers such as GitHub Issues or Jira, check accessibility with axe or Lighthouse next to a keyboard-only walk-through, and draw context maps in Mermaid or draw.io.
 
 ## 2. OBSERVABLE LEARNING OUTCOMES
 
@@ -186,7 +192,7 @@ Bridge scene | ID: quality-tradeoffs
 
 **VISUAL IDEA:** A comparison table with response time, correctness, recoverability, privacy, and change effort; avoid an unexplained radar chart.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Offer two fictional designs: immediate confirmation from an unchecked local view, and confirmation after an authoritative availability decision. Ask which is better before revealing their behavior. Separate quality attributes from optional features.
+**SITUATION, PREDICTION, AND MECHANISM:** Offer two fictional designs: immediate confirmation from an unchecked local view, and confirmation after an authoritative availability decision. Ask which is better before revealing their behavior. Separate quality attributes from optional features. Name the standard vocabulary once: ISO/IEC 25010:2023 lists nine product quality characteristics, among them performance efficiency, reliability, security, interaction capability and maintainability. [S46]
 
 **CHANGE ONE CONDITION AND COMPARE:** Keep correctness mandatory and change the response-time target. Discuss which optimizations preserve the rule and which merely hide a delay. Clearly label illustrative measurements and never imply that accuracy must always be traded for speed.
 
@@ -298,7 +304,7 @@ Carry forward the context map, the exclusivity concern, and a list of unresolved
 
 ## 11. SOURCES AND CURRENCY NOTES
 
-Primary references: S01, S02, S24, S25. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S24, S25, S46. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
 
 # WEEK 02 | FROM AMBIGUOUS REQUESTS TO VERIFIABLE REQUIREMENTS
 
@@ -313,6 +319,8 @@ Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bri
 Use the unresolved sentence from Week 1 to teach elicitation, scope, prioritization, acceptance criteria, and traceability. Students should experience ambiguity before hearing a definition of a good requirement. Requirements are negotiated descriptions of intended behavior and constraints, not a form whose completion guarantees understanding.
 
 The core output within the lecture is a small connected set of requirement examples for Campus Rooms. Distinguish functional behavior, quality targets, business rules, and implementation decisions. Introduce stable identifiers that reappear later in designs and verification evidence. [S01, S02]
+
+In practice (dated examples, 2026): requirements live as issues or user stories in GitHub Issues, Jira or Azure Boards, and acceptance examples are often written as Given/When/Then scenarios that tools such as Cucumber or pytest-bdd run as checks.
 
 ## 2. OBSERVABLE LEARNING OUTCOMES
 
@@ -376,13 +384,13 @@ Anchor scene | ID: ambiguous-request
 
 **VISUAL IDEA:** An editable-looking request card branches into three concrete screen outcomes; no actual language-model call is involved.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Ask students to predict the behavior implied by “Make booking fair.” Reveal first-come access, per-user limits, and staff-priority interpretations. Show that all three could be defended from the same sentence. Add questions about who decides, what is scarce, and what outcome matters.
+**SITUATION, PREDICTION, AND MECHANISM:** Open with the sentence Week 1 ended on, “Make room booking fair and easy.” Ask students to predict the behavior implied by “fair.” Reveal first-come access, per-user limits, and staff-priority interpretations. Show that all three could be defended from the same sentence. Add questions about who decides, what is scarce, and what outcome matters. Mark “easy” as a second, separate ambiguity (easy for whom: a keyboard user, a first-time visitor, room staff?) and record it as an open quality question for scene 04 and R-05, keeping this scene on fairness.
 
 **CHANGE ONE CONDITION AND COMPARE:** Change only the stakeholder answering the question. Compare the resulting rules and surface the conflict rather than silently selecting one. Settle this lecture's scope on exclusive booking of available rooms; fairness policy remains an explicit open decision.
 
 **PRINCIPLE TO REVEAL:** Ambiguity is resolved through examples and stakeholder decisions, not through more confident wording.
 
-**STUDENT PDF TREATMENT:** Print the ambiguous sentence, the competing interpretations, and the clarified scope.
+**STUDENT PDF TREATMENT:** Print the ambiguous sentence, the competing interpretations, the clarified scope, and the open question about “easy.”
 
 ### 02. AN OMITTED USER CAN HIDE AN ENTIRE REQUIREMENT
 
@@ -418,7 +426,7 @@ Bridge scene | ID: quality-with-conditions
 
 **VISUAL IDEA:** A response-time distribution appears beside workload and measurement-condition cards.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Ask whether a 200 millisecond response proves the system is fast. Reveal Q-01: in the specified teaching fixture, the 95th percentile of search API response time should not exceed 500 milliseconds under 50 concurrent users. Explain that this is an authored target, not a universal service standard.
+**SITUATION, PREDICTION, AND MECHANISM:** Ask whether a 200 millisecond response proves the system is fast. Reveal Q-01: in the specified teaching fixture, the 95th percentile of search API response time should not exceed 500 milliseconds under 50 concurrent users. Explain that this is an authored target, not a universal service standard. Map the course's quality words to the ISO/IEC 25010:2023 characteristics, for example response time to performance efficiency and keyboard-accessible completion to interaction capability. [S46]
 
 **CHANGE ONE CONDITION AND COMPARE:** Change the workload while holding the target and code constant. Compare what was measured with what was claimed. Distinguish service-boundary response time from the student's whole browser experience.
 
@@ -530,7 +538,7 @@ Carry the requirement register and traceability matrix into Week 3. End by askin
 
 ## 11. SOURCES AND CURRENCY NOTES
 
-Primary references: S01, S02, S25. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S25, S46. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
 
 # WEEK 03 | MODELING BEHAVIOR, DATA, AND USER INTERACTION
 
@@ -545,6 +553,8 @@ Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bri
 Turn the requirements into complementary models rather than a tour of diagram notation. Students compare a user journey, a state model, an entity relationship view, a decision table, and a sequence diagram. The important learning is what each representation includes, omits, and can contradict.
 
 Use lightweight, clearly labeled UML-style state and sequence notation where useful, without claiming every drawing is a formally complete UML model. The model of the booking service remains independent of any language, database product, or interface framework. [S01, S02, S08]
+
+In practice (dated examples, 2026): teams keep diagrams as text next to the code in Mermaid or PlantUML, draw them in draw.io, and design interface states in Figma.
 
 ## 2. OBSERVABLE LEARNING OUTCOMES
 
@@ -778,6 +788,8 @@ Use a team workflow as an observable system. Explain iterative and incremental d
 
 The case is a small team improving Campus Rooms. Students do not need to learn a commercial planning interface. Use a transparent tabletop-like simulation with labeled work cards and explicit capacities. Avoid converting every judgment into a score or implying that all engineering work has predictable service times. [S01, S02]
 
+In practice (dated examples, 2026): boards and queues live in tools such as Jira, GitHub Projects, Linear or Trello, whose reports chart the same work-in-progress, cycle-time and throughput measures this lecture builds by hand.
+
 ## 2. OBSERVABLE LEARNING OUTCOMES
 
 1. Distinguish iteration, increments, and a single large batch of delivery.
@@ -854,7 +866,7 @@ Bridge scene | ID: methods-not-rituals
 
 **VISUAL IDEA:** A three-column comparison of plan-driven coordination, iterative timeboxes, and flow-based policies.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Ask what information each approach makes visible and when decisions change. Introduce Scrum through goals, inspection, and adaptation within its defined framework, and Kanban through explicit workflow, controlling work-in-progress, and improving flow. Do not claim a generic board is the whole of either. [S04, S05]
+**SITUATION, PREDICTION, AND MECHANISM:** Ask what information each approach makes visible and when decisions change. Introduce Scrum through goals, inspection, and adaptation within its defined framework, and Kanban through explicit workflow, controlling work-in-progress, and improving flow. Do not claim a generic board is the whole of either. Name Scrum's three accountabilities in one line, Product Owner, Scrum Master and Developers, as the places where decisions about value, process and the work itself are made visible, not as job titles. [S04, S05]
 
 **CHANGE ONE CONDITION AND COMPARE:** Change the work from a planned capability to unpredictable incident arrivals. Compare which coordination mechanisms help and what policies need revision; do not declare one universal winner.
 
@@ -938,7 +950,7 @@ Bridge scene | ID: retrospective-as-test
 
 **VISUAL IDEA:** Before-and-after panels connect a workflow observation, proposed change, measure, and possible side effect.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Ask what should happen after noticing a long review queue. Reveal a proposal to share review work, the expected effect, and what would count as contrary evidence. Keep the discussion about the system rather than blaming an individual.
+**SITUATION, PREDICTION, AND MECHANISM:** Ask what should happen after noticing a long review queue. Reveal a proposal to share review work, the expected effect, and what would count as contrary evidence. Keep the discussion about the system rather than blaming an individual, and explain why: people report delays and mistakes honestly only where reporting them is safe, so blameless discussion and psychological safety are the conditions for trustworthy process data.
 
 **CHANGE ONE CONDITION AND COMPARE:** Increase review speed but show more missed issues. Compare throughput with quality and rework. Leave the class with the idea of a balanced improvement experiment rather than one target number.
 
@@ -1009,6 +1021,8 @@ Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bri
 Teach design through change propagation. Compare two deliberately small implementations with the same visible behavior, then alter one requirement and follow the dependencies. Introduce cohesion, coupling, encapsulation, interface contracts, dependency direction, and refactoring only after their effects have been seen.
 
 Keep code excerpts short and readable as pseudocode. This is not an exhaustive catalog of design patterns or a memorization session about acronyms. Students should be able to explain why a boundary is helpful, when it is costly, and what information must cross it. [S01, S02, S07, S24]
+
+In practice (dated examples, 2026): IDEs such as VS Code and IntelliJ IDEA automate small refactorings like extracting a function, and many teams keep decision records as short Markdown files next to the code.
 
 ## 2. OBSERVABLE LEARNING OUTCOMES
 
@@ -1242,6 +1256,8 @@ Scale the Week 5 design from internal responsibilities to runtime structure. Com
 
 The three main mechanisms are a request traveling across components, two concurrent booking attempts competing for one invariant, and a lost response creating an uncertain outcome. The class should leave with disciplined trade-off questions rather than a rule that a newer architectural style is always better. [S01, S02, S08, S09, S10]
 
+In practice (dated examples, 2026): HTTP contracts are often described in OpenAPI; PostgreSQL can enforce a no-overlap rule for time ranges with an exclusion constraint; queued work commonly runs on RabbitMQ or Kafka; and services ship as Docker images, which are a packaging format, not the containers of the C4 model.
+
 ## 2. OBSERVABLE LEARNING OUTCOMES
 
 1. Distinguish a module boundary from a process or deployment boundary.
@@ -1474,6 +1490,8 @@ Move from the structure of the software to the structure of shared work. The cen
 
 Keep the interface neutral: a commit graph, readable diffs, review comments, and a small evidence panel. Explain version control, code review, configuration management, and documentation as complementary forms of coordination. Students do not need accounts on a hosting platform. [S01, S02, S06, S07]
 
+In practice (dated examples, 2026): Git records the history; GitHub and GitLab host the pull or merge requests where review happens; lockfiles such as package-lock.json or uv.lock record the resolved dependency set; linters and formatters such as Ruff, ESLint and Prettier run before a human reviews the change.
+
 ## 2. OBSERVABLE LEARNING OUTCOMES
 
 1. Read a small commit graph and distinguish commits, branch references, and merges.
@@ -1578,7 +1596,7 @@ Anchor scene | ID: review-with-context
 
 **VISUAL IDEA:** A review panel connects requirement, diff, checks, decision rationale, and focused comments.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Show the diff alone and ask what a reviewer cannot yet decide. Reveal the purpose, affected rule, alternatives, and checks. Sort comments into correctness, security, design, understandability, and optional preference. Explain that automated style checks can reduce distraction, not replace judgment. [S07]
+**SITUATION, PREDICTION, AND MECHANISM:** Show the diff alone and ask what a reviewer cannot yet decide. Reveal the purpose, affected rule, alternatives, and checks. Sort comments into correctness, security, design, understandability, and optional preference. Explain that linters and formatters take style out of the conversation without replacing judgment, and that a useful comment addresses the change rather than the person and says whether it is required or optional. [S07]
 
 **CHANGE ONE CONDITION AND COMPARE:** Split an unrelated rename out of the same change. Compare the reviewer’s task with and without the unrelated material, without claiming an exact universal speed improvement. Keep one substantive concern unresolved until its supporting evidence appears. AI beat: label the same diff as drafted by an automated assistant with the description “fix stuff”. Ask what changes for the reviewer. Nothing: the requirement, the checks and the rationale are still required, and the empty description is the documentation failure of scene 07 arriving early.
 
@@ -1620,13 +1638,13 @@ Bridge scene | ID: history-as-explanation
 
 **VISUAL IDEA:** A short change description and decision record are linked to the commit and requirement.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Ask what a maintainer learns from “fix stuff.” Reveal an alternative explaining the observed problem, intended behavior, and a constraint that ruled out an obvious solution. Separate durable rationale from a transcript of every discussion.
+**SITUATION, PREDICTION, AND MECHANISM:** Ask what a maintainer learns from “fix stuff.” Reveal an alternative explaining the observed problem, intended behavior, and a constraint that ruled out an obvious solution. Separate durable rationale from a transcript of every discussion. Then show history as a debugging tool: when the boundary error appears and nobody knows which change introduced it, bisection checks the middle commit of the suspect range and halves the range until one change remains.
 
 **CHANGE ONE CONDITION AND COMPARE:** Remove the original author from the scenario. Compare how much each record helps a future reviewer understand whether the constraint still applies.
 
 **PRINCIPLE TO REVEAL:** Documentation earns its place by preserving information that cannot be reliably reconstructed from the code.
 
-**STUDENT PDF TREATMENT:** Print the weak and improved descriptions with the useful information highlighted in words.
+**STUDENT PDF TREATMENT:** Print the weak and improved descriptions with the useful information highlighted in words, and the bisection steps that located the change.
 
 ### 08. SHARED CONFIDENCE COMES FROM SEVERAL KINDS OF EVIDENCE
 
@@ -1705,6 +1723,8 @@ Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bri
 Build testing from the behavior students already understand. Start with a booking-duration function that passes a friendly example but rejects a valid boundary. Connect examples, properties, interfaces, and system-level checks to the particular claims they support.
 
 The lecture should make evidence visible without presenting one test taxonomy, framework, or fixed test-pyramid ratio as a universal formula. Treat testability, independent expected results, representative conditions, and useful failure messages as engineering choices. [S01, S02, S40]
+
+In practice (dated examples, 2026): pytest and JUnit run example checks, Hypothesis generates property-based cases, Stryker and mutmut run mutation analysis, coverage.py measures executed lines, and Playwright drives complete browser journeys.
 
 ## 2. OBSERVABLE LEARNING OUTCOMES
 
@@ -1866,13 +1886,13 @@ Bridge scene | ID: testing-as-feedback
 
 **VISUAL IDEA:** A short requirement-to-failing-check-to-small-change-to-recheck loop ends with a refactoring comparison.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Ask what should happen before fixing the exclusive upper bound. Reveal a focused failing check, a minimal correction, and rerun evidence. Explain test-first development as one way to make the expected behavior explicit, not a guarantee of good requirements.
+**SITUATION, PREDICTION, AND MECHANISM:** Ask what should happen before fixing the exclusive upper bound. Debug in four visible moves first: reproduce the failure with the 120-minute case, shrink it to the smallest failing input, state one hypothesis about the comparison, and confirm it with one targeted observation. Then reveal a focused failing check, a minimal correction, and rerun evidence. Explain test-first development as one way to make the expected behavior explicit, not a guarantee of good requirements.
 
 **CHANGE ONE CONDITION AND COMPARE:** Refactor the corrected predicate without changing its contract. Compare unchanged behavior under the checks while acknowledging untested conditions and higher-level integration evidence.
 
 **PRINCIPLE TO REVEAL:** Tests are feedback instruments whose value depends on the claims, observations, and assumptions they preserve.
 
-**STUDENT PDF TREATMENT:** Print the feedback loop and a final claim-evidence-remaining-uncertainty table.
+**STUDENT PDF TREATMENT:** Print the four debugging moves, the feedback loop and a final claim-evidence-remaining-uncertainty table.
 
 ## 6. TEACHING GUARDRAILS
 
@@ -1937,6 +1957,8 @@ Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bri
 Treat security as part of the service’s behavior rather than an isolated scanner at the end. Return to cancellation: the interface can look correct and the duration checks can pass while a user is allowed to cancel someone else’s booking. Build the explanation around assets, trust boundaries, identity, permission, safe handling, and evidence.
 
 Use the OWASP Top 10:2025 as an awareness reference and NIST SSDF 1.1 as the final secure-development baseline in this plan. The retrieved SSDF 1.2 document is still an initial public draft, so its status belongs in instructor currency notes, not in a claim that a new final standard has been adopted. [S01, S02, S13, S14, S15]
+
+In practice (dated examples, 2026): Dependabot and OSV-Scanner report dependencies with known vulnerabilities, Syft generates software bills of materials in SPDX or CycloneDX format, and Sigstore signs and verifies build artifacts.
 
 ## 2. OBSERVABLE LEARNING OUTCOMES
 
@@ -2058,7 +2080,7 @@ Anchor scene | ID: privacy-and-diagnostics
 
 **SITUATION, PREDICTION, AND MECHANISM:** Ask which fields distinguish a failed notification from a failed booking. Reveal that a request identifier, outcome category, and dependency status may answer the question without a message body or private meeting description. Mark fictional identifiers as pseudonymous, not magically anonymous.
 
-**CHANGE ONE CONDITION AND COMPARE:** Add a narrowly justified diagnostic need and choose the minimal additional field, access restriction, and retention rationale. Compare purposeful collection with permanent detailed logging by default.
+**CHANGE ONE CONDITION AND COMPARE:** Add a narrowly justified diagnostic need and choose the minimal additional field, access restriction, and retention rationale. Compare purposeful collection with permanent detailed logging by default. Name the legal context in one line: KVKK (Law No. 6698) in Türkiye and the GDPR in the EU make collecting only what a purpose needs, and keeping it no longer than necessary, a legal duty; the lecture teaches the engineering and gives no compliance advice. [S47, S48]
 
 **PRINCIPLE TO REVEAL:** Diagnostic value, access, retention, and disclosure risk should be considered together.
 
@@ -2072,7 +2094,7 @@ Bridge scene | ID: dependency-chain
 
 **SITUATION, PREDICTION, AND MECHANISM:** Ask whether knowing the name of a direct library tells us everything included in a build. Reveal a transitive dependency. Explain an inventory or software bill of materials as visibility into components, and provenance as evidence about an artifact’s production. [S16]
 
-**CHANGE ONE CONDITION AND COMPARE:** Change one dependency version while keeping application source fixed. Compare the need to evaluate the new component, rebuild under controlled inputs, and recheck affected behavior. A familiar name, inventory entry, or signature alone does not prove safety. Licensing beat: change only the license of the transitive dependency in the fictional chain, from a permissive license to a copyleft license with a source-availability obligation. Compare what the license inventory now requires before release. Use SPDX identifiers as the vocabulary and keep this an engineering question about obligations and inventory, not legal advice. [S42]
+**CHANGE ONE CONDITION AND COMPARE:** Change one dependency version while keeping application source fixed. Compare the need to evaluate the new component, rebuild under controlled inputs, and recheck affected behavior. A familiar name, inventory entry, or signature alone does not prove safety. Licensing beat: change only the license of the transitive dependency in the fictional chain, from a permissive license to a copyleft license with a source-availability obligation. Compare what the license inventory now requires before release. Use SPDX identifiers as the vocabulary and keep this an engineering question about obligations and inventory, not legal advice. [S42] Name the legal context in one line: the EU Cyber Resilience Act requires manufacturers of products with digital elements sold in the EU to document their components, including a software bill of materials, with reporting obligations applying from 11 September 2026. [S49]
 
 **PRINCIPLE TO REVEAL:** Supply-chain evidence makes dependencies inspectable; it does not eliminate the need for risk judgment and verification.
 
@@ -2110,7 +2132,7 @@ Bridge scene | ID: security-through-change
 
 OWASP’s Top 10 is an awareness document, not a complete application verification standard. Do not equate cryptography with authorization, input validation with all injection prevention, or an SBOM with proof of a secure build. Use the selected SLSA specification to clarify provenance and integrity claims, not to award a maturity level to the fictional system. [S13, S16]
 
-Do not present privacy examples as jurisdiction-specific legal compliance. Avoid collecting real class information for the demonstration. Keep credentials as obvious placeholders. The no-overlap invariant remains enforced at the authoritative boundary even when every requester is authenticated.
+Name laws only as one-line context (KVKK, the GDPR, the Cyber Resilience Act); do not present privacy or supply-chain examples as legal compliance. Avoid collecting real class information for the demonstration. Keep credentials as obvious placeholders. The no-overlap invariant remains enforced at the authoritative boundary even when every requester is authenticated.
 
 ## 7. MISCONCEPTION AND DIAGNOSIS CLINIC
 
@@ -2154,7 +2176,7 @@ Carry the review, verification, permission, and dependency evidence into Week 10
 
 ## 11. SOURCES AND CURRENCY NOTES
 
-Primary references: S01, S02, S13, S14, S15, S16, S42. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S13, S14, S15, S16, S42, S47, S48, S49. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
 
 # WEEK 10 | AUTOMATED DELIVERY AND EVIDENCE-BASED RELEASE
 
@@ -2169,6 +2191,8 @@ Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bri
 Animate the movement of a change, but keep attention on the evidence attached to it. A pipeline is not useful simply because boxes turn green. Show what each check observes, which artifact was actually checked, how configuration changes behavior, and what can be recovered when release evidence proves incomplete.
 
 Use current DORA terminology in a compact measurement scene: change lead time, deployment frequency, failed deployment recovery time, change fail rate, and deployment rework rate. Keep these at the service and delivery-system level, not as individual rankings. [S01, S02, S17]
+
+In practice (dated examples, 2026): GitHub Actions and GitLab CI run the gates, container images built with Docker are common release artifacts, Terraform or OpenTofu describe environments as code, and OpenFeature or Unleash control feature flags.
 
 ## 2. OBSERVABLE LEARNING OUTCOMES
 
@@ -2230,9 +2254,9 @@ week-10.html#/release-rationale
 
 Anchor scene | ID: change-through-gates
 
-**VISUAL IDEA:** A change token moves through integration, build, focused checks, broader checks, artifact recording, and release decision; evidence cards remain attached.
+**VISUAL IDEA:** A change token moves through integration, build, static checks, focused checks, broader checks, artifact recording, and release decision; evidence cards remain attached.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Ask which stage would catch the incorrect 120-minute boundary and which would check ownership. Reveal distinct checks and pause at a failure. The token cannot advance merely because the animation has reached its next step. Explain that gate placement follows risk and feedback needs.
+**SITUATION, PREDICTION, AND MECHANISM:** Ask which stage would catch the incorrect 120-minute boundary and which would check ownership. Reveal distinct checks and pause at a failure. The token cannot advance merely because the animation has reached its next step. Label the static checks with their scope: linters, type checkers and security scanners find unused code, type mismatches and known insecure patterns, but they know nothing about R-02, so a “duration < 120” comparison passes them and fails the boundary check. Explain that gate placement follows risk and feedback needs.
 
 **CHANGE ONE CONDITION AND COMPARE:** Fix the boundary but introduce an authorization regression. Replay the same pipeline and compare which evidence changes. Show a passing gate with an explicit scope label so it is not mistaken for a universal guarantee. AI beat: let the second change be proposed by an automated assistant. It enters the same path and is blocked by the same gate. Proposing a change and passing a gate are different authorities, which Week 13 develops as bounded action.
 
@@ -2402,6 +2426,8 @@ Begin with a user-visible delay, not a dashboard. Establish the service outcome 
 
 Use selected concepts from service-level objectives and monitoring guidance, with logs, metrics, and traces as the three telemetry forms explored in this lecture. OpenTelemetry supports a broader set of signals; this course deliberately concentrates on these three. [S01, S02, S20, S21, S22]
 
+In practice (dated examples, 2026): OpenTelemetry collects logs, metrics and traces; Prometheus stores metrics and evaluates alert rules; Grafana draws dashboards; Jaeger shows individual traces.
+
 ## 2. OBSERVABLE LEARNING OUTCOMES
 
 1. Define an eligible event, a good event, an indicator, and an objective for a specific service promise.
@@ -2416,7 +2442,7 @@ Use selected concepts from service-level objectives and monitoring guidance, wit
 
 ## 3. INSTRUCTOR PREPARATION AND ENTRY CHECK
 
-Prepare a fictional seven-day record of 1,000 eligible booking requests. Exactly 980 receive a correct outcome within two seconds; ten are correct but slower, five time out, and five return unexpected server failures. The illustrative objective is 99% good events, so 10 bad events are permitted by that objective and 20 are observed. Honest, timely “room unavailable” decisions count as correct outcomes.
+Prepare a fictional seven-day record of 1,000 eligible booking requests. Exactly 980 receive a correct outcome within two seconds; ten are correct but slower, five time out, and five return unexpected server failures. The illustrative objective is 99% good events, so 10 bad events are permitted by that objective and 20 are observed. The 10 permitted bad events are the error budget; observing twice the allowed bad-event rate is a burn rate of 2, which at a steady rate uses up the seven-day budget in 3.5 days. Honest, timely “room unavailable” decisions count as correct outcomes.
 
 Keep the earlier Q-01 search requirement separate: p95 search API response at most 500 milliseconds with 50 concurrent users under its declared fixture. Prepare two fixed latency datasets and one correlated incident packet containing request ID, release marker, trace, queue measurement, and redacted log. None is a real campus incident.
 
@@ -2466,7 +2492,7 @@ Anchor scene | ID: define-good-service
 
 **SITUATION, PREDICTION, AND MECHANISM:** Ask whether every rejected booking request is a service failure. Reveal a timely correct conflict response as a good outcome under this objective. Then classify a fast incorrect confirmation and a correct response arriving too late. The class must state the event definition before seeing the percentage. [S21]
 
-**CHANGE ONE CONDITION AND COMPARE:** Change only the observation: 20 of 1,000 eligible requests miss the promise. Compare 98% observed good events with the illustrative 99% objective. Explain the ten-event allowance and twenty-event consumption without treating the allowance as permission to ignore harmful failures.
+**CHANGE ONE CONDITION AND COMPARE:** Change only the observation: 20 of 1,000 eligible requests miss the promise. Compare 98% observed good events with the illustrative 99% objective. Name the ten-event allowance as the error budget and the twenty observed bad events as a burn rate of 2, without treating the budget as permission to ignore harmful failures. [S45]
 
 **PRINCIPLE TO REVEAL:** A reliability indicator is meaningful only after the user promise, event population, and observation window are defined.
 
@@ -2550,7 +2576,7 @@ Bridge scene | ID: actionable-alerts
 
 **SITUATION, PREDICTION, AND MECHANISM:** Ask whether every CPU fluctuation should interrupt someone. Reveal the user promise, the affected service, an actionable condition, and a next diagnostic question. Avoid prescribing a universal threshold independent of workload. [S22]
 
-**CHANGE ONE CONDITION AND COMPARE:** Hold resource utilization high while user outcomes remain acceptable, then lower it while correctness fails. Compare resource observations with the actual service objective.
+**CHANGE ONE CONDITION AND COMPARE:** Hold resource utilization high while user outcomes remain acceptable, then lower it while correctness fails. Compare resource observations with the actual service objective. Then show an alert tied to the promise: a burn rate of 2 would use up the seven-day error budget in 3.5 days, which justifies a response, while a CPU reading alone does not. [S45]
 
 **PRINCIPLE TO REVEAL:** Alerting should connect a meaningful condition to an appropriate response, not merely report that a number changed.
 
@@ -2592,7 +2618,7 @@ QUESTION 1: What is the observed good-event rate for the declared fixture?
 
 QUESTION 2: How many bad events does the illustrative 99% objective allow in that window?
 
-**ANSWER:** Ten of 1,000; twenty are observed, so consumption is twice the allowance.
+**ANSWER:** Ten of 1,000, which is the error budget; twenty are observed, a burn rate of 2.
 
 QUESTION 3: Which signal helps locate where one request spent time?
 
@@ -2618,7 +2644,7 @@ Carry the incident’s learning and the compatibility limitation into Week 12. T
 
 ## 11. SOURCES AND CURRENCY NOTES
 
-Primary references: S01, S02, S20, S21, S22. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S20, S21, S22, S45. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
 
 # WEEK 12 | MAINTENANCE, EVOLUTION, AND SUSTAINABLE CHANGE
 
@@ -2633,6 +2659,8 @@ Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bri
 Make maintenance visible as engineering under accumulated knowledge and constraints, not merely fixing old code. Reuse the stable booking service, then introduce a small data-model change and show why rolling releases, older consumers, stored records, and support knowledge all matter.
 
 Connect maintainability with the ability to respond to necessary change. Include resource efficiency as a separate sustainability concern: compare useful work under a declared boundary, rather than equating reduced CPU time with a measured carbon reduction. [S01, S02, S23, S24, S37]
+
+In practice (dated examples, 2026): Renovate and Dependabot propose dependency updates as reviewable changes, Flyway and Liquibase apply database migrations one step at a time, and feature flags keep old and new paths switchable during a transition.
 
 ## 2. OBSERVABLE LEARNING OUTCOMES
 
@@ -2868,6 +2896,8 @@ The emphasis is neither automatic trust nor automatic rejection. A generated can
 
 Name the working vocabulary students will meet in 2026 as each mechanism appears: specification-driven development, where the precise rule is the input to drafting; repository instruction files that carry standing rules for assistants; tool permissions and sandboxes; evaluation of output that is not deterministic; cost and latency budgets for automated steps; and the shift of the engineer's work toward specifying and checking. The course's own decks were drafted by automated assistants under exactly these constraints, and scene 07 uses one of their change records as its example.
 
+In practice (dated examples, 2026): coding assistants include OpenAI Codex, Claude Code, GitHub Copilot and Cursor, and they reach tools through connectors such as MCP servers. Name them factually, without comparison or ranking.
+
 ## 2. OBSERVABLE LEARNING OUTCOMES
 
 1. Evaluate a generated candidate against explicit requirements and independent checks.
@@ -2972,7 +3002,7 @@ Anchor scene | ID: bounded-actions
 
 **VISUAL IDEA:** An action path passes through explicit read, edit, verify, propose, and approve boundaries; available capabilities are displayed beside it.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Ask whether generating a patch requires access to production booking data or release credentials. Reveal a narrower path using synthetic fixtures and local checks. Show that proposing a change and applying a high-impact change are different authorities; the permission list and the sandbox that enforce this live outside the assistant. [S33]
+**SITUATION, PREDICTION, AND MECHANISM:** Ask whether generating a patch requires access to production booking data or release credentials. Reveal a narrower path using synthetic fixtures and local checks. Show that proposing a change and applying a high-impact change are different authorities; the permission list and the sandbox that enforce this live outside the assistant. [S33] Add a row for an unreviewed tool connector, for example an MCP server: it is third-party code acting with the assistant's permissions, so it is both a dependency and a trust boundary. OWASP's list for agents names the risks it creates, tool misuse and identity and privilege abuse. [S44]
 
 **CHANGE ONE CONDITION AND COMPARE:** Give the same imperfect candidate broad unattended production access, then compare the possible consequences with the bounded version. Keep it a diagram, not a functioning dangerous workflow. An approval button needs informative evidence to be meaningful.
 
@@ -2986,7 +3016,7 @@ Bridge scene | ID: untrusted-instructions
 
 **VISUAL IDEA:** A repository note is tagged as content; a separate trusted task and permission boundary remain visible.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Show a note claiming that the verification step should be skipped. Ask whether its location in a repository makes it authoritative. Reveal the attempt to cross from task data into workflow instruction. Introduce prompt injection as a trust-boundary problem. [S34]
+**SITUATION, PREDICTION, AND MECHANISM:** Show a note claiming that the verification step should be skipped. Ask whether its location in a repository makes it authoritative. Reveal the attempt to cross from task data into workflow instruction. Introduce prompt injection as a trust-boundary problem. [S34] Name the agent-level result as OWASP's agentic list does: goal hijack, content redirecting what the agent is trying to achieve. [S44]
 
 **CHANGE ONE CONDITION AND COMPARE:** Keep the note unchanged but enforce the external requirement that checks cannot be bypassed by retrieved content. Compare the attempted redirection with the allowed action path. State that text filtering alone is not a complete guarantee.
 
@@ -3014,7 +3044,7 @@ Bridge scene | ID: provenance-and-understanding
 
 **VISUAL IDEA:** A change record collects source context, reviewed dependencies, checks, residual questions, and a plain-language explanation.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Ask whether “the tool wrote it” answers a maintainer’s question about an authorization branch. Reveal the rationale and relevant evidence required to maintain the change. Any uncertain origin or licensing concern is marked for appropriate review rather than guessed away. Use this course's own record: the deck the class is watching was drafted by an automated assistant, checked by the plan checker and the deck tests, and accepted by the instructor, with its unresolved limitation stated.
+**SITUATION, PREDICTION, AND MECHANISM:** Ask whether “the tool wrote it” answers a maintainer’s question about an authorization branch. Reveal the rationale and relevant evidence required to maintain the change. Any uncertain origin or licensing concern is marked for appropriate review rather than guessed away. Include one dependency question: the candidate imports textenc-turbo, a package name that exists in no registry. Code assistants are documented to invent package names, and anyone could publish a package under the invented name, so the inventory check blocks the build until a person confirms or removes the dependency. [S50] Use this course's own record: the deck the class is watching was drafted by an automated assistant, checked by the plan checker and the deck tests, and accepted by the instructor, with its unresolved limitation stated.
 
 **CHANGE ONE CONDITION AND COMPARE:** Replace a confident but unsupported explanation with one that accurately states a limitation. Compare whether the reviewer can make a better decision, even though the wording sounds less certain.
 
@@ -3084,7 +3114,7 @@ Carry the full requirement-to-evidence discipline into Week 14. The final lectur
 
 ## 11. SOURCES AND CURRENCY NOTES
 
-Primary references: S01, S02, S18, S19, S33, S34, S35. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S18, S19, S33, S34, S35, S44, S50. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
 
 # WEEK 14 | CONNECTING THE LIFECYCLE THROUGH ONE ENGINEERING DECISION
 
@@ -3099,6 +3129,8 @@ Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bri
 End with an instructor-led engineering decision clinic, not a list of all previous definitions. A staff member reports that C101 must be closed for maintenance during a future interval. The class follows one bounded change across requirements, models, architecture, checks, release, operation, and learning.
 
 Use familiar representations and identifiers so the difficulty lies in connecting decisions, not decoding a new domain. Preserve explicit disagreement where evidence does not determine one universal design. The goal is a coherent explanation of what should change, what must remain true, and what would justify the decision. [S01, S02]
+
+In practice (dated examples, 2026): the closure change travels through the tools named in earlier weeks, an issue in GitHub Issues or Jira, a reviewed pull request, CI gates in GitHub Actions, a feature flag for exposure, and OpenTelemetry signals after release.
 
 ## 2. OBSERVABLE LEARNING OUTCOMES
 
@@ -3334,7 +3366,15 @@ Security: use OWASP Top 10:2025, including the expanded attention to software su
 
 Delivery: the current DORA guide uses five measures. The course uses the current names and distinguishes failed deployment recovery time from a generic all-incident recovery measure. It includes deployment rework rate rather than presenting the historical four-key formulation as unchanged. [S17]
 
-AI assistance: incorporate independent verification, shared-assumption risk, bounded actions, untrusted instructions, review capacity, and accountable maintenance. Use the 2025 DORA report and the March 2026 analysis as dated research context, not universal causal claims or fixed model rankings. Distinguish assisting development from placing a model inside the shipped service. [S18, S19, S33, S34, S35] From this revision the through-line is stated in Week 1 and carried by one short beat inside an existing scene in Weeks 2, 7, 8, 9, 10 and 12, so Week 13 deepens a familiar claim instead of opening a new topic.
+AI assistance: incorporate independent verification, shared-assumption risk, bounded actions, untrusted instructions, review capacity, and accountable maintenance. Use the 2025 DORA report and the March 2026 analysis as dated research context, not universal causal claims or fixed model rankings. Distinguish assisting development from placing a model inside the shipped service. [S18, S19, S33, S34, S35] From this revision the through-line is stated in Week 1 and carried by one short beat inside an existing scene in Weeks 2, 7, 8, 9, 10 and 12, so Week 13 deepens a familiar claim instead of opening a new topic. Agents that call tools and act with delegated permissions have their own OWASP risk list, published 9 December 2025, which Week 13 uses beside the LLM list; a dependency name invented by a code assistant is a documented supply-chain risk and appears in Week 13's change record. [S44, S50]
+
+Reliability: name the error budget and its burn rate with the definitions of the Site Reliability Workbook, so the Week 11 objective connects to the alerting practice students will meet. [S45]
+
+Quality vocabulary: ISO/IEC 25010:2023 names the product quality characteristics behind the quality attributes of Weeks 1 and 2, including its renamed interaction capability and flexibility and the added safety characteristic. [S46]
+
+Law as context: Week 9 names KVKK (Law No. 6698), the GDPR and the EU Cyber Resilience Act in one context line each, because they turn data minimisation and component inventories into obligations. The course explains the engineering and gives no compliance advice. [S47, S48, S49]
+
+Tools: each week's Section 1 closes with an "In practice" paragraph naming current tools as dated examples. The names help students connect concepts to everyday work; no scene depends on them.
 
 Workflow and accessibility: use the November 2020 Scrum Guide and May 2025 Kanban Guide editions identified in the register. Make accessible interaction and clear status communication recur throughout, with WCAG 2.2 as the cited accessibility reference. [S04, S05, S25]
 
@@ -3342,11 +3382,11 @@ Workflow and accessibility: use the November 2020 Scrum Guide and May 2025 Kanba
 
 Weeks 1–3 establish engineering scope, stakeholders, professional consequences, verifiable requirements, quality attributes, traceability, validation, state, data, interaction models, and accessible feedback.
 
-Weeks 4–6 connect work organization, feedback, estimation, risk, completion criteria, cohesion, coupling, contracts, refactoring, architecture views, deployment boundaries, concurrency, retries, and compatibility.
+Weeks 4–6 connect work organization, team accountabilities, blameless process feedback, estimation, risk, completion criteria, cohesion, coupling, contracts, refactoring, architecture views, deployment boundaries, concurrency, retries, and compatibility.
 
-Weeks 7–9 address shared history, integration, review, configuration and dependency inputs, documentation, test design, test scope, independent expectations, properties, mutation, controlled fixtures, trust boundaries, authorization, privacy, supply-chain evidence, and secure failure behavior. Week 9 also carries a licensing beat on the transitive dependency, using SPDX identifiers as vocabulary. [S42]
+Weeks 7–9 address shared history, integration, review etiquette, debugging by bisection, configuration and dependency inputs, documentation, test design, debugging a failing case, test scope, independent expectations, properties, mutation, controlled fixtures, trust boundaries, authorization, privacy, supply-chain evidence, and secure failure behavior. Week 9 also carries a licensing beat on the transitive dependency, using SPDX identifiers as vocabulary. [S42]
 
-Weeks 10–12 follow verified changes into delivery, artifact identity, configuration, exposure, recovery, service-level objectives, telemetry, diagnosis, latency, incident learning, maintenance, migrations, debt, retirement, and honest resource-efficiency measures.
+Weeks 10–12 follow verified changes into delivery, static analysis and its scope, artifact identity, configuration, exposure, recovery, service-level objectives, error budgets and burn-rate alerting, telemetry, diagnosis, latency, incident learning, maintenance, migrations, debt, retirement, and honest resource-efficiency measures.
 
 Weeks 13–14 apply those ideas to AI-assisted change and an integrated new requirement, reinforcing that the engineering evidence does not disappear when drafting becomes easier.
 
@@ -3362,13 +3402,13 @@ Foundational topics are introduced early and revisited with a stronger question.
 
 Do not stretch these meetings into exhaustive UML, a design-pattern catalog, a full distributed-systems course, database-administration training, a penetration-testing course, or a vendor certification. Advanced formal verification, consensus algorithms, model training, infrastructure orchestration, and detailed environmental accounting remain outside the core sequence.
 
-An optional illustration may acknowledge one of those areas when it clarifies a boundary, but it must not become prerequisite knowledge for the next week. The course should produce a coherent conceptual foundation and evidence-based reasoning, not a claim of complete professional mastery from lecture exposure alone.
+An optional illustration may acknowledge one of those areas when it clarifies a boundary, but it must not become prerequisite knowledge for the next week. Laws appear only as named context, never as compliance guidance. The course should produce a coherent conceptual foundation and evidence-based reasoning, not a claim of complete professional mastery from lecture exposure alone.
 
-Assessment, examinations, grading and assigned projects are outside this package by decision (00_START_HERE.txt). The lecture materials never mention them; the instructor handles them separately.
+Assessment, examinations, grading, homework and assigned projects are outside this package by decision (00_START_HERE.txt). The lecture materials never mention them; the instructor handles them separately.
 
 ### REFRESH POLICY FOR LATER SEMESTERS
 
-Before a new run, check the official source status for SWEBOK, curriculum guidance, OWASP, NIST, workflow guides, accessibility guidance, and the delivery-measure definitions. Record edition, publication or update date, retrieval date, and final-versus-draft status. Preserve the conceptual lesson unless the evidence gives a reason to change it. The DORA publication index is the entry point for newer delivery and AI-assistance research; the re-verification task template is repo_kit/tasks/50_source_reverification.md. [S36]
+Before a new run, check the official source status for SWEBOK, curriculum guidance, OWASP (including the agentic list), NIST, workflow guides, accessibility guidance, ISO/IEC 25010, the delivery-measure definitions, and the application dates of the laws named in Week 9. Record edition, publication or update date, retrieval date, and final-versus-draft status. Review each week's "In practice" tool names at the same time and replace names that have fallen out of common use. Preserve the conceptual lesson unless the evidence gives a reason to change it. The DORA publication index is the entry point for newer delivery and AI-assistance research; the re-verification task template is repo_kit/tasks/50_source_reverification.md. [S36]
 
 During visual authoring, verify supported stable versions of the selected local libraries and a supported Node.js LTS release if Node is used. Pin the tested versions for the semester instead of silently following floating “latest” dependencies. Recheck the affected scenes and PDF output after a dependency update. Sources are dated evidence, not a promise that their live pages can never change. [S26–S32, S38, S39]
 
@@ -3458,7 +3498,7 @@ Changing a condition returns that scenario to its first paused state. Keep the c
 
 ### SCENE CONTRACT FOR TESTS, RECORDING, AND PRINT
 
-The attribute names, query modes and the window.lecture interface that implement this control contract are defined once in repo_kit/docs/scene-contract.md (docs/scene-contract.md in the repository). The tests in tests/test_deck_contract.py, the PDF export script and the recording cue lists read those names; change them there first. The query modes are record=1 for deterministic timing without autoplay, motion=off for instant states, and print=1 for the print view, which declares html[data-print-ready="true"] when its panels have rendered. Every control and every element a cue list points at carries a cue-target attribute.
+The attribute names, query modes and the window.lecture interface that implement this control contract are defined once in repo_kit/docs/scene-contract.md (docs/scene-contract.md in the repository). The tests in tests/test_deck_contract.py, the PDF export script and the recording agents read those names; change them there first. The query modes are record=1 for deterministic timing without autoplay, motion=off for instant states, and print=1 for the print view, which declares html[data-print-ready="true"] when its panels have rendered. Every control and every element a pointer may operate carries a pointer-target attribute; the deck declares no cue lists or narration (22_recording_track.txt).
 
 ### NAVIGATION AND ACCESSIBILITY
 
@@ -3482,7 +3522,7 @@ Keep the authoring workspace and private instructor material outside the distrib
 
 ### SUGGESTED EVENTUAL WEBSITE LAYOUT
 
-software-engineering-course/              repository root (23_build_plan_and_schedule.txt) AGENTS.md  CLAUDE.md  README.md         rules for the authoring agents docs/scene-contract.md                  DOM and JavaScript contract the tests read plan/                                   this package: TXT files, assets/demo-fixtures.json, plan_manifest.json, tools/, tests/ site/                                   the student distribution and nothing else index.html weeks/week-01.html ... week-14.html shared/theme.css  print.css  lecture-controls.js  visual-components.js assets/diagrams/  assets/fixtures/ vendor/  THIRD_PARTY_NOTICES.txt pdf/week-01.pdf ... week-14.pdf README.txt cues/week-01.json ... week-14.json      recording cue lists (instructor side) scripts/serve.py  export_pdf.py tasks/                                  task templates for the recurring authoring jobs .github/workflows/ci.yml
+software-engineering-course/              repository root (23_build_plan_and_schedule.txt) AGENTS.md  CLAUDE.md  README.md         rules for the authoring agents docs/scene-contract.md                  DOM and JavaScript contract the tests read plan/                                   this package: TXT files, assets/demo-fixtures.json, plan_manifest.json, tools/, tests/ site/                                   the student distribution and nothing else index.html weeks/week-01.html ... week-14.html shared/theme.css  print.css  lecture-controls.js  visual-components.js assets/diagrams/  assets/fixtures/ vendor/  THIRD_PARTY_NOTICES.txt pdf/week-01.pdf ... week-14.pdf README.txt notes/week-01.scene-guide.md ...        instructor scene guides and completion records scripts/serve.py  export_pdf.py tasks/                                  task templates for the recurring authoring jobs .github/workflows/ci.yml
 
 This is a suggested output structure, not a prescription for every source module. One HTML per week may reference shared local assets and scripts. Keep explanatory ownership clear: shared code defines repeated control meanings and visual primitives, while each week defines its own scenes and content.
 
@@ -3856,6 +3896,62 @@ Living official documentation, retrieved 16 September 2026. Instructor-side auth
 
 Use: authoring.
 
+### S44 | OWASP GENAI — TOP 10 FOR AGENTIC APPLICATIONS FOR 2026
+
+https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/
+
+Published 9 December 2025 by the OWASP GenAI Security Project, retrieved 17 September 2026. Risk list for agents that plan, call tools and act with delegated permissions; its categories include agent goal hijack, tool misuse and exploitation, and identity and privilege abuse (category names confirmed through published summaries; the landing page links the full document). Used for the Week 13 bounded-action and untrusted-instruction scenes; awareness guidance, not a certification.
+
+Use: curriculum.
+
+### S45 | GOOGLE — THE SITE RELIABILITY WORKBOOK, CHAPTER 5: ALERTING ON SLOS
+
+https://sre.google/workbook/alerting-on-slos/
+
+Primary practitioner reference, retrieved 17 September 2026. Defines burn rate as how fast, relative to the SLO, a service consumes its error budget; a burn rate of 1 uses the whole budget exactly at the end of the window. Recommends multiwindow, multi-burn-rate alerts. Used for the Week 11 error-budget and alerting scenes; the course objective and events are fictional.
+
+Use: curriculum.
+
+### S46 | ISO/IEC 25010:2023 — SQUARE PRODUCT QUALITY MODEL
+
+https://www.iso.org/standard/78176.html
+
+Second edition, 2023. The catalogue page refused automated retrieval (HTTP 403) on 17 September 2026; the nine characteristics were confirmed through published descriptions: functional suitability, performance efficiency, compatibility, interaction capability (formerly usability), reliability, security, maintainability, flexibility (formerly portability) and safety (added). Paid standard; used as vocabulary in Weeks 1 and 2, not as a conformance claim.
+
+Use: curriculum.
+
+### S47 | TURKISH PERSONAL DATA PROTECTION AUTHORITY — PURPOSE AND SCOPE OF LAW NO. 6698 (KVKK)
+
+https://www.kvkk.gov.tr/Icerik/7456/Purpose-and-Scope-of-The-Personal-Data-Protection-Law-No-6698
+
+Official English booklet of the authority, retrieved 17 September 2026 (served as a PDF). Law No. 6698 on the Protection of Personal Data, 2016. Used for one context line in the Week 9 privacy scene; not legal advice.
+
+Use: curriculum.
+
+### S48 | EUROPEAN UNION — REGULATION (EU) 2016/679, GENERAL DATA PROTECTION REGULATION
+
+https://eur-lex.europa.eu/eli/reg/2016/679/oj
+
+Official EUR-Lex text, retrieved 17 September 2026. Article 5(1)(c) sets data minimisation (adequate, relevant and limited to what is necessary) and Article 5(1)(e) storage limitation. Used for one context line in the Week 9 privacy scene; not legal advice.
+
+Use: curriculum.
+
+### S49 | EUROPEAN UNION — REGULATION (EU) 2024/2847, CYBER RESILIENCE ACT
+
+https://eur-lex.europa.eu/eli/reg/2024/2847/oj
+
+Official EUR-Lex text of 23 October 2024 on horizontal cybersecurity requirements for products with digital elements, retrieved 17 September 2026. Annex I Part II requires manufacturers to identify and document components and draw up a software bill of materials. The European Commission's Cyber Resilience Act page gives the dates: in force 10 December 2024, reporting obligations from 11 September 2026, main obligations from 11 December 2027. Used for one context line in the Week 9 dependency scene; not legal advice.
+
+Use: curriculum.
+
+### S50 | SPRACKLEN ET AL. — PACKAGE HALLUCINATIONS BY CODE-GENERATING LLMS
+
+https://arxiv.org/abs/2406.10279
+
+"We Have a Package for You! A Comprehensive Analysis of Package Hallucinations by Code Generating LLMs", USENIX Security Symposium 2025 (arXiv 2406.10279), retrieved 17 September 2026. Shows generated code recommending packages that do not exist, which an attacker can publish under the invented name. Used for the Week 13 change-record example; the package name in the course is fictional.
+
+Use: curriculum.
+
 # CAMPUS ROOMS: RECURRING CASE AND TEACHING FIXTURES
 
 Research and curriculum date: 16 September 2026
@@ -3886,7 +3982,7 @@ The no-overlap decision must survive concurrency. Correct local interval arithme
 
 Q-01 is the illustrative search requirement introduced in Week 2: under the declared teaching fixture and 50 concurrent users, p95 search API response time is at most 500 ms at the service boundary. It is not a claim about a browser’s complete perceived experience or an industry benchmark. Actual performance evidence requires a specified dataset, request mix, environment, run conditions, and percentile calculation; the later twenty-point example illustrates the concept only.
 
-Q-02 is the separate Week 11 illustrative objective: over seven days, at least 99% of eligible booking requests receive a correct outcome within two seconds. Eligible events are authenticated, syntactically valid booking requests reaching the stated service boundary, including legitimate room-conflict requests; health checks are excluded. A timely correct conflict rejection is good service. The fixed fixture contains 980 good events, 10 correct-but-slow results, 5 timeouts, and 5 unexpected server failures out of 1,000. The observed good-event rate is 98%, against an allowance of 10 bad events; 20 are observed.
+Q-02 is the separate Week 11 illustrative objective: over seven days, at least 99% of eligible booking requests receive a correct outcome within two seconds. Eligible events are authenticated, syntactically valid booking requests reaching the stated service boundary, including legitimate room-conflict requests; health checks are excluded. A timely correct conflict rejection is good service. The fixed fixture contains 980 good events, 10 correct-but-slow results, 5 timeouts, and 5 unexpected server failures out of 1,000. The observed good-event rate is 98%, against an allowance of 10 bad events; 20 are observed. The allowance is the error budget. Observing twice the allowed bad-event rate is a burn rate of 2, which at a steady rate uses up the seven-day budget in 3.5 days.
 
 ### TEST AND AUTHORIZATION FIXTURES
 
@@ -3914,6 +4010,12 @@ The Week 11 retry-amplification scene uses a toy model: one dependency serves at
 
 Recorded results, recomputed by the checker: naive peaks at seven queued attempts, completes the six unique requests in round 5 with seven duplicate effects, and drains only in round 7; bounded peaks at three queued attempts, completes them in round 4 with no duplicate effects, and its circuit is open at the ends of rounds 1 and 2. The retries competed with the originals for the same capacity, which is the lesson. The model is a mechanism illustration, not a measurement, and it reuses the Week 6 operation-key idea for the duplicate effects.
 
+### INVENTED DEPENDENCY
+
+Week 13's change record uses textenc-turbo, a fictional package name that exists in no registry, to show a dependency invented by a code assistant. It is deliberately close to textenc, the fictional transitive dependency of Week 9; neither name refers to a real package.
+
+### AUTHORING NOTES FOR ALL FIXTURES
+
 Any additional numbers introduced during authoring should be identified as measured, sourced, or simulated. Fix seeds where randomness is used for illustration, record the inputs, and independently verify the outputs. Repeated visits to a scene should not silently generate a different lesson.
 
 Structured data for every Anchor scene, and for the numeric Bridges, lives in the anchors block of assets/demo-fixtures.json under the key wNN/scene-id, beside the cancellation matrix and the retry model. The HTML and the PDF render from it, and tools/check_plan.py recomputes every model and checks the week text against the values the fixtures say it shows.
@@ -3938,11 +4040,11 @@ repo_kit/CLAUDE.md imports AGENTS.md and adds only runtime-specific notes. A Cod
 
 repo_kit/tasks/00_shell_and_week1.md: the shared shell, Week 1 complete, and the two shell-test scenes from Weeks 5 and 11, exactly as the start-here file recommends.
 
-repo_kit/tasks/10_author_week.md: one week on the existing shell, with the three Anchors as controlled explanations, every Bridge reveal operated by a pointer for the recording, the print panels, the PDF, the cue list and a rehearsal note.
+repo_kit/tasks/10_author_week.md: one week on the existing shell, with the three Anchors as controlled explanations, every Bridge reveal operated by a pointer for the recording, the print panels, the PDF, the layout scan at the recording resolution and a scene guide.
 
-repo_kit/tasks/20_revise_after_rehearsal.md: revise only what the rehearsal notes name, recheck every deck that a shared change touches, and never expand the curriculum to demonstrate a library.
+repo_kit/tasks/20_revise_after_review.md: revise only what the review notes name, recheck every deck that a shared change touches, and never expand the curriculum to demonstrate a library. There is no instructor rehearsal (00_START_HERE.txt); review notes come from reading the rendered deck and PDF.
 
-repo_kit/tasks/30_export_pdf.md, 40_recording_cuelists.md, 50_source_reverification.md: the export and inspection of student PDFs, the recording cue list per week, and the register re-verification before Week 1 ships.
+repo_kit/tasks/30_export_pdf.md, 50_source_reverification.md: the export and inspection of student PDFs, and the register re-verification before Week 1 ships. There is no cue-list task: the recording agent generates its shot list and narration at run time (22_recording_track.txt).
 
 ### HOW A HUMAN CHECKS AN AGENT'S REPORT
 
@@ -3962,7 +4064,7 @@ Review the canonical rule file before authoring examples. Verify that the durati
 
 ### FOR EVERY WEEKLY HTML DECK
 
-Open every important scene directly through its stable hash. Verify the documented baseline and paused state. Step through the whole scene, use Back step, then Replay and Reset. Confirm that the controls mean different things. Leave a scene mid-animation and return; it must follow the declared re-entry behavior and must not have continued running invisibly.
+Render every page, condition and state at the recording resolution, 1920 by 1080 logical pixels at device scale factor 2 (3840 by 2160), with python scripts/inspect_deck.py --layout, and read the captures natively. The layout scan reports overlapping text, text outside the scene area and text that would be cut from a print panel. Open every important scene directly through its stable hash. Verify the documented baseline and paused state. Step through the whole scene, use Back step, then Replay and Reset. Confirm that the controls mean different things. Leave a scene mid-animation and return; it must follow the declared re-entry behavior and must not have continued running invisibly.
 
 Check Next and Previous independently of scene state, including when the scene is unfinished. Confirm that the last Step does not advance the slide. Check sliders, buttons, and keyboard focus without shortcut conflicts. Verify visible labels at the rear-of-room reading scale, adequate contrast, color-independent meaning, and reduced motion with no lost information.
 
@@ -3974,23 +4076,23 @@ Export from the designated print state, not the current presentation frame. Insp
 
 Verify that questions, revealed evidence, changed assumptions, values, and principles agree with the HTML. Confirm that scene identifiers remain visible and that any multi-page scene is easy to follow. Check a grayscale or low-color preview. Review text selection and reading order; keep the accessible HTML counterpart available rather than assuming the export is fully tagged or conformant.
 
-### OFFLINE AND DISTRIBUTION REHEARSAL
+### OFFLINE AND DISTRIBUTION CHECK
 
 Copy the complete student site to a clean folder or second machine, disconnect internet access, start it through the documented local route, and open all fourteen decks from the index. Check that required fonts, scripts, styles, diagrams, chart data, and static alternatives load locally. Confirm that no student feature depends on a development-only server endpoint or an authoring account.
 
 Verify the fourteen PDF links and the matching HTML week numbers. Keep instructor notes, authoring prompts, secrets, and irrelevant source files out of the student distribution. Include third-party notices and the tested version manifest. A library or browser update should trigger a repeat of affected export and interaction checks.
 
-### TEACHING REHEARSAL AND RECOVERY
+### RECOVERY DURING A LECTURE
 
-For each Anchor, rehearse the prediction question, the exact pause before the reveal, the changed condition, and the final principle. The instructor should know which state best exposes the misconception and how Reset returns to the known starting point. Avoid live dependency installation or uncontrolled code generation during the lecture.
+There is no instructor rehearsal (00_START_HERE.txt). Each week's scene guide (notes/week-NN.scene-guide.md) names the baseline, the useful condition presets and the state that best exposes each misconception, and Reset always returns to the known starting point. Avoid live dependency installation or uncontrolled code generation during the lecture.
 
 Have the week’s student PDF available locally as a recovery route if an interactive component fails. A static explanation should still communicate the essential mechanism. Use the pacing guidance to shorten Bridge scenes when discussion expands, preserving the causal comparisons rather than rushing through every animation.
 
 ### AUTOMATED COVERAGE OF THESE CHECKS
 
-The tests in tests/test_deck_contract.py and tests/test_pdf.py run the mechanical part of this checklist against a built site (pytest with SE_COURSE_SITE set). Hash entry at the baseline, paused: test_hash_entry_opens_baseline_paused. Step, Back, Replay and Reset meaning different things: test_step_and_back_move_one_state and test_replay_keeps_condition_and_reset_restores_baseline. The last Step not advancing the slide: test_last_step_never_advances_the_page. Next and Previous independent of scene state: test_next_and_previous_change_the_page_even_mid_scene. Leaving mid-animation and returning: test_leaving_a_scene_cancels_its_work. Keyboard focus and accessible names: test_controls_are_keyboard_reachable_with_names; sliders and arrow keys: test_range_inputs_do_not_change_the_page. Reduced motion with no lost information: test_reduced_motion_reaches_the_same_final_state. Contrast and labels: test_axe_reports_no_serious_violations, partially. Charts and diagrams against the recorded fixture: test_fixture_values_are_shown. Local operation: test_deck_loads_with_no_external_requests. Export from the designated print state: test_print_view_declares_ready and the PDF tests.
+The tests in tests/test_deck_contract.py and tests/test_pdf.py run the mechanical part of this checklist against a built site (pytest with SE_COURSE_SITE set). Hash entry at the baseline, paused: test_hash_entry_opens_baseline_paused. Step, Back, Replay and Reset meaning different things: test_step_and_back_move_one_state and test_replay_keeps_condition_and_reset_restores_baseline. The last Step not advancing the slide: test_last_step_never_advances_the_page. Next and Previous independent of scene state: test_next_and_previous_change_the_page_even_mid_scene. Leaving mid-animation and returning: test_leaving_a_scene_cancels_its_work. Keyboard focus and accessible names: test_controls_are_keyboard_reachable_with_names; sliders and arrow keys: test_range_inputs_do_not_change_the_page. Reduced motion with no lost information: test_reduced_motion_reaches_the_same_final_state. Contrast and labels: test_axe_reports_no_serious_violations, partially. Charts and diagrams against the recorded fixture: test_fixture_values_are_shown. Local operation: test_deck_loads_with_no_external_requests. Export from the designated print state: test_print_view_declares_ready and the PDF tests. Overlapping text, text outside the scene area and clipped print panels at the recording resolution: python scripts/inspect_deck.py --layout.
 
-Still manual: rear-of-room readability at the actual display, print inspection for clipping, tiny labels and overlapping reveals, the grayscale preview, reading order, the copied-folder second-machine rehearsal beyond its network part, and the teaching rehearsal itself.
+Still manual: rear-of-room readability at the actual display, a native read of the 3840 by 2160 captures and of every PDF page, the grayscale preview, reading order, and the copied-folder second-machine check beyond its network part.
 
 ### COMPLETION RECORD
 
@@ -4006,53 +4108,35 @@ Research and curriculum date: 16 September 2026
 
 Every week is recorded (decision in 00_START_HERE.txt). The recordings follow the tutorial workspace rules, each of which lives in one file there and is not repeated here:
 
-F:/0_tutorial_videos_project/AGENTS.md: the rule index and the runtime mapping. F:/0_tutorial_videos_project/docs/natural_tutorial_workflow.md: planning order (shot list, checker, record, narrate from what happened), action over static content, continuous narration. F:/0_tutorial_videos_project/docs/channel_style_guide.md: opening structure, narration voice, public audience and useful content, instructional not defensive. F:/0_tutorial_videos_project/docs/tutorial_layout_policy.json: canvas, capture_scale, avatar, static_content caps, narration_stream, media_formats, resolve_frame_rates, delivery_preflight. F:/0_tutorial_videos_project/docs/production_playbook.md: pre-take desktop hygiene, showing a Command Prompt, pre-delivery preflight, frame-rate preflight, Resolve procedures, publication deliverables. Checkers in that workspace: tools/check_static_content.py, tools/check_narration_style.py, tools/check_narration_coverage.py, tools/preflight_delivery.py, tools/scan_offline_frames.py.
+F:/0_tutorial_videos_project/AGENTS.md: the rule index and the runtime mapping. F:/0_tutorial_videos_project/docs/natural_tutorial_workflow.md: planning order (audio first: the narration is written and synthesized before the final take, and the take is recorded to it), action over static content, continuous narration. F:/0_tutorial_videos_project/docs/channel_style_guide.md: opening structure, narration voice, public audience and useful content, instructional not defensive. F:/0_tutorial_videos_project/docs/tutorial_layout_policy.json: canvas, capture_scale, avatar, static_content caps, narration_stream, media_formats, resolve_frame_rates, delivery_preflight. F:/0_tutorial_videos_project/docs/production_playbook.md: pre-take desktop hygiene, showing a Command Prompt, pre-delivery preflight, frame-rate preflight, Resolve procedures, publication deliverables. Checkers in that workspace: tools/check_static_content.py, tools/check_narration_style.py, tools/check_narration_coverage.py, tools/preflight_delivery.py, tools/scan_offline_frames.py.
 
-The lecture decks are the screen being recorded. A deck is not a slide show in the sense of those rules only when a hand operates it on camera: a picture that changes by itself is static under the action-over-static rule, and a pointer clicking Step, selecting a condition preset, hovering a node or dragging a slider is action. Everything below follows from that.
+The lecture decks are the screen being recorded. A deck is not a slide show in the sense of those rules only when a hand operates it on camera: a picture that changes by itself is static under the action-over-static rule, and a pointer clicking Step, selecting a condition preset, hovering a node or dragging a slider is action.
+
+### NO SPEAKING CUES IN THIS REPOSITORY
+
+The repository and this plan hold no speaking cues (decision in 00_START_HERE.txt): no cue lists or shot lists, no narration text or narration briefs, no lines about what a moment of the deck teaches, no planned durations, and no recorded route that fixes which pages are shown or skipped, what is said over a page, or how a video opens and closes. Decks, fixtures, plan files, scene guides and completion records do not carry them, and authoring agents do not add them.
+
+The recording agent generates all of it at run time. It first analyzes the week: plan/weekN.txt in full, plan_manifest.json, the case guide (19_recurring_case_and_demo_data.txt), the fixtures the deck renders, the scene guide, and the deck itself, operated in record=1 mode and rendered at 3840 by 2160. From that analysis it decides the route through the deck, writes the shot list and the narration, synthesizes the speech and records the tutorial, in the planning order and under the checks of the workspace rules above. What it writes for one recording stays with that recording in the tutorial workspace; it does not come back into this repository as cues for later runs.
 
 ### WHAT THE DECK PROVIDES FOR RECORDING
 
-The shell implements the recording items of repo_kit/docs/scene-contract.md: the record=1 mode with deterministic timing and no autoplay, a cue target attribute on every control and every element a cue points at, hovers or drags, and the window.lecture interface. The deck is laid out at 1920 by 1080 logical pixels and rendered in Chrome at device scale factor 2, which gives the native 3840 by 2160 capture the capture_scale rule requires. The dark theme is the default (00_START_HERE.txt).
+The shell implements the recording items of docs/scene-contract.md: the record=1 mode with deterministic timing and no autoplay, a pointer-target attribute (data-cue-target) on every control and every element a pointer may click, hover or drag, and the window.lecture interface, which lists the pages and reports each scene's state. The deck is laid out at 1920 by 1080 logical pixels and rendered in Chrome at device scale factor 2, which gives the native 3840 by 2160 capture the capture_scale rule requires; takes are captured at 60 fps. The dark theme is the default (00_START_HERE.txt).
 
 The deck uses the whole canvas. Nothing is reserved for the presenter; the avatar overlay yields wherever the footage shows content in its rectangle, as the avatar block of the layout policy defines. Where a composition allows, the shell leaves the bottom-right corner empty so the overlay can appear more often. This is a preference, not a reservation.
 
-Every reveal is operated. Anchors advance by Step clicks. Bridge rows, cells and arrows appear on a click or hover of their cue target, never on a timer, so a Bridge counts as action when the pointer operates it. A running model (queue flow, retry amplification) counts as a process while its progress is visible on screen and is started by a visible Run click.
+Every reveal is operated. Anchors advance by Step clicks. Bridge rows, cells and arrows appear on a click or hover of their pointer target, never on a timer, so a Bridge counts as action when the pointer operates it. A running model (queue flow, retry amplification) counts as a process while its progress is visible on screen and is started by a visible Run click. In record=1 mode the deck never advances on its own and never draws a synthetic cursor; the real pointer moves with real input events.
 
-### CUE LIST EQUALS SHOT LIST
+The deck is deterministic, so no separate rehearsal is recorded or performed (00_START_HERE.txt). For its analysis the recording agent can render every page, condition and state at 3840 by 2160 with python scripts/inspect_deck.py --layout --week NN --shots --out <folder> and read the captures natively, and it serves the deck with python scripts/serve.py --root site.
 
-Each week has one cue list, cues/week-NN.json in the repository, written in the workspace shot-list format (F:/0_tutorial_videos_project/docs/templates/shot_list.example.json): fps, then segments with id, chapter, kind (action, process or static), seconds, action, teaches, and a reason for every static segment. Four fields are added per segment for the deck: scene (the scene identifier), cue_target (the data-cue-target value), deck_action (click, hover, drag or key), and expect_state (the data-state value after the action). One segment per pointer action or per running process, in lecture order. No spoken text belongs in the cue list; narration is written after the recording.
+### WORDING OF DECK TEXT AND NARRATION
 
-The authoring agent derives the cue list from plan_manifest.json and the scene notes (repo_kit/tasks/40_recording_cuelists.md). Before the first take, the workspace checker must pass on it: python F:/0_tutorial_videos_project/tools/check_static_content.py cues/week-NN.json. The same checker runs on the assembled plan before delivery.
+We teach, so the narration is confident and sure (decision of 16 September 2026, clarified 17 September 2026: the rule is the stance, not a word list). The course's technical words are used as instruction with their ordinary meaning: verify, confirm, evidence, distinguish, establish, record. What stays out is the defensive shape: does not prove, no guarantee, another configuration may differ, we do not claim, record the evidence for a report. The viewer is addressed as "you"; never students, class, exam or grade; no production logistics in speech.
 
-What a scene's cues contain:
-
-Anchor: the pointer operates the situation (Week 1 clicks Reserve on two booking cards); the prediction prompt is a hover across the options, narrated later as a request to pause the video and decide; Step clicks reveal the mechanism one state each; a preset click changes the condition and returns to the first state; Step clicks through the changed condition; a hover across the comparison; a final Step reveals the principle.
-
-Bridge: a click or hover reveals each row, cell or arrow; one click changes the condition; a final click reveals the principle.
-
-Opening of every video: the first Anchor's situation is operated inside the opening window that the channel opening structure and the static_content caps define. There is no title card and no outcomes list on screen. The deck's recall-and-outcomes page is skipped in the recorded route or replaced by a pointer pass over the course map.
-
-Closing: the principles page is operated as a pointer pass over its cards. The sources-and-handoff page is static; in the recorded route the handoff question is narrated over the final pointer pass and the sources go into the video description (channel description template). This is a production decision recorded here, not a rule of the workspace.
-
-### DRIVER AND CAPTURE
-
-Real input events move the real pointer. The cue list is performed by the host automation route the workspace already uses (the computer-use skill, or a lecture-local helper in the pattern of projects/masters_generative_ai/week01/tools), which reads cues/week-NN.json and clicks, hovers or drags each cue target in Chrome, then waits for the expected state. The deck never draws a synthetic cursor and never advances on its own in record=1 mode.
-
-Chrome shows the user's own profile under the sensitive-data rule (C:/Users/Furkan/.codex/AGENTS.md); the deck is served by scripts/serve.py from the repository. OBS records; the take is remuxed per media_formats; Resolve, frame rates, editable text and the preflight follow the playbook. One take per Anchor or per scene; cue identifiers map to takes in the edit plan.
-
-### NARRATION UNDER THE EXISTING RULES
-
-Narration is written after the recording from what happened, one unit per cue, generated with the shared voice contract, fitted to the footage as the continuous-narration rule requires, and checked with the coverage and style checkers. No allowance is added for this course's vocabulary (decision of 16 September 2026: we teach, so there is no defensive narration). The course's technical words are therefore spoken as instruction:
-
-Say "check" and "checks" where the plan says verify or verification, and "what the checks show", "the result", "the record" where it says evidence. State what each thing is instead of saying "distinguish". Say "the booking is accepted and stored" and let the on-screen label carry the state name Confirmed, because the checker reads the word confirm as a hedge. Say "keep" for retain. Never use the defensive shapes: does not prove, another configuration may differ, no guarantee, is separate from, only shows. Address the viewer as "you"; never students, class, exam or grade; no production logistics in speech.
-
-The prediction pause is narrated ("pause the video now and decide which of the three you expect"), then the reveal follows; there is no silence. A stretch with nothing worth saying is cut, never left quiet.
-
-The deck text follows the same wording rules, and the style checker is run on the deck strings as well as on the narration units.
+The deck text follows the same wording rules, and the style checker is run on the deck strings (python scripts/check_deck_text.py) as well as on the narration the recording agent generates.
 
 ### DELIVERABLES PER RECORDED WEEK
 
-cues/week-NN.json passing the static-content checker; the remuxed takes; the edit plan; narration units passing the style checker; the placement passing the coverage checker; the Resolve project and timeline exports, the separate SRT and source mapping; the pre-delivery preflight report; the post-render offline-frame scan report. Each is listed in the week's completion record (21_instructor_preflight.txt) with what was actually checked.
+Generated at run time and kept with the recording in the tutorial workspace: the shot list passing the static-content checker, the 3840 by 2160 state captures, the narration units passing the style checker, the synthesized units, the takes recorded to them and remuxed, the edit plan, the placement passing the coverage checker, the Resolve project and timeline exports, the separate SRT and source mapping, the pre-delivery preflight report and the post-render check reports. The week's completion record (notes/week-NN.completion.md, 21_instructor_preflight.txt) names where they are and what was actually checked.
 
 # BUILD PLAN, PARALLEL AUTHORING, AND SCHEDULE
 
@@ -4060,32 +4144,32 @@ Research and curriculum date: 16 September 2026
 
 ### THE REPOSITORY
 
-The course is built as a Git repository, local for now; the user publishes it to a remote when fitting (00_START_HERE.txt). Its root holds the files staged in repo_kit (AGENTS.md, CLAUDE.md, README.md, docs/scene-contract.md, scripts, tasks, the CI workflow and .gitignore). This plan package moves into plan/ unchanged: the TXT files, assets/demo-fixtures.json, plan_manifest.json, tools/, tests/, pytest.ini and requirements-dev.txt. The student distribution is site/ and nothing else. Recording cue lists live in cues/. The layout is drawn in repo_kit/README.md.
+The course is built as a Git repository, local for now; the user publishes it to a remote when fitting (00_START_HERE.txt). Its root holds the files staged in repo_kit (AGENTS.md, CLAUDE.md, README.md, docs/scene-contract.md, scripts, tasks, the CI workflow and .gitignore). This plan package moves into plan/ unchanged: the TXT files, assets/demo-fixtures.json, plan_manifest.json, tools/, tests/, pytest.ini and requirements-dev.txt. The student distribution is site/ and nothing else. Scene guides and completion records live in notes/; there are no recording cue lists (00_START_HERE.txt). The layout is drawn in repo_kit/README.md.
 
 The CI workflow runs the plan checker, the deck and PDF tests and the PDF artifact upload on every push once the repository has a GitHub remote. Until then the same commands run locally; they are listed once in repo_kit/AGENTS.md under the definition of done.
 
 ### THREE PHASES
 
-Phase 0, one agent, sequential: the shared shell, Week 1 complete, and the two shell-test scenes from Week 5 (dependency-example) and Week 11 (latency-is-a-distribution) inside their eventual deck files (repo_kit/tasks/00_shell_and_week1.md). Exit: the full command list passes for those decks, Week 1 has its PDF and cue list, and the instructor has rehearsed Week 1 from the deck.
+Phase 0, one agent, sequential: the shared shell, Week 1 complete, and the two shell-test scenes from Week 5 (dependency-example) and Week 11 (latency-is-a-distribution) inside their eventual deck files (repo_kit/tasks/00_shell_and_week1.md). Exit: the full command list passes for those decks, the layout scan is clean at 3840 by 2160, and Week 1 has its PDF and scene guide. There is no instructor rehearsal (00_START_HERE.txt).
 
-Phase 1, several agents in parallel: Weeks 2 to 14, one week per branch or worktree, each against the frozen shell, the contract and the tests (repo_kit/tasks/10_author_week.md). Shell changes are made only in a shell branch and rerun every existing deck's tests. A useful working set is three agents authoring three consecutive weeks while a fourth exports PDFs and writes cue lists for finished weeks.
+Phase 1, several agents in parallel: Weeks 2 to 14, one week per branch or worktree, each against the frozen shell, the contract and the tests (repo_kit/tasks/10_author_week.md). Shell changes are made only in a shell branch and rerun every existing deck's tests. A useful working set is three agents authoring three consecutive weeks while a fourth exports PDFs for finished weeks.
 
-Phase 2, per week and once at the end: rehearsal revision (tasks/20), PDF export and inspection (tasks/30), cue lists (tasks/40), the copied-folder offline rehearsal from 21_instructor_preflight.txt, and the register re-verification (tasks/50) before Week 1 ships.
+Phase 2, per week and once at the end: revision after review (tasks/20), PDF export and inspection (tasks/30), the copied-folder offline check from 21_instructor_preflight.txt, and the register re-verification (tasks/50) before Week 1 ships.
 
 ### MINIMUM VIABLE DECK
 
-A week may ship below its full design but never below this line: all eight scenes present with their identifiers, situation, question and principle; the three Anchors interactive with Step, Back, Replay, Reset and at least the baseline and one changed-condition preset; the five Bridges as annotated diagrams or tables whose rows appear on pointer-operated reveals; print panels for every scene and the exported PDF; the contract tests passing; the cue list passing the static-content checker. Motion polish, continuation pages, Run controls and Three.js are above the line. A deck below the line is not taught from; the instructor uses the previous week's routine and the plan's recovery route (the static explanation) while the deck is finished.
+A week may ship below its full design but never below this line: all eight scenes present with their identifiers, situation, question and principle; the three Anchors interactive with Step, Back, Replay, Reset and at least the baseline and one changed-condition preset; the five Bridges as annotated diagrams or tables whose rows appear on pointer-operated reveals; print panels for every scene and the exported PDF; the contract tests passing; the layout scan reporting no overlapping, overflowing or clipped text at 3840 by 2160. Motion polish, continuation pages, Run controls and Three.js are above the line. A deck below the line is not taught from; the instructor uses the previous week's routine and the plan's recovery route (the static explanation) while the deck is finished.
 
 ### SCHEDULE RELATIVE TO THE FIRST LECTURE
 
-The first lecture date is not fixed yet; call it T0 and write the dates in when it is. Phase 0 complete and rehearsed: T0 minus 7 days. Week 1 recorded, narrated and delivered: T0 minus 2 days, or per the channel's publication plan. Week N deck, PDF and cue list ready: lecture N minus 7 days. Week N recording and narration: lecture N minus 5 to minus 2 days. Authoring runs three weeks ahead of the lectures from Week 4 on, so a late week never blocks the next lecture. Re-verification of the sources (tasks/50) is finished before Week 1 ships and repeated before any later semester.
+The first lecture date is not fixed yet; call it T0 and write the dates in when it is. Phase 0 complete: T0 minus 7 days. Week 1 narrated, recorded and delivered: T0 minus 2 days, or per the channel's publication plan. Week N deck and PDF ready: lecture N minus 7 days. Week N recording, with its narration generated at run time: lecture N minus 5 to minus 2 days. Authoring runs three weeks ahead of the lectures from Week 4 on, so a late week never blocks the next lecture. Re-verification of the sources (tasks/50) is finished before Week 1 ships and repeated before any later semester.
 
 If T0 is within three weeks of today, Phase 0 starts immediately and Weeks 2 and 3 are authored at the minimum viable line first, then raised to the full design in Phase 2.
 
 ### ROLES OF THE TOOLS
 
-tools/build_manifest.py derives the scene manifest that the index page, the tests and the agents read. tools/check_plan.py guards the plan: structure, links, citations, rules, spine, fixtures recomputed from the models, and manifest freshness. tests/ guards the decks against the contract, accessibility, offline operation, fixture agreement, the print signal and the PDFs. scripts/export_pdf.py produces the student PDFs from the declared print state. The workspace checkers guard the recording plan, the narration and the delivery. tools/build_combined.py regenerates the derived Markdown and PDF copies of this plan.
+tools/build_manifest.py derives the scene manifest that the index page, the tests and the agents read. tools/check_plan.py guards the plan: structure, links, citations, rules, spine, fixtures recomputed from the models, and manifest freshness. tests/ guards the decks against the contract, accessibility, offline operation, fixture agreement, the print signal and the PDFs. scripts/export_pdf.py produces the student PDFs from the declared print state. scripts/inspect_deck.py --layout renders every state at 3840 by 2160 and reports overlapping text, text outside the scene area and text a print panel would cut. The workspace checkers guard the shot list, the narration and the delivery that the recording agent generates at run time. tools/build_combined.py regenerates the derived Markdown and PDF copies of this plan, and its --check mode fails when they are stale.
 
 ### COMPLETION RECORD
 
-Per week, in the repository next to the cue list: deck file, PDF file, scene identifiers, tested browser and library versions, the commands run with their results, the inspection performed, the recording deliverables of 22_recording_track.txt, and unresolved limitations. An item is marked verified only after the behavior was observed, as 21_instructor_preflight.txt requires.
+Per week, in the repository under notes/ next to the scene guide: deck file, PDF file, scene identifiers, tested browser and library versions, the commands run with their results, the inspection performed, the recording deliverables of 22_recording_track.txt, and unresolved limitations. An item is marked verified only after the behavior was observed, as 21_instructor_preflight.txt requires.

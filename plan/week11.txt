@@ -13,6 +13,8 @@ Begin with a user-visible delay, not a dashboard. Establish the service outcome 
 
 Use selected concepts from service-level objectives and monitoring guidance, with logs, metrics, and traces as the three telemetry forms explored in this lecture. OpenTelemetry supports a broader set of signals; this course deliberately concentrates on these three. [S01, S02, S20, S21, S22]
 
+In practice (dated examples, 2026): OpenTelemetry collects logs, metrics and traces; Prometheus stores metrics and evaluates alert rules; Grafana draws dashboards; Jaeger shows individual traces.
+
 2. OBSERVABLE LEARNING OUTCOMES
 -------------------------------
 
@@ -29,7 +31,7 @@ Use selected concepts from service-level objectives and monitoring guidance, wit
 3. INSTRUCTOR PREPARATION AND ENTRY CHECK
 -----------------------------------------
 
-Prepare a fictional seven-day record of 1,000 eligible booking requests. Exactly 980 receive a correct outcome within two seconds; ten are correct but slower, five time out, and five return unexpected server failures. The illustrative objective is 99% good events, so 10 bad events are permitted by that objective and 20 are observed. Honest, timely “room unavailable” decisions count as correct outcomes.
+Prepare a fictional seven-day record of 1,000 eligible booking requests. Exactly 980 receive a correct outcome within two seconds; ten are correct but slower, five time out, and five return unexpected server failures. The illustrative objective is 99% good events, so 10 bad events are permitted by that objective and 20 are observed. The 10 permitted bad events are the error budget; observing twice the allowed bad-event rate is a burn rate of 2, which at a steady rate uses up the seven-day budget in 3.5 days. Honest, timely “room unavailable” decisions count as correct outcomes.
 
 Keep the earlier Q-01 search requirement separate: p95 search API response at most 500 milliseconds with 50 concurrent users under its declared fixture. Prepare two fixed latency datasets and one correlated incident packet containing request ID, release marker, trace, queue measurement, and redacted log. None is a real campus incident.
 
@@ -82,7 +84,7 @@ VISUAL IDEA: Request tokens enter a good/bad classification table with eligibili
 
 SITUATION, PREDICTION, AND MECHANISM: Ask whether every rejected booking request is a service failure. Reveal a timely correct conflict response as a good outcome under this objective. Then classify a fast incorrect confirmation and a correct response arriving too late. The class must state the event definition before seeing the percentage. [S21]
 
-CHANGE ONE CONDITION AND COMPARE: Change only the observation: 20 of 1,000 eligible requests miss the promise. Compare 98% observed good events with the illustrative 99% objective. Explain the ten-event allowance and twenty-event consumption without treating the allowance as permission to ignore harmful failures.
+CHANGE ONE CONDITION AND COMPARE: Change only the observation: 20 of 1,000 eligible requests miss the promise. Compare 98% observed good events with the illustrative 99% objective. Name the ten-event allowance as the error budget and the twenty observed bad events as a burn rate of 2, without treating the budget as permission to ignore harmful failures. [S45]
 
 PRINCIPLE TO REVEAL: A reliability indicator is meaningful only after the user promise, event population, and observation window are defined.
 
@@ -172,7 +174,7 @@ VISUAL IDEA: A noisy stream of low-level alerts is contrasted with a user-impact
 
 SITUATION, PREDICTION, AND MECHANISM: Ask whether every CPU fluctuation should interrupt someone. Reveal the user promise, the affected service, an actionable condition, and a next diagnostic question. Avoid prescribing a universal threshold independent of workload. [S22]
 
-CHANGE ONE CONDITION AND COMPARE: Hold resource utilization high while user outcomes remain acceptable, then lower it while correctness fails. Compare resource observations with the actual service objective.
+CHANGE ONE CONDITION AND COMPARE: Hold resource utilization high while user outcomes remain acceptable, then lower it while correctness fails. Compare resource observations with the actual service objective. Then show an alert tied to the promise: a burn rate of 2 would use up the seven-day error budget in 3.5 days, which justifies a response, while a CPU reading alone does not. [S45]
 
 PRINCIPLE TO REVEAL: Alerting should connect a meaningful condition to an appropriate response, not merely report that a number changed.
 
@@ -218,7 +220,7 @@ ANSWER: 980 divided by 1,000, or 98%.
 
 QUESTION 2: How many bad events does the illustrative 99% objective allow in that window?
 
-ANSWER: Ten of 1,000; twenty are observed, so consumption is twice the allowance.
+ANSWER: Ten of 1,000, which is the error budget; twenty are observed, a burn rate of 2.
 
 QUESTION 3: Which signal helps locate where one request spent time?
 
@@ -249,4 +251,4 @@ Carry the incident’s learning and the compatibility limitation into Week 12. T
 11. SOURCES AND CURRENCY NOTES
 ------------------------------
 
-Primary references: S01, S02, S20, S21, S22. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S20, S21, S22, S45. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.

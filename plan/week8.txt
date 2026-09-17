@@ -13,6 +13,8 @@ Build testing from the behavior students already understand. Start with a bookin
 
 The lecture should make evidence visible without presenting one test taxonomy, framework, or fixed test-pyramid ratio as a universal formula. Treat testability, independent expected results, representative conditions, and useful failure messages as engineering choices. [S01, S02, S40]
 
+In practice (dated examples, 2026): pytest and JUnit run example checks, Hypothesis generates property-based cases, Stryker and mutmut run mutation analysis, coverage.py measures executed lines, and Playwright drives complete browser journeys.
+
 2. OBSERVABLE LEARNING OUTCOMES
 -------------------------------
 
@@ -185,13 +187,13 @@ Bridge scene | ID: testing-as-feedback
 
 VISUAL IDEA: A short requirement-to-failing-check-to-small-change-to-recheck loop ends with a refactoring comparison.
 
-SITUATION, PREDICTION, AND MECHANISM: Ask what should happen before fixing the exclusive upper bound. Reveal a focused failing check, a minimal correction, and rerun evidence. Explain test-first development as one way to make the expected behavior explicit, not a guarantee of good requirements.
+SITUATION, PREDICTION, AND MECHANISM: Ask what should happen before fixing the exclusive upper bound. Debug in four visible moves first: reproduce the failure with the 120-minute case, shrink it to the smallest failing input, state one hypothesis about the comparison, and confirm it with one targeted observation. Then reveal a focused failing check, a minimal correction, and rerun evidence. Explain test-first development as one way to make the expected behavior explicit, not a guarantee of good requirements.
 
 CHANGE ONE CONDITION AND COMPARE: Refactor the corrected predicate without changing its contract. Compare unchanged behavior under the checks while acknowledging untested conditions and higher-level integration evidence.
 
 PRINCIPLE TO REVEAL: Tests are feedback instruments whose value depends on the claims, observations, and assumptions they preserve.
 
-STUDENT PDF TREATMENT: Print the feedback loop and a final claim-evidence-remaining-uncertainty table.
+STUDENT PDF TREATMENT: Print the four debugging moves, the feedback loop and a final claim-evidence-remaining-uncertainty table.
 
 6. TEACHING GUARDRAILS
 ----------------------

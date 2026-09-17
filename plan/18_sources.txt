@@ -392,3 +392,66 @@ https://code.claude.com/docs/en/overview
 Living official documentation, retrieved 16 September 2026. Instructor-side authoring context for the agent context files and task templates in repo_kit; no live model dependency in the student decks.
 
 Use: authoring.
+
+S44 | OWASP GENAI — TOP 10 FOR AGENTIC APPLICATIONS FOR 2026
+------------------------------------------------------------
+
+https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/
+
+Published 9 December 2025 by the OWASP GenAI Security Project, retrieved 17 September 2026. Risk list for agents that plan, call tools and act with delegated permissions; its categories include agent goal hijack, tool misuse and exploitation, and identity and privilege abuse (category names confirmed through published summaries; the landing page links the full document). Used for the Week 13 bounded-action and untrusted-instruction scenes; awareness guidance, not a certification.
+
+Use: curriculum.
+
+S45 | GOOGLE — THE SITE RELIABILITY WORKBOOK, CHAPTER 5: ALERTING ON SLOS
+-------------------------------------------------------------------------
+
+https://sre.google/workbook/alerting-on-slos/
+
+Primary practitioner reference, retrieved 17 September 2026. Defines burn rate as how fast, relative to the SLO, a service consumes its error budget; a burn rate of 1 uses the whole budget exactly at the end of the window. Recommends multiwindow, multi-burn-rate alerts. Used for the Week 11 error-budget and alerting scenes; the course objective and events are fictional.
+
+Use: curriculum.
+
+S46 | ISO/IEC 25010:2023 — SQUARE PRODUCT QUALITY MODEL
+-------------------------------------------------------
+
+https://www.iso.org/standard/78176.html
+
+Second edition, 2023. The catalogue page refused automated retrieval (HTTP 403) on 17 September 2026; the nine characteristics were confirmed through published descriptions: functional suitability, performance efficiency, compatibility, interaction capability (formerly usability), reliability, security, maintainability, flexibility (formerly portability) and safety (added). Paid standard; used as vocabulary in Weeks 1 and 2, not as a conformance claim.
+
+Use: curriculum.
+
+S47 | TURKISH PERSONAL DATA PROTECTION AUTHORITY — PURPOSE AND SCOPE OF LAW NO. 6698 (KVKK)
+-------------------------------------------------------------------------------------------
+
+https://www.kvkk.gov.tr/Icerik/7456/Purpose-and-Scope-of-The-Personal-Data-Protection-Law-No-6698
+
+Official English booklet of the authority, retrieved 17 September 2026 (served as a PDF). Law No. 6698 on the Protection of Personal Data, 2016. Used for one context line in the Week 9 privacy scene; not legal advice.
+
+Use: curriculum.
+
+S48 | EUROPEAN UNION — REGULATION (EU) 2016/679, GENERAL DATA PROTECTION REGULATION
+-----------------------------------------------------------------------------------
+
+https://eur-lex.europa.eu/eli/reg/2016/679/oj
+
+Official EUR-Lex text, retrieved 17 September 2026. Article 5(1)(c) sets data minimisation (adequate, relevant and limited to what is necessary) and Article 5(1)(e) storage limitation. Used for one context line in the Week 9 privacy scene; not legal advice.
+
+Use: curriculum.
+
+S49 | EUROPEAN UNION — REGULATION (EU) 2024/2847, CYBER RESILIENCE ACT
+----------------------------------------------------------------------
+
+https://eur-lex.europa.eu/eli/reg/2024/2847/oj
+
+Official EUR-Lex text of 23 October 2024 on horizontal cybersecurity requirements for products with digital elements, retrieved 17 September 2026. Annex I Part II requires manufacturers to identify and document components and draw up a software bill of materials. The European Commission's Cyber Resilience Act page gives the dates: in force 10 December 2024, reporting obligations from 11 September 2026, main obligations from 11 December 2027. Used for one context line in the Week 9 dependency scene; not legal advice.
+
+Use: curriculum.
+
+S50 | SPRACKLEN ET AL. — PACKAGE HALLUCINATIONS BY CODE-GENERATING LLMS
+-----------------------------------------------------------------------
+
+https://arxiv.org/abs/2406.10279
+
+"We Have a Package for You! A Comprehensive Analysis of Package Hallucinations by Code Generating LLMs", USENIX Security Symposium 2025 (arXiv 2406.10279), retrieved 17 September 2026. Shows generated code recommending packages that do not exist, which an attacker can publish under the invented name. Used for the Week 13 change-record example; the package name in the course is fictional.
+
+Use: curriculum.
