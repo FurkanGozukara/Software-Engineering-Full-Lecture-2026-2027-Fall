@@ -421,7 +421,7 @@
     chk.addEventListener('change', () => { deck.letterShortcuts = chk.checked; try { localStorage.setItem(STORAGE_KEY, chk.checked ? 'on' : 'off'); } catch (e) { /* storage unavailable */ } });
     hp.append(closeBtn(hp), el('h2', { id: 'help-title' }, 'Keyboard'), table,
       el('div', { class: 'setting-row' }, [chk, el('label', { for: 'letter-shortcuts' }, 'Letter shortcuts on (r, Shift+R, o, ?). Arrow keys keep working inside text fields and sliders; letter keys are ignored there too.')]),
-      el('p', { class: 'small muted', style: 'margin-top:14px' }, `Deep links: ${deck.def.file}#/<scene-id> opens a scene at its baseline, paused. Query modes: ?record=1 fixed timing, ?motion=off instant states, ?print=1 print view.`));
+      el('p', { class: 'small muted', style: 'margin-top:14px' }, `Deep links: ${deck.def.file}#/<scene-id> opens a scene at its baseline, paused. Query modes: ?motion=off instant states, ?print=1 print view.`));
     root.append(ov, hp);
     deck.overviewDialog = ov; deck.helpDialog = hp;
   }

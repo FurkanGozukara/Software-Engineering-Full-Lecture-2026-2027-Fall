@@ -50,8 +50,7 @@ Deep links: weeks/week-01.html#/two-confirmations opens that scene at its baseli
 Reopening a scene always starts at its baseline.
 
 Query modes: ?motion=off shows every state instantly (also automatic when the system asks
-for reduced motion); ?print=1 shows the print view the PDFs are exported from; ?record=1 is
-the deterministic timing mode used for recording.
+for reduced motion); ?print=1 shows the print view the PDFs are exported from.
 
 Layout: the decks are designed at 1920 x 1080 and scale to the window.
 
