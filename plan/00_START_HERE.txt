@@ -68,7 +68,7 @@ Recorded here once; other files refer to this list instead of restating it.
 
 Lecture-only course. There is no lab, homework or project track in the package. Assessment, examinations, grading, homework and assigned projects are handled by the instructor outside these materials and are never mentioned in the decks, PDFs or narration.
 
-AI-assisted engineering is the through-line: framed in Week 1, carried by one beat inside an existing scene in Weeks 2, 7, 8, 9, 10 and 12, examined in Week 13 with synthetic candidate code only. The decks may state that the course's own materials were drafted by automated assistants, and Week 13 uses one of those change records as its provenance example, naming tools factually.
+AI-assisted engineering is the through-line: framed in Week 1, carried by one beat inside an existing scene in Weeks 2, 7, 8, 9, 10 and 12, examined in Week 13 with synthetic candidate code only. The decks never say how the course itself is made; Week 13's provenance example is a fictional change record.
 
 Everything is in English; there is no other language edition. The dark theme is the default and the print stylesheet is light. Every code snippet is Python-like pseudocode. Diagram grammar, type scale and palette are left to the authoring agents within the visual brief.
 

@@ -3127,17 +3127,17 @@
    ]
   },
   "w13/provenance-and-understanding": {
-   "meta_example": {
-    "subject": "one of this course's own decks",
+   "change_record": {
+    "subject": "the corrected cancellation change for R-03: the owner comes from the signed-in user, not from the request",
     "fields": [
-     "plan scene implemented",
-     "assistant that drafted it",
-     "plan checker result",
-     "deck test results",
-     "human acceptance",
+     "requirement implemented",
+     "drafted by a coding assistant",
+     "requirement test results",
+     "independent check result",
+     "reviewer acceptance",
      "unresolved limitation"
     ],
-    "naming": "tools named factually, no comparison or endorsement"
+    "naming": "fictional record; no product named"
    },
    "invented_dependency": {
     "import": "textenc-turbo",

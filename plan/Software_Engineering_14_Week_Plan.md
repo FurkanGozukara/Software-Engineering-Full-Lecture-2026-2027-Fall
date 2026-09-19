@@ -52,7 +52,7 @@ Recorded here once; other files refer to this list instead of restating it.
 
 Lecture-only course. There is no lab, homework or project track in the package. Assessment, examinations, grading, homework and assigned projects are handled by the instructor outside these materials and are never mentioned in the decks, PDFs or narration.
 
-AI-assisted engineering is the through-line: framed in Week 1, carried by one beat inside an existing scene in Weeks 2, 7, 8, 9, 10 and 12, examined in Week 13 with synthetic candidate code only. The decks may state that the course's own materials were drafted by automated assistants, and Week 13 uses one of those change records as its provenance example, naming tools factually.
+AI-assisted engineering is the through-line: framed in Week 1, carried by one beat inside an existing scene in Weeks 2, 7, 8, 9, 10 and 12, examined in Week 13 with synthetic candidate code only. The decks never say how the course itself is made; Week 13's provenance example is a fictional change record.
 
 Everything is in English; there is no other language edition. The dark theme is the default and the print stylesheet is light. Every code snippet is Python-like pseudocode. Diagram grammar, type scale and palette are left to the authoring agents within the visual brief.
 
@@ -2894,7 +2894,7 @@ Apply the course’s established engineering discipline to AI-assisted change. U
 
 The emphasis is neither automatic trust nor automatic rejection. A generated candidate can be useful while still requiring the same behavioral, security, integration, and maintenance evidence as any other change. Current DORA research is useful context for discussing whole-workflow effects and verification effort, but it should not be converted into a universal productivity multiplier. [S01, S02, S18, S19]
 
-Name the working vocabulary students will meet in 2026 as each mechanism appears: specification-driven development, where the precise rule is the input to drafting; repository instruction files that carry standing rules for assistants; tool permissions and sandboxes; evaluation of output that is not deterministic; cost and latency budgets for automated steps; and the shift of the engineer's work toward specifying and checking. The course's own decks were drafted by automated assistants under exactly these constraints, and scene 07 uses one of their change records as its example.
+Name the working vocabulary students will meet in 2026 as each mechanism appears: specification-driven development, where the precise rule is the input to drafting; repository instruction files that carry standing rules for assistants; tool permissions and sandboxes; evaluation of output that is not deterministic; cost and latency budgets for automated steps; and the shift of the engineer's work toward specifying and checking. Scene 07 uses a fictional change record as its example.
 
 In practice (dated examples, 2026): coding assistants include OpenAI Codex, Claude Code, GitHub Copilot and Cursor, and they reach tools through connectors such as MCP servers. Name them factually, without comparison or ranking.
 
@@ -2914,7 +2914,7 @@ In practice (dated examples, 2026): coding assistants include OpenAI Codex, Clau
 
 Prepare a short candidate implementing the duration rule with an exclusive 120-minute upper bound. Prepare a second candidate that trusts an owner identifier supplied by a request. Both are fictional teaching snippets, not claims about the behavior of any particular model or vendor. Include corrected versions and independently derived checks.
 
-Prepare a bounded action diagram with read, edit, local-check, and propose-change stages. Production access and secrets are outside its allowed scope. A repository note containing a misleading instruction is displayed as untrusted input, never executed. Reuse the Week 4 review-capacity model for the output-versus-flow comparison. For scene 07, prepare the compact change record of one of this course's own decks: the plan scene it implements, the assistant that drafted it, the plan checker and deck tests that ran, the human acceptance, and one unresolved limitation. Name the tools factually in that record, without comparison or endorsement.
+Prepare a bounded action diagram with read, edit, local-check, and propose-change stages. Production access and secrets are outside its allowed scope. A repository note containing a misleading instruction is displayed as untrusted input, never executed. Reuse the Week 4 review-capacity model for the output-versus-flow comparison. For scene 07, prepare the compact change record of the corrected cancellation change, which takes the owner from the signed-in user instead of the request. The record lists the requirement it implements, that a coding assistant drafted it, the checks that ran, the reviewer's acceptance and one unresolved limitation. It names no product.
 
 ## 4. ORDERED CHAPTER AND PAGE MAP
 
@@ -3044,13 +3044,13 @@ Bridge scene | ID: provenance-and-understanding
 
 **VISUAL IDEA:** A change record collects source context, reviewed dependencies, checks, residual questions, and a plain-language explanation.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Ask whether “the tool wrote it” answers a maintainer’s question about an authorization branch. Reveal the rationale and relevant evidence required to maintain the change. Any uncertain origin or licensing concern is marked for appropriate review rather than guessed away. Include one dependency question: the candidate imports textenc-turbo, a package name that exists in no registry. Code assistants are documented to invent package names, and anyone could publish a package under the invented name, so the inventory check blocks the build until a person confirms or removes the dependency. [S50] Use this course's own record: the deck the class is watching was drafted by an automated assistant, checked by the plan checker and the deck tests, and accepted by the instructor, with its unresolved limitation stated.
+**SITUATION, PREDICTION, AND MECHANISM:** Ask whether “the tool wrote it” answers a maintainer’s question about an authorization branch. Reveal the rationale and relevant evidence required to maintain the change. Any uncertain origin or licensing concern is marked for appropriate review rather than guessed away. Include one dependency question: the candidate imports textenc-turbo, a package name that exists in no registry. Code assistants are documented to invent package names, and anyone could publish a package under the invented name, so the inventory check blocks the build until a person confirms or removes the dependency. [S50] Use the fictional record: the cancellation change was drafted by a coding assistant, checked by the requirement tests and an independent check, and accepted by a named reviewer, with its unresolved limitation stated.
 
 **CHANGE ONE CONDITION AND COMPARE:** Replace a confident but unsupported explanation with one that accurately states a limitation. Compare whether the reviewer can make a better decision, even though the wording sounds less certain.
 
 **PRINCIPLE TO REVEAL:** Accountability requires an understandable change record and honest limits, regardless of how the draft was produced.
 
-**STUDENT PDF TREATMENT:** Print the course's own compact change record and its unresolved question; name tools factually and omit tool-brand screenshots.
+**STUDENT PDF TREATMENT:** Print the change record and its unresolved question.
 
 ### 08. USING AI TO BUILD SOFTWARE IS NOT THE SAME AS BUILDING AN AI-DEPENDENT SERVICE
 
