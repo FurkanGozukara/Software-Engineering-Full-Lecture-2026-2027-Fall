@@ -1,10 +1,10 @@
 WEEK 09 | SECURITY, PRIVACY, AND TRUSTWORTHY DEPENDENCIES
-Research and curriculum date: 16 September 2026
+Curriculum review: 22 September 2026; source retrieval dates are recorded individually
 ==============================================================================
 
 What must remain true when a request, dependency, or assumption cannot be trusted?
 
-Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-09.html
+Instructor lecture plan | flexible pacing | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-09.html
 
 1. PURPOSE, CASE STATE, AND SCOPE
 ---------------------------------
@@ -159,7 +159,7 @@ VISUAL IDEA: A dependency graph expands one level, then an inventory and build-p
 
 SITUATION, PREDICTION, AND MECHANISM: Ask whether knowing the name of a direct library tells us everything included in a build. Reveal a transitive dependency. Explain an inventory or software bill of materials as visibility into components, and provenance as evidence about an artifact’s production. [S16]
 
-CHANGE ONE CONDITION AND COMPARE: Change one dependency version while keeping application source fixed. Compare the need to evaluate the new component, rebuild under controlled inputs, and recheck affected behavior. A familiar name, inventory entry, or signature alone does not prove safety. Licensing beat: change only the license of the transitive dependency in the fictional chain, from a permissive license to a copyleft license with a source-availability obligation. Compare what the license inventory now requires before release. Use SPDX identifiers as the vocabulary and keep this an engineering question about obligations and inventory, not legal advice. [S42] Name the legal context in one line: the EU Cyber Resilience Act requires manufacturers of products with digital elements sold in the EU to document their components, including a software bill of materials, with reporting obligations applying from 11 September 2026. [S49]
+CHANGE ONE CONDITION AND COMPARE: Change one dependency version while keeping application source fixed. Compare the need to evaluate the new component, rebuild under controlled inputs, and recheck affected behavior. A familiar name, inventory entry, or signature alone does not prove safety. Licensing beat: change only the license of the transitive dependency in the fictional chain, from a permissive license to a copyleft license with a source-availability obligation. Compare what the license inventory now requires before release. Use SPDX identifiers as the vocabulary and keep this an engineering question about obligations and inventory, not legal advice. [S42] Name the legal context in one line: for products within its scope, the EU Cyber Resilience Act links component documentation to lifecycle vulnerability handling. Reporting obligations apply from 11 September 2026; the main obligations, including the component-documentation requirements, apply from 11 December 2027. Applicability and exemptions need their own legal analysis; do not imply that every website is covered. [S49] Finish the lifecycle: inventory locates the affected artifact, the team evaluates exposure, applies a supported update or mitigation, verifies it and records follow-up. Include a secret as a reference with an owner and revocation path, never as a value placed in source or logs.
 
 PRINCIPLE TO REVEAL: Supply-chain evidence makes dependencies inspectable; it does not eliminate the need for risk judgment and verification.
 
@@ -187,7 +187,7 @@ Bridge scene | ID: security-through-change
 
 VISUAL IDEA: The familiar lifecycle loop receives threat questions, permission checks, review, dependency evidence, and incident feedback.
 
-SITUATION, PREDICTION, AND MECHANISM: Ask whether a final scanner can discover an unstated ownership policy. Reveal distinct contributions from requirements, design, implementation checks, review, release integrity, and operation. Use a small selected set of risks rather than reciting a top-ten list.
+SITUATION, PREDICTION, AND MECHANISM: Ask whether a final scanner can discover an unstated ownership policy. Reveal distinct contributions from requirements, design, implementation checks, review, release integrity, and operation. Use a small selected set of risks rather than reciting a top-ten list. Connect a selected risk to a concrete verification requirement, implementation control, evidence and owner using OWASP ASVS 5.0.0. Contrast the Top 10 awareness list with ASVS verification requirements and SSDF development practices; none is a certificate that this application is secure. Use a few relevant controls rather than reading a checklist. [S51]
 
 CHANGE ONE CONDITION AND COMPARE: Introduce a new delegated-cancellation policy as an explicit hypothetical. Trace which model, checks, review questions, and diagnostic fields must be reconsidered before restoring the baseline.
 
@@ -230,6 +230,14 @@ QUESTION 4: Should notification failure automatically cancel an already confirme
 
 ANSWER: No. Under R-04 the booking remains confirmed while notification work is explicitly pending or failed and recoverable.
 
+QUESTION 5: How do a Top 10 risk, an ASVS requirement and an SSDF practice differ?
+
+ANSWER: They describe an awareness concern, a verifiable application control expectation and a development practice respectively; each informs a different decision.
+
+QUESTION 6: A desktop application hides its export button, but its export entry point can still be called. Where does the permission decision belong?
+
+ANSWER: At the trusted boundary that performs the export, using protected identity and data-access rules. Interface visibility guides interaction; it cannot enforce a restriction when another path reaches the operation.
+
 9. PDF CONTINUITY AND LECTURE ELASTICITY
 ----------------------------------------
 
@@ -238,10 +246,12 @@ WHAT THE PRINTED EXPLANATION MUST PRESERVE
 
 Retain the permission matrix, trust boundaries, and safe-failure comparison. Do not use a lock icon as the only explanation of a control. Print the minimal diagnostic record with fictional-data labels and the dependency evidence limitations. Put dated standards status in the sources page rather than on every conceptual scene.
 
-SHORTER AND LONGER MEETING ROUTES
----------------------------------
+CORE AND OPTIONAL DEPTH
+-----------------------
 
-Protect trust-boundary reasoning, ownership authorization, and privacy-aware diagnostics as anchors. Keep input interpretation and supply-chain evidence to one clear comparison each. Extra time belongs to changing one permission condition, not to a catalog of attack types.
+Close with the answered transfer question in Section 8, using its small contrasting setting. Preserve the question and explanation in the reading copy.
+
+Protect threat boundaries, authorization and minimal diagnostics. Replace part of the security-through-change recap with the ASVS mapping. Keep the legal context short and put its dates in the reading copy. Optional depth: examine session lifetime or a secrets revocation path; avoid a cryptography or compliance tour.
 
 10. HANDOFF
 -----------
@@ -251,4 +261,4 @@ Carry the review, verification, permission, and dependency evidence into Week 10
 11. SOURCES AND CURRENCY NOTES
 ------------------------------
 
-Primary references: S01, S02, S13, S14, S15, S16, S42, S47, S48, S49. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S13, S14, S15, S16, S42, S47, S48, S49, S51. Full titles, URLs, dated status, and access limitations appear in the source register. Curriculum review: 22 September 2026. See each source entry for its actual retrieval date; unchanged references retain earlier dates. The examples and visual teaching sequences are original proposals; no live service behavior is implied.

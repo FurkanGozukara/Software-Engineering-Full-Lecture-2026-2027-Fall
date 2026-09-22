@@ -42,7 +42,7 @@ Replay returns to the first step under the currently selected condition or compa
 
 Default re-entry behavior is deterministic: returning to a scene restores its canonical baseline, paused. A direct hash link does the same. Any optional resume behavior must be a clearly chosen mode, not hidden persistence. Leaving a scene cancels its timers and animation work so nothing continues changing offscreen.
 
-Changing a condition returns that scenario to its first paused state. Keep the comparison baseline visible or make it easy to restore. Display the selected condition in text so the class knows exactly what changed.
+Changing a condition returns that scenario to its first paused state. Keep the comparison baseline visible or make it easy to restore. Display the selected condition in text so the viewer knows exactly what changed.
 
 SCENE CONTRACT FOR TESTS, RECORDING, AND PRINT
 ----------------------------------------------

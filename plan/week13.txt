@@ -1,10 +1,10 @@
 WEEK 13 | AI-ASSISTED ENGINEERING AND ACCOUNTABLE AUTOMATION
-Research and curriculum date: 16 September 2026
+Curriculum review: 22 September 2026; source retrieval dates are recorded individually
 ==============================================================================
 
 Does plausible-looking output satisfy the intended behavior, and who can verify that?
 
-Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-13.html
+Instructor lecture plan | flexible pacing | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-13.html
 
 1. PURPOSE, CASE STATE, AND SCOPE
 ---------------------------------
@@ -114,7 +114,7 @@ Bridge scene | ID: context-and-unknowns
 
 VISUAL IDEA: A compact change brief links relevant rules, interfaces, constraints, and explicitly unresolved questions to the candidate.
 
-SITUATION, PREDICTION, AND MECHANISM: Ask how a candidate would know whether a staff role may cancel any booking. Reveal that the baseline grants no such override. Compare a candidate inventing permission with one that leaves an explicit question for the responsible decision-maker.
+SITUATION, PREDICTION, AND MECHANISM: Ask how a candidate would know whether a staff role may cancel any booking. Reveal that the baseline grants no such override. Compare a candidate inventing permission with one that leaves an explicit question for the responsible decision-maker. Use a compact task specification containing the intended outcome, relevant files, invariants, non-goals, available checks and a stop condition. Useful bounded work includes explaining unfamiliar code, proposing boundary examples and drafting a small refactoring. Inspect one accepted change against its independent evidence so the lecture shows productive use as well as failure analysis.
 
 CHANGE ONE CONDITION AND COMPARE: Change the brief to an approved, narrowly defined delegation policy. Compare the code and checks that legitimately change with those that should remain fixed. Restore R-03 after the variant.
 
@@ -159,9 +159,9 @@ Bridge scene | ID: output-and-flow
 
 VISUAL IDEA: The Week 4 flow board shows candidate changes, verification capacity, accepted changes, and rework separately.
 
-SITUATION, PREDICTION, AND MECHANISM: Ask whether doubling candidate output doubles useful delivery. Reveal a fixed review constraint and the resulting queue in the declared toy model. Distinguish generated lines, accepted changes, time to verified behavior, and downstream defects. Connect the flow to specification-driven drafting: the precise rule from Week 2 is what shortens verification, not the generation rate.
+SITUATION, PREDICTION, AND MECHANISM: Ask whether doubling candidate output doubles useful delivery. Reveal a fixed review constraint and the resulting queue in the declared toy model. Distinguish generated lines, accepted changes, time to verified behavior, and downstream defects. Connect the flow to specification-driven drafting: the precise rule from Week 2 makes verification better specified; whether it saves total time must be observed across drafting, review, correction and downstream work.
 
-CHANGE ONE CONDITION AND COMPARE: Improve context and verification capacity rather than only generation rate. Compare whole-flow outcomes under the same arrival conditions. Use current research as context, while identifying this chart as a constructed mechanism illustration rather than measured industry results. [S19]
+CHANGE ONE CONDITION AND COMPARE: Improve context and verification capacity rather than only generation rate. Compare whole-flow outcomes under the same arrival conditions. Use current research as context, while identifying this chart as a constructed mechanism illustration rather than measured industry results. [S19] Compare a survey, a controlled task study and this simulation as different kinds of evidence. METR's February 2026 follow-up reports selection and time-measurement problems; its May 2026 survey concerns self-reported impact. Neither establishes a universal productivity multiplier. The DORA AI Capabilities Model provides organizational context without prescribing a tool ranking. [S53, S54, S57]
 
 PRINCIPLE TO REVEAL: Evaluate automation across the workflow it changes, including verification, rework, and maintainable understanding.
 
@@ -174,7 +174,7 @@ Bridge scene | ID: provenance-and-understanding
 
 VISUAL IDEA: A change record collects source context, reviewed dependencies, checks, residual questions, and a plain-language explanation.
 
-SITUATION, PREDICTION, AND MECHANISM: Ask whether “the tool wrote it” answers a maintainer’s question about an authorization branch. Reveal the rationale and relevant evidence required to maintain the change. Any uncertain origin or licensing concern is marked for appropriate review rather than guessed away. Include one dependency question: the candidate imports textenc-turbo, a package name that exists in no registry. Code assistants are documented to invent package names, and anyone could publish a package under the invented name, so the inventory check blocks the build until a person confirms or removes the dependency. [S50] Use the fictional record: the cancellation change was drafted by a coding assistant, checked by the requirement tests and an independent check, and accepted by a named reviewer, with its unresolved limitation stated.
+SITUATION, PREDICTION, AND MECHANISM: Ask whether “the tool wrote it” answers a maintainer’s question about an authorization branch. Reveal the rationale and relevant evidence required to maintain the change. Any uncertain origin or licensing concern is marked for appropriate review rather than guessed away. Include one dependency question: the candidate imports textenc-turbo, a name marked unavailable in the fictional registry fixture; this is not a claim about every real public registry. Code assistants are documented to invent package names, and anyone could publish a package under the invented name, so the inventory check blocks the build until a person confirms or removes the dependency. [S50] Use the fictional record: the cancellation change was drafted by a coding assistant, checked by the requirement tests and an independent check, and accepted by a named reviewer, with its unresolved limitation stated.
 
 CHANGE ONE CONDITION AND COMPARE: Replace a confident but unsupported explanation with one that accurately states a limitation. Compare whether the reviewer can make a better decision, even though the wording sounds less certain.
 
@@ -191,7 +191,7 @@ VISUAL IDEA: Two system boundaries contrast an offline-generated code change wit
 
 SITUATION, PREDICTION, AND MECHANISM: Ask whether Campus Rooms needs an AI dependency because an assistant helped author some code. Reveal that the shipped behavior can remain ordinary deterministic software. Contrast this with adding a runtime model whose outputs and dependencies become part of the user-facing system.
 
-CHANGE ONE CONDITION AND COMPARE: Insert a hypothetical model that suggests room choices, while leaving authoritative booking and permissions outside it. Compare the additional evaluation and failure questions without expanding this course into model training. Name two of them: an evaluation set of room-choice cases with expected answers, and a regression check that reruns it whenever the prompt or the model version changes, because the output is not deterministic. NIST’s AI profile concerns AI-model and AI-system development and should not be mislabeled as a blanket coding-assistant rulebook. [S35]
+CHANGE ONE CONDITION AND COMPARE: Insert a hypothetical model that suggests room choices, while leaving authoritative booking and permissions outside it. Compare the additional evaluation and failure questions without expanding this course into model training. Name two of them: an evaluation set of room-choice cases with expected answers, and a regression check that reruns it whenever the prompt or the model version changes, because the output is not deterministic. NIST’s AI profile concerns AI-model and AI-system development and should not be mislabeled as a blanket coding-assistant rulebook. [S35] For the recommendation extension, compare against a simple deterministic baseline on held-out scenarios. Use task-appropriate relevance, unsupported-claim, permission, latency and cost criteria, allowing more than one acceptable suggestion. Record model, prompt, retrieval data and evaluation-set versions; repeat observations where variability matters and define fallback behavior. A pass on a fixed evaluation set does not make an action authorized.
 
 PRINCIPLE TO REVEAL: The engineering obligations follow the actual system boundary and consequences, not the presence of AI somewhere in the workflow.
 
@@ -202,7 +202,7 @@ STUDENT PDF TREATMENT: Print both boundaries and the distinct claims each would 
 
 Do not make the lecture a contest between brands or use a live external model whose output may change during teaching. Preserve the prepared evidence and display its fictional nature. Do not imply that generated code is inherently untrustworthy while human code deserves no checks; apply the same acceptance discipline.
 
-Research findings about reported AI use or productivity are contextual, often observational or survey-based, and do not prove a causal improvement for this class or every team. Keep current research in dated notes and avoid unverified percentages. Agent safeguards need external permission enforcement, useful review evidence, and appropriate isolation; a prompt alone is not a security boundary. [S18, S19, S33, S34]
+Research findings about reported AI use or productivity are contextual, often observational or survey-based, and do not prove a causal improvement for every learner or team. Keep current research in dated notes and avoid unverified percentages. Agent safeguards need external permission enforcement, useful review evidence, and appropriate isolation; a prompt alone is not a security boundary. [S18, S19, S33, S34]
 
 7. MISCONCEPTION AND DIAGNOSIS CLINIC
 -------------------------------------
@@ -232,6 +232,14 @@ QUESTION 4: What distinguishes using an assistant during development from a runt
 
 ANSWER: In the first case the accepted artifact can operate without a model; in the second the model is part of the deployed behavior and introduces its own evaluation and dependency questions.
 
+QUESTION 5: What evidence is needed before claiming that an assistant improved engineering productivity?
+
+ANSWER: Relevant comparable work, explicit measurement boundaries, accepted behavior, review and rework costs, and limitations such as task selection or self-report bias.
+
+QUESTION 6: An assistant proposes a repository-wide rename with a script that can write anywhere on disk. What authority does that task need?
+
+ANSWER: Limit writes to the intended checkout, inspect the proposed changes and run relevant checks before acceptance. Repository text must not expand that permission; independent scope enforcement and recoverable history bound a useful automated change.
+
 9. PDF CONTINUITY AND LECTURE ELASTICITY
 ----------------------------------------
 
@@ -240,10 +248,12 @@ WHAT THE PRINTED EXPLANATION MUST PRESERVE
 
 Preserve the exact candidate, failed boundary, shared-assumption graph, and capability matrix. The static version must make the independent expected result visible. Include the trust-boundary explanation and the difference between development assistance and runtime AI. No assistant interface or external service is required to understand the student PDF.
 
-SHORTER AND LONGER MEETING ROUTES
----------------------------------
+CORE AND OPTIONAL DEPTH
+-----------------------
 
-Protect candidate verification, shared-assumption detection, and bounded action as the anchors. The research context belongs in a brief note, not a dense statistics lecture. Extra time can compare the ownership candidate against Week 9’s matrix rather than expanding into model architecture or prompting tricks.
+Close with the answered transfer question in Section 8, using its small contrasting setting. Preserve the question and explanation in the reading copy.
+
+Protect candidate evaluation, independent expectations and externally enforced permissions. Reuse familiar boundary and queue cases briefly so context, useful delegation and evaluation receive depth. Optional depth: a runtime recommendation evaluation; omit multi-agent orchestration and model architecture catalogues.
 
 10. HANDOFF
 -----------
@@ -253,4 +263,4 @@ Carry the full requirement-to-evidence discipline into Week 14. The final lectur
 11. SOURCES AND CURRENCY NOTES
 ------------------------------
 
-Primary references: S01, S02, S18, S19, S33, S34, S35, S44, S50. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S18, S19, S33, S34, S35, S44, S50, S53, S54, S57. Full titles, URLs, dated status, and access limitations appear in the source register. Curriculum review: 22 September 2026. See each source entry for its actual retrieval date; unchanged references retain earlier dates. The examples and visual teaching sequences are original proposals; no live service behavior is implied.

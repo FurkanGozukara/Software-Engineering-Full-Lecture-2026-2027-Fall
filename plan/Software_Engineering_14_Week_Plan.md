@@ -4,7 +4,7 @@
 
 # START HERE: A COURSE BUILT AROUND EXPLANATIONS
 
-Research and curriculum date: 16 September 2026
+Curriculum review: 22 September 2026; source retrieval dates are recorded individually
 
 ### WHAT THIS PACKAGE CONTAINS
 
@@ -16,9 +16,9 @@ This is the course plan and authoring package. It does not contain the finished 
 
 ### STARTING LEVEL AND TEACHING RHYTHM
 
-Assume students can read a short function, a conditional, and a collection. Do not assume a language, framework, cloud account, version-control host, or advanced mathematics. The intended level is an introductory undergraduate software-engineering course with selected contemporary practices explained through small examples.
+This is an introductory software-engineering course for a worldwide general audience: independent learners, people entering software development, and practitioners revisiting the foundations. No university enrollment or particular institutional background is assumed. Familiarity with a short function, a conditional and a collection helps; read each small pseudocode example in plain English and introduce its notation when it first matters. No particular language, framework, cloud account, version-control host or advanced mathematics is required.
 
-The reference course uses approximately 80 minutes per meeting, so that is the planning baseline here. Each weekly file provides an ordered chapter map rather than rigid timestamps. Protect the three sustained demonstrations and the closing reasoning check; compress the shorter bridges when discussion needs room. For a longer meeting, use the stated condition changes and comparison questions rather than simply adding more slide titles.
+Pacing decision, clarified 22 September 2026: the overall target is about 80 minutes per lecture. This is a planning estimate, not a required duration, minimum or maximum; a lecture may be shorter or longer. Do not assign durations, minute budgets or planned timestamps to individual chapters, sections or scenes. Finish the reasoning, comparisons and useful questions at a natural pace; do not rush an explanation or pad it to meet the overall target. Week numbers identify the learning sequence, not an enrollment calendar. Actual navigation timestamps are written from the completed recording. Each weekly file supplies an ordered chapter map and a core/optional depth choice.
 
 The week ordering is a learning sequence. Actual engineering connects requirements, design, construction, verification, operation, and learning repeatedly; it does not complete each once and permanently move on.
 
@@ -32,25 +32,29 @@ Do not turn the detailed instructor prose into slide paragraphs. The screen shou
 
 ### WHAT REMAINS CONSISTENT
 
-Campus Rooms is the fictional recurring domain. Its rules, names, state distinctions, and numerical fixtures are defined in 19_recurring_case_and_demo_data.txt. Temporary changes are explicitly labeled and restored. All source references use stable S-number keys defined in 18_sources.txt; the sources and currency notes were checked on 16 September 2026.
+Campus Rooms is the fictional recurring domain and an instructor-worked example, not the viewer's university or an assigned implementation. Its rules, names, state distinctions, and numerical fixtures are defined in 19_recurring_case_and_demo_data.txt. Temporary changes are explicitly labeled and restored. All source references use stable S-number keys defined in 18_sources.txt; each source entry records its actual retrieval date and access limitations.
 
 One HTML file is planned for each week. All weeks share the same visual language and control meanings, but not a single diagram type. Slide navigation changes the page; scene controls change the demonstration on that page. Opening a stable scene link always starts at its documented baseline, paused.
 
 ### HOW TO USE THE WEEKLY FILES
 
-Read Sections 1–3 to establish purpose, outcomes, and preparation. Section 4 is the ordered chapter/page map. Section 5 is the scene-by-scene teaching brief. Sections 6–7 identify important semantic guardrails and predictable misunderstandings. Section 8 supplies in-lecture questions with answers. Section 9 explains print continuity and pacing flexibility. Section 10 carries the case forward, and Section 11 identifies sources.
+Read Sections 1–3 to establish purpose, outcomes, and preparation. From Week 2, the final answered question applies the same principle to a small example outside room booking. Explain its answer within the lecture; it adds no prerequisite or take-home activity. Section 4 is the ordered chapter/page map. Section 5 is the scene-by-scene teaching brief. Sections 6–7 identify important semantic guardrails and predictable misunderstandings. Section 8 supplies in-lecture questions with answers. Section 9 explains print continuity and pacing flexibility. Section 10 carries the case forward, and Section 11 identifies sources.
 
 Before authoring the whole course, establish the common shell and fully realize Week 1. Also use one dependency scene from Week 5 and one numerical scene from Week 11 to test whether the shell accommodates graphs, controllable state, and print output. Keep these samples inside their eventual weekly files rather than inventing extra student entry pages. Then author one week at a time, reusing the verified shell while allowing the representations to vary. The build plan in 23_build_plan_and_schedule.txt turns this into phases with parallel authoring after Week 1.
+
+### CURRENT REVISION
+
+Weeks 2-14 were reviewed on 22 September 2026 against the recorded Week 1 materials and selected current primary references. The order, scene identifiers and canonical case remain stable. Section 9 of each revised week selects core and optional depth; its closing checks cover the new reasoning. See ../notes/curriculum-review-2026-09-22.md for the review rationale and validation record. The detailed content remains in weekN.txt, the source register and the fixtures. Week 1 is retained as delivered.
 
 ### COURSE SPINE
 
 01 | Engineering software that people can depend on | What makes working code an engineered system? 02 | From ambiguous requests to verifiable requirements | How would we know that a requirement has been satisfied? 03 | Modeling behavior, data, and user interaction | Which model answers the question we are actually asking? 04 | Development flow, uncertainty, and engineering decisions | Where is work waiting, and what would actually improve the flow? 05 | Modularity, interfaces, and the cost of change | When one requirement changes, which parts should need to change? 06 | Architecture, interactions, and distributed failure | What changes when a dependency becomes slow, unavailable, or uncertain? 07 | Collaboration, version history, and reviewable change | How can several people change one system without losing intent or trust? 08 | Testing behavior and building credible evidence | Which checks would challenge our assumptions rather than merely repeat them? 09 | Security, privacy, and trustworthy dependencies | What must remain true when a request, dependency, or assumption cannot be trusted? 10 | Automated delivery and evidence-based release | What evidence should travel with a change before it reaches users? 11 | Reliability, observability, and performance reasoning | Which observation would help distinguish the possible causes of a failure? 12 | Maintenance, evolution, and sustainable change | How can a useful system change without losing the behavior people rely on? 13 | AI-assisted engineering and accountable automation | Does plausible-looking output satisfy the intended behavior, and who can verify that? 14 | Connecting the lifecycle through one engineering decision | Can we explain a change from human need to operational evidence without losing the original promise?
 
-### DECISIONS IN FORCE (16 SEPTEMBER 2026)
+### DECISIONS IN FORCE (UPDATED 22 SEPTEMBER 2026)
 
 Recorded here once; other files refer to this list instead of restating it.
 
-Lecture-only course. There is no lab, homework or project track in the package. Assessment, examinations, grading, homework and assigned projects are handled by the instructor outside these materials and are never mentioned in the decks, PDFs or narration.
+Public lecture-only course. Apply the public-audience rule in F:/0_tutorial_videos_project/docs/channel_style_guide.md. The course has no required coursework, homework, assigned projects, submissions, exams or grading, and assumes no separate university activity. Worked software examples and answered prediction questions belong inside the explanation. Keep academic administration out of the decks, PDFs and narration.
 
 AI-assisted engineering is the through-line: framed in Week 1, carried by one beat inside an existing scene in Weeks 2, 7, 8, 9, 10 and 12, examined in Week 13 with synthetic candidate code only. The decks never say how the course itself is made; Week 13's provenance example is a fictional change record.
 
@@ -60,15 +64,15 @@ Tools and products may be named as dated examples, in each week's "In practice" 
 
 Every week is recorded as a narrated video under the tutorial workspace rules (22_recording_track.txt): 3840 by 2160 at 60 fps, full canvas with the presenter overlay yielding to content, every reveal operated by a real pointer, and deck text and narration under the instructional stance defined in that file. There is no instructor rehearsal: a deck is accepted on its automated checks and a native read of its states rendered at the recording resolution.
 
-No speaking cues (17 September 2026). The package and the repository hold no cue lists, shot lists, narration text or briefs, planned durations or recorded routes. The recording agent analyzes the week's plan, the fixtures and the deck at run time and generates the shot list, the narration and speech, and the tutorial itself (22_recording_track.txt).
+No speaking cues (17 September 2026). The package and the repository hold no cue lists, shot lists, narration text or briefs, shot-duration budgets or recorded routes. The recording agent analyzes the week's plan, the fixtures and the deck at run time and generates the shot list, the narration and speech, and the tutorial itself (22_recording_track.txt).
 
 The plan is machine-checkable. The TXT files are the single source; plan_manifest.json and the combined Markdown and PDF are derived and checked for freshness; every Anchor scene has structured fixture data; tools/check_plan.py and the tests run before any change is accepted.
 
-The course repository starts as local Git and is published to a remote when the instructor sees fit; the CI workflow activates then. The first lecture date is not fixed, so the schedule in 23_build_plan_and_schedule.txt is relative to it. The stack of any future Campus Rooms reference implementation is decided later.
+The course repository uses Git; publication follows the user's instructions. Week 1 has been recorded. The build sequence in 23_build_plan_and_schedule.txt now starts with Week 2 and advances through verified deliverables without a fixed teaching calendar. The stack of any future Campus Rooms reference implementation is decided later.
 
 ### PACKAGE MAP
 
-week1.txt through week14.txt: individual lecture briefs; the only source for the weekly content. 15_curriculum_currency_and_coverage.txt: current references, coverage, and deliberate boundaries. 16_reference_plan_analysis.txt: what was retained and transformed from the Blender package. 17_visual_lecture_and_pdf_brief.txt: shared experience, control meanings, local operation, and print expectations. 18_sources.txt: primary source register with each entry's use (curriculum or authoring) and access limitations. 19_recurring_case_and_demo_data.txt: case rules, planted threads, and the meaning of every teaching model. 20_agent_authoring_brief.txt: how the build agents are briefed; the rules themselves live in repo_kit/AGENTS.md. 21_instructor_preflight.txt: acceptance checks, and which of them the tests automate. 22_recording_track.txt: what the decks provide for recording, and what the recording agent generates at run time under the tutorial workspace rules. 23_build_plan_and_schedule.txt: repository, three phases, parallel authoring, minimum viable deck, schedule. assets/demo-fixtures.json: the teaching truth: fixtures and structured data for every Anchor scene. plan_manifest.json: derived scene manifest; regenerate with tools/build_manifest.py, never edit by hand. tools/: build_manifest.py, check_plan.py, build_combined.py and models.py (see tools/README.txt). tests/: the plan checker as a test, the deck contract tests and the PDF checks (pytest.ini, requirements-dev.txt). repo_kit/: files staged for the course repository: AGENTS.md, CLAUDE.md, README.md, docs/scene-contract.md, scripts, tasks, the CI workflow. Software_Engineering_14_Week_Plan.md and .pdf: derived reading copies regenerated by tools/build_combined.py.
+week1.txt through week14.txt: individual lecture briefs; the only source for the weekly content. 15_curriculum_currency_and_coverage.txt: current references, coverage, and deliberate boundaries. 16_reference_plan_analysis.txt: what was retained and transformed from the Blender package. 17_visual_lecture_and_pdf_brief.txt: shared experience, control meanings, local operation, and print expectations. 18_sources.txt: primary source register with each entry's use (curriculum or authoring) and access limitations. 19_recurring_case_and_demo_data.txt: case rules, planted threads, and the meaning of every teaching model. 20_agent_authoring_brief.txt: how the build agents are briefed; current course authoring rules live in ../AGENTS.md. 21_instructor_preflight.txt: acceptance checks, and which of them the tests automate. 22_recording_track.txt: what the decks provide for recording, and what the recording agent generates at run time under the tutorial workspace rules. 23_build_plan_and_schedule.txt: repository, three phases, parallel authoring, minimum viable deck, schedule. assets/demo-fixtures.json: the teaching truth: fixtures and structured data for every Anchor scene. plan_manifest.json: derived scene manifest; regenerate with tools/build_manifest.py, never edit by hand. tools/: build_manifest.py, check_plan.py, build_combined.py and models.py (see tools/README.txt). tests/: the plan checker as a test, the deck contract tests and the PDF checks (pytest.ini, requirements-dev.txt). The former repository starter files are now at the course root: ../AGENTS.md, ../docs/scene-contract.md, ../scripts/, ../tasks/ and ../.github/workflows/. Software_Engineering_14_Week_Plan.md and .pdf: derived reading copies regenerated by tools/build_combined.py.
 
 # WEEK 01 | ENGINEERING SOFTWARE THAT PEOPLE CAN DEPEND ON
 
@@ -76,7 +80,7 @@ Research and curriculum date: 16 September 2026
 
 What makes working code an engineered system?
 
-Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-01.html
+Instructor lecture plan | flexible pacing | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-01.html
 
 ## 1. PURPOSE, CASE STATE, AND SCOPE
 
@@ -308,11 +312,11 @@ Primary references: S01, S02, S24, S25, S46. Full titles, URLs, dated status, an
 
 # WEEK 02 | FROM AMBIGUOUS REQUESTS TO VERIFIABLE REQUIREMENTS
 
-Research and curriculum date: 16 September 2026
+Curriculum review: 22 September 2026; source retrieval dates are recorded individually
 
 How would we know that a requirement has been satisfied?
 
-Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-02.html
+Instructor lecture plan | flexible pacing | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-02.html
 
 ## 1. PURPOSE, CASE STATE, AND SCOPE
 
@@ -398,13 +402,13 @@ Bridge scene | ID: elicitation-and-scope
 
 **VISUAL IDEA:** A context map gains questions at its boundaries; facts, assumptions, and open decisions have different labels and shapes.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Ask what must be learned before accepting a request from a guest. Reveal questions about identity, cancellation rights, accessibility, and room closures. [S25] Separate something a stakeholder stated from something a developer inferred.
+**SITUATION, PREDICTION, AND MECHANISM:** Ask what must be learned before accepting a request from a guest. Reveal questions about identity, cancellation rights, accessibility, and room closures. [S25] Separate something a stakeholder stated from something a developer inferred. Make elicitation concrete with a fictional request for another confirmation email. Ask what happened on the person's last booking, then reveal an authored observation: after submitting, the person cannot tell whether the booking was stored. Compare the requested solution with the underlying need to know the outcome. A small interface prototype distinguishes Submitting, Confirmed and Unknown outcome; its walkthrough informs the requirement, while the authoritative stored result remains a separate engineering concern. Label this as a simulated observation, not user research that the course actually conducted.
 
 **CHANGE ONE CONDITION AND COMPARE:** Introduce an external visitor as a new stakeholder but keep this release's campus-member boundary. Compare explicitly deferred behavior with an accidental omission.
 
 **PRINCIPLE TO REVEAL:** An explicit boundary and an open-question register make uncertainty discussable.
 
-**STUDENT PDF TREATMENT:** Print the scope boundary and a compact fact-assumption-question table.
+**STUDENT PDF TREATMENT:** Print the scope boundary and a compact fact-assumption-question table. Retain the requested email, observed uncertainty and prototype comparison so the elicitation method is visible.
 
 ### 03. TURN “SHORT BOOKING” INTO A RULE WE CAN EXAMINE
 
@@ -414,7 +418,7 @@ Anchor scene | ID: observable-behavior
 
 **SITUATION, PREDICTION, AND MECHANISM:** Show 29, 30, 120, and 121 minute requests. Ask which should be accepted before revealing R-02: durations are at least 30 and at most 120 minutes, inclusive. Explain actor, condition, expected behavior, and rejection behavior. Keep the rule separate from a proposed slider widget.
 
-**CHANGE ONE CONDITION AND COMPARE:** Change only the upper limit from 120 to 90 minutes in a clearly labeled temporary variant. Compare the affected examples and restore the canonical 120-minute rule afterward. Include an invalid end-before-start request to show that one boundary rule does not describe every validity condition. Then add the AI beat: two prepared, synthetic drafting requests go to an automated assistant, one carrying the sentence “keep bookings short” and one carrying R-02. Show the two candidate rules side by side: the first invents a limit, the second implements 30 through 120 inclusive. No live model call; the candidates are authored fixtures.
+**CHANGE ONE CONDITION AND COMPARE:** Change only the upper limit from 120 to 90 minutes in a clearly labeled temporary variant. Compare the affected examples and restore the canonical 120-minute rule afterward. Include an invalid end-before-start request to show that one boundary rule does not describe every validity condition. Then add the AI beat: two prepared, synthetic drafting requests go to an automated assistant, one carrying the sentence “keep bookings short” and one carrying R-02. Show the two candidate rules side by side: the first invents a limit, the second implements 30 through 120 inclusive. No live model call; the candidates are authored fixtures. A precise request makes the candidate easier to judge; it does not guarantee a correct candidate. Reuse the synthetic exclusive-boundary candidate from Week 13 as a counterexample even when R-02 is supplied, and let the independent 120-minute example settle the decision.
 
 **PRINCIPLE TO REVEAL:** A useful requirement makes meaningful differences between acceptable and unacceptable outcomes visible.
 
@@ -428,11 +432,11 @@ Bridge scene | ID: quality-with-conditions
 
 **SITUATION, PREDICTION, AND MECHANISM:** Ask whether a 200 millisecond response proves the system is fast. Reveal Q-01: in the specified teaching fixture, the 95th percentile of search API response time should not exceed 500 milliseconds under 50 concurrent users. Explain that this is an authored target, not a universal service standard. Map the course's quality words to the ISO/IEC 25010:2023 characteristics, for example response time to performance efficiency and keyboard-accessible completion to interaction capability. [S46]
 
-**CHANGE ONE CONDITION AND COMPARE:** Change the workload while holding the target and code constant. Compare what was measured with what was claimed. Distinguish service-boundary response time from the student's whole browser experience.
+**CHANGE ONE CONDITION AND COMPARE:** Change the workload while holding the target and code constant. Compare what was measured with what was claimed. Distinguish service-boundary response time from the viewer's whole browser experience. Contrast Q-01 with R-05: follow a keyboard-only booking path and inspect whether the outcome is reachable and understandable. Observable acceptance can be a categorical outcome as well as a numerical threshold.
 
-**PRINCIPLE TO REVEAL:** A quality requirement needs a quantity, a boundary, conditions, and an acceptance rule.
+**PRINCIPLE TO REVEAL:** A quality requirement needs observable acceptance, a boundary, and stated conditions.
 
-**STUDENT PDF TREATMENT:** Print the distribution, the explicit target, the fixture assumptions, and the measurement boundary.
+**STUDENT PDF TREATMENT:** Print the distribution, the explicit target, the fixture assumptions, and the measurement boundary. Keep a worked keyboard-completion example for R-05 beside the performance target, so quality is not reduced to speed.
 
 ### 05. A PRECISE REQUIREMENT CAN STILL DESCRIBE THE WRONG THING
 
@@ -440,7 +444,7 @@ Bridge scene | ID: acceptance-and-validation
 
 **VISUAL IDEA:** A three-part strip: stakeholder need, precise statement, and observed behavior.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Show a system that perfectly enforces a 30-minute maximum because someone transcribed the desired 120-minute maximum incorrectly. Ask whether implementation checks against the written statement would catch the misunderstanding. Reveal the original stakeholder example.
+**SITUATION, PREDICTION, AND MECHANISM:** Show a system that perfectly enforces a 30-minute maximum because someone transcribed the desired 120-minute maximum incorrectly. Ask whether implementation checks against the written statement would catch the misunderstanding. Reveal the original stakeholder example. Separate the requested feature from the outcome the person needs: shortening every reservation may satisfy a written limit while making a useful session impossible. Compare the proposed behavior with a concrete stakeholder example before accepting the specification. Return to the unresolved fairness choice without selecting a new policy.
 
 **CHANGE ONE CONDITION AND COMPARE:** Keep the implementation unchanged and correct the intended requirement. Compare verification against a specification with validation of the intended need, acknowledging that actual practices can overlap.
 
@@ -522,15 +526,25 @@ QUESTION 4: What does selecting R-03 in the matrix tell us?
 
 **ANSWER:** Which decisions and checks are linked to cancellation authorization; those links need review when the rule changes.
 
+QUESTION 5: Does supplying R-02 to an assistant guarantee that its candidate is correct?
+
+**ANSWER:** No. The explicit rule makes an independent judgment possible; the inclusive boundary still needs to be checked.
+
+QUESTION 6: A desktop editor request says 'save my work safely.' What must be clarified before choosing autosave?
+
+**ANSWER:** Clarify what counts as saved, acceptable loss after interruption, recovery feedback and overwrite behavior. Choose an observable recovery example with the user; autosave is a possible design, not the requirement itself.
+
 ## 9. PDF CONTINUITY AND LECTURE ELASTICITY
 
 ### WHAT THE PRINTED EXPLANATION MUST PRESERVE
 
 Include a one-page requirement register, boundary examples, Q-01's measurement assumptions, and the traceability matrix. Preserve explicit “unknown” and “deferred” labels rather than replacing them with guessed facts. Temporary variants must never be confused with the course's canonical rules. In print, highlight the changed matrix cells with symbols as well as color.
 
-### SHORTER AND LONGER MEETING ROUTES
+### CORE AND OPTIONAL DEPTH
 
-Preserve ambiguity, duration boundaries, and traceability as the three anchors. The prioritization comparison can be shortened to a single decision table. Extra lecture space can deepen one conflict-resolution conversation, not introduce a catalog of requirements-document formats.
+Close with the answered transfer question in Section 8, using its small contrasting setting. Preserve the question and explanation in the reading copy.
+
+Protect ambiguity, observable boundaries and traceability. Treat the quality vocabulary as labels for the worked cases; compress the taxonomy and tool examples. Optional depth: compare stakeholder outcome evidence with feature completion.
 
 ## 10. HANDOFF
 
@@ -538,15 +552,15 @@ Carry the requirement register and traceability matrix into Week 3. End by askin
 
 ## 11. SOURCES AND CURRENCY NOTES
 
-Primary references: S01, S02, S25, S46. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S25, S46. Full titles, URLs, dated status, and access limitations appear in the source register. Curriculum review: 22 September 2026. See each source entry for its actual retrieval date; unchanged references retain earlier dates. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
 
 # WEEK 03 | MODELING BEHAVIOR, DATA, AND USER INTERACTION
 
-Research and curriculum date: 16 September 2026
+Curriculum review: 22 September 2026; source retrieval dates are recorded individually
 
 Which model answers the question we are actually asking?
 
-Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-03.html
+Instructor lecture plan | flexible pacing | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-03.html
 
 ## 1. PURPOSE, CASE STATE, AND SCOPE
 
@@ -632,7 +646,7 @@ Anchor scene | ID: state-machine
 
 **VISUAL IDEA:** Two deliberately separate state models: request/UI states above, stored booking states below. A current-state marker moves only on valid events.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Start in Draft and ask what Submit means. Reveal Submitting, then Confirmed, Rejected, or Unknown outcome when a response is lost. Link confirmed results to a stored booking record. In the stored model, a permitted cancellation changes Confirmed to Cancelled. Label events and conditions before discussing terminology.
+**SITUATION, PREDICTION, AND MECHANISM:** Start in Draft and ask what Submit means. Reveal Submitting, then Confirmed, Rejected, or Unknown outcome when a response is lost. Link confirmed results to a stored booking record. In the stored model, a permitted cancellation changes Confirmed to Cancelled. Label events and conditions before discussing terminology. Name an invariant as a statement that must remain true across the permitted transitions. Contrast that safety question with a progress question: will pending work eventually be resolved? A diagram of allowed transitions alone establishes neither implementation correctness nor eventual completion.
 
 **CHANGE ONE CONDITION AND COMPARE:** Change the current state to Cancelled and replay Cancel. Compare a stable, clearly defined repeated response with an accidental second state change. Ask which transitions are intentionally absent. Keep UI timeout separate from deletion of the stored booking.
 
@@ -648,7 +662,7 @@ Anchor scene | ID: identity-and-data
 
 **SITUATION, PREDICTION, AND MECHANISM:** Show two booking records containing copied room capacity values. Ask what happens when the room capacity changes. Reveal a Room entity with a stable identifier and bookings referencing it. Explain that a booking belongs to one user and one room, while each user or room can be associated with many bookings over time.
 
-**CHANGE ONE CONDITION AND COMPARE:** Change a room's display name while keeping its identifier. Compare stable references with matching on a mutable name. Also show a deliberately preserved historical snapshot and explain that duplication may be intentional when the meaning is historical rather than current.
+**CHANGE ONE CONDITION AND COMPARE:** Change a room's display name while keeping its identifier. Compare stable references with matching on a mutable name. Also show a deliberately preserved historical snapshot and explain that duplication may be intentional when the meaning is historical rather than current. Distinguish a well-formed identifier from an identifier that references an existing room. Relate that distinction to referential integrity and explain why a data constraint, a domain rule and a permission decision answer different questions.
 
 **PRINCIPLE TO REVEAL:** Model identity and the meaning of a fact before deciding where to store it.
 
@@ -756,15 +770,25 @@ QUESTION 4: How can a diagram be tested before code exists?
 
 **ANSWER:** Walk concrete examples through it and compare outcomes with requirements and complementary models.
 
+QUESTION 5: Can a valid state diagram establish that pending notification work will eventually complete?
+
+**ANSWER:** No. Permitted states and transitions do not establish the scheduling and recovery assumptions needed for progress.
+
+QUESTION 6: A mobile note says 'saved on this device' while synchronization is pending. Does that contradict the cloud copy being older?
+
+**ANSWER:** No. Local persistence and remote synchronization are separate states. Model both and make the message identify which promise has been met; pending synchronization still needs a defined completion or recovery path.
+
 ## 9. PDF CONTINUITY AND LECTURE ELASTICITY
 
 ### WHAT THE PRINTED EXPLANATION MUST PRESERVE
 
 The PDF should contain the separate request and booking state models, a readable entity relationship view, the cancellation table, and both sequence outcomes. Include a small notation legend. Retain the short explanatory sentence beneath each visual; arrows alone will not reproduce the explanation delivered aloud.
 
-### SHORTER AND LONGER MEETING ROUTES
+### CORE AND OPTIONAL DEPTH
 
-Preserve state separation, data identity, and lost-response sequences. For a shorter lecture, combine the interface gallery with the journey discussion. For more depth, add one carefully chosen inconsistent model and let the class identify the contradictory claim before the reveal.
+Close with the answered transfer question in Section 8, using its small contrasting setting. Preserve the question and explanation in the reading copy.
+
+Protect state separation, identity and the lost-response sequence. Optional depth: enumerate a bounded set of transition paths and search for an invariant violation. Exhaustion of that small model is not proof of an unbounded implementation; omit formal-method notation and time-zone extensions from the core.
 
 ## 10. HANDOFF
 
@@ -772,15 +796,15 @@ Carry the requirement IDs, models, and unresolved decisions into Week 4. The nex
 
 ## 11. SOURCES AND CURRENCY NOTES
 
-Primary references: S01, S02, S08, S09, S25. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S08, S09, S25. Full titles, URLs, dated status, and access limitations appear in the source register. Curriculum review: 22 September 2026. See each source entry for its actual retrieval date; unchanged references retain earlier dates. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
 
 # WEEK 04 | DEVELOPMENT FLOW, UNCERTAINTY, AND ENGINEERING DECISIONS
 
-Research and curriculum date: 16 September 2026
+Curriculum review: 22 September 2026; source retrieval dates are recorded individually
 
 Where is work waiting, and what would actually improve the flow?
 
-Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-04.html
+Instructor lecture plan | flexible pacing | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-04.html
 
 ## 1. PURPOSE, CASE STATE, AND SCOPE
 
@@ -866,7 +890,7 @@ Bridge scene | ID: methods-not-rituals
 
 **VISUAL IDEA:** A three-column comparison of plan-driven coordination, iterative timeboxes, and flow-based policies.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Ask what information each approach makes visible and when decisions change. Introduce Scrum through goals, inspection, and adaptation within its defined framework, and Kanban through explicit workflow, controlling work-in-progress, and improving flow. Do not claim a generic board is the whole of either. Name Scrum's three accountabilities in one line, Product Owner, Scrum Master and Developers, as the places where decisions about value, process and the work itself are made visible, not as job titles. [S04, S05]
+**SITUATION, PREDICTION, AND MECHANISM:** Ask what information each approach makes visible and when decisions change. Introduce Scrum through goals, inspection, and adaptation within its defined framework, and Kanban through explicit workflow, controlling work-in-progress, and improving flow. Do not claim a generic board is the whole of either. Name Scrum's three accountabilities in one line, Product Owner, Scrum Master and Developers, as the places where decisions about value, process and the work itself are made visible, not as job titles. [S04, S05] Give plan-driven coordination its strongest use case: costly external integration or a required evidence handoff. Name an early prototype or risk investigation as another way to learn before commitment. Compare when feedback arrives and which decisions remain reversible, rather than teaching method names as competing slogans.
 
 **CHANGE ONE CONDITION AND COMPARE:** Change the work from a planned capability to unpredictable incident arrivals. Compare which coordination mechanisms help and what policies need revision; do not declare one universal winner.
 
@@ -880,7 +904,7 @@ Anchor scene | ID: queue-and-bottleneck
 
 **VISUAL IDEA:** A work board and a numerical queue chart share the same discrete-round data.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Run implementation at two cards per round and review at one. Ask where the next unfinished card will wait. Reveal the review queue accumulating, with completed work counted separately from work started. Let the class predict the result before doubling implementation capacity.
+**SITUATION, PREDICTION, AND MECHANISM:** Run implementation at two cards per round and review at one. Ask where the next unfinished card will wait. Reveal the review queue accumulating, with completed work counted separately from work started. Let the viewer predict the result before doubling implementation capacity.
 
 **CHANGE ONE CONDITION AND COMPARE:** Change only implementation capacity to four and replay the same arrival schedule. Compare completion rate and queue length. Restore the baseline, then change review capacity to two. Explain that the bottleneck may move once a constraint is relieved.
 
@@ -910,7 +934,7 @@ Bridge scene | ID: estimates-with-assumptions
 
 **SITUATION, PREDICTION, AND MECHANISM:** Ask whether “three days” means effort, elapsed time, or a commitment. Reveal the dependencies and review capacity behind the estimate. Compare a range based on several similar examples with a single unsupported number.
 
-**CHANGE ONE CONDITION AND COMPARE:** Change one assumption: the identity interface is not yet agreed. Widen or qualify the estimate and show the value of resolving that uncertainty. Do not turn fictional ranges into statistical confidence intervals without a model and data.
+**CHANGE ONE CONDITION AND COMPARE:** Change one assumption: the identity interface is not yet agreed. Widen or qualify the estimate and show the value of resolving that uncertainty. Do not turn fictional ranges into statistical confidence intervals without a model and data. Also separate effort spent doing the change from elapsed waiting and continuing support cost. These form a small lifecycle cost discussion, not just an implementation estimate.
 
 **PRINCIPLE TO REVEAL:** An estimate is a conditional statement whose assumptions should travel with it.
 
@@ -922,7 +946,7 @@ Anchor scene | ID: risk-and-learning
 
 **VISUAL IDEA:** A decision table contrasts impact, uncertainty, reversibility, cost of delay, and information gained.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Offer a visual refinement, a proof that simultaneous bookings cannot overlap, and an investigation into an unclear identity dependency. Ask what the team should learn before committing more work. Reveal what each step would clarify and what failure would cost.
+**SITUATION, PREDICTION, AND MECHANISM:** Offer a visual refinement, a proof that simultaneous bookings cannot overlap, and an investigation into an unclear identity dependency. Ask what the team should learn before committing more work. Reveal what each step would clarify and what failure would cost. Include the option to defer or reduce scope. Explain opportunity cost through the valuable work displaced by the chosen step; no invented monetary multiplier is needed.
 
 **CHANGE ONE CONDITION AND COMPARE:** Change only the reversibility of a decision: a temporary interface choice becomes a difficult data migration. Compare the amount of evidence worth seeking before proceeding. Use ordinal judgments and explanatory notes rather than multiplying invented probability scores.
 
@@ -952,7 +976,7 @@ Bridge scene | ID: retrospective-as-test
 
 **SITUATION, PREDICTION, AND MECHANISM:** Ask what should happen after noticing a long review queue. Reveal a proposal to share review work, the expected effect, and what would count as contrary evidence. Keep the discussion about the system rather than blaming an individual, and explain why: people report delays and mistakes honestly only where reporting them is safe, so blameless discussion and psychological safety are the conditions for trustworthy process data.
 
-**CHANGE ONE CONDITION AND COMPARE:** Increase review speed but show more missed issues. Compare throughput with quality and rework. Leave the class with the idea of a balanced improvement experiment rather than one target number.
+**CHANGE ONE CONDITION AND COMPARE:** Increase review speed but show more missed issues. Compare throughput with quality and rework. Leave the viewer with the idea of a balanced improvement experiment rather than one target number.
 
 **PRINCIPLE TO REVEAL:** Change a process deliberately, observe its consequences, and revise the explanation when the evidence disagrees.
 
@@ -990,15 +1014,25 @@ QUESTION 4: What should accompany a process improvement claim?
 
 **ANSWER:** A baseline, a stated change, a relevant outcome measure, and attention to quality or other side effects.
 
+QUESTION 5: Why can the smallest implementation estimate still be the more expensive choice?
+
+**ANSWER:** Waiting, integration, continuing support, exit cost and displaced valuable work can change the lifecycle comparison.
+
+QUESTION 6: A library team writes changes faster, but maintainers can review no more than before. What should it inspect next?
+
+**ANSWER:** Inspect waiting work, review capacity, accepted changes and rework. Faster drafting can grow the queue without improving completion; choose the next improvement from the constraint and its quality consequences.
+
 ## 9. PDF CONTINUITY AND LECTURE ELASTICITY
 
 ### WHAT THE PRINTED EXPLANATION MUST PRESERVE
 
 Preserve the actual values behind every chart: rounds, capacities, queue lengths, and completed items. Include a glossary with measurement boundaries. Print the estimate assumptions and risk rationale. Do not distribute a chart that implies a measured industry result when it came from the lecture model.
 
-### SHORTER AND LONGER MEETING ROUTES
+### CORE AND OPTIONAL DEPTH
 
-Preserve feedback batches, the queue simulation, and the risk comparison. The methods comparison is intentionally short. In a longer lecture, introduce different work-item sizes or an incident arrival using the same board, then examine why the earlier simplification mattered.
+Close with the answered transfer question in Section 8, using its small contrasting setting. Preserve the question and explanation in the reading copy.
+
+Protect feedback batches, queue behavior and the risk decision. Fit lifecycle cost into the existing estimate and risk tables; shorten the framework comparison. Optional depth: change the support or exit assumption in the same decision, without a new scoring system.
 
 ## 10. HANDOFF
 
@@ -1006,15 +1040,15 @@ Carry forward one prioritized change: changing a booking policy without causing 
 
 ## 11. SOURCES AND CURRENCY NOTES
 
-Primary references: S01, S02, S03, S04, S05. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S03, S04, S05. Full titles, URLs, dated status, and access limitations appear in the source register. Curriculum review: 22 September 2026. See each source entry for its actual retrieval date; unchanged references retain earlier dates. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
 
 # WEEK 05 | MODULARITY, INTERFACES, AND THE COST OF CHANGE
 
-Research and curriculum date: 16 September 2026
+Curriculum review: 22 September 2026; source retrieval dates are recorded individually
 
 When one requirement changes, which parts should need to change?
 
-Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-05.html
+Instructor lecture plan | flexible pacing | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-05.html
 
 ## 1. PURPOSE, CASE STATE, AND SCOPE
 
@@ -1086,7 +1120,7 @@ Bridge scene | ID: same-behavior-different-design
 
 **VISUAL IDEA:** Two matching booking screens above two different internal dependency maps.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Ask whether the screens reveal which design will be easier to change. Reveal the internal responsibilities only after the class commits a prediction. Trace one successful request through each version.
+**SITUATION, PREDICTION, AND MECHANISM:** Ask whether the screens reveal which design will be easier to change. Reveal the internal responsibilities only after the viewer commits a prediction. Trace one successful request through each version.
 
 **CHANGE ONE CONDITION AND COMPARE:** Change the maximum booking duration while holding the screen and user goal constant. Stop before highlighting affected components so students identify likely edits first.
 
@@ -1114,7 +1148,7 @@ Bridge scene | ID: cohesion-and-responsibility
 
 **VISUAL IDEA:** Responsibility cards cluster by reason to change rather than by file extension.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Show a “Utilities” module containing booking rules, email formatting, date display, and storage access. Ask which tasks change for the same reason. Reveal a regrouping around meaningful responsibilities.
+**SITUATION, PREDICTION, AND MECHANISM:** Show a “Utilities” module containing booking rules, email formatting, date display, and storage access. Ask which tasks change for the same reason. Reveal a regrouping around meaningful responsibilities. Make construction visible with the existing duration predicate: isolate the deterministic policy from clock, storage and notification effects. Walk an input through validation, a domain decision and an explicit result. Clear names and small responsibilities help a maintainer locate the decision; short code alone is not the objective.
 
 **CHANGE ONE CONDITION AND COMPARE:** Add a new notification format while keeping booking policy unchanged. Compare the groups affected before and after regrouping. Acknowledge that a boundary that separates tightly related behavior can also create unnecessary coordination.
 
@@ -1128,7 +1162,7 @@ Anchor scene | ID: interface-contract
 
 **VISUAL IDEA:** A component plugs into a labeled interface; inputs, outputs, errors, and side effects are shown as contract cards.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Replace a notification implementation while keeping its call shape unchanged. Ask whether matching function names guarantees compatibility. Reveal differences in failure reporting, repeated delivery, and whether the call blocks confirmation. Use R-04 to state the relevant behavior.
+**SITUATION, PREDICTION, AND MECHANISM:** Replace a notification implementation while keeping its call shape unchanged. Ask whether matching function names guarantees compatibility. Reveal differences in failure reporting, repeated delivery, and whether the call blocks confirmation. Use R-04 to state the relevant behavior. Use the return value to distinguish a successful booking decision, a domain rejection and unavailable infrastructure. A well-shaped value can still violate a domain constraint, and a type annotation does not enforce authorization or an atomic booking decision. Keep these distinctions in Python-like pseudocode and a small result table.
 
 **CHANGE ONE CONDITION AND COMPARE:** Change only the error behavior of the replacement. Compare a clearly reported failed notification with an implementation that throws into the booking path and undoes the user promise. Introduce preconditions, outcomes, and error expectations without a long type-system lecture.
 
@@ -1172,7 +1206,7 @@ Bridge scene | ID: abstraction-cost
 
 **SITUATION, PREDICTION, AND MECHANISM:** Ask which option fits two clear policy rules and a small team. Reveal setup, understanding, extension, and debugging costs as qualitative judgments. Avoid invented precision or a decorative three-dimensional score surface.
 
-**CHANGE ONE CONDITION AND COMPARE:** Change one condition: several independently changing policies now exist. Revisit the decision and identify what evidence might justify more structure. Keep flexibility as a costed option, not a virtue without limits.
+**CHANGE ONE CONDITION AND COMPARE:** Change one condition: several independently changing policies now exist. Revisit the decision and identify what evidence might justify more structure. Keep flexibility as a costed option, not a virtue without limits. Offer building a small adapter, reusing a maintained library, and buying a managed capability as alternatives. Compare integration, licensing, support, data portability and exit cost using qualitative evidence. Buying or reusing changes responsibility; it does not remove the need to verify the required behavior.
 
 **PRINCIPLE TO REVEAL:** Abstraction should earn its complexity by simplifying real responsibilities or plausible change.
 
@@ -1224,15 +1258,25 @@ QUESTION 4: What should an architecture or design decision record preserve?
 
 **ANSWER:** Context, alternatives, choice, consequences, and the assumptions or triggers that warrant revisiting it.
 
+QUESTION 5: Does a well-typed result prove that cancellation is authorized?
+
+**ANSWER:** No. Shape, domain validity and permission are separate claims with separate evidence.
+
+QUESTION 6: An image library changes its file decoder while retaining the same function name. What does a caller still need to check?
+
+**ANSWER:** Check accepted inputs, pixel and color meaning, error results and side effects promised by the interface. A matching name or type shape does not settle behavioral compatibility.
+
 ## 9. PDF CONTINUITY AND LECTURE ELASTICITY
 
 ### WHAT THE PRINTED EXPLANATION MUST PRESERVE
 
 The PDF must preserve both designs before and after the same change. Include the change-impact legend, the behavioral interface contract, and the refactoring check table. Do not print only the final clean diagram: the comparison is the explanation. The stable main anchor is week-05.html#/dependency-example.
 
-### SHORTER AND LONGER MEETING ROUTES
+### CORE AND OPTIONAL DEPTH
 
-Preserve change propagation, behavioral contracts, and checked refactoring. In a shorter lecture, fold the abstraction-cost discussion into the decision record. Additional time can explore a second kind of change, such as replacing notification delivery, to test whether the chosen boundaries generalize.
+Close with the answered transfer question in Section 8, using its small contrasting setting. Preserve the question and explanation in the reading copy.
+
+Protect dependency spread, behavioral contracts and refactoring. Construction is the mechanism inside those demonstrations. Optional depth: name Strategy or Adapter only after its responsibility and trade-off are visible; omit a SOLID or pattern catalogue.
 
 ## 10. HANDOFF
 
@@ -1240,21 +1284,21 @@ Carry the module responsibilities, contracts, and decision record into Week 6. T
 
 ## 11. SOURCES AND CURRENCY NOTES
 
-Primary references: S01, S02, S07, S24. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S07, S24. Full titles, URLs, dated status, and access limitations appear in the source register. Curriculum review: 22 September 2026. See each source entry for its actual retrieval date; unchanged references retain earlier dates. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
 
 # WEEK 06 | ARCHITECTURE, INTERACTIONS, AND DISTRIBUTED FAILURE
 
-Research and curriculum date: 16 September 2026
+Curriculum review: 22 September 2026; source retrieval dates are recorded individually
 
 What changes when a dependency becomes slow, unavailable, or uncertain?
 
-Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-06.html
+Instructor lecture plan | flexible pacing | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-06.html
 
 ## 1. PURPOSE, CASE STATE, AND SCOPE
 
 Scale the Week 5 design from internal responsibilities to runtime structure. Compare a modular single application with a separated notification worker and with a more distributed alternative. Teach architecture through responsibility, deployability, data ownership, contracts, and failure—not through a shopping list of infrastructure products.
 
-The three main mechanisms are a request traveling across components, two concurrent booking attempts competing for one invariant, and a lost response creating an uncertain outcome. The class should leave with disciplined trade-off questions rather than a rule that a newer architectural style is always better. [S01, S02, S08, S09, S10]
+The three main mechanisms are a request traveling across components, two concurrent booking attempts competing for one invariant, and a lost response creating an uncertain outcome. The viewer should leave with disciplined trade-off questions rather than a rule that a newer architectural style is always better. [S01, S02, S08, S09, S10]
 
 In practice (dated examples, 2026): HTTP contracts are often described in OpenAPI; PostgreSQL can enforce a no-overlap rule for time ranges with an exclusion constraint; queued work commonly runs on RabbitMQ or Kafka; and services ship as Docker images, which are a packaging format, not the containers of the C4 model.
 
@@ -1392,7 +1436,7 @@ Bridge scene | ID: async-and-consistency
 
 **SITUATION, PREDICTION, AND MECHANISM:** Ask whether delayed email means the booking failed. Reveal R-04: confirmation depends on the booking decision, while notification may complete later. Show pending, delivered, and failed-delivery observations without hiding them from support.
 
-**CHANGE ONE CONDITION AND COMPARE:** Duplicate a delivery attempt while keeping the booking unchanged. Compare a handler that tolerates repeat work with one that produces unintended extra effects. Mention a durable handoff pattern without requiring implementation detail.
+**CHANGE ONE CONDITION AND COMPARE:** Duplicate a delivery attempt while keeping the booking unchanged. Compare a handler that tolerates repeat work with one that produces unintended extra effects. Mention a durable handoff pattern without requiring implementation detail. Name the durable handoff as a transactional outbox: the booking change and a pending notification record are committed together, then a worker attempts delivery. Step a crash after commit but before delivery; pending work remains discoverable. A crash after sending but before acknowledgement can still lead to a duplicate attempt. Keep delivery semantics explicit rather than implying exactly-once email.
 
 **PRINCIPLE TO REVEAL:** Asynchronous work changes the timing and failure contract; it does not remove responsibility for completion.
 
@@ -1404,7 +1448,7 @@ Bridge scene | ID: contracts-and-evolution
 
 **VISUAL IDEA:** A request/response contract appears beside old and new consumers.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Ask whether adding a response field is always harmless. Reveal that compatibility depends on consumer behavior; strict consumers may reject additions. Contrast that with silently changing the meaning of an existing field.
+**SITUATION, PREDICTION, AND MECHANISM:** Ask whether adding a response field is always harmless. Reveal that compatibility depends on consumer behavior; strict consumers may reject additions. Contrast that with silently changing the meaning of an existing field. Make one contract concrete: select a booking request, its response shape, the error meaning and the retry rule, then run an old consumer against a changed response. Identify OpenAPI as an HTTP interface-description standard; a schema can describe shape without establishing ownership, no-overlap or retry correctness. [S52]
 
 **CHANGE ONE CONDITION AND COMPARE:** Change a booking status representation and replay old and new consumers. Compare an explicit transition strategy with an abrupt breaking change.
 
@@ -1430,7 +1474,7 @@ Bridge scene | ID: architecture-decision
 
 Do not teach that eventual consistency is suitable for every datum: display availability may be stale, but the canonical no-overlap decision still needs authoritative enforcement. Do not equate transactions with a guarantee at every isolation level. Locking an existing row may also fail to protect a gap when no conflicting row exists; an implementation must enforce the interval invariant, not merely a superficial uniqueness condition. [S10]
 
-A timeout is an observation at one boundary, not proof of the remote effect. Retry demonstrations use explicit operation identities and defined duplicate handling. Keep technical implementation choices open for authoring and rehearsal; preserve the semantics in every animation.
+A timeout is an observation at one boundary, not proof of the remote effect. Retry demonstrations use explicit operation identities and defined duplicate handling. Keep technical implementation choices open for authoring; preserve the semantics in every animation.
 
 ## 7. MISCONCEPTION AND DIAGNOSIS CLINIC
 
@@ -1458,15 +1502,25 @@ QUESTION 4: Is a C4 container always a Docker container?
 
 **ANSWER:** No. It denotes an application or data-store boundary in that model, not a specific packaging technology.
 
+QUESTION 5: What survives a crash after an atomic booking-and-pending-notification commit?
+
+**ANSWER:** The booking and the pending work remain recorded; delivery still needs recovery, and a later retry can repeat a delivery attempt.
+
+QUESTION 6: A batch importer crashes after storing a record but before marking its input complete. What makes a restart safe?
+
+**ANSWER:** Define a stable identity for the intended operation and coordinate its effect with durable completion evidence, or make replay preserve the intended result. A crash does not establish that no write occurred; reusing an identity for changed input needs an explicit policy.
+
 ## 9. PDF CONTINUITY AND LECTURE ELASTICITY
 
 ### WHAT THE PRINTED EXPLANATION MUST PRESERVE
 
 Preserve the successful path, dependency failure, concurrent conflict, and lost-response storyboards. Keep event numbering consistent between HTML and PDF. Include the compatibility matrix and the architecture rationale. Every asynchronous arrow must retain a caption explaining what the user can rely on before that work finishes.
 
-### SHORTER AND LONGER MEETING ROUTES
+### CORE AND OPTIONAL DEPTH
 
-Preserve request dependency, concurrent booking, and retry identity as the anchors. The compatibility matrix and architecture rationale can share a page in a shorter lecture. Use extra time for a different interleaving of the same two requests rather than adding consensus algorithms or cluster operations.
+Close with the answered transfer question in Section 8, using its small contrasting setting. Preserve the question and explanation in the reading copy.
+
+Protect request boundaries, concurrent enforcement and retry identity. Keep the API contract and outbox inside their current scenes. Optional depth: compare cached search with authoritative confirmation; leave consensus, full CAP theory and multi-region design for later study.
 
 ## 10. HANDOFF
 
@@ -1474,15 +1528,15 @@ Carry the contracts and decision record into Week 7. Now several developers need
 
 ## 11. SOURCES AND CURRENCY NOTES
 
-Primary references: S01, S02, S08, S09, S10. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S08, S09, S10, S52. Full titles, URLs, dated status, and access limitations appear in the source register. Curriculum review: 22 September 2026. See each source entry for its actual retrieval date; unchanged references retain earlier dates. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
 
 # WEEK 07 | COLLABORATION, VERSION HISTORY, AND REVIEWABLE CHANGE
 
-Research and curriculum date: 16 September 2026
+Curriculum review: 22 September 2026; source retrieval dates are recorded individually
 
 How can several people change one system without losing intent or trust?
 
-Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-07.html
+Instructor lecture plan | flexible pacing | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-07.html
 
 ## 1. PURPOSE, CASE STATE, AND SCOPE
 
@@ -1554,7 +1608,7 @@ Anchor scene | ID: commit-graph
 
 **VISUAL IDEA:** A commit graph grows one node at a time beside a tiny snapshot of the booking policy; branch labels move separately from nodes.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Ask whether a branch is a second permanent copy of every file. Reveal commits as recorded snapshots linked to parent commits, then move a branch reference when a new commit is added. Draw time consistently but explain that graph ancestry, not horizontal position alone, determines the relationship. [S06]
+**SITUATION, PREDICTION, AND MECHANISM:** Ask whether a branch is a second permanent copy of every file. Reveal commits as recorded snapshots linked to parent commits, then move a branch reference when a new commit is added. Draw time consistently but explain that graph ancestry, not horizontal position alone, determines the relationship. [S06] Before growing the graph, distinguish the working tree, the selected changes to commit, the local recorded commit and a shared remote reference. Committing and sharing are separate actions; the graph is not a backup of every unsaved edit.
 
 **CHANGE ONE CONDITION AND COMPARE:** Create a second line of development from the same ancestor. Compare two descendants with different changes, then reveal a merge with two parents. Contrast a fast-forward case without suggesting that every integration needs a merge commit.
 
@@ -1568,7 +1622,7 @@ Anchor scene | ID: conflict-and-intent
 
 **VISUAL IDEA:** Two edits to one policy line appear beside the requirement they were intended to implement.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Ask whether taking the left or right version is sufficient. Reveal one edit implementing the 90-minute variant and another reorganizing the same validation. Show the shared original so the class can distinguish changed behavior from changed structure.
+**SITUATION, PREDICTION, AND MECHANISM:** Ask whether taking the left or right version is sufficient. Reveal one edit implementing the 90-minute variant and another reorganizing the same validation. Show the shared original so the viewer can distinguish changed behavior from changed structure.
 
 **CHANGE ONE CONDITION AND COMPARE:** Resolve the text while accidentally losing the upper bound. Compare a syntactically valid result with a requirement-based resolution that preserves both the intended rule and the structural improvement. Reveal the boundary check that detects the mistake.
 
@@ -1598,7 +1652,7 @@ Anchor scene | ID: review-with-context
 
 **SITUATION, PREDICTION, AND MECHANISM:** Show the diff alone and ask what a reviewer cannot yet decide. Reveal the purpose, affected rule, alternatives, and checks. Sort comments into correctness, security, design, understandability, and optional preference. Explain that linters and formatters take style out of the conversation without replacing judgment, and that a useful comment addresses the change rather than the person and says whether it is required or optional. [S07]
 
-**CHANGE ONE CONDITION AND COMPARE:** Split an unrelated rename out of the same change. Compare the reviewer’s task with and without the unrelated material, without claiming an exact universal speed improvement. Keep one substantive concern unresolved until its supporting evidence appears. AI beat: label the same diff as drafted by an automated assistant with the description “fix stuff”. Ask what changes for the reviewer. Nothing: the requirement, the checks and the rationale are still required, and the empty description is the documentation failure of scene 07 arriving early.
+**CHANGE ONE CONDITION AND COMPARE:** Split an unrelated rename out of the same change. Compare the reviewer’s task with and without the unrelated material, without claiming an exact universal speed improvement. Keep one substantive concern unresolved until its supporting evidence appears. AI beat: label the same diff as drafted by an automated assistant with the description “fix stuff”. Ask what changes for the reviewer. Nothing: the requirement, the checks and the rationale are still required, and the empty description is the documentation failure of scene 07 arriving early. Resolve the remaining disagreement by restating the claim, identifying the missing evidence and recording the decision owner. Compare asynchronous review with a short paired investigation when shared context is missing; either can work when its findings survive the conversation.
 
 **PRINCIPLE TO REVEAL:** Review is an evidence-based conversation about a change, not a vote on how convincing its author sounds.
 
@@ -1692,15 +1746,25 @@ QUESTION 4: Why record dependency inputs?
 
 **ANSWER:** The same source can run differently when its resolved dependencies or configuration differ.
 
+QUESTION 5: What should resolve a substantive review disagreement?
+
+**ANSWER:** A clear claim, the evidence needed to decide it and an accountable decision; durable rationale should survive the discussion.
+
+QUESTION 6: A library's code and documentation merge cleanly, but they describe different default behavior. Is the change ready?
+
+**ANSWER:** Resolve the intended contract and check the implementation and documentation against it. A textual merge detects some overlapping edits; it does not reconcile meaning across different files.
+
 ## 9. PDF CONTINUITY AND LECTURE ELASTICITY
 
 ### WHAT THE PRINTED EXPLANATION MUST PRESERVE
 
 Preserve the commit graph at meaningful points, the conflict resolution, and the clean-merge counterexample. Provide readable diffs as text rather than tiny full-screen captures. The review example must retain the requirement and evidence, not only comments. State that the 90-minute rule was a temporary variant.
 
-### SHORTER AND LONGER MEETING ROUTES
+### CORE AND OPTIONAL DEPTH
 
-Keep commit ancestry, semantic conflict, and contextual review as the three sustained explanations. Compress integration frequency and durable documentation into short comparisons when needed. With more time, replay the same merge after changing only one requirement; avoid a long detour into Git internals.
+Close with the answered transfer question in Section 8, using its small contrasting setting. Preserve the question and explanation in the reading copy.
+
+Protect commit ancestry, conflict intent and focused review. The working-tree-to-shared-history strip is preparation for the graph. Optional depth: compare revert and history rewriting on shared work; do not add a Git command catalogue.
 
 ## 10. HANDOFF
 
@@ -1708,15 +1772,15 @@ Carry the review packet and its unanswered question into Week 8: what makes a ve
 
 ## 11. SOURCES AND CURRENCY NOTES
 
-Primary references: S01, S02, S06, S07. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S06, S07. Full titles, URLs, dated status, and access limitations appear in the source register. Curriculum review: 22 September 2026. See each source entry for its actual retrieval date; unchanged references retain earlier dates. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
 
 # WEEK 08 | TESTING BEHAVIOR AND BUILDING CREDIBLE EVIDENCE
 
-Research and curriculum date: 16 September 2026
+Curriculum review: 22 September 2026; source retrieval dates are recorded individually
 
 Which checks would challenge our assumptions rather than merely repeat them?
 
-Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-08.html
+Instructor lecture plan | flexible pacing | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-08.html
 
 ## 1. PURPOSE, CASE STATE, AND SCOPE
 
@@ -1816,13 +1880,13 @@ Anchor scene | ID: choose-test-scope
 
 **VISUAL IDEA:** A layered system view highlights a pure policy function, component interaction, storage enforcement, and complete user journey.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Ask whether a unit check of overlap arithmetic proves that concurrent requests cannot double-book. Reveal the missing shared-storage behavior. Place focused function checks, integration checks, and a complete booking journey where they observe their respective claims.
+**SITUATION, PREDICTION, AND MECHANISM:** Ask whether a unit check of overlap arithmetic proves that concurrent requests cannot double-book. Reveal the missing shared-storage behavior. Place focused function checks, integration checks, and a complete booking journey where they observe their respective claims. Use the same keyboard booking journey to explain exploratory testing: start with the question of how someone recovers from a lost response, then choose the next check from what the interface reveals. In the authored comparison, reopening the stored booking retrieves confirmation but the interface still says Submitting. Inspect the corrected Confirmed state and capture the discovered mismatch as a repeatable regression example. This is guided investigation with recorded observations; scripted checks preserve known expectations. A separate usability study would ask representative people to attempt the task and explain what they understood. The scene is a simulated example, not a claim that such a study occurred. [S60]
 
-**CHANGE ONE CONDITION AND COMPARE:** Replace the real notification boundary with a controlled test double. Compare faster isolation of booking behavior with the remaining uncertainty about actual integration. Show a separate contract or integration check for that uncertainty.
+**CHANGE ONE CONDITION AND COMPARE:** Replace the real notification boundary with a controlled test double. Compare faster isolation of booking behavior with the remaining uncertainty about actual integration. Show a separate contract or integration check for that uncertainty. Use a consumer expectation that the actual provider violates to explain contract testing, then keep the cross-component journey check for behavior that neither side can establish alone. A mock returning the desired value is not evidence that the real boundary behaves that way.
 
 **PRINCIPLE TO REVEAL:** The appropriate test scope follows the claim and failure risk, not the prestige of a test label.
 
-**STUDENT PDF TREATMENT:** Print a claim-to-check-scope matrix with one explicit limitation per row.
+**STUDENT PDF TREATMENT:** Print a claim-to-check-scope matrix with one explicit limitation per row, and retain the exploration question, discovered status mismatch and resulting regression example.
 
 ### 04. THE EXPECTED ANSWER NEEDS ITS OWN JUSTIFICATION
 
@@ -1886,7 +1950,7 @@ Bridge scene | ID: testing-as-feedback
 
 **VISUAL IDEA:** A short requirement-to-failing-check-to-small-change-to-recheck loop ends with a refactoring comparison.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Ask what should happen before fixing the exclusive upper bound. Debug in four visible moves first: reproduce the failure with the 120-minute case, shrink it to the smallest failing input, state one hypothesis about the comparison, and confirm it with one targeted observation. Then reveal a focused failing check, a minimal correction, and rerun evidence. Explain test-first development as one way to make the expected behavior explicit, not a guarantee of good requirements.
+**SITUATION, PREDICTION, AND MECHANISM:** Ask what should happen before fixing the exclusive upper bound. Debug in four visible moves first: reproduce the failure with the 120-minute case, shrink it to the smallest failing input, state one hypothesis about the comparison, and confirm it with one targeted observation. Then reveal a focused failing check, a minimal correction, and rerun evidence. Explain test-first development as one way to make the expected behavior explicit, not a guarantee of good requirements. Relate the existing examples to verification before and after execution: review and static analysis examine some claims without running the service; dynamic checks observe particular executions. A precondition, postcondition or invariant must still be justified by the requirement.
 
 **CHANGE ONE CONDITION AND COMPARE:** Refactor the corrected predicate without changing its contract. Compare unchanged behavior under the checks while acknowledging untested conditions and higher-level integration evidence.
 
@@ -1926,15 +1990,25 @@ QUESTION 4: Why can implementation and test agree while both are wrong?
 
 **ANSWER:** They may share the same mistaken assumption or calculate the expected result using the defective logic.
 
+QUESTION 5: Does a controlled test double establish that the real provider honors its contract?
+
+**ANSWER:** No. It isolates a claim; evidence at the real boundary is still needed.
+
+QUESTION 6: A file converter passes a test whose expected output is produced by the same conversion function. What would strengthen the test?
+
+**ANSWER:** Use an independently derived small example and a property justified by the format's meaning, including a relevant boundary. If round-trip conversion is promised, check it too; a shared defect can make both directions agree while still producing the wrong result.
+
 ## 9. PDF CONTINUITY AND LECTURE ELASTICITY
 
 ### WHAT THE PRINTED EXPLANATION MUST PRESERVE
 
 The student PDF must contain the actual input values, expected outcomes, and reasons—not only pass/fail colors. Preserve the test-scope matrix, the oracle counterexample, and the mutation comparison. Print the fixed clock value used in the cancellation scene. Include the principle and a short statement of remaining uncertainty after each major demonstration.
 
-### SHORTER AND LONGER MEETING ROUTES
+### CORE AND OPTIONAL DEPTH
 
-Protect boundary reasoning, scope selection, and properties as the three anchors. Mutation and test-first feedback should remain concise rather than becoming separate framework tutorials. With additional discussion time, ask whether the current evidence supports a concurrency claim; revisit the Week 6 interleaving rather than introducing a new domain.
+Close with the answered transfer question in Section 8, using its small contrasting setting. Preserve the question and explanation in the reading copy.
+
+Protect discriminating examples, test scope and properties. Use one existing provider mismatch for contract testing and the existing journey for the exploratory comparison, replacing a repeated catalogue of test labels. Optional depth: reduce a malformed-input counterexample to explain fuzzing; bounded model exploration belongs after the Week 3 invariant, without a separate tool survey.
 
 ## 10. HANDOFF
 
@@ -1942,15 +2016,15 @@ Carry independent checks and explicit invariants into Week 9. Correctness now in
 
 ## 11. SOURCES AND CURRENCY NOTES
 
-Primary references: S01, S02, S11, S12, S40. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S11, S12, S40, S60. Full titles, URLs, dated status, and access limitations appear in the source register. Curriculum review: 22 September 2026. See each source entry for its actual retrieval date; unchanged references retain earlier dates. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
 
 # WEEK 09 | SECURITY, PRIVACY, AND TRUSTWORTHY DEPENDENCIES
 
-Research and curriculum date: 16 September 2026
+Curriculum review: 22 September 2026; source retrieval dates are recorded individually
 
 What must remain true when a request, dependency, or assumption cannot be trusted?
 
-Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-09.html
+Instructor lecture plan | flexible pacing | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-09.html
 
 ## 1. PURPOSE, CASE STATE, AND SCOPE
 
@@ -2094,7 +2168,7 @@ Bridge scene | ID: dependency-chain
 
 **SITUATION, PREDICTION, AND MECHANISM:** Ask whether knowing the name of a direct library tells us everything included in a build. Reveal a transitive dependency. Explain an inventory or software bill of materials as visibility into components, and provenance as evidence about an artifact’s production. [S16]
 
-**CHANGE ONE CONDITION AND COMPARE:** Change one dependency version while keeping application source fixed. Compare the need to evaluate the new component, rebuild under controlled inputs, and recheck affected behavior. A familiar name, inventory entry, or signature alone does not prove safety. Licensing beat: change only the license of the transitive dependency in the fictional chain, from a permissive license to a copyleft license with a source-availability obligation. Compare what the license inventory now requires before release. Use SPDX identifiers as the vocabulary and keep this an engineering question about obligations and inventory, not legal advice. [S42] Name the legal context in one line: the EU Cyber Resilience Act requires manufacturers of products with digital elements sold in the EU to document their components, including a software bill of materials, with reporting obligations applying from 11 September 2026. [S49]
+**CHANGE ONE CONDITION AND COMPARE:** Change one dependency version while keeping application source fixed. Compare the need to evaluate the new component, rebuild under controlled inputs, and recheck affected behavior. A familiar name, inventory entry, or signature alone does not prove safety. Licensing beat: change only the license of the transitive dependency in the fictional chain, from a permissive license to a copyleft license with a source-availability obligation. Compare what the license inventory now requires before release. Use SPDX identifiers as the vocabulary and keep this an engineering question about obligations and inventory, not legal advice. [S42] Name the legal context in one line: for products within its scope, the EU Cyber Resilience Act links component documentation to lifecycle vulnerability handling. Reporting obligations apply from 11 September 2026; the main obligations, including the component-documentation requirements, apply from 11 December 2027. Applicability and exemptions need their own legal analysis; do not imply that every website is covered. [S49] Finish the lifecycle: inventory locates the affected artifact, the team evaluates exposure, applies a supported update or mitigation, verifies it and records follow-up. Include a secret as a reference with an owner and revocation path, never as a value placed in source or logs.
 
 **PRINCIPLE TO REVEAL:** Supply-chain evidence makes dependencies inspectable; it does not eliminate the need for risk judgment and verification.
 
@@ -2120,7 +2194,7 @@ Bridge scene | ID: security-through-change
 
 **VISUAL IDEA:** The familiar lifecycle loop receives threat questions, permission checks, review, dependency evidence, and incident feedback.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Ask whether a final scanner can discover an unstated ownership policy. Reveal distinct contributions from requirements, design, implementation checks, review, release integrity, and operation. Use a small selected set of risks rather than reciting a top-ten list.
+**SITUATION, PREDICTION, AND MECHANISM:** Ask whether a final scanner can discover an unstated ownership policy. Reveal distinct contributions from requirements, design, implementation checks, review, release integrity, and operation. Use a small selected set of risks rather than reciting a top-ten list. Connect a selected risk to a concrete verification requirement, implementation control, evidence and owner using OWASP ASVS 5.0.0. Contrast the Top 10 awareness list with ASVS verification requirements and SSDF development practices; none is a certificate that this application is secure. Use a few relevant controls rather than reading a checklist. [S51]
 
 **CHANGE ONE CONDITION AND COMPARE:** Introduce a new delegated-cancellation policy as an explicit hypothetical. Trace which model, checks, review questions, and diagnostic fields must be reconsidered before restoring the baseline.
 
@@ -2160,15 +2234,25 @@ QUESTION 4: Should notification failure automatically cancel an already confirme
 
 **ANSWER:** No. Under R-04 the booking remains confirmed while notification work is explicitly pending or failed and recoverable.
 
+QUESTION 5: How do a Top 10 risk, an ASVS requirement and an SSDF practice differ?
+
+**ANSWER:** They describe an awareness concern, a verifiable application control expectation and a development practice respectively; each informs a different decision.
+
+QUESTION 6: A desktop application hides its export button, but its export entry point can still be called. Where does the permission decision belong?
+
+**ANSWER:** At the trusted boundary that performs the export, using protected identity and data-access rules. Interface visibility guides interaction; it cannot enforce a restriction when another path reaches the operation.
+
 ## 9. PDF CONTINUITY AND LECTURE ELASTICITY
 
 ### WHAT THE PRINTED EXPLANATION MUST PRESERVE
 
 Retain the permission matrix, trust boundaries, and safe-failure comparison. Do not use a lock icon as the only explanation of a control. Print the minimal diagnostic record with fictional-data labels and the dependency evidence limitations. Put dated standards status in the sources page rather than on every conceptual scene.
 
-### SHORTER AND LONGER MEETING ROUTES
+### CORE AND OPTIONAL DEPTH
 
-Protect trust-boundary reasoning, ownership authorization, and privacy-aware diagnostics as anchors. Keep input interpretation and supply-chain evidence to one clear comparison each. Extra time belongs to changing one permission condition, not to a catalog of attack types.
+Close with the answered transfer question in Section 8, using its small contrasting setting. Preserve the question and explanation in the reading copy.
+
+Protect threat boundaries, authorization and minimal diagnostics. Replace part of the security-through-change recap with the ASVS mapping. Keep the legal context short and put its dates in the reading copy. Optional depth: examine session lifetime or a secrets revocation path; avoid a cryptography or compliance tour.
 
 ## 10. HANDOFF
 
@@ -2176,15 +2260,15 @@ Carry the review, verification, permission, and dependency evidence into Week 10
 
 ## 11. SOURCES AND CURRENCY NOTES
 
-Primary references: S01, S02, S13, S14, S15, S16, S42, S47, S48, S49. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S13, S14, S15, S16, S42, S47, S48, S49, S51. Full titles, URLs, dated status, and access limitations appear in the source register. Curriculum review: 22 September 2026. See each source entry for its actual retrieval date; unchanged references retain earlier dates. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
 
 # WEEK 10 | AUTOMATED DELIVERY AND EVIDENCE-BASED RELEASE
 
-Research and curriculum date: 16 September 2026
+Curriculum review: 22 September 2026; source retrieval dates are recorded individually
 
 What evidence should travel with a change before it reaches users?
 
-Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-10.html
+Instructor lecture plan | flexible pacing | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-10.html
 
 ## 1. PURPOSE, CASE STATE, AND SCOPE
 
@@ -2256,7 +2340,7 @@ Anchor scene | ID: change-through-gates
 
 **VISUAL IDEA:** A change token moves through integration, build, static checks, focused checks, broader checks, artifact recording, and release decision; evidence cards remain attached.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Ask which stage would catch the incorrect 120-minute boundary and which would check ownership. Reveal distinct checks and pause at a failure. The token cannot advance merely because the animation has reached its next step. Label the static checks with their scope: linters, type checkers and security scanners find unused code, type mismatches and known insecure patterns, but they know nothing about R-02, so a “duration < 120” comparison passes them and fails the boundary check. Explain that gate placement follows risk and feedback needs.
+**SITUATION, PREDICTION, AND MECHANISM:** Ask which stage would catch the incorrect 120-minute boundary and which would check ownership. Reveal distinct checks and pause at a failure. The token cannot advance merely because the animation has reached its next step. Label the static checks with their scope: linters, type checkers and security scanners find unused code, type mismatches and known insecure patterns, but generic checks without a specification of R-02 need not reject “duration < 120”; the independent boundary check does. Specialized static analysis can check richer properties when those properties are supplied. Explain that gate placement follows risk and feedback needs.
 
 **CHANGE ONE CONDITION AND COMPARE:** Fix the boundary but introduce an authorization regression. Replay the same pipeline and compare which evidence changes. Show a passing gate with an explicit scope label so it is not mistaken for a universal guarantee. AI beat: let the second change be proposed by an automated assistant. It enters the same path and is blocked by the same gate. Proposing a change and passing a gate are different authorities, which Week 13 develops as bounded action.
 
@@ -2286,7 +2370,7 @@ Anchor scene | ID: artifact-and-configuration
 
 **SITUATION, PREDICTION, AND MECHANISM:** Ask whether rebuilding from the same source later necessarily gives the same result. Reveal a changed resolved dependency. Compare promoting the recorded artifact with silently rebuilding an unverified one. Keep provenance evidence distinct from functional correctness. [S16]
 
-**CHANGE ONE CONDITION AND COMPARE:** Hold artifact identity fixed and change a configuration value affecting authorization or a dependency endpoint. Compare why environment-specific configuration still needs validation, even when the artifact is unchanged. Secrets remain references, never visible values.
+**CHANGE ONE CONDITION AND COMPARE:** Hold artifact identity fixed and change a configuration value affecting authorization or a dependency endpoint. Compare why environment-specific configuration still needs validation, even when the artifact is unchanged. Secrets remain references, never visible values. Inspect the build identity and permissions as inputs too: a proposed change may run checks without permission to publish or access release secrets. Compare isolated verification with the trusted release path and bind provenance to the artifact digest and expected producer. A signature proves neither correct behavior nor the suitability of every included dependency. [S16]
 
 **PRINCIPLE TO REVEAL:** Artifact identity controls one source of uncertainty; configuration and environment behavior still need evidence.
 
@@ -2300,7 +2384,7 @@ Bridge scene | ID: deployment-and-exposure
 
 **SITUATION, PREDICTION, AND MECHANISM:** Ask whether deploying code must expose a new behavior to everyone immediately. Reveal a disabled path, then a labeled small-cohort rollout. Make clear that hidden code is still deployed and may carry operational or security implications.
 
-**CHANGE ONE CONDITION AND COMPARE:** Change cohort size while holding the artifact fixed. Compare observations from a narrow rollout with the uncertainty about other users and workloads. A small cohort is not automatically representative.
+**CHANGE ONE CONDITION AND COMPARE:** Change cohort size while holding the artifact fixed. Compare observations from a narrow rollout with the uncertainty about other users and workloads. A small cohort is not automatically representative. Attach a responsible owner and retirement condition to the flag. Inspect the recovery decision when the small cohort crosses the stated user-outcome limit; a staged rollout needs a response policy as well as a percentage.
 
 **PRINCIPLE TO REVEAL:** Separating deployment from exposure can create additional decision points, provided the controls and observations are trustworthy.
 
@@ -2394,31 +2478,41 @@ QUESTION 4: Does a notification already delivered disappear after code rollback?
 
 **ANSWER:** No. External effects need their own reconciliation or compensating behavior.
 
+QUESTION 5: Why can the same artifact require new release evidence under different settings?
+
+**ANSWER:** Configuration, identity, permissions and dependencies can change behavior even when the artifact digest stays fixed.
+
+QUESTION 6: A command-line release was tested from source, but users download a separately rebuilt package. What connects their result to those checks?
+
+**ANSWER:** Identify the distributed artifact and its resolved build inputs. Promote the verified package where possible, or verify the rebuilt artifact and the relevant environment; matching source alone leaves other inputs unsettled.
+
 ## 9. PDF CONTINUITY AND LECTURE ELASTICITY
 
 ### WHAT THE PRINTED EXPLANATION MUST PRESERVE
 
 Preserve the failed gate, artifact identity chain, configuration comparison, and recovery prerequisites. The delivery-measure page must include data and units, not only KPI tiles. Print the release rationale with its uncertainty. The student version should not contain credentials, platform screenshots, or authoring controls.
 
-### SHORTER AND LONGER MEETING ROUTES
+### CORE AND OPTIONAL DEPTH
 
-Protect gate evidence, artifact-versus-configuration, and state-aware recovery as the anchors. Keep the five-measure scene readable rather than teaching a measurement platform. Extra time can compare two recovery decisions under different compatibility conditions.
+Close with the answered transfer question in Section 8, using its small contrasting setting. Preserve the question and explanation in the reading copy.
+
+Protect gates, artifact/configuration identity and state-aware recovery. Keep build permissions and flag retirement within those scenes. Optional depth: environment drift and a self-service deployment path with bounded permissions, without infrastructure-platform installation.
 
 ## 10. HANDOFF
 
-Carry the released artifact and observation questions into Week 11. Now the service is in use, and the class must distinguish a user-visible symptom from the evidence needed to explain it.
+Carry the released artifact and observation questions into Week 11. Now the service is in use, and the viewer must distinguish a user-visible symptom from the evidence needed to explain it.
 
 ## 11. SOURCES AND CURRENCY NOTES
 
-Primary references: S01, S02, S16, S17. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S16, S17. Full titles, URLs, dated status, and access limitations appear in the source register. Curriculum review: 22 September 2026. See each source entry for its actual retrieval date; unchanged references retain earlier dates. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
 
 # WEEK 11 | RELIABILITY, OBSERVABILITY, AND PERFORMANCE REASONING
 
-Research and curriculum date: 16 September 2026
+Curriculum review: 22 September 2026; source retrieval dates are recorded individually
 
 Which observation would help distinguish the possible causes of a failure?
 
-Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-11.html
+Instructor lecture plan | flexible pacing | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-11.html
 
 ## 1. PURPOSE, CASE STATE, AND SCOPE
 
@@ -2490,7 +2584,7 @@ Anchor scene | ID: define-good-service
 
 **VISUAL IDEA:** Request tokens enter a good/bad classification table with eligibility, correctness, and timing visible.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Ask whether every rejected booking request is a service failure. Reveal a timely correct conflict response as a good outcome under this objective. Then classify a fast incorrect confirmation and a correct response arriving too late. The class must state the event definition before seeing the percentage. [S21]
+**SITUATION, PREDICTION, AND MECHANISM:** Ask whether every rejected booking request is a service failure. Reveal a timely correct conflict response as a good outcome under this objective. Then classify a fast incorrect confirmation and a correct response arriving too late. The viewer must state the event definition before seeing the percentage. [S21]
 
 **CHANGE ONE CONDITION AND COMPARE:** Change only the observation: 20 of 1,000 eligible requests miss the promise. Compare 98% observed good events with the illustrative 99% objective. Name the ten-event allowance as the error budget and the twenty observed bad events as a burn rate of 2, without treating the budget as permission to ignore harmful failures. [S45]
 
@@ -2532,13 +2626,13 @@ Bridge scene | ID: hypothesis-before-fix
 
 **VISUAL IDEA:** Three candidate causes sit beside predicted observations and the evidence actually available.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Offer slow storage, an identity dependency failure, and exhausted request capacity. Ask which observation would separate them. Reveal one trace segment and one queue measurement, then eliminate only the hypotheses contradicted by that evidence.
+**SITUATION, PREDICTION, AND MECHANISM:** Offer slow storage, an identity dependency failure, and exhausted request capacity. Ask which observation would separate them. Reveal one trace segment and one queue measurement, then eliminate only the hypotheses contradicted by that evidence. Distinguish waiting on an external dependency from computation inside a function. A trace helps localize the boundary; a profile of the relevant execution helps locate expensive computation. Do not optimize a visually prominent function without evidence that it limits the observed outcome. Optional performance extension: once storage lookup is the supported hypothesis, compare examining every booking with using an index to locate a relevant subset. Change the amount of stored data while keeping the query and required result fixed. Explain why the work can grow differently and why maintaining an index adds storage and write work. Algorithm and data-structure choices affect the work performed; operation counts alone are not elapsed-time measurements. Ask what representative read/write workload would test the trade-off, and retain the authoritative no-overlap decision. This is a qualitative authored comparison, not a benchmark or a database installation lesson. [S59]
 
 **CHANGE ONE CONDITION AND COMPARE:** Remove the trace sample from the packet. Compare the weaker conclusion now justified. A missing log entry is not automatically proof that an event never happened; collection may be incomplete.
 
 **PRINCIPLE TO REVEAL:** Diagnosis advances by testing predictions and acknowledging gaps, not by naming the first familiar cause.
 
-**STUDENT PDF TREATMENT:** Print the hypothesis-prediction-evidence table and the remaining uncertainty.
+**STUDENT PDF TREATMENT:** Print the hypothesis-prediction-evidence table and the remaining uncertainty. If the optional lookup comparison is used, retain its fixed query/result, changed data size, index maintenance cost and missing workload evidence; do not attach invented speedup figures.
 
 ### 05. TRYING HARDER CAN INCREASE THE PRESSURE ON A FAILING DEPENDENCY
 
@@ -2548,7 +2642,7 @@ Anchor scene | ID: retry-amplification
 
 **SITUATION, PREDICTION, AND MECHANISM:** Start with a constrained dependency and ask whether immediate repeated retries will reduce waiting. Reveal extra attempts entering the same limited capacity, with no invented promise about exact real-world timings. Preserve the distinction between unique user operations and repeated attempts.
 
-**CHANGE ONE CONDITION AND COMPARE:** Change to bounded retries with delay, backoff, and an explicit timeout budget; show a circuit-open state as a deliberate temporary refusal to call the unhealthy dependency. Compare queue pressure and successful outcomes under the declared toy model. Keep jitter optional and seeded for reproducible teaching.
+**CHANGE ONE CONDITION AND COMPARE:** Change to bounded retries with delay, backoff, and an explicit timeout budget; show a circuit-open state as a deliberate temporary refusal to call the unhealthy dependency. Compare queue pressure and successful outcomes under the declared toy model. Keep jitter optional and seeded for reproducible teaching. Distinguish admission control from retries: bounded queues and load shedding can protect work already admitted when capacity is exhausted. Preserve an honest unavailable result instead of a false confirmation. Backoff with jitter reduces synchronized retries; the deterministic core fixture models bounded retries and a circuit, not a measured jitter benefit. [S55]
 
 **PRINCIPLE TO REVEAL:** Recovery behavior must account for shared capacity and the possibility that an earlier attempt already had an effect.
 
@@ -2560,7 +2654,7 @@ Bridge scene | ID: mitigate-and-communicate
 
 **VISUAL IDEA:** An incident timeline separates detect, assess impact, mitigate, verify recovery, communicate, and investigate.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Ask whether the team must know the complete cause before reducing harm. Reveal a safe exposure rollback or capacity protection, then show the evidence used to verify improvement. Keep user communication accurate about known impact and uncertainty.
+**SITUATION, PREDICTION, AND MECHANISM:** Ask whether the team must know the complete cause before reducing harm. Reveal a safe exposure rollback or capacity protection, then show the evidence used to verify improvement. Keep user communication accurate about known impact and uncertainty. Identify the incident coordinator, the operator applying the mitigation and the communicator. Small teams may combine these responsibilities, but an explicit handoff prevents contradictory changes and unsupported status messages.
 
 **CHANGE ONE CONDITION AND COMPARE:** Make code rollback unsafe because of state compatibility. Compare an alternative mitigation that limits exposure or degrades a nonessential capability without breaking the booking invariant.
 
@@ -2576,7 +2670,7 @@ Bridge scene | ID: actionable-alerts
 
 **SITUATION, PREDICTION, AND MECHANISM:** Ask whether every CPU fluctuation should interrupt someone. Reveal the user promise, the affected service, an actionable condition, and a next diagnostic question. Avoid prescribing a universal threshold independent of workload. [S22]
 
-**CHANGE ONE CONDITION AND COMPARE:** Hold resource utilization high while user outcomes remain acceptable, then lower it while correctness fails. Compare resource observations with the actual service objective. Then show an alert tied to the promise: a burn rate of 2 would use up the seven-day error budget in 3.5 days, which justifies a response, while a CPU reading alone does not. [S45]
+**CHANGE ONE CONDITION AND COMPARE:** Hold resource utilization high while user outcomes remain acceptable, then lower it while correctness fails. Compare resource observations with the actual service objective. Then show an alert tied to the promise: a sustained burn rate of 2 from the beginning of a fresh seven-day window would use its budget in 3.5 days, under the fixture's steady-traffic assumption. This is not 3.5 days of remaining budget after the displayed seven-day window: that window has already exceeded its allowance. Choose urgency from impact, remaining budget and corroborating observation windows rather than treating the ratio alone as a paging rule. [S45]
 
 **PRINCIPLE TO REVEAL:** Alerting should connect a meaningful condition to an appropriate response, not merely report that a number changed.
 
@@ -2628,15 +2722,25 @@ QUESTION 4: Why might a high CPU reading not justify an urgent incident alert by
 
 **ANSWER:** Its significance depends on user impact, capacity risk, and an actionable response, not the number alone.
 
+QUESTION 5: Does the historical burn-rate illustration tell us how much budget remains now?
+
+**ANSWER:** No. Remaining budget depends on the current window and observations; the 3.5-day calculation assumes a fresh window and a sustained rate.
+
+QUESTION 6: A batch report finishes quickly but silently omits valid input records. Is elapsed time enough to call the run successful?
+
+**ANSWER:** No. Define success using correct, sufficiently complete output and the relevant deadline or latency condition. Preserve rejected-input reasons and trace missing records; fast completion alone misses the user promise.
+
 ## 9. PDF CONTINUITY AND LECTURE ELASTICITY
 
 ### WHAT THE PRINTED EXPLANATION MUST PRESERVE
 
 Print the SLO classification rules and arithmetic, the two latency distributions, and the full correlated incident packet. Each chart needs axes, units, sample size, and synthetic-data labeling. Preserve the hypothesis table and recovery limitations so the student can follow the diagnosis without the animation.
 
-### SHORTER AND LONGER MEETING ROUTES
+### CORE AND OPTIONAL DEPTH
 
-Protect service-outcome definition, correlated diagnosis, and retry amplification as the anchors. Combine mitigation, alerting, and learning into a concise incident conclusion when time is limited. Additional time should revisit a different hypothesis using the same packet rather than adding an observability-platform tour.
+Close with the answered transfer question in Section 8, using its small contrasting setting. Preserve the question and explanation in the reading copy.
+
+Protect outcome definition, correlated diagnosis and retry amplification. Keep profiling and overload policy tied to the same incident. Optional depth: choose the lookup/index trade-off in scene 04 or a different observation window for alerting with its traffic assumptions stated. Each can be omitted without affecting later weeks. Avoid adding a dashboard or algorithm catalogue.
 
 ## 10. HANDOFF
 
@@ -2644,15 +2748,15 @@ Carry the incident’s learning and the compatibility limitation into Week 12. T
 
 ## 11. SOURCES AND CURRENCY NOTES
 
-Primary references: S01, S02, S20, S21, S22, S45. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S20, S21, S22, S45, S55, S59. Full titles, URLs, dated status, and access limitations appear in the source register. Curriculum review: 22 September 2026. See each source entry for its actual retrieval date; unchanged references retain earlier dates. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
 
 # WEEK 12 | MAINTENANCE, EVOLUTION, AND SUSTAINABLE CHANGE
 
-Research and curriculum date: 16 September 2026
+Curriculum review: 22 September 2026; source retrieval dates are recorded individually
 
 How can a useful system change without losing the behavior people rely on?
 
-Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-12.html
+Instructor lecture plan | flexible pacing | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-12.html
 
 ## 1. PURPOSE, CASE STATE, AND SCOPE
 
@@ -2754,7 +2858,7 @@ Anchor scene | ID: expand-migrate-contract
 
 **SITUATION, PREDICTION, AND MECHANISM:** Ask whether renaming a field instantly is safe while old consumers remain active. Reveal an expanded representation supporting both forms, a controlled migration, and checks that readers agree on the same duration. Show that mixed versions are a normal transition state to consider. [S23]
 
-**CHANGE ONE CONDITION AND COMPARE:** Remove the old representation before the old reader is retired. Compare the failure with a transition that verifies migration and consumer readiness before contraction. Show why rollback possibilities narrow after the old data path is removed.
+**CHANGE ONE CONDITION AND COMPARE:** Remove the old representation before the old reader is retired. Compare the failure with a transition that verifies migration and consumer readiness before contraction. Show why rollback possibilities narrow after the old data path is removed. Before a destructive step, distinguish having a backup from having evidence that it restores usable, consistent data. Compare the recovery point with later writes and inspect how long restoration makes the service unavailable. Introduce acceptable data loss and restoration time as requirements; do not invent recovery targets. A backup does not make already-delivered notifications reversible. [S56]
 
 **PRINCIPLE TO REVEAL:** Evolution is safer when compatibility is maintained deliberately across the states that actually coexist.
 
@@ -2808,7 +2912,7 @@ Bridge scene | ID: resource-per-useful-outcome
 
 **VISUAL IDEA:** Two bars show storage reads per successful search, with correctness and freshness conditions fixed beside them.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Ask whether fewer reads is automatically an improvement. Reveal 1,000 reads for 100 successful searches versus 200 for 100: 10 and 2 reads per successful search. Verify that both return the required current availability and preserve the authoritative booking decision.
+**SITUATION, PREDICTION, AND MECHANISM:** Ask whether fewer reads is automatically an improvement. Reveal 1,000 reads for 100 successful searches versus 200 for 100: 10 and 2 reads per successful search. Verify that both return the required current availability and preserve the authoritative booking decision. Explain the reduction through avoiding repeated reads or using a cache only within a declared freshness contract. Measure useful outcomes before claiming a performance or resource benefit; correctness and the authoritative confirmation check still apply.
 
 **CHANGE ONE CONDITION AND COMPARE:** Reduce reads further by serving stale results beyond the allowed freshness assumption. Compare the apparently attractive resource number with the violated user promise. Explain that a carbon claim additionally needs an appropriate energy, emissions, hardware, and system-boundary method. [S37]
 
@@ -2862,15 +2966,25 @@ QUESTION 4: What is the resource reduction in the declared fixture?
 
 **ANSWER:** Reads per successful search decrease from 10 to 2, an 80% reduction under the same stated conditions; this is not an emissions measurement.
 
+QUESTION 5: Why does a successful backup job not settle migration recovery?
+
+**ANSWER:** The data must be restorable and consistent, later writes must be accounted for, and the restoration interruption must meet the relevant requirement.
+
+QUESTION 6: A desktop application's update changes its document format. Does reinstalling the old application recover the documents?
+
+**ANSWER:** Only if that version can read the actual saved data or a verified conversion or restore path exists. Account for edits since any backup and communicate the recovery consequences before changing the format.
+
 ## 9. PDF CONTINUITY AND LECTURE ELASTICITY
 
 ### WHAT THE PRINTED EXPLANATION MUST PRESERVE
 
 Preserve migration stages and the compatibility matrix in readable separate panels. Print the distinction between observed and intended behavior, the contextual debt record, and the resource calculation. Do not collapse the transition to a single “new system” picture that hides coexistence or recovery limits.
 
-### SHORTER AND LONGER MEETING ROUTES
+### CORE AND OPTIONAL DEPTH
 
-Protect incremental change reasoning, compatibility migration, and evidence-based maintenance priority. Keep resource efficiency focused on one honest metric. With extra time, remove one migration prerequisite and ask how the transition must change rather than adding a second schema example.
+Close with the answered transfer question in Section 8, using its small contrasting setting. Preserve the question and explanation in the reading copy.
+
+Protect the small-change comparison, coexistence migration and consequence-based prioritization. Put restore evidence at the migration decision. Optional depth: revisit cache freshness in the existing resource comparison; no new storage-platform tour.
 
 ## 10. HANDOFF
 
@@ -2878,15 +2992,15 @@ Carry the requirement, checks, change rationale, and maintenance constraints int
 
 ## 11. SOURCES AND CURRENCY NOTES
 
-Primary references: S01, S02, S23, S24, S37. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S23, S24, S37, S56. Full titles, URLs, dated status, and access limitations appear in the source register. Curriculum review: 22 September 2026. See each source entry for its actual retrieval date; unchanged references retain earlier dates. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
 
 # WEEK 13 | AI-ASSISTED ENGINEERING AND ACCOUNTABLE AUTOMATION
 
-Research and curriculum date: 16 September 2026
+Curriculum review: 22 September 2026; source retrieval dates are recorded individually
 
 Does plausible-looking output satisfy the intended behavior, and who can verify that?
 
-Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-13.html
+Instructor lecture plan | flexible pacing | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-13.html
 
 ## 1. PURPOSE, CASE STATE, AND SCOPE
 
@@ -2988,7 +3102,7 @@ Bridge scene | ID: context-and-unknowns
 
 **VISUAL IDEA:** A compact change brief links relevant rules, interfaces, constraints, and explicitly unresolved questions to the candidate.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Ask how a candidate would know whether a staff role may cancel any booking. Reveal that the baseline grants no such override. Compare a candidate inventing permission with one that leaves an explicit question for the responsible decision-maker.
+**SITUATION, PREDICTION, AND MECHANISM:** Ask how a candidate would know whether a staff role may cancel any booking. Reveal that the baseline grants no such override. Compare a candidate inventing permission with one that leaves an explicit question for the responsible decision-maker. Use a compact task specification containing the intended outcome, relevant files, invariants, non-goals, available checks and a stop condition. Useful bounded work includes explaining unfamiliar code, proposing boundary examples and drafting a small refactoring. Inspect one accepted change against its independent evidence so the lecture shows productive use as well as failure analysis.
 
 **CHANGE ONE CONDITION AND COMPARE:** Change the brief to an approved, narrowly defined delegation policy. Compare the code and checks that legitimately change with those that should remain fixed. Restore R-03 after the variant.
 
@@ -3030,9 +3144,9 @@ Bridge scene | ID: output-and-flow
 
 **VISUAL IDEA:** The Week 4 flow board shows candidate changes, verification capacity, accepted changes, and rework separately.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Ask whether doubling candidate output doubles useful delivery. Reveal a fixed review constraint and the resulting queue in the declared toy model. Distinguish generated lines, accepted changes, time to verified behavior, and downstream defects. Connect the flow to specification-driven drafting: the precise rule from Week 2 is what shortens verification, not the generation rate.
+**SITUATION, PREDICTION, AND MECHANISM:** Ask whether doubling candidate output doubles useful delivery. Reveal a fixed review constraint and the resulting queue in the declared toy model. Distinguish generated lines, accepted changes, time to verified behavior, and downstream defects. Connect the flow to specification-driven drafting: the precise rule from Week 2 makes verification better specified; whether it saves total time must be observed across drafting, review, correction and downstream work.
 
-**CHANGE ONE CONDITION AND COMPARE:** Improve context and verification capacity rather than only generation rate. Compare whole-flow outcomes under the same arrival conditions. Use current research as context, while identifying this chart as a constructed mechanism illustration rather than measured industry results. [S19]
+**CHANGE ONE CONDITION AND COMPARE:** Improve context and verification capacity rather than only generation rate. Compare whole-flow outcomes under the same arrival conditions. Use current research as context, while identifying this chart as a constructed mechanism illustration rather than measured industry results. [S19] Compare a survey, a controlled task study and this simulation as different kinds of evidence. METR's February 2026 follow-up reports selection and time-measurement problems; its May 2026 survey concerns self-reported impact. Neither establishes a universal productivity multiplier. The DORA AI Capabilities Model provides organizational context without prescribing a tool ranking. [S53, S54, S57]
 
 **PRINCIPLE TO REVEAL:** Evaluate automation across the workflow it changes, including verification, rework, and maintainable understanding.
 
@@ -3044,7 +3158,7 @@ Bridge scene | ID: provenance-and-understanding
 
 **VISUAL IDEA:** A change record collects source context, reviewed dependencies, checks, residual questions, and a plain-language explanation.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Ask whether “the tool wrote it” answers a maintainer’s question about an authorization branch. Reveal the rationale and relevant evidence required to maintain the change. Any uncertain origin or licensing concern is marked for appropriate review rather than guessed away. Include one dependency question: the candidate imports textenc-turbo, a package name that exists in no registry. Code assistants are documented to invent package names, and anyone could publish a package under the invented name, so the inventory check blocks the build until a person confirms or removes the dependency. [S50] Use the fictional record: the cancellation change was drafted by a coding assistant, checked by the requirement tests and an independent check, and accepted by a named reviewer, with its unresolved limitation stated.
+**SITUATION, PREDICTION, AND MECHANISM:** Ask whether “the tool wrote it” answers a maintainer’s question about an authorization branch. Reveal the rationale and relevant evidence required to maintain the change. Any uncertain origin or licensing concern is marked for appropriate review rather than guessed away. Include one dependency question: the candidate imports textenc-turbo, a name marked unavailable in the fictional registry fixture; this is not a claim about every real public registry. Code assistants are documented to invent package names, and anyone could publish a package under the invented name, so the inventory check blocks the build until a person confirms or removes the dependency. [S50] Use the fictional record: the cancellation change was drafted by a coding assistant, checked by the requirement tests and an independent check, and accepted by a named reviewer, with its unresolved limitation stated.
 
 **CHANGE ONE CONDITION AND COMPARE:** Replace a confident but unsupported explanation with one that accurately states a limitation. Compare whether the reviewer can make a better decision, even though the wording sounds less certain.
 
@@ -3060,7 +3174,7 @@ Bridge scene | ID: two-different-engineering-questions
 
 **SITUATION, PREDICTION, AND MECHANISM:** Ask whether Campus Rooms needs an AI dependency because an assistant helped author some code. Reveal that the shipped behavior can remain ordinary deterministic software. Contrast this with adding a runtime model whose outputs and dependencies become part of the user-facing system.
 
-**CHANGE ONE CONDITION AND COMPARE:** Insert a hypothetical model that suggests room choices, while leaving authoritative booking and permissions outside it. Compare the additional evaluation and failure questions without expanding this course into model training. Name two of them: an evaluation set of room-choice cases with expected answers, and a regression check that reruns it whenever the prompt or the model version changes, because the output is not deterministic. NIST’s AI profile concerns AI-model and AI-system development and should not be mislabeled as a blanket coding-assistant rulebook. [S35]
+**CHANGE ONE CONDITION AND COMPARE:** Insert a hypothetical model that suggests room choices, while leaving authoritative booking and permissions outside it. Compare the additional evaluation and failure questions without expanding this course into model training. Name two of them: an evaluation set of room-choice cases with expected answers, and a regression check that reruns it whenever the prompt or the model version changes, because the output is not deterministic. NIST’s AI profile concerns AI-model and AI-system development and should not be mislabeled as a blanket coding-assistant rulebook. [S35] For the recommendation extension, compare against a simple deterministic baseline on held-out scenarios. Use task-appropriate relevance, unsupported-claim, permission, latency and cost criteria, allowing more than one acceptable suggestion. Record model, prompt, retrieval data and evaluation-set versions; repeat observations where variability matters and define fallback behavior. A pass on a fixed evaluation set does not make an action authorized.
 
 **PRINCIPLE TO REVEAL:** The engineering obligations follow the actual system boundary and consequences, not the presence of AI somewhere in the workflow.
 
@@ -3070,7 +3184,7 @@ Bridge scene | ID: two-different-engineering-questions
 
 Do not make the lecture a contest between brands or use a live external model whose output may change during teaching. Preserve the prepared evidence and display its fictional nature. Do not imply that generated code is inherently untrustworthy while human code deserves no checks; apply the same acceptance discipline.
 
-Research findings about reported AI use or productivity are contextual, often observational or survey-based, and do not prove a causal improvement for this class or every team. Keep current research in dated notes and avoid unverified percentages. Agent safeguards need external permission enforcement, useful review evidence, and appropriate isolation; a prompt alone is not a security boundary. [S18, S19, S33, S34]
+Research findings about reported AI use or productivity are contextual, often observational or survey-based, and do not prove a causal improvement for every learner or team. Keep current research in dated notes and avoid unverified percentages. Agent safeguards need external permission enforcement, useful review evidence, and appropriate isolation; a prompt alone is not a security boundary. [S18, S19, S33, S34]
 
 ## 7. MISCONCEPTION AND DIAGNOSIS CLINIC
 
@@ -3098,15 +3212,25 @@ QUESTION 4: What distinguishes using an assistant during development from a runt
 
 **ANSWER:** In the first case the accepted artifact can operate without a model; in the second the model is part of the deployed behavior and introduces its own evaluation and dependency questions.
 
+QUESTION 5: What evidence is needed before claiming that an assistant improved engineering productivity?
+
+**ANSWER:** Relevant comparable work, explicit measurement boundaries, accepted behavior, review and rework costs, and limitations such as task selection or self-report bias.
+
+QUESTION 6: An assistant proposes a repository-wide rename with a script that can write anywhere on disk. What authority does that task need?
+
+**ANSWER:** Limit writes to the intended checkout, inspect the proposed changes and run relevant checks before acceptance. Repository text must not expand that permission; independent scope enforcement and recoverable history bound a useful automated change.
+
 ## 9. PDF CONTINUITY AND LECTURE ELASTICITY
 
 ### WHAT THE PRINTED EXPLANATION MUST PRESERVE
 
 Preserve the exact candidate, failed boundary, shared-assumption graph, and capability matrix. The static version must make the independent expected result visible. Include the trust-boundary explanation and the difference between development assistance and runtime AI. No assistant interface or external service is required to understand the student PDF.
 
-### SHORTER AND LONGER MEETING ROUTES
+### CORE AND OPTIONAL DEPTH
 
-Protect candidate verification, shared-assumption detection, and bounded action as the anchors. The research context belongs in a brief note, not a dense statistics lecture. Extra time can compare the ownership candidate against Week 9’s matrix rather than expanding into model architecture or prompting tricks.
+Close with the answered transfer question in Section 8, using its small contrasting setting. Preserve the question and explanation in the reading copy.
+
+Protect candidate evaluation, independent expectations and externally enforced permissions. Reuse familiar boundary and queue cases briefly so context, useful delegation and evaluation receive depth. Optional depth: a runtime recommendation evaluation; omit multi-agent orchestration and model architecture catalogues.
 
 ## 10. HANDOFF
 
@@ -3114,19 +3238,19 @@ Carry the full requirement-to-evidence discipline into Week 14. The final lectur
 
 ## 11. SOURCES AND CURRENCY NOTES
 
-Primary references: S01, S02, S18, S19, S33, S34, S35, S44, S50. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S18, S19, S33, S34, S35, S44, S50, S53, S54, S57. Full titles, URLs, dated status, and access limitations appear in the source register. Curriculum review: 22 September 2026. See each source entry for its actual retrieval date; unchanged references retain earlier dates. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
 
 # WEEK 14 | CONNECTING THE LIFECYCLE THROUGH ONE ENGINEERING DECISION
 
-Research and curriculum date: 16 September 2026
+Curriculum review: 22 September 2026; source retrieval dates are recorded individually
 
 Can we explain a change from human need to operational evidence without losing the original promise?
 
-Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-14.html
+Instructor lecture plan | flexible pacing | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-14.html
 
 ## 1. PURPOSE, CASE STATE, AND SCOPE
 
-End with an instructor-led engineering decision clinic, not a list of all previous definitions. A staff member reports that C101 must be closed for maintenance during a future interval. The class follows one bounded change across requirements, models, architecture, checks, release, operation, and learning.
+End with an instructor-led engineering decision clinic, not a list of all previous definitions. A staff member reports that C101 must be closed for maintenance during a future interval. The viewer follows one bounded change across requirements, models, architecture, checks, release, operation, and learning.
 
 Use familiar representations and identifiers so the difficulty lies in connecting decisions, not decoding a new domain. Preserve explicit disagreement where evidence does not determine one universal design. The goal is a coherent explanation of what should change, what must remain true, and what would justify the decision. [S01, S02]
 
@@ -3250,9 +3374,9 @@ Anchor scene | ID: release-with-a-fault
 
 **VISUAL IDEA:** A compact release path combines the verified artifact, compatibility state, selected exposure, and user-outcome observations.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Ask whether passing interval and permission checks justify full exposure when existing users cannot see their affected status. Reveal the incomplete release record and keep the decision paused. Add the missing accessible cue and the evidence that it is observable.
+**SITUATION, PREDICTION, AND MECHANISM:** Ask whether passing interval and permission checks justify full exposure when existing users cannot see their affected status. Reveal the incomplete release record and keep the decision paused. Add the missing accessible cue and the evidence that it is observable. Before the fix, change only the release pressure: a sponsor now asks to proceed despite the known missing cue. Identify who bears the consequence, explain the concern, propose a safer release or deferral and escalate the unresolved decision to its responsible owner. Professional judgment includes affected people beyond the sponsor; approval does not remove a known user harm. This is an application of responsibility and harm reduction, not a new booking permission. [S58]
 
-**CHANGE ONE CONDITION AND COMPARE:** Introduce notification failure after closure is recorded. Compare a system that loses the affected-user task with one that records pending communication and continues to display the affected status. Preserve recovery responsibility without undoing the closure or deleting booking history.
+**CHANGE ONE CONDITION AND COMPARE:** Introduce notification failure after closure is recorded. Compare a system that loses the affected-user task with one that records pending communication and continues to display the affected status. Preserve recovery responsibility without undoing the closure or deleting booking history. Carry a compact decision record with the responsible owner, the permitted action, the independent result, an observation after exposure and the recovery condition. Let one missing item narrow the release claim, then reveal exactly the evidence that resolves it.
 
 **PRINCIPLE TO REVEAL:** Release decisions must consider the whole user promise and the behavior of incomplete or failed work.
 
@@ -3264,7 +3388,7 @@ Anchor scene | ID: compare-defensible-options
 
 **VISUAL IDEA:** A side-by-side decision record compares a targeted change inside the modular application with a separately deployed closure service.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Ask which new requirement actually needs independent deployment. Reveal benefits and costs under the fictional small-team, single-campus baseline. Compare change surface, operational boundaries, authority, and maintenance burden without using an arbitrary winner score.
+**SITUATION, PREDICTION, AND MECHANISM:** Ask which new requirement actually needs independent deployment. Reveal benefits and costs under the fictional small-team, single-campus baseline. Compare change surface, operational boundaries, authority, and maintenance burden without using an arbitrary winner score. Include continuing operation, support effort and exit or migration cost in the qualitative comparison. Make the displaced work visible and retain the option to defer the distributed extension when its benefit is not established.
 
 **CHANGE ONE CONDITION AND COMPARE:** Change one condition: several independent campus operators now need separate release schedules. Revisit the rationale and identify the new contract and ownership questions. Do not announce that this single condition automatically proves the distributed option is best.
 
@@ -3278,7 +3402,7 @@ Bridge scene | ID: course-principles
 
 **VISUAL IDEA:** Six concise principle cards connect to small images from earlier scenes rather than a wall of vocabulary.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Ask which counterexample taught each principle: false confirmation, ambiguous requirement, clean-but-wrong merge, shared test assumption, unsafe rollback, and overpowered automation. Reveal the principle only after the class recognizes the situation.
+**SITUATION, PREDICTION, AND MECHANISM:** Ask which counterexample taught each principle: false confirmation, ambiguous requirement, clean-but-wrong merge, shared test assumption, unsafe rollback, and overpowered automation. Reveal the principle only after the viewer recognizes the situation.
 
 **CHANGE ONE CONDITION AND COMPARE:** Change the domain label from room booking to a generic reservation service while keeping the underlying relationship. Compare which principles transfer and which policies must be elicited again.
 
@@ -3292,9 +3416,9 @@ Bridge scene | ID: engineering-explanation
 
 **VISUAL IDEA:** A final one-page decision narrative links need, rule, design, checks, release, observation, and unresolved uncertainty.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Ask the class to explain why the selected closure behavior is justified. Reveal a coherent account using the evidence already shown, with explicit uncertainty about the multi-campus extension. Avoid ending with “everything is solved.”
+**SITUATION, PREDICTION, AND MECHANISM:** Ask the viewer to explain why the selected closure behavior is justified. Reveal a coherent account using the evidence already shown, with explicit uncertainty about the multi-campus extension. Avoid ending with “everything is solved.”
 
-**CHANGE ONE CONDITION AND COMPARE:** Remove one important check or change one assumption. Compare how the final claim must narrow. Close on the habit of revising confidence when the supporting conditions change.
+**CHANGE ONE CONDITION AND COMPARE:** Remove one important check or change one assumption. Compare how the final claim must narrow. Close on the habit of revising confidence when the supporting conditions change. End with a fresh transfer question: which reasoning survives in another reservation domain, and which duration, fairness, identity and harm assumptions must be elicited again? Keep uncertainty as a concrete next question with an owner, not a generic disclaimer.
 
 **PRINCIPLE TO REVEAL:** Good engineering explanations connect decisions to evidence and remain honest about what has not been established.
 
@@ -3332,15 +3456,25 @@ QUESTION 4: What should happen to the final engineering claim when an assumption
 
 **ANSWER:** Reconsider the affected decision and narrow or revise the claim until appropriate evidence is available.
 
+QUESTION 5: Does a sponsor's approval resolve the known absence of accessible affected-booking information?
+
+**ANSWER:** No. The user consequence remains. Explain who is affected, offer a safer alternative and escalate the unresolved decision rather than treating approval as a repair.
+
+QUESTION 6: For a device-configuration update, which parts of this course's release reasoning transfer, and what must be learned again?
+
+**ANSWER:** Trace the need to behavior, model failure, verify the candidate, control authority and plan recovery. Elicit the device's interruption behavior, safe operating state, update constraints and consequences of failure; room-booking policies and web-service rollout assumptions do not transfer automatically.
+
 ## 9. PDF CONTINUITY AND LECTURE ELASTICITY
 
 ### WHAT THE PRINTED EXPLANATION MUST PRESERVE
 
 The final student PDF is a compact connected explanation of the scenario. Preserve R-06, the treatment of existing bookings, the traceability matrix, release evidence, alternative decisions, and the concluding principles. It should be readable without earlier animations, while referring to stable scene identifiers for students returning to the HTML decks.
 
-### SHORTER AND LONGER MEETING ROUTES
+### CORE AND OPTIONAL DEPTH
 
-Protect consequence-aware requirements, release under a fault, and contextual design comparison as the three anchors. The other scenes connect familiar ideas rather than opening new topic families. Additional time belongs to explaining why a particular piece of evidence changes the decision, not to a new technical implementation.
+Close with the answered transfer question in Section 8, using its small contrasting setting. Preserve the question and explanation in the reading copy.
+
+Protect existing-user consequences, release evidence and the architecture trade-off. Compress the principle recap into retrieval of earlier counterexamples. Optional depth: compare another non-reservation context; do not introduce a new framework in the finale.
 
 ## 10. HANDOFF
 
@@ -3348,15 +3482,15 @@ The course closes with a reusable reasoning pattern: identify the promise, make 
 
 ## 11. SOURCES AND CURRENCY NOTES
 
-Primary references: S01, S02, S25. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S25, S58. Full titles, URLs, dated status, and access limitations appear in the source register. Curriculum review: 22 September 2026. See each source entry for its actual retrieval date; unchanged references retain earlier dates. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
 
 # CURRICULUM CURRENCY, COVERAGE, AND BOUNDARIES
 
-Research and curriculum date: 16 September 2026
+Curriculum review: 22 September 2026; source retrieval dates are recorded individually
 
 ### STABLE FOUNDATION; DATED CONTEMPORARY LAYER
 
-Use durable concepts as the course spine and date the examples, terminology, and supporting references. SWEBOK V4.0a is the identified current IEEE Computer Society guide; CS2023 is the joint ACM/IEEE-CS/AAAI curriculum reference. These support scope selection rather than a claim that fourteen meetings cover every knowledge area or satisfy a formal accreditation mapping. The SWEBOK landing page was accessible through indexed official excerpts, not an unrestricted full-guide audit. [S01, S02]
+Use durable concepts as the course spine and date the examples, terminology, and supporting references. SWEBOK V4.0a is the identified current IEEE Computer Society guide; CS2023 is the joint ACM/IEEE-CS/AAAI curriculum reference. These support scope selection rather than a claim that fourteen lectures cover every knowledge area or satisfy a formal accreditation mapping. The SWEBOK landing page was accessible through indexed official excerpts, not an unrestricted full-guide audit. [S01, S02]
 
 The original instructional scenarios, questions, diagrams, fixtures, and weekly sequence are authored for this course. They are not reproduced from these references. The reference list supports definitions and technical guardrails; it does not imply that a source endorses every pedagogical choice.
 
@@ -3372,7 +3506,7 @@ Reliability: name the error budget and its burn rate with the definitions of the
 
 Quality vocabulary: ISO/IEC 25010:2023 names the product quality characteristics behind the quality attributes of Weeks 1 and 2, including its renamed interaction capability and flexibility and the added safety characteristic. [S46]
 
-Law as context: Week 9 names KVKK (Law No. 6698), the GDPR and the EU Cyber Resilience Act in one context line each, because they turn data minimisation and component inventories into obligations. The course explains the engineering and gives no compliance advice. [S47, S48, S49]
+Law as context: Week 9 names KVKK (Law No. 6698), the GDPR and the EU Cyber Resilience Act as jurisdiction-specific examples connecting engineering choices with applicable duties, without assuming the viewer's location or the system's legal scope. CRA reporting starts on 11 September 2026; its main obligations apply from 11 December 2027. The lecture distinguishes those phases and leaves scope and exemptions explicit. The course explains engineering and gives no compliance advice. [S47, S48, S49]
 
 Tools: each week's Section 1 closes with an "In practice" paragraph naming current tools as dated examples. The names help students connect concepts to everyday work; no scene depends on them.
 
@@ -3392,25 +3526,87 @@ Weeks 13–14 apply those ideas to AI-assisted change and an integrated new requ
 
 Quality assurance is distributed across the sequence rather than confined to Week 8. Configuration management spans Weeks 7, 10, and 12. Security, accessibility, ethics, documentation, and uncertainty appear before and after their most concentrated scenes.
 
+### FOUNDATION COVERAGE AND DEPTH
+
+This is an instructor planning map to the eighteen SWEBOK knowledge-area headings, using the official indexed topic outline. It is an original mapping of this course, not an IEEE assessment of it. Worked coverage means a decision is explained through a changed condition and an answered question; selected foundations means only the concepts needed here are introduced. A topic appearing in this map is not a claim of complete knowledge-area coverage. [S01, S02]
+
+Software Requirements: worked in Weeks 2-3 and revisited in Week 14 through elicitation, observable acceptance, stakeholder validation and traceability. The request/observation/prototype comparison shows how an intended solution can conceal a different user need.
+
+Software Architecture: worked in Weeks 6 and 14 through deployment boundaries, quality trade-offs, concurrency and uncertain outcomes. Multi-region operation and consensus remain further study.
+
+Software Design: worked in Weeks 3, 5 and 6 through models, responsibilities, interfaces and change propagation. A pattern catalogue is outside the core.
+
+Software Construction: selected foundations in Weeks 5, 7 and 8 through readable pseudocode, validation, explicit results, controlled effects, integration and debugging. This is not a first programming course; explain the short examples as they appear.
+
+Software Testing: worked in Week 8 and revisited through requirements, contracts, delivery and AI candidate evaluation. Boundary cases, independent expectations and test scope are the central decisions. A guided exploratory comparison shows how investigation discovers an expectation for a later regression check; usability research asks a separate question about people completing the task. [S60]
+
+Software Engineering Operations: worked in Weeks 10-12 through release, telemetry, incidents, overload and usable restoration. Infrastructure administration is outside the core.
+
+Software Maintenance: worked in Week 12 and applied in Week 14 through understanding existing behavior, compatible evolution, debt and retirement.
+
+Software Configuration Management: worked across Weeks 7, 10 and 12 through history, resolved dependencies, configuration, artifact identity and version coexistence.
+
+Software Engineering Management: selected decisions in Weeks 4, 7, 11 and 14 cover scope, capacity, risk, responsibility, communication and release. Organizational staffing and contract administration are further study.
+
+Software Engineering Process: worked in Weeks 1, 4 and 10 through feedback, integration, completion policies and improvement experiments. Method names serve those decisions.
+
+Software Engineering Models and Methods: worked in Weeks 3, 6 and 8 through state, data, interactions, invariants and counterexamples. Bounded exploration is optional; advanced formal verification is further study.
+
+Software Quality: worked throughout, especially Weeks 1-2, 8 and 10-12, through explicit promises, preventive practices and evidence about actual behavior. Quality is broader than passing tests.
+
+Software Security: worked in Week 9 and reinforced in Weeks 2, 6, 10 and 13 through trust boundaries, permission, privacy, dependencies and bounded automation.
+
+Software Engineering Professional Practice: selected decisions across Weeks 1, 7, 9, 11, 13 and 14 address affected people, collaboration, honest communication, licensing context and accountable release.
+
+Software Engineering Economics: selected decisions in Weeks 4-5, 12 and 14 cover lifecycle cost, opportunity cost, acquisition and exit. Formal financial modeling is further study.
+
+Computing Foundations: selected concepts in Weeks 3, 5-6 and 11 connect identity, data integrity, program behavior, network boundaries and concurrency. The lookup/index comparison is optional; full algorithms, operating systems, networking and database courses remain further study.
+
+Mathematical Foundations: selected concepts in Weeks 2-4, 6, 8 and 10-11 include conditions, interval boundaries, graphs, state transitions, rates and distributions. Explain each in place; advanced probability, calculus and proof techniques are not prerequisites.
+
+Engineering Foundations: worked across Weeks 2, 4-6, 11 and 14 through assumptions, prototypes, controlled comparisons, measurement, trade-offs and feedback. A simulation illustrates its declared model; it is not an empirical result about a real team.
+
+Cross-cutting threads: accessibility and usability recur in Weeks 1-3, 8-9 and 14; resource efficiency in Week 12; AI assistance in the existing through-line and Week 13. The answered transfer examples extend these decisions beyond the reservation setting. These threads enrich the relevant scenes rather than creating additional weeks.
+
+### SEPTEMBER 22 REVIEW: DEPTH, TRANSFER, AND WORKLOAD
+
+The original plan already covers requirements, modeling, process, modularity, distributed failure, review, testing, security, delivery, operation, maintenance and AI assistance. Retain that sequence and the Campus Rooms example. The review strengthens thin mechanisms inside the existing scenes rather than adding a fifteenth week or a new technology survey.
+
+Construction becomes explicit in Week 5 through validation, a deterministic policy and explicit results. Economics becomes explicit in Weeks 4, 5, 12 and 14 through lifecycle cost, opportunity cost, reuse/acquisition, maintenance and exit decisions. Week 3 adds the invariant-versus-progress distinction; optional bounded exploration connects it to Week 8 without claiming formal proof. These changes address breadth of engineering reasoning, not just currently popular tools. [S01, S02]
+
+Week 6 makes an HTTP contract concrete and follows durable notification work across crashes. Week 7 supplies the missing working-tree-to-shared-history bridge and evidence-based disagreement resolution. Week 8 connects controlled doubles with actual contract evidence. Security verification gains a small ASVS mapping; delivery gains an explicit build/release authority distinction. Week 11 connects profiling and overload decisions to user outcomes. Week 12 asks whether a backup actually restores consistent, usable state. [S51, S52, S55, S56]
+
+Week 13 includes productive bounded delegation and compares types of productivity evidence. Its runtime-AI extension names a deterministic baseline, held-out scenarios, variability, relevant evaluation criteria, versioned inputs and fallback. The newer METR material is interpreted within its study limits, and only the public DORA capabilities overview is used. Tool names remain examples rather than the organizing structure. [S53, S54, S57]
+
+Depth is managed in each week's Section 9. The three Anchor scenes remain the core; optional depth is clearly separate and never required by the next week. New content replaces part of a repeated definition, recap or tool-name tour. A week should leave the learner able to explain the decision and the decisive evidence, including a changed condition. An unanswered prediction followed by a reasoned reveal has more educational value than another dense page. Production timing and narration are determined from the actual deck in the tutorial workspace.
+
+Use the general-audience and flexible-pacing decisions in 00_START_HERE.txt. The delivered first lecture remains the starting point; no new prerequisite or recording revision is introduced. The course offers a strong introductory foundation with selected deeper connections, not every specialist topic in software engineering or professional mastery from viewing alone.
+
+### TRANSFER BEYOND THE RECURRING CASE
+
+Each remaining lecture closes with an answered transfer question. The examples include a desktop editor, mobile synchronization, an image library, a batch importer, a local file converter, a command-line tool and a device configuration. They change the setting while keeping the week's decision small enough to explain immediately. These are original qualitative scenarios, stored in the transfer_checks fixture block, not measurements or a second implementation track. The room-booking rules do not become defaults for these other systems.
+
+Week 14 also makes professional responsibility actionable: identify who bears a foreseeable consequence, explain the concern honestly, propose a safer alternative and escalate an unresolved release decision. The ACM ethics reference supports consideration of affected people and harm; the course's release scenario and response are original applications. [S58]
+
 ### WHY THIS ORDER IS DELIBERATE
 
-Requirements precede model and design choices so students have something concrete to judge. State and interaction models precede concurrent failure so “unknown result” has meaning. Modularity precedes architecture so distribution is not confused with good separation. Review precedes deeper testing so students understand why checks must accompany changes. Security precedes delivery so release evidence includes permission and dependency concerns. Operation precedes maintenance so evolution responds to actual feedback. AI assistance appears after students can evaluate ordinary changes independently.
+Requirements precede model and design choices so students have something concrete to judge. State and interaction models precede concurrent failure so “unknown result” has meaning. Modularity precedes architecture so distribution is not confused with good separation. Review precedes deeper testing so students understand why checks must accompany changes. Security precedes delivery so release evidence includes permission and dependency concerns. Operation precedes maintenance so evolution responds to actual feedback. The concentrated AI-assistance week appears after students can evaluate ordinary changes independently; earlier beats establish the same expectations throughout.
 
 Foundational topics are introduced early and revisited with a stronger question. For example, no-overlap begins as a promise, becomes a requirement, appears in a sequence, becomes a concurrent invariant, receives tests, and returns in the closure decision. This is intentional reinforcement, not fourteen unrelated mini-courses.
 
 ### DELIBERATE LIMITS
 
-Do not stretch these meetings into exhaustive UML, a design-pattern catalog, a full distributed-systems course, database-administration training, a penetration-testing course, or a vendor certification. Advanced formal verification, consensus algorithms, model training, infrastructure orchestration, and detailed environmental accounting remain outside the core sequence.
+Do not stretch these lectures into exhaustive UML, a design-pattern catalog, a full distributed-systems course, database-administration training, a penetration-testing course, or a vendor certification. Advanced formal verification, consensus algorithms, model training, infrastructure orchestration, and detailed environmental accounting remain outside the core sequence.
 
 An optional illustration may acknowledge one of those areas when it clarifies a boundary, but it must not become prerequisite knowledge for the next week. Laws appear only as named context, never as compliance guidance. The course should produce a coherent conceptual foundation and evidence-based reasoning, not a claim of complete professional mastery from lecture exposure alone.
 
-Assessment, examinations, grading, homework and assigned projects are outside this package by decision (00_START_HERE.txt). The lecture materials never mention them; the instructor handles them separately.
+Worked examples and questions with their answers follow the public lecture-only decision in 00_START_HERE.txt.
 
-### REFRESH POLICY FOR LATER SEMESTERS
+### REFRESH POLICY FOR FUTURE RELEASES
 
-Before a new run, check the official source status for SWEBOK, curriculum guidance, OWASP (including the agentic list), NIST, workflow guides, accessibility guidance, ISO/IEC 25010, the delivery-measure definitions, and the application dates of the laws named in Week 9. Record edition, publication or update date, retrieval date, and final-versus-draft status. Review each week's "In practice" tool names at the same time and replace names that have fallen out of common use. Preserve the conceptual lesson unless the evidence gives a reason to change it. The DORA publication index is the entry point for newer delivery and AI-assistance research; the re-verification task template is repo_kit/tasks/50_source_reverification.md. [S36]
+Before a new run, check the official source status for SWEBOK, curriculum guidance, OWASP (including the agentic list), NIST, workflow guides, accessibility guidance, ISO/IEC 25010, the delivery-measure definitions, and the application dates of the laws named in Week 9. Record edition, publication or update date, retrieval date, and final-versus-draft status. Review each week's "In practice" tool names at the same time and replace names that have fallen out of common use. Preserve the conceptual lesson unless the evidence gives a reason to change it. The DORA publication index is the entry point for newer delivery and AI-assistance research; the re-verification task template is ../tasks/50_source_reverification.md. Recheck volatile references again immediately before authoring their lecture; do not silently update the dated research claims. [S36]
 
-During visual authoring, verify supported stable versions of the selected local libraries and a supported Node.js LTS release if Node is used. Pin the tested versions for the semester instead of silently following floating “latest” dependencies. Recheck the affected scenes and PDF output after a dependency update. Sources are dated evidence, not a promise that their live pages can never change. [S26–S32, S38, S39]
+During visual authoring, verify supported stable versions of the selected local libraries and a supported Node.js LTS release if Node is used. Pin the tested versions for the course release instead of silently following floating “latest” dependencies. Recheck the affected scenes and PDF output after a dependency update. Sources are dated evidence, not a promise that their live pages can never change. [S26–S32, S38, S39]
 
 # ANALYSIS OF THE SUPPLIED BLENDER PLAN
 
@@ -3420,15 +3616,15 @@ Research and curriculum date: 16 September 2026
 
 The supplied ZIP contains fourteen weekly TXT plans, an orientation file, supporting audit and instructor guides, a source register, an asset, and backup copies of several files. The analysis used the current week1.txt through week14.txt files rather than treating .bak files as additional course weeks. It examined the shared structure, weekly progression, chapter maps, and representative detailed teaching flows.
 
-The reference is built around the recurring Lumen Field Station scene and uses approximately 80-minute meetings. Its eleven-section weekly format links purpose, outcomes, preparation, chapter order, detailed teaching notes, guardrails, diagnosis, answered checks, supplementary depth, continuity, and sources. This analysis concerns its instructional structure. It does not independently validate the Blender release or feature claims inside the supplied material.
+The reference is built around the recurring Lumen Field Station scene. This course's overall duration target and flexible pacing follow the user's decision in 00_START_HERE.txt. Its eleven-section weekly format links purpose, outcomes, preparation, chapter order, detailed teaching notes, guardrails, diagnosis, answered checks, supplementary depth, continuity, and sources. This analysis concerns its instructional structure. It does not independently validate the Blender release or feature claims inside the supplied material.
 
 ### STRENGTHS RETAINED
 
 A persistent example reduces the need to explain a new context every week. The new course retains that advantage through Campus Rooms while allowing the same behavior to be viewed through requirements, states, dependencies, tests, and operations.
 
-Observable outcomes remain at the front of every week. The instructor receives both a concise ordered map and enough detail to rehearse the explanations. Predictable errors and misconceptions are prepared in advance rather than discovered by accident during teaching. The explicit handoff keeps later lectures connected to earlier decisions.
+Observable outcomes remain at the front of every week. The instructor receives both a concise ordered map and enough detail to understand the explanations. Predictable errors and misconceptions are prepared in advance rather than discovered by accident during teaching. The explicit handoff keeps later lectures connected to earlier decisions.
 
-The source register and currency notes remain separate from student-facing explanation. This allows an instructor to verify terminology and technical details without turning the lecture into a citation tour. A realistic baseline duration and shorter/longer routes also remain, rather than assigning a rigid timestamp to every scene.
+The source register and currency notes remain separate from student-facing explanation. This allows an instructor to verify terminology and technical details without turning the lecture into a citation tour. Core explanations and optional depth remain separate, so an explanation can expand or contract according to its teaching needs.
 
 ### WHAT NEEDED TRANSFORMATION
 
@@ -3494,7 +3690,7 @@ Replay returns to the first step under the currently selected condition or compa
 
 Default re-entry behavior is deterministic: returning to a scene restores its canonical baseline, paused. A direct hash link does the same. Any optional resume behavior must be a clearly chosen mode, not hidden persistence. Leaving a scene cancels its timers and animation work so nothing continues changing offscreen.
 
-Changing a condition returns that scenario to its first paused state. Keep the comparison baseline visible or make it easy to restore. Display the selected condition in text so the class knows exactly what changed.
+Changing a condition returns that scenario to its first paused state. Keep the comparison baseline visible or make it easy to restore. Display the selected condition in text so the viewer knows exactly what changed.
 
 ### SCENE CONTRACT FOR TESTS, RECORDING, AND PRINT
 
@@ -3546,9 +3742,9 @@ Do not let visual invention change a rule, invent a measurement, hide a failure,
 
 # PRIMARY SOURCE REGISTER
 
-Research and curriculum date: 16 September 2026
+Register updated: 22 September 2026; retrieval dates are recorded per entry
 
-Primary references checked on 16 September 2026. Living documentation can change after this date. Source keys identify supporting concepts and technical guardrails, not copied lesson text. Most sources were read as HTML; the SWEBOK access limitation is recorded explicitly. No full external reference PDF audit is claimed.
+The original references were checked on 16-17 September 2026. Selected status checks and new references were reviewed on 22 September 2026 as recorded below; unchanged entries retain their earlier retrieval dates. Living documentation can change. Source keys identify supporting concepts and technical guardrails, not copied lesson text. Most sources were read as HTML; access limitations are recorded explicitly. No full external reference PDF audit is claimed.
 
 Authoring-library references are instructor resources. They are not dependencies students need to learn. Numerical fixtures throughout the course are original teaching data unless explicitly stated otherwise. Each entry ends with its use: curriculum sources support lecture content and are cited by at least one week; authoring sources support the build and are cited by the support files.
 
@@ -3556,7 +3752,9 @@ Authoring-library references are instructor resources. They are not dependencies
 
 https://www.computer.org/education/bodies-of-knowledge/software-engineering
 
-V4.0a identified in official indexed material; version update indicated 25 September 2025. Direct page access returned 403. Used for high-level curriculum scope; no claim of a full guide audit.
+V4.0a identified in official indexed material; version update indicated 25 September 2025. Rechecked 22 September 2026: the official /v4 indexed page still identifies V4.0a as newest; direct retrieval failed. Used for high-level curriculum scope; no claim of a full guide audit. The official indexed topic outline below was also checked on 22 September 2026 for the knowledge-area coverage map; direct retrieval returned HTTP 403. The depth judgments and week mapping are the course author's.
+
+https://www.computer.org/education/bodies-of-knowledge/software-engineering/topics
 
 Use: curriculum.
 
@@ -3564,7 +3762,7 @@ Use: curriculum.
 
 https://csed.acm.org/final-report/
 
-Final curriculum reference, published in 2024. Used for broad scope and competencies; not a formal course accreditation mapping. Do not substitute the older gamma-draft knowledge-area download for the final report.
+Final curriculum reference, published in 2024. Final-report landing page rechecked 22 September 2026; the official indexed HTML report supports teamwork, construction, requirements and professional-context coverage. Full HTML retrieval exceeded the browser text size limit. Used for broad scope and competencies; not a formal course accreditation mapping or a full-report audit. Do not substitute the older gamma-draft knowledge-area download for the final report.
 
 Use: curriculum.
 
@@ -3668,7 +3866,7 @@ Use: curriculum.
 
 https://csrc.nist.gov/pubs/sp/800/218/r1/ipd
 
-17 December 2025 initial public draft; comment period closed 30 January 2026. Retrieved page still labels it a draft. Currency watch item, not a replacement final standard.
+17 December 2025 initial public draft; comment period closed 30 January 2026. Rechecked 22 September 2026: the NIST publication page still labels it an initial public draft. Currency watch item, not a replacement final standard.
 
 Use: curriculum.
 
@@ -3676,7 +3874,7 @@ Use: curriculum.
 
 https://slsa.dev/spec/v1.2/
 
-Selected published specification. Used for provenance and build-integrity concepts; no maturity-level certification is claimed.
+Approved Version 1.2, status rechecked on the official specification page on 22 September 2026. Used for provenance and build-integrity concepts, including distinct source and build concerns; no maturity-level certification is claimed.
 
 Use: curriculum.
 
@@ -3684,7 +3882,7 @@ Use: curriculum.
 
 https://dora.dev/guides/dora-metrics/
 
-Updated 5 January 2026. Current five-measure terminology and service-level interpretation. Course event data are original simulations.
+Updated 5 January 2026; rechecked 22 September 2026. Five-measure terminology and application/service-level interpretation remain on the official guide. Course event data are original simulations. Do not use these measures to rank individual developers.
 
 Use: curriculum.
 
@@ -3940,7 +4138,9 @@ Use: curriculum.
 
 https://eur-lex.europa.eu/eli/reg/2024/2847/oj
 
-Official EUR-Lex text of 23 October 2024 on horizontal cybersecurity requirements for products with digital elements, retrieved 17 September 2026. Annex I Part II requires manufacturers to identify and document components and draw up a software bill of materials. The European Commission's Cyber Resilience Act page gives the dates: in force 10 December 2024, reporting obligations from 11 September 2026, main obligations from 11 December 2027. Used for one context line in the Week 9 dependency scene; not legal advice.
+Official EUR-Lex text of 23 October 2024 on horizontal cybersecurity requirements for products with digital elements, retrieved 17 September 2026. Annex I Part II requires manufacturers to identify and document components and draw up a software bill of materials. Dates rechecked 22 September 2026 against the European Commission page below (updated 7 September 2026): in force 10 December 2024, reporting obligations from 11 September 2026, main obligations from 11 December 2027. Week 9 distinguishes the reporting start from the main component-documentation obligations and leaves scope/exemptions explicit; it does not imply all websites are covered. Legal context only.
+
+https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act
 
 Use: curriculum.
 
@@ -3952,9 +4152,93 @@ https://arxiv.org/abs/2406.10279
 
 Use: curriculum.
 
+### S51 | OWASP — APPLICATION SECURITY VERIFICATION STANDARD
+
+https://owasp.org/projects/asvs
+
+Retrieved 22 September 2026. The official page identifies ASVS 5.0.0 as the stable version and describes its use for application technical security verification requirements. Used in Week 9 to connect a risk with a checkable control expectation and evidence, distinct from Top 10 awareness and SSDF process practices. No complete standard audit or conformance claim.
+
+Use: curriculum.
+
+### S52 | OPENAPI INITIATIVE — OPENAPI SPECIFICATION 3.2.1
+
+https://spec.openapis.org/oas/v3.2.1.html
+
+Published 10 September 2026; retrieved 22 September 2026. The official latest-published link resolved to this version. Supports Week 6's concrete HTTP interface-description example. A published specification does not establish implementation support in every tool; the course does not require this version or teach its syntax. Shape descriptions do not establish domain, authorization or concurrency correctness.
+
+Use: curriculum.
+
+### S53 | METR — WE ARE CHANGING OUR DEVELOPER PRODUCTIVITY EXPERIMENT DESIGN
+
+https://metr.org/blog/2026-02-24-uplift-update/
+
+Published 24 February 2026; retrieved 22 September 2026. Primary follow-up describes selection effects and time-measurement limitations affecting estimates of AI assistance in experienced-developer work. Used in Week 13 for evidence interpretation, without claiming a universal slowdown or speedup, or treating an earlier study as the current state of all tools.
+
+Use: curriculum.
+
+### S54 | METR — SELF-REPORTED IMPACT OF EARLY-2026 AI ON TECHNICAL WORKER PRODUCTIVITY
+
+https://metr.org/blog/2026-05-11-ai-usage-survey/
+
+Published 11 May 2026; retrieved 22 September 2026. Primary survey concerns self-reported impact and discusses selection bias. Used beside S53 in Week 13 to distinguish perceived benefit, controlled task evidence and course simulations. No numerical productivity result is imported into the teaching fixtures.
+
+Use: curriculum.
+
+### S55 | GOOGLE SRE — HANDLING OVERLOAD
+
+https://sre.google/sre-book/handling-overload/
+
+Primary practitioner chapter, retrieved 22 September 2026. Supports overload handling, admission decisions and graceful degradation in Week 11. The course preserves its own fictional booking invariants and does not copy the chapter's service capacities or imply a universal threshold.
+
+Use: curriculum.
+
+### S56 | GOOGLE SRE — DATA INTEGRITY
+
+https://sre.google/sre-book/data-integrity/
+
+Primary practitioner chapter, retrieved 22 September 2026. Supports the distinction between retaining backup data and establishing recoverability and integrity. Used in Week 12's migration decision. No recovery-time or data-loss targets are attributed to Campus Rooms without explicit requirements and fixtures.
+
+Use: curriculum.
+
+### S57 | DORA — AI CAPABILITIES MODEL REPORT
+
+https://dora.dev/ai/capabilities-model/report/
+
+Official overview retrieved 22 September 2026; describes a companion to the 2025 report organized around seven capabilities that support AI adoption. Used only for organizational context in Week 13; the gated/download report itself was not audited, and no detailed model findings or universal causal claims are imported.
+
+Use: curriculum.
+
+### S58 | ACM - CODE OF ETHICS AND PROFESSIONAL CONDUCT
+
+https://www.acm.org/binaries/content/assets/about/acm-code-of-ethics-booklet.pdf
+
+Official ACM indexed excerpts checked 22 September 2026. Sections 1.1 and 1.2 support considering affected people and reducing harm. Direct ACM HTML and PDF retrieval returned HTTP 403; no full-document or PDF-layout audit is claimed. Used for the original Week 14 release-pressure comparison, not as a legal rule or a substitute for context-specific professional judgment.
+
+Use: curriculum.
+
+### S59 | POSTGRESQL GLOBAL DEVELOPMENT GROUP - INDEXES, INTRODUCTION
+
+https://www.postgresql.org/docs/18/indexes-intro.html
+
+Official documentation retrieved 22 September 2026 through /docs/current/indexes-intro.html, which identified version 18; the versioned link preserves that reference. Supports the optional Week 11 comparison of a table scan with an index, the query planner's choice and index maintenance overhead. The course comparison is qualitative and original; it imports no benchmark, command sequence or universal performance result.
+
+Use: curriculum.
+
+### S60 | ISTQB - FOUNDATION LEVEL SYLLABUS, EXPLORATORY TESTING
+
+https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf
+
+Version 4.0.1, dated 15 September 2024. Section 4.4.2, page 44, retrieved 22 September 2026. Used for the relationship between exploration, learning and test design in Week 8. The status-recovery comparison is original course-authored material; no certification syllabus, exam preparation or training durations are adopted. Only the relevant section was reviewed, not the full external PDF.
+
+Use: curriculum.
+
 # CAMPUS ROOMS: RECURRING CASE AND TEACHING FIXTURES
 
 Research and curriculum date: 16 September 2026
+
+### USE OF THE CASE
+
+Audience and pacing follow 00_START_HERE.txt. The transfer_checks object in assets/demo-fixtures.json holds the original qualitative closing question and answer for each of Weeks 2-14. Those independent illustrations transfer a principle, not Campus Rooms identities or policies. They introduce no numerical measurement and require no viewer implementation. The weekly TXT remains the content source; the fixture entries carry the matching display text.
 
 ### DOMAIN AND IDENTITIES
 
@@ -3982,7 +4266,7 @@ The no-overlap decision must survive concurrency. Correct local interval arithme
 
 Q-01 is the illustrative search requirement introduced in Week 2: under the declared teaching fixture and 50 concurrent users, p95 search API response time is at most 500 ms at the service boundary. It is not a claim about a browser’s complete perceived experience or an industry benchmark. Actual performance evidence requires a specified dataset, request mix, environment, run conditions, and percentile calculation; the later twenty-point example illustrates the concept only.
 
-Q-02 is the separate Week 11 illustrative objective: over seven days, at least 99% of eligible booking requests receive a correct outcome within two seconds. Eligible events are authenticated, syntactically valid booking requests reaching the stated service boundary, including legitimate room-conflict requests; health checks are excluded. A timely correct conflict rejection is good service. The fixed fixture contains 980 good events, 10 correct-but-slow results, 5 timeouts, and 5 unexpected server failures out of 1,000. The observed good-event rate is 98%, against an allowance of 10 bad events; 20 are observed. The allowance is the error budget. Observing twice the allowed bad-event rate is a burn rate of 2, which at a steady rate uses up the seven-day budget in 3.5 days.
+Q-02 is the separate Week 11 illustrative objective: over seven days, at least 99% of eligible booking requests receive a correct outcome within two seconds. Eligible events are authenticated, syntactically valid booking requests reaching the stated service boundary, including legitimate room-conflict requests; health checks are excluded. A timely correct conflict rejection is good service. The fixed fixture contains 980 good events, 10 correct-but-slow results, 5 timeouts, and 5 unexpected server failures out of 1,000. The observed good-event rate is 98%, against an allowance of 10 bad events; 20 are observed. The allowance is the error budget. Observing twice the allowed bad-event rate is a burn rate of 2. Sustaining that rate under steady traffic from a fresh seven-day window would use its budget in 3.5 days. This is not remaining time after the displayed window, which has already exceeded its budget.
 
 ### TEST AND AUTHORIZATION FIXTURES
 
@@ -4012,7 +4296,7 @@ Recorded results, recomputed by the checker: naive peaks at seven queued attempt
 
 ### INVENTED DEPENDENCY
 
-Week 13's change record uses textenc-turbo, a fictional package name that exists in no registry, to show a dependency invented by a code assistant. It is deliberately close to textenc, the fictional transitive dependency of Week 9; neither name refers to a real package.
+Week 13's change record uses textenc-turbo, a fictional package name marked unavailable in the course's registry fixture, to show a dependency invented by a code assistant. It is deliberately close to textenc, the fictional transitive dependency of Week 9; both names are course labels, and no assertion about their availability in public registries is made.
 
 ### AUTHORING NOTES FOR ALL FIXTURES
 
@@ -4054,11 +4338,11 @@ The prompting references in the register are instructor-side context for writing
 
 # INSTRUCTOR PREFLIGHT AND ACCEPTANCE CHECKS
 
-Research and curriculum date: 16 September 2026
+Teaching review updated: 22 September 2026
 
 ### BEFORE THE FIRST AUTHORED WEEK
 
-Choose a classroom display profile and test the template at the actual resolution; include a modest1280×720 fallback. Establish shared component names, type sizes, diagram legends, and control labels. Decide the documented local-launch route and verify it on the intended teaching machine. Check a keyboard-only path and low-motion path from the course index into a scene and back.
+Test the template at the intended recording resolution and at a 1280×720 viewing size representative of a smaller playback window. Establish shared component names, type sizes, diagram legends, and control labels. Decide the documented local-launch route and verify it on the intended teaching machine. Check a keyboard-only path and low-motion path from the course index into a scene and back.
 
 Review the canonical rule file before authoring examples. Verify that the duration boundary is inclusive, adjacent intervals are allowed, unknown outcome is not equated with absent data, and notification status is distinct from confirmation. These small semantic details recur throughout the course.
 
@@ -4066,9 +4350,17 @@ Review the canonical rule file before authoring examples. Verify that the durati
 
 Render every page, condition and state at the recording resolution, 1920 by 1080 logical pixels at device scale factor 2 (3840 by 2160), with python scripts/inspect_deck.py --layout, and read the captures natively. The layout scan reports overlapping text, text outside the scene area and text that would be cut from a print panel. Open every important scene directly through its stable hash. Verify the documented baseline and paused state. Step through the whole scene, use Back step, then Replay and Reset. Confirm that the controls mean different things. Leave a scene mid-animation and return; it must follow the declared re-entry behavior and must not have continued running invisibly.
 
-Check Next and Previous independently of scene state, including when the scene is unfinished. Confirm that the last Step does not advance the slide. Check sliders, buttons, and keyboard focus without shortcut conflicts. Verify visible labels at the rear-of-room reading scale, adequate contrast, color-independent meaning, and reduced motion with no lost information.
+Check Next and Previous independently of scene state, including when the scene is unfinished. Confirm that the last Step does not advance the slide. Check sliders, buttons, and keyboard focus without shortcut conflicts. Verify visible labels at the smaller playback viewing size, adequate contrast, color-independent meaning, and reduced motion with no lost information.
 
 Inspect every numerical chart against the recorded fixture and every diagram against the rule it claims to illustrate. Ensure the changed condition is visible and that the comparison has not also changed workload, scale, or measurement boundary unintentionally. Test false, unavailable, empty, denied, and unknown-outcome states as appropriate—not only the successful path.
+
+### TEACHING REVIEW BEFORE ACCEPTANCE
+
+For every outcome in the weekly plan's Section 2, identify the scene that explains it and an answered question or comparison that lets the viewer reason about it. A topic label alone does not establish coverage. Record missing explanations in the existing weekly completion record and resolve them before calling the deck teaching-ready.
+
+Check the first use of each essential term and symbol in context. The viewer should see what it means through the example before needing it in a later decision. In the three main demonstrations, inspect the baseline, prediction, decisive change, explanation and consequence; a sequence of animations without an explained causal connection is incomplete.
+
+Read the core route with optional extensions omitted: the next lecture must remain understandable. Review the final transfer question and its answer to check which principle carries across and which domain assumptions must be reconsidered. Apply the audience and pacing decisions in 00_START_HERE.txt when judging depth; retain essential reasoning and remove repeated labels or tool lists first.
 
 ### FOR EVERY STUDENT PDF
 
@@ -4092,13 +4384,11 @@ Have the week’s student PDF available locally as a recovery route if an intera
 
 The tests in tests/test_deck_contract.py and tests/test_pdf.py run the mechanical part of this checklist against a built site (pytest with SE_COURSE_SITE set). Hash entry at the baseline, paused: test_hash_entry_opens_baseline_paused. Step, Back, Replay and Reset meaning different things: test_step_and_back_move_one_state and test_replay_keeps_condition_and_reset_restores_baseline. The last Step not advancing the slide: test_last_step_never_advances_the_page. Next and Previous independent of scene state: test_next_and_previous_change_the_page_even_mid_scene. Leaving mid-animation and returning: test_leaving_a_scene_cancels_its_work. Keyboard focus and accessible names: test_controls_are_keyboard_reachable_with_names; sliders and arrow keys: test_range_inputs_do_not_change_the_page. Reduced motion with no lost information: test_reduced_motion_reaches_the_same_final_state. Contrast and labels: test_axe_reports_no_serious_violations, partially. Charts and diagrams against the recorded fixture: test_fixture_values_are_shown. Local operation: test_deck_loads_with_no_external_requests. Export from the designated print state: test_print_view_declares_ready and the PDF tests. Overlapping text, text outside the scene area and clipped print panels at the recording resolution: python scripts/inspect_deck.py --layout.
 
-Still manual: rear-of-room readability at the actual display, a native read of the 3840 by 2160 captures and of every PDF page, the grayscale preview, reading order, and the copied-folder second-machine check beyond its network part.
+Still manual: readability at the smaller playback viewing size, a native read of the 3840 by 2160 captures and of every PDF page, the grayscale preview, reading order, and the copied-folder second-machine check beyond its network part.
 
 ### COMPLETION RECORD
 
-For the later authored course, maintain a small per-week record of HTML file, PDF file, scene IDs, tested browser/runtime versions, checks actually performed, and unresolved limitations. Mark an item verified only after observing the relevant behavior. A generated file, a successful build, and an inspected teaching-ready result are three different claims.
-
-This plan package specifies those future checks. It does not claim they have already been performed on HTML decks that have not yet been authored.
+For each week, record the HTML and PDF paths, scene IDs, tested versions, checks, inspections, outcome-to-scene coverage and unresolved limitations. Mark behavior verified only after observing it; file generation, a successful build and a teaching review are distinct.
 
 # RECORDING TRACK: EVERY WEEK AS A NARRATED VIDEO
 
@@ -4114,7 +4404,7 @@ The lecture decks are the screen being recorded. A deck is not a slide show in t
 
 ### NO SPEAKING CUES IN THIS REPOSITORY
 
-The repository and this plan hold no speaking cues (decision in 00_START_HERE.txt): no cue lists or shot lists, no narration text or narration briefs, no lines about what a moment of the deck teaches, no planned durations, and no recorded route that fixes which pages are shown or skipped, what is said over a page, or how a video opens and closes. Decks, fixtures, plan files, scene guides and completion records do not carry them, and authoring agents do not add them.
+The repository and this plan hold no speaking cues (decision in 00_START_HERE.txt): no cue lists or shot lists, no narration text or narration briefs, no lines about what a moment of the deck teaches, no shot-duration budgets, and no recorded route that fixes which pages are shown or skipped, what is said over a page, or how a video opens and closes. Decks, fixtures, plan files, scene guides and completion records do not carry them, and authoring agents do not add them.
 
 The recording agent generates all of it at run time. It first analyzes the week: plan/weekN.txt in full, plan_manifest.json, the case guide (19_recurring_case_and_demo_data.txt), the fixtures the deck renders, the scene guide, and the deck itself, operated in record=1 mode and rendered at 3840 by 2160. From that analysis it decides the route through the deck, writes the shot list and the narration, synthesizes the speech and records the tutorial, in the planning order and under the checks of the workspace rules above. What it writes for one recording stays with that recording in the tutorial workspace; it does not come back into this repository as cues for later runs.
 
@@ -4140,7 +4430,7 @@ Generated at run time and kept with the recording in the tutorial workspace: the
 
 # BUILD PLAN, PARALLEL AUTHORING, AND SCHEDULE
 
-Research and curriculum date: 16 September 2026
+Build sequence updated: 22 September 2026
 
 ### THE REPOSITORY
 
@@ -4154,17 +4444,15 @@ Phase 0, one agent, sequential: the shared shell, Week 1 complete, and the two s
 
 Phase 1, several agents in parallel: Weeks 2 to 14, one week per branch or worktree, each against the frozen shell, the contract and the tests (repo_kit/tasks/10_author_week.md). Shell changes are made only in a shell branch and rerun every existing deck's tests. A useful working set is three agents authoring three consecutive weeks while a fourth exports PDFs for finished weeks.
 
-Phase 2, per week and once at the end: revision after review (tasks/20), PDF export and inspection (tasks/30), the copied-folder offline check from 21_instructor_preflight.txt, and the register re-verification (tasks/50) before Week 1 ships.
+Phase 2, per week and once at the end: revision after review (tasks/20), PDF export and inspection (tasks/30), the copied-folder offline check from 21_instructor_preflight.txt, and source re-verification (tasks/50) before the corresponding lecture is authored.
 
 ### MINIMUM VIABLE DECK
 
-A week may ship below its full design but never below this line: all eight scenes present with their identifiers, situation, question and principle; the three Anchors interactive with Step, Back, Replay, Reset and at least the baseline and one changed-condition preset; the five Bridges as annotated diagrams or tables whose rows appear on pointer-operated reveals; print panels for every scene and the exported PDF; the contract tests passing; the layout scan reporting no overlapping, overflowing or clipped text at 3840 by 2160. Motion polish, continuation pages, Run controls and Three.js are above the line. A deck below the line is not taught from; the instructor uses the previous week's routine and the plan's recovery route (the static explanation) while the deck is finished.
+A week is ready for detailed teaching review only after it meets this baseline: all eight scenes present with their identifiers, situation, question and principle; the three Anchors interactive with Step, Back, Replay, Reset and at least the baseline and one changed-condition preset; the five Bridges as annotated diagrams or tables whose rows appear on pointer-operated reveals; print panels for every scene and the exported PDF; the contract tests passing; the layout scan reporting no overlapping, overflowing or clipped text at 3840 by 2160. Continuation pages are required wherever readability needs them; visual polish and optional rendering libraries do not substitute for a complete explanation. This baseline is not permission to omit the core reasoning or ship an unfinished lecture. Finish and verify an incomplete deck before recording it.
 
-### SCHEDULE RELATIVE TO THE FIRST LECTURE
+### DEPENDENCY-BASED BUILD SEQUENCE
 
-The first lecture date is not fixed yet; call it T0 and write the dates in when it is. Phase 0 complete: T0 minus 7 days. Week 1 narrated, recorded and delivered: T0 minus 2 days, or per the channel's publication plan. Week N deck and PDF ready: lecture N minus 7 days. Week N recording, with its narration generated at run time: lecture N minus 5 to minus 2 days. Authoring runs three weeks ahead of the lectures from Week 4 on, so a late week never blocks the next lecture. Re-verification of the sources (tasks/50) is finished before Week 1 ships and repeated before any later semester.
-
-If T0 is within three weeks of today, Phase 0 starts immediately and Weeks 2 and 3 are authored at the minimum viable line first, then raised to the full design in Phase 2.
+Week 1 and the shared shell are complete; the first lecture is recorded. Retain them as the accepted starting point. For each remaining week, refresh its volatile references, author the deck and reading copy, verify the complete explanation and layout, then produce the recording under the tutorial workspace rules. Work may prepare later weeks independently when their shared prerequisites are stable. Publication dates and production-effort estimates are separate from lecture content and are set only when needed; follow the pacing decision in 00_START_HERE.txt. Do not reduce explanation quality to satisfy a calendar offset.
 
 ### ROLES OF THE TOOLS
 

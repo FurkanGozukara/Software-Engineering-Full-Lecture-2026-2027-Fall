@@ -15,7 +15,9 @@ the demonstration, `?` shows the help. Optional local server for clean links:
 Status: Week 1 is complete (deck, PDF, scene guide). The other weeks are added one at a time; the
 index marks them as in preparation until then.
 
-Fourteen interactive lecture decks and their student PDFs for an introductory software engineering course built around the fictional Campus Rooms booking service. The teaching plan is in `plan/`; the student-facing site is `site/`.
+A fourteen-lecture introduction to software engineering for a general audience, with interactive decks and printable reading copies. Campus Rooms is the fictional worked example, with short comparisons showing how the principles apply to other software. The teaching plan is in `plan/`; the student-facing site is `site/`.
+
+Weeks 2-14 were revised on 22 September 2026. See the [curriculum review and weekly improvements](notes/curriculum-review-2026-09-22.md), the [combined instructor plan](plan/Software_Engineering_14_Week_Plan.md), or its [PDF](plan/Software_Engineering_14_Week_Plan.pdf). Week 1 remains as delivered.
 
 ## Layout
 
@@ -79,6 +81,6 @@ overlapping, overflowing and escaping text (`--shots` saves one capture per stat
 completion record and scene guide live in `notes/` (`notes/week-NN.completion.md`,
 `notes/week-NN.scene-guide.md`). There is no instructor rehearsal.
 
-The repository holds no speaking cues: no cue lists, shot lists, narration, planned durations or
+The repository holds no speaking cues: no cue lists, shot lists, narration, shot-duration budgets or
 recorded routes. A recording agent analyzes the plan and the deck at run time and generates the
 shot list, the narration and speech, and the tutorial (`plan/22_recording_track.txt`).

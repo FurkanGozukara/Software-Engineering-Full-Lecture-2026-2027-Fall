@@ -108,6 +108,7 @@ body{font-family:Georgia,'Times New Roman',serif;font-size:11pt;line-height:1.45
 section{page-break-before:always;padding:0 4mm}
 section:first-of-type{page-break-before:auto}
 h1{font-size:20pt;margin:0 0 6pt}h2{font-size:14pt;margin:14pt 0 4pt}h3{font-size:12pt;margin:10pt 0 3pt}
+h1,h2,h3{break-after:avoid;page-break-after:avoid}p{orphans:3;widows:3}
 p{margin:0 0 6pt}.notice{font-size:9pt;color:#555;border:1px solid #bbb;padding:4pt;margin-bottom:10pt}
 @page{size:A4;margin:16mm}
 """
@@ -156,7 +157,11 @@ def main() -> int:
                 browser = p.chromium.launch()
                 page = browser.new_page()
                 page.goto(tmp.resolve().as_uri())
-                page.pdf(path=str(pdf_path), format="A4", print_background=True, prefer_css_page_size=True)
+                page.pdf(path=str(pdf_path), format="A4", print_background=True, prefer_css_page_size=True,
+                         display_header_footer=True, header_template="<span></span>",
+                         footer_template='<div style="font-size:8px;width:100%;text-align:center;color:#555">'
+                                         'Software Engineering - Instructor plan | '
+                                         '<span class="pageNumber"></span> / <span class="totalPages"></span></div>')
                 browser.close()
             stamp_path.write_text(digest + "\n", encoding="utf-8")
             print(f"wrote {pdf_path} (Playwright Chromium)")

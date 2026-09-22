@@ -1,11 +1,11 @@
 INSTRUCTOR PREFLIGHT AND ACCEPTANCE CHECKS
-Research and curriculum date: 16 September 2026
+Teaching review updated: 22 September 2026
 ==============================================================================
 
 BEFORE THE FIRST AUTHORED WEEK
 ------------------------------
 
-Choose a classroom display profile and test the template at the actual resolution; include a modest1280×720 fallback. Establish shared component names, type sizes, diagram legends, and control labels. Decide the documented local-launch route and verify it on the intended teaching machine. Check a keyboard-only path and low-motion path from the course index into a scene and back.
+Test the template at the intended recording resolution and at a 1280×720 viewing size representative of a smaller playback window. Establish shared component names, type sizes, diagram legends, and control labels. Decide the documented local-launch route and verify it on the intended teaching machine. Check a keyboard-only path and low-motion path from the course index into a scene and back.
 
 Review the canonical rule file before authoring examples. Verify that the duration boundary is inclusive, adjacent intervals are allowed, unknown outcome is not equated with absent data, and notification status is distinct from confirmation. These small semantic details recur throughout the course.
 
@@ -14,9 +14,18 @@ FOR EVERY WEEKLY HTML DECK
 
 Render every page, condition and state at the recording resolution, 1920 by 1080 logical pixels at device scale factor 2 (3840 by 2160), with python scripts/inspect_deck.py --layout, and read the captures natively. The layout scan reports overlapping text, text outside the scene area and text that would be cut from a print panel. Open every important scene directly through its stable hash. Verify the documented baseline and paused state. Step through the whole scene, use Back step, then Replay and Reset. Confirm that the controls mean different things. Leave a scene mid-animation and return; it must follow the declared re-entry behavior and must not have continued running invisibly.
 
-Check Next and Previous independently of scene state, including when the scene is unfinished. Confirm that the last Step does not advance the slide. Check sliders, buttons, and keyboard focus without shortcut conflicts. Verify visible labels at the rear-of-room reading scale, adequate contrast, color-independent meaning, and reduced motion with no lost information.
+Check Next and Previous independently of scene state, including when the scene is unfinished. Confirm that the last Step does not advance the slide. Check sliders, buttons, and keyboard focus without shortcut conflicts. Verify visible labels at the smaller playback viewing size, adequate contrast, color-independent meaning, and reduced motion with no lost information.
 
 Inspect every numerical chart against the recorded fixture and every diagram against the rule it claims to illustrate. Ensure the changed condition is visible and that the comparison has not also changed workload, scale, or measurement boundary unintentionally. Test false, unavailable, empty, denied, and unknown-outcome states as appropriate—not only the successful path.
+
+TEACHING REVIEW BEFORE ACCEPTANCE
+---------------------------------
+
+For every outcome in the weekly plan's Section 2, identify the scene that explains it and an answered question or comparison that lets the viewer reason about it. A topic label alone does not establish coverage. Record missing explanations in the existing weekly completion record and resolve them before calling the deck teaching-ready.
+
+Check the first use of each essential term and symbol in context. The viewer should see what it means through the example before needing it in a later decision. In the three main demonstrations, inspect the baseline, prediction, decisive change, explanation and consequence; a sequence of animations without an explained causal connection is incomplete.
+
+Read the core route with optional extensions omitted: the next lecture must remain understandable. Review the final transfer question and its answer to check which principle carries across and which domain assumptions must be reconsidered. Apply the audience and pacing decisions in 00_START_HERE.txt when judging depth; retain essential reasoning and remove repeated labels or tool lists first.
 
 FOR EVERY STUDENT PDF
 ---------------------
@@ -44,11 +53,9 @@ AUTOMATED COVERAGE OF THESE CHECKS
 
 The tests in tests/test_deck_contract.py and tests/test_pdf.py run the mechanical part of this checklist against a built site (pytest with SE_COURSE_SITE set). Hash entry at the baseline, paused: test_hash_entry_opens_baseline_paused. Step, Back, Replay and Reset meaning different things: test_step_and_back_move_one_state and test_replay_keeps_condition_and_reset_restores_baseline. The last Step not advancing the slide: test_last_step_never_advances_the_page. Next and Previous independent of scene state: test_next_and_previous_change_the_page_even_mid_scene. Leaving mid-animation and returning: test_leaving_a_scene_cancels_its_work. Keyboard focus and accessible names: test_controls_are_keyboard_reachable_with_names; sliders and arrow keys: test_range_inputs_do_not_change_the_page. Reduced motion with no lost information: test_reduced_motion_reaches_the_same_final_state. Contrast and labels: test_axe_reports_no_serious_violations, partially. Charts and diagrams against the recorded fixture: test_fixture_values_are_shown. Local operation: test_deck_loads_with_no_external_requests. Export from the designated print state: test_print_view_declares_ready and the PDF tests. Overlapping text, text outside the scene area and clipped print panels at the recording resolution: python scripts/inspect_deck.py --layout.
 
-Still manual: rear-of-room readability at the actual display, a native read of the 3840 by 2160 captures and of every PDF page, the grayscale preview, reading order, and the copied-folder second-machine check beyond its network part.
+Still manual: readability at the smaller playback viewing size, a native read of the 3840 by 2160 captures and of every PDF page, the grayscale preview, reading order, and the copied-folder second-machine check beyond its network part.
 
 COMPLETION RECORD
 -----------------
 
-For the later authored course, maintain a small per-week record of HTML file, PDF file, scene IDs, tested browser/runtime versions, checks actually performed, and unresolved limitations. Mark an item verified only after observing the relevant behavior. A generated file, a successful build, and an inspected teaching-ready result are three different claims.
-
-This plan package specifies those future checks. It does not claim they have already been performed on HTML decks that have not yet been authored.
+For each week, record the HTML and PDF paths, scene IDs, tested versions, checks, inspections, outcome-to-scene coverage and unresolved limitations. Mark behavior verified only after observing it; file generation, a successful build and a teaching review are distinct.

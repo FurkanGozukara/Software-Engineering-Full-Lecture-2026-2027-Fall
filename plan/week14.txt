@@ -1,15 +1,15 @@
 WEEK 14 | CONNECTING THE LIFECYCLE THROUGH ONE ENGINEERING DECISION
-Research and curriculum date: 16 September 2026
+Curriculum review: 22 September 2026; source retrieval dates are recorded individually
 ==============================================================================
 
 Can we explain a change from human need to operational evidence without losing the original promise?
 
-Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-14.html
+Instructor lecture plan | flexible pacing | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-14.html
 
 1. PURPOSE, CASE STATE, AND SCOPE
 ---------------------------------
 
-End with an instructor-led engineering decision clinic, not a list of all previous definitions. A staff member reports that C101 must be closed for maintenance during a future interval. The class follows one bounded change across requirements, models, architecture, checks, release, operation, and learning.
+End with an instructor-led engineering decision clinic, not a list of all previous definitions. A staff member reports that C101 must be closed for maintenance during a future interval. The viewer follows one bounded change across requirements, models, architecture, checks, release, operation, and learning.
 
 Use familiar representations and identifiers so the difficulty lies in connecting decisions, not decoding a new domain. Preserve explicit disagreement where evidence does not determine one universal design. The goal is a coherent explanation of what should change, what must remain true, and what would justify the decision. [S01, S02]
 
@@ -142,9 +142,9 @@ Anchor scene | ID: release-with-a-fault
 
 VISUAL IDEA: A compact release path combines the verified artifact, compatibility state, selected exposure, and user-outcome observations.
 
-SITUATION, PREDICTION, AND MECHANISM: Ask whether passing interval and permission checks justify full exposure when existing users cannot see their affected status. Reveal the incomplete release record and keep the decision paused. Add the missing accessible cue and the evidence that it is observable.
+SITUATION, PREDICTION, AND MECHANISM: Ask whether passing interval and permission checks justify full exposure when existing users cannot see their affected status. Reveal the incomplete release record and keep the decision paused. Add the missing accessible cue and the evidence that it is observable. Before the fix, change only the release pressure: a sponsor now asks to proceed despite the known missing cue. Identify who bears the consequence, explain the concern, propose a safer release or deferral and escalate the unresolved decision to its responsible owner. Professional judgment includes affected people beyond the sponsor; approval does not remove a known user harm. This is an application of responsibility and harm reduction, not a new booking permission. [S58]
 
-CHANGE ONE CONDITION AND COMPARE: Introduce notification failure after closure is recorded. Compare a system that loses the affected-user task with one that records pending communication and continues to display the affected status. Preserve recovery responsibility without undoing the closure or deleting booking history.
+CHANGE ONE CONDITION AND COMPARE: Introduce notification failure after closure is recorded. Compare a system that loses the affected-user task with one that records pending communication and continues to display the affected status. Preserve recovery responsibility without undoing the closure or deleting booking history. Carry a compact decision record with the responsible owner, the permitted action, the independent result, an observation after exposure and the recovery condition. Let one missing item narrow the release claim, then reveal exactly the evidence that resolves it.
 
 PRINCIPLE TO REVEAL: Release decisions must consider the whole user promise and the behavior of incomplete or failed work.
 
@@ -157,7 +157,7 @@ Anchor scene | ID: compare-defensible-options
 
 VISUAL IDEA: A side-by-side decision record compares a targeted change inside the modular application with a separately deployed closure service.
 
-SITUATION, PREDICTION, AND MECHANISM: Ask which new requirement actually needs independent deployment. Reveal benefits and costs under the fictional small-team, single-campus baseline. Compare change surface, operational boundaries, authority, and maintenance burden without using an arbitrary winner score.
+SITUATION, PREDICTION, AND MECHANISM: Ask which new requirement actually needs independent deployment. Reveal benefits and costs under the fictional small-team, single-campus baseline. Compare change surface, operational boundaries, authority, and maintenance burden without using an arbitrary winner score. Include continuing operation, support effort and exit or migration cost in the qualitative comparison. Make the displaced work visible and retain the option to defer the distributed extension when its benefit is not established.
 
 CHANGE ONE CONDITION AND COMPARE: Change one condition: several independent campus operators now need separate release schedules. Revisit the rationale and identify the new contract and ownership questions. Do not announce that this single condition automatically proves the distributed option is best.
 
@@ -172,7 +172,7 @@ Bridge scene | ID: course-principles
 
 VISUAL IDEA: Six concise principle cards connect to small images from earlier scenes rather than a wall of vocabulary.
 
-SITUATION, PREDICTION, AND MECHANISM: Ask which counterexample taught each principle: false confirmation, ambiguous requirement, clean-but-wrong merge, shared test assumption, unsafe rollback, and overpowered automation. Reveal the principle only after the class recognizes the situation.
+SITUATION, PREDICTION, AND MECHANISM: Ask which counterexample taught each principle: false confirmation, ambiguous requirement, clean-but-wrong merge, shared test assumption, unsafe rollback, and overpowered automation. Reveal the principle only after the viewer recognizes the situation.
 
 CHANGE ONE CONDITION AND COMPARE: Change the domain label from room booking to a generic reservation service while keeping the underlying relationship. Compare which principles transfer and which policies must be elicited again.
 
@@ -187,9 +187,9 @@ Bridge scene | ID: engineering-explanation
 
 VISUAL IDEA: A final one-page decision narrative links need, rule, design, checks, release, observation, and unresolved uncertainty.
 
-SITUATION, PREDICTION, AND MECHANISM: Ask the class to explain why the selected closure behavior is justified. Reveal a coherent account using the evidence already shown, with explicit uncertainty about the multi-campus extension. Avoid ending with “everything is solved.”
+SITUATION, PREDICTION, AND MECHANISM: Ask the viewer to explain why the selected closure behavior is justified. Reveal a coherent account using the evidence already shown, with explicit uncertainty about the multi-campus extension. Avoid ending with “everything is solved.”
 
-CHANGE ONE CONDITION AND COMPARE: Remove one important check or change one assumption. Compare how the final claim must narrow. Close on the habit of revising confidence when the supporting conditions change.
+CHANGE ONE CONDITION AND COMPARE: Remove one important check or change one assumption. Compare how the final claim must narrow. Close on the habit of revising confidence when the supporting conditions change. End with a fresh transfer question: which reasoning survives in another reservation domain, and which duration, fairness, identity and harm assumptions must be elicited again? Keep uncertainty as a concrete next question with an owner, not a generic disclaimer.
 
 PRINCIPLE TO REVEAL: Good engineering explanations connect decisions to evidence and remain honest about what has not been established.
 
@@ -230,6 +230,14 @@ QUESTION 4: What should happen to the final engineering claim when an assumption
 
 ANSWER: Reconsider the affected decision and narrow or revise the claim until appropriate evidence is available.
 
+QUESTION 5: Does a sponsor's approval resolve the known absence of accessible affected-booking information?
+
+ANSWER: No. The user consequence remains. Explain who is affected, offer a safer alternative and escalate the unresolved decision rather than treating approval as a repair.
+
+QUESTION 6: For a device-configuration update, which parts of this course's release reasoning transfer, and what must be learned again?
+
+ANSWER: Trace the need to behavior, model failure, verify the candidate, control authority and plan recovery. Elicit the device's interruption behavior, safe operating state, update constraints and consequences of failure; room-booking policies and web-service rollout assumptions do not transfer automatically.
+
 9. PDF CONTINUITY AND LECTURE ELASTICITY
 ----------------------------------------
 
@@ -238,10 +246,12 @@ WHAT THE PRINTED EXPLANATION MUST PRESERVE
 
 The final student PDF is a compact connected explanation of the scenario. Preserve R-06, the treatment of existing bookings, the traceability matrix, release evidence, alternative decisions, and the concluding principles. It should be readable without earlier animations, while referring to stable scene identifiers for students returning to the HTML decks.
 
-SHORTER AND LONGER MEETING ROUTES
----------------------------------
+CORE AND OPTIONAL DEPTH
+-----------------------
 
-Protect consequence-aware requirements, release under a fault, and contextual design comparison as the three anchors. The other scenes connect familiar ideas rather than opening new topic families. Additional time belongs to explaining why a particular piece of evidence changes the decision, not to a new technical implementation.
+Close with the answered transfer question in Section 8, using its small contrasting setting. Preserve the question and explanation in the reading copy.
+
+Protect existing-user consequences, release evidence and the architecture trade-off. Compress the principle recap into retrieval of earlier counterexamples. Optional depth: compare another non-reservation context; do not introduce a new framework in the finale.
 
 10. HANDOFF
 -----------
@@ -251,4 +261,4 @@ The course closes with a reusable reasoning pattern: identify the promise, make 
 11. SOURCES AND CURRENCY NOTES
 ------------------------------
 
-Primary references: S01, S02, S25. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S25, S58. Full titles, URLs, dated status, and access limitations appear in the source register. Curriculum review: 22 September 2026. See each source entry for its actual retrieval date; unchanged references retain earlier dates. The examples and visual teaching sequences are original proposals; no live service behavior is implied.

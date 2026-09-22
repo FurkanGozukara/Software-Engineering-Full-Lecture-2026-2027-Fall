@@ -4,7 +4,7 @@ Research and curriculum date: 16 September 2026
 
 What makes working code an engineered system?
 
-Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-01.html
+Instructor lecture plan | flexible pacing | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-01.html
 
 1. PURPOSE, CASE STATE, AND SCOPE
 ---------------------------------

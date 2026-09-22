@@ -3,7 +3,7 @@
   "kind": "Original fictional teaching fixtures, not real performance data",
   "date": "16 September 2026",
   "purpose": "Inputs and independently checked expected values for later authoring; not executable lecture scenes.",
-  "extended": "16 September 2026: pseudocode_language, cancellation_matrix, retry_model and an anchors block with structured data for all 42 Anchor scenes and the numeric Bridges (Proposal 4). Keys are wNN/scene-id. week_text_shows lists strings the week TXT must contain; deck_shows lists strings the rendered scene must show; snippets are executable Python-like fixtures recomputed by tools/check_plan.py. 17 September 2026 (Phase 0 authoring): w01 Bridge fixtures added for system-boundary, quality-tradeoffs (simulated example values), evidence-not-confidence, responsibility-and-impact and course-evidence-map so that every Week 1 scene renders from this file. 17 September 2026 (plan revision): w02/ambiguous-request week_text_shows; booking_SLO expected_burn_rate and expected_days_to_exhaust_budget (recomputed by tools/check_plan.py); w10/change-through-gates static checks gate; w13/bounded-actions unreviewed tool connector capability; w13/provenance-and-understanding invented dependency. 17 September 2026 (Week 1 plan coverage): w01/quality-tradeoffs standard_vocabulary (sourced, S46) with week_text_shows and a deck_shows value; w01/feedback-lifecycle feedback_paths (authored structure: the path each discovery point's information takes and what it changes) with deck_shows."
+  "extended": "16 September 2026: pseudocode_language, cancellation_matrix, retry_model and an anchors block with structured data for all 42 Anchor scenes and the numeric Bridges (Proposal 4). Keys are wNN/scene-id. week_text_shows lists strings the week TXT must contain; deck_shows lists strings the rendered scene must show; snippets are executable Python-like fixtures recomputed by tools/check_plan.py. 17 September 2026 (Phase 0 authoring): w01 Bridge fixtures added for system-boundary, quality-tradeoffs (simulated example values), evidence-not-confidence, responsibility-and-impact and course-evidence-map so that every Week 1 scene renders from this file. 17 September 2026 (plan revision): w02/ambiguous-request week_text_shows; booking_SLO expected_burn_rate and expected_days_to_exhaust_budget (recomputed by tools/check_plan.py); w10/change-through-gates static checks gate; w13/bounded-actions unreviewed tool connector capability; w13/provenance-and-understanding invented dependency. 17 September 2026 (Week 1 plan coverage): w01/quality-tradeoffs standard_vocabulary (sourced, S46) with week_text_shows and a deck_shows value; w01/feedback-lifecycle feedback_paths (authored structure: the path each discovery point's information takes and what it changes) with deck_shows. 22 September 2026: scoped curriculum refinements for Weeks 2-14; qualitative fixture additions; Week 1 data unchanged. 22 September 2026 public-course follow-up: thirteen qualitative transfer checks and a Week 14 professional-judgment comparison; canonical case, Week 1 data and numerical fixtures retained. 22 September 2026 foundation follow-up: qualitative elicitation and optional lookup/index comparisons; no new measured values. 22 September 2026 teaching review: qualitative acceptance and exploratory status-recovery comparison added; existing fixture values retained."
  },
  "case": {
   "service": "Campus Rooms",
@@ -567,7 +567,8 @@
   "observed_bad_events": 20,
   "expected_burn_rate": 2.0,
   "expected_days_to_exhaust_budget": 3.5,
-  "eligibility": "Authenticated syntactically valid booking requests at defined service boundary, including legitimate conflicts; excludes health checks."
+  "eligibility": "Authenticated syntactically valid booking requests at defined service boundary, including legitimate conflicts; excludes health checks.",
+  "interpretation_note": "The observed seven-day fixture already exceeds its budget. The days-to-exhaust calculation assumes a fresh window, steady traffic and a sustained bad-event fraction; it is not remaining time after the observed window."
  },
  "resources": {
   "successful_searches": 100,
@@ -1133,7 +1134,8 @@
     "candidate_a": "invents a 60-minute limit",
     "request_b": "R-02 as written",
     "candidate_b": "implements 30 through 120 inclusive",
-    "note": "synthetic authored candidates; no live model call"
+    "note": "synthetic authored candidates; no live model call",
+    "limit": "A precise request does not guarantee correct output; reuse the independent 120-minute check"
    },
    "week_text_shows": [
     "29, 30, 120, and 121 minute requests",
@@ -1143,7 +1145,15 @@
     "30",
     "120",
     "121"
-   ]
+   ],
+   "curriculum_refinement": {
+    "kind": "simulated, original course-authored comparison",
+    "reviewed": "22 September 2026",
+    "claim": "A precise requirement enables checking; it does not guarantee a correct draft",
+    "candidate_ref": "w13/plausible-candidate",
+    "rule": "R-02",
+    "decisive_minutes": 120
+   }
   },
   "w02/quality-with-conditions": {
    "requirement": "Q-01",
@@ -1152,7 +1162,14 @@
    "boundary": "search API at the service boundary",
    "week_text_shows": [
     "500 milliseconds under 50 concurrent users"
-   ]
+   ],
+   "qualitative_acceptance": {
+    "kind": "simulated, original course-authored comparison",
+    "requirement": "R-05",
+    "condition": "keyboard-only booking path",
+    "acceptance": "the outcome is reachable and understandable",
+    "lesson": "Observable acceptance may be categorical or numerical"
+   }
   },
   "w02/traceability-matrix": {
    "rows": [
@@ -1247,7 +1264,20 @@
     "Cancelled -> Confirmed",
     "Rejected -> Confirmed"
    ],
-   "note": "a UI timeout does not delete the stored booking"
+   "note": "a UI timeout does not delete the stored booking",
+   "curriculum_refinement": {
+    "kind": "simulated, original course-authored comparison",
+    "reviewed": "22 September 2026",
+    "questions": [
+     "Can a forbidden state occur?",
+     "Will pending work eventually be resolved?"
+    ],
+    "names": [
+     "safety invariant",
+     "progress property"
+    ],
+    "limit": "Transition notation alone proves neither the implementation nor eventual completion"
+   }
   },
   "w03/identity-and-data": {
    "entities": {
@@ -1305,6 +1335,17 @@
     "booking": "B-001",
     "display_name_at_booking": "Seminar Room 1",
     "reason": "the receipt must show what the user saw; duplication is intentional here"
+   },
+   "curriculum_refinement": {
+    "kind": "simulated, original course-authored comparison",
+    "reviewed": "22 September 2026",
+    "checks": [
+     "identifier shape",
+     "referenced room exists",
+     "domain rule holds",
+     "requester is permitted"
+    ],
+    "example_room_ref": "case.rooms"
    }
   },
   "w03/sequence-not-state": {
@@ -1459,7 +1500,25 @@
     "label": "a temporary interface choice becomes a difficult data migration",
     "effect": "reversibility of the identity decision drops; resolve that uncertainty first"
    },
-   "scale": "ordinal judgments with notes; no invented probabilities"
+   "scale": "ordinal judgments with notes; no invented probabilities",
+   "curriculum_refinement": {
+    "kind": "simulated, original course-authored comparison",
+    "reviewed": "22 September 2026",
+    "alternatives": [
+     "investigate",
+     "implement",
+     "reduce scope",
+     "defer"
+    ],
+    "cost_dimensions": [
+     "effort",
+     "elapsed waiting",
+     "continuing support",
+     "exit cost",
+     "opportunity cost"
+    ],
+    "measurement": "qualitative judgments; no invented money or probability"
+   }
   },
   "w05/dependency-example": {
    "components": [
@@ -1610,7 +1669,22 @@
     "blocks the confirmation response"
    ],
    "rule": "R-04",
-   "changed_condition": "only the error behavior of the replacement changes"
+   "changed_condition": "only the error behavior of the replacement changes",
+   "curriculum_refinement": {
+    "kind": "simulated, original course-authored comparison",
+    "reviewed": "22 September 2026",
+    "result_kinds": [
+     "booking confirmed",
+     "domain rejection",
+     "infrastructure unavailable"
+    ],
+    "distinct_claims": [
+     "shape",
+     "domain validity",
+     "authorization",
+     "atomic enforcement"
+    ]
+   }
   },
   "w05/refactoring-under-checks": {
    "cases": [
@@ -2006,7 +2080,18 @@
     "policy-90": "c5",
     "limit-message": "c4"
    },
-   "fast_forward_example": "main at c2 moves to c3 without a merge commit when nothing diverged"
+   "fast_forward_example": "main at c2 moves to c3 without a merge commit when nothing diverged",
+   "curriculum_refinement": {
+    "kind": "simulated, original course-authored comparison",
+    "reviewed": "22 September 2026",
+    "locations": [
+     "working tree",
+     "selected changes to commit",
+     "local recorded commit",
+     "shared remote reference"
+    ],
+    "claim": "Committing and sharing are separate actions"
+   }
   },
   "w07/conflict-and-intent": {
    "ancestor": "MAX_MINUTES = 120\nif minutes > MAX_MINUTES:\n    reject()\n",
@@ -2067,6 +2152,20 @@
     "description_shown": "fix stuff",
     "drafted_by": "an automated assistant",
     "reviewer_needs_unchanged": true
+   },
+   "curriculum_refinement": {
+    "kind": "simulated, original course-authored comparison",
+    "reviewed": "22 September 2026",
+    "disagreement_resolution": [
+     "restate the claim",
+     "identify missing evidence",
+     "record decision owner",
+     "preserve rationale"
+    ],
+    "collaboration_options": [
+     "asynchronous review",
+     "paired investigation"
+    ]
    }
   },
   "w08/friendly-example": {
@@ -2196,7 +2295,29 @@
      "scope": "integration with a controlled double plus a contract check against the real provider",
      "limitation": "the double encodes assumptions about the provider"
     }
-   ]
+   ],
+   "curriculum_refinement": {
+    "kind": "simulated, original course-authored comparison",
+    "reviewed": "22 September 2026",
+    "consumer_expects": "notification failure remains separate from booking outcome",
+    "provider_variant": "raises into the booking path",
+    "boundary_evidence": "contract or integration check",
+    "limit": "A double does not verify the real provider"
+   },
+   "exploratory_comparison": {
+    "kind": "simulated, original course-authored comparison",
+    "source": "S60",
+    "question": "How does someone recover from a lost response?",
+    "input_method": "keyboard",
+    "stored_booking": "confirmed",
+    "initial_response": "lost",
+    "subsequent_observation": "reopening the booking retrieves its confirmed status",
+    "interface_before": "Submitting",
+    "interface_after": "Confirmed",
+    "discovery": "retrieved confirmation and the displayed status disagree",
+    "regression_expectation": "display Confirmed after retrieving confirmed status",
+    "usability_question": "Can a representative person complete recovery and explain the outcome?"
+   }
   },
   "w08/properties-and-counterexamples": {
    "properties": [
@@ -2487,10 +2608,10 @@
     "A-101",
     "A-102"
    ],
-   "static_checks_scope": "linters, type checkers and security scanners find unused code, type mismatches and known insecure patterns; they know nothing about R-02 or R-03",
+   "static_checks_scope": "Generic linters, type checkers and security scanners check configured properties; without a specification of R-02 or R-03 they need not detect the domain-rule defect. Specialized static analysis may check richer supplied properties.",
    "week_text_shows": [
     "static checks",
-    "“duration < 120” comparison passes them"
+    "generic checks without a specification of R-02"
    ]
   },
   "w10/artifact-and-configuration": {
@@ -2517,7 +2638,18 @@
     "production_misconfigured": "log-only",
     "effect": "U-02 cancel allowed in production with the same artifact"
    },
-   "secrets": "references only, never values"
+   "secrets": "references only, never values",
+   "curriculum_refinement": {
+    "kind": "simulated, original course-authored comparison",
+    "reviewed": "22 September 2026",
+    "verification_identity": "may run isolated checks",
+    "release_identity": "may promote an approved artifact",
+    "provenance_binding": [
+     "artifact digest",
+     "expected producer"
+    ],
+    "secret_handling": "references only"
+   }
   },
   "w10/delivery-measures": {
    "data_ref": "delivery",
@@ -2672,7 +2804,18 @@
    "data_ref": "retry_model",
    "deck_shows": [
     "Q6"
-   ]
+   ],
+   "curriculum_refinement": {
+    "kind": "simulated, original course-authored comparison",
+    "reviewed": "22 September 2026",
+    "admission_controls": [
+     "bounded queues",
+     "load shedding"
+    ],
+    "preserved_rule": "No false booking confirmation",
+    "jitter_scope": "conceptual extension; not calculated by the core deterministic retry fixture",
+    "source": "S55"
+   }
   },
   "w12/understand-before-changing": {
    "snippets": [
@@ -2804,7 +2947,23 @@
    "contraction_condition": "no old reader active over the observation window, every record carries end, sampled readers agree",
    "week_text_shows": [
     "durationMinutes"
-   ]
+   ],
+   "curriculum_refinement": {
+    "kind": "simulated, original course-authored comparison",
+    "reviewed": "22 September 2026",
+    "restore_evidence": [
+     "restored data is usable",
+     "consistency checked",
+     "later writes accounted for",
+     "restoration interruption considered"
+    ],
+    "requirements": [
+     "acceptable data loss",
+     "restoration time"
+    ],
+    "external_effect_limit": "Delivered notifications are not undone",
+    "source": "S56"
+   }
   },
   "w12/prioritize-by-consequence": {
    "items": [
@@ -3144,7 +3303,8 @@
     "exists_in_registry": false,
     "risk": "anyone can publish a package under a name a code assistant invented",
     "blocked_by": "inventory check before build",
-    "resolution": "a person confirms or removes the dependency"
+    "resolution": "a person confirms or removes the dependency",
+    "registry_scope": "fictional course registry; no public-registry availability claim"
    },
    "week_text_shows": [
     "textenc-turbo"
@@ -3208,6 +3368,29 @@
     "label": "notification fails after the closure is recorded",
     "bad_design": "the affected-user task is lost",
     "good_design": "pending communication recorded; affected status still displayed; closure and history kept"
+   },
+   "curriculum_refinement": {
+    "kind": "simulated, original course-authored comparison",
+    "reviewed": "22 September 2026",
+    "decision_record": [
+     "responsible owner",
+     "permitted action",
+     "independent result",
+     "observation after exposure",
+     "recovery condition"
+    ]
+   },
+   "professional_judgment": {
+    "kind": "Original qualitative teaching scenario; ethical framing supported by S58",
+    "condition": "Sponsor requests release despite the known missing accessible cue",
+    "consequence": "Affected users still cannot perceive the information needed to respond",
+    "response": [
+     "identify affected people",
+     "explain the concern",
+     "propose safer release or deferral",
+     "escalate the unresolved decision"
+    ],
+    "invariant": "Approval does not repair the missing cue or create a new booking permission"
    }
   },
   "w14/compare-defensible-options": {
@@ -3707,6 +3890,293 @@
     "dependency graph",
     "sequence diagram"
    ]
+  },
+  "w05/cohesion-and-responsibility": {
+   "curriculum_refinement": {
+    "kind": "simulated, original course-authored comparison",
+    "reviewed": "22 September 2026",
+    "stages": [
+     "validate input",
+     "decide domain outcome",
+     "report explicit result"
+    ],
+    "policy": "duration predicate",
+    "external_effects": [
+     "clock",
+     "storage",
+     "notification"
+    ]
+   }
+  },
+  "w05/abstraction-cost": {
+   "curriculum_refinement": {
+    "kind": "simulated, original course-authored comparison",
+    "reviewed": "22 September 2026",
+    "options": [
+     "build a small adapter",
+     "reuse a maintained library",
+     "buy a managed capability"
+    ],
+    "compare": [
+     "integration",
+     "licensing",
+     "support",
+     "data portability",
+     "exit cost"
+    ]
+   }
+  },
+  "w06/contracts-and-evolution": {
+   "curriculum_refinement": {
+    "kind": "simulated, original course-authored comparison",
+    "reviewed": "22 September 2026",
+    "request_fields": [
+     "room_id",
+     "start",
+     "end"
+    ],
+    "identity": "authenticated requester from trusted context",
+    "response_fields": [
+     "booking_id",
+     "outcome"
+    ],
+    "error_meanings": [
+     "invalid request",
+     "not permitted",
+     "booking conflict",
+     "service unavailable"
+    ],
+    "retry_rule_ref": "w06/retry-and-idempotency",
+    "standard_source": "S52",
+    "limit": "Schema describes shape; behavioral and security claims need separate evidence"
+   }
+  },
+  "w06/async-and-consistency": {
+   "curriculum_refinement": {
+    "kind": "simulated, original course-authored comparison",
+    "reviewed": "22 September 2026",
+    "pattern": "transactional outbox",
+    "atomic_commit": [
+     "booking",
+     "pending notification record"
+    ],
+    "crash_after_commit": "pending work remains discoverable",
+    "crash_after_send_before_ack": "a delivery attempt can repeat",
+    "guarantee_limit": "No exactly-once email guarantee"
+   }
+  },
+  "w09/security-through-change": {
+   "curriculum_refinement": {
+    "kind": "simulated, original course-authored comparison",
+    "reviewed": "22 September 2026",
+    "mapping": [
+     "risk",
+     "verification requirement",
+     "implementation control",
+     "evidence",
+     "owner"
+    ],
+    "source_roles": {
+     "S13": "risk awareness",
+     "S51": "verification requirements",
+     "S14": "development practices"
+    }
+   }
+  },
+  "w10/deployment-and-exposure": {
+   "curriculum_refinement": {
+    "kind": "simulated, original course-authored comparison",
+    "reviewed": "22 September 2026",
+    "flag_lifecycle": [
+     "owner",
+     "exposure condition",
+     "observed user outcome",
+     "recovery condition",
+     "retirement condition"
+    ]
+   }
+  },
+  "w11/hypothesis-before-fix": {
+   "curriculum_refinement": {
+    "kind": "simulated, original course-authored comparison",
+    "reviewed": "22 September 2026",
+    "observations": {
+     "trace": "localize waits across boundaries",
+     "profile": "locate expensive computation"
+    },
+    "question": "Which work limits the user outcome?"
+   },
+   "optional_lookup_comparison": {
+    "kind": "simulated, qualitative original comparison; no benchmark values",
+    "source": "S59",
+    "precondition": "storage lookup is the supported hypothesis",
+    "held_constant": [
+     "query",
+     "required result",
+     "authoritative no-overlap decision"
+    ],
+    "changed_condition": "amount of stored data",
+    "alternatives": [
+     "examine every booking",
+     "use an index to locate a relevant subset"
+    ],
+    "costs_to_consider": [
+     "lookup work",
+     "index storage",
+     "index maintenance on writes"
+    ],
+    "next_evidence": "representative read/write workload with measured user outcomes",
+    "scope": "Operation counts alone are not elapsed-time measurements."
+   }
+  },
+  "w13/context-and-unknowns": {
+   "curriculum_refinement": {
+    "kind": "simulated, original course-authored comparison",
+    "reviewed": "22 September 2026",
+    "task_specification": [
+     "intended outcome",
+     "relevant files",
+     "invariants",
+     "non-goals",
+     "available checks",
+     "stop condition"
+    ],
+    "useful_tasks": [
+     "explain unfamiliar code",
+     "propose boundary cases",
+     "draft a small refactoring"
+    ],
+    "acceptance": "inspect independent evidence for the accepted change"
+   }
+  },
+  "w13/output-and-flow": {
+   "curriculum_refinement": {
+    "kind": "simulated, original course-authored comparison",
+    "reviewed": "22 September 2026",
+    "evidence_types": [
+     "controlled task study",
+     "self-report survey",
+     "constructed simulation"
+    ],
+    "outcomes": [
+     "time to accepted behavior",
+     "review effort",
+     "rework",
+     "downstream effects"
+    ],
+    "source_limits": {
+     "S53": "selection and time-measurement limitations",
+     "S54": "self-reported impact with possible selection bias",
+     "S57": "organizational capability guidance"
+    }
+   }
+  },
+  "w13/two-different-engineering-questions": {
+   "curriculum_refinement": {
+    "kind": "simulated, original course-authored comparison",
+    "reviewed": "22 September 2026",
+    "baseline": "deterministic room suggestion",
+    "evaluation_dimensions": [
+     "task relevance",
+     "unsupported claims",
+     "permission",
+     "latency",
+     "cost"
+    ],
+    "versioned_inputs": [
+     "model",
+     "prompt",
+     "retrieval data",
+     "evaluation set"
+    ],
+    "limit": "Evaluation success does not authorize an action"
+   }
+  },
+  "w02/elicitation-and-scope": {
+   "kind": "simulated, original course-authored comparison; not collected user research",
+   "reviewed": "22 September 2026",
+   "requested_solution": "another confirmation email",
+   "elicitation_question": "What happened on your last booking?",
+   "observation": "After submitting, the person cannot tell whether the booking was stored.",
+   "underlying_need": "know the outcome",
+   "prototype_states": [
+    "Submitting",
+    "Confirmed",
+    "Unknown outcome"
+   ],
+   "comparison": "A prototype walkthrough informs the requirement; the authoritative stored result is a separate concern.",
+   "week_text_shows": [
+    "another confirmation email",
+    "last booking",
+    "simulated observation"
+   ]
+  }
+ },
+ "transfer_checks": {
+  "w02": {
+   "kind": "Original qualitative teaching scenario, not measured data",
+   "question": "A desktop editor request says 'save my work safely.' What must be clarified before choosing autosave?",
+   "answer": "Clarify what counts as saved, acceptable loss after interruption, recovery feedback and overwrite behavior. Choose an observable recovery example with the user; autosave is a possible design, not the requirement itself."
+  },
+  "w03": {
+   "kind": "Original qualitative teaching scenario, not measured data",
+   "question": "A mobile note says 'saved on this device' while synchronization is pending. Does that contradict the cloud copy being older?",
+   "answer": "No. Local persistence and remote synchronization are separate states. Model both and make the message identify which promise has been met; pending synchronization still needs a defined completion or recovery path."
+  },
+  "w04": {
+   "kind": "Original qualitative teaching scenario, not measured data",
+   "question": "A library team writes changes faster, but maintainers can review no more than before. What should it inspect next?",
+   "answer": "Inspect waiting work, review capacity, accepted changes and rework. Faster drafting can grow the queue without improving completion; choose the next improvement from the constraint and its quality consequences."
+  },
+  "w05": {
+   "kind": "Original qualitative teaching scenario, not measured data",
+   "question": "An image library changes its file decoder while retaining the same function name. What does a caller still need to check?",
+   "answer": "Check accepted inputs, pixel and color meaning, error results and side effects promised by the interface. A matching name or type shape does not settle behavioral compatibility."
+  },
+  "w06": {
+   "kind": "Original qualitative teaching scenario, not measured data",
+   "question": "A batch importer crashes after storing a record but before marking its input complete. What makes a restart safe?",
+   "answer": "Define a stable identity for the intended operation and coordinate its effect with durable completion evidence, or make replay preserve the intended result. A crash does not establish that no write occurred; reusing an identity for changed input needs an explicit policy."
+  },
+  "w07": {
+   "kind": "Original qualitative teaching scenario, not measured data",
+   "question": "A library's code and documentation merge cleanly, but they describe different default behavior. Is the change ready?",
+   "answer": "Resolve the intended contract and check the implementation and documentation against it. A textual merge detects some overlapping edits; it does not reconcile meaning across different files."
+  },
+  "w08": {
+   "kind": "Original qualitative teaching scenario, not measured data",
+   "question": "A file converter passes a test whose expected output is produced by the same conversion function. What would strengthen the test?",
+   "answer": "Use an independently derived small example and a property justified by the format's meaning, including a relevant boundary. If round-trip conversion is promised, check it too; a shared defect can make both directions agree while still producing the wrong result."
+  },
+  "w09": {
+   "kind": "Original qualitative teaching scenario, not measured data",
+   "question": "A desktop application hides its export button, but its export entry point can still be called. Where does the permission decision belong?",
+   "answer": "At the trusted boundary that performs the export, using protected identity and data-access rules. Interface visibility guides interaction; it cannot enforce a restriction when another path reaches the operation."
+  },
+  "w10": {
+   "kind": "Original qualitative teaching scenario, not measured data",
+   "question": "A command-line release was tested from source, but users download a separately rebuilt package. What connects their result to those checks?",
+   "answer": "Identify the distributed artifact and its resolved build inputs. Promote the verified package where possible, or verify the rebuilt artifact and the relevant environment; matching source alone leaves other inputs unsettled."
+  },
+  "w11": {
+   "kind": "Original qualitative teaching scenario, not measured data",
+   "question": "A batch report finishes quickly but silently omits valid input records. Is elapsed time enough to call the run successful?",
+   "answer": "No. Define success using correct, sufficiently complete output and the relevant deadline or latency condition. Preserve rejected-input reasons and trace missing records; fast completion alone misses the user promise."
+  },
+  "w12": {
+   "kind": "Original qualitative teaching scenario, not measured data",
+   "question": "A desktop application's update changes its document format. Does reinstalling the old application recover the documents?",
+   "answer": "Only if that version can read the actual saved data or a verified conversion or restore path exists. Account for edits since any backup and communicate the recovery consequences before changing the format."
+  },
+  "w13": {
+   "kind": "Original qualitative teaching scenario, not measured data",
+   "question": "An assistant proposes a repository-wide rename with a script that can write anywhere on disk. What authority does that task need?",
+   "answer": "Limit writes to the intended checkout, inspect the proposed changes and run relevant checks before acceptance. Repository text must not expand that permission; independent scope enforcement and recoverable history bound a useful automated change."
+  },
+  "w14": {
+   "kind": "Original qualitative teaching scenario, not measured data",
+   "question": "For a device-configuration update, which parts of this course's release reasoning transfer, and what must be learned again?",
+   "answer": "Trace the need to behavior, model failure, verify the candidate, control authority and plan recovery. Elicit the device's interruption behavior, safe operating state, update constraints and consequences of failure; room-booking policies and web-service rollout assumptions do not transfer automatically."
   }
  }
 }

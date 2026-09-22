@@ -1,10 +1,10 @@
 WEEK 05 | MODULARITY, INTERFACES, AND THE COST OF CHANGE
-Research and curriculum date: 16 September 2026
+Curriculum review: 22 September 2026; source retrieval dates are recorded individually
 ==============================================================================
 
 When one requirement changes, which parts should need to change?
 
-Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-05.html
+Instructor lecture plan | flexible pacing | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-05.html
 
 1. PURPOSE, CASE STATE, AND SCOPE
 ---------------------------------
@@ -82,7 +82,7 @@ Bridge scene | ID: same-behavior-different-design
 
 VISUAL IDEA: Two matching booking screens above two different internal dependency maps.
 
-SITUATION, PREDICTION, AND MECHANISM: Ask whether the screens reveal which design will be easier to change. Reveal the internal responsibilities only after the class commits a prediction. Trace one successful request through each version.
+SITUATION, PREDICTION, AND MECHANISM: Ask whether the screens reveal which design will be easier to change. Reveal the internal responsibilities only after the viewer commits a prediction. Trace one successful request through each version.
 
 CHANGE ONE CONDITION AND COMPARE: Change the maximum booking duration while holding the screen and user goal constant. Stop before highlighting affected components so students identify likely edits first.
 
@@ -112,7 +112,7 @@ Bridge scene | ID: cohesion-and-responsibility
 
 VISUAL IDEA: Responsibility cards cluster by reason to change rather than by file extension.
 
-SITUATION, PREDICTION, AND MECHANISM: Show a “Utilities” module containing booking rules, email formatting, date display, and storage access. Ask which tasks change for the same reason. Reveal a regrouping around meaningful responsibilities.
+SITUATION, PREDICTION, AND MECHANISM: Show a “Utilities” module containing booking rules, email formatting, date display, and storage access. Ask which tasks change for the same reason. Reveal a regrouping around meaningful responsibilities. Make construction visible with the existing duration predicate: isolate the deterministic policy from clock, storage and notification effects. Walk an input through validation, a domain decision and an explicit result. Clear names and small responsibilities help a maintainer locate the decision; short code alone is not the objective.
 
 CHANGE ONE CONDITION AND COMPARE: Add a new notification format while keeping booking policy unchanged. Compare the groups affected before and after regrouping. Acknowledge that a boundary that separates tightly related behavior can also create unnecessary coordination.
 
@@ -127,7 +127,7 @@ Anchor scene | ID: interface-contract
 
 VISUAL IDEA: A component plugs into a labeled interface; inputs, outputs, errors, and side effects are shown as contract cards.
 
-SITUATION, PREDICTION, AND MECHANISM: Replace a notification implementation while keeping its call shape unchanged. Ask whether matching function names guarantees compatibility. Reveal differences in failure reporting, repeated delivery, and whether the call blocks confirmation. Use R-04 to state the relevant behavior.
+SITUATION, PREDICTION, AND MECHANISM: Replace a notification implementation while keeping its call shape unchanged. Ask whether matching function names guarantees compatibility. Reveal differences in failure reporting, repeated delivery, and whether the call blocks confirmation. Use R-04 to state the relevant behavior. Use the return value to distinguish a successful booking decision, a domain rejection and unavailable infrastructure. A well-shaped value can still violate a domain constraint, and a type annotation does not enforce authorization or an atomic booking decision. Keep these distinctions in Python-like pseudocode and a small result table.
 
 CHANGE ONE CONDITION AND COMPARE: Change only the error behavior of the replacement. Compare a clearly reported failed notification with an implementation that throws into the booking path and undoes the user promise. Introduce preconditions, outcomes, and error expectations without a long type-system lecture.
 
@@ -174,7 +174,7 @@ VISUAL IDEA: A comparison matrix contrasts duplication, a small policy function,
 
 SITUATION, PREDICTION, AND MECHANISM: Ask which option fits two clear policy rules and a small team. Reveal setup, understanding, extension, and debugging costs as qualitative judgments. Avoid invented precision or a decorative three-dimensional score surface.
 
-CHANGE ONE CONDITION AND COMPARE: Change one condition: several independently changing policies now exist. Revisit the decision and identify what evidence might justify more structure. Keep flexibility as a costed option, not a virtue without limits.
+CHANGE ONE CONDITION AND COMPARE: Change one condition: several independently changing policies now exist. Revisit the decision and identify what evidence might justify more structure. Keep flexibility as a costed option, not a virtue without limits. Offer building a small adapter, reusing a maintained library, and buying a managed capability as alternatives. Compare integration, licensing, support, data portability and exit cost using qualitative evidence. Buying or reusing changes responsibility; it does not remove the need to verify the required behavior.
 
 PRINCIPLE TO REVEAL: Abstraction should earn its complexity by simplifying real responsibilities or plausible change.
 
@@ -230,6 +230,14 @@ QUESTION 4: What should an architecture or design decision record preserve?
 
 ANSWER: Context, alternatives, choice, consequences, and the assumptions or triggers that warrant revisiting it.
 
+QUESTION 5: Does a well-typed result prove that cancellation is authorized?
+
+ANSWER: No. Shape, domain validity and permission are separate claims with separate evidence.
+
+QUESTION 6: An image library changes its file decoder while retaining the same function name. What does a caller still need to check?
+
+ANSWER: Check accepted inputs, pixel and color meaning, error results and side effects promised by the interface. A matching name or type shape does not settle behavioral compatibility.
+
 9. PDF CONTINUITY AND LECTURE ELASTICITY
 ----------------------------------------
 
@@ -238,10 +246,12 @@ WHAT THE PRINTED EXPLANATION MUST PRESERVE
 
 The PDF must preserve both designs before and after the same change. Include the change-impact legend, the behavioral interface contract, and the refactoring check table. Do not print only the final clean diagram: the comparison is the explanation. The stable main anchor is week-05.html#/dependency-example.
 
-SHORTER AND LONGER MEETING ROUTES
----------------------------------
+CORE AND OPTIONAL DEPTH
+-----------------------
 
-Preserve change propagation, behavioral contracts, and checked refactoring. In a shorter lecture, fold the abstraction-cost discussion into the decision record. Additional time can explore a second kind of change, such as replacing notification delivery, to test whether the chosen boundaries generalize.
+Close with the answered transfer question in Section 8, using its small contrasting setting. Preserve the question and explanation in the reading copy.
+
+Protect dependency spread, behavioral contracts and refactoring. Construction is the mechanism inside those demonstrations. Optional depth: name Strategy or Adapter only after its responsibility and trade-off are visible; omit a SOLID or pattern catalogue.
 
 10. HANDOFF
 -----------
@@ -251,4 +261,4 @@ Carry the module responsibilities, contracts, and decision record into Week 6. T
 11. SOURCES AND CURRENCY NOTES
 ------------------------------
 
-Primary references: S01, S02, S07, S24. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S07, S24. Full titles, URLs, dated status, and access limitations appear in the source register. Curriculum review: 22 September 2026. See each source entry for its actual retrieval date; unchanged references retain earlier dates. The examples and visual teaching sequences are original proposals; no live service behavior is implied.

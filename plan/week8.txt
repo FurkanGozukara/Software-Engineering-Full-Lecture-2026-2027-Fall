@@ -1,10 +1,10 @@
 WEEK 08 | TESTING BEHAVIOR AND BUILDING CREDIBLE EVIDENCE
-Research and curriculum date: 16 September 2026
+Curriculum review: 22 September 2026; source retrieval dates are recorded individually
 ==============================================================================
 
 Which checks would challenge our assumptions rather than merely repeat them?
 
-Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-08.html
+Instructor lecture plan | flexible pacing | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-08.html
 
 1. PURPOSE, CASE STATE, AND SCOPE
 ---------------------------------
@@ -112,13 +112,13 @@ Anchor scene | ID: choose-test-scope
 
 VISUAL IDEA: A layered system view highlights a pure policy function, component interaction, storage enforcement, and complete user journey.
 
-SITUATION, PREDICTION, AND MECHANISM: Ask whether a unit check of overlap arithmetic proves that concurrent requests cannot double-book. Reveal the missing shared-storage behavior. Place focused function checks, integration checks, and a complete booking journey where they observe their respective claims.
+SITUATION, PREDICTION, AND MECHANISM: Ask whether a unit check of overlap arithmetic proves that concurrent requests cannot double-book. Reveal the missing shared-storage behavior. Place focused function checks, integration checks, and a complete booking journey where they observe their respective claims. Use the same keyboard booking journey to explain exploratory testing: start with the question of how someone recovers from a lost response, then choose the next check from what the interface reveals. In the authored comparison, reopening the stored booking retrieves confirmation but the interface still says Submitting. Inspect the corrected Confirmed state and capture the discovered mismatch as a repeatable regression example. This is guided investigation with recorded observations; scripted checks preserve known expectations. A separate usability study would ask representative people to attempt the task and explain what they understood. The scene is a simulated example, not a claim that such a study occurred. [S60]
 
-CHANGE ONE CONDITION AND COMPARE: Replace the real notification boundary with a controlled test double. Compare faster isolation of booking behavior with the remaining uncertainty about actual integration. Show a separate contract or integration check for that uncertainty.
+CHANGE ONE CONDITION AND COMPARE: Replace the real notification boundary with a controlled test double. Compare faster isolation of booking behavior with the remaining uncertainty about actual integration. Show a separate contract or integration check for that uncertainty. Use a consumer expectation that the actual provider violates to explain contract testing, then keep the cross-component journey check for behavior that neither side can establish alone. A mock returning the desired value is not evidence that the real boundary behaves that way.
 
 PRINCIPLE TO REVEAL: The appropriate test scope follows the claim and failure risk, not the prestige of a test label.
 
-STUDENT PDF TREATMENT: Print a claim-to-check-scope matrix with one explicit limitation per row.
+STUDENT PDF TREATMENT: Print a claim-to-check-scope matrix with one explicit limitation per row, and retain the exploration question, discovered status mismatch and resulting regression example.
 
 04. THE EXPECTED ANSWER NEEDS ITS OWN JUSTIFICATION
 ---------------------------------------------------
@@ -187,7 +187,7 @@ Bridge scene | ID: testing-as-feedback
 
 VISUAL IDEA: A short requirement-to-failing-check-to-small-change-to-recheck loop ends with a refactoring comparison.
 
-SITUATION, PREDICTION, AND MECHANISM: Ask what should happen before fixing the exclusive upper bound. Debug in four visible moves first: reproduce the failure with the 120-minute case, shrink it to the smallest failing input, state one hypothesis about the comparison, and confirm it with one targeted observation. Then reveal a focused failing check, a minimal correction, and rerun evidence. Explain test-first development as one way to make the expected behavior explicit, not a guarantee of good requirements.
+SITUATION, PREDICTION, AND MECHANISM: Ask what should happen before fixing the exclusive upper bound. Debug in four visible moves first: reproduce the failure with the 120-minute case, shrink it to the smallest failing input, state one hypothesis about the comparison, and confirm it with one targeted observation. Then reveal a focused failing check, a minimal correction, and rerun evidence. Explain test-first development as one way to make the expected behavior explicit, not a guarantee of good requirements. Relate the existing examples to verification before and after execution: review and static analysis examine some claims without running the service; dynamic checks observe particular executions. A precondition, postcondition or invariant must still be justified by the requirement.
 
 CHANGE ONE CONDITION AND COMPARE: Refactor the corrected predicate without changing its contract. Compare unchanged behavior under the checks while acknowledging untested conditions and higher-level integration evidence.
 
@@ -230,6 +230,14 @@ QUESTION 4: Why can implementation and test agree while both are wrong?
 
 ANSWER: They may share the same mistaken assumption or calculate the expected result using the defective logic.
 
+QUESTION 5: Does a controlled test double establish that the real provider honors its contract?
+
+ANSWER: No. It isolates a claim; evidence at the real boundary is still needed.
+
+QUESTION 6: A file converter passes a test whose expected output is produced by the same conversion function. What would strengthen the test?
+
+ANSWER: Use an independently derived small example and a property justified by the format's meaning, including a relevant boundary. If round-trip conversion is promised, check it too; a shared defect can make both directions agree while still producing the wrong result.
+
 9. PDF CONTINUITY AND LECTURE ELASTICITY
 ----------------------------------------
 
@@ -238,10 +246,12 @@ WHAT THE PRINTED EXPLANATION MUST PRESERVE
 
 The student PDF must contain the actual input values, expected outcomes, and reasons—not only pass/fail colors. Preserve the test-scope matrix, the oracle counterexample, and the mutation comparison. Print the fixed clock value used in the cancellation scene. Include the principle and a short statement of remaining uncertainty after each major demonstration.
 
-SHORTER AND LONGER MEETING ROUTES
----------------------------------
+CORE AND OPTIONAL DEPTH
+-----------------------
 
-Protect boundary reasoning, scope selection, and properties as the three anchors. Mutation and test-first feedback should remain concise rather than becoming separate framework tutorials. With additional discussion time, ask whether the current evidence supports a concurrency claim; revisit the Week 6 interleaving rather than introducing a new domain.
+Close with the answered transfer question in Section 8, using its small contrasting setting. Preserve the question and explanation in the reading copy.
+
+Protect discriminating examples, test scope and properties. Use one existing provider mismatch for contract testing and the existing journey for the exploratory comparison, replacing a repeated catalogue of test labels. Optional depth: reduce a malformed-input counterexample to explain fuzzing; bounded model exploration belongs after the Week 3 invariant, without a separate tool survey.
 
 10. HANDOFF
 -----------
@@ -251,4 +261,4 @@ Carry independent checks and explicit invariants into Week 9. Correctness now in
 11. SOURCES AND CURRENCY NOTES
 ------------------------------
 
-Primary references: S01, S02, S11, S12, S40. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S11, S12, S40, S60. Full titles, URLs, dated status, and access limitations appear in the source register. Curriculum review: 22 September 2026. See each source entry for its actual retrieval date; unchanged references retain earlier dates. The examples and visual teaching sequences are original proposals; no live service behavior is implied.

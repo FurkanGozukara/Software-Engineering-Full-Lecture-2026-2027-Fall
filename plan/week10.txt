@@ -1,10 +1,10 @@
 WEEK 10 | AUTOMATED DELIVERY AND EVIDENCE-BASED RELEASE
-Research and curriculum date: 16 September 2026
+Curriculum review: 22 September 2026; source retrieval dates are recorded individually
 ==============================================================================
 
 What evidence should travel with a change before it reaches users?
 
-Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-10.html
+Instructor lecture plan | flexible pacing | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-10.html
 
 1. PURPOSE, CASE STATE, AND SCOPE
 ---------------------------------
@@ -82,7 +82,7 @@ Anchor scene | ID: change-through-gates
 
 VISUAL IDEA: A change token moves through integration, build, static checks, focused checks, broader checks, artifact recording, and release decision; evidence cards remain attached.
 
-SITUATION, PREDICTION, AND MECHANISM: Ask which stage would catch the incorrect 120-minute boundary and which would check ownership. Reveal distinct checks and pause at a failure. The token cannot advance merely because the animation has reached its next step. Label the static checks with their scope: linters, type checkers and security scanners find unused code, type mismatches and known insecure patterns, but they know nothing about R-02, so a “duration < 120” comparison passes them and fails the boundary check. Explain that gate placement follows risk and feedback needs.
+SITUATION, PREDICTION, AND MECHANISM: Ask which stage would catch the incorrect 120-minute boundary and which would check ownership. Reveal distinct checks and pause at a failure. The token cannot advance merely because the animation has reached its next step. Label the static checks with their scope: linters, type checkers and security scanners find unused code, type mismatches and known insecure patterns, but generic checks without a specification of R-02 need not reject “duration < 120”; the independent boundary check does. Specialized static analysis can check richer properties when those properties are supplied. Explain that gate placement follows risk and feedback needs.
 
 CHANGE ONE CONDITION AND COMPARE: Fix the boundary but introduce an authorization regression. Replay the same pipeline and compare which evidence changes. Show a passing gate with an explicit scope label so it is not mistaken for a universal guarantee. AI beat: let the second change be proposed by an automated assistant. It enters the same path and is blocked by the same gate. Proposing a change and passing a gate are different authorities, which Week 13 develops as bounded action.
 
@@ -114,7 +114,7 @@ VISUAL IDEA: A recorded artifact travels through environments while configuratio
 
 SITUATION, PREDICTION, AND MECHANISM: Ask whether rebuilding from the same source later necessarily gives the same result. Reveal a changed resolved dependency. Compare promoting the recorded artifact with silently rebuilding an unverified one. Keep provenance evidence distinct from functional correctness. [S16]
 
-CHANGE ONE CONDITION AND COMPARE: Hold artifact identity fixed and change a configuration value affecting authorization or a dependency endpoint. Compare why environment-specific configuration still needs validation, even when the artifact is unchanged. Secrets remain references, never visible values.
+CHANGE ONE CONDITION AND COMPARE: Hold artifact identity fixed and change a configuration value affecting authorization or a dependency endpoint. Compare why environment-specific configuration still needs validation, even when the artifact is unchanged. Secrets remain references, never visible values. Inspect the build identity and permissions as inputs too: a proposed change may run checks without permission to publish or access release secrets. Compare isolated verification with the trusted release path and bind provenance to the artifact digest and expected producer. A signature proves neither correct behavior nor the suitability of every included dependency. [S16]
 
 PRINCIPLE TO REVEAL: Artifact identity controls one source of uncertainty; configuration and environment behavior still need evidence.
 
@@ -129,7 +129,7 @@ VISUAL IDEA: A release appears in the runtime map while a feature flag and a sma
 
 SITUATION, PREDICTION, AND MECHANISM: Ask whether deploying code must expose a new behavior to everyone immediately. Reveal a disabled path, then a labeled small-cohort rollout. Make clear that hidden code is still deployed and may carry operational or security implications.
 
-CHANGE ONE CONDITION AND COMPARE: Change cohort size while holding the artifact fixed. Compare observations from a narrow rollout with the uncertainty about other users and workloads. A small cohort is not automatically representative.
+CHANGE ONE CONDITION AND COMPARE: Change cohort size while holding the artifact fixed. Compare observations from a narrow rollout with the uncertainty about other users and workloads. A small cohort is not automatically representative. Attach a responsible owner and retirement condition to the flag. Inspect the recovery decision when the small cohort crosses the stated user-outcome limit; a staged rollout needs a response policy as well as a percentage.
 
 PRINCIPLE TO REVEAL: Separating deployment from exposure can create additional decision points, provided the controls and observations are trustworthy.
 
@@ -230,6 +230,14 @@ QUESTION 4: Does a notification already delivered disappear after code rollback?
 
 ANSWER: No. External effects need their own reconciliation or compensating behavior.
 
+QUESTION 5: Why can the same artifact require new release evidence under different settings?
+
+ANSWER: Configuration, identity, permissions and dependencies can change behavior even when the artifact digest stays fixed.
+
+QUESTION 6: A command-line release was tested from source, but users download a separately rebuilt package. What connects their result to those checks?
+
+ANSWER: Identify the distributed artifact and its resolved build inputs. Promote the verified package where possible, or verify the rebuilt artifact and the relevant environment; matching source alone leaves other inputs unsettled.
+
 9. PDF CONTINUITY AND LECTURE ELASTICITY
 ----------------------------------------
 
@@ -238,17 +246,19 @@ WHAT THE PRINTED EXPLANATION MUST PRESERVE
 
 Preserve the failed gate, artifact identity chain, configuration comparison, and recovery prerequisites. The delivery-measure page must include data and units, not only KPI tiles. Print the release rationale with its uncertainty. The student version should not contain credentials, platform screenshots, or authoring controls.
 
-SHORTER AND LONGER MEETING ROUTES
----------------------------------
+CORE AND OPTIONAL DEPTH
+-----------------------
 
-Protect gate evidence, artifact-versus-configuration, and state-aware recovery as the anchors. Keep the five-measure scene readable rather than teaching a measurement platform. Extra time can compare two recovery decisions under different compatibility conditions.
+Close with the answered transfer question in Section 8, using its small contrasting setting. Preserve the question and explanation in the reading copy.
+
+Protect gates, artifact/configuration identity and state-aware recovery. Keep build permissions and flag retirement within those scenes. Optional depth: environment drift and a self-service deployment path with bounded permissions, without infrastructure-platform installation.
 
 10. HANDOFF
 -----------
 
-Carry the released artifact and observation questions into Week 11. Now the service is in use, and the class must distinguish a user-visible symptom from the evidence needed to explain it.
+Carry the released artifact and observation questions into Week 11. Now the service is in use, and the viewer must distinguish a user-visible symptom from the evidence needed to explain it.
 
 11. SOURCES AND CURRENCY NOTES
 ------------------------------
 
-Primary references: S01, S02, S16, S17. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S16, S17. Full titles, URLs, dated status, and access limitations appear in the source register. Curriculum review: 22 September 2026. See each source entry for its actual retrieval date; unchanged references retain earlier dates. The examples and visual teaching sequences are original proposals; no live service behavior is implied.

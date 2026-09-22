@@ -52,7 +52,7 @@ def check_weeks(rep: Report) -> list[dict]:
         weeks.append(w)
         for p in w["problems"]:
             rep.fail(where, p)
-        expected_banner = (f"Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges"
+        expected_banner = (f"Instructor lecture plan | flexible pacing | 8 scenes: 3 Anchors + 5 Bridges"
                            f" | planned HTML: weeks/week-{n:02d}.html")
         if w["banner"] != expected_banner:
             rep.fail(where, f"banner line differs from '{expected_banner}'")

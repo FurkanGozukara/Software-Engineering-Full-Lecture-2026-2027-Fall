@@ -212,6 +212,14 @@
     {
      "question": "What does selecting R-03 in the matrix tell us?",
      "answer": "Which decisions and checks are linked to cancellation authorization; those links need review when the rule changes."
+    },
+    {
+     "question": "Does supplying R-02 to an assistant guarantee that its candidate is correct?",
+     "answer": "No. The explicit rule makes an independent judgment possible; the inclusive boundary still needs to be checked."
+    },
+    {
+     "question": "A desktop editor request says 'save my work safely.' What must be clarified before choosing autosave?",
+     "answer": "Clarify what counts as saved, acceptable loss after interruption, recovery feedback and overwrite behavior. Choose an observable recovery example with the user; autosave is a possible design, not the requirement itself."
     }
    ],
    "sources_cited": [
@@ -253,10 +261,10 @@
      "link": "week-02.html#/elicitation-and-scope",
      "fixture_key": "w02/elicitation-and-scope",
      "visual_idea": "A context map gains questions at its boundaries; facts, assumptions, and open decisions have different labels and shapes.",
-     "situation": "Ask what must be learned before accepting a request from a guest. Reveal questions about identity, cancellation rights, accessibility, and room closures. [S25] Separate something a stakeholder stated from something a developer inferred.",
+     "situation": "Ask what must be learned before accepting a request from a guest. Reveal questions about identity, cancellation rights, accessibility, and room closures. [S25] Separate something a stakeholder stated from something a developer inferred. Make elicitation concrete with a fictional request for another confirmation email. Ask what happened on the person's last booking, then reveal an authored observation: after submitting, the person cannot tell whether the booking was stored. Compare the requested solution with the underlying need to know the outcome. A small interface prototype distinguishes Submitting, Confirmed and Unknown outcome; its walkthrough informs the requirement, while the authoritative stored result remains a separate engineering concern. Label this as a simulated observation, not user research that the course actually conducted.",
      "changed_condition": "Introduce an external visitor as a new stakeholder but keep this release's campus-member boundary. Compare explicitly deferred behavior with an accidental omission.",
      "principle": "An explicit boundary and an open-question register make uncertainty discussable.",
-     "pdf_treatment": "Print the scope boundary and a compact fact-assumption-question table.",
+     "pdf_treatment": "Print the scope boundary and a compact fact-assumption-question table. Retain the requested email, observed uncertainty and prototype comparison so the elicitation method is visible.",
      "rules": [],
      "sources": [
       "S25"
@@ -271,7 +279,7 @@
      "fixture_key": "w02/observable-behavior",
      "visual_idea": "A duration ruler, a requirement card, and example outcomes update together.",
      "situation": "Show 29, 30, 120, and 121 minute requests. Ask which should be accepted before revealing R-02: durations are at least 30 and at most 120 minutes, inclusive. Explain actor, condition, expected behavior, and rejection behavior. Keep the rule separate from a proposed slider widget.",
-     "changed_condition": "Change only the upper limit from 120 to 90 minutes in a clearly labeled temporary variant. Compare the affected examples and restore the canonical 120-minute rule afterward. Include an invalid end-before-start request to show that one boundary rule does not describe every validity condition. Then add the AI beat: two prepared, synthetic drafting requests go to an automated assistant, one carrying the sentence “keep bookings short” and one carrying R-02. Show the two candidate rules side by side: the first invents a limit, the second implements 30 through 120 inclusive. No live model call; the candidates are authored fixtures.",
+     "changed_condition": "Change only the upper limit from 120 to 90 minutes in a clearly labeled temporary variant. Compare the affected examples and restore the canonical 120-minute rule afterward. Include an invalid end-before-start request to show that one boundary rule does not describe every validity condition. Then add the AI beat: two prepared, synthetic drafting requests go to an automated assistant, one carrying the sentence “keep bookings short” and one carrying R-02. Show the two candidate rules side by side: the first invents a limit, the second implements 30 through 120 inclusive. No live model call; the candidates are authored fixtures. A precise request makes the candidate easier to judge; it does not guarantee a correct candidate. Reuse the synthetic exclusive-boundary candidate from Week 13 as a counterexample even when R-02 is supplied, and let the independent 120-minute example settle the decision.",
      "principle": "A useful requirement makes meaningful differences between acceptable and unacceptable outcomes visible.",
      "pdf_treatment": "Print the canonical rule and an input-expected-outcome table; label the 90-minute variant as a comparison only. Print the two candidate rules with the request that produced each.",
      "rules": [
@@ -288,10 +296,12 @@
      "fixture_key": "w02/quality-with-conditions",
      "visual_idea": "A response-time distribution appears beside workload and measurement-condition cards.",
      "situation": "Ask whether a 200 millisecond response proves the system is fast. Reveal Q-01: in the specified teaching fixture, the 95th percentile of search API response time should not exceed 500 milliseconds under 50 concurrent users. Explain that this is an authored target, not a universal service standard. Map the course's quality words to the ISO/IEC 25010:2023 characteristics, for example response time to performance efficiency and keyboard-accessible completion to interaction capability. [S46]",
-     "changed_condition": "Change the workload while holding the target and code constant. Compare what was measured with what was claimed. Distinguish service-boundary response time from the student's whole browser experience.",
-     "principle": "A quality requirement needs a quantity, a boundary, conditions, and an acceptance rule.",
-     "pdf_treatment": "Print the distribution, the explicit target, the fixture assumptions, and the measurement boundary.",
-     "rules": [],
+     "changed_condition": "Change the workload while holding the target and code constant. Compare what was measured with what was claimed. Distinguish service-boundary response time from the viewer's whole browser experience. Contrast Q-01 with R-05: follow a keyboard-only booking path and inspect whether the outcome is reachable and understandable. Observable acceptance can be a categorical outcome as well as a numerical threshold.",
+     "principle": "A quality requirement needs observable acceptance, a boundary, and stated conditions.",
+     "pdf_treatment": "Print the distribution, the explicit target, the fixture assumptions, and the measurement boundary. Keep a worked keyboard-completion example for R-05 beside the performance target, so quality is not reduced to speed.",
+     "rules": [
+      "R-05"
+     ],
      "sources": [
       "S46"
      ]
@@ -304,7 +314,7 @@
      "link": "week-02.html#/acceptance-and-validation",
      "fixture_key": "w02/acceptance-and-validation",
      "visual_idea": "A three-part strip: stakeholder need, precise statement, and observed behavior.",
-     "situation": "Show a system that perfectly enforces a 30-minute maximum because someone transcribed the desired 120-minute maximum incorrectly. Ask whether implementation checks against the written statement would catch the misunderstanding. Reveal the original stakeholder example.",
+     "situation": "Show a system that perfectly enforces a 30-minute maximum because someone transcribed the desired 120-minute maximum incorrectly. Ask whether implementation checks against the written statement would catch the misunderstanding. Reveal the original stakeholder example. Separate the requested feature from the outcome the person needs: shortening every reservation may satisfy a written limit while making a useful session impossible. Compare the proposed behavior with a concrete stakeholder example before accepting the specification. Return to the unresolved fairness choice without selecting a new policy.",
      "changed_condition": "Keep the implementation unchanged and correct the intended requirement. Compare verification against a specification with validation of the intended need, acknowledging that actual practices can overlap.",
      "principle": "We must question both whether the system matches its description and whether the description matches the need.",
      "pdf_treatment": "Print the two questions and the mismatch connecting them.",
@@ -390,6 +400,14 @@
     {
      "question": "How can a diagram be tested before code exists?",
      "answer": "Walk concrete examples through it and compare outcomes with requirements and complementary models."
+    },
+    {
+     "question": "Can a valid state diagram establish that pending notification work will eventually complete?",
+     "answer": "No. Permitted states and transitions do not establish the scheduling and recovery assumptions needed for progress."
+    },
+    {
+     "question": "A mobile note says 'saved on this device' while synchronization is pending. Does that contradict the cloud copy being older?",
+     "answer": "No. Local persistence and remote synchronization are separate states. Model both and make the message identify which promise has been met; pending synchronization still needs a defined completion or recovery path."
     }
    ],
    "sources_cited": [
@@ -427,7 +445,7 @@
      "link": "week-03.html#/state-machine",
      "fixture_key": "w03/state-machine",
      "visual_idea": "Two deliberately separate state models: request/UI states above, stored booking states below. A current-state marker moves only on valid events.",
-     "situation": "Start in Draft and ask what Submit means. Reveal Submitting, then Confirmed, Rejected, or Unknown outcome when a response is lost. Link confirmed results to a stored booking record. In the stored model, a permitted cancellation changes Confirmed to Cancelled. Label events and conditions before discussing terminology.",
+     "situation": "Start in Draft and ask what Submit means. Reveal Submitting, then Confirmed, Rejected, or Unknown outcome when a response is lost. Link confirmed results to a stored booking record. In the stored model, a permitted cancellation changes Confirmed to Cancelled. Label events and conditions before discussing terminology. Name an invariant as a statement that must remain true across the permitted transitions. Contrast that safety question with a progress question: will pending work eventually be resolved? A diagram of allowed transitions alone establishes neither implementation correctness nor eventual completion.",
      "changed_condition": "Change the current state to Cancelled and replay Cancel. Compare a stable, clearly defined repeated response with an accidental second state change. Ask which transitions are intentionally absent. Keep UI timeout separate from deletion of the stored booking.",
      "principle": "State models clarify which changes are possible, what triggers them, and which facts are actually known.",
      "pdf_treatment": "Print both models with a legend and a short example explaining why a timeout is not proof of failure.",
@@ -443,7 +461,7 @@
      "fixture_key": "w03/identity-and-data",
      "visual_idea": "Entity cards for User, Room, and Booking; relationship lines highlight identity and cardinality.",
      "situation": "Show two booking records containing copied room capacity values. Ask what happens when the room capacity changes. Reveal a Room entity with a stable identifier and bookings referencing it. Explain that a booking belongs to one user and one room, while each user or room can be associated with many bookings over time.",
-     "changed_condition": "Change a room's display name while keeping its identifier. Compare stable references with matching on a mutable name. Also show a deliberately preserved historical snapshot and explain that duplication may be intentional when the meaning is historical rather than current.",
+     "changed_condition": "Change a room's display name while keeping its identifier. Compare stable references with matching on a mutable name. Also show a deliberately preserved historical snapshot and explain that duplication may be intentional when the meaning is historical rather than current. Distinguish a well-formed identifier from an identifier that references an existing room. Relate that distinction to referential integrity and explain why a data constraint, a domain rule and a permission decision answer different questions.",
      "principle": "Model identity and the meaning of a fact before deciding where to store it.",
      "pdf_treatment": "Print the relationship diagram and current-fact versus historical-snapshot comparison.",
      "rules": [],
@@ -563,6 +581,14 @@
     {
      "question": "What should accompany a process improvement claim?",
      "answer": "A baseline, a stated change, a relevant outcome measure, and attention to quality or other side effects."
+    },
+    {
+     "question": "Why can the smallest implementation estimate still be the more expensive choice?",
+     "answer": "Waiting, integration, continuing support, exit cost and displaced valuable work can change the lifecycle comparison."
+    },
+    {
+     "question": "A library team writes changes faster, but maintainers can review no more than before. What should it inspect next?",
+     "answer": "Inspect waiting work, review capacity, accepted changes and rework. Faster drafting can grow the queue without improving completion; choose the next improvement from the constraint and its quality consequences."
     }
    ],
    "sources_cited": [
@@ -597,7 +623,7 @@
      "link": "week-04.html#/methods-not-rituals",
      "fixture_key": "w04/methods-not-rituals",
      "visual_idea": "A three-column comparison of plan-driven coordination, iterative timeboxes, and flow-based policies.",
-     "situation": "Ask what information each approach makes visible and when decisions change. Introduce Scrum through goals, inspection, and adaptation within its defined framework, and Kanban through explicit workflow, controlling work-in-progress, and improving flow. Do not claim a generic board is the whole of either. Name Scrum's three accountabilities in one line, Product Owner, Scrum Master and Developers, as the places where decisions about value, process and the work itself are made visible, not as job titles. [S04, S05]",
+     "situation": "Ask what information each approach makes visible and when decisions change. Introduce Scrum through goals, inspection, and adaptation within its defined framework, and Kanban through explicit workflow, controlling work-in-progress, and improving flow. Do not claim a generic board is the whole of either. Name Scrum's three accountabilities in one line, Product Owner, Scrum Master and Developers, as the places where decisions about value, process and the work itself are made visible, not as job titles. [S04, S05] Give plan-driven coordination its strongest use case: costly external integration or a required evidence handoff. Name an early prototype or risk investigation as another way to learn before commitment. Compare when feedback arrives and which decisions remain reversible, rather than teaching method names as competing slogans.",
      "changed_condition": "Change the work from a planned capability to unpredictable incident arrivals. Compare which coordination mechanisms help and what policies need revision; do not declare one universal winner.",
      "principle": "Choose coordination practices for the uncertainty and constraints of the work, not for their labels.",
      "pdf_treatment": "Print the comparison with a note that simplified lecture examples are not complete method definitions.",
@@ -615,7 +641,7 @@
      "link": "week-04.html#/queue-and-bottleneck",
      "fixture_key": "w04/queue-and-bottleneck",
      "visual_idea": "A work board and a numerical queue chart share the same discrete-round data.",
-     "situation": "Run implementation at two cards per round and review at one. Ask where the next unfinished card will wait. Reveal the review queue accumulating, with completed work counted separately from work started. Let the class predict the result before doubling implementation capacity.",
+     "situation": "Run implementation at two cards per round and review at one. Ask where the next unfinished card will wait. Reveal the review queue accumulating, with completed work counted separately from work started. Let the viewer predict the result before doubling implementation capacity.",
      "changed_condition": "Change only implementation capacity to four and replay the same arrival schedule. Compare completion rate and queue length. Restore the baseline, then change review capacity to two. Explain that the bottleneck may move once a constraint is relieved.",
      "principle": "Local activity is not the same as system throughput; improve the limiting flow, not merely the busiest-looking stage.",
      "pdf_treatment": "Print selected rounds and the corresponding queue/completion table, including capacities and transfer rules.",
@@ -648,7 +674,7 @@
      "fixture_key": "w04/estimates-with-assumptions",
      "visual_idea": "An estimate range sits beside known work, dependencies, and unresolved questions.",
      "situation": "Ask whether “three days” means effort, elapsed time, or a commitment. Reveal the dependencies and review capacity behind the estimate. Compare a range based on several similar examples with a single unsupported number.",
-     "changed_condition": "Change one assumption: the identity interface is not yet agreed. Widen or qualify the estimate and show the value of resolving that uncertainty. Do not turn fictional ranges into statistical confidence intervals without a model and data.",
+     "changed_condition": "Change one assumption: the identity interface is not yet agreed. Widen or qualify the estimate and show the value of resolving that uncertainty. Do not turn fictional ranges into statistical confidence intervals without a model and data. Also separate effort spent doing the change from elapsed waiting and continuing support cost. These form a small lifecycle cost discussion, not just an implementation estimate.",
      "principle": "An estimate is a conditional statement whose assumptions should travel with it.",
      "pdf_treatment": "Print the estimate with its assumptions and the condition that would trigger revision.",
      "rules": [],
@@ -662,7 +688,7 @@
      "link": "week-04.html#/risk-and-learning",
      "fixture_key": "w04/risk-and-learning",
      "visual_idea": "A decision table contrasts impact, uncertainty, reversibility, cost of delay, and information gained.",
-     "situation": "Offer a visual refinement, a proof that simultaneous bookings cannot overlap, and an investigation into an unclear identity dependency. Ask what the team should learn before committing more work. Reveal what each step would clarify and what failure would cost.",
+     "situation": "Offer a visual refinement, a proof that simultaneous bookings cannot overlap, and an investigation into an unclear identity dependency. Ask what the team should learn before committing more work. Reveal what each step would clarify and what failure would cost. Include the option to defer or reduce scope. Explain opportunity cost through the valuable work displaced by the chosen step; no invented monetary multiplier is needed.",
      "changed_condition": "Change only the reversibility of a decision: a temporary interface choice becomes a difficult data migration. Compare the amount of evidence worth seeking before proceeding. Use ordinal judgments and explanatory notes rather than multiplying invented probability scores.",
      "principle": "Prioritize not only output, but also the decisions and uncertainties that could make later work wasteful.",
      "pdf_treatment": "Print the decision table and a short rationale, including what remains uncertain.",
@@ -695,7 +721,7 @@
      "fixture_key": "w04/retrospective-as-test",
      "visual_idea": "Before-and-after panels connect a workflow observation, proposed change, measure, and possible side effect.",
      "situation": "Ask what should happen after noticing a long review queue. Reveal a proposal to share review work, the expected effect, and what would count as contrary evidence. Keep the discussion about the system rather than blaming an individual, and explain why: people report delays and mistakes honestly only where reporting them is safe, so blameless discussion and psychological safety are the conditions for trustworthy process data.",
-     "changed_condition": "Increase review speed but show more missed issues. Compare throughput with quality and rework. Leave the class with the idea of a balanced improvement experiment rather than one target number.",
+     "changed_condition": "Increase review speed but show more missed issues. Compare throughput with quality and rework. Leave the viewer with the idea of a balanced improvement experiment rather than one target number.",
      "principle": "Change a process deliberately, observe its consequences, and revise the explanation when the evidence disagrees.",
      "pdf_treatment": "Print the process hypothesis and the before/after evidence with the side effect included.",
      "rules": [],
@@ -732,6 +758,14 @@
     {
      "question": "What should an architecture or design decision record preserve?",
      "answer": "Context, alternatives, choice, consequences, and the assumptions or triggers that warrant revisiting it."
+    },
+    {
+     "question": "Does a well-typed result prove that cancellation is authorized?",
+     "answer": "No. Shape, domain validity and permission are separate claims with separate evidence."
+    },
+    {
+     "question": "An image library changes its file decoder while retaining the same function name. What does a caller still need to check?",
+     "answer": "Check accepted inputs, pixel and color meaning, error results and side effects promised by the interface. A matching name or type shape does not settle behavioral compatibility."
     }
    ],
    "sources_cited": [
@@ -752,7 +786,7 @@
      "link": "week-05.html#/same-behavior-different-design",
      "fixture_key": "w05/same-behavior-different-design",
      "visual_idea": "Two matching booking screens above two different internal dependency maps.",
-     "situation": "Ask whether the screens reveal which design will be easier to change. Reveal the internal responsibilities only after the class commits a prediction. Trace one successful request through each version.",
+     "situation": "Ask whether the screens reveal which design will be easier to change. Reveal the internal responsibilities only after the viewer commits a prediction. Trace one successful request through each version.",
      "changed_condition": "Change the maximum booking duration while holding the screen and user goal constant. Stop before highlighting affected components so students identify likely edits first.",
      "principle": "Design quality becomes visible through the changes and failures a structure must accommodate.",
      "pdf_treatment": "Print both internal maps with the same user-visible behavior stated above them.",
@@ -782,7 +816,7 @@
      "link": "week-05.html#/cohesion-and-responsibility",
      "fixture_key": "w05/cohesion-and-responsibility",
      "visual_idea": "Responsibility cards cluster by reason to change rather than by file extension.",
-     "situation": "Show a “Utilities” module containing booking rules, email formatting, date display, and storage access. Ask which tasks change for the same reason. Reveal a regrouping around meaningful responsibilities.",
+     "situation": "Show a “Utilities” module containing booking rules, email formatting, date display, and storage access. Ask which tasks change for the same reason. Reveal a regrouping around meaningful responsibilities. Make construction visible with the existing duration predicate: isolate the deterministic policy from clock, storage and notification effects. Walk an input through validation, a domain decision and an explicit result. Clear names and small responsibilities help a maintainer locate the decision; short code alone is not the objective.",
      "changed_condition": "Add a new notification format while keeping booking policy unchanged. Compare the groups affected before and after regrouping. Acknowledge that a boundary that separates tightly related behavior can also create unnecessary coordination.",
      "principle": "Cohesion concerns meaningful related responsibility, not simply making modules small.",
      "pdf_treatment": "Print the responsibility grouping and the change that explains each boundary.",
@@ -797,7 +831,7 @@
      "link": "week-05.html#/interface-contract",
      "fixture_key": "w05/interface-contract",
      "visual_idea": "A component plugs into a labeled interface; inputs, outputs, errors, and side effects are shown as contract cards.",
-     "situation": "Replace a notification implementation while keeping its call shape unchanged. Ask whether matching function names guarantees compatibility. Reveal differences in failure reporting, repeated delivery, and whether the call blocks confirmation. Use R-04 to state the relevant behavior.",
+     "situation": "Replace a notification implementation while keeping its call shape unchanged. Ask whether matching function names guarantees compatibility. Reveal differences in failure reporting, repeated delivery, and whether the call blocks confirmation. Use R-04 to state the relevant behavior. Use the return value to distinguish a successful booking decision, a domain rejection and unavailable infrastructure. A well-shaped value can still violate a domain constraint, and a type annotation does not enforce authorization or an atomic booking decision. Keep these distinctions in Python-like pseudocode and a small result table.",
      "changed_condition": "Change only the error behavior of the replacement. Compare a clearly reported failed notification with an implementation that throws into the booking path and undoes the user promise. Introduce preconditions, outcomes, and error expectations without a long type-system lecture.",
      "principle": "An interface contract includes behavior and failure semantics, not just matching names or parameter lists.",
      "pdf_treatment": "Print the two contract cards and the mismatch that breaks substitutability.",
@@ -845,7 +879,7 @@
      "fixture_key": "w05/abstraction-cost",
      "visual_idea": "A comparison matrix contrasts duplication, a small policy function, and a generic rule framework.",
      "situation": "Ask which option fits two clear policy rules and a small team. Reveal setup, understanding, extension, and debugging costs as qualitative judgments. Avoid invented precision or a decorative three-dimensional score surface.",
-     "changed_condition": "Change one condition: several independently changing policies now exist. Revisit the decision and identify what evidence might justify more structure. Keep flexibility as a costed option, not a virtue without limits.",
+     "changed_condition": "Change one condition: several independently changing policies now exist. Revisit the decision and identify what evidence might justify more structure. Keep flexibility as a costed option, not a virtue without limits. Offer building a small adapter, reusing a maintained library, and buying a managed capability as alternatives. Compare integration, licensing, support, data portability and exit cost using qualitative evidence. Buying or reusing changes responsibility; it does not remove the need to verify the required behavior.",
      "principle": "Abstraction should earn its complexity by simplifying real responsibilities or plausible change.",
      "pdf_treatment": "Print the alternatives and the condition under which the recommendation changes.",
      "rules": [],
@@ -897,6 +931,14 @@
     {
      "question": "Is a C4 container always a Docker container?",
      "answer": "No. It denotes an application or data-store boundary in that model, not a specific packaging technology."
+    },
+    {
+     "question": "What survives a crash after an atomic booking-and-pending-notification commit?",
+     "answer": "The booking and the pending work remain recorded; delivery still needs recovery, and a later retry can repeat a delivery attempt."
+    },
+    {
+     "question": "A batch importer crashes after storing a record but before marking its input complete. What makes a restart safe?",
+     "answer": "Define a stable identity for the intended operation and coordinate its effect with durable completion evidence, or make replay preserve the intended result. A crash does not establish that no write occurred; reusing an identity for changed input needs an explicit policy."
     }
    ],
    "sources_cited": [
@@ -904,7 +946,8 @@
     "S02",
     "S08",
     "S09",
-    "S10"
+    "S10",
+    "S52"
    ],
    "rules_cited": [
     "R-04"
@@ -1000,7 +1043,7 @@
      "fixture_key": "w06/async-and-consistency",
      "visual_idea": "A booking record and a pending notification record advance on separate timelines.",
      "situation": "Ask whether delayed email means the booking failed. Reveal R-04: confirmation depends on the booking decision, while notification may complete later. Show pending, delivered, and failed-delivery observations without hiding them from support.",
-     "changed_condition": "Duplicate a delivery attempt while keeping the booking unchanged. Compare a handler that tolerates repeat work with one that produces unintended extra effects. Mention a durable handoff pattern without requiring implementation detail.",
+     "changed_condition": "Duplicate a delivery attempt while keeping the booking unchanged. Compare a handler that tolerates repeat work with one that produces unintended extra effects. Mention a durable handoff pattern without requiring implementation detail. Name the durable handoff as a transactional outbox: the booking change and a pending notification record are committed together, then a worker attempts delivery. Step a crash after commit but before delivery; pending work remains discoverable. A crash after sending but before acknowledgement can still lead to a duplicate attempt. Keep delivery semantics explicit rather than implying exactly-once email.",
      "principle": "Asynchronous work changes the timing and failure contract; it does not remove responsibility for completion.",
      "pdf_treatment": "Print the two timelines and the user-facing meaning of each combination.",
      "rules": [
@@ -1016,12 +1059,14 @@
      "link": "week-06.html#/contracts-and-evolution",
      "fixture_key": "w06/contracts-and-evolution",
      "visual_idea": "A request/response contract appears beside old and new consumers.",
-     "situation": "Ask whether adding a response field is always harmless. Reveal that compatibility depends on consumer behavior; strict consumers may reject additions. Contrast that with silently changing the meaning of an existing field.",
+     "situation": "Ask whether adding a response field is always harmless. Reveal that compatibility depends on consumer behavior; strict consumers may reject additions. Contrast that with silently changing the meaning of an existing field. Make one contract concrete: select a booking request, its response shape, the error meaning and the retry rule, then run an old consumer against a changed response. Identify OpenAPI as an HTTP interface-description standard; a schema can describe shape without establishing ownership, no-overlap or retry correctness. [S52]",
      "changed_condition": "Change a booking status representation and replay old and new consumers. Compare an explicit transition strategy with an abrupt breaking change.",
      "principle": "Compatibility is a relationship between actual producers and consumers, not a label on a release.",
      "pdf_treatment": "Print a producer-consumer compatibility matrix with the assumptions behind each cell.",
      "rules": [],
-     "sources": []
+     "sources": [
+      "S52"
+     ]
     },
     {
      "order": 8,
@@ -1069,6 +1114,14 @@
     {
      "question": "Why record dependency inputs?",
      "answer": "The same source can run differently when its resolved dependencies or configuration differ."
+    },
+    {
+     "question": "What should resolve a substantive review disagreement?",
+     "answer": "A clear claim, the evidence needed to decide it and an accountable decision; durable rationale should survive the discussion."
+    },
+    {
+     "question": "A library's code and documentation merge cleanly, but they describe different default behavior. Is the change ready?",
+     "answer": "Resolve the intended contract and check the implementation and documentation against it. A textual merge detects some overlapping edits; it does not reconcile meaning across different files."
     }
    ],
    "sources_cited": [
@@ -1087,7 +1140,7 @@
      "link": "week-07.html#/commit-graph",
      "fixture_key": "w07/commit-graph",
      "visual_idea": "A commit graph grows one node at a time beside a tiny snapshot of the booking policy; branch labels move separately from nodes.",
-     "situation": "Ask whether a branch is a second permanent copy of every file. Reveal commits as recorded snapshots linked to parent commits, then move a branch reference when a new commit is added. Draw time consistently but explain that graph ancestry, not horizontal position alone, determines the relationship. [S06]",
+     "situation": "Ask whether a branch is a second permanent copy of every file. Reveal commits as recorded snapshots linked to parent commits, then move a branch reference when a new commit is added. Draw time consistently but explain that graph ancestry, not horizontal position alone, determines the relationship. [S06] Before growing the graph, distinguish the working tree, the selected changes to commit, the local recorded commit and a shared remote reference. Committing and sharing are separate actions; the graph is not a backup of every unsaved edit.",
      "changed_condition": "Create a second line of development from the same ancestor. Compare two descendants with different changes, then reveal a merge with two parents. Contrast a fast-forward case without suggesting that every integration needs a merge commit.",
      "principle": "History records relationships between changes; branch names are movable references, not the changes themselves.",
      "pdf_treatment": "Print the common ancestor, divergent descendants, and merged state in three labeled panels.",
@@ -1104,7 +1157,7 @@
      "link": "week-07.html#/conflict-and-intent",
      "fixture_key": "w07/conflict-and-intent",
      "visual_idea": "Two edits to one policy line appear beside the requirement they were intended to implement.",
-     "situation": "Ask whether taking the left or right version is sufficient. Reveal one edit implementing the 90-minute variant and another reorganizing the same validation. Show the shared original so the class can distinguish changed behavior from changed structure.",
+     "situation": "Ask whether taking the left or right version is sufficient. Reveal one edit implementing the 90-minute variant and another reorganizing the same validation. Show the shared original so the viewer can distinguish changed behavior from changed structure.",
      "changed_condition": "Resolve the text while accidentally losing the upper bound. Compare a syntactically valid result with a requirement-based resolution that preserves both the intended rule and the structural improvement. Reveal the boundary check that detects the mistake.",
      "principle": "A merge resolution must reconcile intent and verify the combined behavior, not merely remove conflict markers.",
      "pdf_treatment": "Print ancestor, two edits, chosen resolution, and the verification result with compact annotations.",
@@ -1135,7 +1188,7 @@
      "fixture_key": "w07/review-with-context",
      "visual_idea": "A review panel connects requirement, diff, checks, decision rationale, and focused comments.",
      "situation": "Show the diff alone and ask what a reviewer cannot yet decide. Reveal the purpose, affected rule, alternatives, and checks. Sort comments into correctness, security, design, understandability, and optional preference. Explain that linters and formatters take style out of the conversation without replacing judgment, and that a useful comment addresses the change rather than the person and says whether it is required or optional. [S07]",
-     "changed_condition": "Split an unrelated rename out of the same change. Compare the reviewer’s task with and without the unrelated material, without claiming an exact universal speed improvement. Keep one substantive concern unresolved until its supporting evidence appears. AI beat: label the same diff as drafted by an automated assistant with the description “fix stuff”. Ask what changes for the reviewer. Nothing: the requirement, the checks and the rationale are still required, and the empty description is the documentation failure of scene 07 arriving early.",
+     "changed_condition": "Split an unrelated rename out of the same change. Compare the reviewer’s task with and without the unrelated material, without claiming an exact universal speed improvement. Keep one substantive concern unresolved until its supporting evidence appears. AI beat: label the same diff as drafted by an automated assistant with the description “fix stuff”. Ask what changes for the reviewer. Nothing: the requirement, the checks and the rationale are still required, and the empty description is the documentation failure of scene 07 arriving early. Resolve the remaining disagreement by restating the claim, identifying the missing evidence and recording the decision owner. Compare asynchronous review with a short paired investigation when shared context is missing; either can work when its findings survive the conversation.",
      "principle": "Review is an evidence-based conversation about a change, not a vote on how convincing its author sounds.",
      "pdf_treatment": "Print the compact review packet and two example comments with their supporting reasons.",
      "rules": [],
@@ -1234,6 +1287,14 @@
     {
      "question": "Why can implementation and test agree while both are wrong?",
      "answer": "They may share the same mistaken assumption or calculate the expected result using the defective logic."
+    },
+    {
+     "question": "Does a controlled test double establish that the real provider honors its contract?",
+     "answer": "No. It isolates a claim; evidence at the real boundary is still needed."
+    },
+    {
+     "question": "A file converter passes a test whose expected output is produced by the same conversion function. What would strengthen the test?",
+     "answer": "Use an independently derived small example and a property justified by the format's meaning, including a relevant boundary. If round-trip conversion is promised, check it too; a shared defect can make both directions agree while still producing the wrong result."
     }
    ],
    "sources_cited": [
@@ -1241,7 +1302,8 @@
     "S02",
     "S11",
     "S12",
-    "S40"
+    "S40",
+    "S60"
    ],
    "rules_cited": [
     "R-02"
@@ -1285,12 +1347,14 @@
      "link": "week-08.html#/choose-test-scope",
      "fixture_key": "w08/choose-test-scope",
      "visual_idea": "A layered system view highlights a pure policy function, component interaction, storage enforcement, and complete user journey.",
-     "situation": "Ask whether a unit check of overlap arithmetic proves that concurrent requests cannot double-book. Reveal the missing shared-storage behavior. Place focused function checks, integration checks, and a complete booking journey where they observe their respective claims.",
-     "changed_condition": "Replace the real notification boundary with a controlled test double. Compare faster isolation of booking behavior with the remaining uncertainty about actual integration. Show a separate contract or integration check for that uncertainty.",
+     "situation": "Ask whether a unit check of overlap arithmetic proves that concurrent requests cannot double-book. Reveal the missing shared-storage behavior. Place focused function checks, integration checks, and a complete booking journey where they observe their respective claims. Use the same keyboard booking journey to explain exploratory testing: start with the question of how someone recovers from a lost response, then choose the next check from what the interface reveals. In the authored comparison, reopening the stored booking retrieves confirmation but the interface still says Submitting. Inspect the corrected Confirmed state and capture the discovered mismatch as a repeatable regression example. This is guided investigation with recorded observations; scripted checks preserve known expectations. A separate usability study would ask representative people to attempt the task and explain what they understood. The scene is a simulated example, not a claim that such a study occurred. [S60]",
+     "changed_condition": "Replace the real notification boundary with a controlled test double. Compare faster isolation of booking behavior with the remaining uncertainty about actual integration. Show a separate contract or integration check for that uncertainty. Use a consumer expectation that the actual provider violates to explain contract testing, then keep the cross-component journey check for behavior that neither side can establish alone. A mock returning the desired value is not evidence that the real boundary behaves that way.",
      "principle": "The appropriate test scope follows the claim and failure risk, not the prestige of a test label.",
-     "pdf_treatment": "Print a claim-to-check-scope matrix with one explicit limitation per row.",
+     "pdf_treatment": "Print a claim-to-check-scope matrix with one explicit limitation per row, and retain the exploration question, discovered status mismatch and resulting regression example.",
      "rules": [],
-     "sources": []
+     "sources": [
+      "S60"
+     ]
     },
     {
      "order": 4,
@@ -1366,7 +1430,7 @@
      "link": "week-08.html#/testing-as-feedback",
      "fixture_key": "w08/testing-as-feedback",
      "visual_idea": "A short requirement-to-failing-check-to-small-change-to-recheck loop ends with a refactoring comparison.",
-     "situation": "Ask what should happen before fixing the exclusive upper bound. Debug in four visible moves first: reproduce the failure with the 120-minute case, shrink it to the smallest failing input, state one hypothesis about the comparison, and confirm it with one targeted observation. Then reveal a focused failing check, a minimal correction, and rerun evidence. Explain test-first development as one way to make the expected behavior explicit, not a guarantee of good requirements.",
+     "situation": "Ask what should happen before fixing the exclusive upper bound. Debug in four visible moves first: reproduce the failure with the 120-minute case, shrink it to the smallest failing input, state one hypothesis about the comparison, and confirm it with one targeted observation. Then reveal a focused failing check, a minimal correction, and rerun evidence. Explain test-first development as one way to make the expected behavior explicit, not a guarantee of good requirements. Relate the existing examples to verification before and after execution: review and static analysis examine some claims without running the service; dynamic checks observe particular executions. A precondition, postcondition or invariant must still be justified by the requirement.",
      "changed_condition": "Refactor the corrected predicate without changing its contract. Compare unchanged behavior under the checks while acknowledging untested conditions and higher-level integration evidence.",
      "principle": "Tests are feedback instruments whose value depends on the claims, observations, and assumptions they preserve.",
      "pdf_treatment": "Print the four debugging moves, the feedback loop and a final claim-evidence-remaining-uncertainty table.",
@@ -1404,6 +1468,14 @@
     {
      "question": "Should notification failure automatically cancel an already confirmed booking?",
      "answer": "No. Under R-04 the booking remains confirmed while notification work is explicitly pending or failed and recoverable."
+    },
+    {
+     "question": "How do a Top 10 risk, an ASVS requirement and an SSDF practice differ?",
+     "answer": "They describe an awareness concern, a verifiable application control expectation and a development practice respectively; each informs a different decision."
+    },
+    {
+     "question": "A desktop application hides its export button, but its export entry point can still be called. Where does the permission decision belong?",
+     "answer": "At the trusted boundary that performs the export, using protected identity and data-access rules. Interface visibility guides interaction; it cannot enforce a restriction when another path reaches the operation."
     }
    ],
    "sources_cited": [
@@ -1416,7 +1488,8 @@
     "S42",
     "S47",
     "S48",
-    "S49"
+    "S49",
+    "S51"
    ],
    "rules_cited": [
     "R-03",
@@ -1514,7 +1587,7 @@
      "fixture_key": "w09/dependency-chain",
      "visual_idea": "A dependency graph expands one level, then an inventory and build-provenance card attach to the selected release.",
      "situation": "Ask whether knowing the name of a direct library tells us everything included in a build. Reveal a transitive dependency. Explain an inventory or software bill of materials as visibility into components, and provenance as evidence about an artifact’s production. [S16]",
-     "changed_condition": "Change one dependency version while keeping application source fixed. Compare the need to evaluate the new component, rebuild under controlled inputs, and recheck affected behavior. A familiar name, inventory entry, or signature alone does not prove safety. Licensing beat: change only the license of the transitive dependency in the fictional chain, from a permissive license to a copyleft license with a source-availability obligation. Compare what the license inventory now requires before release. Use SPDX identifiers as the vocabulary and keep this an engineering question about obligations and inventory, not legal advice. [S42] Name the legal context in one line: the EU Cyber Resilience Act requires manufacturers of products with digital elements sold in the EU to document their components, including a software bill of materials, with reporting obligations applying from 11 September 2026. [S49]",
+     "changed_condition": "Change one dependency version while keeping application source fixed. Compare the need to evaluate the new component, rebuild under controlled inputs, and recheck affected behavior. A familiar name, inventory entry, or signature alone does not prove safety. Licensing beat: change only the license of the transitive dependency in the fictional chain, from a permissive license to a copyleft license with a source-availability obligation. Compare what the license inventory now requires before release. Use SPDX identifiers as the vocabulary and keep this an engineering question about obligations and inventory, not legal advice. [S42] Name the legal context in one line: for products within its scope, the EU Cyber Resilience Act links component documentation to lifecycle vulnerability handling. Reporting obligations apply from 11 September 2026; the main obligations, including the component-documentation requirements, apply from 11 December 2027. Applicability and exemptions need their own legal analysis; do not imply that every website is covered. [S49] Finish the lifecycle: inventory locates the affected artifact, the team evaluates exposure, applies a supported update or mitigation, verifies it and records follow-up. Include a secret as a reference with an owner and revocation path, never as a value placed in source or logs.",
      "principle": "Supply-chain evidence makes dependencies inspectable; it does not eliminate the need for risk judgment and verification.",
      "pdf_treatment": "Print the exact fictional dependency set, the changed node, and the bounded claims of each evidence type. Add the license column with the changed identifier.",
      "rules": [],
@@ -1550,12 +1623,14 @@
      "link": "week-09.html#/security-through-change",
      "fixture_key": "w09/security-through-change",
      "visual_idea": "The familiar lifecycle loop receives threat questions, permission checks, review, dependency evidence, and incident feedback.",
-     "situation": "Ask whether a final scanner can discover an unstated ownership policy. Reveal distinct contributions from requirements, design, implementation checks, review, release integrity, and operation. Use a small selected set of risks rather than reciting a top-ten list.",
+     "situation": "Ask whether a final scanner can discover an unstated ownership policy. Reveal distinct contributions from requirements, design, implementation checks, review, release integrity, and operation. Use a small selected set of risks rather than reciting a top-ten list. Connect a selected risk to a concrete verification requirement, implementation control, evidence and owner using OWASP ASVS 5.0.0. Contrast the Top 10 awareness list with ASVS verification requirements and SSDF development practices; none is a certificate that this application is secure. Use a few relevant controls rather than reading a checklist. [S51]",
      "changed_condition": "Introduce a new delegated-cancellation policy as an explicit hypothetical. Trace which model, checks, review questions, and diagnostic fields must be reconsidered before restoring the baseline.",
      "principle": "Security is maintained through connected decisions and feedback, not added by one tool at the end.",
      "pdf_treatment": "Print the lifecycle evidence map and the policy-change trace.",
      "rules": [],
-     "sources": []
+     "sources": [
+      "S51"
+     ]
     }
    ]
   },
@@ -1588,6 +1663,14 @@
     {
      "question": "Does a notification already delivered disappear after code rollback?",
      "answer": "No. External effects need their own reconciliation or compensating behavior."
+    },
+    {
+     "question": "Why can the same artifact require new release evidence under different settings?",
+     "answer": "Configuration, identity, permissions and dependencies can change behavior even when the artifact digest stays fixed."
+    },
+    {
+     "question": "A command-line release was tested from source, but users download a separately rebuilt package. What connects their result to those checks?",
+     "answer": "Identify the distributed artifact and its resolved build inputs. Promote the verified package where possible, or verify the rebuilt artifact and the relevant environment; matching source alone leaves other inputs unsettled."
     }
    ],
    "sources_cited": [
@@ -1608,7 +1691,7 @@
      "link": "week-10.html#/change-through-gates",
      "fixture_key": "w10/change-through-gates",
      "visual_idea": "A change token moves through integration, build, static checks, focused checks, broader checks, artifact recording, and release decision; evidence cards remain attached.",
-     "situation": "Ask which stage would catch the incorrect 120-minute boundary and which would check ownership. Reveal distinct checks and pause at a failure. The token cannot advance merely because the animation has reached its next step. Label the static checks with their scope: linters, type checkers and security scanners find unused code, type mismatches and known insecure patterns, but they know nothing about R-02, so a “duration < 120” comparison passes them and fails the boundary check. Explain that gate placement follows risk and feedback needs.",
+     "situation": "Ask which stage would catch the incorrect 120-minute boundary and which would check ownership. Reveal distinct checks and pause at a failure. The token cannot advance merely because the animation has reached its next step. Label the static checks with their scope: linters, type checkers and security scanners find unused code, type mismatches and known insecure patterns, but generic checks without a specification of R-02 need not reject “duration < 120”; the independent boundary check does. Specialized static analysis can check richer properties when those properties are supplied. Explain that gate placement follows risk and feedback needs.",
      "changed_condition": "Fix the boundary but introduce an authorization regression. Replay the same pipeline and compare which evidence changes. Show a passing gate with an explicit scope label so it is not mistaken for a universal guarantee. AI beat: let the second change be proposed by an automated assistant. It enters the same path and is blocked by the same gate. Proposing a change and passing a gate are different authorities, which Week 13 develops as bounded action.",
      "principle": "Automation should preserve the connection between a claim, a check, its result, and the change being released.",
      "pdf_treatment": "Print the successful path and blocked path with the exact failed condition and artifact identity.",
@@ -1641,7 +1724,7 @@
      "fixture_key": "w10/artifact-and-configuration",
      "visual_idea": "A recorded artifact travels through environments while configuration cards remain separate and visible.",
      "situation": "Ask whether rebuilding from the same source later necessarily gives the same result. Reveal a changed resolved dependency. Compare promoting the recorded artifact with silently rebuilding an unverified one. Keep provenance evidence distinct from functional correctness. [S16]",
-     "changed_condition": "Hold artifact identity fixed and change a configuration value affecting authorization or a dependency endpoint. Compare why environment-specific configuration still needs validation, even when the artifact is unchanged. Secrets remain references, never visible values.",
+     "changed_condition": "Hold artifact identity fixed and change a configuration value affecting authorization or a dependency endpoint. Compare why environment-specific configuration still needs validation, even when the artifact is unchanged. Secrets remain references, never visible values. Inspect the build identity and permissions as inputs too: a proposed change may run checks without permission to publish or access release secrets. Compare isolated verification with the trusted release path and bind provenance to the artifact digest and expected producer. A signature proves neither correct behavior nor the suitability of every included dependency. [S16]",
      "principle": "Artifact identity controls one source of uncertainty; configuration and environment behavior still need evidence.",
      "pdf_treatment": "Print the source-to-artifact relationship and the two configuration outcomes.",
      "rules": [],
@@ -1658,7 +1741,7 @@
      "fixture_key": "w10/deployment-and-exposure",
      "visual_idea": "A release appears in the runtime map while a feature flag and a small cohort control exposure.",
      "situation": "Ask whether deploying code must expose a new behavior to everyone immediately. Reveal a disabled path, then a labeled small-cohort rollout. Make clear that hidden code is still deployed and may carry operational or security implications.",
-     "changed_condition": "Change cohort size while holding the artifact fixed. Compare observations from a narrow rollout with the uncertainty about other users and workloads. A small cohort is not automatically representative.",
+     "changed_condition": "Change cohort size while holding the artifact fixed. Compare observations from a narrow rollout with the uncertainty about other users and workloads. A small cohort is not automatically representative. Attach a responsible owner and retirement condition to the flag. Inspect the recovery decision when the small cohort crosses the stated user-outcome limit; a staged rollout needs a response policy as well as a percentage.",
      "principle": "Separating deployment from exposure can create additional decision points, provided the controls and observations are trustworthy.",
      "pdf_treatment": "Print deployment state, exposure state, and cohort assumptions in a small matrix.",
      "rules": [],
@@ -1757,6 +1840,14 @@
     {
      "question": "Why might a high CPU reading not justify an urgent incident alert by itself?",
      "answer": "Its significance depends on user impact, capacity risk, and an actionable response, not the number alone."
+    },
+    {
+     "question": "Does the historical burn-rate illustration tell us how much budget remains now?",
+     "answer": "No. Remaining budget depends on the current window and observations; the 3.5-day calculation assumes a fresh window and a sustained rate."
+    },
+    {
+     "question": "A batch report finishes quickly but silently omits valid input records. Is elapsed time enough to call the run successful?",
+     "answer": "No. Define success using correct, sufficiently complete output and the relevant deadline or latency condition. Preserve rejected-input reasons and trace missing records; fast completion alone misses the user promise."
     }
    ],
    "sources_cited": [
@@ -1765,7 +1856,9 @@
     "S20",
     "S21",
     "S22",
-    "S45"
+    "S45",
+    "S55",
+    "S59"
    ],
    "rules_cited": [],
    "scenes": [
@@ -1777,7 +1870,7 @@
      "link": "week-11.html#/define-good-service",
      "fixture_key": "w11/define-good-service",
      "visual_idea": "Request tokens enter a good/bad classification table with eligibility, correctness, and timing visible.",
-     "situation": "Ask whether every rejected booking request is a service failure. Reveal a timely correct conflict response as a good outcome under this objective. Then classify a fast incorrect confirmation and a correct response arriving too late. The class must state the event definition before seeing the percentage. [S21]",
+     "situation": "Ask whether every rejected booking request is a service failure. Reveal a timely correct conflict response as a good outcome under this objective. Then classify a fast incorrect confirmation and a correct response arriving too late. The viewer must state the event definition before seeing the percentage. [S21]",
      "changed_condition": "Change only the observation: 20 of 1,000 eligible requests miss the promise. Compare 98% observed good events with the illustrative 99% objective. Name the ten-event allowance as the error budget and the twenty observed bad events as a burn rate of 2, without treating the budget as permission to ignore harmful failures. [S45]",
      "principle": "A reliability indicator is meaningful only after the user promise, event population, and observation window are defined.",
      "pdf_treatment": "Print the classifications, arithmetic, window, and objective; retain rejected-but-correct examples.",
@@ -1827,12 +1920,14 @@
      "link": "week-11.html#/hypothesis-before-fix",
      "fixture_key": "w11/hypothesis-before-fix",
      "visual_idea": "Three candidate causes sit beside predicted observations and the evidence actually available.",
-     "situation": "Offer slow storage, an identity dependency failure, and exhausted request capacity. Ask which observation would separate them. Reveal one trace segment and one queue measurement, then eliminate only the hypotheses contradicted by that evidence.",
+     "situation": "Offer slow storage, an identity dependency failure, and exhausted request capacity. Ask which observation would separate them. Reveal one trace segment and one queue measurement, then eliminate only the hypotheses contradicted by that evidence. Distinguish waiting on an external dependency from computation inside a function. A trace helps localize the boundary; a profile of the relevant execution helps locate expensive computation. Do not optimize a visually prominent function without evidence that it limits the observed outcome. Optional performance extension: once storage lookup is the supported hypothesis, compare examining every booking with using an index to locate a relevant subset. Change the amount of stored data while keeping the query and required result fixed. Explain why the work can grow differently and why maintaining an index adds storage and write work. Algorithm and data-structure choices affect the work performed; operation counts alone are not elapsed-time measurements. Ask what representative read/write workload would test the trade-off, and retain the authoritative no-overlap decision. This is a qualitative authored comparison, not a benchmark or a database installation lesson. [S59]",
      "changed_condition": "Remove the trace sample from the packet. Compare the weaker conclusion now justified. A missing log entry is not automatically proof that an event never happened; collection may be incomplete.",
      "principle": "Diagnosis advances by testing predictions and acknowledging gaps, not by naming the first familiar cause.",
-     "pdf_treatment": "Print the hypothesis-prediction-evidence table and the remaining uncertainty.",
+     "pdf_treatment": "Print the hypothesis-prediction-evidence table and the remaining uncertainty. If the optional lookup comparison is used, retain its fixed query/result, changed data size, index maintenance cost and missing workload evidence; do not attach invented speedup figures.",
      "rules": [],
-     "sources": []
+     "sources": [
+      "S59"
+     ]
     },
     {
      "order": 5,
@@ -1843,11 +1938,13 @@
      "fixture_key": "w11/retry-amplification",
      "visual_idea": "A controlled queue model shows original requests and separately labeled retry attempts; arrival and completion rates are visible.",
      "situation": "Start with a constrained dependency and ask whether immediate repeated retries will reduce waiting. Reveal extra attempts entering the same limited capacity, with no invented promise about exact real-world timings. Preserve the distinction between unique user operations and repeated attempts.",
-     "changed_condition": "Change to bounded retries with delay, backoff, and an explicit timeout budget; show a circuit-open state as a deliberate temporary refusal to call the unhealthy dependency. Compare queue pressure and successful outcomes under the declared toy model. Keep jitter optional and seeded for reproducible teaching.",
+     "changed_condition": "Change to bounded retries with delay, backoff, and an explicit timeout budget; show a circuit-open state as a deliberate temporary refusal to call the unhealthy dependency. Compare queue pressure and successful outcomes under the declared toy model. Keep jitter optional and seeded for reproducible teaching. Distinguish admission control from retries: bounded queues and load shedding can protect work already admitted when capacity is exhausted. Preserve an honest unavailable result instead of a false confirmation. Backoff with jitter reduces synchronized retries; the deterministic core fixture models bounded retries and a circuit, not a measured jitter benefit. [S55]",
      "principle": "Recovery behavior must account for shared capacity and the possibility that an earlier attempt already had an effect.",
      "pdf_treatment": "Print the baseline and bounded-retry model, assumptions, and reminder of Week 6 idempotency.",
      "rules": [],
-     "sources": []
+     "sources": [
+      "S55"
+     ]
     },
     {
      "order": 6,
@@ -1857,7 +1954,7 @@
      "link": "week-11.html#/mitigate-and-communicate",
      "fixture_key": "w11/mitigate-and-communicate",
      "visual_idea": "An incident timeline separates detect, assess impact, mitigate, verify recovery, communicate, and investigate.",
-     "situation": "Ask whether the team must know the complete cause before reducing harm. Reveal a safe exposure rollback or capacity protection, then show the evidence used to verify improvement. Keep user communication accurate about known impact and uncertainty.",
+     "situation": "Ask whether the team must know the complete cause before reducing harm. Reveal a safe exposure rollback or capacity protection, then show the evidence used to verify improvement. Keep user communication accurate about known impact and uncertainty. Identify the incident coordinator, the operator applying the mitigation and the communicator. Small teams may combine these responsibilities, but an explicit handoff prevents contradictory changes and unsupported status messages.",
      "changed_condition": "Make code rollback unsafe because of state compatibility. Compare an alternative mitigation that limits exposure or degrades a nonessential capability without breaking the booking invariant.",
      "principle": "Incident response should reduce harm, preserve evidence, and keep claims proportionate to what is known.",
      "pdf_treatment": "Print the timeline and the reason the selected mitigation was safe in this scenario.",
@@ -1873,7 +1970,7 @@
      "fixture_key": "w11/actionable-alerts",
      "visual_idea": "A noisy stream of low-level alerts is contrasted with a user-impact signal and a short response guide.",
      "situation": "Ask whether every CPU fluctuation should interrupt someone. Reveal the user promise, the affected service, an actionable condition, and a next diagnostic question. Avoid prescribing a universal threshold independent of workload. [S22]",
-     "changed_condition": "Hold resource utilization high while user outcomes remain acceptable, then lower it while correctness fails. Compare resource observations with the actual service objective. Then show an alert tied to the promise: a burn rate of 2 would use up the seven-day error budget in 3.5 days, which justifies a response, while a CPU reading alone does not. [S45]",
+     "changed_condition": "Hold resource utilization high while user outcomes remain acceptable, then lower it while correctness fails. Compare resource observations with the actual service objective. Then show an alert tied to the promise: a sustained burn rate of 2 from the beginning of a fresh seven-day window would use its budget in 3.5 days, under the fixture's steady-traffic assumption. This is not 3.5 days of remaining budget after the displayed seven-day window: that window has already exceeded its allowance. Choose urgency from impact, remaining budget and corroborating observation windows rather than treating the ratio alone as a paging rule. [S45]",
      "principle": "Alerting should connect a meaningful condition to an appropriate response, not merely report that a number changed.",
      "pdf_treatment": "Print the signal-condition-response relationship and the two counterexamples.",
      "rules": [],
@@ -1928,6 +2025,14 @@
     {
      "question": "What is the resource reduction in the declared fixture?",
      "answer": "Reads per successful search decrease from 10 to 2, an 80% reduction under the same stated conditions; this is not an emissions measurement."
+    },
+    {
+     "question": "Why does a successful backup job not settle migration recovery?",
+     "answer": "The data must be restorable and consistent, later writes must be accounted for, and the restoration interruption must meet the relevant requirement."
+    },
+    {
+     "question": "A desktop application's update changes its document format. Does reinstalling the old application recover the documents?",
+     "answer": "Only if that version can read the actual saved data or a verified conversion or restore path exists. Account for edits since any backup and communicate the recovery consequences before changing the format."
     }
    ],
    "sources_cited": [
@@ -1935,7 +2040,8 @@
     "S02",
     "S23",
     "S24",
-    "S37"
+    "S37",
+    "S56"
    ],
    "rules_cited": [
     "R-02"
@@ -1982,12 +2088,13 @@
      "fixture_key": "w12/expand-migrate-contract",
      "visual_idea": "A three-stage data transition and compatibility matrix show old/new applications reading old/new representations.",
      "situation": "Ask whether renaming a field instantly is safe while old consumers remain active. Reveal an expanded representation supporting both forms, a controlled migration, and checks that readers agree on the same duration. Show that mixed versions are a normal transition state to consider. [S23]",
-     "changed_condition": "Remove the old representation before the old reader is retired. Compare the failure with a transition that verifies migration and consumer readiness before contraction. Show why rollback possibilities narrow after the old data path is removed.",
+     "changed_condition": "Remove the old representation before the old reader is retired. Compare the failure with a transition that verifies migration and consumer readiness before contraction. Show why rollback possibilities narrow after the old data path is removed. Before a destructive step, distinguish having a backup from having evidence that it restores usable, consistent data. Compare the recovery point with later writes and inspect how long restoration makes the service unavailable. Introduce acceptable data loss and restoration time as requirements; do not invent recovery targets. A backup does not make already-delivered notifications reversible. [S56]",
      "principle": "Evolution is safer when compatibility is maintained deliberately across the states that actually coexist.",
      "pdf_treatment": "Print each transition stage, the reader-writer matrix, and the condition required before contraction.",
      "rules": [],
      "sources": [
-      "S23"
+      "S23",
+      "S56"
      ]
     },
     {
@@ -2043,7 +2150,7 @@
      "link": "week-12.html#/resource-per-useful-outcome",
      "fixture_key": "w12/resource-per-useful-outcome",
      "visual_idea": "Two bars show storage reads per successful search, with correctness and freshness conditions fixed beside them.",
-     "situation": "Ask whether fewer reads is automatically an improvement. Reveal 1,000 reads for 100 successful searches versus 200 for 100: 10 and 2 reads per successful search. Verify that both return the required current availability and preserve the authoritative booking decision.",
+     "situation": "Ask whether fewer reads is automatically an improvement. Reveal 1,000 reads for 100 successful searches versus 200 for 100: 10 and 2 reads per successful search. Verify that both return the required current availability and preserve the authoritative booking decision. Explain the reduction through avoiding repeated reads or using a cache only within a declared freshness contract. Measure useful outcomes before claiming a performance or resource benefit; correctness and the authoritative confirmation check still apply.",
      "changed_condition": "Reduce reads further by serving stale results beyond the allowed freshness assumption. Compare the apparently attractive resource number with the violated user promise. Explain that a carbon claim additionally needs an appropriate energy, emissions, hardware, and system-boundary method. [S37]",
      "principle": "Compare resource use per useful outcome under equivalent requirements, and label proxies honestly.",
      "pdf_treatment": "Print counts, denominators, freshness assumptions, and the explicit statement that reads are not measured emissions.",
@@ -2098,6 +2205,14 @@
     {
      "question": "What distinguishes using an assistant during development from a runtime AI feature?",
      "answer": "In the first case the accepted artifact can operate without a model; in the second the model is part of the deployed behavior and introduces its own evaluation and dependency questions."
+    },
+    {
+     "question": "What evidence is needed before claiming that an assistant improved engineering productivity?",
+     "answer": "Relevant comparable work, explicit measurement boundaries, accepted behavior, review and rework costs, and limitations such as task selection or self-report bias."
+    },
+    {
+     "question": "An assistant proposes a repository-wide rename with a script that can write anywhere on disk. What authority does that task need?",
+     "answer": "Limit writes to the intended checkout, inspect the proposed changes and run relevant checks before acceptance. Repository text must not expand that permission; independent scope enforcement and recoverable history bound a useful automated change."
     }
    ],
    "sources_cited": [
@@ -2109,7 +2224,10 @@
     "S34",
     "S35",
     "S44",
-    "S50"
+    "S50",
+    "S53",
+    "S54",
+    "S57"
    ],
    "rules_cited": [
     "R-02",
@@ -2156,7 +2274,7 @@
      "link": "week-13.html#/context-and-unknowns",
      "fixture_key": "w13/context-and-unknowns",
      "visual_idea": "A compact change brief links relevant rules, interfaces, constraints, and explicitly unresolved questions to the candidate.",
-     "situation": "Ask how a candidate would know whether a staff role may cancel any booking. Reveal that the baseline grants no such override. Compare a candidate inventing permission with one that leaves an explicit question for the responsible decision-maker.",
+     "situation": "Ask how a candidate would know whether a staff role may cancel any booking. Reveal that the baseline grants no such override. Compare a candidate inventing permission with one that leaves an explicit question for the responsible decision-maker. Use a compact task specification containing the intended outcome, relevant files, invariants, non-goals, available checks and a stop condition. Useful bounded work includes explaining unfamiliar code, proposing boundary examples and drafting a small refactoring. Inspect one accepted change against its independent evidence so the lecture shows productive use as well as failure analysis.",
      "changed_condition": "Change the brief to an approved, narrowly defined delegation policy. Compare the code and checks that legitimately change with those that should remain fixed. Restore R-03 after the variant.",
      "principle": "Automation should not silently convert an unknown policy into authority.",
      "pdf_treatment": "Print the baseline, labeled policy variant, and the evidence required for the changed permission.",
@@ -2209,13 +2327,16 @@
      "link": "week-13.html#/output-and-flow",
      "fixture_key": "w13/output-and-flow",
      "visual_idea": "The Week 4 flow board shows candidate changes, verification capacity, accepted changes, and rework separately.",
-     "situation": "Ask whether doubling candidate output doubles useful delivery. Reveal a fixed review constraint and the resulting queue in the declared toy model. Distinguish generated lines, accepted changes, time to verified behavior, and downstream defects. Connect the flow to specification-driven drafting: the precise rule from Week 2 is what shortens verification, not the generation rate.",
-     "changed_condition": "Improve context and verification capacity rather than only generation rate. Compare whole-flow outcomes under the same arrival conditions. Use current research as context, while identifying this chart as a constructed mechanism illustration rather than measured industry results. [S19]",
+     "situation": "Ask whether doubling candidate output doubles useful delivery. Reveal a fixed review constraint and the resulting queue in the declared toy model. Distinguish generated lines, accepted changes, time to verified behavior, and downstream defects. Connect the flow to specification-driven drafting: the precise rule from Week 2 makes verification better specified; whether it saves total time must be observed across drafting, review, correction and downstream work.",
+     "changed_condition": "Improve context and verification capacity rather than only generation rate. Compare whole-flow outcomes under the same arrival conditions. Use current research as context, while identifying this chart as a constructed mechanism illustration rather than measured industry results. [S19] Compare a survey, a controlled task study and this simulation as different kinds of evidence. METR's February 2026 follow-up reports selection and time-measurement problems; its May 2026 survey concerns self-reported impact. Neither establishes a universal productivity multiplier. The DORA AI Capabilities Model provides organizational context without prescribing a tool ranking. [S53, S54, S57]",
      "principle": "Evaluate automation across the workflow it changes, including verification, rework, and maintainable understanding.",
      "pdf_treatment": "Print the model assumptions, before-and-after flow, and the limits of the numerical example.",
      "rules": [],
      "sources": [
-      "S19"
+      "S19",
+      "S53",
+      "S54",
+      "S57"
      ]
     },
     {
@@ -2226,7 +2347,7 @@
      "link": "week-13.html#/provenance-and-understanding",
      "fixture_key": "w13/provenance-and-understanding",
      "visual_idea": "A change record collects source context, reviewed dependencies, checks, residual questions, and a plain-language explanation.",
-     "situation": "Ask whether “the tool wrote it” answers a maintainer’s question about an authorization branch. Reveal the rationale and relevant evidence required to maintain the change. Any uncertain origin or licensing concern is marked for appropriate review rather than guessed away. Include one dependency question: the candidate imports textenc-turbo, a package name that exists in no registry. Code assistants are documented to invent package names, and anyone could publish a package under the invented name, so the inventory check blocks the build until a person confirms or removes the dependency. [S50] Use the fictional record: the cancellation change was drafted by a coding assistant, checked by the requirement tests and an independent check, and accepted by a named reviewer, with its unresolved limitation stated.",
+     "situation": "Ask whether “the tool wrote it” answers a maintainer’s question about an authorization branch. Reveal the rationale and relevant evidence required to maintain the change. Any uncertain origin or licensing concern is marked for appropriate review rather than guessed away. Include one dependency question: the candidate imports textenc-turbo, a name marked unavailable in the fictional registry fixture; this is not a claim about every real public registry. Code assistants are documented to invent package names, and anyone could publish a package under the invented name, so the inventory check blocks the build until a person confirms or removes the dependency. [S50] Use the fictional record: the cancellation change was drafted by a coding assistant, checked by the requirement tests and an independent check, and accepted by a named reviewer, with its unresolved limitation stated.",
      "changed_condition": "Replace a confident but unsupported explanation with one that accurately states a limitation. Compare whether the reviewer can make a better decision, even though the wording sounds less certain.",
      "principle": "Accountability requires an understandable change record and honest limits, regardless of how the draft was produced.",
      "pdf_treatment": "Print the change record and its unresolved question.",
@@ -2244,7 +2365,7 @@
      "fixture_key": "w13/two-different-engineering-questions",
      "visual_idea": "Two system boundaries contrast an offline-generated code change with a runtime model inside the service.",
      "situation": "Ask whether Campus Rooms needs an AI dependency because an assistant helped author some code. Reveal that the shipped behavior can remain ordinary deterministic software. Contrast this with adding a runtime model whose outputs and dependencies become part of the user-facing system.",
-     "changed_condition": "Insert a hypothetical model that suggests room choices, while leaving authoritative booking and permissions outside it. Compare the additional evaluation and failure questions without expanding this course into model training. Name two of them: an evaluation set of room-choice cases with expected answers, and a regression check that reruns it whenever the prompt or the model version changes, because the output is not deterministic. NIST’s AI profile concerns AI-model and AI-system development and should not be mislabeled as a blanket coding-assistant rulebook. [S35]",
+     "changed_condition": "Insert a hypothetical model that suggests room choices, while leaving authoritative booking and permissions outside it. Compare the additional evaluation and failure questions without expanding this course into model training. Name two of them: an evaluation set of room-choice cases with expected answers, and a regression check that reruns it whenever the prompt or the model version changes, because the output is not deterministic. NIST’s AI profile concerns AI-model and AI-system development and should not be mislabeled as a blanket coding-assistant rulebook. [S35] For the recommendation extension, compare against a simple deterministic baseline on held-out scenarios. Use task-appropriate relevance, unsupported-claim, permission, latency and cost criteria, allowing more than one acceptable suggestion. Record model, prompt, retrieval data and evaluation-set versions; repeat observations where variability matters and define fallback behavior. A pass on a fixed evaluation set does not make an action authorized.",
      "principle": "The engineering obligations follow the actual system boundary and consequences, not the presence of AI somewhere in the workflow.",
      "pdf_treatment": "Print both boundaries and the distinct claims each would require.",
      "rules": [],
@@ -2283,12 +2404,21 @@
     {
      "question": "What should happen to the final engineering claim when an assumption changes?",
      "answer": "Reconsider the affected decision and narrow or revise the claim until appropriate evidence is available."
+    },
+    {
+     "question": "Does a sponsor's approval resolve the known absence of accessible affected-booking information?",
+     "answer": "No. The user consequence remains. Explain who is affected, offer a safer alternative and escalate the unresolved decision rather than treating approval as a repair."
+    },
+    {
+     "question": "For a device-configuration update, which parts of this course's release reasoning transfer, and what must be learned again?",
+     "answer": "Trace the need to behavior, model failure, verify the candidate, control authority and plan recovery. Elicit the device's interruption behavior, safe operating state, update constraints and consequences of failure; room-booking policies and web-service rollout assumptions do not transfer automatically."
     }
    ],
    "sources_cited": [
     "S01",
     "S02",
-    "S25"
+    "S25",
+    "S58"
    ],
    "rules_cited": [
     "R-01",
@@ -2376,12 +2506,14 @@
      "link": "week-14.html#/release-with-a-fault",
      "fixture_key": "w14/release-with-a-fault",
      "visual_idea": "A compact release path combines the verified artifact, compatibility state, selected exposure, and user-outcome observations.",
-     "situation": "Ask whether passing interval and permission checks justify full exposure when existing users cannot see their affected status. Reveal the incomplete release record and keep the decision paused. Add the missing accessible cue and the evidence that it is observable.",
-     "changed_condition": "Introduce notification failure after closure is recorded. Compare a system that loses the affected-user task with one that records pending communication and continues to display the affected status. Preserve recovery responsibility without undoing the closure or deleting booking history.",
+     "situation": "Ask whether passing interval and permission checks justify full exposure when existing users cannot see their affected status. Reveal the incomplete release record and keep the decision paused. Add the missing accessible cue and the evidence that it is observable. Before the fix, change only the release pressure: a sponsor now asks to proceed despite the known missing cue. Identify who bears the consequence, explain the concern, propose a safer release or deferral and escalate the unresolved decision to its responsible owner. Professional judgment includes affected people beyond the sponsor; approval does not remove a known user harm. This is an application of responsibility and harm reduction, not a new booking permission. [S58]",
+     "changed_condition": "Introduce notification failure after closure is recorded. Compare a system that loses the affected-user task with one that records pending communication and continues to display the affected status. Preserve recovery responsibility without undoing the closure or deleting booking history. Carry a compact decision record with the responsible owner, the permitted action, the independent result, an observation after exposure and the recovery condition. Let one missing item narrow the release claim, then reveal exactly the evidence that resolves it.",
      "principle": "Release decisions must consider the whole user promise and the behavior of incomplete or failed work.",
      "pdf_treatment": "Print the blocked decision, corrected evidence, and notification-failure outcome.",
      "rules": [],
-     "sources": []
+     "sources": [
+      "S58"
+     ]
     },
     {
      "order": 6,
@@ -2391,7 +2523,7 @@
      "link": "week-14.html#/compare-defensible-options",
      "fixture_key": "w14/compare-defensible-options",
      "visual_idea": "A side-by-side decision record compares a targeted change inside the modular application with a separately deployed closure service.",
-     "situation": "Ask which new requirement actually needs independent deployment. Reveal benefits and costs under the fictional small-team, single-campus baseline. Compare change surface, operational boundaries, authority, and maintenance burden without using an arbitrary winner score.",
+     "situation": "Ask which new requirement actually needs independent deployment. Reveal benefits and costs under the fictional small-team, single-campus baseline. Compare change surface, operational boundaries, authority, and maintenance burden without using an arbitrary winner score. Include continuing operation, support effort and exit or migration cost in the qualitative comparison. Make the displaced work visible and retain the option to defer the distributed extension when its benefit is not established.",
      "changed_condition": "Change one condition: several independent campus operators now need separate release schedules. Revisit the rationale and identify the new contract and ownership questions. Do not announce that this single condition automatically proves the distributed option is best.",
      "principle": "A defensible choice explains its assumptions, trade-offs, evidence, and conditions for reconsideration.",
      "pdf_treatment": "Print both decision records and the one changed condition, preserving unresolved questions.",
@@ -2406,7 +2538,7 @@
      "link": "week-14.html#/course-principles",
      "fixture_key": "w14/course-principles",
      "visual_idea": "Six concise principle cards connect to small images from earlier scenes rather than a wall of vocabulary.",
-     "situation": "Ask which counterexample taught each principle: false confirmation, ambiguous requirement, clean-but-wrong merge, shared test assumption, unsafe rollback, and overpowered automation. Reveal the principle only after the class recognizes the situation.",
+     "situation": "Ask which counterexample taught each principle: false confirmation, ambiguous requirement, clean-but-wrong merge, shared test assumption, unsafe rollback, and overpowered automation. Reveal the principle only after the viewer recognizes the situation.",
      "changed_condition": "Change the domain label from room booking to a generic reservation service while keeping the underlying relationship. Compare which principles transfer and which policies must be elicited again.",
      "principle": "Conceptual understanding transfers relationships and reasoning—not an unexamined copy of another system’s rules.",
      "pdf_treatment": "Print each principle beside its concrete counterexample and scope.",
@@ -2421,8 +2553,8 @@
      "link": "week-14.html#/engineering-explanation",
      "fixture_key": "w14/engineering-explanation",
      "visual_idea": "A final one-page decision narrative links need, rule, design, checks, release, observation, and unresolved uncertainty.",
-     "situation": "Ask the class to explain why the selected closure behavior is justified. Reveal a coherent account using the evidence already shown, with explicit uncertainty about the multi-campus extension. Avoid ending with “everything is solved.”",
-     "changed_condition": "Remove one important check or change one assumption. Compare how the final claim must narrow. Close on the habit of revising confidence when the supporting conditions change.",
+     "situation": "Ask the viewer to explain why the selected closure behavior is justified. Reveal a coherent account using the evidence already shown, with explicit uncertainty about the multi-campus extension. Avoid ending with “everything is solved.”",
+     "changed_condition": "Remove one important check or change one assumption. Compare how the final claim must narrow. Close on the habit of revising confidence when the supporting conditions change. End with a fresh transfer question: which reasoning survives in another reservation domain, and which duration, fairness, identity and harm assumptions must be elicited again? Keep uncertainty as a concrete next question with an owner, not a generic disclaimer.",
      "principle": "Good engineering explanations connect decisions to evidence and remain honest about what has not been established.",
      "pdf_treatment": "Print the complete decision narrative and its bounded conclusion as the closing student reference.",
      "rules": [],

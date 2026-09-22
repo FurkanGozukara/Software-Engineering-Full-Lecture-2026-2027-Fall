@@ -8,7 +8,7 @@ Where a scene needs an extra page for legibility, keep its identifier and add a 
 
 Give every scene a plain-language `principleShort` line under its principle, and carry the week's "In practice" tool names from Section 1 of `plan/weekNN.txt` into the deck (AGENTS.md, student-facing wording).
 
-Produce: the deck, its print panels, `site/pdf/week-NN.pdf`, any local assets, and a short scene guide (`notes/week-NN.scene-guide.md`) naming the baseline, the useful condition presets, the state that best exposes each misconception, and any deliberately simplified mechanism. There is no instructor rehearsal; the guide is what the instructor reads before teaching. Write no cue list, narration, planned durations or recorded route anywhere; the recording agent generates them at run time (`plan/22_recording_track.txt`).
+Produce: the deck, its print panels, `site/pdf/week-NN.pdf`, any local assets, and a short scene guide (`notes/week-NN.scene-guide.md`) naming the baseline, the useful condition presets, the state that best exposes each misconception, and any deliberately simplified mechanism. There is no instructor rehearsal; the guide is what the instructor reads before teaching. Write no cue list, narration, shot-duration budgets or recorded route anywhere; the recording agent generates them at run time (`plan/22_recording_track.txt`).
 
 Before handing over, read every caption and note that appears only in the PDF and ask of each sentence: would it make sense to someone who never read the plan? Plan wording such as authoring instructions or guardrails does not belong in student text.
 

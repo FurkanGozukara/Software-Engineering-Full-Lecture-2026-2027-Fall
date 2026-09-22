@@ -1,10 +1,10 @@
 WEEK 12 | MAINTENANCE, EVOLUTION, AND SUSTAINABLE CHANGE
-Research and curriculum date: 16 September 2026
+Curriculum review: 22 September 2026; source retrieval dates are recorded individually
 ==============================================================================
 
 How can a useful system change without losing the behavior people rely on?
 
-Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-12.html
+Instructor lecture plan | flexible pacing | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-12.html
 
 1. PURPOSE, CASE STATE, AND SCOPE
 ---------------------------------
@@ -114,7 +114,7 @@ VISUAL IDEA: A three-stage data transition and compatibility matrix show old/new
 
 SITUATION, PREDICTION, AND MECHANISM: Ask whether renaming a field instantly is safe while old consumers remain active. Reveal an expanded representation supporting both forms, a controlled migration, and checks that readers agree on the same duration. Show that mixed versions are a normal transition state to consider. [S23]
 
-CHANGE ONE CONDITION AND COMPARE: Remove the old representation before the old reader is retired. Compare the failure with a transition that verifies migration and consumer readiness before contraction. Show why rollback possibilities narrow after the old data path is removed.
+CHANGE ONE CONDITION AND COMPARE: Remove the old representation before the old reader is retired. Compare the failure with a transition that verifies migration and consumer readiness before contraction. Show why rollback possibilities narrow after the old data path is removed. Before a destructive step, distinguish having a backup from having evidence that it restores usable, consistent data. Compare the recovery point with later writes and inspect how long restoration makes the service unavailable. Introduce acceptable data loss and restoration time as requirements; do not invent recovery targets. A backup does not make already-delivered notifications reversible. [S56]
 
 PRINCIPLE TO REVEAL: Evolution is safer when compatibility is maintained deliberately across the states that actually coexist.
 
@@ -172,7 +172,7 @@ Bridge scene | ID: resource-per-useful-outcome
 
 VISUAL IDEA: Two bars show storage reads per successful search, with correctness and freshness conditions fixed beside them.
 
-SITUATION, PREDICTION, AND MECHANISM: Ask whether fewer reads is automatically an improvement. Reveal 1,000 reads for 100 successful searches versus 200 for 100: 10 and 2 reads per successful search. Verify that both return the required current availability and preserve the authoritative booking decision.
+SITUATION, PREDICTION, AND MECHANISM: Ask whether fewer reads is automatically an improvement. Reveal 1,000 reads for 100 successful searches versus 200 for 100: 10 and 2 reads per successful search. Verify that both return the required current availability and preserve the authoritative booking decision. Explain the reduction through avoiding repeated reads or using a cache only within a declared freshness contract. Measure useful outcomes before claiming a performance or resource benefit; correctness and the authoritative confirmation check still apply.
 
 CHANGE ONE CONDITION AND COMPARE: Reduce reads further by serving stale results beyond the allowed freshness assumption. Compare the apparently attractive resource number with the violated user promise. Explain that a carbon claim additionally needs an appropriate energy, emissions, hardware, and system-boundary method. [S37]
 
@@ -230,6 +230,14 @@ QUESTION 4: What is the resource reduction in the declared fixture?
 
 ANSWER: Reads per successful search decrease from 10 to 2, an 80% reduction under the same stated conditions; this is not an emissions measurement.
 
+QUESTION 5: Why does a successful backup job not settle migration recovery?
+
+ANSWER: The data must be restorable and consistent, later writes must be accounted for, and the restoration interruption must meet the relevant requirement.
+
+QUESTION 6: A desktop application's update changes its document format. Does reinstalling the old application recover the documents?
+
+ANSWER: Only if that version can read the actual saved data or a verified conversion or restore path exists. Account for edits since any backup and communicate the recovery consequences before changing the format.
+
 9. PDF CONTINUITY AND LECTURE ELASTICITY
 ----------------------------------------
 
@@ -238,10 +246,12 @@ WHAT THE PRINTED EXPLANATION MUST PRESERVE
 
 Preserve migration stages and the compatibility matrix in readable separate panels. Print the distinction between observed and intended behavior, the contextual debt record, and the resource calculation. Do not collapse the transition to a single “new system” picture that hides coexistence or recovery limits.
 
-SHORTER AND LONGER MEETING ROUTES
----------------------------------
+CORE AND OPTIONAL DEPTH
+-----------------------
 
-Protect incremental change reasoning, compatibility migration, and evidence-based maintenance priority. Keep resource efficiency focused on one honest metric. With extra time, remove one migration prerequisite and ask how the transition must change rather than adding a second schema example.
+Close with the answered transfer question in Section 8, using its small contrasting setting. Preserve the question and explanation in the reading copy.
+
+Protect the small-change comparison, coexistence migration and consequence-based prioritization. Put restore evidence at the migration decision. Optional depth: revisit cache freshness in the existing resource comparison; no new storage-platform tour.
 
 10. HANDOFF
 -----------
@@ -251,4 +261,4 @@ Carry the requirement, checks, change rationale, and maintenance constraints int
 11. SOURCES AND CURRENCY NOTES
 ------------------------------
 
-Primary references: S01, S02, S23, S24, S37. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S23, S24, S37, S56. Full titles, URLs, dated status, and access limitations appear in the source register. Curriculum review: 22 September 2026. See each source entry for its actual retrieval date; unchanged references retain earlier dates. The examples and visual teaching sequences are original proposals; no live service behavior is implied.

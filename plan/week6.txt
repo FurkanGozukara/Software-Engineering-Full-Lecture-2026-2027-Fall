@@ -1,17 +1,17 @@
 WEEK 06 | ARCHITECTURE, INTERACTIONS, AND DISTRIBUTED FAILURE
-Research and curriculum date: 16 September 2026
+Curriculum review: 22 September 2026; source retrieval dates are recorded individually
 ==============================================================================
 
 What changes when a dependency becomes slow, unavailable, or uncertain?
 
-Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-06.html
+Instructor lecture plan | flexible pacing | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-06.html
 
 1. PURPOSE, CASE STATE, AND SCOPE
 ---------------------------------
 
 Scale the Week 5 design from internal responsibilities to runtime structure. Compare a modular single application with a separated notification worker and with a more distributed alternative. Teach architecture through responsibility, deployability, data ownership, contracts, and failure—not through a shopping list of infrastructure products.
 
-The three main mechanisms are a request traveling across components, two concurrent booking attempts competing for one invariant, and a lost response creating an uncertain outcome. The class should leave with disciplined trade-off questions rather than a rule that a newer architectural style is always better. [S01, S02, S08, S09, S10]
+The three main mechanisms are a request traveling across components, two concurrent booking attempts competing for one invariant, and a lost response creating an uncertain outcome. The viewer should leave with disciplined trade-off questions rather than a rule that a newer architectural style is always better. [S01, S02, S08, S09, S10]
 
 In practice (dated examples, 2026): HTTP contracts are often described in OpenAPI; PostgreSQL can enforce a no-overlap rule for time ranges with an exclusion constraint; queued work commonly runs on RabbitMQ or Kafka; and services ship as Docker images, which are a packaging format, not the containers of the C4 model.
 
@@ -159,7 +159,7 @@ VISUAL IDEA: A booking record and a pending notification record advance on separ
 
 SITUATION, PREDICTION, AND MECHANISM: Ask whether delayed email means the booking failed. Reveal R-04: confirmation depends on the booking decision, while notification may complete later. Show pending, delivered, and failed-delivery observations without hiding them from support.
 
-CHANGE ONE CONDITION AND COMPARE: Duplicate a delivery attempt while keeping the booking unchanged. Compare a handler that tolerates repeat work with one that produces unintended extra effects. Mention a durable handoff pattern without requiring implementation detail.
+CHANGE ONE CONDITION AND COMPARE: Duplicate a delivery attempt while keeping the booking unchanged. Compare a handler that tolerates repeat work with one that produces unintended extra effects. Mention a durable handoff pattern without requiring implementation detail. Name the durable handoff as a transactional outbox: the booking change and a pending notification record are committed together, then a worker attempts delivery. Step a crash after commit but before delivery; pending work remains discoverable. A crash after sending but before acknowledgement can still lead to a duplicate attempt. Keep delivery semantics explicit rather than implying exactly-once email.
 
 PRINCIPLE TO REVEAL: Asynchronous work changes the timing and failure contract; it does not remove responsibility for completion.
 
@@ -172,7 +172,7 @@ Bridge scene | ID: contracts-and-evolution
 
 VISUAL IDEA: A request/response contract appears beside old and new consumers.
 
-SITUATION, PREDICTION, AND MECHANISM: Ask whether adding a response field is always harmless. Reveal that compatibility depends on consumer behavior; strict consumers may reject additions. Contrast that with silently changing the meaning of an existing field.
+SITUATION, PREDICTION, AND MECHANISM: Ask whether adding a response field is always harmless. Reveal that compatibility depends on consumer behavior; strict consumers may reject additions. Contrast that with silently changing the meaning of an existing field. Make one contract concrete: select a booking request, its response shape, the error meaning and the retry rule, then run an old consumer against a changed response. Identify OpenAPI as an HTTP interface-description standard; a schema can describe shape without establishing ownership, no-overlap or retry correctness. [S52]
 
 CHANGE ONE CONDITION AND COMPARE: Change a booking status representation and replay old and new consumers. Compare an explicit transition strategy with an abrupt breaking change.
 
@@ -200,7 +200,7 @@ STUDENT PDF TREATMENT: Print the decision record with the unresolved questions a
 
 Do not teach that eventual consistency is suitable for every datum: display availability may be stale, but the canonical no-overlap decision still needs authoritative enforcement. Do not equate transactions with a guarantee at every isolation level. Locking an existing row may also fail to protect a gap when no conflicting row exists; an implementation must enforce the interval invariant, not merely a superficial uniqueness condition. [S10]
 
-A timeout is an observation at one boundary, not proof of the remote effect. Retry demonstrations use explicit operation identities and defined duplicate handling. Keep technical implementation choices open for authoring and rehearsal; preserve the semantics in every animation.
+A timeout is an observation at one boundary, not proof of the remote effect. Retry demonstrations use explicit operation identities and defined duplicate handling. Keep technical implementation choices open for authoring; preserve the semantics in every animation.
 
 7. MISCONCEPTION AND DIAGNOSIS CLINIC
 -------------------------------------
@@ -230,6 +230,14 @@ QUESTION 4: Is a C4 container always a Docker container?
 
 ANSWER: No. It denotes an application or data-store boundary in that model, not a specific packaging technology.
 
+QUESTION 5: What survives a crash after an atomic booking-and-pending-notification commit?
+
+ANSWER: The booking and the pending work remain recorded; delivery still needs recovery, and a later retry can repeat a delivery attempt.
+
+QUESTION 6: A batch importer crashes after storing a record but before marking its input complete. What makes a restart safe?
+
+ANSWER: Define a stable identity for the intended operation and coordinate its effect with durable completion evidence, or make replay preserve the intended result. A crash does not establish that no write occurred; reusing an identity for changed input needs an explicit policy.
+
 9. PDF CONTINUITY AND LECTURE ELASTICITY
 ----------------------------------------
 
@@ -238,10 +246,12 @@ WHAT THE PRINTED EXPLANATION MUST PRESERVE
 
 Preserve the successful path, dependency failure, concurrent conflict, and lost-response storyboards. Keep event numbering consistent between HTML and PDF. Include the compatibility matrix and the architecture rationale. Every asynchronous arrow must retain a caption explaining what the user can rely on before that work finishes.
 
-SHORTER AND LONGER MEETING ROUTES
----------------------------------
+CORE AND OPTIONAL DEPTH
+-----------------------
 
-Preserve request dependency, concurrent booking, and retry identity as the anchors. The compatibility matrix and architecture rationale can share a page in a shorter lecture. Use extra time for a different interleaving of the same two requests rather than adding consensus algorithms or cluster operations.
+Close with the answered transfer question in Section 8, using its small contrasting setting. Preserve the question and explanation in the reading copy.
+
+Protect request boundaries, concurrent enforcement and retry identity. Keep the API contract and outbox inside their current scenes. Optional depth: compare cached search with authoritative confirmation; leave consensus, full CAP theory and multi-region design for later study.
 
 10. HANDOFF
 -----------
@@ -251,4 +261,4 @@ Carry the contracts and decision record into Week 7. Now several developers need
 11. SOURCES AND CURRENCY NOTES
 ------------------------------
 
-Primary references: S01, S02, S08, S09, S10. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S08, S09, S10, S52. Full titles, URLs, dated status, and access limitations appear in the source register. Curriculum review: 22 September 2026. See each source entry for its actual retrieval date; unchanged references retain earlier dates. The examples and visual teaching sequences are original proposals; no live service behavior is implied.

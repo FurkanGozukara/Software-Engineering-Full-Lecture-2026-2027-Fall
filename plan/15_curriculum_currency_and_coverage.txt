@@ -1,11 +1,11 @@
 CURRICULUM CURRENCY, COVERAGE, AND BOUNDARIES
-Research and curriculum date: 16 September 2026
+Curriculum review: 22 September 2026; source retrieval dates are recorded individually
 ==============================================================================
 
 STABLE FOUNDATION; DATED CONTEMPORARY LAYER
 -------------------------------------------
 
-Use durable concepts as the course spine and date the examples, terminology, and supporting references. SWEBOK V4.0a is the identified current IEEE Computer Society guide; CS2023 is the joint ACM/IEEE-CS/AAAI curriculum reference. These support scope selection rather than a claim that fourteen meetings cover every knowledge area or satisfy a formal accreditation mapping. The SWEBOK landing page was accessible through indexed official excerpts, not an unrestricted full-guide audit. [S01, S02]
+Use durable concepts as the course spine and date the examples, terminology, and supporting references. SWEBOK V4.0a is the identified current IEEE Computer Society guide; CS2023 is the joint ACM/IEEE-CS/AAAI curriculum reference. These support scope selection rather than a claim that fourteen lectures cover every knowledge area or satisfy a formal accreditation mapping. The SWEBOK landing page was accessible through indexed official excerpts, not an unrestricted full-guide audit. [S01, S02]
 
 The original instructional scenarios, questions, diagrams, fixtures, and weekly sequence are authored for this course. They are not reproduced from these references. The reference list supports definitions and technical guardrails; it does not imply that a source endorses every pedagogical choice.
 
@@ -22,7 +22,7 @@ Reliability: name the error budget and its burn rate with the definitions of the
 
 Quality vocabulary: ISO/IEC 25010:2023 names the product quality characteristics behind the quality attributes of Weeks 1 and 2, including its renamed interaction capability and flexibility and the added safety characteristic. [S46]
 
-Law as context: Week 9 names KVKK (Law No. 6698), the GDPR and the EU Cyber Resilience Act in one context line each, because they turn data minimisation and component inventories into obligations. The course explains the engineering and gives no compliance advice. [S47, S48, S49]
+Law as context: Week 9 names KVKK (Law No. 6698), the GDPR and the EU Cyber Resilience Act as jurisdiction-specific examples connecting engineering choices with applicable duties, without assuming the viewer's location or the system's legal scope. CRA reporting starts on 11 September 2026; its main obligations apply from 11 December 2027. The lecture distinguishes those phases and leaves scope and exemptions explicit. The course explains engineering and gives no compliance advice. [S47, S48, S49]
 
 Tools: each week's Section 1 closes with an "In practice" paragraph naming current tools as dated examples. The names help students connect concepts to everyday work; no scene depends on them.
 
@@ -43,25 +43,90 @@ Weeks 13–14 apply those ideas to AI-assisted change and an integrated new requ
 
 Quality assurance is distributed across the sequence rather than confined to Week 8. Configuration management spans Weeks 7, 10, and 12. Security, accessibility, ethics, documentation, and uncertainty appear before and after their most concentrated scenes.
 
+FOUNDATION COVERAGE AND DEPTH
+-----------------------------
+
+This is an instructor planning map to the eighteen SWEBOK knowledge-area headings, using the official indexed topic outline. It is an original mapping of this course, not an IEEE assessment of it. Worked coverage means a decision is explained through a changed condition and an answered question; selected foundations means only the concepts needed here are introduced. A topic appearing in this map is not a claim of complete knowledge-area coverage. [S01, S02]
+
+Software Requirements: worked in Weeks 2-3 and revisited in Week 14 through elicitation, observable acceptance, stakeholder validation and traceability. The request/observation/prototype comparison shows how an intended solution can conceal a different user need.
+
+Software Architecture: worked in Weeks 6 and 14 through deployment boundaries, quality trade-offs, concurrency and uncertain outcomes. Multi-region operation and consensus remain further study.
+
+Software Design: worked in Weeks 3, 5 and 6 through models, responsibilities, interfaces and change propagation. A pattern catalogue is outside the core.
+
+Software Construction: selected foundations in Weeks 5, 7 and 8 through readable pseudocode, validation, explicit results, controlled effects, integration and debugging. This is not a first programming course; explain the short examples as they appear.
+
+Software Testing: worked in Week 8 and revisited through requirements, contracts, delivery and AI candidate evaluation. Boundary cases, independent expectations and test scope are the central decisions. A guided exploratory comparison shows how investigation discovers an expectation for a later regression check; usability research asks a separate question about people completing the task. [S60]
+
+Software Engineering Operations: worked in Weeks 10-12 through release, telemetry, incidents, overload and usable restoration. Infrastructure administration is outside the core.
+
+Software Maintenance: worked in Week 12 and applied in Week 14 through understanding existing behavior, compatible evolution, debt and retirement.
+
+Software Configuration Management: worked across Weeks 7, 10 and 12 through history, resolved dependencies, configuration, artifact identity and version coexistence.
+
+Software Engineering Management: selected decisions in Weeks 4, 7, 11 and 14 cover scope, capacity, risk, responsibility, communication and release. Organizational staffing and contract administration are further study.
+
+Software Engineering Process: worked in Weeks 1, 4 and 10 through feedback, integration, completion policies and improvement experiments. Method names serve those decisions.
+
+Software Engineering Models and Methods: worked in Weeks 3, 6 and 8 through state, data, interactions, invariants and counterexamples. Bounded exploration is optional; advanced formal verification is further study.
+
+Software Quality: worked throughout, especially Weeks 1-2, 8 and 10-12, through explicit promises, preventive practices and evidence about actual behavior. Quality is broader than passing tests.
+
+Software Security: worked in Week 9 and reinforced in Weeks 2, 6, 10 and 13 through trust boundaries, permission, privacy, dependencies and bounded automation.
+
+Software Engineering Professional Practice: selected decisions across Weeks 1, 7, 9, 11, 13 and 14 address affected people, collaboration, honest communication, licensing context and accountable release.
+
+Software Engineering Economics: selected decisions in Weeks 4-5, 12 and 14 cover lifecycle cost, opportunity cost, acquisition and exit. Formal financial modeling is further study.
+
+Computing Foundations: selected concepts in Weeks 3, 5-6 and 11 connect identity, data integrity, program behavior, network boundaries and concurrency. The lookup/index comparison is optional; full algorithms, operating systems, networking and database courses remain further study.
+
+Mathematical Foundations: selected concepts in Weeks 2-4, 6, 8 and 10-11 include conditions, interval boundaries, graphs, state transitions, rates and distributions. Explain each in place; advanced probability, calculus and proof techniques are not prerequisites.
+
+Engineering Foundations: worked across Weeks 2, 4-6, 11 and 14 through assumptions, prototypes, controlled comparisons, measurement, trade-offs and feedback. A simulation illustrates its declared model; it is not an empirical result about a real team.
+
+Cross-cutting threads: accessibility and usability recur in Weeks 1-3, 8-9 and 14; resource efficiency in Week 12; AI assistance in the existing through-line and Week 13. The answered transfer examples extend these decisions beyond the reservation setting. These threads enrich the relevant scenes rather than creating additional weeks.
+
+SEPTEMBER 22 REVIEW: DEPTH, TRANSFER, AND WORKLOAD
+------------------------------------------------
+
+The original plan already covers requirements, modeling, process, modularity, distributed failure, review, testing, security, delivery, operation, maintenance and AI assistance. Retain that sequence and the Campus Rooms example. The review strengthens thin mechanisms inside the existing scenes rather than adding a fifteenth week or a new technology survey.
+
+Construction becomes explicit in Week 5 through validation, a deterministic policy and explicit results. Economics becomes explicit in Weeks 4, 5, 12 and 14 through lifecycle cost, opportunity cost, reuse/acquisition, maintenance and exit decisions. Week 3 adds the invariant-versus-progress distinction; optional bounded exploration connects it to Week 8 without claiming formal proof. These changes address breadth of engineering reasoning, not just currently popular tools. [S01, S02]
+
+Week 6 makes an HTTP contract concrete and follows durable notification work across crashes. Week 7 supplies the missing working-tree-to-shared-history bridge and evidence-based disagreement resolution. Week 8 connects controlled doubles with actual contract evidence. Security verification gains a small ASVS mapping; delivery gains an explicit build/release authority distinction. Week 11 connects profiling and overload decisions to user outcomes. Week 12 asks whether a backup actually restores consistent, usable state. [S51, S52, S55, S56]
+
+Week 13 includes productive bounded delegation and compares types of productivity evidence. Its runtime-AI extension names a deterministic baseline, held-out scenarios, variability, relevant evaluation criteria, versioned inputs and fallback. The newer METR material is interpreted within its study limits, and only the public DORA capabilities overview is used. Tool names remain examples rather than the organizing structure. [S53, S54, S57]
+
+Depth is managed in each week's Section 9. The three Anchor scenes remain the core; optional depth is clearly separate and never required by the next week. New content replaces part of a repeated definition, recap or tool-name tour. A week should leave the learner able to explain the decision and the decisive evidence, including a changed condition. An unanswered prediction followed by a reasoned reveal has more educational value than another dense page. Production timing and narration are determined from the actual deck in the tutorial workspace.
+
+Use the general-audience and flexible-pacing decisions in 00_START_HERE.txt. The delivered first lecture remains the starting point; no new prerequisite or recording revision is introduced. The course offers a strong introductory foundation with selected deeper connections, not every specialist topic in software engineering or professional mastery from viewing alone.
+
+TRANSFER BEYOND THE RECURRING CASE
+----------------------------------
+
+Each remaining lecture closes with an answered transfer question. The examples include a desktop editor, mobile synchronization, an image library, a batch importer, a local file converter, a command-line tool and a device configuration. They change the setting while keeping the week's decision small enough to explain immediately. These are original qualitative scenarios, stored in the transfer_checks fixture block, not measurements or a second implementation track. The room-booking rules do not become defaults for these other systems.
+
+Week 14 also makes professional responsibility actionable: identify who bears a foreseeable consequence, explain the concern honestly, propose a safer alternative and escalate an unresolved release decision. The ACM ethics reference supports consideration of affected people and harm; the course's release scenario and response are original applications. [S58]
+
 WHY THIS ORDER IS DELIBERATE
 ----------------------------
 
-Requirements precede model and design choices so students have something concrete to judge. State and interaction models precede concurrent failure so “unknown result” has meaning. Modularity precedes architecture so distribution is not confused with good separation. Review precedes deeper testing so students understand why checks must accompany changes. Security precedes delivery so release evidence includes permission and dependency concerns. Operation precedes maintenance so evolution responds to actual feedback. AI assistance appears after students can evaluate ordinary changes independently.
+Requirements precede model and design choices so students have something concrete to judge. State and interaction models precede concurrent failure so “unknown result” has meaning. Modularity precedes architecture so distribution is not confused with good separation. Review precedes deeper testing so students understand why checks must accompany changes. Security precedes delivery so release evidence includes permission and dependency concerns. Operation precedes maintenance so evolution responds to actual feedback. The concentrated AI-assistance week appears after students can evaluate ordinary changes independently; earlier beats establish the same expectations throughout.
 
 Foundational topics are introduced early and revisited with a stronger question. For example, no-overlap begins as a promise, becomes a requirement, appears in a sequence, becomes a concurrent invariant, receives tests, and returns in the closure decision. This is intentional reinforcement, not fourteen unrelated mini-courses.
 
 DELIBERATE LIMITS
 -----------------
 
-Do not stretch these meetings into exhaustive UML, a design-pattern catalog, a full distributed-systems course, database-administration training, a penetration-testing course, or a vendor certification. Advanced formal verification, consensus algorithms, model training, infrastructure orchestration, and detailed environmental accounting remain outside the core sequence.
+Do not stretch these lectures into exhaustive UML, a design-pattern catalog, a full distributed-systems course, database-administration training, a penetration-testing course, or a vendor certification. Advanced formal verification, consensus algorithms, model training, infrastructure orchestration, and detailed environmental accounting remain outside the core sequence.
 
 An optional illustration may acknowledge one of those areas when it clarifies a boundary, but it must not become prerequisite knowledge for the next week. Laws appear only as named context, never as compliance guidance. The course should produce a coherent conceptual foundation and evidence-based reasoning, not a claim of complete professional mastery from lecture exposure alone.
 
-Assessment, examinations, grading, homework and assigned projects are outside this package by decision (00_START_HERE.txt). The lecture materials never mention them; the instructor handles them separately.
+Worked examples and questions with their answers follow the public lecture-only decision in 00_START_HERE.txt.
 
-REFRESH POLICY FOR LATER SEMESTERS
+REFRESH POLICY FOR FUTURE RELEASES
 ----------------------------------
 
-Before a new run, check the official source status for SWEBOK, curriculum guidance, OWASP (including the agentic list), NIST, workflow guides, accessibility guidance, ISO/IEC 25010, the delivery-measure definitions, and the application dates of the laws named in Week 9. Record edition, publication or update date, retrieval date, and final-versus-draft status. Review each week's "In practice" tool names at the same time and replace names that have fallen out of common use. Preserve the conceptual lesson unless the evidence gives a reason to change it. The DORA publication index is the entry point for newer delivery and AI-assistance research; the re-verification task template is repo_kit/tasks/50_source_reverification.md. [S36]
+Before a new run, check the official source status for SWEBOK, curriculum guidance, OWASP (including the agentic list), NIST, workflow guides, accessibility guidance, ISO/IEC 25010, the delivery-measure definitions, and the application dates of the laws named in Week 9. Record edition, publication or update date, retrieval date, and final-versus-draft status. Review each week's "In practice" tool names at the same time and replace names that have fallen out of common use. Preserve the conceptual lesson unless the evidence gives a reason to change it. The DORA publication index is the entry point for newer delivery and AI-assistance research; the re-verification task template is ../tasks/50_source_reverification.md. Recheck volatile references again immediately before authoring their lecture; do not silently update the dated research claims. [S36]
 
-During visual authoring, verify supported stable versions of the selected local libraries and a supported Node.js LTS release if Node is used. Pin the tested versions for the semester instead of silently following floating “latest” dependencies. Recheck the affected scenes and PDF output after a dependency update. Sources are dated evidence, not a promise that their live pages can never change. [S26–S32, S38, S39]
+During visual authoring, verify supported stable versions of the selected local libraries and a supported Node.js LTS release if Node is used. Pin the tested versions for the course release instead of silently following floating “latest” dependencies. Recheck the affected scenes and PDF output after a dependency update. Sources are dated evidence, not a promise that their live pages can never change. [S26–S32, S38, S39]

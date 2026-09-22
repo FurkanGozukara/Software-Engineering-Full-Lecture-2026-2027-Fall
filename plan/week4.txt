@@ -1,10 +1,10 @@
 WEEK 04 | DEVELOPMENT FLOW, UNCERTAINTY, AND ENGINEERING DECISIONS
-Research and curriculum date: 16 September 2026
+Curriculum review: 22 September 2026; source retrieval dates are recorded individually
 ==============================================================================
 
 Where is work waiting, and what would actually improve the flow?
 
-Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-04.html
+Instructor lecture plan | flexible pacing | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-04.html
 
 1. PURPOSE, CASE STATE, AND SCOPE
 ---------------------------------
@@ -97,7 +97,7 @@ Bridge scene | ID: methods-not-rituals
 
 VISUAL IDEA: A three-column comparison of plan-driven coordination, iterative timeboxes, and flow-based policies.
 
-SITUATION, PREDICTION, AND MECHANISM: Ask what information each approach makes visible and when decisions change. Introduce Scrum through goals, inspection, and adaptation within its defined framework, and Kanban through explicit workflow, controlling work-in-progress, and improving flow. Do not claim a generic board is the whole of either. Name Scrum's three accountabilities in one line, Product Owner, Scrum Master and Developers, as the places where decisions about value, process and the work itself are made visible, not as job titles. [S04, S05]
+SITUATION, PREDICTION, AND MECHANISM: Ask what information each approach makes visible and when decisions change. Introduce Scrum through goals, inspection, and adaptation within its defined framework, and Kanban through explicit workflow, controlling work-in-progress, and improving flow. Do not claim a generic board is the whole of either. Name Scrum's three accountabilities in one line, Product Owner, Scrum Master and Developers, as the places where decisions about value, process and the work itself are made visible, not as job titles. [S04, S05] Give plan-driven coordination its strongest use case: costly external integration or a required evidence handoff. Name an early prototype or risk investigation as another way to learn before commitment. Compare when feedback arrives and which decisions remain reversible, rather than teaching method names as competing slogans.
 
 CHANGE ONE CONDITION AND COMPARE: Change the work from a planned capability to unpredictable incident arrivals. Compare which coordination mechanisms help and what policies need revision; do not declare one universal winner.
 
@@ -112,7 +112,7 @@ Anchor scene | ID: queue-and-bottleneck
 
 VISUAL IDEA: A work board and a numerical queue chart share the same discrete-round data.
 
-SITUATION, PREDICTION, AND MECHANISM: Run implementation at two cards per round and review at one. Ask where the next unfinished card will wait. Reveal the review queue accumulating, with completed work counted separately from work started. Let the class predict the result before doubling implementation capacity.
+SITUATION, PREDICTION, AND MECHANISM: Run implementation at two cards per round and review at one. Ask where the next unfinished card will wait. Reveal the review queue accumulating, with completed work counted separately from work started. Let the viewer predict the result before doubling implementation capacity.
 
 CHANGE ONE CONDITION AND COMPARE: Change only implementation capacity to four and replay the same arrival schedule. Compare completion rate and queue length. Restore the baseline, then change review capacity to two. Explain that the bottleneck may move once a constraint is relieved.
 
@@ -144,7 +144,7 @@ VISUAL IDEA: An estimate range sits beside known work, dependencies, and unresol
 
 SITUATION, PREDICTION, AND MECHANISM: Ask whether “three days” means effort, elapsed time, or a commitment. Reveal the dependencies and review capacity behind the estimate. Compare a range based on several similar examples with a single unsupported number.
 
-CHANGE ONE CONDITION AND COMPARE: Change one assumption: the identity interface is not yet agreed. Widen or qualify the estimate and show the value of resolving that uncertainty. Do not turn fictional ranges into statistical confidence intervals without a model and data.
+CHANGE ONE CONDITION AND COMPARE: Change one assumption: the identity interface is not yet agreed. Widen or qualify the estimate and show the value of resolving that uncertainty. Do not turn fictional ranges into statistical confidence intervals without a model and data. Also separate effort spent doing the change from elapsed waiting and continuing support cost. These form a small lifecycle cost discussion, not just an implementation estimate.
 
 PRINCIPLE TO REVEAL: An estimate is a conditional statement whose assumptions should travel with it.
 
@@ -157,7 +157,7 @@ Anchor scene | ID: risk-and-learning
 
 VISUAL IDEA: A decision table contrasts impact, uncertainty, reversibility, cost of delay, and information gained.
 
-SITUATION, PREDICTION, AND MECHANISM: Offer a visual refinement, a proof that simultaneous bookings cannot overlap, and an investigation into an unclear identity dependency. Ask what the team should learn before committing more work. Reveal what each step would clarify and what failure would cost.
+SITUATION, PREDICTION, AND MECHANISM: Offer a visual refinement, a proof that simultaneous bookings cannot overlap, and an investigation into an unclear identity dependency. Ask what the team should learn before committing more work. Reveal what each step would clarify and what failure would cost. Include the option to defer or reduce scope. Explain opportunity cost through the valuable work displaced by the chosen step; no invented monetary multiplier is needed.
 
 CHANGE ONE CONDITION AND COMPARE: Change only the reversibility of a decision: a temporary interface choice becomes a difficult data migration. Compare the amount of evidence worth seeking before proceeding. Use ordinal judgments and explanatory notes rather than multiplying invented probability scores.
 
@@ -189,7 +189,7 @@ VISUAL IDEA: Before-and-after panels connect a workflow observation, proposed ch
 
 SITUATION, PREDICTION, AND MECHANISM: Ask what should happen after noticing a long review queue. Reveal a proposal to share review work, the expected effect, and what would count as contrary evidence. Keep the discussion about the system rather than blaming an individual, and explain why: people report delays and mistakes honestly only where reporting them is safe, so blameless discussion and psychological safety are the conditions for trustworthy process data.
 
-CHANGE ONE CONDITION AND COMPARE: Increase review speed but show more missed issues. Compare throughput with quality and rework. Leave the class with the idea of a balanced improvement experiment rather than one target number.
+CHANGE ONE CONDITION AND COMPARE: Increase review speed but show more missed issues. Compare throughput with quality and rework. Leave the viewer with the idea of a balanced improvement experiment rather than one target number.
 
 PRINCIPLE TO REVEAL: Change a process deliberately, observe its consequences, and revise the explanation when the evidence disagrees.
 
@@ -230,6 +230,14 @@ QUESTION 4: What should accompany a process improvement claim?
 
 ANSWER: A baseline, a stated change, a relevant outcome measure, and attention to quality or other side effects.
 
+QUESTION 5: Why can the smallest implementation estimate still be the more expensive choice?
+
+ANSWER: Waiting, integration, continuing support, exit cost and displaced valuable work can change the lifecycle comparison.
+
+QUESTION 6: A library team writes changes faster, but maintainers can review no more than before. What should it inspect next?
+
+ANSWER: Inspect waiting work, review capacity, accepted changes and rework. Faster drafting can grow the queue without improving completion; choose the next improvement from the constraint and its quality consequences.
+
 9. PDF CONTINUITY AND LECTURE ELASTICITY
 ----------------------------------------
 
@@ -238,10 +246,12 @@ WHAT THE PRINTED EXPLANATION MUST PRESERVE
 
 Preserve the actual values behind every chart: rounds, capacities, queue lengths, and completed items. Include a glossary with measurement boundaries. Print the estimate assumptions and risk rationale. Do not distribute a chart that implies a measured industry result when it came from the lecture model.
 
-SHORTER AND LONGER MEETING ROUTES
----------------------------------
+CORE AND OPTIONAL DEPTH
+-----------------------
 
-Preserve feedback batches, the queue simulation, and the risk comparison. The methods comparison is intentionally short. In a longer lecture, introduce different work-item sizes or an incident arrival using the same board, then examine why the earlier simplification mattered.
+Close with the answered transfer question in Section 8, using its small contrasting setting. Preserve the question and explanation in the reading copy.
+
+Protect feedback batches, queue behavior and the risk decision. Fit lifecycle cost into the existing estimate and risk tables; shorten the framework comparison. Optional depth: change the support or exit assumption in the same decision, without a new scoring system.
 
 10. HANDOFF
 -----------
@@ -251,4 +261,4 @@ Carry forward one prioritized change: changing a booking policy without causing 
 11. SOURCES AND CURRENCY NOTES
 ------------------------------
 
-Primary references: S01, S02, S03, S04, S05. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S03, S04, S05. Full titles, URLs, dated status, and access limitations appear in the source register. Curriculum review: 22 September 2026. See each source entry for its actual retrieval date; unchanged references retain earlier dates. The examples and visual teaching sequences are original proposals; no live service behavior is implied.

@@ -1,8 +1,8 @@
 PRIMARY SOURCE REGISTER
-Research and curriculum date: 16 September 2026
+Register updated: 22 September 2026; retrieval dates are recorded per entry
 ==============================================================================
 
-Primary references checked on 16 September 2026. Living documentation can change after this date. Source keys identify supporting concepts and technical guardrails, not copied lesson text. Most sources were read as HTML; the SWEBOK access limitation is recorded explicitly. No full external reference PDF audit is claimed.
+The original references were checked on 16-17 September 2026. Selected status checks and new references were reviewed on 22 September 2026 as recorded below; unchanged entries retain their earlier retrieval dates. Living documentation can change. Source keys identify supporting concepts and technical guardrails, not copied lesson text. Most sources were read as HTML; access limitations are recorded explicitly. No full external reference PDF audit is claimed.
 
 Authoring-library references are instructor resources. They are not dependencies students need to learn. Numerical fixtures throughout the course are original teaching data unless explicitly stated otherwise. Each entry ends with its use: curriculum sources support lecture content and are cited by at least one week; authoring sources support the build and are cited by the support files.
 
@@ -11,7 +11,9 @@ S01 | IEEE COMPUTER SOCIETY — GUIDE TO THE SOFTWARE ENGINEERING BODY OF KNOWLE
 
 https://www.computer.org/education/bodies-of-knowledge/software-engineering
 
-V4.0a identified in official indexed material; version update indicated 25 September 2025. Direct page access returned 403. Used for high-level curriculum scope; no claim of a full guide audit.
+V4.0a identified in official indexed material; version update indicated 25 September 2025. Rechecked 22 September 2026: the official /v4 indexed page still identifies V4.0a as newest; direct retrieval failed. Used for high-level curriculum scope; no claim of a full guide audit. The official indexed topic outline below was also checked on 22 September 2026 for the knowledge-area coverage map; direct retrieval returned HTTP 403. The depth judgments and week mapping are the course author's.
+
+https://www.computer.org/education/bodies-of-knowledge/software-engineering/topics
 
 Use: curriculum.
 
@@ -20,7 +22,7 @@ S02 | ACM / IEEE-CS / AAAI — COMPUTER SCIENCE CURRICULA 2023, FINAL REPORT
 
 https://csed.acm.org/final-report/
 
-Final curriculum reference, published in 2024. Used for broad scope and competencies; not a formal course accreditation mapping. Do not substitute the older gamma-draft knowledge-area download for the final report.
+Final curriculum reference, published in 2024. Final-report landing page rechecked 22 September 2026; the official indexed HTML report supports teamwork, construction, requirements and professional-context coverage. Full HTML retrieval exceeded the browser text size limit. Used for broad scope and competencies; not a formal course accreditation mapping or a full-report audit. Do not substitute the older gamma-draft knowledge-area download for the final report.
 
 Use: curriculum.
 
@@ -137,7 +139,7 @@ S15 | NIST — SP800-218 REV.1, SSDF1.2 INITIAL PUBLIC DRAFT
 
 https://csrc.nist.gov/pubs/sp/800/218/r1/ipd
 
-17 December 2025 initial public draft; comment period closed 30 January 2026. Retrieved page still labels it a draft. Currency watch item, not a replacement final standard.
+17 December 2025 initial public draft; comment period closed 30 January 2026. Rechecked 22 September 2026: the NIST publication page still labels it an initial public draft. Currency watch item, not a replacement final standard.
 
 Use: curriculum.
 
@@ -146,7 +148,7 @@ S16 | SLSA — SPECIFICATION V1.2
 
 https://slsa.dev/spec/v1.2/
 
-Selected published specification. Used for provenance and build-integrity concepts; no maturity-level certification is claimed.
+Approved Version 1.2, status rechecked on the official specification page on 22 September 2026. Used for provenance and build-integrity concepts, including distinct source and build concerns; no maturity-level certification is claimed.
 
 Use: curriculum.
 
@@ -155,7 +157,7 @@ S17 | DORA — SOFTWARE DELIVERY PERFORMANCE METRICS
 
 https://dora.dev/guides/dora-metrics/
 
-Updated 5 January 2026. Current five-measure terminology and service-level interpretation. Course event data are original simulations.
+Updated 5 January 2026; rechecked 22 September 2026. Five-measure terminology and application/service-level interpretation remain on the official guide. Course event data are original simulations. Do not use these measures to rank individual developers.
 
 Use: curriculum.
 
@@ -443,7 +445,9 @@ S49 | EUROPEAN UNION — REGULATION (EU) 2024/2847, CYBER RESILIENCE ACT
 
 https://eur-lex.europa.eu/eli/reg/2024/2847/oj
 
-Official EUR-Lex text of 23 October 2024 on horizontal cybersecurity requirements for products with digital elements, retrieved 17 September 2026. Annex I Part II requires manufacturers to identify and document components and draw up a software bill of materials. The European Commission's Cyber Resilience Act page gives the dates: in force 10 December 2024, reporting obligations from 11 September 2026, main obligations from 11 December 2027. Used for one context line in the Week 9 dependency scene; not legal advice.
+Official EUR-Lex text of 23 October 2024 on horizontal cybersecurity requirements for products with digital elements, retrieved 17 September 2026. Annex I Part II requires manufacturers to identify and document components and draw up a software bill of materials. Dates rechecked 22 September 2026 against the European Commission page below (updated 7 September 2026): in force 10 December 2024, reporting obligations from 11 September 2026, main obligations from 11 December 2027. Week 9 distinguishes the reporting start from the main component-documentation obligations and leaves scope/exemptions explicit; it does not imply all websites are covered. Legal context only.
+
+https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act
 
 Use: curriculum.
 
@@ -453,5 +457,95 @@ S50 | SPRACKLEN ET AL. — PACKAGE HALLUCINATIONS BY CODE-GENERATING LLMS
 https://arxiv.org/abs/2406.10279
 
 "We Have a Package for You! A Comprehensive Analysis of Package Hallucinations by Code Generating LLMs", USENIX Security Symposium 2025 (arXiv 2406.10279), retrieved 17 September 2026. Shows generated code recommending packages that do not exist, which an attacker can publish under the invented name. Used for the Week 13 change-record example; the package name in the course is fictional.
+
+Use: curriculum.
+
+S51 | OWASP — APPLICATION SECURITY VERIFICATION STANDARD
+---------------------------------------------------------
+
+https://owasp.org/projects/asvs
+
+Retrieved 22 September 2026. The official page identifies ASVS 5.0.0 as the stable version and describes its use for application technical security verification requirements. Used in Week 9 to connect a risk with a checkable control expectation and evidence, distinct from Top 10 awareness and SSDF process practices. No complete standard audit or conformance claim.
+
+Use: curriculum.
+
+S52 | OPENAPI INITIATIVE — OPENAPI SPECIFICATION 3.2.1
+------------------------------------------------------
+
+https://spec.openapis.org/oas/v3.2.1.html
+
+Published 10 September 2026; retrieved 22 September 2026. The official latest-published link resolved to this version. Supports Week 6's concrete HTTP interface-description example. A published specification does not establish implementation support in every tool; the course does not require this version or teach its syntax. Shape descriptions do not establish domain, authorization or concurrency correctness.
+
+Use: curriculum.
+
+S53 | METR — WE ARE CHANGING OUR DEVELOPER PRODUCTIVITY EXPERIMENT DESIGN
+------------------------------------------------------------------------
+
+https://metr.org/blog/2026-02-24-uplift-update/
+
+Published 24 February 2026; retrieved 22 September 2026. Primary follow-up describes selection effects and time-measurement limitations affecting estimates of AI assistance in experienced-developer work. Used in Week 13 for evidence interpretation, without claiming a universal slowdown or speedup, or treating an earlier study as the current state of all tools.
+
+Use: curriculum.
+
+S54 | METR — SELF-REPORTED IMPACT OF EARLY-2026 AI ON TECHNICAL WORKER PRODUCTIVITY
+---------------------------------------------------------------------------------
+
+https://metr.org/blog/2026-05-11-ai-usage-survey/
+
+Published 11 May 2026; retrieved 22 September 2026. Primary survey concerns self-reported impact and discusses selection bias. Used beside S53 in Week 13 to distinguish perceived benefit, controlled task evidence and course simulations. No numerical productivity result is imported into the teaching fixtures.
+
+Use: curriculum.
+
+S55 | GOOGLE SRE — HANDLING OVERLOAD
+-------------------------------------
+
+https://sre.google/sre-book/handling-overload/
+
+Primary practitioner chapter, retrieved 22 September 2026. Supports overload handling, admission decisions and graceful degradation in Week 11. The course preserves its own fictional booking invariants and does not copy the chapter's service capacities or imply a universal threshold.
+
+Use: curriculum.
+
+S56 | GOOGLE SRE — DATA INTEGRITY
+---------------------------------
+
+https://sre.google/sre-book/data-integrity/
+
+Primary practitioner chapter, retrieved 22 September 2026. Supports the distinction between retaining backup data and establishing recoverability and integrity. Used in Week 12's migration decision. No recovery-time or data-loss targets are attributed to Campus Rooms without explicit requirements and fixtures.
+
+Use: curriculum.
+
+S57 | DORA — AI CAPABILITIES MODEL REPORT
+-----------------------------------------
+
+https://dora.dev/ai/capabilities-model/report/
+
+Official overview retrieved 22 September 2026; describes a companion to the 2025 report organized around seven capabilities that support AI adoption. Used only for organizational context in Week 13; the gated/download report itself was not audited, and no detailed model findings or universal causal claims are imported.
+
+Use: curriculum.
+
+S58 | ACM - CODE OF ETHICS AND PROFESSIONAL CONDUCT
+---------------------------------------------------
+
+https://www.acm.org/binaries/content/assets/about/acm-code-of-ethics-booklet.pdf
+
+Official ACM indexed excerpts checked 22 September 2026. Sections 1.1 and 1.2 support considering affected people and reducing harm. Direct ACM HTML and PDF retrieval returned HTTP 403; no full-document or PDF-layout audit is claimed. Used for the original Week 14 release-pressure comparison, not as a legal rule or a substitute for context-specific professional judgment.
+
+Use: curriculum.
+
+S59 | POSTGRESQL GLOBAL DEVELOPMENT GROUP - INDEXES, INTRODUCTION
+----------------------------------------------------------------
+
+https://www.postgresql.org/docs/18/indexes-intro.html
+
+Official documentation retrieved 22 September 2026 through /docs/current/indexes-intro.html, which identified version 18; the versioned link preserves that reference. Supports the optional Week 11 comparison of a table scan with an index, the query planner's choice and index maintenance overhead. The course comparison is qualitative and original; it imports no benchmark, command sequence or universal performance result.
+
+Use: curriculum.
+
+S60 | ISTQB - FOUNDATION LEVEL SYLLABUS, EXPLORATORY TESTING
+----------------------------------------------------------
+
+https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf
+
+Version 4.0.1, dated 15 September 2024. Section 4.4.2, page 44, retrieved 22 September 2026. Used for the relationship between exploration, learning and test design in Week 8. The status-recovery comparison is original course-authored material; no certification syllabus, exam preparation or training durations are adopted. Only the relevant section was reviewed, not the full external PDF.
 
 Use: curriculum.

@@ -1,10 +1,10 @@
 WEEK 07 | COLLABORATION, VERSION HISTORY, AND REVIEWABLE CHANGE
-Research and curriculum date: 16 September 2026
+Curriculum review: 22 September 2026; source retrieval dates are recorded individually
 ==============================================================================
 
 How can several people change one system without losing intent or trust?
 
-Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-07.html
+Instructor lecture plan | flexible pacing | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-07.html
 
 1. PURPOSE, CASE STATE, AND SCOPE
 ---------------------------------
@@ -82,7 +82,7 @@ Anchor scene | ID: commit-graph
 
 VISUAL IDEA: A commit graph grows one node at a time beside a tiny snapshot of the booking policy; branch labels move separately from nodes.
 
-SITUATION, PREDICTION, AND MECHANISM: Ask whether a branch is a second permanent copy of every file. Reveal commits as recorded snapshots linked to parent commits, then move a branch reference when a new commit is added. Draw time consistently but explain that graph ancestry, not horizontal position alone, determines the relationship. [S06]
+SITUATION, PREDICTION, AND MECHANISM: Ask whether a branch is a second permanent copy of every file. Reveal commits as recorded snapshots linked to parent commits, then move a branch reference when a new commit is added. Draw time consistently but explain that graph ancestry, not horizontal position alone, determines the relationship. [S06] Before growing the graph, distinguish the working tree, the selected changes to commit, the local recorded commit and a shared remote reference. Committing and sharing are separate actions; the graph is not a backup of every unsaved edit.
 
 CHANGE ONE CONDITION AND COMPARE: Create a second line of development from the same ancestor. Compare two descendants with different changes, then reveal a merge with two parents. Contrast a fast-forward case without suggesting that every integration needs a merge commit.
 
@@ -97,7 +97,7 @@ Anchor scene | ID: conflict-and-intent
 
 VISUAL IDEA: Two edits to one policy line appear beside the requirement they were intended to implement.
 
-SITUATION, PREDICTION, AND MECHANISM: Ask whether taking the left or right version is sufficient. Reveal one edit implementing the 90-minute variant and another reorganizing the same validation. Show the shared original so the class can distinguish changed behavior from changed structure.
+SITUATION, PREDICTION, AND MECHANISM: Ask whether taking the left or right version is sufficient. Reveal one edit implementing the 90-minute variant and another reorganizing the same validation. Show the shared original so the viewer can distinguish changed behavior from changed structure.
 
 CHANGE ONE CONDITION AND COMPARE: Resolve the text while accidentally losing the upper bound. Compare a syntactically valid result with a requirement-based resolution that preserves both the intended rule and the structural improvement. Reveal the boundary check that detects the mistake.
 
@@ -129,7 +129,7 @@ VISUAL IDEA: A review panel connects requirement, diff, checks, decision rationa
 
 SITUATION, PREDICTION, AND MECHANISM: Show the diff alone and ask what a reviewer cannot yet decide. Reveal the purpose, affected rule, alternatives, and checks. Sort comments into correctness, security, design, understandability, and optional preference. Explain that linters and formatters take style out of the conversation without replacing judgment, and that a useful comment addresses the change rather than the person and says whether it is required or optional. [S07]
 
-CHANGE ONE CONDITION AND COMPARE: Split an unrelated rename out of the same change. Compare the reviewer’s task with and without the unrelated material, without claiming an exact universal speed improvement. Keep one substantive concern unresolved until its supporting evidence appears. AI beat: label the same diff as drafted by an automated assistant with the description “fix stuff”. Ask what changes for the reviewer. Nothing: the requirement, the checks and the rationale are still required, and the empty description is the documentation failure of scene 07 arriving early.
+CHANGE ONE CONDITION AND COMPARE: Split an unrelated rename out of the same change. Compare the reviewer’s task with and without the unrelated material, without claiming an exact universal speed improvement. Keep one substantive concern unresolved until its supporting evidence appears. AI beat: label the same diff as drafted by an automated assistant with the description “fix stuff”. Ask what changes for the reviewer. Nothing: the requirement, the checks and the rationale are still required, and the empty description is the documentation failure of scene 07 arriving early. Resolve the remaining disagreement by restating the claim, identifying the missing evidence and recording the decision owner. Compare asynchronous review with a short paired investigation when shared context is missing; either can work when its findings survive the conversation.
 
 PRINCIPLE TO REVEAL: Review is an evidence-based conversation about a change, not a vote on how convincing its author sounds.
 
@@ -230,6 +230,14 @@ QUESTION 4: Why record dependency inputs?
 
 ANSWER: The same source can run differently when its resolved dependencies or configuration differ.
 
+QUESTION 5: What should resolve a substantive review disagreement?
+
+ANSWER: A clear claim, the evidence needed to decide it and an accountable decision; durable rationale should survive the discussion.
+
+QUESTION 6: A library's code and documentation merge cleanly, but they describe different default behavior. Is the change ready?
+
+ANSWER: Resolve the intended contract and check the implementation and documentation against it. A textual merge detects some overlapping edits; it does not reconcile meaning across different files.
+
 9. PDF CONTINUITY AND LECTURE ELASTICITY
 ----------------------------------------
 
@@ -238,10 +246,12 @@ WHAT THE PRINTED EXPLANATION MUST PRESERVE
 
 Preserve the commit graph at meaningful points, the conflict resolution, and the clean-merge counterexample. Provide readable diffs as text rather than tiny full-screen captures. The review example must retain the requirement and evidence, not only comments. State that the 90-minute rule was a temporary variant.
 
-SHORTER AND LONGER MEETING ROUTES
----------------------------------
+CORE AND OPTIONAL DEPTH
+-----------------------
 
-Keep commit ancestry, semantic conflict, and contextual review as the three sustained explanations. Compress integration frequency and durable documentation into short comparisons when needed. With more time, replay the same merge after changing only one requirement; avoid a long detour into Git internals.
+Close with the answered transfer question in Section 8, using its small contrasting setting. Preserve the question and explanation in the reading copy.
+
+Protect commit ancestry, conflict intent and focused review. The working-tree-to-shared-history strip is preparation for the graph. Optional depth: compare revert and history rewriting on shared work; do not add a Git command catalogue.
 
 10. HANDOFF
 -----------
@@ -251,4 +261,4 @@ Carry the review packet and its unanswered question into Week 8: what makes a ve
 11. SOURCES AND CURRENCY NOTES
 ------------------------------
 
-Primary references: S01, S02, S06, S07. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S06, S07. Full titles, URLs, dated status, and access limitations appear in the source register. Curriculum review: 22 September 2026. See each source entry for its actual retrieval date; unchanged references retain earlier dates. The examples and visual teaching sequences are original proposals; no live service behavior is implied.

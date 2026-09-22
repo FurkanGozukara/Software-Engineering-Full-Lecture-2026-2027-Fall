@@ -1,5 +1,5 @@
 START HERE: A COURSE BUILT AROUND EXPLANATIONS
-Research and curriculum date: 16 September 2026
+Curriculum review: 22 September 2026; source retrieval dates are recorded individually
 ==============================================================================
 
 WHAT THIS PACKAGE CONTAINS
@@ -14,9 +14,9 @@ This is the course plan and authoring package. It does not contain the finished 
 STARTING LEVEL AND TEACHING RHYTHM
 ----------------------------------
 
-Assume students can read a short function, a conditional, and a collection. Do not assume a language, framework, cloud account, version-control host, or advanced mathematics. The intended level is an introductory undergraduate software-engineering course with selected contemporary practices explained through small examples.
+This is an introductory software-engineering course for a worldwide general audience: independent learners, people entering software development, and practitioners revisiting the foundations. No university enrollment or particular institutional background is assumed. Familiarity with a short function, a conditional and a collection helps; read each small pseudocode example in plain English and introduce its notation when it first matters. No particular language, framework, cloud account, version-control host or advanced mathematics is required.
 
-The reference course uses approximately 80 minutes per meeting, so that is the planning baseline here. Each weekly file provides an ordered chapter map rather than rigid timestamps. Protect the three sustained demonstrations and the closing reasoning check; compress the shorter bridges when discussion needs room. For a longer meeting, use the stated condition changes and comparison questions rather than simply adding more slide titles.
+Pacing decision, clarified 22 September 2026: the overall target is about 80 minutes per lecture. This is a planning estimate, not a required duration, minimum or maximum; a lecture may be shorter or longer. Do not assign durations, minute budgets or planned timestamps to individual chapters, sections or scenes. Finish the reasoning, comparisons and useful questions at a natural pace; do not rush an explanation or pad it to meet the overall target. Week numbers identify the learning sequence, not an enrollment calendar. Actual navigation timestamps are written from the completed recording. Each weekly file supplies an ordered chapter map and a core/optional depth choice.
 
 The week ordering is a learning sequence. Actual engineering connects requirements, design, construction, verification, operation, and learning repeatedly; it does not complete each once and permanently move on.
 
@@ -32,16 +32,21 @@ Do not turn the detailed instructor prose into slide paragraphs. The screen shou
 WHAT REMAINS CONSISTENT
 -----------------------
 
-Campus Rooms is the fictional recurring domain. Its rules, names, state distinctions, and numerical fixtures are defined in 19_recurring_case_and_demo_data.txt. Temporary changes are explicitly labeled and restored. All source references use stable S-number keys defined in 18_sources.txt; the sources and currency notes were checked on 16 September 2026.
+Campus Rooms is the fictional recurring domain and an instructor-worked example, not the viewer's university or an assigned implementation. Its rules, names, state distinctions, and numerical fixtures are defined in 19_recurring_case_and_demo_data.txt. Temporary changes are explicitly labeled and restored. All source references use stable S-number keys defined in 18_sources.txt; each source entry records its actual retrieval date and access limitations.
 
 One HTML file is planned for each week. All weeks share the same visual language and control meanings, but not a single diagram type. Slide navigation changes the page; scene controls change the demonstration on that page. Opening a stable scene link always starts at its documented baseline, paused.
 
 HOW TO USE THE WEEKLY FILES
 ---------------------------
 
-Read Sections 1–3 to establish purpose, outcomes, and preparation. Section 4 is the ordered chapter/page map. Section 5 is the scene-by-scene teaching brief. Sections 6–7 identify important semantic guardrails and predictable misunderstandings. Section 8 supplies in-lecture questions with answers. Section 9 explains print continuity and pacing flexibility. Section 10 carries the case forward, and Section 11 identifies sources.
+Read Sections 1–3 to establish purpose, outcomes, and preparation. From Week 2, the final answered question applies the same principle to a small example outside room booking. Explain its answer within the lecture; it adds no prerequisite or take-home activity. Section 4 is the ordered chapter/page map. Section 5 is the scene-by-scene teaching brief. Sections 6–7 identify important semantic guardrails and predictable misunderstandings. Section 8 supplies in-lecture questions with answers. Section 9 explains print continuity and pacing flexibility. Section 10 carries the case forward, and Section 11 identifies sources.
 
 Before authoring the whole course, establish the common shell and fully realize Week 1. Also use one dependency scene from Week 5 and one numerical scene from Week 11 to test whether the shell accommodates graphs, controllable state, and print output. Keep these samples inside their eventual weekly files rather than inventing extra student entry pages. Then author one week at a time, reusing the verified shell while allowing the representations to vary. The build plan in 23_build_plan_and_schedule.txt turns this into phases with parallel authoring after Week 1.
+
+CURRENT REVISION
+----------------
+
+Weeks 2-14 were reviewed on 22 September 2026 against the recorded Week 1 materials and selected current primary references. The order, scene identifiers and canonical case remain stable. Section 9 of each revised week selects core and optional depth; its closing checks cover the new reasoning. See ../notes/curriculum-review-2026-09-22.md for the review rationale and validation record. The detailed content remains in weekN.txt, the source register and the fixtures. Week 1 is retained as delivered.
 
 COURSE SPINE
 ------------
@@ -61,12 +66,12 @@ COURSE SPINE
 13 | AI-assisted engineering and accountable automation | Does plausible-looking output satisfy the intended behavior, and who can verify that?
 14 | Connecting the lifecycle through one engineering decision | Can we explain a change from human need to operational evidence without losing the original promise?
 
-DECISIONS IN FORCE (16 SEPTEMBER 2026)
+DECISIONS IN FORCE (UPDATED 22 SEPTEMBER 2026)
 --------------------------------------
 
 Recorded here once; other files refer to this list instead of restating it.
 
-Lecture-only course. There is no lab, homework or project track in the package. Assessment, examinations, grading, homework and assigned projects are handled by the instructor outside these materials and are never mentioned in the decks, PDFs or narration.
+Public lecture-only course. Apply the public-audience rule in F:/0_tutorial_videos_project/docs/channel_style_guide.md. The course has no required coursework, homework, assigned projects, submissions, exams or grading, and assumes no separate university activity. Worked software examples and answered prediction questions belong inside the explanation. Keep academic administration out of the decks, PDFs and narration.
 
 AI-assisted engineering is the through-line: framed in Week 1, carried by one beat inside an existing scene in Weeks 2, 7, 8, 9, 10 and 12, examined in Week 13 with synthetic candidate code only. The decks never say how the course itself is made; Week 13's provenance example is a fictional change record.
 
@@ -76,11 +81,11 @@ Tools and products may be named as dated examples, in each week's "In practice" 
 
 Every week is recorded as a narrated video under the tutorial workspace rules (22_recording_track.txt): 3840 by 2160 at 60 fps, full canvas with the presenter overlay yielding to content, every reveal operated by a real pointer, and deck text and narration under the instructional stance defined in that file. There is no instructor rehearsal: a deck is accepted on its automated checks and a native read of its states rendered at the recording resolution.
 
-No speaking cues (17 September 2026). The package and the repository hold no cue lists, shot lists, narration text or briefs, planned durations or recorded routes. The recording agent analyzes the week's plan, the fixtures and the deck at run time and generates the shot list, the narration and speech, and the tutorial itself (22_recording_track.txt).
+No speaking cues (17 September 2026). The package and the repository hold no cue lists, shot lists, narration text or briefs, shot-duration budgets or recorded routes. The recording agent analyzes the week's plan, the fixtures and the deck at run time and generates the shot list, the narration and speech, and the tutorial itself (22_recording_track.txt).
 
 The plan is machine-checkable. The TXT files are the single source; plan_manifest.json and the combined Markdown and PDF are derived and checked for freshness; every Anchor scene has structured fixture data; tools/check_plan.py and the tests run before any change is accepted.
 
-The course repository starts as local Git and is published to a remote when the instructor sees fit; the CI workflow activates then. The first lecture date is not fixed, so the schedule in 23_build_plan_and_schedule.txt is relative to it. The stack of any future Campus Rooms reference implementation is decided later.
+The course repository uses Git; publication follows the user's instructions. Week 1 has been recorded. The build sequence in 23_build_plan_and_schedule.txt now starts with Week 2 and advances through verified deliverables without a fixed teaching calendar. The stack of any future Campus Rooms reference implementation is decided later.
 
 PACKAGE MAP
 -----------
@@ -91,7 +96,7 @@ week1.txt through week14.txt: individual lecture briefs; the only source for the
 17_visual_lecture_and_pdf_brief.txt: shared experience, control meanings, local operation, and print expectations.
 18_sources.txt: primary source register with each entry's use (curriculum or authoring) and access limitations.
 19_recurring_case_and_demo_data.txt: case rules, planted threads, and the meaning of every teaching model.
-20_agent_authoring_brief.txt: how the build agents are briefed; the rules themselves live in repo_kit/AGENTS.md.
+20_agent_authoring_brief.txt: how the build agents are briefed; current course authoring rules live in ../AGENTS.md.
 21_instructor_preflight.txt: acceptance checks, and which of them the tests automate.
 22_recording_track.txt: what the decks provide for recording, and what the recording agent generates at run time under the tutorial workspace rules.
 23_build_plan_and_schedule.txt: repository, three phases, parallel authoring, minimum viable deck, schedule.
@@ -99,5 +104,5 @@ assets/demo-fixtures.json: the teaching truth: fixtures and structured data for 
 plan_manifest.json: derived scene manifest; regenerate with tools/build_manifest.py, never edit by hand.
 tools/: build_manifest.py, check_plan.py, build_combined.py and models.py (see tools/README.txt).
 tests/: the plan checker as a test, the deck contract tests and the PDF checks (pytest.ini, requirements-dev.txt).
-repo_kit/: files staged for the course repository: AGENTS.md, CLAUDE.md, README.md, docs/scene-contract.md, scripts, tasks, the CI workflow.
+The former repository starter files are now at the course root: ../AGENTS.md, ../docs/scene-contract.md, ../scripts/, ../tasks/ and ../.github/workflows/.
 Software_Engineering_14_Week_Plan.md and .pdf: derived reading copies regenerated by tools/build_combined.py.

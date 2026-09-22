@@ -1,10 +1,10 @@
 WEEK 03 | MODELING BEHAVIOR, DATA, AND USER INTERACTION
-Research and curriculum date: 16 September 2026
+Curriculum review: 22 September 2026; source retrieval dates are recorded individually
 ==============================================================================
 
 Which model answers the question we are actually asking?
 
-Instructor lecture plan | approximately 80 minutes | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-03.html
+Instructor lecture plan | flexible pacing | 8 scenes: 3 Anchors + 5 Bridges | planned HTML: weeks/week-03.html
 
 1. PURPOSE, CASE STATE, AND SCOPE
 ---------------------------------
@@ -97,7 +97,7 @@ Anchor scene | ID: state-machine
 
 VISUAL IDEA: Two deliberately separate state models: request/UI states above, stored booking states below. A current-state marker moves only on valid events.
 
-SITUATION, PREDICTION, AND MECHANISM: Start in Draft and ask what Submit means. Reveal Submitting, then Confirmed, Rejected, or Unknown outcome when a response is lost. Link confirmed results to a stored booking record. In the stored model, a permitted cancellation changes Confirmed to Cancelled. Label events and conditions before discussing terminology.
+SITUATION, PREDICTION, AND MECHANISM: Start in Draft and ask what Submit means. Reveal Submitting, then Confirmed, Rejected, or Unknown outcome when a response is lost. Link confirmed results to a stored booking record. In the stored model, a permitted cancellation changes Confirmed to Cancelled. Label events and conditions before discussing terminology. Name an invariant as a statement that must remain true across the permitted transitions. Contrast that safety question with a progress question: will pending work eventually be resolved? A diagram of allowed transitions alone establishes neither implementation correctness nor eventual completion.
 
 CHANGE ONE CONDITION AND COMPARE: Change the current state to Cancelled and replay Cancel. Compare a stable, clearly defined repeated response with an accidental second state change. Ask which transitions are intentionally absent. Keep UI timeout separate from deletion of the stored booking.
 
@@ -114,7 +114,7 @@ VISUAL IDEA: Entity cards for User, Room, and Booking; relationship lines highli
 
 SITUATION, PREDICTION, AND MECHANISM: Show two booking records containing copied room capacity values. Ask what happens when the room capacity changes. Reveal a Room entity with a stable identifier and bookings referencing it. Explain that a booking belongs to one user and one room, while each user or room can be associated with many bookings over time.
 
-CHANGE ONE CONDITION AND COMPARE: Change a room's display name while keeping its identifier. Compare stable references with matching on a mutable name. Also show a deliberately preserved historical snapshot and explain that duplication may be intentional when the meaning is historical rather than current.
+CHANGE ONE CONDITION AND COMPARE: Change a room's display name while keeping its identifier. Compare stable references with matching on a mutable name. Also show a deliberately preserved historical snapshot and explain that duplication may be intentional when the meaning is historical rather than current. Distinguish a well-formed identifier from an identifier that references an existing room. Relate that distinction to referential integrity and explain why a data constraint, a domain rule and a permission decision answer different questions.
 
 PRINCIPLE TO REVEAL: Model identity and the meaning of a fact before deciding where to store it.
 
@@ -230,6 +230,14 @@ QUESTION 4: How can a diagram be tested before code exists?
 
 ANSWER: Walk concrete examples through it and compare outcomes with requirements and complementary models.
 
+QUESTION 5: Can a valid state diagram establish that pending notification work will eventually complete?
+
+ANSWER: No. Permitted states and transitions do not establish the scheduling and recovery assumptions needed for progress.
+
+QUESTION 6: A mobile note says 'saved on this device' while synchronization is pending. Does that contradict the cloud copy being older?
+
+ANSWER: No. Local persistence and remote synchronization are separate states. Model both and make the message identify which promise has been met; pending synchronization still needs a defined completion or recovery path.
+
 9. PDF CONTINUITY AND LECTURE ELASTICITY
 ----------------------------------------
 
@@ -238,10 +246,12 @@ WHAT THE PRINTED EXPLANATION MUST PRESERVE
 
 The PDF should contain the separate request and booking state models, a readable entity relationship view, the cancellation table, and both sequence outcomes. Include a small notation legend. Retain the short explanatory sentence beneath each visual; arrows alone will not reproduce the explanation delivered aloud.
 
-SHORTER AND LONGER MEETING ROUTES
----------------------------------
+CORE AND OPTIONAL DEPTH
+-----------------------
 
-Preserve state separation, data identity, and lost-response sequences. For a shorter lecture, combine the interface gallery with the journey discussion. For more depth, add one carefully chosen inconsistent model and let the class identify the contradictory claim before the reveal.
+Close with the answered transfer question in Section 8, using its small contrasting setting. Preserve the question and explanation in the reading copy.
+
+Protect state separation, identity and the lost-response sequence. Optional depth: enumerate a bounded set of transition paths and search for an invariant violation. Exhaustion of that small model is not proof of an unbounded implementation; omit formal-method notation and time-zone extensions from the core.
 
 10. HANDOFF
 -----------
@@ -251,4 +261,4 @@ Carry the requirement IDs, models, and unresolved decisions into Week 4. The nex
 11. SOURCES AND CURRENCY NOTES
 ------------------------------
 
-Primary references: S01, S02, S08, S09, S25. Full titles, URLs, dated status, and access limitations appear in the source register. Research check: 16 September 2026. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S08, S09, S25. Full titles, URLs, dated status, and access limitations appear in the source register. Curriculum review: 22 September 2026. See each source entry for its actual retrieval date; unchanged references retain earlier dates. The examples and visual teaching sequences are original proposals; no live service behavior is implied.

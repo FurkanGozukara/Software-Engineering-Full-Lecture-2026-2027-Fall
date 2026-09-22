@@ -7,16 +7,16 @@ WHAT WAS EXAMINED
 
 The supplied ZIP contains fourteen weekly TXT plans, an orientation file, supporting audit and instructor guides, a source register, an asset, and backup copies of several files. The analysis used the current week1.txt through week14.txt files rather than treating .bak files as additional course weeks. It examined the shared structure, weekly progression, chapter maps, and representative detailed teaching flows.
 
-The reference is built around the recurring Lumen Field Station scene and uses approximately 80-minute meetings. Its eleven-section weekly format links purpose, outcomes, preparation, chapter order, detailed teaching notes, guardrails, diagnosis, answered checks, supplementary depth, continuity, and sources. This analysis concerns its instructional structure. It does not independently validate the Blender release or feature claims inside the supplied material.
+The reference is built around the recurring Lumen Field Station scene. This course's overall duration target and flexible pacing follow the user's decision in 00_START_HERE.txt. Its eleven-section weekly format links purpose, outcomes, preparation, chapter order, detailed teaching notes, guardrails, diagnosis, answered checks, supplementary depth, continuity, and sources. This analysis concerns its instructional structure. It does not independently validate the Blender release or feature claims inside the supplied material.
 
 STRENGTHS RETAINED
 ------------------
 
 A persistent example reduces the need to explain a new context every week. The new course retains that advantage through Campus Rooms while allowing the same behavior to be viewed through requirements, states, dependencies, tests, and operations.
 
-Observable outcomes remain at the front of every week. The instructor receives both a concise ordered map and enough detail to rehearse the explanations. Predictable errors and misconceptions are prepared in advance rather than discovered by accident during teaching. The explicit handoff keeps later lectures connected to earlier decisions.
+Observable outcomes remain at the front of every week. The instructor receives both a concise ordered map and enough detail to understand the explanations. Predictable errors and misconceptions are prepared in advance rather than discovered by accident during teaching. The explicit handoff keeps later lectures connected to earlier decisions.
 
-The source register and currency notes remain separate from student-facing explanation. This allows an instructor to verify terminology and technical details without turning the lecture into a citation tour. A realistic baseline duration and shorter/longer routes also remain, rather than assigning a rigid timestamp to every scene.
+The source register and currency notes remain separate from student-facing explanation. This allows an instructor to verify terminology and technical details without turning the lecture into a citation tour. Core explanations and optional depth remain separate, so an explanation can expand or contract according to its teaching needs.
 
 WHAT NEEDED TRANSFORMATION
 --------------------------

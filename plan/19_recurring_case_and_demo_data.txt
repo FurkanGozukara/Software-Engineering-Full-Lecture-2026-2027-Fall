@@ -2,6 +2,11 @@ CAMPUS ROOMS: RECURRING CASE AND TEACHING FIXTURES
 Research and curriculum date: 16 September 2026
 ==============================================================================
 
+USE OF THE CASE
+---------------
+
+Audience and pacing follow 00_START_HERE.txt. The transfer_checks object in assets/demo-fixtures.json holds the original qualitative closing question and answer for each of Weeks 2-14. Those independent illustrations transfer a principle, not Campus Rooms identities or policies. They introduce no numerical measurement and require no viewer implementation. The weekly TXT remains the content source; the fixture entries carry the matching display text.
+
 DOMAIN AND IDENTITIES
 ---------------------
 
@@ -37,7 +42,7 @@ QUALITY FIXTURES WITH DISTINCT BOUNDARIES
 
 Q-01 is the illustrative search requirement introduced in Week 2: under the declared teaching fixture and 50 concurrent users, p95 search API response time is at most 500 ms at the service boundary. It is not a claim about a browser’s complete perceived experience or an industry benchmark. Actual performance evidence requires a specified dataset, request mix, environment, run conditions, and percentile calculation; the later twenty-point example illustrates the concept only.
 
-Q-02 is the separate Week 11 illustrative objective: over seven days, at least 99% of eligible booking requests receive a correct outcome within two seconds. Eligible events are authenticated, syntactically valid booking requests reaching the stated service boundary, including legitimate room-conflict requests; health checks are excluded. A timely correct conflict rejection is good service. The fixed fixture contains 980 good events, 10 correct-but-slow results, 5 timeouts, and 5 unexpected server failures out of 1,000. The observed good-event rate is 98%, against an allowance of 10 bad events; 20 are observed. The allowance is the error budget. Observing twice the allowed bad-event rate is a burn rate of 2, which at a steady rate uses up the seven-day budget in 3.5 days.
+Q-02 is the separate Week 11 illustrative objective: over seven days, at least 99% of eligible booking requests receive a correct outcome within two seconds. Eligible events are authenticated, syntactically valid booking requests reaching the stated service boundary, including legitimate room-conflict requests; health checks are excluded. A timely correct conflict rejection is good service. The fixed fixture contains 980 good events, 10 correct-but-slow results, 5 timeouts, and 5 unexpected server failures out of 1,000. The observed good-event rate is 98%, against an allowance of 10 bad events; 20 are observed. The allowance is the error budget. Observing twice the allowed bad-event rate is a burn rate of 2. Sustaining that rate under steady traffic from a fresh seven-day window would use its budget in 3.5 days. This is not remaining time after the displayed window, which has already exceeded its budget.
 
 TEST AND AUTHORIZATION FIXTURES
 -------------------------------
@@ -72,7 +77,7 @@ Recorded results, recomputed by the checker: naive peaks at seven queued attempt
 INVENTED DEPENDENCY
 -------------------
 
-Week 13's change record uses textenc-turbo, a fictional package name that exists in no registry, to show a dependency invented by a code assistant. It is deliberately close to textenc, the fictional transitive dependency of Week 9; neither name refers to a real package.
+Week 13's change record uses textenc-turbo, a fictional package name marked unavailable in the course's registry fixture, to show a dependency invented by a code assistant. It is deliberately close to textenc, the fictional transitive dependency of Week 9; both names are course labels, and no assertion about their availability in public registries is made.
 
 AUTHORING NOTES FOR ALL FIXTURES
 -------------------------------
