@@ -49,3 +49,7 @@ Provided by the deck: `record=1` mode and pointer targets (`data-cue-target`) on
 - The PDF is a browser export: text is selectable and diagrams are vector, but no tagged-PDF conformance is claimed; the accessible HTML deck stays the primary route.
 - The keyboard path in scene 4 shows pressed keys and a drawn focus ring, not a live browser tab order.
 - The traceability matrix's cell click highlights a chain without changing scene state, so the chain highlight is not part of the print panels; the print note lists every chain in words.
+
+## Recording follow-up (22 September 2026, commit `cdfe22d`)
+
+The lecture recording's corner review (the presenter avatar occupies the bottom-right 256x384 design px of every page) found lesson text inside that rectangle on four pages: the outcomes page's "Where the register goes next" note, the register page's "Not requirements" card, the six checks of the principles page and the sources card. The deck now keeps them out of it: the note is limited to 660 px, the checks grid to 1600 px, the register cards are compacted and the sources column widened with a smaller list; the principles lead is one line and its cards and checks are compacted so the sixth answer fits above the footer. Rerun: layout scan 115 states, 0 findings; deck text check PASS (0 of 542 sentences); deck tests 104 passed, 8 skipped. The print panels and the PDF are unchanged (they use the print builders). The four pages were recorded again on the corrected layout.
