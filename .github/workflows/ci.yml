@@ -31,9 +31,11 @@ jobs:
         working-directory: plan
         env:
           SE_COURSE_SITE: ${{ github.workspace }}/site
-        run: pytest -q -k "test_plan or w01- or w05-dependency-example or w11-latency-is-a-distribution or test_week_pdf_exists_and_reads[1]"
+        run: pytest -q -k "test_plan or w01- or w02- or w05-dependency-example or w11-latency-is-a-distribution or test_week_pdf_exists_and_reads[1] or test_week_pdf_exists_and_reads[2]"
       - name: Layout scan at 3840x2160 (report only until the known Week 1 findings are fixed)
-        run: python scripts/inspect_deck.py --layout --week 1 --out build/inspect/week-01 || true
+        run: |
+          python scripts/inspect_deck.py --layout --week 1 --out build/inspect/week-01 || true
+          python scripts/inspect_deck.py --layout --week 2 --out build/inspect/week-02
       - uses: actions/upload-artifact@v4
         with:
           name: layout-scan

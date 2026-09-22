@@ -3,7 +3,7 @@
   "kind": "Original fictional teaching fixtures, not real performance data",
   "date": "16 September 2026",
   "purpose": "Inputs and independently checked expected values for later authoring; not executable lecture scenes.",
-  "extended": "16 September 2026: pseudocode_language, cancellation_matrix, retry_model and an anchors block with structured data for all 42 Anchor scenes and the numeric Bridges (Proposal 4). Keys are wNN/scene-id. week_text_shows lists strings the week TXT must contain; deck_shows lists strings the rendered scene must show; snippets are executable Python-like fixtures recomputed by tools/check_plan.py. 17 September 2026 (Phase 0 authoring): w01 Bridge fixtures added for system-boundary, quality-tradeoffs (simulated example values), evidence-not-confidence, responsibility-and-impact and course-evidence-map so that every Week 1 scene renders from this file. 17 September 2026 (plan revision): w02/ambiguous-request week_text_shows; booking_SLO expected_burn_rate and expected_days_to_exhaust_budget (recomputed by tools/check_plan.py); w10/change-through-gates static checks gate; w13/bounded-actions unreviewed tool connector capability; w13/provenance-and-understanding invented dependency. 17 September 2026 (Week 1 plan coverage): w01/quality-tradeoffs standard_vocabulary (sourced, S46) with week_text_shows and a deck_shows value; w01/feedback-lifecycle feedback_paths (authored structure: the path each discovery point's information takes and what it changes) with deck_shows. 22 September 2026: scoped curriculum refinements for Weeks 2-14; qualitative fixture additions; Week 1 data unchanged. 22 September 2026 public-course follow-up: thirteen qualitative transfer checks and a Week 14 professional-judgment comparison; canonical case, Week 1 data and numerical fixtures retained. 22 September 2026 foundation follow-up: qualitative elicitation and optional lookup/index comparisons; no new measured values. 22 September 2026 teaching review: qualitative acceptance and exploratory status-recovery comparison added; existing fixture values retained."
+  "extended": "16 September 2026: pseudocode_language, cancellation_matrix, retry_model and an anchors block with structured data for all 42 Anchor scenes and the numeric Bridges (Proposal 4). Keys are wNN/scene-id. week_text_shows lists strings the week TXT must contain; deck_shows lists strings the rendered scene must show; snippets are executable Python-like fixtures recomputed by tools/check_plan.py. 17 September 2026 (Phase 0 authoring): w01 Bridge fixtures added for system-boundary, quality-tradeoffs (simulated example values), evidence-not-confidence, responsibility-and-impact and course-evidence-map so that every Week 1 scene renders from this file. 17 September 2026 (plan revision): w02/ambiguous-request week_text_shows; booking_SLO expected_burn_rate and expected_days_to_exhaust_budget (recomputed by tools/check_plan.py); w10/change-through-gates static checks gate; w13/bounded-actions unreviewed tool connector capability; w13/provenance-and-understanding invented dependency. 17 September 2026 (Week 1 plan coverage): w01/quality-tradeoffs standard_vocabulary (sourced, S46) with week_text_shows and a deck_shows value; w01/feedback-lifecycle feedback_paths (authored structure: the path each discovery point's information takes and what it changes) with deck_shows. 22 September 2026: scoped curriculum refinements for Weeks 2-14; qualitative fixture additions; Week 1 data unchanged. 22 September 2026 public-course follow-up: thirteen qualitative transfer checks and a Week 14 professional-judgment comparison; canonical case, Week 1 data and numerical fixtures retained. 22 September 2026 foundation follow-up: qualitative elicitation and optional lookup/index comparisons; no new measured values. 22 September 2026 teaching review: qualitative acceptance and exploratory status-recovery comparison added; existing fixture values retained. 22 September 2026 (Week 2 authoring): w02 Bridge fixtures added for acceptance-and-validation, priority-and-risk and requirements-under-change (authored structures, fictional dates, no measurements); w02/ambiguous-request gains simulated example requests, stakeholder wording, the developer's rewrite, the open questions and the easy-for-whom routing; w02/elicitation-and-scope the boundary questions, the fact/assumption register and the visitor comparison; w02/observable-behavior the rule parts, the widget note and the two candidate snippets of the AI beat; w02/quality-with-conditions the two workloads (latency fixture datasets, illustrative), the boundary span, the S46 vocabulary rows and the keyboard path; w02/traceability-matrix an R-02 row and the blank-row note; deck_shows values for every Week 2 scene."
  },
  "case": {
   "service": "Campus Rooms",
@@ -1101,6 +1101,80 @@
    "settled_scope": "exclusive booking of available rooms; fairness policy remains an explicit open decision",
    "week_text_shows": [
     "Make room booking fair and easy."
+   ],
+   "example": {
+    "kind": "simulated requests for one room and hour; illustrative, not measurements",
+    "room": "C101",
+    "slot": "10:00-11:00",
+    "weekly_limit": 4,
+    "requests": [
+     {
+      "who": "Ari",
+      "id": "U-01",
+      "role": "student",
+      "asked_at": "09:00",
+      "bookings_this_week": 4
+     },
+     {
+      "who": "Bo",
+      "id": "U-02",
+      "role": "student",
+      "asked_at": "09:05",
+      "bookings_this_week": 0
+     },
+     {
+      "who": "Room staff",
+      "role": "staff",
+      "asked_at": "09:10"
+     }
+    ],
+    "outcomes": {
+     "First come, first served": {
+      "winner": "Ari",
+      "reason": "asked first"
+     },
+     "Per-user weekly limit": {
+      "winner": "Bo",
+      "reason": "Ari is at the weekly limit"
+     },
+     "Staff requests take priority over student bookings": {
+      "winner": "Room staff",
+      "reason": "a staff request beats every student request"
+     }
+    }
+   },
+   "stakeholder_examples": [
+    {
+     "stakeholder": "Student",
+     "says": "Whoever asks first should get the room."
+    },
+    {
+     "stakeholder": "Department coordinator",
+     "says": "Nobody should hold more than a fair share of the week."
+    },
+    {
+     "stakeholder": "Room staff",
+     "says": "Our requests have to come first; we run the rooms."
+    }
+   ],
+   "developer_rewrite": "Rooms are allocated strictly in the order requests arrive.",
+   "open_questions": [
+    "Who decides?",
+    "What is scarce?",
+    "What outcome matters?"
+   ],
+   "easy_question": {
+    "label": "Easy for whom?",
+    "candidates": [
+     "a keyboard user",
+     "a first-time visitor",
+     "room staff"
+    ],
+    "routed_to": "scene 04 (quality with conditions) and R-05"
+   },
+   "deck_shows": [
+    "Make room booking fair and easy.",
+    "First come, first served"
    ]
   },
   "w02/observable-behavior": {
@@ -1135,7 +1209,30 @@
     "request_b": "R-02 as written",
     "candidate_b": "implements 30 through 120 inclusive",
     "note": "synthetic authored candidates; no live model call",
-    "limit": "A precise request does not guarantee correct output; reuse the independent 120-minute check"
+    "limit": "A precise request does not guarantee correct output; reuse the independent 120-minute check",
+    "candidate_a_code": "def is_short_enough(duration_minutes):\n    \"\"\"Keep bookings short.\"\"\"\n    return duration_minutes <= 60\n",
+    "candidate_b_code": "def is_valid_duration(duration_minutes):\n    \"\"\"R-02: 30 through 120 minutes inclusive.\"\"\"\n    return 30 <= duration_minutes <= 120\n",
+    "invented_limit_minutes": 60,
+    "judged_cases": [
+     {
+      "minutes": 30,
+      "candidate_b": true,
+      "exclusive_candidate": true,
+      "expected": true
+     },
+     {
+      "minutes": 120,
+      "candidate_b": true,
+      "exclusive_candidate": false,
+      "expected": true
+     },
+     {
+      "minutes": 121,
+      "candidate_b": false,
+      "exclusive_candidate": false,
+      "expected": false
+     }
+    ]
    },
    "week_text_shows": [
     "29, 30, 120, and 121 minute requests",
@@ -1153,6 +1250,16 @@
     "candidate_ref": "w13/plausible-candidate",
     "rule": "R-02",
     "decisive_minutes": 120
+   },
+   "rule_parts": {
+    "actor": "a signed-in requester",
+    "condition": "the requested duration in whole minutes, end later than start",
+    "expected": "accepted when the duration is at least 30 and at most 120 minutes",
+    "rejection": "the screen says: duration must be 30 to 120 minutes; nothing is stored"
+   },
+   "widget": {
+    "proposal": "a slider from 30 to 120 minutes",
+    "note": "one way to build the screen; the rule holds with two time fields or a typed duration too"
    }
   },
   "w02/quality-with-conditions": {
@@ -1169,7 +1276,87 @@
     "condition": "keyboard-only booking path",
     "acceptance": "the outcome is reachable and understandable",
     "lesson": "Observable acceptance may be categorical or numerical"
-   }
+   },
+   "workloads": [
+    {
+     "id": "one-user",
+     "label": "one person searching; twenty responses sampled",
+     "dataset": "A",
+     "baseline": true
+    },
+    {
+     "id": "fifty-users",
+     "label": "fifty concurrent users; twenty responses sampled",
+     "dataset": "B"
+    }
+   ],
+   "samples_note": "illustrative samples from the latency fixture (concept illustration only; not a load test that checks Q-01)",
+   "boundary_span": [
+    {
+     "id": "browser",
+     "label": "Browser",
+     "measured": false
+    },
+    {
+     "id": "network",
+     "label": "Network",
+     "measured": false
+    },
+    {
+     "id": "api",
+     "label": "Search API",
+     "measured": true
+    },
+    {
+     "id": "storage",
+     "label": "Storage",
+     "measured": true
+    }
+   ],
+   "vocabulary": {
+    "kind": "sourced (S46: the standard's characteristics); the pairing is an authored reading",
+    "source": "S46",
+    "standard": "ISO/IEC 25010:2023",
+    "rows": [
+     {
+      "quality": "Response time",
+      "characteristic": "performance efficiency"
+     },
+     {
+      "quality": "Keyboard-accessible completion",
+      "characteristic": "interaction capability"
+     }
+    ]
+   },
+   "keyboard_path": {
+    "rule": "R-05",
+    "steps": [
+     {
+      "key": "Tab",
+      "lands": "the room list"
+     },
+     {
+      "key": "Tab",
+      "lands": "the time fields"
+     },
+     {
+      "key": "Tab",
+      "lands": "the Reserve button"
+     },
+     {
+      "key": "Enter",
+      "lands": "Confirmed: the status message is announced"
+     }
+    ],
+    "acceptance": {
+     "reachable": true,
+     "understandable": true
+    }
+   },
+   "deck_shows": [
+    "500",
+    "50"
+   ]
   },
   "w02/traceability-matrix": {
    "rows": [
@@ -1197,6 +1384,18 @@
      "checks": [
       "authorization matrix check"
      ]
+    },
+    {
+     "requirement": "R-02",
+     "decision": "whole-minute duration validated once, at the request boundary",
+     "examples": [
+      "29 minutes: rejected",
+      "30 and 120 minutes: accepted",
+      "121 minutes: rejected"
+     ],
+     "checks": [
+      "duration boundary check"
+     ]
     }
    ],
    "variant": {
@@ -1211,7 +1410,21 @@
      "duration checks",
      "interval checks"
     ]
-   }
+   },
+   "row_kinds": {
+    "R-01": "from Week 1",
+    "R-03": "cancellation authorization",
+    "R-02": "from scene 03"
+   },
+   "blank_row": {
+    "label": "R-??",
+    "note": "a requirement nobody wrote has no row: a matrix shows the links it has, not the ones it lacks"
+   },
+   "deck_shows": [
+    "R-01",
+    "R-03",
+    "authorization"
+   ]
   },
   "w03/state-machine": {
    "ui_states": [
@@ -4109,6 +4322,279 @@
     "another confirmation email",
     "last booking",
     "simulated observation"
+   ],
+   "scope_boundary": "This release: campus members book available rooms",
+   "boundary_questions": [
+    {
+     "id": "identity",
+     "question": "Who is this person to the campus, and how does the service know?",
+     "kind": "open question"
+    },
+    {
+     "id": "cancellation",
+     "question": "May a guest cancel, and whose booking?",
+     "kind": "open question"
+    },
+    {
+     "id": "accessibility",
+     "question": "Can the guest complete the booking by keyboard, with status they can perceive?",
+     "kind": "stated rule",
+     "rule": "R-05",
+     "source": "S25"
+    },
+    {
+     "id": "closures",
+     "question": "Who may record a room closure, and what happens to affected bookings?",
+     "kind": "open question",
+     "resolved_in": "Week 14"
+    }
+   ],
+   "register": [
+    {
+     "id": "F1",
+     "kind": "fact",
+     "text": "After submitting, Ari could not see whether the booking was stored",
+     "who": "stated by Ari (simulated observation)"
+    },
+    {
+     "id": "A1",
+     "kind": "assumption",
+     "text": "A second email would tell Ari the outcome",
+     "who": "inferred from the request"
+    },
+    {
+     "id": "F2",
+     "kind": "fact",
+     "text": "Campus members book rooms in this release",
+     "who": "stated by the coordinator"
+    },
+    {
+     "id": "A2",
+     "kind": "assumption",
+     "text": "Guests never need a room",
+     "who": "inferred by the developer"
+    }
+   ],
+   "visitor": {
+    "label": "External visitor",
+    "deferred": {
+     "text": "Visitors book rooms: deferred to a later release",
+     "record": "decision dated and owned; the visitor is told at the screen that booking is for campus members and where to ask"
+    },
+    "omitted": {
+     "text": "(nothing written about visitors)",
+     "record": "the visitor finds out at the door, and nobody can say whether it was ever decided"
+    }
+   },
+   "deck_shows": [
+    "another confirmation email",
+    "Unknown outcome"
+   ]
+  },
+  "w02/acceptance-and-validation": {
+   "kind": "authored structure (need, written statement, observed behavior); no measurements",
+   "need": {
+    "who": "Ari",
+    "id": "U-01",
+    "example": "a two-hour study session in C101 from 10:00 to 12:00",
+    "minutes": 120
+   },
+   "intended_statement": "Booking duration is at most 120 minutes (R-02).",
+   "written_statement": "Booking duration is at most 30 minutes.",
+   "transcription": "the intended 120 was written down as 30",
+   "observed_behavior": "every request longer than 30 minutes is rejected; the two-hour session cannot be booked",
+   "verification_cases": [
+    {
+     "minutes": 30,
+     "statement_says": "accepted",
+     "system_does": "accepted",
+     "match": true
+    },
+    {
+     "minutes": 31,
+     "statement_says": "rejected",
+     "system_does": "rejected",
+     "match": true
+    },
+    {
+     "minutes": 120,
+     "statement_says": "rejected",
+     "system_does": "rejected",
+     "match": true
+    }
+   ],
+   "validation_case": {
+    "minutes": 120,
+    "need_says": "accepted",
+    "system_does": "rejected",
+    "match": false
+   },
+   "corrected_statement": "Booking duration is 30 through 120 minutes inclusive (R-02).",
+   "after_correction": [
+    {
+     "minutes": 31,
+     "statement_says": "accepted",
+     "system_does": "rejected",
+     "match": false
+    },
+    {
+     "minutes": 120,
+     "statement_says": "accepted",
+     "system_does": "rejected",
+     "match": false
+    }
+   ],
+   "questions": {
+    "verification": "Does the system match its written description?",
+    "validation": "Does the description match the need?"
+   },
+   "fairness": "The fairness policy stays an open decision; this scene selects no policy.",
+   "deck_shows": [
+    "30",
+    "120"
+   ]
+  },
+  "w02/priority-and-risk": {
+   "kind": "authored structure (three requests, a decision table, two orderings); qualitative, no measurements",
+   "columns": [
+    "User benefit",
+    "Dependency",
+    "Uncertainty",
+    "Consequence of waiting",
+    "Effort"
+   ],
+   "requests": [
+    {
+     "id": "P1",
+     "title": "Correct duplicate confirmations",
+     "benefit": "one confirmed booking per room and hour (R-01); nobody meets a stranger at the door",
+     "dependency": "the shared booking decision from Week 1",
+     "uncertainty": "low: the cause is known",
+     "consequence": "two people at one door for every overlap that slips through",
+     "effort": "medium"
+    },
+    {
+     "id": "P2",
+     "title": "Add decorative room photos",
+     "benefit": "a nicer screen; no task completes sooner",
+     "dependency": "room records must supply the photos",
+     "uncertainty": "medium: who owns the photos is not settled",
+     "consequence": "none for any booking outcome",
+     "effort": "small to medium"
+    },
+    {
+     "id": "P3",
+     "title": "Make cancellation work by keyboard (R-05)",
+     "benefit": "keyboard users can cancel at all",
+     "dependency": "the cancellation screen (R-03)",
+     "uncertainty": "low: the route is known from the keyboard walk-through",
+     "consequence": "a room stays booked by someone who cannot cancel it, and nobody else can book it",
+     "effort": "small"
+    }
+   ],
+   "baseline_order": [
+    "P1",
+    "P3",
+    "P2"
+   ],
+   "baseline_rationale": "P1 removes a broken promise and keeps R-01; P3 is small and removes an exclusion; P2 changes no outcome and waits for the photo owner.",
+   "changed_condition": {
+    "label": "A room closure is scheduled for tomorrow (fictional scenario; recording closures stays an open need until Week 14)",
+    "urgency": {
+     "P1": "unchanged",
+     "P2": "unchanged",
+     "P3": "rises: people must cancel and rebook before tomorrow, keyboard users included"
+    },
+    "order": [
+     "P3",
+     "P1",
+     "P2"
+    ],
+    "rationale": "The closure adds urgency to cancellation; the benefit, dependency, uncertainty and effort cells did not change."
+   },
+   "deck_shows": [
+    "Correct duplicate confirmations",
+    "keyboard"
+   ]
+  },
+  "w02/requirements-under-change": {
+   "kind": "authored structure (a versioned requirement, two kinds of change, evidence badges); fictional dates; a change-management scenario, the course's canonical R-02 stays 30 through 120",
+   "requirement": "R-02",
+   "version_1": {
+    "version": "v1",
+    "text": "Booking duration is 30 through 120 minutes inclusive.",
+    "decided": "8 September 2026 (fictional)",
+    "owner": "room policy owner (fictional role)"
+   },
+   "linked_evidence": [
+    {
+     "id": "E1",
+     "kind": "example",
+     "text": "29 minutes: rejected"
+    },
+    {
+     "id": "E2",
+     "kind": "example",
+     "text": "30 minutes: accepted"
+    },
+    {
+     "id": "E3",
+     "kind": "example",
+     "text": "120 minutes: accepted"
+    },
+    {
+     "id": "E4",
+     "kind": "example",
+     "text": "121 minutes: rejected"
+    },
+    {
+     "id": "C1",
+     "kind": "check",
+     "text": "duration boundary check: 30 and 120 inclusive"
+    },
+    {
+     "id": "C2",
+     "kind": "check",
+     "text": "interval overlap check (R-01)"
+    }
+   ],
+   "rule_change": {
+    "label": "Rule change: the upper limit becomes 90 minutes",
+    "version": "v2",
+    "text": "Booking duration is 30 through 90 minutes inclusive.",
+    "rationale": "more people need rooms in the afternoon peak; shorter sessions let more of them fit (fictional rationale)",
+    "decided": "14 October 2026 (fictional)",
+    "owner": "room policy owner (fictional role)",
+    "evidence": {
+     "E1": "current",
+     "E2": "current",
+     "E3": "stale: 120 minutes must now be rejected",
+     "E4": "current",
+     "C1": "stale: the upper bound in the check must change",
+     "C2": "current"
+    },
+    "history": "v1 stays readable as history, with its date"
+   },
+   "wording_correction": {
+    "label": "Wording correction: the same behavior in a clearer sentence",
+    "version": "v1a",
+    "text": "A booking lasts at least 30 and at most 120 minutes, both inclusive.",
+    "rationale": "the words 'through 120 inclusive' were misread twice in review (fictional rationale)",
+    "decided": "14 October 2026 (fictional)",
+    "owner": "room policy owner (fictional role)",
+    "evidence": {
+     "E1": "current",
+     "E2": "current",
+     "E3": "current",
+     "E4": "current",
+     "C1": "current",
+     "C2": "current"
+    },
+    "history": "the old wording is kept in the history note; no example or check changes"
+   },
+   "deck_shows": [
+    "90",
+    "stale"
    ]
   }
  },

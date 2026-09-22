@@ -12,8 +12,8 @@ printable notes are in `site/pdf/`. Keyboard: Right/Left arrows change the page,
 the demonstration, `?` shows the help. Optional local server for clean links:
 `python scripts/serve.py --root site` and open `http://127.0.0.1:8000/`.
 
-Status: Week 1 is complete (deck, PDF, scene guide). The other weeks are added one at a time; the
-index marks them as in preparation until then.
+Status: Weeks 1 and 2 are complete (deck, PDF, scene guide, completion record). The other weeks are
+added one at a time; the index marks them as in preparation until then.
 
 A fourteen-lecture introduction to software engineering for a general audience, with interactive decks and printable reading copies. Campus Rooms is the fictional worked example, with short comparisons showing how the principles apply to other software. The teaching plan is in `plan/`; the student-facing site is `site/`.
 
