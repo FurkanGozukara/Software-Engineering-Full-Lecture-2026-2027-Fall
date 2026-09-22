@@ -166,7 +166,7 @@
         el('p', { style: 'font-size:19px;line-height:1.4;color:var(--text-muted)' }, THREAD),
       ]);
       const list = el('ol', { class: 'outcome-list', 'aria-label': 'By the end of this lecture you can' }, OUTCOMES.map((o, i) => el('li', {}, [el('span', { class: 'n', 'aria-hidden': 'true' }, String(i + 1)), el('span', {}, o)])));
-      const order = el('div', { class: 'card', style: 'margin-top:16px;padding:14px 20px' }, [
+      const order = el('div', { class: 'card', style: 'margin-top:16px;padding:14px 20px;max-width:660px' }, [   // left of the presenter corner (x < 1664)
         el('div', { class: 'card-title', style: 'margin-bottom:6px' }, 'Where the register goes next'),
         el('p', { style: 'font-size:20px;line-height:1.4' }, 'The requirements written this week return in Week 3 as models, in Week 8 as checks and in Week 12 when they change. Requirements are revisited, not finished once.'),
       ]);
@@ -1223,9 +1223,9 @@
       const bar = el('div', { style: 'display:flex;gap:12px;align-items:center;margin-bottom:10px' }, [kindsBtn, notBtn, el('span', { class: 'muted', style: 'font-size:17px' }, 'Identifiers stay stable: R-01 in Week 3 is the R-01 of this table.')]);
       const notRows = Array.from(tbl.querySelectorAll('tr.reg-not'));
       notRows.forEach((tr) => tr.remove());
-      const notCard = el('div', { class: 'card reg-not', style: 'padding:8px 14px;display:flex;flex-direction:column;gap:4px;border-color:var(--bad)' }, [
+      const notCard = el('div', { class: 'card reg-not', style: 'padding:6px 14px;display:flex;flex-direction:column;gap:3px;border-color:var(--bad)' }, [   // ends above the presenter corner (y < 696)
         el('div', { class: 'card-title', style: 'margin-bottom:2px;color:var(--bad)' }, 'Not requirements'),
-        ...NOT_REQUIREMENTS.map((nr) => el('div', { style: 'font-size:16px;line-height:1.28;padding:5px 0;border-top:1px solid var(--line)' }, [el('b', {}, nr.text), ' ', chip(nr.kind, 'bad', { style: 'font-size:13px;white-space:normal' }), el('span', { class: 'muted', style: 'display:block;font-size:15px' }, upper1(nr.why) + '.')])),
+        ...NOT_REQUIREMENTS.map((nr) => el('div', { style: 'font-size:15px;line-height:1.22;padding:3px 0;border-top:1px solid var(--line)' }, [el('b', {}, nr.text), ' ', chip(nr.kind, 'bad', { style: 'font-size:13px;white-space:normal' }), el('span', { class: 'muted', style: 'display:block;font-size:15px' }, upper1(nr.why) + '.')])),
       ]);
       api.cue(notCard, 'not-card');
       const kindsCard = el('div', { class: 'card reg-kind', style: 'padding:8px 14px;display:flex;flex-direction:column;gap:4px' }, [
@@ -1276,19 +1276,19 @@
   const principles = {
     kind: 'page', id: 'principles', role: 'page',
     heading: 'Eight principles, six checks',
-    lead: 'One principle per scene. Then six questions: decide your answer before you open it. The last one leaves room booking behind.',
+    lead: 'One principle per scene, then six checks: decide your answer before you open each one.',   // one line: the six checks and their answers fit above the page footer
     printRole: 'Principles and checks',
     build(body, api) {
-      const cards = el('div', { class: 'principle-grid' }, SCENES.map((sc, i) => api.cue(el('a', { class: 'principle-card', href: `#/${sc.id}`, style: 'text-decoration:none;color:inherit' }, [
+      const cards = el('div', { class: 'principle-grid', style: 'gap:10px' }, SCENES.map((sc, i) => api.cue(el('a', { class: 'principle-card', href: `#/${sc.id}`, style: 'text-decoration:none;color:inherit;padding:10px 16px' }, [
         el('span', { class: 'pc-num' }, `${i + 1} · ${sc.role}`), el('span', { class: 'pc-text' }, sc.principle), el('span', { class: 'pc-short' }, sc.principleShort),
       ]), `card-${i + 1}`)));
       cards.querySelectorAll('.pc-text').forEach((n) => { n.style.fontSize = '18px'; });
       cards.querySelectorAll('.pc-short').forEach((n) => { n.style.fontSize = '16px'; });
-      const qa = el('ol', { class: 'qa-list', style: 'margin-top:10px;grid-template-columns:1fr 1fr 1fr' }, CHECKS.map((c, i) => {
-        const ans = el('p', { class: 'qa-a', id: `qa-a-${i + 1}`, hidden: '', style: 'font-size:17px' }, c.a);
+      const qa = el('ol', { class: 'qa-list', style: 'margin-top:6px;grid-template-columns:1fr 1fr 1fr;max-width:1600px' }, CHECKS.map((c, i) => {   // the six checks stay left of the presenter corner (x < 1664)
+        const ans = el('p', { class: 'qa-a', id: `qa-a-${i + 1}`, hidden: '', style: 'font-size:16px;line-height:1.28' }, c.a);
         const btn = api.cue(el('button', { type: 'button', class: 'qa-q', 'aria-expanded': 'false', 'aria-controls': `qa-a-${i + 1}`, style: 'font-size:18px' }, [el('span', {}, `${i + 1}. ${c.q}`), el('span', { class: 'tw', 'aria-hidden': 'true' }, '+')]), `question-${i + 1}`);
         btn.addEventListener('click', () => { const open = btn.getAttribute('aria-expanded') === 'true'; btn.setAttribute('aria-expanded', open ? 'false' : 'true'); if (open) ans.setAttribute('hidden', ''); else ans.removeAttribute('hidden'); });
-        return el('li', { class: 'qa-item', style: 'padding:8px 14px' }, [btn, ans]);
+        return el('li', { class: 'qa-item', style: 'padding:5px 12px' }, [btn, ans]);
       }));
       body.append(cards, qa);
       body.reset = () => body.querySelectorAll('.qa-q').forEach((b) => { b.setAttribute('aria-expanded', 'false'); document.getElementById(b.getAttribute('aria-controls')).setAttribute('hidden', ''); });
@@ -1348,8 +1348,8 @@
         el('div', { class: 'card' }, [el('div', { class: 'card-title' }, IN_PRACTICE_TITLE), el('p', { style: 'font-size:19px;line-height:1.4' }, IN_PRACTICE)]),
       ]);
       const middle = el('div', { class: 'card', style: 'min-height:0' }, [el('div', { class: 'card-title' }, 'Terms used this week'), el('dl', { class: 'term-list', style: 'display:block;column-count:2;column-gap:22px;font-size:15.5px;line-height:1.28' }, TERMS.map(([t, d]) => el('div', { style: 'break-inside:avoid;margin-bottom:6px' }, [el('dt', {}, t), el('dd', {}, d)])))]);
-      const right = el('div', { class: 'card', style: 'min-height:0' }, [el('div', { class: 'card-title' }, 'Sources for this lecture'), el('ul', { class: 'source-list' }, SOURCES.map(([k, t, u]) => el('li', {}, [el('span', { class: 'key' }, k), el('span', {}, [t, ' ', el('a', { class: 'url', href: u }, u)])])))]);
-      body.appendChild(el('div', { style: 'display:grid;grid-template-columns:600px minmax(0,1fr) 440px;gap:26px;height:100%;min-height:0' }, [left, middle, right]));
+      const right = el('div', { class: 'card', style: 'min-height:0' }, [el('div', { class: 'card-title' }, 'Sources for this lecture'), el('ul', { class: 'source-list', style: 'font-size:18px;gap:9px' }, SOURCES.map(([k, t, u]) => el('li', {}, [el('span', { class: 'key' }, k), el('span', {}, [t, ' ', el('a', { class: 'url', href: u, style: 'font-size:15.5px' }, u)])])))]);   // ends above the presenter corner (y < 696)
+      body.appendChild(el('div', { style: 'display:grid;grid-template-columns:600px minmax(0,1fr) 470px;gap:26px;height:100%;min-height:0' }, [left, middle, right]));
     },
     print(body) {
       body.appendChild(el('div', { class: 'print-columns' }, [
