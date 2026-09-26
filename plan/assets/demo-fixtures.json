@@ -3,7 +3,7 @@
   "kind": "Original fictional teaching fixtures, not real performance data",
   "date": "16 September 2026",
   "purpose": "Inputs and independently checked expected values for later authoring; not executable lecture scenes.",
-  "extended": "16 September 2026: pseudocode_language, cancellation_matrix, retry_model and an anchors block with structured data for all 42 Anchor scenes and the numeric Bridges (Proposal 4). Keys are wNN/scene-id. week_text_shows lists strings the week TXT must contain; deck_shows lists strings the rendered scene must show; snippets are executable Python-like fixtures recomputed by tools/check_plan.py. 17 September 2026 (Phase 0 authoring): w01 Bridge fixtures added for system-boundary, quality-tradeoffs (simulated example values), evidence-not-confidence, responsibility-and-impact and course-evidence-map so that every Week 1 scene renders from this file. 17 September 2026 (plan revision): w02/ambiguous-request week_text_shows; booking_SLO expected_burn_rate and expected_days_to_exhaust_budget (recomputed by tools/check_plan.py); w10/change-through-gates static checks gate; w13/bounded-actions unreviewed tool connector capability; w13/provenance-and-understanding invented dependency. 17 September 2026 (Week 1 plan coverage): w01/quality-tradeoffs standard_vocabulary (sourced, S46) with week_text_shows and a deck_shows value; w01/feedback-lifecycle feedback_paths (authored structure: the path each discovery point's information takes and what it changes) with deck_shows. 22 September 2026: scoped curriculum refinements for Weeks 2-14; qualitative fixture additions; Week 1 data unchanged. 22 September 2026 public-course follow-up: thirteen qualitative transfer checks and a Week 14 professional-judgment comparison; canonical case, Week 1 data and numerical fixtures retained. 22 September 2026 foundation follow-up: qualitative elicitation and optional lookup/index comparisons; no new measured values. 22 September 2026 teaching review: qualitative acceptance and exploratory status-recovery comparison added; existing fixture values retained. 22 September 2026 (Week 2 authoring): w02 Bridge fixtures added for acceptance-and-validation, priority-and-risk and requirements-under-change (authored structures, fictional dates, no measurements); w02/ambiguous-request gains simulated example requests, stakeholder wording, the developer's rewrite, the open questions and the easy-for-whom routing; w02/elicitation-and-scope the boundary questions, the fact/assumption register and the visitor comparison; w02/observable-behavior the rule parts, the widget note and the two candidate snippets of the AI beat; w02/quality-with-conditions the two workloads (latency fixture datasets, illustrative), the boundary span, the S46 vocabulary rows and the keyboard path; w02/traceability-matrix an R-02 row and the blank-row note; deck_shows values for every Week 2 scene."
+  "extended": "16 September 2026: pseudocode_language, cancellation_matrix, retry_model and an anchors block with structured data for all 42 Anchor scenes and the numeric Bridges (Proposal 4). Keys are wNN/scene-id. week_text_shows lists strings the week TXT must contain; deck_shows lists strings the rendered scene must show; snippets are executable Python-like fixtures recomputed by tools/check_plan.py. 17 September 2026 (Phase 0 authoring): w01 Bridge fixtures added for system-boundary, quality-tradeoffs (simulated example values), evidence-not-confidence, responsibility-and-impact and course-evidence-map so that every Week 1 scene renders from this file. 17 September 2026 (plan revision): w02/ambiguous-request week_text_shows; booking_SLO expected_burn_rate and expected_days_to_exhaust_budget (recomputed by tools/check_plan.py); w10/change-through-gates static checks gate; w13/bounded-actions unreviewed tool connector capability; w13/provenance-and-understanding invented dependency. 17 September 2026 (Week 1 plan coverage): w01/quality-tradeoffs standard_vocabulary (sourced, S46) with week_text_shows and a deck_shows value; w01/feedback-lifecycle feedback_paths (authored structure: the path each discovery point's information takes and what it changes) with deck_shows. 22 September 2026: scoped curriculum refinements for Weeks 2-14; qualitative fixture additions; Week 1 data unchanged. 22 September 2026 public-course follow-up: thirteen qualitative transfer checks and a Week 14 professional-judgment comparison; canonical case, Week 1 data and numerical fixtures retained. 22 September 2026 foundation follow-up: qualitative elicitation and optional lookup/index comparisons; no new measured values. 22 September 2026 teaching review: qualitative acceptance and exploratory status-recovery comparison added; existing fixture values retained. 22 September 2026 (Week 2 authoring): w02 Bridge fixtures added for acceptance-and-validation, priority-and-risk and requirements-under-change (authored structures, fictional dates, no measurements); w02/ambiguous-request gains simulated example requests, stakeholder wording, the developer's rewrite, the open questions and the easy-for-whom routing; w02/elicitation-and-scope the boundary questions, the fact/assumption register and the visitor comparison; w02/observable-behavior the rule parts, the widget note and the two candidate snippets of the AI beat; w02/quality-with-conditions the two workloads (latency fixture datasets, illustrative), the boundary span, the S46 vocabulary rows and the keyboard path; w02/traceability-matrix an R-02 row and the blank-row note; deck_shows values for every Week 2 scene. 26 September 2026 (Week 3 authoring): w03 Bridge fixtures for journey-before-boxes, decision-table, interface-states, model-consistency and abstraction-and-zoom (authored structures and simulated example values, labeled); w03/identity-and-data bookings (B-003 simulated), rename lookup and identifier examples; w03/state-machine stored entry, repeated-cancel contrast and the invariant and progress examples; w03/sequence-not-state recovery actions; deck_shows for the three Week 3 Anchors."
  },
  "case": {
   "service": "Campus Rooms",
@@ -1489,8 +1489,23 @@
      "safety invariant",
      "progress property"
     ],
-    "limit": "Transition notation alone proves neither the implementation nor eventual completion"
-   }
+    "limit": "Transition notation alone proves neither the implementation nor eventual completion",
+    "examples": {
+     "safety invariant": "A cancelled booking never becomes Confirmed again",
+     "progress property": "Every Unknown outcome is eventually resolved as Confirmed or Rejected"
+    }
+   },
+   "stored_entry": {
+    "event": "decided and stored",
+    "to": "Confirmed",
+    "note": "only an accepted request creates a stored booking; a rejected request stores nothing"
+   },
+   "accidental_repeat": "a second state change: the history shows two cancellations and the owner receives a second notice",
+   "deck_shows": [
+    "Unknown outcome",
+    "Cancelled",
+    "B-001"
+   ]
   },
   "w03/identity-and-data": {
    "entities": {
@@ -1559,7 +1574,65 @@
      "requester is permitted"
     ],
     "example_room_ref": "case.rooms"
-   }
+   },
+   "bookings_kind": "simulated: B-003 is a course example added for the Week 3 data scene",
+   "bookings": [
+    {
+     "id": "B-001",
+     "owner_id": "U-01",
+     "room_id": "C101",
+     "start": "10:00",
+     "end": "11:00",
+     "state": "Confirmed"
+    },
+    {
+     "id": "B-003",
+     "owner_id": "U-02",
+     "room_id": "C101",
+     "start": "12:00",
+     "end": "13:00",
+     "state": "Confirmed"
+    }
+   ],
+   "room_before": {
+    "id": "C101",
+    "display_name": "Seminar Room 1",
+    "capacity": 12
+   },
+   "name_match": {
+    "stored_reference": "Seminar Room 1",
+    "lookup_after_rename": "no room is named Seminar Room 1",
+    "result": "the booking no longer finds its room"
+   },
+   "identifier_shape": "one capital letter followed by three digits, such as C101",
+   "id_examples": [
+    {
+     "ref": "C101",
+     "well_formed": true,
+     "exists": true
+    },
+    {
+     "ref": "C303",
+     "well_formed": true,
+     "exists": false
+    },
+    {
+     "ref": "101-C",
+     "well_formed": false,
+     "exists": false
+    }
+   ],
+   "check_questions": {
+    "identifier shape": "Is this a valid room identifier?",
+    "referenced room exists": "Does the room it names exist?",
+    "domain rule holds": "Do the booking rules allow it, such as R-01?",
+    "requester is permitted": "May this person do it, such as R-03?"
+   },
+   "deck_shows": [
+    "C101",
+    "B-003",
+    "many to one"
+   ]
   },
   "w03/sequence-not-state": {
    "participants": [
@@ -1637,6 +1710,445 @@
      "to": "Browser",
      "message": "Rejected; nothing stored"
     }
+   ],
+   "recovery": {
+    "lost_response": "check the status of B-001 before submitting again",
+    "rejected": "choose another time or room; nothing was stored, so there is nothing to check"
+   },
+   "deck_shows": [
+    "Authoritative Store",
+    "B-001",
+    "Confirmed"
+   ]
+  },
+  "w03/journey-before-boxes": {
+   "kind": "authored structure: one ordinary booking followed as a user journey; simulated screens, not user research",
+   "reviewed": "26 September 2026",
+   "person": "U-01",
+   "request": {
+    "room": "C101",
+    "start": "10:00",
+    "end": "11:00"
+   },
+   "rows": [
+    "Goal",
+    "Action",
+    "The screen says",
+    "Stored underneath",
+    "Still uncertain"
+   ],
+   "steps": [
+    {
+     "id": "choose",
+     "title": "Choose a room",
+     "goal": "find a free room from 10:00 to 11:00",
+     "action": "selects C101, 10:00 to 11:00",
+     "message": "C101 is free from 10:00 to 11:00",
+     "stored": "nothing stored yet",
+     "uncertain": "someone else can still book it first"
+    },
+    {
+     "id": "submit",
+     "title": "Submit the request",
+     "goal": "ask for the room",
+     "action": "presses Reserve",
+     "message": "Sending your request…",
+     "stored": "nothing decided yet",
+     "uncertain": "sent is not the same as confirmed"
+    },
+    {
+     "id": "outcome",
+     "title": "Observe the outcome",
+     "goal": "know whether the room is held",
+     "action": "reads the result",
+     "message": "Booking confirmed: B-001, C101, 10:00 to 11:00",
+     "stored": "B-001 Confirmed",
+     "uncertain": "nothing about the room; the email may still be on its way (R-04)"
+    }
+   ],
+   "outcomes": [
+    {
+     "id": "confirmed",
+     "label": "booking confirmed",
+     "message": "Booking confirmed: B-001, C101, 10:00 to 11:00",
+     "stored": "B-001 Confirmed",
+     "next": "nothing to do; the room is held"
+    },
+    {
+     "id": "rejected",
+     "label": "not available",
+     "message": "Not available: C101 is already booked from 10:00 to 11:00",
+     "stored": "nothing stored for Ari",
+     "next": "choose another time or room"
+    },
+    {
+     "id": "unknown",
+     "label": "could not determine the result",
+     "message": "We could not confirm whether your booking was stored. Check My bookings before trying again.",
+     "stored": "B-001 may be Confirmed; the screen cannot tell",
+     "next": "check My bookings before pressing Reserve again"
+    }
+   ],
+   "request_sent": "Sending your request… says only that the request left the browser",
+   "component_view": [
+    "Browser",
+    "Booking",
+    "Policy",
+    "Room Catalog",
+    "Notification",
+    "Storage"
+   ],
+   "missing_message": {
+    "label": "B-001 is stored, but no confirmation message is shown",
+    "stored": "B-001 Confirmed",
+    "screen": "the form returns to its start, with no message",
+    "belief": "maybe it did not work",
+    "second_press": {
+     "request": "C101, 10:00 to 11:00, the same request again",
+     "rule": "R-01",
+     "result": "rejected: it overlaps B-001",
+     "message": "Not available: C101 is already booked from 10:00 to 11:00",
+     "consequence": "Ari concludes that someone else holds the room, the room Ari already holds"
+    }
+   },
+   "week_text_shows": [
+    "request sent",
+    "booking confirmed",
+    "could not determine the result"
+   ],
+   "deck_shows": [
+    "Sending your request",
+    "B-001",
+    "Check My bookings"
+   ]
+  },
+  "w03/decision-table": {
+   "kind": "authored structure: the course cancellation matrix (R-03) as a decision table, with two added example rows",
+   "reviewed": "26 September 2026",
+   "rule": "R-03",
+   "rule_text": "An authenticated requester may cancel their own future confirmed booking.",
+   "conditions": [
+    {
+     "id": "authenticated",
+     "label": "Signed in"
+    },
+    {
+     "id": "owner",
+     "label": "Own booking"
+    },
+    {
+     "id": "state",
+     "label": "Booking state"
+    },
+    {
+     "id": "future",
+     "label": "Starts after now"
+    }
+   ],
+   "rows_from": "cancellation_matrix",
+   "row_order": [
+    "own-future",
+    "other-user",
+    "already-started",
+    "unauthenticated",
+    "already-cancelled"
+   ],
+   "missing_row": {
+    "label": "already-ended",
+    "kind": "simulated example row",
+    "requester": "U-01",
+    "authenticated": true,
+    "owner": "U-01",
+    "booking": "B-001",
+    "state": "Confirmed",
+    "now": "12:00",
+    "start": "10:00",
+    "expected": "denied",
+    "reason": "start is not later than now: the booking has already ended"
+   },
+   "staff_row": {
+    "label": "room-staff",
+    "kind": "simulated example row",
+    "requester": "Room staff",
+    "authenticated": true,
+    "owner": "U-01",
+    "booking": "B-001",
+    "state": "Confirmed",
+    "now": "09:00",
+    "start": "10:00",
+    "expected": "denied",
+    "reason": "not the owner; R-03 has no staff override"
+   },
+   "policy_boundary": "R-03 allows one combination: signed in, own booking, Confirmed, starting after now. Every other row is denied or answered with the repeated response; a staff override would be a new rule decided by the stakeholders.",
+   "week_text_shows": [
+    "R-03"
+   ],
+   "deck_shows": [
+    "R-03",
+    "U-02",
+    "denied",
+    "allowed"
+   ]
+  },
+  "w03/interface-states": {
+   "kind": "authored structure: one room search screen in five states; simulated messages, not a usability study",
+   "reviewed": "26 September 2026",
+   "search": {
+    "start": "10:00",
+    "end": "11:00"
+   },
+   "ambiguous_empty": "No rooms",
+   "states": [
+    {
+     "id": "loading",
+     "label": "Loading",
+     "message": "Searching for rooms free from 10:00 to 11:00…",
+     "promise": "the question is being answered; nothing is known yet",
+     "next": "wait, or cancel the search",
+     "focus": "stays on the search form",
+     "icon": "hourglass"
+    },
+    {
+     "id": "empty",
+     "label": "Empty result",
+     "message": "No room is free from 10:00 to 11:00. Try another time.",
+     "promise": "the search finished; no room is free at that time",
+     "next": "change the time",
+     "focus": "moves to the message",
+     "icon": "circle"
+    },
+    {
+     "id": "validation",
+     "label": "Validation error",
+     "message": "End time must be later than start time.",
+     "input": {
+      "start": "11:00",
+      "end": "10:00"
+     },
+     "promise": "nothing was searched; one field needs fixing",
+     "next": "correct the end time",
+     "focus": "moves to the end-time field",
+     "icon": "exclamation"
+    },
+    {
+     "id": "unavailable",
+     "label": "Service unavailable",
+     "message": "We could not load rooms. Nothing is known about free rooms yet.",
+     "promise": "the search did not complete",
+     "next": "try again",
+     "focus": "moves to the message and its Try again button",
+     "icon": "cross"
+    },
+    {
+     "id": "results",
+     "label": "Results",
+     "message": "2 rooms free from 10:00 to 11:00: C101, C202",
+     "promise": "the search finished; these rooms were free when it ran",
+     "next": "choose a room",
+     "focus": "moves to the results heading",
+     "icon": "check"
+    }
+   ],
+   "comparison": {
+    "from": "empty",
+    "to": "unavailable",
+    "label": "the same empty results area after a valid search with no free room, and after a failed request"
+   },
+   "week_text_shows": [
+    "No rooms"
+   ],
+   "deck_shows": [
+    "Loading",
+    "Empty result",
+    "Validation error",
+    "Service unavailable",
+    "Results"
+   ]
+  },
+  "w03/model-consistency": {
+   "kind": "authored structure: a flawed and a corrected sequence checked against R-01 with the course interval case",
+   "reviewed": "26 September 2026",
+   "rule": "R-01",
+   "rule_text": "No overlapping confirmed bookings for the same room. Intervals are half-open: [start, end).",
+   "existing": {
+    "booking": "B-001",
+    "owner": "U-01",
+    "room": "C101",
+    "start": "10:00",
+    "end": "11:00"
+   },
+   "candidate": {
+    "requester": "U-02",
+    "room": "C101",
+    "start": "10:30",
+    "end": "11:30",
+    "interval_case": 0
+   },
+   "participants": [
+    "Browser (Bo)",
+    "Booking Service",
+    "Authoritative Store"
+   ],
+   "flawed": [
+    {
+     "n": 1,
+     "from": "Browser (Bo)",
+     "to": "Booking Service",
+     "message": "submit C101, 10:30 to 11:30"
+    },
+    {
+     "n": 2,
+     "from": "Booking Service",
+     "to": "Browser (Bo)",
+     "message": "Confirmed"
+    },
+    {
+     "n": 3,
+     "from": "Booking Service",
+     "to": "Authoritative Store",
+     "message": "store booking B-004"
+    },
+    {
+     "n": 4,
+     "from": "Booking Service",
+     "to": "Booking Service",
+     "message": "check availability"
+    }
+   ],
+   "flawed_calendar": [
+    {
+     "booking": "B-001",
+     "owner": "U-01",
+     "start": "10:00",
+     "end": "11:00",
+     "state": "Confirmed"
+    },
+    {
+     "booking": "B-004",
+     "owner": "U-02",
+     "start": "10:30",
+     "end": "11:30",
+     "state": "Confirmed",
+     "kind": "simulated"
+    }
+   ],
+   "overlap": {
+    "start": "10:30",
+    "end": "11:00"
+   },
+   "contradiction": "message 2 promises Confirmed before any availability decision; the check in message 4 comes after the promise and after the store",
+   "corrected": [
+    {
+     "n": 1,
+     "from": "Browser (Bo)",
+     "to": "Booking Service",
+     "message": "submit C101, 10:30 to 11:30"
+    },
+    {
+     "n": 2,
+     "from": "Booking Service",
+     "to": "Authoritative Store",
+     "message": "decide and persist atomically"
+    },
+    {
+     "n": 3,
+     "from": "Authoritative Store",
+     "to": "Booking Service",
+     "message": "conflict: overlaps B-001"
+    },
+    {
+     "n": 4,
+     "from": "Booking Service",
+     "to": "Browser (Bo)",
+     "message": "Rejected; nothing stored"
+    }
+   ],
+   "corrected_calendar": [
+    {
+     "booking": "B-001",
+     "owner": "U-01",
+     "start": "10:00",
+     "end": "11:00",
+     "state": "Confirmed"
+    }
+   ],
+   "week_text_shows": [
+    "R-01"
+   ],
+   "deck_shows": [
+    "R-01",
+    "10:30",
+    "B-004"
+   ]
+  },
+  "w03/abstraction-and-zoom": {
+   "kind": "authored structure: four views of one booking, the questions they answer and what each leaves out",
+   "reviewed": "26 September 2026",
+   "booking": "B-001",
+   "views": [
+    {
+     "id": "context",
+     "label": "Context",
+     "answers": "Who uses Campus Rooms, and what lies outside it?",
+     "keeps": "people, the service boundary, outside systems",
+     "omits": "states, messages, fields"
+    },
+    {
+     "id": "sequence",
+     "label": "Sequence",
+     "answers": "What happened before the timeout?",
+     "keeps": "participants and the numbered order of messages",
+     "omits": "fields, ownership, other histories"
+    },
+    {
+     "id": "state",
+     "label": "State",
+     "answers": "What can happen to B-001 next?",
+     "keeps": "states, events and conditions",
+     "omits": "who asked, message order, timing"
+    },
+    {
+     "id": "data",
+     "label": "Data",
+     "answers": "Who owns B-001?",
+     "keeps": "identity, references, cardinality",
+     "omits": "order of events, screen messages"
+    }
+   ],
+   "questions": [
+    {
+     "q": "Who owns B-001?",
+     "view": "data",
+     "answer": "owner_id U-01: Ari"
+    },
+    {
+     "q": "What happened before the timeout?",
+     "view": "sequence",
+     "answer": "B-001 was stored at message 4; the response, message 5, was lost"
+    }
+   ],
+   "audiences": {
+    "student": {
+     "label": "A student using the service",
+     "needs": "the message on the screen and the next action",
+     "omits": "participants, message numbers, field names"
+    },
+    "maintainer": {
+     "label": "A maintainer investigating the failure",
+     "needs": "the numbered messages and the stored state of B-001",
+     "omits": "the room's display name and the wording on the screen"
+    }
+   },
+   "outside_systems": [
+    "Mail provider"
+   ],
+   "week_text_shows": [
+    "Who owns B-001?",
+    "What happened before the timeout?"
+   ],
+   "deck_shows": [
+    "Who owns B-001?",
+    "What happened before the timeout?"
    ]
   },
   "w04/feedback-batches": {
