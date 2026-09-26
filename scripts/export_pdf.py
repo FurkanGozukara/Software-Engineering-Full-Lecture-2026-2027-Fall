@@ -2,6 +2,7 @@
 
   python scripts/export_pdf.py --site site --week 1
   python scripts/export_pdf.py --site site --all
+  python scripts/export_pdf.py --site site --week 3 --lang tr   weeks/week-03.tr.html -> pdf/week-03.tr.pdf
 
 Opens weeks/week-NN.html?print=1 through a local server, waits for the deck's declared
 ready signal html[data-print-ready="true"] (docs/scene-contract.md), and writes
@@ -37,6 +38,7 @@ def main() -> int:
     parser.add_argument("--week", type=int, action="append")
     parser.add_argument("--all", action="store_true")
     parser.add_argument("--timeout", type=int, default=60000, help="ms to wait for the print-ready signal")
+    parser.add_argument("--lang", default="", help="a language edition: weeks/week-NN.<lang>.html -> pdf/week-NN.<lang>.pdf")
     args = parser.parse_args()
     weeks = list(range(1, 15)) if args.all else (args.week or [])
     if not weeks:
@@ -53,11 +55,12 @@ def main() -> int:
             page = browser.new_page(viewport={"width": 1920, "height": 1080}, device_scale_factor=2)
             page.route("**/*", lambda r: r.continue_() if r.request.url.startswith(base) else r.abort())
             for n in weeks:
-                url = f"{base}/weeks/week-{n:02d}.html?print=1"
+                stem = f"week-{n:02d}" + (f".{args.lang}" if args.lang else "")
+                url = f"{base}/weeks/{stem}.html?print=1"
                 page.goto(url)
                 page.wait_for_selector('html[data-print-ready="true"]', timeout=args.timeout)
                 page.emulate_media(media="print")
-                target = out_dir / f"week-{n:02d}.pdf"
+                target = out_dir / f"{stem}.pdf"
                 page.pdf(path=str(target), format="A4", landscape=True, print_background=True,
                          prefer_css_page_size=True, display_header_footer=False)
                 print(f"wrote {target}")

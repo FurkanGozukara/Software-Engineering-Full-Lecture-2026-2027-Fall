@@ -10,6 +10,16 @@
   'use strict';
   const SVG_NS = 'http://www.w3.org/2000/svg';
 
+  // ------------------------------------------------------------------ interface strings
+  // A deck in another language loads its string table (shared/i18n/<lang>.js sets window.LECTURE_STRINGS) before
+  // this file. Without a table every interface string is the English text, unchanged. {name} placeholders are filled
+  // from vars after the lookup.
+  const STRINGS = window.LECTURE_STRINGS || {};
+  function t(str, vars) {
+    const out = Object.prototype.hasOwnProperty.call(STRINGS, str) ? STRINGS[str] : str;
+    return vars ? out.replace(/\{(\w+)\}/g, (m, k) => (Object.prototype.hasOwnProperty.call(vars, k) ? String(vars[k]) : m)) : out;
+  }
+
   // ------------------------------------------------------------------ DOM helpers
   function el(tag, attrs, children) {
     const node = document.createElement(tag);
@@ -63,7 +73,7 @@
   }
   /** A diagram canvas with viewBox, defs (arrowheads per color kind, hatch pattern) and an accessible name. */
   function svg(w, h, opts = {}) {
-    const root = s('svg', { class: `diagram ${opts.class || ''}`.trim(), viewBox: `0 0 ${w} ${h}`, role: 'img', 'aria-label': opts.label || 'Diagram', focusable: 'false', preserveAspectRatio: opts.preserve || 'xMidYMid meet' });
+    const root = s('svg', { class: `diagram ${opts.class || ''}`.trim(), viewBox: `0 0 ${w} ${h}`, role: 'img', 'aria-label': opts.label || t('Diagram'), focusable: 'false', preserveAspectRatio: opts.preserve || 'xMidYMid meet' });
     const uid = opts.uid || ((x) => x);
     const defs = s('defs');
     ['default', 'accent', 'ok', 'bad', 'warn', 'violet'].forEach((kind) => {
@@ -222,7 +232,7 @@
       opts.who ? el('span', { class: 'who' }, opts.who) : null,
     ]);
     const body = el('div', { class: 'browser-body' }, opts.body);
-    const win = el('div', { class: `browser ${opts.cls || ''}`.trim(), role: 'group', 'aria-label': opts.label || (opts.who ? `Browser window of ${opts.who}` : 'Browser window') }, [bar, body]);
+    const win = el('div', { class: `browser ${opts.cls || ''}`.trim(), role: 'group', 'aria-label': opts.label || (opts.who ? t('Browser window of {who}', { who: opts.who }) : t('Browser window')) }, [bar, body]);
     win.body = body;
     return win;
   }
@@ -265,7 +275,7 @@
     return t;
   }
   function legend(items) {
-    return el('div', { class: 'legend', role: 'list', 'aria-label': 'Legend' }, items.map((it) => el('span', { class: 'key', role: 'listitem' }, [el('span', { class: `swatch swatch--${it.kind}`, 'aria-hidden': 'true' }), it.label])));
+    return el('div', { class: 'legend', role: 'list', 'aria-label': t('Legend') }, items.map((it) => el('span', { class: 'key', role: 'listitem' }, [el('span', { class: `swatch swatch--${it.kind}`, 'aria-hidden': 'true' }), it.label])));
   }
 
   // ------------------------------------------------------------------ Chart.js histogram with an accessible table
@@ -277,14 +287,14 @@
     const { values, unit = '', binEdges, title, width = 560, height = 300 } = opts;
     const counts = binEdges.slice(0, -1).map((lo, i) => values.filter((v) => v >= lo && (i === binEdges.length - 2 ? v <= binEdges[i + 1] : v < binEdges[i + 1])).length);
     const labels = binEdges.slice(0, -1).map((lo, i) => `${lo}–${binEdges[i + 1]}`);
-    const canvas = el('canvas', { width, height, role: 'img', 'aria-label': `${title}: ${values.length} values in ${unit}; ${labels.map((l, i) => `${counts[i]} in ${l}`).filter((_, i) => counts[i] > 0).join(', ')}` });
+    const canvas = el('canvas', { width, height, role: 'img', 'aria-label': t('{title}: {n} values in {unit}; {bins}', { title, n: values.length, unit, bins: labels.map((l, i) => t('{count} in {label}', { count: counts[i], label: l })).filter((_, i) => counts[i] > 0).join(', ') }) });
     canvas.style.width = `${width}px`; canvas.style.height = `${height}px`;
-    canvas.textContent = `${title}: see the data table.`;
+    canvas.textContent = t('{title}: see the data table.', { title });
     const sorted = values.slice().sort((a, b) => a - b);
     const freq = new Map(); sorted.forEach((v) => freq.set(v, (freq.get(v) || 0) + 1));
     const tbl = table({
-      caption: `${title}: values (${unit}), n = ${values.length}`, cls: 'data-table--compact',
-      columns: [{ key: 'v', label: `Value (${unit})` }, { key: 'n', label: 'Count' }],
+      caption: t('{title}: values ({unit}), n = {n}', { title, unit, n: values.length }), cls: 'data-table--compact',
+      columns: [{ key: 'v', label: t('Value ({unit})', { unit }) }, { key: 'n', label: t('Count') }],
       rows: Array.from(freq.entries()).map(([v, n]) => ({ cells: { v: String(v).replace(/\B(?=(\d{3})+(?!\d))/g, ','), n: String(n) } })),
     });
     let chart = null;
@@ -317,8 +327,8 @@
           responsive: false, animation: opts.animate ? { duration: 500 } : false, parsing: false,
           plugins: { legend: { display: false }, tooltip: { enabled: false }, title: { display: true, text: title, color: textColor, font: { size: 19, weight: '600' } } },
           scales: {
-            x: { type: 'linear', min: binEdges[0], max: binEdges[binEdges.length - 1], offset: false, grid: { color: gridColor }, ticks: { color: textColor, font: { size: 16 }, stepSize: opts.stepSize || 200, callback: (v) => `${v}` }, title: { display: true, text: `Response time (${unit})`, color: textColor, font: { size: 16 } } },
-            y: { min: 0, max: opts.maxY || Math.max(...counts) + 2, grid: { color: gridColor }, ticks: { color: textColor, font: { size: 16 }, stepSize: opts.yStep || 5 }, title: { display: true, text: 'Number of responses', color: textColor, font: { size: 16 } } },
+            x: { type: 'linear', min: binEdges[0], max: binEdges[binEdges.length - 1], offset: false, grid: { color: gridColor }, ticks: { color: textColor, font: { size: 16 }, stepSize: opts.stepSize || 200, callback: (v) => `${v}` }, title: { display: true, text: t('Response time ({unit})', { unit }), color: textColor, font: { size: 16 } } },
+            y: { min: 0, max: opts.maxY || Math.max(...counts) + 2, grid: { color: gridColor }, ticks: { color: textColor, font: { size: 16 }, stepSize: opts.yStep || 5 }, title: { display: true, text: t('Number of responses'), color: textColor, font: { size: 16 } } },
           },
         },
         plugins: [markerPlugin],
@@ -332,5 +342,5 @@
     return { canvas, table: tbl, chart, update, counts, labels };
   }
 
-  window.VC = { el, append, rich, s, svg, text, node, person, boundary, port, arrow, center, badge, markX, browser, field, status, chip, table, legend, histogram, withClass, SVG_NS };
+  window.VC = { el, append, rich, s, svg, text, node, person, boundary, port, arrow, center, badge, markX, browser, field, status, chip, table, legend, histogram, withClass, t, SVG_NS };
 })();

@@ -6,7 +6,8 @@
 The index lists every week with its number, central question, concise scope (the scene
 headings from the manifest), and links to the deck and the student PDF. A week whose deck
 file is missing or holds only some of its eight scenes is marked as in preparation; a PDF
-link appears only when site/pdf/week-NN.pdf exists.
+link appears only when site/pdf/week-NN.pdf exists. A Turkish edition of a complete week
+(weeks/week-NN.tr.html with all its scenes, pdf/week-NN.tr.pdf) gets its own links.
 """
 from __future__ import annotations
 
@@ -55,6 +56,11 @@ def render() -> str:
             status = '<span class="status">Authored in a later phase</span>'
         pdf_link = (f'<a class="btn" href="pdf/week-{n:02d}.pdf">Student PDF</a>' if pdf.exists()
                     else '<span class="btn is-disabled" aria-disabled="true">PDF not yet exported</span>')
+        tr_deck, tr_pdf = SITE / "weeks" / f"week-{n:02d}.tr.html", SITE / "pdf" / f"week-{n:02d}.tr.pdf"
+        if complete and tr_deck.exists() and len(scenes_present(tr_deck, ids)) == len(ids):
+            pdf_link += f'<a class="btn" lang="tr" hreflang="tr" href="weeks/week-{n:02d}.tr.html#/{ids[0]}">Türkçe ders</a>'
+        if complete and tr_pdf.exists():
+            pdf_link += f'<a class="btn" lang="tr" hreflang="tr" href="pdf/week-{n:02d}.tr.pdf">Türkçe PDF</a>'
         rows.append(f"""
       <li class="week{' is-ready' if complete else ''}">
         <div class="num"><small>Week</small>{n:02d}</div>

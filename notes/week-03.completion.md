@@ -49,3 +49,20 @@ Provided by the deck: `record=1` mode and pointer targets (`data-cue-target`) on
 - The PDF is a browser export: text is selectable and diagrams are vector, but no tagged-PDF conformance is claimed; the accessible HTML deck stays the primary route.
 - The keyboard focus of scene 6 is a drawn outline, not a live browser tab order.
 - The plan's optional depth (enumerating a bounded set of transition paths) is not built; the core route of Section 9 is.
+
+## Turkish edition (26 September 2026)
+
+Requested after the lecture recording: the documents in Turkish (site page and PDF), not the video. Branch `i18n/week-03-tr`, from `week/03-models` at `298279e`.
+
+| Deliverable | Path |
+|---|---|
+| Deck (Turkish) | `site/weeks/week-03.tr.html` (`lang="tr"`) + `site/weeks/week-03.tr.js` (same scenes, ids, cue targets, conditions and states as `week-03.js`; only display text differs) |
+| Student PDF (Turkish) | `site/pdf/week-03.tr.pdf` · 25 pages, the same panels as the English PDF |
+| Fixture text | `site/assets/fixtures/demo-fixtures.tr.js`: 174 Turkish display strings keyed by the exact English fixture text; the deck shows fixture text through `trx()`, and every comparison and self-check keeps the English values |
+| Shell strings | `site/shared/i18n/tr.js` (`window.LECTURE_STRINGS`); `visual-components.js` gains `VC.t()` and `lecture-controls.js` reads every interface string through it (`T()`), so a page without a table stays English byte for byte; the print labels Condition, State, Principle and In short come from `data-label` attributes instead of fixed CSS text |
+| Tools | `scripts/inspect_deck.py --lang tr` and `scripts/export_pdf.py --lang tr` target `week-NN.<lang>.html` and write `week-NN.<lang>.pdf`; `scripts/build_index.py` links a complete Turkish edition from the index |
+| Terminology | `notes/week-03.tr-terminology.md` |
+
+Checks: `node --check` on the Turkish deck, fixture table and string table OK; `python scripts/inspect_deck.py --layout --week 3 --lang tr --out build/inspect/week-03-tr`: 114 states in 13 pages, 0 with findings, no console errors, page errors or failed requests; a walk of every page, condition and state plus the help and overview dialogs and the print view: 0 fixture strings without a translation, 0 errors, the only English left being scene ids, file names and the bibliographic source titles; axe on all 13 pages: 0 serious or critical violations; `python scripts/build_index.py --check` OK; the full filtered suite (`test_plan or w01- or w02- or w03- or w05-dependency-example or w11-latency-is-a-distribution or test_week_pdf_exists_and_reads[1..3]`): 341 passed, 27 skipped, the counts of the English-only run, so the shell change leaves the English decks as they were. Every page of the Turkish PDF and 23 live states were read natively at full size; revisions made from those reads: shorter wording where a Turkish sentence overflowed (the opening component note, two rail captions, two condition labels, three cells of the scene 1 outcome table and one of the scene 3 check table, with fixed column widths for the outcome table), the scene 7 heading shortened to one line ("Derli toplu bir diyagram “Onaylandı” diyor. R-01 ile çelişki nerede?"), the lost-message label of scene 8 lifted clear of its cross, one principle's punctuation.
+
+Not translated, by design: the recorded video and its captions stay English; the scene guide stays instructor-facing English; the English fixture lists `deck_shows`/`week_text_shows` stay the English deck's checks, so the Turkish deck is checked by the walk above rather than by `test_fixture_values_are_shown`.

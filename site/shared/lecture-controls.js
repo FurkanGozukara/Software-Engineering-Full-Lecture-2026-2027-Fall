@@ -22,6 +22,7 @@
   const doc = document;
   const html = doc.documentElement;
   const VC = window.VC;
+  const T = VC.t;   // interface strings: English unless the page loaded a string table (visual-components.js)
   const params = new URLSearchParams(location.search);
   const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const MODE = {
@@ -215,28 +216,28 @@
         const b = el('button', { type: 'button', class: `ctl-btn ctl-btn--${name}`, 'data-control': name, 'aria-label': label }, [svgIcon(ICON[icon || name]), el('span', {}, extra || label)]);
         return cue(b, name);
       };
-      this.btnBack = btn('back', 'Back one step', 'back', 'Back');
-      this.btnStep = btn('step', 'Step forward', 'step', 'Step');
-      this.btnReplay = btn('replay', 'Replay this condition from its first step', 'replay', 'Replay');
-      this.btnReset = btn('reset', 'Reset to the baseline condition and first step', 'reset', 'Reset');
+      this.btnBack = btn('back', T('Back one step'), 'back', T('Back'));
+      this.btnStep = btn('step', T('Step forward'), 'step', T('Step'));
+      this.btnReplay = btn('replay', T('Replay this condition from its first step'), 'replay', T('Replay'));
+      this.btnReset = btn('reset', T('Reset to the baseline condition and first step'), 'reset', T('Reset'));
       this.progress = el('span', { class: 'ctl-progress', 'aria-hidden': 'true' });
       this.progressText = el('span', { class: 'visually-hidden' });
       const row1 = el('div', { class: 'ctl-row' }, [this.btnBack, this.btnStep, this.btnReplay, this.btnReset, this.progressText]);
       if (d.run) {
-        this.btnRun = btn('run', 'Run or pause the model', 'run', 'Run');
+        this.btnRun = btn('run', T('Run or pause the model'), 'run', T('Run'));
         this.btnRun.setAttribute('aria-pressed', 'false');
         row1.insertBefore(this.btnRun, this.btnReplay);
       }
-      const presets = el('div', { class: 'ctl-presets', role: 'group', 'aria-label': 'Condition presets' });
+      const presets = el('div', { class: 'ctl-presets', role: 'group', 'aria-label': T('Condition presets') });
       this.presetButtons = {};
       for (const c of this.conditions) {
-        const b = el('button', { type: 'button', class: 'preset-btn', 'data-control': 'condition', 'data-condition-id': c.id, 'aria-pressed': c.id === this.condition ? 'true' : 'false', 'aria-label': `Condition: ${c.label}` }, c.short || c.label);
+        const b = el('button', { type: 'button', class: 'preset-btn', 'data-control': 'condition', 'data-condition-id': c.id, 'aria-pressed': c.id === this.condition ? 'true' : 'false', 'aria-label': T('Condition: {label}', { label: c.label }) }, c.short || c.label);
         cue(b, `condition-${c.id}`);
         b.addEventListener('click', () => this.setCondition(c.id));
         this.presetButtons[c.id] = b;
         presets.appendChild(b);
       }
-      const controls = el('div', { class: 'scene-controls', role: 'group', 'aria-label': `Scene controls for ${d.heading}` }, [row1]);
+      const controls = el('div', { class: 'scene-controls', role: 'group', 'aria-label': T('Scene controls for {heading}', { heading: d.heading }) }, [row1]);
       live.appendChild(controls);
       // stage
       const stageWrap = el('div', { class: 'scene-stage-wrap' });
@@ -247,16 +248,16 @@
       this.instance.stage.style.cssText = 'position:absolute;inset:0;';
       // rail
       this.condLabel = el('p', { class: 'condition-label', 'data-condition-label': '' });
-      const railCondition = el('div', { class: 'rail-card rail-condition' }, [el('div', { class: 'rail-eyebrow' }, 'Condition'), presets, this.condLabel]);
+      const railCondition = el('div', { class: 'rail-card rail-condition' }, [el('div', { class: 'rail-eyebrow' }, T('Condition')), presets, this.condLabel]);
       this.promptQ = el('p', { class: 'prompt-q' });
       this.promptOpts = el('ul', { class: 'prompt-options' });
-      this.railPrompt = cue(el('div', { class: 'rail-card rail-prompt', hidden: '' }, [el('div', { class: 'rail-eyebrow' }, 'Decide before the reveal'), this.promptQ, this.promptOpts]), 'prompt');
+      this.railPrompt = cue(el('div', { class: 'rail-card rail-prompt', hidden: '' }, [el('div', { class: 'rail-eyebrow' }, T('Decide before the reveal')), this.promptQ, this.promptOpts]), 'prompt');
       this.captionText = el('p', { class: 'caption-text' });
       this.captionCount = el('span', { class: 'eyebrow-count' });
-      this.railCaption = cue(el('div', { class: 'rail-card rail-caption' }, [el('div', { class: 'rail-eyebrow' }, [el('span', {}, 'What is happening'), this.progress, this.captionCount]), el('div', { 'aria-live': 'polite' }, this.captionText)]), 'caption');
+      this.railCaption = cue(el('div', { class: 'rail-card rail-caption' }, [el('div', { class: 'rail-eyebrow' }, [el('span', {}, T('What is happening')), this.progress, this.captionCount]), el('div', { 'aria-live': 'polite' }, this.captionText)]), 'caption');
       this.principleText = el('p', { class: 'principle-text' }, d.principle || '');
-      const principleShort = d.principleShort ? el('p', { class: 'principle-short' }, [el('span', { class: 'ps-label' }, 'In short'), d.principleShort]) : null;
-      this.railPrinciple = cue(el('div', { class: 'rail-card rail-principle', hidden: '' }, [el('div', { class: 'rail-eyebrow' }, 'Principle'), this.principleText, principleShort]), 'principle');
+      const principleShort = d.principleShort ? el('p', { class: 'principle-short' }, [el('span', { class: 'ps-label' }, T('In short')), d.principleShort]) : null;
+      this.railPrinciple = cue(el('div', { class: 'rail-card rail-principle', hidden: '' }, [el('div', { class: 'rail-eyebrow' }, T('Principle')), this.principleText, principleShort]), 'principle');
       this.railNote = el('p', { class: 'rail-note', hidden: '' });
       const rail = el('div', { class: 'scene-rail' }, [railCondition, this.railPrompt, this.railCaption, this.railPrinciple, this.railNote]);
       live.appendChild(rail);
@@ -308,7 +309,7 @@
       r.setAttribute('data-running', this.running ? 'true' : 'false');
       r.setAttribute('data-condition', this.condition);
       r.setAttribute('data-baseline', this.condition === this.baseline ? 'true' : 'false');
-      if (this.btnRun) { this.btnRun.setAttribute('aria-pressed', this.running ? 'true' : 'false'); this.btnRun.lastChild.textContent = this.running ? 'Pause' : 'Run'; this.btnRun.replaceChild(svgIcon(this.running ? ICON.pause : ICON.run), this.btnRun.firstChild); }
+      if (this.btnRun) { this.btnRun.setAttribute('aria-pressed', this.running ? 'true' : 'false'); this.btnRun.lastChild.textContent = this.running ? T('Pause') : T('Run'); this.btnRun.replaceChild(svgIcon(this.running ? ICON.pause : ICON.run), this.btnRun.firstChild); }
     }
     render() {
       const c = this.cond, s = this.stateObj, last = this.state === this.count - 1;
@@ -319,8 +320,8 @@
       this.condLabel.textContent = c.label;
       // progress dots
       this.progress.replaceChildren(...c.states.map((_, i) => el('span', { class: `dot${i < this.state ? ' is-done' : ''}${i === this.state ? ' is-now' : ''}` })));
-      this.captionCount.textContent = `${this.state + 1} of ${this.count}`;
-      this.progressText.textContent = `State ${this.state + 1} of ${this.count}`;
+      this.captionCount.textContent = T('{n} of {count}', { n: this.state + 1, count: this.count });
+      this.progressText.textContent = T('State {n} of {count}', { n: this.state + 1, count: this.count });
       // rail
       if (s.prompt) {
         this.promptQ.textContent = s.prompt.question;
@@ -367,9 +368,9 @@
     if (next.scene) next.scene.enter();
     else if (next.def.onEnter) next.def.onEnter(next.bodyEl, next.api);
     // header
-    deck.positionEl.textContent = `Page ${i + 1} of ${deck.pages.length}`;
+    deck.positionEl.textContent = T('Page {n} of {total}', { n: i + 1, total: deck.pages.length });
     const role = next.def.kind === 'scene' ? next.def.scene.role : 'page';
-    deck.roleChip.textContent = role === 'anchor' ? 'Anchor' : role === 'bridge' ? 'Bridge' : '';
+    deck.roleChip.textContent = role === 'anchor' ? T('Anchor') : role === 'bridge' ? T('Bridge') : '';
     deck.roleChip.className = `role-chip role-chip--${role}`;
     deck.roleChip.hidden = role === 'page';
     deck.refEl.textContent = `${deck.def.file}#/${next.id}`;
@@ -389,7 +390,7 @@
 
   // -- dialogs -----------------------------------------------------------
   function buildDialogs(root) {
-    const closeBtn = (dlg) => { const b = el('button', { type: 'button', class: 'nav-btn dialog-close', 'aria-label': 'Close' }, '×'); b.addEventListener('click', () => dlg.close()); return b; };
+    const closeBtn = (dlg) => { const b = el('button', { type: 'button', class: 'nav-btn dialog-close', 'aria-label': T('Close') }, '×'); b.addEventListener('click', () => dlg.close()); return b; };
     // overview
     const ov = el('dialog', { class: 'deck-dialog', 'aria-labelledby': 'overview-title' });
     const list = el('ul', { class: 'overview-list' });
@@ -398,12 +399,12 @@
       const a = el('a', { href: `#/${p.id}`, class: 'overview-link' }, [
         el('span', { class: 'num' }, String(i + 1).padStart(2, '0')),
         el('span', {}, p.def.kind === 'scene' ? p.def.scene.heading : p.def.heading),
-        el('span', { class: 'id' }, role === 'page' ? '' : `${role} · ${p.id}`),
+        el('span', { class: 'id' }, role === 'page' ? '' : `${T(role)} · ${p.id}`),
       ]);
       a.addEventListener('click', (e) => { e.preventDefault(); ov.close(); gotoPage(i); });
       list.appendChild(el('li', {}, a));
     });
-    ov.append(closeBtn(ov), el('h2', { id: 'overview-title' }, 'Pages in this lecture'), list);
+    ov.append(closeBtn(ov), el('h2', { id: 'overview-title' }, T('Pages in this lecture')), list);
     // help
     const hp = el('dialog', { class: 'deck-dialog', 'aria-labelledby': 'help-title' });
     const rows = [
@@ -414,14 +415,14 @@
       ['Reset to the baseline condition', 'Shift + R  (letter shortcut)'],
       ['Page overview / this help', 'o · ?  (letter shortcuts)'],
       ['Close a dialog', 'Escape'],
-    ];
+    ].map((row) => row.map((cell) => T(cell)));
     const table = el('table', { class: 'help-table' }, [el('tbody', {}, rows.map((r) => el('tr', {}, [el('th', { scope: 'row' }, r[0]), el('td', {}, r[1])])))]);
     const chk = el('input', { type: 'checkbox', id: 'letter-shortcuts' });
     chk.checked = deck.letterShortcuts;
     chk.addEventListener('change', () => { deck.letterShortcuts = chk.checked; try { localStorage.setItem(STORAGE_KEY, chk.checked ? 'on' : 'off'); } catch (e) { /* storage unavailable */ } });
-    hp.append(closeBtn(hp), el('h2', { id: 'help-title' }, 'Keyboard'), table,
-      el('div', { class: 'setting-row' }, [chk, el('label', { for: 'letter-shortcuts' }, 'Letter shortcuts on (r, Shift+R, o, ?). Arrow keys keep working inside text fields and sliders; letter keys are ignored there too.')]),
-      el('p', { class: 'small muted', style: 'margin-top:14px' }, `Deep links: ${deck.def.file}#/<scene-id> opens a scene at its baseline, paused. Query modes: ?motion=off instant states, ?print=1 print view.`));
+    hp.append(closeBtn(hp), el('h2', { id: 'help-title' }, T('Keyboard')), table,
+      el('div', { class: 'setting-row' }, [chk, el('label', { for: 'letter-shortcuts' }, T('Letter shortcuts on (r, Shift+R, o, ?). Arrow keys keep working inside text fields and sliders; letter keys are ignored there too.'))]),
+      el('p', { class: 'small muted', style: 'margin-top:14px' }, T('Deep links: {file}#/<scene-id> opens a scene at its baseline, paused. Query modes: ?motion=off instant states, ?print=1 print view.', { file: deck.def.file })));
     root.append(ov, hp);
     deck.overviewDialog = ov; deck.helpDialog = hp;
   }
@@ -455,13 +456,13 @@
   function buildPrint() {
     doc.body.setAttribute('data-print', 'true');
     const d = deck.def;
-    const weekLabel = `Week ${String(d.week).padStart(2, '0')}`;
+    const weekLabel = T('Week {week}', { week: String(d.week).padStart(2, '0') });
     const foot = (left, right) => el('div', { class: 'print-foot' }, [el('span', {}, left), el('span', {}, right)]);
     let pageNo = 0;
     const sheet = (cls, children, refText, roleText) => {
       pageNo += 1;
       const s = el('section', { class: `print-page ${cls || ''}` }, children);
-      s.appendChild(foot(`${weekLabel} · ${d.file} · ${refText || ''}`, `${roleText ? roleText + ' · ' : ''}page ${pageNo}`));
+      s.appendChild(foot(`${weekLabel} · ${d.file} · ${refText || ''}`, `${roleText ? roleText + ' · ' : ''}${T('page {pageNo}', { pageNo })}`));
       return s;
     };
     const head = (title, role) => el('div', { class: 'print-head' }, [
@@ -471,27 +472,27 @@
     // cover with the scene overview
     const scenes = deck.pages.filter((p) => p.def.kind === 'scene');
     const toc = el('table', { class: 'print-toc' }, [
-      el('thead', {}, el('tr', {}, ['#', 'Scene (student heading)', 'Role', 'Deep link'].map((t) => el('th', { scope: 'col' }, t)))),
+      el('thead', {}, el('tr', {}, ['#', T('Scene (student heading)'), T('Role'), T('Deep link')].map((t) => el('th', { scope: 'col' }, t)))),
       el('tbody', {}, scenes.map((p, i) => el('tr', {}, [
-        el('td', {}, String(i + 1).padStart(2, '0')), el('td', {}, p.def.scene.heading), el('td', {}, p.def.scene.role === 'anchor' ? 'Anchor' : 'Bridge'),
+        el('td', {}, String(i + 1).padStart(2, '0')), el('td', {}, p.def.scene.heading), el('td', {}, p.def.scene.role === 'anchor' ? T('Anchor') : T('Bridge')),
         el('td', { class: 'id' }, `${d.file}#/${p.id}`),
       ]))),
     ]);
     const cover = sheet('print-cover', [
-      head('Student notes', 'Cover'),
+      head(T('Student notes'), T('Cover')),
       el('div', { class: 'pc-question' }, d.question),
       el('p', { class: 'pc-lead' }, d.coverLead || ''),
-      el('h3', { style: 'font-size:15px;margin:6px 0' }, 'Scenes in this lecture'),
+      el('h3', { style: 'font-size:15px;margin:6px 0' }, T('Scenes in this lecture')),
       toc,
       el('p', { class: 'small', style: 'margin-top:12px;font-size:13px;color:var(--text-muted)' }, d.coverNote || ''),
-    ], 'cover', 'Cover');
+    ], T('cover'), T('Cover'));
     deck.pagesEl.insertBefore(cover, deck.pagesEl.firstChild);
     const readiness = [];
     for (const p of deck.pages) {
       p.el.removeAttribute('hidden');
       if (p.def.kind === 'scene') {
         const s = p.scene, def = p.def.scene;
-        const panels = def.print && def.print.length ? def.print : [{ title: 'Final state', condition: s.baseline, state: s.count - 1 }];
+        const panels = def.print && def.print.length ? def.print : [{ title: T('Final state'), condition: s.baseline, state: s.count - 1 }];
         panels.forEach((pn, k) => {
           const cond = def.conditions.find((c) => c.id === (pn.condition || s.baseline)) || def.conditions[0];
           const stateIdx = Math.min(cond.states.length - 1, pn.state == null ? cond.states.length - 1 : pn.state);
@@ -507,19 +508,19 @@
           inst.render(cond.id, stateIdx);
           readiness.push(inst.ready);
           const children = [
-            head(def.heading, def.role === 'anchor' ? 'Anchor scene' : 'Bridge scene'),
-            el('div', { class: 'print-panel-title' }, `Panel ${k + 1} of ${panels.length} · ${pn.title}`),
-            el('div', { class: 'print-meta' }, [el('span', { class: 'pm-condition' }, el('b', {}, cond.label)), el('span', { class: 'pm-state' }, el('b', {}, `${stateIdx + 1} of ${cond.states.length}`))]),
+            head(def.heading, def.role === 'anchor' ? T('Anchor scene') : T('Bridge scene')),
+            el('div', { class: 'print-panel-title' }, T('Panel {n} of {total} · {title}', { n: k + 1, total: panels.length, title: pn.title })),
+            el('div', { class: 'print-meta' }, [el('span', { class: 'pm-condition', 'data-label': T('Condition: ') }, el('b', {}, cond.label)), el('span', { class: 'pm-state', 'data-label': T('State: ') }, el('b', {}, T('{n} of {count}', { n: stateIdx + 1, count: cond.states.length })))]),
           ];
-          if (st.prompt && pn.showPrompt !== false) children.push(el('p', { class: 'print-prompt' }, [el('b', {}, 'Decide first: '), st.prompt.question + ' ', ...st.prompt.options.map((o, i) => el('span', {}, ` (${String.fromCharCode(65 + i)}) ${o}`))]));
+          if (st.prompt && pn.showPrompt !== false) children.push(el('p', { class: 'print-prompt' }, [el('b', {}, T('Decide first: ')), st.prompt.question + ' ', ...st.prompt.options.map((o, i) => el('span', {}, ` (${String.fromCharCode(65 + i)}) ${o}`))]));
           if (st.caption && pn.showCaption !== false) children.push(el('p', { class: 'print-caption' }, VC.rich(pn.caption || st.caption)));
           children.push(stage);
           if (pn.note) children.push(el('p', { class: 'print-note' }, pn.note));
           if (pn.principle || (st.principle && pn.principle !== false)) {
-            children.push(el('p', { class: 'print-principle' }, def.principle));
-            if (def.principleShort) children.push(el('p', { class: 'print-principle-short' }, def.principleShort));
+            children.push(el('p', { class: 'print-principle', 'data-label': T('Principle · ') }, def.principle));
+            if (def.principleShort) children.push(el('p', { class: 'print-principle-short', 'data-label': T('In short · ') }, def.principleShort));
           }
-          const article = sheet('print-panel', children, `#/${p.id}`, def.role === 'anchor' ? 'Anchor' : 'Bridge');
+          const article = sheet('print-panel', children, `#/${p.id}`, def.role === 'anchor' ? T('Anchor') : T('Bridge'));
           article.setAttribute('data-print-panel', '');
           article.setAttribute('data-print-condition', cond.id);
           article.setAttribute('data-print-state', String(stateIdx));
@@ -530,7 +531,7 @@
         const body = el('div', { class: 'print-body' });
         if (p.def.print) p.def.print(body, p.api);
         else body.appendChild(p.bodyEl.cloneNode(true));
-        const s = sheet('', [head(p.def.heading, p.def.printRole || ''), p.def.lead ? el('p', { class: 'print-caption' }, p.def.lead) : null, body], `#/${p.id}`, 'Page');
+        const s = sheet('', [head(p.def.heading, p.def.printRole || ''), p.def.lead ? el('p', { class: 'print-caption' }, p.def.lead) : null, body], `#/${p.id}`, T('Page'));
         printEl.appendChild(s);
         p.el.appendChild(printEl);
       }
@@ -562,7 +563,7 @@
   // -- deck construction ---------------------------------------------------------
   function buildDeck(def) {
     deck.def = def;
-    def.shortTitle = def.shortTitle || `Week ${String(def.week).padStart(2, '0')}`;
+    def.shortTitle = def.shortTitle || T('Week {week}', { week: String(def.week).padStart(2, '0') });
     try { deck.letterShortcuts = localStorage.getItem(STORAGE_KEY) !== 'off'; } catch (e) { deck.letterShortcuts = true; }
     doc.title = `${def.shortTitle} · ${def.title}`;
     const root = el('div', { class: 'deck' });
@@ -574,14 +575,14 @@
     const header = el('header', { class: 'deck-header' }, [
       el('div', { class: 'deck-identity' }, [el('span', { class: 'deck-week' }, def.shortTitle), el('span', { class: 'deck-title' }, def.title)]),
       deck.refEl,
-      el('nav', { class: 'deck-nav', 'aria-label': 'Lecture pages' }, [deck.positionEl, deck.roleChip, navBtn('prev', 'Previous page', 'prev'), navBtn('next', 'Next page', 'next'), navBtn('overview', 'Page overview', 'grid'), navBtn('help', 'Keyboard help', 'help')]),
+      el('nav', { class: 'deck-nav', 'aria-label': T('Lecture pages') }, [deck.positionEl, deck.roleChip, navBtn('prev', T('Previous page'), 'prev'), navBtn('next', T('Next page'), 'next'), navBtn('overview', T('Page overview'), 'grid'), navBtn('help', T('Keyboard help'), 'help')]),
     ]);
     root.appendChild(header);
     const h1 = el('h1', { class: 'visually-hidden' }, `${def.shortTitle}: ${def.title}. ${def.question}`);
     root.appendChild(h1);
     deck.pagesEl = el('main', { class: 'deck-pages', id: 'deck-main' });
     root.appendChild(deck.pagesEl);
-    const skip = el('a', { class: 'skip-link', href: '#deck-main' }, 'Skip to the current page');
+    const skip = el('a', { class: 'skip-link', href: '#deck-main' }, T('Skip to the current page'));
     doc.body.prepend(skip);
     // pages
     def.pages.forEach((pdef, i) => {
@@ -599,7 +600,7 @@
         const live = el('div', { class: 'page-live', style: 'display:contents' });
         const head = el('div', { class: 'page-head' }, [el('h2', { class: 'page-title', id: `h-${id}` }, pdef.heading), pdef.lead ? el('p', { class: 'page-lead' }, pdef.lead) : null]);
         const body = el('div', { class: 'page-body' });
-        const foot = el('div', { class: 'page-foot' }, el('span', { class: 'wordmark' }, def.wordmark || 'Campus Rooms · Software Engineering'));
+        const foot = el('div', { class: 'page-foot' }, el('span', { class: 'wordmark' }, def.wordmark || T('Campus Rooms · Software Engineering')));
         live.append(head, body, foot);
         section.appendChild(live);
         page.bodyEl = body;

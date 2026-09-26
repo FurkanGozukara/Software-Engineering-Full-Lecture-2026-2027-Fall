@@ -6,6 +6,7 @@ step through every scene and condition, and save screenshots for a native read.
   python scripts/inspect_deck.py --week 1 --print --out <folder>      screenshot of the print view (long page)
   python scripts/inspect_deck.py --layout --week 1 --out <folder>     layout scan of every state (report + exit code)
   python scripts/inspect_deck.py --layout --week 1 --shots --out <folder>   ... and one 3840x2160 capture per state
+  python scripts/inspect_deck.py --layout --week 3 --lang tr --out <folder>  the same for weeks/week-03.tr.html
 
 Screenshots are taken at 1920x1080 logical pixels with device scale factor 2, the 3840x2160 frame
 of the recording, so a 1:1 read shows what the camera will show. Nothing here changes the site.
@@ -227,6 +228,7 @@ def main() -> int:
     ap.add_argument("--out", required=True)
     ap.add_argument("--scale", type=float, default=2.0)
     ap.add_argument("--query", default="record=1")
+    ap.add_argument("--lang", default="", help="a language edition of the deck: weeks/week-NN.<lang>.html")
     args = ap.parse_args()
     out = Path(args.out); out.mkdir(parents=True, exist_ok=True)
     from playwright.sync_api import sync_playwright
@@ -241,7 +243,7 @@ def main() -> int:
             page.on("console", lambda m: errors.append(f"console.{m.type}: {m.text}") if m.type in ("error", "warning") else None)
             page.on("pageerror", lambda e: errors.append(f"pageerror: {e}"))
             page.on("requestfailed", lambda r: errors.append(f"requestfailed: {r.url}"))
-            week = f"week-{args.week:02d}"
+            week = f"week-{args.week:02d}" + (f".{args.lang}" if args.lang else "")
             if args.layout:
                 page.goto(f"{base}/weeks/{week}.html?record=1&motion=off")
                 page.wait_for_selector("body[data-page-count]")
