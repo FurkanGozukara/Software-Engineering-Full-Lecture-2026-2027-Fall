@@ -50,6 +50,10 @@ Provided by the deck: `record=1` mode and pointer targets (`data-cue-target`) on
 - The keyboard focus of scene 6 is a drawn outline, not a live browser tab order.
 - The plan's optional depth (enumerating a bounded set of transition paths) is not built; the core route of Section 9 is.
 
+## Lecture video (26 September 2026)
+
+The Week 3 lecture was recorded from this deck in the tutorial workspace (one take per page in the real Chrome at 3840 by 2160, 60 fps, narration synthesized first and every action paced to it), edited, checked and rendered with the presenter avatars: 57:44.6, 271 narration units, 43 chapters. Two pages were recorded again after the review of the first takes, from commit `298279e`: a scene 8 caption had lowercased an identifier ("b-001"), and on the principles page Chrome's link status bubble showed the local deck address while the pointer rested on the principle cards, which record mode now renders without `href`. The recording state, checks and the final render's evidence live in the workspace handoff (`projects/software_engineering/week03/HANDOFF.md` there). The video and its captions are English; the Turkish edition above covers the documents only.
+
 ## Turkish edition (26 September 2026)
 
 Requested after the lecture recording: the documents in Turkish (site page and PDF), not the video. Branch `i18n/week-03-tr`, from `week/03-models` at `298279e`.
