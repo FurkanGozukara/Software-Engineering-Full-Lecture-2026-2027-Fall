@@ -38,7 +38,7 @@
 
   // ------------------------------------------------------------------ helpers shared by the scenes
   const reveal = (attrs) => Object.assign({ class: 'rv rv--rise' }, attrs);
-  const lower1 = (str) => str.charAt(0).toLowerCase() + str.slice(1);
+  const lower1 = (str) => (/^[A-Z]+-?\d/.test(str) ? str : str.charAt(0).toLowerCase() + str.slice(1));   // an identifier (B-001, R-03, C101) keeps its case
   const upper1 = (str) => str.charAt(0).toUpperCase() + str.slice(1);
   const listAnd = (items) => (items.length < 2 ? items.join('') : `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}`);
   const tone = (kind, str, extra) => el('span', { style: `color:var(--${kind});font-weight:700;${extra || ''}` }, str);
@@ -1546,7 +1546,13 @@
     lead: 'One principle per scene, then six checks: decide your answer before you open each one.',
     printRole: 'Principles and checks',
     build(body, api) {
-      const cards = el('div', { class: 'principle-grid', style: 'gap:10px' }, SCENES.map((sc, i) => api.cue(el('a', { class: 'principle-card', href: `#/${sc.id}`, style: 'text-decoration:none;color:inherit;padding:10px 16px' }, [
+      // In record mode a card carries no href (Chrome's link status bubble would print the local deck address on camera); a click
+      // or Enter still opens the scene.
+      const open = (sc) => () => { location.hash = `#/${sc.id}`; };
+      const cardAttrs = (sc) => (api.record
+        ? { class: 'principle-card', role: 'link', tabindex: '0', onclick: open(sc), onkeydown: (e) => { if (e.key === 'Enter') open(sc)(); }, style: 'text-decoration:none;color:inherit;padding:10px 16px;cursor:pointer' }
+        : { class: 'principle-card', href: `#/${sc.id}`, style: 'text-decoration:none;color:inherit;padding:10px 16px' });
+      const cards = el('div', { class: 'principle-grid', style: 'gap:10px' }, SCENES.map((sc, i) => api.cue(el('a', cardAttrs(sc), [
         el('span', { class: 'pc-num' }, `${i + 1} · ${sc.role}`), el('span', { class: 'pc-text' }, sc.principle), el('span', { class: 'pc-short' }, sc.principleShort),
       ]), `card-${i + 1}`)));
       cards.querySelectorAll('.pc-text').forEach((n) => { n.style.fontSize = '18px'; });
