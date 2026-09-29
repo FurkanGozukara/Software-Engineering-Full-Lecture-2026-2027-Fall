@@ -282,7 +282,7 @@
           el('h3', {}, 'The example this week: eight work cards'),
           el('ul', {}, CARDS.map((c) => el('li', {}, `${c.id} ${c.title}`))),
           el('h3', {}, 'How the board works'),
-          el('p', {}, `Time moves in rounds. Implementation takes ${B.implementation_capacity} cards per round, review ${B.review_capacity}; ${QB.transfer_rule}. Every card is the same size and all eight are requested at round 0. ${F.flow.assumptions} Rounds are teaching units, not measured developer performance.`),
+          el('p', {}, `Time moves in rounds. Implementation takes ${B.implementation_capacity} cards per round, review ${B.review_capacity}; ${QB.transfer_rule}. Every card is the same size and all eight are requested at round 0. Review takes only cards that are waiting at the start of a round, and every count shows the end of a round. ${upper1(QB.timing_note)}.`),
         ]),
         el('div', {}, [el('h3', {}, 'By the end of this lecture you can'), el('ol', { class: 'outcome-list' }, OUTCOMES.map((o, i) => el('li', {}, [el('span', { class: 'n' }, String(i + 1)), el('span', {}, o)])))]),
       ]));
@@ -309,7 +309,7 @@
     conditions: [
       { id: 'batch-or-slices', baseline: true, label: 'Baseline: one batch, or small slices', short: 'Two plans',
         states: [
-          { prompt: { question: 'When would the team learn that its cancellation messages miss what people need?', options: ['When the last card is finished', 'When people use a small working part', 'Only after the release'] }, caption: 'Same eight cards, same team, two plans. Step to follow each plan.' },
+          { prompt: { question: 'When would the team learn that its cancellation messages miss what people need?', options: ['When the last card is finished', 'When people use a small working part', 'Only after the release'] }, caption: 'Step to follow each plan.' },
           { caption: `Plan 1 builds one card per round and integrates everything in **round ${BATCH.integration_round}**. Until then, nothing can be used.` },
           { caption: `People first use the result in **round ${BATCH.discovery_round}**, and the misunderstanding shows. The rework: ${BATCH.rework}.` },
           { caption: `Plan 2 builds a small usable slice first: ${SLICES[0].usable}.` },
@@ -699,7 +699,7 @@
     },
     print: [
       { title: `Round ${B4} of the baseline: every card started, the review queue at its peak`, condition: 'baseline', state: B4, note: `Capacities: ${CAPTXT(B)}. Transfer rule: ${QB.transfer_rule}; review takes only cards waiting at the start of a round. Counts are end-of-round. Started ${started(B.rows[B4])}, waiting ${B.rows[B4].review_waiting}, done ${B.rows[B4].done}.` },
-      { title: 'The baseline to the end: review sets the pace', condition: 'baseline', state: B.rows.length - 1, note: `${CAPTXT(B)}. All eight cards done in round ${doneRound(B)}; the longest review queue was ${peak(B)} cards (round ${B4}). ${QB.timing_note}.` },
+      { title: 'The baseline to the end: review sets the pace', condition: 'baseline', state: B.rows.length - 1, note: `${CAPTXT(B)}. All eight cards done in round ${doneRound(B)}; the longest review queue was ${peak(B)} cards (round ${B4}). ${upper1(QB.timing_note)}.` },
       { title: 'Implementation doubled: the same finish, a longer queue', condition: 'implementation-4', state: FI.rows.length - 1, principle: true, note: `${CAPTXT(FI)}, the same arrivals. Done in round ${doneRound(FI)}, as in the baseline; the review queue peaks at ${peak(FI)} instead of ${peak(B)}. Doubling implementation did not change completion, because review still finishes ${FI.review_capacity} card per round.` },
       { title: `Review doubled: done in round ${doneRound(FR)}, and implementation now limits`, condition: 'review-2', state: FR.rows.length - 1, principle: true, note: `${CAPTXT(FR)}. Done in round ${doneRound(FR)}; the queue never holds more than ${peak(FR)}. With review relieved, implementation at ${FR.implementation_capacity} per round sets the pace: the bottleneck moved.` },
     ],

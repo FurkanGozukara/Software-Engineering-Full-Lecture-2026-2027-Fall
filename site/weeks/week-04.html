@@ -55,6 +55,9 @@ body[data-print="true"] .w4-badge.is-ok .mk, body[data-print="true"] .w4-badge.i
 .w4-measure { text-align: left; background: var(--surface); border: 1.5px solid var(--line); border-radius: 14px; padding: 10px 14px; display: flex; flex-direction: column; gap: 6px; cursor: pointer; min-width: 0; font: inherit; color: inherit; transition: border-color var(--t-fast), background var(--t-fast); }
 .w4-measure:hover { border-color: var(--accent); }
 .w4-measure[aria-pressed="true"] { border-color: var(--warn); background: var(--warn-fill); }
+/* The first scene's prediction question on two lines: its three-line wrap left one word ("need?") on a third line and
+   pushed the rail's caption into the bottom-right corner (AGENTS.md, Layout). */
+section[data-scene-id="feedback-batches"] .rail-prompt .prompt-q { font-size: 22px; }
 </style>
 </head>
 <body>
