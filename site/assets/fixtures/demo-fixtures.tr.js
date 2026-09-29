@@ -3,16 +3,27 @@
    Loaded after assets/fixtures/demo-fixtures.js and before the weekly deck.
 
    Keys are the exact English fixture strings of demo-fixtures.js; the deck
-   looks each displayed fixture string up through trx() (week-03.tr.js). A
-   string without an entry is shown in English and recorded in
-   window.__TR_MISSES. Ids, names, numbers and times that stay unchanged
-   (B-001, C101, U-01, Ari, 10:00, "owner_id U-01: Ari", ...) have no entry.
+   looks each displayed fixture string up through trx() (week-03.tr.js,
+   week-04.tr.js). A string without an entry is shown in English and recorded
+   in window.__TR_MISSES. Ids, names, numbers and times that stay unchanged
+   (B-001, C101, U-01, W01, Ari, 10:00, "owner_id U-01: Ari", ...) have no entry.
+   One key serves every week that shows the same English string
+   ("allowed", "denied", ...), so an entry is never added twice.
 
    Separators the deck splits on are kept in the Turkish text:
      w03/state-machine accidental_repeat  one ': '  (short name : details)
      w03/state-machine absent_transitions '->'      (drawn as →)
      w03/sequence-not-state recovery.rejected one ';' (the part before it is the next step)
-   Covers every fixture string that week-03.tr.js displays, live and in print.
+     w04/methods-not-rituals accountabilities[].decisions one ':' (the chip shows the part before it)
+     w04/risk-and-learning option values and changed_condition.reversibility: the ordinal word
+       comes before the first ':' (the table cell shows it); the reversibility keeps ': ' before
+       its explanation (the caption shows the part after it)
+   Phrases a week-04.tr.js template replaces or cuts, kept word for word:
+     w04/feedback-batches coordination_constraint contains "ikinci ve üçüncü dilimlerden"
+       (the scene caption writes the slice numbers: "2. ve 3. dilimlerden")
+     w04/estimates-with-assumptions changed_condition.trigger ends with " tahmini güncelle"
+       (the trigger card shows only the conditions before it)
+   Covers every fixture string that week-03.tr.js and week-04.tr.js display, live and in print.
    ===================================================================== */
 window.CAMPUS_ROOMS_FIXTURES_TR = {
   // ---------------------------------------------------------------- states and events (case, w03/state-machine, w03/sequence-not-state, cancellation_matrix)
@@ -206,4 +217,207 @@ window.CAMPUS_ROOMS_FIXTURES_TR = {
   // ---------------------------------------------------------------- transfer_checks.w03
   "A mobile note says 'saved on this device' while synchronization is pending. Does that contradict the cloud copy being older?": "Mobil bir notta, senkronizasyon beklerken “bu cihaza kaydedildi” yazıyor. Bu, buluttaki kopyanın daha eski olmasıyla çelişir mi?",
   "No. Local persistence and remote synchronization are separate states. Model both and make the message identify which promise has been met; pending synchronization still needs a defined completion or recovery path.": "Hayır. Yerel kalıcılık ve uzak senkronizasyon ayrı durumlardır. İkisini de modelleyin ve mesajın hangi vaadin yerine getirildiğini belirtmesini sağlayın; bekleyen senkronizasyon için yine de tanımlı bir tamamlanma ya da kurtarma yolu gerekir.",
+
+  // ================================================================ Week 4 (week-04.tr.js); terms: notes/week-04.tr-terminology.md
+  // ---------------------------------------------------------------- w04/queue-and-bottleneck: the eight work cards (also w04/feedback-batches) and the board rules
+  "conflict rule": "çakışma kuralı",
+  "duration boundary": "süre sınırı",
+  "cancellation ownership": "iptalde sahiplik",
+  "room closure": "oda kapanışı",
+  "accessible feedback": "erişilebilir geri bildirim",
+  "notification recovery": "bildirim kurtarma",
+  "search response time": "arama yanıt süresi",
+  "support diagnosis": "destek tanılaması",
+  "a card implemented in a round joins the review queue for the following round": "bir turda geliştirilen kart, sonraki tur için inceleme kuyruğuna katılır",
+  "rounds are teaching units, not measured developer performance": "turlar öğretim birimidir, ölçülmüş geliştirici performansı değildir",
+
+  // ---------------------------------------------------------------- w04/feedback-batches
+  "students need clear cancellation feedback": "öğrencilerin net bir iptal geri bildirimine ihtiyacı var",
+  "every card's messages re-examined after integration": "entegrasyondan sonra her kartın mesajları yeniden ele alınır",
+  "book a room and cancel it, with the messages people see": "bir oda rezerve edip iptal etmek, insanların gördüğü mesajlarla birlikte",
+  "booking limits and the notices people receive": "rezervasyon sınırları ve insanların aldığı bildirimler",
+  "faster search and support answers": "daha hızlı arama ve destek yanıtları",
+  "the first slice is in use; only its cancellation message changes": "ilk dilim kullanımda; yalnızca onun iptal mesajı değişiyor",
+  "the second slice reused the unclear cancellation message in its notices": "ikinci dilim, net olmayan iptal mesajını kendi bildirimlerinde yeniden kullandı",
+  "the identity interface must be agreed before slices two and three": "ikinci ve üçüncü dilimlerden önce kimlik arayüzünde anlaşılmalı",
+  "agree the identity interface": "kimlik arayüzünde anlaşmak",
+  "slices two and three each assume their own way of naming a member, and joining them reopens both": "ikinci ve üçüncü dilimlerin her biri bir üyeyi kendi yöntemiyle adlandırır; onları birleştirmek ikisini de yeniden açmayı gerektirir",
+
+  // ---------------------------------------------------------------- w04/methods-not-rituals (Scrum terms as in the Turkish Scrum Guide 2020: Ürün Sahibi, Geliştiriciler, Sprint Hedefi, Ürün İş Listesi, Sprint Değerlendirme)
+  "Plan-driven": "Plan güdümlü",
+  "a plan agreed up front": "baştan üzerinde anlaşılan bir plan",
+  "a plan agreed up front; each stage hands its result to the next": "baştan üzerinde anlaşılan bir plan; her aşama sonucunu bir sonrakine devreder",
+  "the plan, the milestones and each stage handoff": "plan, kilometre taşları ve her aşamanın devri",
+  "at planned milestones and handoffs": "planlanmış kilometre taşlarında ve devirlerde",
+  "little once the handoffs have started": "devirler başladıktan sonra pek az şey",
+  "costly external integration, or a required evidence handoff": "maliyetli bir dış entegrasyon ya da zorunlu bir kanıt devri",
+  "Iterative timeboxes (Scrum)": "Yinelemeli zaman kutuları (Scrum)",
+  "a goal for each Sprint": "her Sprint için bir hedef",
+  "a Sprint Goal for a Sprint of one month or less": "bir ay ya da daha kısa süren bir Sprint için bir Sprint Hedefi",
+  "the Product Backlog, the Sprint Goal and the Increment": "Ürün İş Listesi, Sprint Hedefi ve Artım",
+  "the Sprint Review inspects the Increment; the Retrospective inspects how the team works": "Sprint Değerlendirme, Artım'ı gözden geçirir; Retrospektif, ekibin çalışma biçimini gözden geçirir",
+  "the next Sprint Goal and the order of the Product Backlog": "bir sonraki Sprint Hedefi ve Ürün İş Listesi'nin sırası",
+  "a product goal whose details are learned from each usable Increment": "ayrıntıları her kullanılabilir Artım'dan öğrenilen bir ürün hedefi",
+  "Flow policies (Kanban)": "Akış politikaları (Kanban)",
+  "a visible workflow with explicit policies": "açık politikaları olan görünür bir iş akışı",
+  "a defined workflow with explicit policies and a controlled number of items in progress": "açık politikaları ve denetim altındaki devam eden iş sayısıyla tanımlı bir iş akışı",
+  "where each item is, how long it has aged, and where work waits": "her öğenin nerede olduğu, ne kadar yaşlandığı ve işin nerede beklediği",
+  "continuously, from flow measures and delivered items": "sürekli olarak, akış ölçülerinden ve teslim edilen öğelerden",
+  "which item to pull next, and the workflow policies themselves": "sıradaki hangi öğenin çekileceği ve iş akışı politikalarının kendisi",
+  "a steady stream of items whose arrival times are unknown": "geliş zamanları bilinmeyen, sürekli bir öğe akışı",
+  "Product Owner": "Ürün Sahibi",
+  "value: what the product needs next": "değer: ürünün bundan sonra neye ihtiyaç duyduğu",
+  "Scrum Master": "Scrum Master",
+  "process: how well Scrum works for the team": "süreç: Scrum'ın ekip için ne kadar iyi işlediği",
+  "Developers": "Geliştiriciler",
+  "the work: how to build a usable Increment": "iş: kullanılabilir bir Artım'ın nasıl oluşturulacağı",
+  "accountabilities, not job titles": "sorumluluklar, iş unvanları değil",
+  "a review with nothing usable to inspect, or a board nobody pulls from": "gözden geçirilecek kullanılabilir hiçbir şeyin olmadığı bir değerlendirme toplantısı ya da kimsenin iş çekmediği bir pano",
+  "an early prototype": "erken bir prototip",
+  "a risk investigation": "bir risk araştırması",
+  "transparency": "şeffaflık",
+  "inspection": "denetleme",
+  "adaptation": "uyarlama",
+  "Defining and visualizing a workflow": "Bir iş akışını tanımlamak ve görselleştirmek",
+  "Actively managing items in a workflow": "Bir iş akışındaki öğeleri etkin biçimde yönetmek",
+  "Improving a workflow": "Bir iş akışını iyileştirmek",
+  "unpredictable incident arrivals instead of a planned capability": "planlanmış bir yetenek yerine, ne zaman geleceği öngörülemeyen destek talepleri",
+  "support reports arrive at unknown times, some urgent": "destek talepleri bilinmeyen zamanlarda gelir; bazıları acildir",
+  "the fixed parts: an agreed date for the external integration": "sabit kısımlar: dış entegrasyon için üzerinde anlaşılmış bir tarih",
+  "no milestone can schedule an arrival nobody knows yet": "hiçbir kilometre taşı, henüz kimsenin bilmediği bir gelişi planlayamaz",
+  "the Sprint Goal keeps the planned work visible": "Sprint Hedefi planlanmış işi görünür tutar",
+  "a policy for urgent work: how much capacity it may take, and when the Product Owner renegotiates the goal": "acil iş için bir politika: ne kadar kapasite kullanabileceği ve Ürün Sahibi'nin hedefi ne zaman yeniden müzakere edeceği",
+  "arrivals join a visible queue; the limit on items in progress protects the work already started": "gelen işler görünür bir kuyruğa katılır; devam eden iş sınırı, başlamış olan işi korur",
+  "an explicit policy for urgent items and a limit on how many run at once": "acil öğeler için açık bir politika ve aynı anda kaç tanesinin yürüyeceğine dair bir sınır",
+  "each approach needs a revised policy; none of them is the universal answer": "her yaklaşımın gözden geçirilmiş bir politikaya ihtiyacı var; hiçbiri evrensel cevap değil",
+
+  // ---------------------------------------------------------------- w04/wip-and-time
+  "the request: every card is asked for at time 0": "istek: her kart 0 anında istenir",
+  "the declared start boundary: the beginning of the round in which the card is implemented": "belirlenen başlangıç noktası: kartın geliştirildiği turun başı",
+  "the end of the round in which the card is reviewed": "kartın incelendiği turun sonu",
+  "from the request (arrival) to completion": "istekten (gelişten) tamamlanmaya kadar",
+  "from the declared start to completion": "belirlenen başlangıçtan tamamlanmaya kadar",
+  "S05 defines work in progress, throughput, work item age and cycle time; lead time is the stakeholder clock this lecture adds": "S05 devam eden işi, iş çıkış hızını, iş öğesi yaşını ve döngü süresini tanımlar; teslim süresi, bu dersin eklediği paydaş saatidir",
+  "the limit moved waiting from inside the cycle-time boundary to the Ready queue; every card finishes in the same round": "sınır, beklemeyi döngü süresinin kapsadığı aralıktan Hazır kuyruğuna taşıdı; her kart yine aynı turda biter",
+
+  // ---------------------------------------------------------------- w04/estimates-with-assumptions
+  "only the owner may cancel a future confirmed booking (R-03)": "gelecekteki onaylanmış bir rezervasyonu yalnızca sahibi iptal edebilir (R-03)",
+  "three days": "üç gün",
+  "Effort": "Efor",
+  "three days of one person working on it": "bir kişinin üzerinde üç gün çalışması",
+  "Elapsed time": "Geçen süre",
+  "finished three calendar days from now": "bugünden üç takvim günü sonra bitmiş olması",
+  "Commitment": "Taahhüt",
+  "a promise others plan around": "başkalarının planlarını ona göre yaptığı bir söz",
+  "the ownership check before a cancellation": "iptalden önce sahiplik kontrolü",
+  "the denial message for another member": "başka bir üyeye gösterilen ret mesajı",
+  "checks for the four cancellation cases": "dört iptal vakası için kontroller",
+  "the identity interface: who is asking": "kimlik arayüzü: isteyen kim",
+  "review: one card per round": "inceleme: turda bir kart",
+  "how the identity service names a member": "kimlik servisinin bir üyeyi nasıl adlandırdığı",
+  "five earlier changes of similar size, elapsed working days from start to done (simulated)": "benzer büyüklükte önceki beş değişiklik; başlangıçtan bitişe geçen iş günü (benzetim verisi)",
+  "three of the five similar changes took 3 to 4 days; one took 2 and one took 6, when review was busy": "benzer beş değişiklikten üçü 3–4 gün aldı; biri 2 gün, inceleme yoğunken yapılan biri de 6 gün aldı",
+  "the identity interface is not yet agreed": "kimlik arayüzünde henüz anlaşılmadı",
+  "3 to 4 days after the identity interface is agreed": "kimlik arayüzünde anlaşıldıktan sonra 3–4 gün",
+  "a half-day conversation with the identity team": "kimlik ekibiyle yarım günlük bir görüşme",
+  "revise the estimate when the identity interface is agreed, or when review falls behind": "kimlik arayüzünde anlaşıldığında ya da inceleme geride kaldığında tahmini güncelle",
+  "Doing the change": "Değişikliği yapmak",
+  "effort: 1 to 2 days of work": "efor: 1–2 günlük iş",
+  "Waiting": "Bekleme",
+  "elapsed, not effort: the review queue and the identity decision": "efor değil, geçen süre: inceleme kuyruğu ve kimlik kararı",
+  "Afterwards": "Sonrasında",
+  "continuing support: questions about denied cancellations, and updates when the identity interface changes": "süren destek: izin verilmeyen iptallerle ilgili sorular ve kimlik arayüzü değiştiğinde yapılan güncellemeler",
+
+  // ---------------------------------------------------------------- w04/risk-and-learning
+  "impact": "etki",
+  "uncertainty": "belirsizlik",
+  "reversibility": "geri alınabilirlik",
+  "cost of delay": "gecikme maliyeti",
+  "information gained": "kazanılan bilgi",
+  "Visual refinement": "Görsel iyileştirme",
+  "Show that simultaneous bookings cannot overlap": "Eş zamanlı rezervasyonların çakışamayacağını göster",
+  "Investigate the unclear identity dependency": "Belirsiz kimlik bağımlılığını araştır",
+  "low": "düşük",
+  "medium": "orta",
+  "high": "yüksek",
+  "little": "az",
+  "large": "çok",
+  "low if wrong": "yanlışsa düşük",
+  "very low: changing it means migrating every booking record": "çok düşük: değiştirmek, her rezervasyon kaydını taşımak demektir",
+  "a temporary interface choice becomes a difficult data migration": "geçici bir arayüz seçimi zor bir veri taşımaya dönüşüyor",
+  "ordinal judgments with notes; no invented probabilities": "notlarla birlikte sıralı yargılar; uydurulmuş olasılık yok",
+  "investigate": "araştır",
+  "implement": "geliştir",
+  "reduce scope": "kapsamı daralt",
+  "defer": "ertele",
+  "effort": "efor",
+  "elapsed waiting": "geçen bekleme süresi",
+  "continuing support": "süren destek",
+  "exit cost": "çıkış maliyeti",
+  "opportunity cost": "fırsat maliyeti",
+  "how the booking page looks; nothing about the rules": "rezervasyon sayfasının nasıl göründüğü; kurallar hakkında hiçbir şey",
+  "small: easy to change later": "küçük: sonradan kolayca değiştirilir",
+  "whether R-01 holds when two requests for one room arrive at the same moment": "aynı oda için iki istek aynı anda geldiğinde R-01'in sağlanıp sağlanmadığı",
+  "two confirmed bookings for one room and time, found by the people who arrive": "aynı oda ve saat için onaylanmış iki rezervasyon; bunu odaya gelenler fark eder",
+  "who is asking, and how the identity service names a member (R-03 depends on it)": "isteyenin kim olduğu ve kimlik servisinin bir üyeyi nasıl adlandırdığı (R-03 buna bağlıdır)",
+  "a wrong identity reference built into the cancellation rule": "iptal kuralına gömülmüş yanlış bir kimlik referansı",
+  "a short, bounded look before committing": "taahhüt vermeden önce kısa ve sınırlı bir araştırma",
+  "build now on the current assumptions": "şimdi, mevcut varsayımların üzerine geliştir",
+  "ship owner cancellation first; staff actions later": "önce sahibin iptalini yayına al; personel işlemleri sonra",
+  "leave the visual refinement until the rules are settled": "görsel iyileştirmeyi kurallar netleşene kadar beklet",
+  "the value of the work the chosen step displaces: the visual refinement waits": "seçilen adımın geri plana ittiği işin değeri: görsel iyileştirme bekler",
+  "the highest cost of delay and a large information gain; the identity choice can still be corrected": "en yüksek gecikme maliyeti ve büyük bir bilgi kazancı; kimlik seçimi hâlâ düzeltilebilir",
+  "a hard-to-reverse choice deserves more evidence before work builds on it": "geri alınması zor bir seçim, üzerine iş kurulmadan önce daha fazla kanıtı hak eder",
+  "a quick identity workaround now": "hemen yapılan hızlı ve geçici bir kimlik çözümü",
+  "smallest": "en küçük",
+  "none": "yok",
+  "high: a migration of every booking record": "yüksek: her rezervasyon kaydının taşınması",
+  "low now": "şimdilik düşük",
+  "the smallest implementation estimate can be the most expensive choice over the change's life": "en küçük geliştirme tahmini, değişikliğin ömrü boyunca en pahalı seçim olabilir",
+  "how the identity service names a member, until the investigation reports": "araştırma sonuçlanana kadar, kimlik servisinin bir üyeyi nasıl adlandırdığı",
+
+  // ---------------------------------------------------------------- w04/definition-of-done (allowed and denied: cancellation_matrix above)
+  "Ari (U-01) cancels B-001 at 09:00: allowed": "Ari (U-01), B-001'i saat 09:00'da iptal ediyor: izin verildi",
+  "ownership check": "sahiplik kontrolü",
+  "Bo (U-02) cancels B-001: the code allows it, R-03 denies it": "Bo (U-02), B-001'i iptal ediyor: kod buna izin veriyor, R-03 izin vermiyor",
+  "user feedback": "kullanıcıya geri bildirim",
+  "after Cancel the screen shows no status message (R-05)": "İptal düğmesine basıldıktan sonra ekranda hiçbir durum mesajı görünmüyor (R-05)",
+  "Intended behavior": "Amaçlanan davranış",
+  "the R-03 examples pass: owner allowed; other member, started booking and signed-out request denied": "R-03 örnekleri geçiyor: sahibe izin veriliyor; başka bir üyeye, başlamış bir rezervasyona ve oturum açılmamış bir isteğe izin verilmiyor",
+  "Review": "İnceleme",
+  "another developer read the change and its checks": "başka bir geliştirici değişikliği ve kontrollerini okudu",
+  "Checks": "Kontroller",
+  "automated checks for these cases run on every change": "bu vakalar için otomatik kontroller her değişiklikte çalışır",
+  "Documentation": "Belgeleme",
+  "the success and denial messages, and the help text": "başarı ve ret mesajları ile yardım metni",
+  "Operability": "İşletilebilirlik",
+  "a denied cancellation is logged with its reason": "izin verilmeyen bir iptal, gerekçesiyle birlikte günlüğe kaydedilir",
+  "internal wording correction": "dahili ifade düzeltmesi",
+  "a typo fixed in an internal log label; no behavioral effect": "dahili bir günlük etiketindeki yazım hatası düzeltildi; davranışa etkisi yok",
+  "no behavior changes: nothing new to accept": "hiçbir davranış değişmiyor: kabul edilecek yeni bir şey yok",
+  "one reader checks the new wording": "bir okuyucu yeni ifadeyi kontrol eder",
+  "the existing checks still pass": "mevcut kontroller hâlâ geçiyor",
+  "the corrected label is the change itself": "düzeltilen etiket, değişikliğin kendisidir",
+  "log searches that used the old label still find it": "eski etiketi kullanan günlük aramaları kaydı hâlâ buluyor",
+  "the R-03 examples accept one requirement; the completion policy applies to every change the team calls done (in Scrum: the Definition of Done)": "R-03 örnekleri tek bir gereksinimi kabul eder; tamamlanma politikası ise ekibin bitti dediği her değişikliğe uygulanır (Scrum'da: Bitti Tanımı)",
+  "A formal description of the state of the Increment when it meets the quality measures required for the product.": "Artım'ın ürün için gerekli kalite ölçütlerini karşıladığı hâlinin resmî bir tanımı.",
+
+  // ---------------------------------------------------------------- w04/retrospective-as-test
+  "the review queue grows: five cards wait at the end of round 4": "inceleme kuyruğu büyüyor: 4. turun sonunda beş kart bekliyor",
+  "the reviewer is too slow": "inceleyen kişi çok yavaş",
+  "two cards per round arrive at a review step that finishes one": "turda bir kart bitiren inceleme adımına her turda iki kart geliyor",
+  "share review work: a second developer reviews, so review takes two cards per round": "inceleme işini paylaş: ikinci bir geliştirici de incelesin, böylece inceleme her turda iki kart alsın",
+  "the review queue stays at two or fewer, and all eight cards are done in round 5": "inceleme kuyruğu en fazla iki kartta kalır ve sekiz kartın hepsi 5. turda biter",
+  "the queue still grows, or reviewed cards come back with problems": "kuyruk yine büyür ya da incelenen kartlar sorunlarla geri döner",
+  "issues missed in review": "incelemede gözden kaçan sorunlar",
+  "round in which all eight are done": "sekizinin de bittiği tur",
+  "longest review queue": "en uzun inceleme kuyruğu",
+  "issues found after review": "incelemeden sonra bulunan sorunlar",
+  "four cards reopened after review": "incelemeden sonra yeniden açılan dört kart",
+  "people report delays and mistakes honestly only where reporting them is safe; blameless discussion and psychological safety make the process data trustworthy": "insanlar gecikmeleri ve hataları ancak bunları bildirmenin güvenli olduğu yerde dürüstçe bildirir; suçlamasız tartışma ve psikolojik güvenlik süreç verilerini güvenilir kılar",
+  "judge the change on flow and quality together, not on one target number": "değişikliği tek bir hedef sayıya göre değil, akışa ve kaliteye birlikte bakarak değerlendirin",
+
+  // ---------------------------------------------------------------- transfer_checks.w04
+  "A library team writes changes faster, but maintainers can review no more than before. What should it inspect next?": "Bir yazılım kütüphanesinin ekibi değişiklikleri daha hızlı yazıyor, ama bakımcılar eskisinden daha fazlasını inceleyemiyor. Ekip bundan sonra neyi gözden geçirmeli?",
+  "Inspect waiting work, review capacity, accepted changes and rework. Faster drafting can grow the queue without improving completion; choose the next improvement from the constraint and its quality consequences.": "Bekleyen işi, inceleme kapasitesini, kabul edilen değişiklikleri ve yeniden çalışmayı gözden geçirin. Daha hızlı taslak yazmak, tamamlanmayı iyileştirmeden kuyruğu büyütebilir; bir sonraki iyileştirmeyi kısıta ve onun kalite üzerindeki sonuçlarına bakarak seçin.",
 };

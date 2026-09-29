@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hafta 04 · Geliştirme akışı, belirsizlik ve mühendislik kararları</title>
+<meta name="description" content="Yazılım Mühendisliği, 4. hafta: iş nerede bekliyor ve akışı gerçekten ne iyileştirir? Küçük bir ekibin panosu üzerinde sekiz sahne: toplu teslim ve geri bildirim, koordinasyon yaklaşımları, bir darboğaz, teslim süresi ve döngü süresi, varsayımlarıyla birlikte tahminler, riske dayalı kararlar, bir tamamlanma politikası ve bir hipotez gibi sınanan bir süreç değişikliği.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../shared/theme.css">
+<link rel="stylesheet" href="../shared/print.css">
+<style>
+/* Week 4 only: the work board, card chips and the timeline rows. Colors are the shell's variables, so the
+   same rules render in the dark deck and in the light print view. */
+.w4-board { display: grid; gap: 16px; align-items: stretch; }
+.w4-col { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; min-width: 0; transition: border-color var(--t-fast), box-shadow var(--t-fast); }
+.w4-col.is-focus { border-color: var(--warn); box-shadow: inset 0 0 0 2px var(--warn); }
+.w4-station { background: var(--bg-2); border: 1.5px dashed var(--line-strong); border-radius: 14px; padding: 10px 10px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.w4-station.is-focus { border-color: var(--warn); border-style: solid; }
+.w4-head { font-size: 15px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-soft); display: flex; justify-content: space-between; align-items: baseline; gap: 8px; white-space: nowrap; }
+.w4-head .n { font-size: 22px; letter-spacing: 0; color: var(--text); font-variant-numeric: tabular-nums; }
+.w4-cap { font-size: 17px; font-weight: 700; color: var(--accent-strong); white-space: nowrap; }
+.w4-cap.is-changed { color: var(--warn); }
+.w4-chips { display: flex; flex-wrap: wrap; gap: 8px; align-content: flex-start; min-height: 84px; }
+.w4-chip { display: inline-flex; align-items: center; justify-content: center; width: 62px; height: 38px; border-radius: 9px; border: 1.5px solid var(--line-strong); background: var(--surface-2); font-size: 18px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--text); }
+.w4-chip.is-moved { border-color: var(--warn); background: var(--warn-fill); }
+.w4-chip.is-done { border-color: var(--ok); background: var(--ok-fill); color: var(--ok); }
+.w4-chip.is-key { box-shadow: 0 0 0 3px var(--accent); }
+.w4-slots { display: flex; flex-wrap: wrap; gap: 8px; }
+.w4-slot { display: inline-flex; align-items: center; justify-content: center; width: 58px; height: 36px; border-radius: 8px; border: 1.5px dashed var(--line-strong); font-size: 16px; color: var(--text-soft); font-variant-numeric: tabular-nums; }
+.w4-slot.is-used { border-style: solid; border-color: var(--accent); color: var(--accent-strong); font-weight: 700; background: var(--accent-fill); }
+.w4-compact .w4-chip { width: 50px; height: 32px; font-size: 16px; border-radius: 8px; }
+.w4-compact .w4-chips { gap: 6px; min-height: 70px; }
+.w4-compact .w4-slot { width: 50px; height: 30px; font-size: 15px; }
+.w4-compact .w4-head { font-size: 13px; }
+.w4-compact .w4-head .n { font-size: 19px; }
+.w4-compact .w4-cap { font-size: 15px; }
+.w4-cell { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 8px 12px; font-size: 17px; line-height: 1.3; min-width: 0; transition: border-color var(--t-fast), background var(--t-fast); }
+.w4-cell.is-focus { border-color: var(--warn); background: var(--warn-fill); }
+.w4-rowlabel { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-soft); padding: 10px 4px 0 0; line-height: 1.25; }
+.w4-ord { display: inline-flex; gap: 3px; margin-right: 6px; vertical-align: 1px; }
+.w4-ord i { width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid currentColor; display: inline-block; }
+.w4-ord i.on { background: currentColor; }
+.w4-badge { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 10px; align-items: start; padding: 7px 10px; border-radius: 10px; border: 1.5px solid var(--line); background: var(--surface-2); font-size: 17px; line-height: 1.28; }
+.w4-badge .mk { width: 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 900; font-size: 18px; border: 1.5px solid var(--line-strong); color: var(--text-soft); }
+.w4-badge.is-ok { border-color: var(--ok); background: var(--ok-fill); }
+.w4-badge.is-ok .mk { background: var(--ok); border-color: var(--ok); color: var(--ink-on-light); }
+.w4-badge.is-bad { border-color: var(--bad); background: var(--bad-fill); }
+.w4-badge.is-bad .mk { background: var(--bad); border-color: var(--bad); color: var(--ink-on-light); }
+.w4-badge.is-na .mk { border-style: dashed; }
+.w4-badge b { font-weight: 700; }
+body[data-print="true"] .w4-badge.is-ok .mk, body[data-print="true"] .w4-badge.is-bad .mk { color: #fff; }
+.w4-hyp { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 10px 14px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.w4-hyp .t { font-size: 15px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-soft); }
+.w4-hyp p { font-size: 18px; line-height: 1.3; }
+.w4-measure { text-align: left; background: var(--surface); border: 1.5px solid var(--line); border-radius: 14px; padding: 10px 14px; display: flex; flex-direction: column; gap: 6px; cursor: pointer; min-width: 0; font: inherit; color: inherit; transition: border-color var(--t-fast), background var(--t-fast); }
+.w4-measure:hover { border-color: var(--accent); }
+.w4-measure[aria-pressed="true"] { border-color: var(--warn); background: var(--warn-fill); }
+/* The first scene's prediction question on two lines: its three-line wrap left one word ("need?") on a third line and
+   pushed the rail's caption into the bottom-right corner (AGENTS.md, Layout). */
+section[data-scene-id="feedback-batches"] .rail-prompt .prompt-q { font-size: 22px; }
+</style>
+</head>
+<body>
+<noscript><p style="padding:24px;font-family:sans-serif;color:#eaf0f6">Bu ders sunumu JavaScript gerektirir. Bu haftanın yazdırılabilir sürümü pdf/week-04.tr.pdf dosyasındadır.</p></noscript>
+<script src="../assets/fixtures/demo-fixtures.js"></script>
+<script src="../assets/fixtures/demo-fixtures.tr.js"></script>
+<script src="../shared/i18n/tr.js"></script>
+<script src="../shared/visual-components.js"></script>
+<script src="../shared/lecture-controls.js"></script>
+<script src="week-04.tr.js"></script>
+</body>
+</html>
