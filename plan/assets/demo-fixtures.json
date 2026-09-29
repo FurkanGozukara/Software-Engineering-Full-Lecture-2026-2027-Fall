@@ -3,7 +3,7 @@
   "kind": "Original fictional teaching fixtures, not real performance data",
   "date": "16 September 2026",
   "purpose": "Inputs and independently checked expected values for later authoring; not executable lecture scenes.",
-  "extended": "16 September 2026: pseudocode_language, cancellation_matrix, retry_model and an anchors block with structured data for all 42 Anchor scenes and the numeric Bridges (Proposal 4). Keys are wNN/scene-id. week_text_shows lists strings the week TXT must contain; deck_shows lists strings the rendered scene must show; snippets are executable Python-like fixtures recomputed by tools/check_plan.py. 17 September 2026 (Phase 0 authoring): w01 Bridge fixtures added for system-boundary, quality-tradeoffs (simulated example values), evidence-not-confidence, responsibility-and-impact and course-evidence-map so that every Week 1 scene renders from this file. 17 September 2026 (plan revision): w02/ambiguous-request week_text_shows; booking_SLO expected_burn_rate and expected_days_to_exhaust_budget (recomputed by tools/check_plan.py); w10/change-through-gates static checks gate; w13/bounded-actions unreviewed tool connector capability; w13/provenance-and-understanding invented dependency. 17 September 2026 (Week 1 plan coverage): w01/quality-tradeoffs standard_vocabulary (sourced, S46) with week_text_shows and a deck_shows value; w01/feedback-lifecycle feedback_paths (authored structure: the path each discovery point's information takes and what it changes) with deck_shows. 22 September 2026: scoped curriculum refinements for Weeks 2-14; qualitative fixture additions; Week 1 data unchanged. 22 September 2026 public-course follow-up: thirteen qualitative transfer checks and a Week 14 professional-judgment comparison; canonical case, Week 1 data and numerical fixtures retained. 22 September 2026 foundation follow-up: qualitative elicitation and optional lookup/index comparisons; no new measured values. 22 September 2026 teaching review: qualitative acceptance and exploratory status-recovery comparison added; existing fixture values retained. 22 September 2026 (Week 2 authoring): w02 Bridge fixtures added for acceptance-and-validation, priority-and-risk and requirements-under-change (authored structures, fictional dates, no measurements); w02/ambiguous-request gains simulated example requests, stakeholder wording, the developer's rewrite, the open questions and the easy-for-whom routing; w02/elicitation-and-scope the boundary questions, the fact/assumption register and the visitor comparison; w02/observable-behavior the rule parts, the widget note and the two candidate snippets of the AI beat; w02/quality-with-conditions the two workloads (latency fixture datasets, illustrative), the boundary span, the S46 vocabulary rows and the keyboard path; w02/traceability-matrix an R-02 row and the blank-row note; deck_shows values for every Week 2 scene. 26 September 2026 (Week 3 authoring): w03 Bridge fixtures for journey-before-boxes, decision-table, interface-states, model-consistency and abstraction-and-zoom (authored structures and simulated example values, labeled); w03/identity-and-data bookings (B-003 simulated), rename lookup and identifier examples; w03/state-machine stored entry, repeated-cancel contrast and the invariant and progress examples; w03/sequence-not-state recovery actions; deck_shows for the three Week 3 Anchors."
+  "extended": "16 September 2026: pseudocode_language, cancellation_matrix, retry_model and an anchors block with structured data for all 42 Anchor scenes and the numeric Bridges (Proposal 4). Keys are wNN/scene-id. week_text_shows lists strings the week TXT must contain; deck_shows lists strings the rendered scene must show; snippets are executable Python-like fixtures recomputed by tools/check_plan.py. 17 September 2026 (Phase 0 authoring): w01 Bridge fixtures added for system-boundary, quality-tradeoffs (simulated example values), evidence-not-confidence, responsibility-and-impact and course-evidence-map so that every Week 1 scene renders from this file. 17 September 2026 (plan revision): w02/ambiguous-request week_text_shows; booking_SLO expected_burn_rate and expected_days_to_exhaust_budget (recomputed by tools/check_plan.py); w10/change-through-gates static checks gate; w13/bounded-actions unreviewed tool connector capability; w13/provenance-and-understanding invented dependency. 17 September 2026 (Week 1 plan coverage): w01/quality-tradeoffs standard_vocabulary (sourced, S46) with week_text_shows and a deck_shows value; w01/feedback-lifecycle feedback_paths (authored structure: the path each discovery point's information takes and what it changes) with deck_shows. 22 September 2026: scoped curriculum refinements for Weeks 2-14; qualitative fixture additions; Week 1 data unchanged. 22 September 2026 public-course follow-up: thirteen qualitative transfer checks and a Week 14 professional-judgment comparison; canonical case, Week 1 data and numerical fixtures retained. 22 September 2026 foundation follow-up: qualitative elicitation and optional lookup/index comparisons; no new measured values. 22 September 2026 teaching review: qualitative acceptance and exploratory status-recovery comparison added; existing fixture values retained. 22 September 2026 (Week 2 authoring): w02 Bridge fixtures added for acceptance-and-validation, priority-and-risk and requirements-under-change (authored structures, fictional dates, no measurements); w02/ambiguous-request gains simulated example requests, stakeholder wording, the developer's rewrite, the open questions and the easy-for-whom routing; w02/elicitation-and-scope the boundary questions, the fact/assumption register and the visitor comparison; w02/observable-behavior the rule parts, the widget note and the two candidate snippets of the AI beat; w02/quality-with-conditions the two workloads (latency fixture datasets, illustrative), the boundary span, the S46 vocabulary rows and the keyboard path; w02/traceability-matrix an R-02 row and the blank-row note; deck_shows values for every Week 2 scene. 26 September 2026 (Week 3 authoring): w03 Bridge fixtures for journey-before-boxes, decision-table, interface-states, model-consistency and abstraction-and-zoom (authored structures and simulated example values, labeled); w03/identity-and-data bookings (B-003 simulated), rename lookup and identifier examples; w03/state-machine stored entry, repeated-cancel contrast and the invariant and progress examples; w03/sequence-not-state recovery actions; deck_shows for the three Week 3 Anchors. 29 September 2026 (Week 4 authoring): w04 Bridge fixtures added for methods-not-rituals, wip-and-time, estimates-with-assumptions, definition-of-done and retrospective-as-test (authored comparisons and labeled simulated example values; the WIP-limit schedule is computed from the flow baseline and recomputed by tools/check_plan.py); w04/queue-and-bottleneck gains the mapping of the eight work cards to W01-W08 and the transfer rule; w04/feedback-batches the three slices, the feedback points with the cards to reconsider, the coordination task; w04/risk-and-learning notes per option and alternative, both decisions, the lifecycle example and what stays uncertain; deck_shows values for all eight scenes. No existing value changed."
  },
  "case": {
   "service": "Campus Rooms",
@@ -2166,7 +2166,9 @@
    "timeline_batch": {
     "integration": "all eight cards integrated at the end",
     "discovery_round": 9,
-    "rework": "every card's messages re-examined after integration"
+    "rework": "every card's messages re-examined after integration",
+    "build": "rounds 1 to 8 build the eight cards; nothing is usable until integration",
+    "integration_round": 9
    },
    "timeline_slices": {
     "first_slice": [
@@ -2175,16 +2177,584 @@
      "accessible feedback"
     ],
     "inspected_round": 3,
-    "rework": "the cancellation feedback card only"
+    "rework": "the cancellation feedback card only",
+    "slices": [
+     {
+      "slice": 1,
+      "rounds": [
+       1,
+       3
+      ],
+      "cards": [
+       "conflict rule",
+       "cancellation ownership",
+       "accessible feedback"
+      ],
+      "usable": "book a room and cancel it, with the messages people see"
+     },
+     {
+      "slice": 2,
+      "rounds": [
+       4,
+       6
+      ],
+      "cards": [
+       "duration boundary",
+       "room closure",
+       "notification recovery"
+      ],
+      "usable": "booking limits and the notices people receive"
+     },
+     {
+      "slice": 3,
+      "rounds": [
+       7,
+       9
+      ],
+      "cards": [
+       "search response time",
+       "support diagnosis"
+      ],
+      "usable": "faster search and support answers"
+     }
+    ],
+    "feedback_card": "accessible feedback"
    },
-   "coordination_constraint": "the identity interface must be agreed before slices two and three"
+   "coordination_constraint": "the identity interface must be agreed before slices two and three",
+   "kind": "authored timelines; rounds are teaching units; the feedback points and the reconsidered cards are simulated example values",
+   "feedback_points": [
+    {
+     "round": 3,
+     "plan": "slices",
+     "reconsider": [
+      "accessible feedback"
+     ],
+     "note": "the first slice is in use; only its cancellation message changes"
+    },
+    {
+     "round": 6,
+     "plan": "slices",
+     "reconsider": [
+      "accessible feedback",
+      "notification recovery"
+     ],
+     "note": "the second slice reused the unclear cancellation message in its notices"
+    },
+    {
+     "round": 9,
+     "plan": "batch",
+     "reconsider": [
+      "conflict rule",
+      "duration boundary",
+      "cancellation ownership",
+      "room closure",
+      "accessible feedback",
+      "notification recovery",
+      "search response time",
+      "support diagnosis"
+     ],
+     "note": "every card's messages re-examined after integration"
+    }
+   ],
+   "coordination": {
+    "task": "agree the identity interface",
+    "agreed_by_round": 3,
+    "needed_by": [
+     "slice 2",
+     "slice 3"
+    ],
+    "without_it": "slices two and three each assume their own way of naming a member, and joining them reopens both"
+   },
+   "deck_shows": [
+    "round 9",
+    "round 3",
+    "accessible feedback",
+    "students need clear cancellation feedback"
+   ]
+  },
+  "w04/methods-not-rituals": {
+   "kind": "authored comparison: simplified lecture examples, not complete method definitions (Scrum Guide November 2020 text, S04; Kanban Guide May 2025 edition, S05)",
+   "reviewed": "29 September 2026",
+   "approaches": [
+    {
+     "id": "plan-driven",
+     "name": "Plan-driven",
+     "short": "a plan agreed up front",
+     "coordinates": "a plan agreed up front; each stage hands its result to the next",
+     "visible": "the plan, the milestones and each stage handoff",
+     "feedback": "at planned milestones and handoffs",
+     "reversible": "little once the handoffs have started",
+     "strongest": "costly external integration, or a required evidence handoff"
+    },
+    {
+     "id": "timeboxes",
+     "name": "Iterative timeboxes (Scrum)",
+     "short": "a goal for each Sprint",
+     "coordinates": "a Sprint Goal for a Sprint of one month or less",
+     "visible": "the Product Backlog, the Sprint Goal and the Increment",
+     "feedback": "the Sprint Review inspects the Increment; the Retrospective inspects how the team works",
+     "reversible": "the next Sprint Goal and the order of the Product Backlog",
+     "strongest": "a product goal whose details are learned from each usable Increment"
+    },
+    {
+     "id": "flow",
+     "name": "Flow policies (Kanban)",
+     "short": "a visible workflow with explicit policies",
+     "coordinates": "a defined workflow with explicit policies and a controlled number of items in progress",
+     "visible": "where each item is, how long it has aged, and where work waits",
+     "feedback": "continuously, from flow measures and delivered items",
+     "reversible": "which item to pull next, and the workflow policies themselves",
+     "strongest": "a steady stream of items whose arrival times are unknown"
+    }
+   ],
+   "accountabilities": [
+    {
+     "name": "Product Owner",
+     "decisions": "value: what the product needs next"
+    },
+    {
+     "name": "Scrum Master",
+     "decisions": "process: how well Scrum works for the team"
+    },
+    {
+     "name": "Developers",
+     "decisions": "the work: how to build a usable Increment"
+    }
+   ],
+   "accountability_note": "accountabilities, not job titles",
+   "ritual_without_feedback": "a review with nothing usable to inspect, or a board nobody pulls from",
+   "learn_before_commitment": [
+    "an early prototype",
+    "a risk investigation"
+   ],
+   "scrum_pillars": [
+    "transparency",
+    "inspection",
+    "adaptation"
+   ],
+   "kanban_practices": [
+    "Defining and visualizing a workflow",
+    "Actively managing items in a workflow",
+    "Improving a workflow"
+   ],
+   "changed_condition": {
+    "label": "unpredictable incident arrivals instead of a planned capability",
+    "incidents": "support reports arrive at unknown times, some urgent",
+    "per_approach": {
+     "plan-driven": {
+      "helps": "the fixed parts: an agreed date for the external integration",
+      "revise": "no milestone can schedule an arrival nobody knows yet"
+     },
+     "timeboxes": {
+      "helps": "the Sprint Goal keeps the planned work visible",
+      "revise": "a policy for urgent work: how much capacity it may take, and when the Product Owner renegotiates the goal"
+     },
+     "flow": {
+      "helps": "arrivals join a visible queue; the limit on items in progress protects the work already started",
+      "revise": "an explicit policy for urgent items and a limit on how many run at once"
+     }
+    },
+    "no_winner": "each approach needs a revised policy; none of them is the universal answer"
+   },
+   "deck_shows": [
+    "Product Owner",
+    "Scrum Master",
+    "Developers",
+    "an early prototype"
+   ]
   },
   "w04/queue-and-bottleneck": {
    "data_ref": "flow",
+   "kind": "authored mapping of the eight work cards (plan section 3) to the flow model identifiers; the model values are the flow fixture",
+   "cards": [
+    {
+     "id": "W01",
+     "title": "conflict rule"
+    },
+    {
+     "id": "W02",
+     "title": "duration boundary"
+    },
+    {
+     "id": "W03",
+     "title": "cancellation ownership"
+    },
+    {
+     "id": "W04",
+     "title": "room closure"
+    },
+    {
+     "id": "W05",
+     "title": "accessible feedback"
+    },
+    {
+     "id": "W06",
+     "title": "notification recovery"
+    },
+    {
+     "id": "W07",
+     "title": "search response time"
+    },
+    {
+     "id": "W08",
+     "title": "support diagnosis"
+    }
+   ],
+   "transfer_rule": "a card implemented in a round joins the review queue for the following round",
+   "timing_note": "rounds are teaching units, not measured developer performance",
    "week_text_shows": [
     "two cards per round",
     "capacity to four",
     "review capacity to two"
+   ],
+   "deck_shows": [
+    "W08",
+    "round 9",
+    "2 per round",
+    "1 per round"
+   ]
+  },
+  "w04/wip-and-time": {
+   "kind": "simulated, computed from the flow baseline (eight cards requested at round 0, implementation 2 per round, review 1 per round) with and without an admission limit; rounds are teaching units",
+   "reviewed": "29 September 2026",
+   "markers": {
+    "arrival": "the request: every card is asked for at time 0",
+    "start": "the declared start boundary: the beginning of the round in which the card is implemented",
+    "finish": "the end of the round in which the card is reviewed"
+   },
+   "boundaries": {
+    "lead_time": "from the request (arrival) to completion",
+    "cycle_time": "from the declared start to completion",
+    "work_item_age": "from the declared start to now, for an item not yet finished",
+    "wip": "items started but not finished"
+   },
+   "boundary_source": "S05 defines work in progress, throughput, work item age and cycle time; lead time is the stakeholder clock this lecture adds",
+   "policies": {
+    "no_limit": {
+     "wip_limit": null,
+     "cards": [
+      {
+       "id": "W01",
+       "start": 0,
+       "finish": 2,
+       "ready_wait": 0,
+       "review_wait": 0,
+       "cycle_time": 2,
+       "lead_time": 2
+      },
+      {
+       "id": "W02",
+       "start": 0,
+       "finish": 3,
+       "ready_wait": 0,
+       "review_wait": 1,
+       "cycle_time": 3,
+       "lead_time": 3
+      },
+      {
+       "id": "W03",
+       "start": 1,
+       "finish": 4,
+       "ready_wait": 1,
+       "review_wait": 1,
+       "cycle_time": 3,
+       "lead_time": 4
+      },
+      {
+       "id": "W04",
+       "start": 1,
+       "finish": 5,
+       "ready_wait": 1,
+       "review_wait": 2,
+       "cycle_time": 4,
+       "lead_time": 5
+      },
+      {
+       "id": "W05",
+       "start": 2,
+       "finish": 6,
+       "ready_wait": 2,
+       "review_wait": 2,
+       "cycle_time": 4,
+       "lead_time": 6
+      },
+      {
+       "id": "W06",
+       "start": 2,
+       "finish": 7,
+       "ready_wait": 2,
+       "review_wait": 3,
+       "cycle_time": 5,
+       "lead_time": 7
+      },
+      {
+       "id": "W07",
+       "start": 3,
+       "finish": 8,
+       "ready_wait": 3,
+       "review_wait": 3,
+       "cycle_time": 5,
+       "lead_time": 8
+      },
+      {
+       "id": "W08",
+       "start": 3,
+       "finish": 9,
+       "ready_wait": 3,
+       "review_wait": 4,
+       "cycle_time": 6,
+       "lead_time": 9
+      }
+     ],
+     "wip_peak": 5,
+     "average_cycle_time": 4.0,
+     "average_lead_time": 5.5
+    },
+    "limit_2": {
+     "wip_limit": 2,
+     "cards": [
+      {
+       "id": "W01",
+       "start": 0,
+       "finish": 2,
+       "ready_wait": 0,
+       "review_wait": 0,
+       "cycle_time": 2,
+       "lead_time": 2
+      },
+      {
+       "id": "W02",
+       "start": 0,
+       "finish": 3,
+       "ready_wait": 0,
+       "review_wait": 1,
+       "cycle_time": 3,
+       "lead_time": 3
+      },
+      {
+       "id": "W03",
+       "start": 1,
+       "finish": 4,
+       "ready_wait": 1,
+       "review_wait": 1,
+       "cycle_time": 3,
+       "lead_time": 4
+      },
+      {
+       "id": "W04",
+       "start": 2,
+       "finish": 5,
+       "ready_wait": 2,
+       "review_wait": 1,
+       "cycle_time": 3,
+       "lead_time": 5
+      },
+      {
+       "id": "W05",
+       "start": 3,
+       "finish": 6,
+       "ready_wait": 3,
+       "review_wait": 1,
+       "cycle_time": 3,
+       "lead_time": 6
+      },
+      {
+       "id": "W06",
+       "start": 4,
+       "finish": 7,
+       "ready_wait": 4,
+       "review_wait": 1,
+       "cycle_time": 3,
+       "lead_time": 7
+      },
+      {
+       "id": "W07",
+       "start": 5,
+       "finish": 8,
+       "ready_wait": 5,
+       "review_wait": 1,
+       "cycle_time": 3,
+       "lead_time": 8
+      },
+      {
+       "id": "W08",
+       "start": 6,
+       "finish": 9,
+       "ready_wait": 6,
+       "review_wait": 1,
+       "cycle_time": 3,
+       "lead_time": 9
+      }
+     ],
+     "wip_peak": 2,
+     "rows": [
+      {
+       "round": 0,
+       "ready": 8,
+       "review_waiting": 0,
+       "done": 0
+      },
+      {
+       "round": 1,
+       "ready": 6,
+       "review_waiting": 2,
+       "done": 0
+      },
+      {
+       "round": 2,
+       "ready": 5,
+       "review_waiting": 2,
+       "done": 1
+      },
+      {
+       "round": 3,
+       "ready": 4,
+       "review_waiting": 2,
+       "done": 2
+      },
+      {
+       "round": 4,
+       "ready": 3,
+       "review_waiting": 2,
+       "done": 3
+      },
+      {
+       "round": 5,
+       "ready": 2,
+       "review_waiting": 2,
+       "done": 4
+      },
+      {
+       "round": 6,
+       "ready": 1,
+       "review_waiting": 2,
+       "done": 5
+      },
+      {
+       "round": 7,
+       "ready": 0,
+       "review_waiting": 2,
+       "done": 6
+      },
+      {
+       "round": 8,
+       "ready": 0,
+       "review_waiting": 1,
+       "done": 7
+      },
+      {
+       "round": 9,
+       "ready": 0,
+       "review_waiting": 0,
+       "done": 8
+      }
+     ],
+     "average_cycle_time": 2.875,
+     "average_lead_time": 5.5
+    }
+   },
+   "age_moment": {
+    "time": 6,
+    "note": "end of round 6: the age of the oldest unfinished started card, and how long the oldest card has waited in Ready"
+   },
+   "not_an_improvement": "the limit moved waiting from inside the cycle-time boundary to the Ready queue; every card finishes in the same round",
+   "deck_shows": [
+    "lead time",
+    "cycle time",
+    "W08"
+   ]
+  },
+  "w04/estimates-with-assumptions": {
+   "kind": "simulated, original course-authored example; days are working days in teaching units, not measured performance",
+   "reviewed": "29 September 2026",
+   "change": {
+    "id": "W03",
+    "title": "cancellation ownership",
+    "summary": "only the owner may cancel a future confirmed booking (R-03)"
+   },
+   "stated": "three days",
+   "meanings": [
+    {
+     "id": "effort",
+     "label": "Effort",
+     "reads_as": "three days of one person working on it"
+    },
+    {
+     "id": "elapsed",
+     "label": "Elapsed time",
+     "reads_as": "finished three calendar days from now"
+    },
+    {
+     "id": "commitment",
+     "label": "Commitment",
+     "reads_as": "a promise others plan around"
+    }
+   ],
+   "known_work": [
+    "the ownership check before a cancellation",
+    "the denial message for another member",
+    "checks for the four cancellation cases"
+   ],
+   "dependencies": [
+    "the identity interface: who is asking",
+    "review: one card per round"
+   ],
+   "open_questions": [
+    "how the identity service names a member"
+   ],
+   "similar_changes_days": [
+    2,
+    3,
+    3,
+    4,
+    6
+   ],
+   "similar_note": "five earlier changes of similar size, elapsed working days from start to done (simulated)",
+   "range": {
+    "low": 3,
+    "high": 4,
+    "basis": "three of the five similar changes took 3 to 4 days; one took 2 and one took 6, when review was busy"
+   },
+   "effort_days": {
+    "low": 1,
+    "high": 2
+   },
+   "changed_condition": {
+    "label": "the identity interface is not yet agreed",
+    "range_if_unresolved": {
+     "low": 3,
+     "high": 9
+    },
+    "qualified": "3 to 4 days after the identity interface is agreed",
+    "resolve": "a half-day conversation with the identity team",
+    "trigger": "revise the estimate when the identity interface is agreed, or when review falls behind"
+   },
+   "lifecycle": [
+    {
+     "id": "effort",
+     "label": "Doing the change",
+     "value": "effort: 1 to 2 days of work"
+    },
+    {
+     "id": "waiting",
+     "label": "Waiting",
+     "value": "elapsed, not effort: the review queue and the identity decision"
+    },
+    {
+     "id": "support",
+     "label": "Afterwards",
+     "value": "continuing support: questions about denied cancellations, and updates when the identity interface changes"
+    }
+   ],
+   "week_text_shows": [
+    "three days"
+   ],
+   "deck_shows": [
+    "three days",
+    "identity interface",
+    "Effort",
+    "Elapsed time",
+    "Commitment"
    ]
   },
   "w04/risk-and-learning": {
@@ -2223,7 +2793,8 @@
    ],
    "changed_condition": {
     "label": "a temporary interface choice becomes a difficult data migration",
-    "effect": "reversibility of the identity decision drops; resolve that uncertainty first"
+    "effect": "reversibility of the identity decision drops; resolve that uncertainty first",
+    "reversibility": "very low: changing it means migrating every booking record"
    },
    "scale": "ordinal judgments with notes; no invented probabilities",
    "curriculum_refinement": {
@@ -2243,7 +2814,166 @@
      "opportunity cost"
     ],
     "measurement": "qualitative judgments; no invented money or probability"
-   }
+   },
+   "notes": {
+    "Visual refinement": {
+     "clarifies": "how the booking page looks; nothing about the rules",
+     "failure_cost": "small: easy to change later"
+    },
+    "Show that simultaneous bookings cannot overlap": {
+     "clarifies": "whether R-01 holds when two requests for one room arrive at the same moment",
+     "failure_cost": "two confirmed bookings for one room and time, found by the people who arrive"
+    },
+    "Investigate the unclear identity dependency": {
+     "clarifies": "who is asking, and how the identity service names a member (R-03 depends on it)",
+     "failure_cost": "a wrong identity reference built into the cancellation rule"
+    }
+   },
+   "alternative_notes": {
+    "investigate": "a short, bounded look before committing",
+    "implement": "build now on the current assumptions",
+    "reduce scope": "ship owner cancellation first; staff actions later",
+    "defer": "leave the visual refinement until the rules are settled"
+   },
+   "opportunity_cost": "the value of the work the chosen step displaces: the visual refinement waits",
+   "baseline_decision": {
+    "first": "Show that simultaneous bookings cannot overlap",
+    "then": "Investigate the unclear identity dependency",
+    "deferred": "Visual refinement",
+    "reason": "the highest cost of delay and a large information gain; the identity choice can still be corrected"
+   },
+   "changed_decision": {
+    "first": "Investigate the unclear identity dependency",
+    "then": "Show that simultaneous bookings cannot overlap",
+    "deferred": "Visual refinement",
+    "evidence": "a hard-to-reverse choice deserves more evidence before work builds on it"
+   },
+   "lifecycle_example": {
+    "option": "a quick identity workaround now",
+    "effort": "smallest",
+    "elapsed_waiting": "none",
+    "continuing_support": "high",
+    "exit_cost": "high: a migration of every booking record",
+    "opportunity_cost": "low now",
+    "lesson": "the smallest implementation estimate can be the most expensive choice over the change's life"
+   },
+   "still_uncertain": "how the identity service names a member, until the investigation reports",
+   "deck_shows": [
+    "Impact",
+    "Reversibility",
+    "Cost of delay",
+    "Information gained",
+    "defer"
+   ]
+  },
+  "w04/definition-of-done": {
+   "kind": "authored example: one completion policy for this small team; the evidence items are course-authored",
+   "reviewed": "29 September 2026",
+   "change": {
+    "id": "W03",
+    "title": "cancellation ownership",
+    "happy_path": "Ari (U-01) cancels B-001 at 09:00: allowed"
+   },
+   "missing": [
+    {
+     "id": "ownership",
+     "what": "ownership check",
+     "case": "Bo (U-02) cancels B-001: the code allows it, R-03 denies it"
+    },
+    {
+     "id": "feedback",
+     "what": "user feedback",
+     "case": "after Cancel the screen shows no status message (R-05)"
+    }
+   ],
+   "policy": [
+    {
+     "id": "behavior",
+     "label": "Intended behavior",
+     "evidence": "the R-03 examples pass: owner allowed; other member, started booking and signed-out request denied"
+    },
+    {
+     "id": "review",
+     "label": "Review",
+     "evidence": "another developer read the change and its checks"
+    },
+    {
+     "id": "checks",
+     "label": "Checks",
+     "evidence": "automated checks for these cases run on every change"
+    },
+    {
+     "id": "docs",
+     "label": "Documentation",
+     "evidence": "the success and denial messages, and the help text"
+    },
+    {
+     "id": "operability",
+     "label": "Operability",
+     "evidence": "a denied cancellation is logged with its reason"
+    }
+   ],
+   "wording_change": {
+    "title": "internal wording correction",
+    "summary": "a typo fixed in an internal log label; no behavioral effect",
+    "relevant": {
+     "behavior": "no behavior changes: nothing new to accept",
+     "review": "one reader checks the new wording",
+     "checks": "the existing checks still pass",
+     "docs": "the corrected label is the change itself",
+     "operability": "log searches that used the old label still find it"
+    }
+   },
+   "acceptance_vs_policy": "the R-03 examples accept one requirement; the completion policy applies to every change the team calls done (in Scrum: the Definition of Done)",
+   "scrum_definition": "A formal description of the state of the Increment when it meets the quality measures required for the product.",
+   "deck_shows": [
+    "Intended behavior",
+    "Review",
+    "Checks",
+    "Documentation",
+    "Operability",
+    "U-02"
+   ]
+  },
+  "w04/retrospective-as-test": {
+   "kind": "simulated before/after example; rounds and issue counts are teaching units, not measured performance",
+   "reviewed": "29 September 2026",
+   "observation": "the review queue grows: five cards wait at the end of round 4",
+   "blame": "the reviewer is too slow",
+   "system": "two cards per round arrive at a review step that finishes one",
+   "proposal": "share review work: a second developer reviews, so review takes two cards per round",
+   "expected": "the review queue stays at two or fewer, and all eight cards are done in round 5",
+   "contrary": "the queue still grows, or reviewed cards come back with problems",
+   "side_effect": "issues missed in review",
+   "measures": [
+    "round in which all eight are done",
+    "longest review queue",
+    "issues found after review"
+   ],
+   "before": {
+    "done_round": 9,
+    "queue_peak": 5,
+    "missed_issues": 1
+   },
+   "after_shared": {
+    "done_round": 5,
+    "queue_peak": 2,
+    "missed_issues": 1
+   },
+   "after_rushed": {
+    "done_round": 5,
+    "queue_peak": 2,
+    "missed_issues": 4,
+    "rework": "four cards reopened after review",
+    "done_round_with_rework": 7
+   },
+   "safety": "people report delays and mistakes honestly only where reporting them is safe; blameless discussion and psychological safety make the process data trustworthy",
+   "balanced": "judge the change on flow and quality together, not on one target number",
+   "deck_shows": [
+    "round 5",
+    "issues found after review",
+    "blameless"
+   ]
   },
   "w05/dependency-example": {
    "components": [

@@ -153,6 +153,22 @@ def check_fixtures(rep: Report, weeks: list[dict]):
         theirs = [{k: r[k] for k in ("round", "ready", "review_waiting", "done")} for r in sc["rows"]]
         if mine != theirs:
             rep.fail(where, f"flow scenario {name} rows do not recompute")
+    # the Week 4 admission limit on the same board (w04/wip-and-time)
+    wt = f.get("anchors", {}).get("w04/wip-and-time")
+    if wt:
+        base = f["flow"]["scenarios"]["baseline"]
+        for name, pol in wt["policies"].items():
+            rows, cards = models.queue_cards(base["implementation_capacity"], base["review_capacity"], pol["wip_limit"])
+            if pol["cards"] != cards:
+                rep.fail(where, f"w04/wip-and-time {name} card times do not recompute")
+            if "rows" in pol and pol["rows"] != rows:
+                rep.fail(where, f"w04/wip-and-time {name} rows do not recompute")
+            avg_cycle = sum(c["cycle_time"] for c in cards) / len(cards)
+            avg_lead = sum(c["lead_time"] for c in cards) / len(cards)
+            if not close(pol["average_cycle_time"], avg_cycle, 1e-3) or not close(pol["average_lead_time"], avg_lead, 1e-3):
+                rep.fail(where, f"w04/wip-and-time {name} averages do not recompute")
+        if [c["finish"] for c in wt["policies"]["no_limit"]["cards"]] != [c["finish"] for c in wt["policies"]["limit_2"]["cards"]]:
+            rep.fail(where, "w04/wip-and-time: the limit must leave every finish round unchanged")
     # delivery
     d = models.delivery_summary(f["delivery"]["events"], f["delivery"]["window_days"])
     for k, v in f["delivery"]["expected"].items():

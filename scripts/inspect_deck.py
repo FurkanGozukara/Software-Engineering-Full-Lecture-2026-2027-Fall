@@ -19,9 +19,15 @@ In each state it reports
   shape     diagram text drawn over another node's box
   overflow  text below the content area (the scene stage or the page body) or beyond its sides
   escape    text that runs out of the card, callout or status box that contains it
+  artifact  a text node that is only a stringified null, undefined, NaN or [object Object]
 Print panels render the same stage at its design size, so text that overflows the stage in a state
 is text that a print panel of that state would cut. Findings are written to layout.json; the exit
 code is 1 when anything is found.
+
+The scan also reports, without failing, the text that reaches the presenter corner of the recording
+(the bottom-right 256 by 384 design pixels, x >= 1664 and y >= 696; AGENTS.md, Layout): corner.json
+lists every state with text there, so a page can be arranged to leave the corner free before the
+lecture is recorded.
 """
 from __future__ import annotations
 
@@ -102,7 +108,9 @@ SCAN_JS = r"""
     const h = Math.min(a.y1, b.y1) - Math.max(a.y0, b.y0);
     return w > 3 && h > Math.max(3, 0.3 * Math.min(a.y1 - a.y0, b.y1 - b.y0));
   };
-  const out = { overlap: [], icon: [], shape: [], overflow: [], escape: [] };
+  const out = { overlap: [], icon: [], shape: [], overflow: [], escape: [], artifact: [] };
+  // a value stringified into the page by mistake (a null child, an undefined field)
+  for (const T of texts) if (/^(null|undefined|NaN|\[object Object\])$/.test(T.label)) out.artifact.push(T.label);
   for (let i = 0; i < texts.length; i++) {
     for (let j = i + 1; j < texts.length; j++) {
       const A = texts[i], B = texts[j];
@@ -137,6 +145,9 @@ SCAN_JS = r"""
     }
   }
   for (const k of Object.keys(out)) out[k] = Array.from(new Set(out[k]));
+  // report only: text in the presenter corner of the recording (bottom-right 256 x 384 design pixels)
+  const CORNER = { x0: 1664, y0: 696, x1: 1920, y1: 1080 };
+  out._corner = Array.from(new Set(texts.filter((T) => T.rects.some((r) => hit(r, CORNER, 0))).map((T) => T.label)));
   return out;
 }
 """
@@ -171,15 +182,19 @@ def serve(root: Path):
     return server, f"http://127.0.0.1:{port}"
 
 
-def layout_scan(page, week: str, out: Path, shots: bool) -> list[dict]:
-    """Walk every state and collect layout findings; optionally capture each state."""
+def layout_scan(page, week: str, out: Path, shots: bool) -> tuple[list[dict], list[dict]]:
+    """Walk every state and collect layout findings and presenter-corner text; optionally capture each state."""
     findings: list[dict] = []
+    corner: list[dict] = []
     if shots:
         (out / "shots").mkdir(parents=True, exist_ok=True)
 
     def record(pid: str, label: str):
         page.wait_for_timeout(60)
         found = page.evaluate(SCAN_JS, pid)
+        in_corner = found.pop("_corner", [])
+        if in_corner:
+            corner.append({"page": pid, "state": label, "text": in_corner})
         if any(found.values()):
             findings.append({"page": pid, "state": label, **{k: v for k, v in found.items() if v}})
         if shots:
@@ -212,7 +227,8 @@ def layout_scan(page, week: str, out: Path, shots: bool) -> list[dict]:
                     page.evaluate("() => window.lecture.step()")
                 record(pid, f"{cond} {k + 1} of {n}"); count += 1
     print(f"layout scan: {count} states in {len(pages)} pages, {len(findings)} with findings")
-    return findings
+    print(f"presenter corner: {len(corner)} of {count} states with text in the corner (report only, corner.json)")
+    return findings, corner
 
 
 def main() -> int:
@@ -247,8 +263,9 @@ def main() -> int:
             if args.layout:
                 page.goto(f"{base}/weeks/{week}.html?record=1&motion=off")
                 page.wait_for_selector("body[data-page-count]")
-                findings = layout_scan(page, week, out, args.shots)
+                findings, corner = layout_scan(page, week, out, args.shots)
                 (out / "layout.json").write_text(json.dumps(findings, indent=1, ensure_ascii=False), encoding="utf-8")
+                (out / "corner.json").write_text(json.dumps(corner, indent=1, ensure_ascii=False), encoding="utf-8")
                 for f in findings:
                     print(f"  {f['page']} [{f['state']}]: " + "; ".join(f"{k}: {v}" for k, v in f.items() if k not in ("page", "state")))
             elif args.print_view:

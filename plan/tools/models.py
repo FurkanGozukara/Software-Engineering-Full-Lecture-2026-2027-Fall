@@ -31,6 +31,39 @@ def queue_rounds(implementation_capacity: int, review_capacity: int, cards: int 
     return rows
 
 
+def queue_cards(implementation_capacity: int, review_capacity: int, wip_limit: int | None = None,
+                cards: int = 8) -> tuple[list[dict], list[dict]]:
+    """The same board with an optional admission limit on cards started but not finished (Week 4,
+    wip-and-time). Cards W01.. are taken in order. A card starts at the beginning of the round in
+    which it is implemented and finishes at the end of the round in which it is reviewed; every card
+    is requested at time 0. Returns (end-of-round rows, per-card times)."""
+    ids = [f"W{i:02d}" for i in range(1, cards + 1)]
+    ready, waiting, done = list(ids), [], 0
+    started, finished = {}, {}
+    rows = [{"round": 0, "ready": cards, "review_waiting": 0, "done": 0}]
+    r = 0
+    while done < cards:
+        r += 1
+        reviewed, waiting = waiting[:review_capacity], waiting[review_capacity:]
+        for c in reviewed:
+            finished[c] = r
+        done += len(reviewed)
+        room = implementation_capacity if wip_limit is None else max(0, min(implementation_capacity, wip_limit - len(waiting)))
+        admitted, ready = ready[:room], ready[room:]
+        for c in admitted:
+            started[c] = r
+        waiting += admitted
+        rows.append({"round": r, "ready": len(ready), "review_waiting": len(waiting), "done": done})
+        if r > 1000:
+            raise RuntimeError("flow model did not finish")
+    per_card = []
+    for c in ids:
+        s, f = started[c] - 1, finished[c]
+        per_card.append({"id": c, "start": s, "finish": f, "ready_wait": s, "review_wait": f - started[c] - 1,
+                         "cycle_time": f - s, "lead_time": f})
+    return rows, per_card
+
+
 # ---------------------------------------------------------------- Week 10 delivery
 def delivery_summary(events: list[dict], window_days: int) -> dict:
     lead = [e["change_lead_time_hours"] for e in events]
