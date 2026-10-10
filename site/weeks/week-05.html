@@ -4,13 +4,242 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Week 05 · Modularity, interfaces, and the cost of change</title>
-<meta name="description" content="Software Engineering, week 5: when one requirement changes, which parts should need to change? Phase 0 carries the shell-test scene dependency-example.">
+<meta name="description" content="Software Engineering, week 5: when one requirement changes, which parts should need to change? Eight scenes on one rule change in Campus Rooms: identical screens over different designs, a change spreading through copied rules, cohesion, an interface contract with its failure behavior, dependency direction, refactoring under checks, the cost of abstraction and a decision record.">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../shared/theme.css">
 <link rel="stylesheet" href="../shared/print.css">
+<style>
+/* Week 5 only: code lines, the dependency graphs, the Utilities regrouping, the interface socket and the record. Colors are
+   the shell's variables, so the same rules render in the dark deck and in the light print view. */
+.w5-mark { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; font-weight: 900; font-size: 16px; margin-right: 8px; flex: 0 0 auto; border: 1.5px solid var(--line-strong); color: var(--text-soft); vertical-align: -3px; }
+.w5-mark.is-ok { background: var(--ok); border-color: var(--ok); color: var(--ink-on-light); }
+.w5-mark.is-bad { background: var(--bad); border-color: var(--bad); color: var(--ink-on-light); }
+.w5-mark.is-diff { background: var(--warn-fill); border-color: var(--warn); color: var(--warn); }
+body[data-print="true"] .w5-mark.is-ok, body[data-print="true"] .w5-mark.is-bad { color: #fff; }
+
+/* code: one row per line, with a gutter; rows can be focused, marked as new, as a slip or as an effect */
+.w5-code { font-family: var(--font-mono); font-size: 19px; line-height: 1.5; background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 8px 0; color: var(--text); min-width: 0; overflow: hidden; }
+.w5-code .kw { color: var(--violet); } .w5-code .num { color: var(--warn); } .w5-code .str { color: var(--ok); } .w5-code .cm { color: var(--text-soft); font-style: italic; }
+.w5-line { display: grid; grid-template-columns: 38px minmax(0, 1fr); align-items: baseline; padding: 0 14px 0 6px; border-left: 4px solid transparent; transition: background var(--t-fast), border-color var(--t-fast); }
+.w5-ln { color: var(--text-soft); font-size: 0.78em; text-align: right; padding-right: 12px; user-select: none; }
+.w5-src { white-space: pre; }
+.w5-code--wrap .w5-src { white-space: pre-wrap; word-break: break-word; }
+.w5-line.is-focus { background: var(--warn-fill); border-left-color: var(--warn); }
+.w5-line.is-effect { background: var(--accent-fill); border-left-color: var(--accent); }
+.w5-line.is-focus.is-effect { background: linear-gradient(90deg, var(--warn-fill), var(--accent-fill)); }
+.w5-line.is-new { background: var(--ok-fill); border-left-color: var(--ok); }
+.w5-line.is-slip { background: var(--bad-fill); border-left-color: var(--bad); }
+
+/* the dependency graphs */
+.w5-graph--small .n-label { font-size: 18px; }
+.w5-graph--small .a-line { stroke-width: 2.2; }
+.w5-status { font-size: 17px; font-weight: 700; fill: var(--text-soft); }
+.w5-graph--small .w5-status { font-size: 14px; }
+.w5-status--violet { fill: var(--violet); } .w5-status--warn { fill: var(--warn); } .w5-status--bad { fill: var(--bad); }
+.w5-status--muted { fill: var(--text-muted); font-weight: 600; } .w5-status--ok { fill: var(--ok); }
+.w5-pill rect { fill: var(--surface-3); stroke: var(--accent); stroke-width: 2; }
+.w5-pill text { font-size: 15px; font-weight: 700; fill: var(--accent-strong); }
+.w5-graph--small .w5-pill text { font-size: 12.5px; }
+.w5-node.w5-on-path rect, .w5-node.w5-on-path path { stroke: var(--warn); stroke-width: 3.5; }
+.w5-node.w5-on-path { filter: drop-shadow(0 0 10px rgba(255, 209, 102, 0.45)); }
+.w5-faded { opacity: 0.5; transition: opacity var(--t-reveal); }
+g.arrow.w5-edge--hot .a-line { stroke: var(--warn); stroke-width: 3.6; }
+g.arrow.w5-edge--hot .a-head { fill: var(--warn); }
+g.arrow.w5-edge--emph .a-line { stroke-width: 4.6; }
+.w5-token { fill: var(--warn); stroke: var(--bg); stroke-width: 3; filter: drop-shadow(0 0 8px rgba(255, 209, 102, 0.9)); }
+.n-store.state-edit path { stroke: var(--warn); stroke-width: 4; fill: var(--warn-fill); }
+.n-store.state-recheck path { stroke: var(--accent); stroke-width: 3; stroke-dasharray: 8 6; }
+.n-store.state-unaffected path { stroke: var(--line); }
+svg.w5-hidden { opacity: 0; }
+.w5-map svg { transition: opacity var(--t-reveal) var(--ease); }
+.w5-design-label { font-size: 17px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-strong); }
+.w5-screen .browser-body { padding: 10px 14px 12px; gap: 8px; }
+.w5-screen .field { padding: 6px 12px; font-size: 19px; }
+.w5-screen .status { min-height: 48px; padding: 8px 12px; font-size: 20px; }
+.w5-ribbon { font-size: 17px; font-weight: 700; color: var(--warn); border: 1.5px solid var(--warn); background: var(--warn-fill); border-radius: 999px; padding: 2px 12px; }
+.w5-map { overflow: hidden; }
+.w5-cover { position: absolute; inset: 34px 10px 6px; border-radius: 12px; background: repeating-linear-gradient(135deg, var(--surface-2) 0 14px, var(--surface) 14px 28px); border: 1.5px dashed var(--line-strong); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; font-size: 21px; color: var(--text-muted); transition: opacity var(--t-reveal) var(--ease); }
+.w5-cover.is-gone { opacity: 0; pointer-events: none; }
+.w5-cover-icon { width: 56px; height: 56px; border-radius: 50%; border: 2px solid var(--line-strong); display: inline-flex; align-items: center; justify-content: center; font-size: 30px; font-weight: 800; color: var(--text-soft); }
+.w5-impact th { width: 150px; }
+.w5-impact td { font-size: 18px; }
+
+/* the opening: the change and one line from each component */
+.w5-old { color: var(--text-soft); text-decoration: line-through; text-decoration-thickness: 2px; }
+.w5-new { color: var(--warn); }
+.w5-srow { display: grid; grid-template-columns: 178px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 6px 10px; border-radius: 10px; border: 1.5px solid var(--line); background: var(--surface-2); transition: border-color var(--t-fast), background var(--t-fast); min-height: 46px; }
+.w5-comp { display: inline-flex; align-items: center; justify-content: center; border-radius: 8px; border: 1.5px solid var(--line-strong); background: var(--surface-3); font-size: 16px; font-weight: 700; padding: 3px 10px; white-space: nowrap; justify-self: start; }
+.w5-scode { font-family: var(--font-mono); font-size: 18.5px; white-space: pre; overflow: hidden; text-overflow: ellipsis; }
+.w5-scode .kw { color: var(--violet); } .w5-scode .num { color: var(--warn); } .w5-scode .str { color: var(--ok); }
+.w5-tag { font-size: 15px; font-weight: 700; letter-spacing: 0.02em; border-radius: 999px; padding: 2px 10px; border: 1.5px solid var(--warn); color: var(--warn); background: var(--warn-fill); white-space: nowrap; opacity: 0; transition: opacity var(--t-reveal); }
+.w5-tag.is-shown { opacity: 1; }
+.w5-tag.is-ok { border-color: var(--ok); color: var(--ok); background: var(--ok-fill); }
+.w5-tag.is-bad { border-color: var(--bad); color: var(--bad); background: var(--bad-fill); }
+.w5-tag.is-muted { border-color: var(--line-strong); color: var(--text-muted); background: var(--surface-3); }
+.w5-srow.is-hit { border-color: var(--warn); background: var(--warn-fill); }
+.w5-srow.is-rule { border-color: var(--ok); background: var(--ok-fill); }
+.w5-srow.is-false { border-color: var(--line-strong); background: var(--surface-2); opacity: 0.78; }
+.w5-srow.is-missed { border-color: var(--bad); border-style: dashed; background: var(--bad-fill); }
+.w5-big-btn { height: 54px; font-size: 21px; padding: 0 20px; }
+
+/* scene 3: the Utilities module, the groups and the request pipeline */
+.w5-coh-area { position: relative; height: 266px; flex: 0 0 266px; }
+.w5-module { position: absolute; left: 0; top: 0; width: 1264px; height: 262px; border-radius: 18px; border: 2.5px dashed var(--line-strong); background: rgba(124, 196, 255, 0.04); transition: opacity var(--t-reveal), border-color var(--t-fast), background var(--t-fast); }
+.w5-module.is-gone { opacity: 0; }
+.w5-module.is-edit { border-color: var(--warn); border-style: solid; background: var(--warn-fill); }
+.w5-module-head { display: flex; gap: 16px; align-items: baseline; padding: 12px 18px; font-size: 17px; }
+.w5-file { font-family: var(--font-mono); font-size: 20px; font-weight: 700; color: var(--accent-strong); }
+.w5-group { position: absolute; top: 0; height: 262px; border-radius: 16px; border: 2px solid var(--accent); background: rgba(124, 196, 255, 0.06); }
+.w5-group.is-edit { border-color: var(--warn); background: var(--warn-fill); box-shadow: inset 0 0 0 2px var(--warn); }
+.w5-group.is-dim { opacity: 0.35; }
+.w5-group-head { font-size: 18px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent-strong); padding: 10px 14px 0; }
+.w5-task { position: absolute; border-radius: 14px; border: 1.5px solid var(--line-strong); background: var(--surface-2); padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; transition: left var(--t-move) var(--ease), top var(--t-move) var(--ease), border-color var(--t-fast), background var(--t-fast), opacity var(--t-reveal); box-shadow: var(--shadow); }
+.w5-task.is-edit { border-color: var(--warn); background: var(--warn-fill); }
+.w5-task.is-dim { opacity: 0.35; }
+.w5-task.is-split { border-color: var(--bad); }
+.w5-task-text { font-size: 18.5px; line-height: 1.28; font-weight: 600; }
+.w5-reason { margin-top: auto; font-size: 15.5px; line-height: 1.25; border-top: 1px solid var(--line); padding-top: 6px; }
+.w5-reason .muted { color: var(--text-soft); }
+.w5-build { display: grid; grid-template-columns: 790px minmax(0, 1fr); gap: 16px; min-height: 0; }
+.w5-stage { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 10px; align-items: center; padding: 6px 10px; border-radius: 10px; border: 1.5px solid var(--line); background: var(--surface); font-size: 17px; line-height: 1.25; transition: border-color var(--t-fast), background var(--t-fast); }
+.w5-stage.is-focus { border-color: var(--warn); background: var(--warn-fill); }
+.w5-stage.is-done { border-color: var(--ok); }
+.w5-stage-n { width: 30px; height: 30px; border-radius: 8px; background: var(--accent-fill); color: var(--accent-strong); font-weight: 800; display: inline-flex; align-items: center; justify-content: center; }
+.w5-effects { border-radius: 10px; border: 1.5px solid var(--accent); background: var(--accent-fill); padding: 6px 10px; display: flex; flex-direction: column; gap: 3px; font-size: 15.5px; line-height: 1.25; }
+.w5-effects-head { font-size: 14px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-strong); }
+.w5-example { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 17px; padding: 6px 10px; border-radius: 10px; border: 1px dashed var(--line-strong); }
+.w5-arrow-r { color: var(--text-soft); font-weight: 800; }
+.w5-coh-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-content: start; }
+.w5-coh-compare .callout { grid-column: 1 / -1; }
+.w5-impact-card { padding: 10px 16px; display: flex; flex-direction: column; gap: 4px; }
+.w5-impact-card.is-focus { border-color: var(--warn); }
+
+/* scene 4: the interface socket, the contract and the failed delivery */
+.w5-socket { padding: 10px 14px 12px; display: flex; flex-direction: column; gap: 8px; }
+.w5-sig { font-family: var(--font-mono); font-size: 19px; white-space: nowrap; color: var(--accent-strong); background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; }
+.w5-sig .kw { color: var(--violet); }
+.w5-slot { display: flex; align-items: center; gap: 12px; min-height: 50px; padding: 6px 10px; border-radius: 12px; border: 2px dashed var(--accent); background: rgba(124, 196, 255, 0.05); }
+.w5-slot-label { font-size: 14px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-soft); }
+.w5-plug { font-size: 19px; font-weight: 700; border-radius: 10px; padding: 6px 14px; border: 2px solid var(--ok); background: var(--ok-fill); color: var(--text); }
+.w5-plug--b { border-color: var(--violet); background: var(--violet-fill); }
+.w5-plug--waiting { margin-left: auto; border-style: dashed; border-color: var(--line-strong); background: transparent; color: var(--text-muted); }
+.w5-contract th, .w5-contract td { font-size: 17.5px; padding: 8px 10px; }
+.w5-contract thead th { font-size: 15px; }
+.w5-contract tbody th { width: 168px; }
+.w5-contract tbody th span { display: block; }
+.w5-formal { font-size: 13.5px; font-weight: 600; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px; }
+.w5-verdict { width: 232px; }
+.w5-contract tr.is-bad td.w5-verdict { color: var(--bad); font-weight: 700; }
+.w5-contract tr.is-diff td.w5-verdict { color: var(--warn); font-weight: 600; }
+.w5-fstep { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 10px; align-items: center; padding: 7px 10px; border-radius: 10px; border: 1.5px solid var(--line); background: var(--surface-2); font-size: 18px; line-height: 1.28; }
+.w5-fstep-ico { width: 30px; height: 30px; border-radius: 50%; background: var(--accent-fill); color: var(--accent-strong); display: inline-flex; align-items: center; justify-content: center; font-weight: 800; }
+.w5-fstep.is-bad { border-color: var(--bad); background: var(--bad-fill); }
+.w5-fail .w5-screen .status { font-size: 18px; line-height: 1.3; min-height: 0; }
+
+/* the results page */
+.w5-kind { padding: 10px 14px; display: flex; flex-direction: column; gap: 6px; }
+.w5-kind--ok { border-color: var(--ok); } .w5-kind--warn { border-color: var(--warn); } .w5-kind--bad { border-color: var(--bad); }
+.w5-exrow { display: grid; grid-template-columns: 430px 116px minmax(0, 1fr); gap: 12px; align-items: center; padding: 6px 4px; border-top: 1px solid var(--line); min-height: 58px; }
+.w5-exrow.is-focus { background: var(--warn-fill); border-radius: 8px; }
+.w5-exreq { font-size: 18.5px; line-height: 1.25; }
+.w5-ask { height: 44px; font-size: 18px; }
+.w5-exres { display: flex; gap: 10px; align-items: center; font-size: 17px; line-height: 1.25; }
+.w5-claim { text-align: left; font: inherit; color: inherit; cursor: pointer; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 4px 10px; align-items: start; padding: 8px 12px; border-radius: 14px; border: 1.5px solid var(--line); background: var(--surface); min-height: 108px; transition: border-color var(--t-fast), background var(--t-fast); }
+.w5-claim:hover { border-color: var(--accent); }
+.w5-claim[aria-pressed="true"] { border-color: var(--warn); background: var(--warn-fill); }
+.w5-claim-n { grid-row: 1 / span 2; width: 30px; height: 30px; border-radius: 8px; background: var(--violet-fill); color: var(--violet); font-weight: 800; display: inline-flex; align-items: center; justify-content: center; }
+.w5-claim-t { font-size: 19px; font-weight: 700; line-height: 1.25; }
+.w5-claim-more { grid-column: 2; display: flex; flex-direction: column; gap: 2px; font-size: 15.5px; line-height: 1.28; }
+
+/* scene 5 views, scene 6 checks */
+.w5-view svg { display: block; }
+.w5-code--small { font-size: 15px; }
+.w5-refcode .w5-code { font-size: 20px; }
+.w5-cases th, .w5-cases td { font-size: 20px; padding: 8px 14px; }
+.w5-cases tbody tr.is-ok td.w5-got { color: var(--ok); font-weight: 700; }
+.w5-cases tbody tr.is-bad td, .w5-cases tbody tr.is-bad th { background: var(--bad-fill); }
+.w5-cases tbody tr.is-bad td.w5-got { color: var(--bad); font-weight: 800; }
+.w5-replay { min-height: 54px; font-size: 19px; }
+
+/* scene 7: the matrices */
+.w5-matrix { table-layout: fixed; }
+.w5-matrix th, .w5-matrix td { font-size: 17.5px; padding: 8px 12px; line-height: 1.28; }
+.w5-matrix thead th:first-child { width: 150px; }
+.w5-mhead { font-size: 18px !important; color: var(--text) !important; text-transform: none !important; letter-spacing: 0 !important; }
+.w5-mhead.is-pick { color: var(--ok) !important; }
+.w5-mrow { font-size: 16px !important; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-soft) !important; }
+.w5-mcell.is-changed { box-shadow: inset 4px 0 0 var(--warn); background: var(--warn-fill); }
+.w5-mcell.is-pick { background: var(--ok-fill); }
+.w5-rec { font-weight: 600; }
+
+/* scene 8: the decision record */
+.w5-label-only { font-size: 20px; font-style: italic; text-align: center; color: var(--text-muted); padding: 4px 0; }
+.w5-node--tiny .n-label { font-size: 16px; }
+.w5-choice { padding: 8px 14px; }
+.w5-choice p { font-size: 17px; line-height: 1.3; }
+.w5-choice--bad { border-color: var(--bad); } .w5-choice--ok { border-color: var(--ok); }
+.w5-record { padding: 12px 18px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.w5-rhead { display: flex; align-items: baseline; gap: 12px; padding-bottom: 6px; border-bottom: 1.5px solid var(--line-strong); }
+.w5-rid { font-family: var(--font-mono); font-size: 18px; color: var(--text-soft); }
+.w5-rtitle { font-size: 22px; font-weight: 700; }
+.w5-rsec { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 12px; padding: 5px 8px; border-radius: 10px; border: 1.5px solid transparent; transition: border-color var(--t-fast), background var(--t-fast); }
+.w5-rsec.is-focus { border-color: var(--warn); background: var(--warn-fill); }
+.w5-rsec-t { font-size: 14.5px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent-strong); padding-top: 3px; }
+.w5-rsec-b { font-size: 17px; line-height: 1.3; }
+.w5-rsec-b ul { display: flex; flex-direction: column; gap: 2px; }
+.w5-rreqs { display: flex; gap: 8px; }
+li.w5-fired { color: var(--warn); font-weight: 700; }
+li.w5-fired::marker { content: '▶ '; color: var(--warn); }
+
+
+/* additions after the first native read */
+.w5-code--nogutter .w5-line { grid-template-columns: 0 minmax(0, 1fr); padding-left: 14px; }
+.w5-code--nogutter .w5-ln { visibility: hidden; }
+.w5-splitbox { position: absolute; top: 0; height: 262px; border-radius: 16px; border: 2px dashed var(--bad); background: var(--bad-fill); padding: 10px 12px 0; }
+.w5-file--bad { color: var(--bad); font-size: 17px; }
+.w5-owner { position: absolute; left: 14px; bottom: 9px; font-size: 14px; font-weight: 700; color: var(--bad); text-transform: uppercase; letter-spacing: 0.06em; }
+.w5-splitlink { position: absolute; top: 112px; width: 42px; height: 42px; border-radius: 50%; border: 2px solid var(--bad); background: var(--bg); color: var(--bad); font-size: 22px; font-weight: 800; display: flex; align-items: center; justify-content: center; z-index: 3; }
+.w5-r04 { display: flex; gap: 12px; align-items: baseline; padding: 8px 12px; border-radius: 10px; border: 1.5px solid var(--ok); background: var(--ok-fill); font-size: 18px; line-height: 1.3; }
+.w5-r04.is-bad { border-color: var(--bad); background: var(--bad-fill); }
+.w5-r04-k { font-weight: 800; color: var(--ok); white-space: nowrap; }
+.w5-r04.is-bad .w5-r04-k { color: var(--bad); }
+.w5-dir .n-label { font-size: 21px; }
+.w5-dir--small .n-label { font-size: 17px; }
+.w5-dir .n-kind { font-size: 14px; }
+.w5-elabel { font-size: 16px; font-weight: 700; fill: var(--text-muted); }
+.w5-elabel--warn { fill: var(--warn); } .w5-elabel--accent { fill: var(--accent-strong); } .w5-elabel--violet { fill: var(--violet); }
+.w5-dir .badge text { font-size: 15px; }
+.w5-codebox { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.w5-codebox-t { font-size: 14.5px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-soft); }
+.w5-steplog { display: flex; flex-direction: column; gap: 5px; }
+.w5-logrow { display: grid; grid-template-columns: 116px minmax(0, 1fr) auto; gap: 12px; align-items: baseline; padding: 5px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface-2); font-size: 17px; }
+.w5-logk { font-weight: 800; color: var(--accent-strong); }
+.w5-logres { font-weight: 700; color: var(--ok); white-space: nowrap; }
+.w5-logrow.is-bad { border-color: var(--bad); background: var(--bad-fill); }
+.w5-logrow.is-bad .w5-logres { color: var(--bad); }
+.w5-mini { width: 230px; height: 66px; display: block; margin: 0 auto 6px; }
+.w5-mini-box { fill: var(--surface-3); stroke: var(--line-strong); stroke-width: 2; }
+.w5-mini-box--violet { fill: var(--violet-fill); stroke: var(--violet); } .w5-mini-box--ok { fill: var(--ok-fill); stroke: var(--ok); }
+.w5-mini-box--warn { fill: var(--warn-fill); stroke: var(--warn); } .w5-mini-box--accent { fill: var(--accent-fill); stroke: var(--accent); }
+.w5-mini-t { font-size: 15px; font-weight: 700; fill: var(--text); }
+.w5-mini-mono { font-family: var(--font-mono); font-size: 14px; }
+.w5-mini-small { font-size: 12.5px; font-weight: 600; fill: var(--text-muted); }
+.w5-mini-l { stroke: var(--line-strong); stroke-width: 2; }
+.w5-matrix { border-collapse: separate; border-spacing: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+.w5-matrix th, .w5-matrix td { font-size: 19px !important; padding: 10px 14px !important; line-height: 1.3; }
+.w5-matrix thead th { background: var(--surface-2); text-align: center; vertical-align: bottom; }
+.w5-matrix .w5-mhead span { display: block; font-size: 19px; font-weight: 700; }
+.w5-matrix th.w5-mrow { font-size: 15px !important; }
+.w5-rreqs { align-items: center; }
+.w5-rreqs-k { font-size: 14.5px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent-strong); margin-right: 6px; }
+
+/* print: the light stylesheet keeps the same structure */
+body[data-print="true"] .w5-task { box-shadow: none; }
+body[data-print="true"] .w5-cover { display: none; }
+</style>
 </head>
 <body>
-<noscript><p style="padding:24px;font-family:sans-serif;color:#eaf0f6">This lecture deck needs JavaScript.</p></noscript>
+<noscript><p style="padding:24px;font-family:sans-serif;color:#eaf0f6">This lecture deck needs JavaScript. The printable version of this week is pdf/week-05.pdf.</p></noscript>
 <script src="../assets/fixtures/demo-fixtures.js"></script>
 <script src="../shared/visual-components.js"></script>
 <script src="../shared/lecture-controls.js"></script>

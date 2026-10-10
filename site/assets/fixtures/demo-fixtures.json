@@ -3,7 +3,7 @@
   "kind": "Original fictional teaching fixtures, not real performance data",
   "date": "16 September 2026",
   "purpose": "Inputs and independently checked expected values for later authoring; not executable lecture scenes.",
-  "extended": "16 September 2026: pseudocode_language, cancellation_matrix, retry_model and an anchors block with structured data for all 42 Anchor scenes and the numeric Bridges (Proposal 4). Keys are wNN/scene-id. week_text_shows lists strings the week TXT must contain; deck_shows lists strings the rendered scene must show; snippets are executable Python-like fixtures recomputed by tools/check_plan.py. 17 September 2026 (Phase 0 authoring): w01 Bridge fixtures added for system-boundary, quality-tradeoffs (simulated example values), evidence-not-confidence, responsibility-and-impact and course-evidence-map so that every Week 1 scene renders from this file. 17 September 2026 (plan revision): w02/ambiguous-request week_text_shows; booking_SLO expected_burn_rate and expected_days_to_exhaust_budget (recomputed by tools/check_plan.py); w10/change-through-gates static checks gate; w13/bounded-actions unreviewed tool connector capability; w13/provenance-and-understanding invented dependency. 17 September 2026 (Week 1 plan coverage): w01/quality-tradeoffs standard_vocabulary (sourced, S46) with week_text_shows and a deck_shows value; w01/feedback-lifecycle feedback_paths (authored structure: the path each discovery point's information takes and what it changes) with deck_shows. 22 September 2026: scoped curriculum refinements for Weeks 2-14; qualitative fixture additions; Week 1 data unchanged. 22 September 2026 public-course follow-up: thirteen qualitative transfer checks and a Week 14 professional-judgment comparison; canonical case, Week 1 data and numerical fixtures retained. 22 September 2026 foundation follow-up: qualitative elicitation and optional lookup/index comparisons; no new measured values. 22 September 2026 teaching review: qualitative acceptance and exploratory status-recovery comparison added; existing fixture values retained. 22 September 2026 (Week 2 authoring): w02 Bridge fixtures added for acceptance-and-validation, priority-and-risk and requirements-under-change (authored structures, fictional dates, no measurements); w02/ambiguous-request gains simulated example requests, stakeholder wording, the developer's rewrite, the open questions and the easy-for-whom routing; w02/elicitation-and-scope the boundary questions, the fact/assumption register and the visitor comparison; w02/observable-behavior the rule parts, the widget note and the two candidate snippets of the AI beat; w02/quality-with-conditions the two workloads (latency fixture datasets, illustrative), the boundary span, the S46 vocabulary rows and the keyboard path; w02/traceability-matrix an R-02 row and the blank-row note; deck_shows values for every Week 2 scene. 26 September 2026 (Week 3 authoring): w03 Bridge fixtures for journey-before-boxes, decision-table, interface-states, model-consistency and abstraction-and-zoom (authored structures and simulated example values, labeled); w03/identity-and-data bookings (B-003 simulated), rename lookup and identifier examples; w03/state-machine stored entry, repeated-cancel contrast and the invariant and progress examples; w03/sequence-not-state recovery actions; deck_shows for the three Week 3 Anchors. 29 September 2026 (Week 4 authoring): w04 Bridge fixtures added for methods-not-rituals, wip-and-time, estimates-with-assumptions, definition-of-done and retrospective-as-test (authored comparisons and labeled simulated example values; the WIP-limit schedule is computed from the flow baseline and recomputed by tools/check_plan.py); w04/queue-and-bottleneck gains the mapping of the eight work cards to W01-W08 and the transfer rule; w04/feedback-batches the three slices, the feedback points with the cards to reconsider, the coordination task; w04/risk-and-learning notes per option and alternative, both decisions, the lifecycle example and what stays uncertain; deck_shows values for all eight scenes. No existing value changed."
+  "extended": "16 September 2026: pseudocode_language, cancellation_matrix, retry_model and an anchors block with structured data for all 42 Anchor scenes and the numeric Bridges (Proposal 4). Keys are wNN/scene-id. week_text_shows lists strings the week TXT must contain; deck_shows lists strings the rendered scene must show; snippets are executable Python-like fixtures recomputed by tools/check_plan.py. 17 September 2026 (Phase 0 authoring): w01 Bridge fixtures added for system-boundary, quality-tradeoffs (simulated example values), evidence-not-confidence, responsibility-and-impact and course-evidence-map so that every Week 1 scene renders from this file. 17 September 2026 (plan revision): w02/ambiguous-request week_text_shows; booking_SLO expected_burn_rate and expected_days_to_exhaust_budget (recomputed by tools/check_plan.py); w10/change-through-gates static checks gate; w13/bounded-actions unreviewed tool connector capability; w13/provenance-and-understanding invented dependency. 17 September 2026 (Week 1 plan coverage): w01/quality-tradeoffs standard_vocabulary (sourced, S46) with week_text_shows and a deck_shows value; w01/feedback-lifecycle feedback_paths (authored structure: the path each discovery point's information takes and what it changes) with deck_shows. 22 September 2026: scoped curriculum refinements for Weeks 2-14; qualitative fixture additions; Week 1 data unchanged. 22 September 2026 public-course follow-up: thirteen qualitative transfer checks and a Week 14 professional-judgment comparison; canonical case, Week 1 data and numerical fixtures retained. 22 September 2026 foundation follow-up: qualitative elicitation and optional lookup/index comparisons; no new measured values. 22 September 2026 teaching review: qualitative acceptance and exploratory status-recovery comparison added; existing fixture values retained. 22 September 2026 (Week 2 authoring): w02 Bridge fixtures added for acceptance-and-validation, priority-and-risk and requirements-under-change (authored structures, fictional dates, no measurements); w02/ambiguous-request gains simulated example requests, stakeholder wording, the developer's rewrite, the open questions and the easy-for-whom routing; w02/elicitation-and-scope the boundary questions, the fact/assumption register and the visitor comparison; w02/observable-behavior the rule parts, the widget note and the two candidate snippets of the AI beat; w02/quality-with-conditions the two workloads (latency fixture datasets, illustrative), the boundary span, the S46 vocabulary rows and the keyboard path; w02/traceability-matrix an R-02 row and the blank-row note; deck_shows values for every Week 2 scene. 26 September 2026 (Week 3 authoring): w03 Bridge fixtures for journey-before-boxes, decision-table, interface-states, model-consistency and abstraction-and-zoom (authored structures and simulated example values, labeled); w03/identity-and-data bookings (B-003 simulated), rename lookup and identifier examples; w03/state-machine stored entry, repeated-cancel contrast and the invariant and progress examples; w03/sequence-not-state recovery actions; deck_shows for the three Week 3 Anchors. 29 September 2026 (Week 4 authoring): w04 Bridge fixtures added for methods-not-rituals, wip-and-time, estimates-with-assumptions, definition-of-done and retrospective-as-test (authored comparisons and labeled simulated example values; the WIP-limit schedule is computed from the flow baseline and recomputed by tools/check_plan.py); w04/queue-and-bottleneck gains the mapping of the eight work cards to W01-W08 and the transfer rule; w04/feedback-batches the three slices, the feedback points with the cards to reconsider, the coordination task; w04/risk-and-learning notes per option and alternative, both decisions, the lifecycle example and what stays uncertain; deck_shows values for all eight scenes. No existing value changed. 10 October 2026 (Week 5 authoring): w05 Bridge fixtures added for same-behavior-different-design (the shared screen, the request paths, the rule holders and the opening search of Design A's code lines), dependency-direction (the direct and interface versions, the storage change, an executable overlap snippet) and design-rationale (one decision record and its changed scope); w05/cohesion-and-responsibility gains the Utilities tasks, groups, the request pipeline with its stages and effects, an executable decide snippet, the new-format change and the over-splitting cost; w05/abstraction-cost the three structures with qualitative judgments under two conditions and the build/reuse/buy comparison; w05/dependency-example a second, independent change (the email provider); w05/interface-contract a third implementation (failures reported), the contract rows and verdicts, the failed-delivery screens and the result kinds with examples and the four separate claims; w05/refactoring-under-checks the Reminder's copy as an executable snippet and the callers after step 1; deck_shows values for every Week 5 scene. Authored comparisons and labeled example values only; no measurement. No existing value changed."
  },
  "case": {
   "service": "Campus Rooms",
@@ -3101,7 +3101,36 @@
    "deck_shows": [
     "120",
     "90"
-   ]
+   ],
+   "notifier_change": {
+    "kind": "authored comparison: a second, independent change on the same two designs",
+    "reviewed": "10 October 2026",
+    "change": "replace the email provider behind Notification",
+    "must_edit": [
+     "Notification"
+    ],
+    "must_recheck": [
+     "Notification checks",
+     "Booking Handler integration check"
+    ],
+    "unaffected": {
+     "design_A": [
+      "Browser UI",
+      "Reminder",
+      "Room Catalog",
+      "Storage"
+     ],
+     "design_B": [
+      "Browser UI",
+      "Policy",
+      "Reminder",
+      "Room Catalog",
+      "Storage"
+     ]
+    },
+    "same_in_both_designs": true,
+    "note": "Policy localizes the booking rules; it does nothing for a change of email provider, which Notification already localizes in both designs"
+   }
   },
   "w05/interface-contract": {
    "interface": "Notifier.send(booking_id, recipient) -> DeliveryStatus",
@@ -3116,6 +3145,12 @@
      "returns": "None",
      "raises_into_caller": true,
      "blocks_confirmation": true,
+     "delivery": "exactly one attempt"
+    },
+    "Mail B, failures reported": {
+     "returns": "None, or Failed",
+     "raises_into_caller": false,
+     "blocks_confirmation": false,
      "delivery": "exactly one attempt"
     }
    },
@@ -3139,7 +3174,210 @@
      "authorization",
      "atomic enforcement"
     ]
-   }
+   },
+   "reviewed": "10 October 2026",
+   "contract_rows": [
+    {
+     "id": "shape",
+     "label": "Call shape",
+     "promise": "send(booking_id, recipient)"
+    },
+    {
+     "id": "returns",
+     "label": "Returns",
+     "promise": "a DeliveryStatus: Queued or Failed"
+    },
+    {
+     "id": "failure",
+     "label": "On failure",
+     "promise": "reports Failed; never raises into the caller"
+    },
+    {
+     "id": "confirmation",
+     "label": "Confirmation",
+     "promise": "the booking confirmation never waits for the email (R-04)"
+    },
+    {
+     "id": "delivery",
+     "label": "Delivery",
+     "promise": "at least once; a duplicate email is possible"
+    }
+   ],
+   "row_verdicts": {
+    "Mail A (current)": {
+     "shape": [
+      "fits",
+      "the same call"
+     ],
+     "returns": [
+      "fits",
+      "Queued or Failed"
+     ],
+     "failure": [
+      "fits",
+      "reports Failed"
+     ],
+     "confirmation": [
+      "fits",
+      "never waits"
+     ],
+     "delivery": [
+      "fits",
+      "at least once; duplicates possible"
+     ]
+    },
+    "Mail B (replacement)": {
+     "shape": [
+      "fits",
+      "the same name and parameters"
+     ],
+     "returns": [
+      "breaks",
+      "returns None"
+     ],
+     "failure": [
+      "breaks",
+      "raises into the booking path"
+     ],
+     "confirmation": [
+      "breaks",
+      "the exception stops the confirmation"
+     ],
+     "delivery": [
+      "differs",
+      "exactly one attempt, no retry"
+     ]
+    },
+    "Mail B, failures reported": {
+     "shape": [
+      "fits",
+      "the same name and parameters"
+     ],
+     "returns": [
+      "differs",
+      "None, or Failed"
+     ],
+     "failure": [
+      "fits",
+      "reports Failed"
+     ],
+     "confirmation": [
+      "fits",
+      "never waits"
+     ],
+     "delivery": [
+      "differs",
+      "one attempt; the caller keeps the retry"
+     ]
+    }
+   },
+   "failed_delivery": {
+    "booking": "B-001",
+    "user_id": "U-01",
+    "user": "Ari",
+    "room": "C101",
+    "start": "10:00",
+    "end": "11:00",
+    "Mail A (current)": {
+     "stored": "Confirmed",
+     "notifier": "returns Failed",
+     "handler": "records the email as pending, to retry",
+     "screen": "Booking confirmed: C101, 10:00 to 11:00. Confirmation email: pending, we will retry.",
+     "promise_kept": true
+    },
+    "Mail B (replacement)": {
+     "stored": "Confirmed",
+     "notifier": "raises an exception",
+     "handler": "stops before it answers",
+     "screen": "Something went wrong. Please try again.",
+     "promise_kept": false,
+     "consequence": "Ari tries again and R-01 rejects him: the new request overlaps B-001, his own stored booking"
+    },
+    "Mail B, failures reported": {
+     "stored": "Confirmed",
+     "notifier": "returns Failed",
+     "handler": "records the email as pending, to retry",
+     "screen": "Booking confirmed: C101, 10:00 to 11:00. Confirmation email: pending, we will retry.",
+     "promise_kept": true
+    }
+   },
+   "result_page": {
+    "kind": "authored example: three kinds of result for one booking request; course-authored pseudocode",
+    "signature": "def book(request) -> Confirmed | Rejected | Unavailable",
+    "kinds": [
+     {
+      "kind": "Confirmed",
+      "means": "the booking decision was made and stored",
+      "carries": "the booking id"
+     },
+     {
+      "kind": "Rejected",
+      "means": "a domain rule said no; trying again unchanged gives the same answer",
+      "carries": "the rule and reason"
+     },
+     {
+      "kind": "Unavailable",
+      "means": "the decision could not be made right now; nothing was decided",
+      "carries": "when to try again"
+     }
+    ],
+    "examples": [
+     {
+      "id": "ok",
+      "request": "Ari, C101, 11:00 to 12:00",
+      "result": "Confirmed",
+      "why": "60 minutes, and 11:00 only touches B-001's end: adjacent, not overlapping (R-01)"
+     },
+     {
+      "id": "overlap",
+      "request": "Bo, C101, 10:30 to 11:30",
+      "result": "Rejected",
+      "why": "it overlaps B-001 from 10:30 to 11:00 (R-01)"
+     },
+     {
+      "id": "duration",
+      "request": "Ari, C202, 10:00 to 12:30",
+      "result": "Rejected",
+      "why": "150 minutes is over the 120-minute limit (R-02)"
+     },
+     {
+      "id": "down",
+      "request": "Ari, C202, 14:00 to 15:00, while storage is down",
+      "result": "Unavailable",
+      "why": "the stored bookings could not be read, so no decision was made"
+     }
+    ],
+    "claims": [
+     {
+      "id": "shape",
+      "claim": "The value has the right shape",
+      "evidence": "the type annotation, checked by a type checker",
+      "example": "Confirmed always carries a booking id"
+     },
+     {
+      "id": "validity",
+      "claim": "The booking obeys the domain rules",
+      "evidence": "Policy checks for R-01 and R-02",
+      "example": "a well-shaped request for 150 minutes still breaks R-02"
+     },
+     {
+      "id": "authorization",
+      "claim": "The requester may do this",
+      "evidence": "a permission check (R-03)",
+      "example": "Bo's well-shaped request to cancel B-001 is denied: he is not the owner"
+     },
+     {
+      "id": "atomic",
+      "claim": "The decision holds when requests race",
+      "evidence": "storage enforces one atomic booking decision (Week 6)",
+      "example": "two overlapping requests can each pass a check before either is stored"
+     }
+    ]
+   },
+   "deck_shows": [
+    "Notifier.send",
+    "R-04"
+   ]
   },
   "w05/refactoring-under-checks": {
    "cases": [
@@ -3155,6 +3393,55 @@
      "name": "before: duplicated checks",
      "function": "can_book",
      "code": "def can_book(start, end):\n    minutes = end - start\n    if minutes < 30 or minutes > 120:\n        return False\n    return True\n",
+     "cases": [
+      {
+       "args": [
+        600,
+        629
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        600,
+        630
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        600,
+        660
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        600,
+        719
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        600,
+        720
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        600,
+        721
+       ],
+       "expected": false
+      }
+     ]
+    },
+    {
+     "name": "before: the reminder's copy",
+     "function": "worth_reminding",
+     "code": "def worth_reminding(start, end):\n    minutes = end - start\n    return 30 <= minutes <= 2 * 60\n",
      "cases": [
       {
        "args": [
@@ -3338,7 +3625,9 @@
    },
    "deck_shows": [
     "120"
-   ]
+   ],
+   "callers_after_step_1": "def can_book(start, end):\n    return duration_ok(end - start)\n\ndef worth_reminding(start, end):\n    return duration_ok(end - start)\n",
+   "reviewed": "10 October 2026"
   },
   "w06/request-journey": {
    "steps": [
@@ -5361,7 +5650,201 @@
      "storage",
      "notification"
     ]
-   }
+   },
+   "kind": "authored comparison: one Utilities module regrouped by reason to change; course-authored pseudocode",
+   "module": "utilities.py",
+   "tasks": [
+    {
+     "id": "duration",
+     "task": "check that a booking lasts 30 to 120 minutes",
+     "reason": "a booking rule changes",
+     "group": "Policy"
+    },
+    {
+     "id": "overlap",
+     "task": "check that a booking does not overlap another in the same room",
+     "reason": "a booking rule changes",
+     "group": "Policy"
+    },
+    {
+     "id": "email",
+     "task": "format the confirmation email",
+     "reason": "the message wording or format changes",
+     "group": "Messages"
+    },
+    {
+     "id": "dates",
+     "task": "format dates and times for display",
+     "reason": "the display conventions change",
+     "group": "Display"
+    },
+    {
+     "id": "storage",
+     "task": "save and load bookings",
+     "reason": "the storage technology changes",
+     "group": "Storage access"
+    }
+   ],
+   "groups": [
+    {
+     "id": "Policy",
+     "changes_when": "a booking rule changes",
+     "rules": [
+      "R-01",
+      "R-02"
+     ]
+    },
+    {
+     "id": "Messages",
+     "changes_when": "the message wording or format changes"
+    },
+    {
+     "id": "Display",
+     "changes_when": "the display conventions change"
+    },
+    {
+     "id": "Storage access",
+     "changes_when": "the storage technology changes"
+    }
+   ],
+   "importers": [
+    "Browser UI",
+    "Booking Handler",
+    "Reminder",
+    "Notification",
+    "Storage"
+   ],
+   "pipeline": {
+    "function": "request_booking",
+    "code": "def request_booking(request, store, notifier, clock):\n    checked = validate(request)\n    if not checked.ok:\n        return Rejected(checked.reason)\n    existing = store.bookings_in(request.room)\n    outcome = decide(checked.minutes, overlaps(existing, checked))\n    if outcome != \"Confirmed\":\n        return Rejected(outcome)\n    booking = store.save(checked, made_at=clock.now())\n    notifier.send(booking.id, request.user)\n    return Confirmed(booking.id)\n",
+    "stages": [
+     {
+      "stage": "validate input",
+      "lines": [
+       2,
+       3,
+       4
+      ],
+      "meaning": "the request is well formed: whole minutes, end later than start"
+     },
+     {
+      "stage": "decide domain outcome",
+      "lines": [
+       6,
+       7,
+       8
+      ],
+      "meaning": "the booking rules R-02 and R-01 decide, reading nothing outside"
+     },
+     {
+      "stage": "report explicit result",
+      "lines": [
+       11
+      ],
+      "meaning": "the caller receives Confirmed or Rejected with a reason"
+     }
+    ],
+    "effects": [
+     {
+      "effect": "storage",
+      "lines": [
+       5,
+       9
+      ],
+      "meaning": "reads stored bookings, then saves the new one"
+     },
+     {
+      "effect": "clock",
+      "lines": [
+       9
+      ],
+      "meaning": "stamps when the booking was made"
+     },
+     {
+      "effect": "notification",
+      "lines": [
+       10
+      ],
+      "meaning": "sends the confirmation"
+     }
+    ],
+    "example": {
+     "request": "Ari, C101, 11:00 to 12:00",
+     "minutes": 60,
+     "overlaps": false,
+     "outcome": "Confirmed"
+    }
+   },
+   "snippets": [
+    {
+     "name": "the pure decision",
+     "function": "decide",
+     "code": "def decide(minutes, overlapping):\n    if not 30 <= minutes <= 120:\n        return \"Rejected: duration\"\n    if overlapping:\n        return \"Rejected: overlap\"\n    return \"Confirmed\"\n",
+     "cases": [
+      {
+       "args": [
+        60,
+        false
+       ],
+       "expected": "Confirmed"
+      },
+      {
+       "args": [
+        121,
+        false
+       ],
+       "expected": "Rejected: duration"
+      },
+      {
+       "args": [
+        60,
+        true
+       ],
+       "expected": "Rejected: overlap"
+      },
+      {
+       "args": [
+        29,
+        false
+       ],
+       "expected": "Rejected: duration"
+      }
+     ]
+    }
+   ],
+   "new_format": {
+    "change": "add a text-message format for confirmations",
+    "before": {
+     "edit": "utilities.py",
+     "in_question": [
+      "Browser UI",
+      "Booking Handler",
+      "Reminder",
+      "Notification",
+      "Storage"
+     ],
+     "why": "every component imports utilities.py, so an edit there puts all of them in question"
+    },
+    "after": {
+     "edit": "Messages",
+     "in_question": [
+      "Notification"
+     ],
+     "untouched": [
+      "Policy",
+      "Display",
+      "Storage access"
+     ]
+    }
+   },
+   "over_split": {
+    "example": "the duration rule and the overlap rule in two separate modules with two owners",
+    "cost": "every booking-policy change now coordinates two modules, two sets of checks and two owners"
+   },
+   "deck_shows": [
+    "utilities.py",
+    "request_booking"
+   ]
   },
   "w05/abstraction-cost": {
    "curriculum_refinement": {
@@ -5379,7 +5862,117 @@
      "data portability",
      "exit cost"
     ]
-   }
+   },
+   "kind": "authored comparison with qualitative judgments; no measured costs",
+   "structures": [
+    {
+     "id": "copies",
+     "name": "Duplicated checks"
+    },
+    {
+     "id": "function",
+     "name": "One small policy function"
+    },
+    {
+     "id": "framework",
+     "name": "A generic rule framework"
+    }
+   ],
+   "criteria": [
+    "setup",
+    "understanding",
+    "extension",
+    "debugging"
+   ],
+   "two_rules": {
+    "condition": "two clear policy rules (R-01 and R-02) and a small team",
+    "judgments": {
+     "copies": {
+      "setup": "none",
+      "understanding": "one copy reads easily; finding every copy does not",
+      "extension": "edit every copy",
+      "debugging": "copies can disagree, as in scene 2"
+     },
+     "function": {
+      "setup": "small",
+      "understanding": "one place to read",
+      "extension": "edit one function, recheck its callers",
+      "debugging": "one decision to inspect"
+     },
+     "framework": {
+      "setup": "large: rule objects, a registry, configuration",
+      "understanding": "indirect: follow the configuration to find a rule",
+      "extension": "add a rule as data, if the framework supports its shape",
+      "debugging": "behavior spreads across the engine and its configuration"
+     }
+    },
+    "recommendation": "function"
+   },
+   "many_policies": {
+    "condition": "several policies that change independently",
+    "examples": [
+     "a shorter limit in exam weeks",
+     "longer bookings for project rooms",
+     "different booking hours per building"
+    ],
+    "examples_kind": "hypothetical policies for this comparison, not Campus Rooms rules",
+    "judgments": {
+     "copies": {
+      "setup": "none",
+      "understanding": "many copies of many rules",
+      "extension": "every policy times every copy",
+      "debugging": "many places to disagree"
+     },
+     "function": {
+      "setup": "small",
+      "understanding": "one function grows long branches",
+      "extension": "every new policy edits the same function",
+      "debugging": "branches interact"
+     },
+     "framework": {
+      "setup": "large",
+      "understanding": "each rule reads as data",
+      "extension": "a new policy becomes a new rule entry",
+      "debugging": "needs a way to see which rule decided"
+     }
+    },
+    "evidence": [
+     "several policies change often and independently",
+     "the same rule shape repeats",
+     "people outside the code must change rules safely"
+    ],
+    "recommendation": "more structure can now pay for itself: start with a small policy table read by one function, and grow toward a framework only for rule shapes that really repeat"
+   },
+   "build_reuse_buy": {
+    "capability": "sending the confirmation emails behind the Notifier interface",
+    "judgments": {
+     "build a small adapter": {
+      "integration": "written to the Notifier contract",
+      "licensing": "your own code",
+      "support": "your team",
+      "data portability": "full: your data stays in your systems",
+      "exit cost": "low"
+     },
+     "reuse a maintained library": {
+      "integration": "wrap it in an adapter that keeps the contract",
+      "licensing": "check that its license fits your use",
+      "support": "its maintainers and your team",
+      "data portability": "your data stays with you",
+      "exit cost": "moderate: replace the library behind the adapter"
+     },
+     "buy a managed capability": {
+      "integration": "an adapter to its API, which changes on the provider's schedule",
+      "licensing": "a subscription and its terms",
+      "support": "the provider, under its terms",
+      "data portability": "check how addresses and delivery history can be exported",
+      "exit cost": "can be high: contract, data export, a new adapter"
+     }
+    },
+    "still_required": "whichever you choose, the Notifier contract checks of scene 4 still run"
+   },
+   "deck_shows": [
+    "One small policy function"
+   ]
   },
   "w06/contracts-and-evolution": {
    "curriculum_refinement": {
@@ -5837,6 +6430,323 @@
    "deck_shows": [
     "90",
     "stale"
+   ]
+  },
+  "w05/same-behavior-different-design": {
+   "kind": "authored comparison: two internal designs of Campus Rooms with the same visible behavior; the code lines are course-authored pseudocode",
+   "reviewed": "10 October 2026",
+   "screen": {
+    "user_id": "U-01",
+    "user": "Ari",
+    "booking": "B-001",
+    "room": "C101",
+    "start": "10:00",
+    "end": "11:00",
+    "minutes": 60,
+    "result": "Confirmed"
+   },
+   "request_path": {
+    "design_A": [
+     {
+      "component": "Browser UI",
+      "does": "checks the duration itself"
+     },
+     {
+      "component": "Booking Handler",
+      "does": "checks the duration again and decides"
+     },
+     {
+      "component": "Room Catalog",
+      "does": "confirms that C101 exists"
+     },
+     {
+      "component": "Storage",
+      "does": "finds no overlap, stores B-001"
+     },
+     {
+      "component": "Notification",
+      "does": "sends the confirmation"
+     }
+    ],
+    "design_B": [
+     {
+      "component": "Browser UI",
+      "does": "reads the limits from Policy, for early feedback only"
+     },
+     {
+      "component": "Booking Handler",
+      "does": "asks Policy, then decides"
+     },
+     {
+      "component": "Room Catalog",
+      "does": "confirms that C101 exists"
+     },
+     {
+      "component": "Storage",
+      "does": "finds no overlap, stores B-001"
+     },
+     {
+      "component": "Notification",
+      "does": "sends the confirmation"
+     }
+    ]
+   },
+   "later_step": {
+    "design_A": "the Reminder checks the duration itself before it schedules a reminder",
+    "design_B": "the Reminder asks Policy before it schedules a reminder"
+   },
+   "rule_holders": {
+    "design_A": [
+     "Browser UI",
+     "Booking Handler",
+     "Reminder"
+    ],
+    "design_B": [
+     "Policy"
+    ]
+   },
+   "changed_condition": {
+    "rule": "R-02 upper limit",
+    "from_minutes": 120,
+    "to_minutes": 90,
+    "label": "temporary variant",
+    "unchanged": "the screen and the user's goal"
+   },
+   "opening_search": {
+    "kind": "course-authored pseudocode: one line of Design A from each component",
+    "query": "120",
+    "lines": [
+     {
+      "component": "Browser UI",
+      "code": "if minutes > 120: show_error(\"Up to 120 minutes\")",
+      "match": true,
+      "rule_copy": true
+     },
+     {
+      "component": "Booking Handler",
+      "code": "if minutes < 30 or minutes > 120: return Rejected(\"duration\")",
+      "match": true,
+      "rule_copy": true
+     },
+     {
+      "component": "Reminder",
+      "code": "if 30 <= minutes <= 2 * 60: schedule_reminder(booking)",
+      "match": false,
+      "rule_copy": true,
+      "note": "the same rule, written as 2 * 60"
+     },
+     {
+      "component": "Notification",
+      "code": "retry_after_seconds = 120",
+      "match": true,
+      "rule_copy": false,
+      "note": "a different 120: seconds before a retry"
+     },
+     {
+      "component": "Room Catalog",
+      "code": "rooms = [\"C101\", \"C202\"]",
+      "match": false,
+      "rule_copy": false
+     },
+     {
+      "component": "Storage",
+      "code": "bookings = load_bookings(room)",
+      "match": false,
+      "rule_copy": false
+     }
+    ],
+    "summary": {
+     "hits": 3,
+     "rule_copies": 3,
+     "copies_found_by_search": 2,
+     "false_hits": 1,
+     "copies_missed_by_search": 1
+    }
+   },
+   "deck_shows": [
+    "C101",
+    "Confirmed"
+   ]
+  },
+  "w05/dependency-direction": {
+   "kind": "authored comparison: source-code dependencies and runtime calls between Policy and storage; course-authored pseudocode",
+   "reviewed": "10 October 2026",
+   "direct": {
+    "label": "Policy reads the database client's rows",
+    "code": "def overlaps(room, start, end, db):\n    rows = db.query(\"SELECT start_min, end_min FROM bookings \"\n                    \"WHERE room = ?\", room)\n    for row in rows:\n        if row[0] < end and start < row[1]:\n            return True\n    return False\n",
+    "knows": [
+     "the query text",
+     "the table and column names",
+     "the position of each value in a row"
+    ],
+    "source_edges": [
+     [
+      "Policy",
+      "Database client"
+     ]
+    ],
+    "runtime_calls": [
+     [
+      "Policy",
+      "Database client"
+     ],
+     [
+      "Database client",
+      "Database"
+     ]
+    ]
+   },
+   "interface": {
+    "label": "Policy depends on a small interface it owns",
+    "name": "BookingRecords",
+    "code": "class BookingRecords:              # what Policy needs\n    def intervals_in(self, room):  # -> [(start, end)]\n        ...\n\ndef overlaps(room, start, end, records):\n    for s, e in records.intervals_in(room):\n        if s < end and start < e:\n            return True\n    return False\n",
+    "adapter": "SQL adapter",
+    "adapter_code": "class SqlBookingRecords(BookingRecords):\n    def intervals_in(self, room):\n        rows = self.db.query(\n            \"SELECT start_min, end_min FROM bookings \"\n            \"WHERE room = ?\", room)\n        return [(row[0], row[1]) for row in rows]\n",
+    "source_edges": [
+     [
+      "Policy",
+      "BookingRecords"
+     ],
+     [
+      "SQL adapter",
+      "BookingRecords"
+     ],
+     [
+      "SQL adapter",
+      "Database client"
+     ]
+    ],
+    "runtime_calls": [
+     [
+      "Policy",
+      "SQL adapter"
+     ],
+     [
+      "SQL adapter",
+      "Database client"
+     ],
+     [
+      "Database client",
+      "Database"
+     ]
+    ]
+   },
+   "storage_change": {
+    "change": "move the bookings to a different database product",
+    "new_adapter": "New database adapter",
+    "direct": {
+     "edit": [
+      "Policy"
+     ],
+     "why": "the rule code itself reads rows in the old database's shape"
+    },
+    "interface": {
+     "edit": [
+      "New database adapter"
+     ],
+     "unchanged": [
+      "Policy",
+      "BookingRecords"
+     ]
+    },
+    "still_verify": [
+     "the new adapter returns the same intervals for the same stored bookings",
+     "two overlapping requests that race still cannot both be confirmed: the atomic booking decision"
+    ]
+   },
+   "snippets": [
+    {
+     "name": "the overlap rule over plain intervals",
+     "function": "overlaps",
+     "code": "def overlaps(intervals, start, end):\n    for pair in intervals:\n        if pair[0] < end and start < pair[1]:\n            return True\n    return False\n",
+     "cases": [
+      {
+       "args": [
+        [
+         [
+          600,
+          660
+         ]
+        ],
+        630,
+        690
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        [
+         [
+          600,
+          660
+         ]
+        ],
+        660,
+        720
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        [],
+        630,
+        690
+       ],
+       "expected": false
+      }
+     ]
+    }
+   ],
+   "deck_shows": [
+    "BookingRecords",
+    "SQL adapter"
+   ]
+  },
+  "w05/design-rationale": {
+   "kind": "authored example: one decision record for Campus Rooms",
+   "reviewed": "10 October 2026",
+   "diagram_only": "Use a Policy component",
+   "record": {
+    "id": "DR-001",
+    "title": "Use a Policy component for the booking rules",
+    "status": "Accepted",
+    "requirements": [
+     "R-01",
+     "R-02"
+    ],
+    "context": "The R-02 duration rule was copied into the Browser UI, the Booking Handler and the Reminder. A missed copy gave inconsistent decisions, and an exam-week variant of 90 minutes is planned.",
+    "alternatives": [
+     {
+      "option": "Keep the copies and search before every change",
+      "why_not": "a search for 120 missed the Reminder's copy, written 2 * 60"
+     },
+     {
+      "option": "A generic rule framework",
+      "why_not": "two clear rules and a small team do not repay its setup and indirection"
+     }
+    ],
+    "choice": "One Policy component owns R-01 and R-02. The Booking Handler and the Reminder ask it; the Browser UI reads its limits for early feedback and never decides.",
+    "consequences": [
+     "One place to edit a booking rule",
+     "Policy checks and the handler's integration check run on every rule change",
+     "Three components depend on Policy, so its interface changes carefully"
+    ],
+    "not_generalized": "per-room or per-campus rules, and a general rule engine",
+    "revisit_when": [
+     "Campuses with different rules",
+     "Staff need to change rules without a release"
+    ],
+    "scope": "one set of booking rules for one campus"
+   },
+   "changed_scope": {
+    "change": "several campuses, each with different booking limits",
+    "trigger": "Campuses with different rules",
+    "blind": "keep one Policy with one set of limits and patch each campus's exceptions into it",
+    "revisit": "reopen the record: weigh per-campus policy data, one Policy per campus, or a policy table, against the same context and consequences"
+   },
+   "deck_shows": [
+    "R-02",
+    "Revisit when"
    ]
   }
  },
