@@ -815,7 +815,7 @@
           { prompt: { question: 'Mail B has the same function name and the same parameters as Mail A. Can it replace Mail A safely?', options: ['Yes: the name and parameters match', 'Only if it also behaves as promised', 'Only if it sends emails faster'] }, caption: 'One interface, the current implementation plugged in, a replacement waiting.' },
           { caption: 'The contract has five promises, not one: inputs, result, failure, the confirmation, delivery.' },
           { caption: `${IMPL_KEYS['mail-a']} keeps all five: it returns **${IMPL['Mail A (current)'].returns}** and never raises.` },
-          { caption: `A failed delivery with Mail A: **${FD['Mail A (current)'].notifier}**, the handler ${FD['Mail A (current)'].handler}. ${ARI.name} keeps his booking.` },
+          { caption: `A failed delivery with Mail A: **${FD['Mail A (current)'].notifier}**, the handler ${FD['Mail A (current)'].handler}. ${ARI.name} keeps the booking.` },
           { caption: `Delivery is **${IMPL['Mail A (current)'].delivery}**. The contract says so, so callers expect a second email after a retry.` },
         ] },
       { id: 'mail-b', label: `Changed: the replacement, ${IMPL_KEYS['mail-b']}`, short: 'Mail B',
@@ -830,7 +830,7 @@
         states: [
           { caption: 'One condition changes: Mail B now reports a failure as **Failed** instead of raising it.' },
           { caption: `Now the failure is reported, and the confirmation never waits. Two promises still differ: **${IMPL['Mail B, failures reported'].returns}**, and ${IMPL['Mail B, failures reported'].delivery}.` },
-          { caption: `The same failed delivery: Mail B ${FD['Mail B, failures reported'].notifier}, the handler ${FD['Mail B, failures reported'].handler}. ${ARI.name} keeps his booking.` },
+          { caption: `The same failed delivery: Mail B ${FD['Mail B, failures reported'].notifier}, the handler ${FD['Mail B, failures reported'].handler}. ${ARI.name} keeps the booking.` },
           { caption: 'Behavior and failure semantics are part of the interface.', principle: true },
         ] },
     ],

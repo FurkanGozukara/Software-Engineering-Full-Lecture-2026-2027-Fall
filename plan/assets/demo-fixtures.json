@@ -3291,7 +3291,7 @@
      "handler": "stops before it answers",
      "screen": "Something went wrong. Please try again.",
      "promise_kept": false,
-     "consequence": "Ari tries again and R-01 rejects him: the new request overlaps B-001, his own stored booking"
+     "consequence": "Ari tries again and R-01 rejects the new request: it overlaps B-001, Ari's own stored booking"
     },
     "Mail B, failures reported": {
      "stored": "Confirmed",
@@ -3364,7 +3364,7 @@
       "id": "authorization",
       "claim": "The requester may do this",
       "evidence": "a permission check (R-03)",
-      "example": "Bo's well-shaped request to cancel B-001 is denied: he is not the owner"
+      "example": "Bo's well-shaped request to cancel B-001 is denied: Bo is not the owner"
      },
      {
       "id": "atomic",
