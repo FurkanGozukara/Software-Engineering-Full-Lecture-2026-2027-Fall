@@ -31,7 +31,7 @@ jobs:
         working-directory: plan
         env:
           SE_COURSE_SITE: ${{ github.workspace }}/site
-        run: pytest -q -k "test_plan or w01- or w02- or w03- or w04- or w05- or w11-latency-is-a-distribution or test_week_pdf_exists_and_reads[1] or test_week_pdf_exists_and_reads[2] or test_week_pdf_exists_and_reads[3] or test_week_pdf_exists_and_reads[4] or test_week_pdf_exists_and_reads[5]"
+        run: pytest -q -k "test_plan or w01- or w02- or w03- or w04- or w05- or w06- or w11-latency-is-a-distribution or test_week_pdf_exists_and_reads[1] or test_week_pdf_exists_and_reads[2] or test_week_pdf_exists_and_reads[3] or test_week_pdf_exists_and_reads[4] or test_week_pdf_exists_and_reads[5] or test_week_pdf_exists_and_reads[6]"
       - name: Layout scan at 3840x2160 (report only until the known Week 1 findings are fixed)
         run: |
           python scripts/inspect_deck.py --layout --week 1 --out build/inspect/week-01 || true

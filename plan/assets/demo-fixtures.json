@@ -3,7 +3,7 @@
   "kind": "Original fictional teaching fixtures, not real performance data",
   "date": "16 September 2026",
   "purpose": "Inputs and independently checked expected values for later authoring; not executable lecture scenes.",
-  "extended": "16 September 2026: pseudocode_language, cancellation_matrix, retry_model and an anchors block with structured data for all 42 Anchor scenes and the numeric Bridges (Proposal 4). Keys are wNN/scene-id. week_text_shows lists strings the week TXT must contain; deck_shows lists strings the rendered scene must show; snippets are executable Python-like fixtures recomputed by tools/check_plan.py. 17 September 2026 (Phase 0 authoring): w01 Bridge fixtures added for system-boundary, quality-tradeoffs (simulated example values), evidence-not-confidence, responsibility-and-impact and course-evidence-map so that every Week 1 scene renders from this file. 17 September 2026 (plan revision): w02/ambiguous-request week_text_shows; booking_SLO expected_burn_rate and expected_days_to_exhaust_budget (recomputed by tools/check_plan.py); w10/change-through-gates static checks gate; w13/bounded-actions unreviewed tool connector capability; w13/provenance-and-understanding invented dependency. 17 September 2026 (Week 1 plan coverage): w01/quality-tradeoffs standard_vocabulary (sourced, S46) with week_text_shows and a deck_shows value; w01/feedback-lifecycle feedback_paths (authored structure: the path each discovery point's information takes and what it changes) with deck_shows. 22 September 2026: scoped curriculum refinements for Weeks 2-14; qualitative fixture additions; Week 1 data unchanged. 22 September 2026 public-course follow-up: thirteen qualitative transfer checks and a Week 14 professional-judgment comparison; canonical case, Week 1 data and numerical fixtures retained. 22 September 2026 foundation follow-up: qualitative elicitation and optional lookup/index comparisons; no new measured values. 22 September 2026 teaching review: qualitative acceptance and exploratory status-recovery comparison added; existing fixture values retained. 22 September 2026 (Week 2 authoring): w02 Bridge fixtures added for acceptance-and-validation, priority-and-risk and requirements-under-change (authored structures, fictional dates, no measurements); w02/ambiguous-request gains simulated example requests, stakeholder wording, the developer's rewrite, the open questions and the easy-for-whom routing; w02/elicitation-and-scope the boundary questions, the fact/assumption register and the visitor comparison; w02/observable-behavior the rule parts, the widget note and the two candidate snippets of the AI beat; w02/quality-with-conditions the two workloads (latency fixture datasets, illustrative), the boundary span, the S46 vocabulary rows and the keyboard path; w02/traceability-matrix an R-02 row and the blank-row note; deck_shows values for every Week 2 scene. 26 September 2026 (Week 3 authoring): w03 Bridge fixtures for journey-before-boxes, decision-table, interface-states, model-consistency and abstraction-and-zoom (authored structures and simulated example values, labeled); w03/identity-and-data bookings (B-003 simulated), rename lookup and identifier examples; w03/state-machine stored entry, repeated-cancel contrast and the invariant and progress examples; w03/sequence-not-state recovery actions; deck_shows for the three Week 3 Anchors. 29 September 2026 (Week 4 authoring): w04 Bridge fixtures added for methods-not-rituals, wip-and-time, estimates-with-assumptions, definition-of-done and retrospective-as-test (authored comparisons and labeled simulated example values; the WIP-limit schedule is computed from the flow baseline and recomputed by tools/check_plan.py); w04/queue-and-bottleneck gains the mapping of the eight work cards to W01-W08 and the transfer rule; w04/feedback-batches the three slices, the feedback points with the cards to reconsider, the coordination task; w04/risk-and-learning notes per option and alternative, both decisions, the lifecycle example and what stays uncertain; deck_shows values for all eight scenes. No existing value changed. 10 October 2026 (Week 5 authoring): w05 Bridge fixtures added for same-behavior-different-design (the shared screen, the request paths, the rule holders and the opening search of Design A's code lines), dependency-direction (the direct and interface versions, the storage change, an executable overlap snippet) and design-rationale (one decision record and its changed scope); w05/cohesion-and-responsibility gains the Utilities tasks, groups, the request pipeline with its stages and effects, an executable decide snippet, the new-format change and the over-splitting cost; w05/abstraction-cost the three structures with qualitative judgments under two conditions and the build/reuse/buy comparison; w05/dependency-example a second, independent change (the email provider); w05/interface-contract a third implementation (failures reported), the contract rows and verdicts, the failed-delivery screens and the result kinds with examples and the four separate claims; w05/refactoring-under-checks the Reminder's copy as an executable snippet and the callers after step 1; deck_shows values for every Week 5 scene. Authored comparisons and labeled example values only; no measurement. No existing value changed."
+  "extended": "16 September 2026: pseudocode_language, cancellation_matrix, retry_model and an anchors block with structured data for all 42 Anchor scenes and the numeric Bridges (Proposal 4). Keys are wNN/scene-id. week_text_shows lists strings the week TXT must contain; deck_shows lists strings the rendered scene must show; snippets are executable Python-like fixtures recomputed by tools/check_plan.py. 17 September 2026 (Phase 0 authoring): w01 Bridge fixtures added for system-boundary, quality-tradeoffs (simulated example values), evidence-not-confidence, responsibility-and-impact and course-evidence-map so that every Week 1 scene renders from this file. 17 September 2026 (plan revision): w02/ambiguous-request week_text_shows; booking_SLO expected_burn_rate and expected_days_to_exhaust_budget (recomputed by tools/check_plan.py); w10/change-through-gates static checks gate; w13/bounded-actions unreviewed tool connector capability; w13/provenance-and-understanding invented dependency. 17 September 2026 (Week 1 plan coverage): w01/quality-tradeoffs standard_vocabulary (sourced, S46) with week_text_shows and a deck_shows value; w01/feedback-lifecycle feedback_paths (authored structure: the path each discovery point's information takes and what it changes) with deck_shows. 22 September 2026: scoped curriculum refinements for Weeks 2-14; qualitative fixture additions; Week 1 data unchanged. 22 September 2026 public-course follow-up: thirteen qualitative transfer checks and a Week 14 professional-judgment comparison; canonical case, Week 1 data and numerical fixtures retained. 22 September 2026 foundation follow-up: qualitative elicitation and optional lookup/index comparisons; no new measured values. 22 September 2026 teaching review: qualitative acceptance and exploratory status-recovery comparison added; existing fixture values retained. 22 September 2026 (Week 2 authoring): w02 Bridge fixtures added for acceptance-and-validation, priority-and-risk and requirements-under-change (authored structures, fictional dates, no measurements); w02/ambiguous-request gains simulated example requests, stakeholder wording, the developer's rewrite, the open questions and the easy-for-whom routing; w02/elicitation-and-scope the boundary questions, the fact/assumption register and the visitor comparison; w02/observable-behavior the rule parts, the widget note and the two candidate snippets of the AI beat; w02/quality-with-conditions the two workloads (latency fixture datasets, illustrative), the boundary span, the S46 vocabulary rows and the keyboard path; w02/traceability-matrix an R-02 row and the blank-row note; deck_shows values for every Week 2 scene. 26 September 2026 (Week 3 authoring): w03 Bridge fixtures for journey-before-boxes, decision-table, interface-states, model-consistency and abstraction-and-zoom (authored structures and simulated example values, labeled); w03/identity-and-data bookings (B-003 simulated), rename lookup and identifier examples; w03/state-machine stored entry, repeated-cancel contrast and the invariant and progress examples; w03/sequence-not-state recovery actions; deck_shows for the three Week 3 Anchors. 29 September 2026 (Week 4 authoring): w04 Bridge fixtures added for methods-not-rituals, wip-and-time, estimates-with-assumptions, definition-of-done and retrospective-as-test (authored comparisons and labeled simulated example values; the WIP-limit schedule is computed from the flow baseline and recomputed by tools/check_plan.py); w04/queue-and-bottleneck gains the mapping of the eight work cards to W01-W08 and the transfer rule; w04/feedback-batches the three slices, the feedback points with the cards to reconsider, the coordination task; w04/risk-and-learning notes per option and alternative, both decisions, the lifecycle example and what stays uncertain; deck_shows values for all eight scenes. No existing value changed. 10 October 2026 (Week 5 authoring): w05 Bridge fixtures added for same-behavior-different-design (the shared screen, the request paths, the rule holders and the opening search of Design A's code lines), dependency-direction (the direct and interface versions, the storage change, an executable overlap snippet) and design-rationale (one decision record and its changed scope); w05/cohesion-and-responsibility gains the Utilities tasks, groups, the request pipeline with its stages and effects, an executable decide snippet, the new-format change and the over-splitting cost; w05/abstraction-cost the three structures with qualitative judgments under two conditions and the build/reuse/buy comparison; w05/dependency-example a second, independent change (the email provider); w05/interface-contract a third implementation (failures reported), the contract rows and verdicts, the failed-delivery screens and the result kinds with examples and the four separate claims; w05/refactoring-under-checks the Reminder's copy as an executable snippet and the callers after step 1; deck_shows values for every Week 5 scene. Authored comparisons and labeled example values only; no measurement. No existing value changed. 20 October 2026 (Week 6 authoring): w06 Bridge fixtures added for architecture-zoom (three C4-style views, the request's crossings and the separate notification worker), monolith-and-services (qualitative comparison rows for one small team and the growing-notification condition, no winner label) and architecture-decision (decision record DR-002 with quality scenarios and the several-campuses trigger); w06/request-journey gains the simulated request label REQ-17, the pending notification N-001 and the outage outcomes of both designs; w06/concurrent-booking the two requests, the read-committed transaction and unique-key conditions (S10) and executable snippets for check-then-write, a unique start key and one atomic decision per room; w06/retry-and-idempotency the plain retry, the operation record, the HTTP note (S09), an executable key handler, the four answers a requester can observe and the opening's lost response; w06/async-and-consistency the two timelines, the user-facing combinations, the duplicate attempt and three crash points; w06/contracts-and-evolution the concrete booking contract, the OpenAPI limits (S52), three consumers and four changes; deck_shows values for every Week 6 scene. Authored comparisons and labeled example values only; no measurement. No existing value changed."
  },
  "case": {
   "service": "Campus Rooms",
@@ -3693,7 +3693,53 @@
     "design_wait_for_email": "response waits and times out; user sees Unknown outcome",
     "design_record_separately": "Confirmed at step 5; pending notification visible and recoverable (R-04)"
    },
-   "note": "millisecond values are illustrative labels, not measurements"
+   "note": "millisecond values are illustrative labels, not measurements",
+   "reviewed_deck_values": "20 October 2026",
+   "request_id": "REQ-17",
+   "request_id_kind": "simulated label",
+   "user": "Ari (U-01)",
+   "request": {
+    "room": "C101",
+    "start": "10:00",
+    "end": "11:00"
+   },
+   "stored": "B-001 Confirmed",
+   "pending_notification": {
+    "id": "N-001",
+    "for": "B-001",
+    "to": "Ari (U-01)"
+   },
+   "user_waits_for_steps": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "after_answer_steps": [
+    6,
+    7
+   ],
+   "outage": {
+    "dependency": "Mail provider",
+    "wait_for_email": {
+     "blocking_steps": "submit, identity, policy, storage, then the email before the answer",
+     "storage": "B-001 Confirmed",
+     "user_sees": "Unknown outcome",
+     "consequence": "Ari cannot tell whether C101 is booked and may try again"
+    },
+    "record_separately": {
+     "user_sees": "Confirmed B-001",
+     "notification": "N-001 Pending; attempt 1 failed: mail provider unavailable; retry scheduled",
+     "support_sees": "N-001 waiting for delivery, with its failed attempt",
+     "extra_responsibility": "pending delivery must be observable and recoverable, not merely forgotten"
+    }
+   },
+   "deck_shows": [
+    "REQ-17",
+    "N-001",
+    "Confirmed"
+   ]
   },
   "w06/concurrent-booking": {
    "invariant": "R-01",
@@ -3737,7 +3783,189 @@
      "result": "conflict; retry or reject"
     }
    ],
-   "guardrail": "the strategy must enforce the interval invariant under interleavings; a transaction label alone does not"
+   "guardrail": "the strategy must enforce the interval invariant under interleavings; a transaction label alone does not",
+   "reviewed_deck_values": "20 October 2026",
+   "requests": {
+    "A": {
+     "user": "Ari",
+     "user_id": "U-01",
+     "room": "C101",
+     "start": "10:00",
+     "end": "11:00",
+     "interval": [
+      600,
+      660
+     ],
+     "booking": "B-001"
+    },
+    "B": {
+     "user": "Bo",
+     "user_id": "U-02",
+     "room": "C101",
+     "start": "10:30",
+     "end": "11:30",
+     "interval": [
+      630,
+      690
+     ],
+     "booking": "B-002"
+    }
+   },
+   "calendar": {
+    "room": "C101",
+    "from": "09:00",
+    "to": "12:00",
+    "overlap": "10:30 to 11:00"
+   },
+   "transaction": {
+    "label": "the same check and write inside one transaction at read committed, the default level of PostgreSQL",
+    "source": "S10",
+    "result": "two confirmations: each transaction reads before the other commits, and no conflicting row exists yet to lock",
+    "serializable": "serializable isolation detects this pattern: one transaction fails and must be retried"
+   },
+   "unique_key": {
+    "label": "a unique key on room and start time",
+    "keys": [
+     "C101 · 10:00",
+     "C101 · 10:30"
+    ],
+    "result": "two confirmations: the keys differ, the intervals still overlap"
+   },
+   "atomic": {
+    "label": "one atomic decision per room: the interval check and the write happen as one step",
+    "bo_sees": "Rejected: C101 is booked from 10:00 to 11:00 (R-01)",
+    "ways": [
+     "an exclusion constraint on room and time range, as in PostgreSQL",
+     "serializable transactions, with a retry when one fails",
+     "a lock on the room's calendar, not on a row that does not exist yet"
+    ]
+   },
+   "snippets": [
+    {
+     "name": "check, then write: both reads see the same earlier state",
+     "function": "check_then_write",
+     "code": "def overlaps(stored, start, end):\n    for pair in stored:\n        if pair[0] < end and start < pair[1]:\n            return True\n    return False\n\ndef check_then_write(stored, a, b):\n    a_free = not overlaps(stored, a[0], a[1])   # A reads\n    b_free = not overlaps(stored, b[0], b[1])   # B reads\n    confirmed = 0\n    if a_free:\n        confirmed = confirmed + 1               # A writes Confirmed\n    if b_free:\n        confirmed = confirmed + 1               # B writes Confirmed\n    return confirmed\n",
+     "cases": [
+      {
+       "args": [
+        [],
+        [
+         600,
+         660
+        ],
+        [
+         630,
+         690
+        ]
+       ],
+       "expected": 2
+      },
+      {
+       "args": [
+        [],
+        [
+         600,
+         660
+        ],
+        [
+         660,
+         720
+        ]
+       ],
+       "expected": 2
+      },
+      {
+       "args": [
+        [
+         [
+          600,
+          660
+         ]
+        ],
+        [
+         630,
+         690
+        ],
+        [
+         700,
+         730
+        ]
+       ],
+       "expected": 1
+      }
+     ]
+    },
+    {
+     "name": "a unique key on room and start",
+     "function": "unique_start",
+     "code": "def unique_start(stored_starts, a_start, b_start):\n    confirmed = 0\n    starts = stored_starts[:]\n    for start in [a_start, b_start]:\n        if start not in starts:\n            starts = starts + [start]\n            confirmed = confirmed + 1\n    return confirmed\n",
+     "cases": [
+      {
+       "args": [
+        [],
+        600,
+        630
+       ],
+       "expected": 2
+      },
+      {
+       "args": [
+        [],
+        600,
+        600
+       ],
+       "expected": 1
+      }
+     ]
+    },
+    {
+     "name": "one atomic decision per room",
+     "function": "atomic_decide_and_write",
+     "code": "def overlaps(stored, start, end):\n    for pair in stored:\n        if pair[0] < end and start < pair[1]:\n            return True\n    return False\n\ndef atomic_decide_and_write(stored, a, b):\n    calendar = stored[:]\n    confirmed = 0\n    for request in [a, b]:          # one at a time, per room\n        if not overlaps(calendar, request[0], request[1]):\n            calendar = calendar + [request]\n            confirmed = confirmed + 1\n    return confirmed\n",
+     "cases": [
+      {
+       "args": [
+        [],
+        [
+         600,
+         660
+        ],
+        [
+         630,
+         690
+        ]
+       ],
+       "expected": 1
+      },
+      {
+       "args": [
+        [],
+        [
+         600,
+         660
+        ],
+        [
+         660,
+         720
+        ]
+       ],
+       "expected": 2
+      }
+     ]
+    }
+   ],
+   "deck_shows": [
+    "R-01",
+    "B-002",
+    "stored: two confirmations"
+   ],
+   "display_code": {
+    "kind": "Python-like pseudocode shown in the deck; the executable snippets above recompute the outcomes",
+    "check_then_write": "def book(room, start, end):\n    taken = read_bookings(room)           # read\n    if overlaps(taken, start, end):       # decide\n        return \"Rejected\"\n    write_booking(room, start, end)       # write\n    return \"Confirmed\"\n",
+    "transaction": "def book(room, start, end):\n    with transaction(\"read committed\"):\n        taken = read_bookings(room)       # read\n        if overlaps(taken, start, end):   # decide\n            return \"Rejected\"\n        write_booking(room, start, end)   # write, then commit\n        return \"Confirmed\"\n",
+    "unique_key": "# bookings: unique (room, start)\ndef book(room, start, end):\n    taken = read_bookings(room)           # read\n    if overlaps(taken, start, end):       # decide\n        return \"Rejected\"\n    write_booking(room, start, end)       # refused only for a repeated start\n    return \"Confirmed\"\n",
+    "atomic": "def book(room, start, end):\n    with room_calendar(room):             # one decision at a time per room\n        taken = read_bookings(room)\n        if overlaps(taken, start, end):\n            return \"Rejected: booking conflict\"\n        write_booking(room, start, end)\n        return \"Confirmed\"\n"
+   }
   },
   "w06/retry-and-idempotency": {
    "operation_key": {
@@ -3771,7 +3999,164 @@
      "result": "explicit conflict: key reused with a different payload"
     }
    ],
-   "changed_condition": "same key, different payload"
+   "changed_condition": "same key, different payload",
+   "reviewed_deck_values": "20 October 2026",
+   "user": "Ari (U-01)",
+   "payload": "C101 10:00-11:00",
+   "changed_payload": "C101 10:30-11:30",
+   "plain_retry": {
+    "server_sees": "a new booking request for C101 from 10:00 to 11:00",
+    "result": "Rejected: overlaps B-001 (R-01)",
+    "user_sees": "Rejected: C101 is already booked",
+    "then": "Ari books C202 from 10:00 to 11:00 instead",
+    "duplicate": "two bookings for one meeting, and C101 held for nobody who needs it"
+   },
+   "operation_record": {
+    "key": "K1",
+    "requester": "U-01",
+    "payload": "C101 10:00-11:00",
+    "result": "B-001 Confirmed",
+    "stored_with": "stored in the same commit as B-001"
+   },
+   "http_note": {
+    "source": "S09",
+    "text": "HTTP defines GET, PUT and DELETE as idempotent methods and POST as not; a key such as K1 is an application rule that makes this POST safe to repeat"
+   },
+   "snippets": [
+    {
+     "name": "answer a request that carries an operation key",
+     "function": "handle",
+     "code": "def handle(seen, requester, key, payload):\n    # each entry: requester, key, payload, result\n    for entry in seen:\n        if entry[0] == requester and entry[1] == key:\n            if entry[2] == payload:\n                return entry[3]  # the original result\n            return \"conflict: key reused with a different payload\"\n    return \"new operation\"\n",
+     "cases": [
+      {
+       "args": [
+        [
+         [
+          "U-01",
+          "K1",
+          "C101 10:00-11:00",
+          "B-001 Confirmed"
+         ]
+        ],
+        "U-01",
+        "K1",
+        "C101 10:00-11:00"
+       ],
+       "expected": "B-001 Confirmed"
+      },
+      {
+       "args": [
+        [
+         [
+          "U-01",
+          "K1",
+          "C101 10:00-11:00",
+          "B-001 Confirmed"
+         ]
+        ],
+        "U-01",
+        "K1",
+        "C101 10:30-11:30"
+       ],
+       "expected": "conflict: key reused with a different payload"
+      },
+      {
+       "args": [
+        [
+         [
+          "U-01",
+          "K1",
+          "C101 10:00-11:00",
+          "B-001 Confirmed"
+         ]
+        ],
+        "U-02",
+        "K1",
+        "C101 10:00-11:00"
+       ],
+       "expected": "new operation"
+      },
+      {
+       "args": [
+        [],
+        "U-01",
+        "K1",
+        "C101 10:00-11:00"
+       ],
+       "expected": "new operation"
+      }
+     ]
+    }
+   ],
+   "answers_page": {
+    "kind": "authored comparison of what a requester can observe",
+    "answers": [
+     {
+      "id": "conflict",
+      "observed": "Rejected: booking conflict",
+      "from": "a response from Booking",
+      "write": "No booking stored: Booking decided, and the answer is no",
+      "known": true,
+      "next": "Choose another time; the same request gets the same answer"
+     },
+     {
+      "id": "unavailable",
+      "observed": "Service unavailable",
+      "from": "a response from Booking",
+      "write": "No booking stored: the contract sends this only before any decision",
+      "known": true,
+      "next": "Retry later with the same key"
+     },
+     {
+      "id": "server-error",
+      "observed": "Unexpected server error",
+      "from": "a response, but not a decision",
+      "write": "Unknown: the failure may have come after the write",
+      "known": false,
+      "next": "Treat it as an unknown outcome: ask or retry with the same key"
+     },
+     {
+      "id": "timeout",
+      "observed": "No answer before the timeout",
+      "from": "Ari's own clock, not Booking",
+      "write": "Unknown: the request may be lost, still running, or stored with its answer lost",
+      "known": false,
+      "next": "Ask or retry with the same key; never assume nothing happened"
+     }
+    ],
+    "terms": [
+     {
+      "term": "Timeout",
+      "means": "the waiting side stopped waiting; an observation at one boundary"
+     },
+     {
+      "term": "Failure",
+      "means": "a response that reports a problem; it says only what its contract promises"
+     },
+     {
+      "term": "Unknown outcome",
+      "means": "the requester cannot tell whether the write happened"
+     }
+    ]
+   },
+   "opening": {
+    "user": "Ari (U-01)",
+    "request": {
+     "room": "C101",
+     "start": "10:00",
+     "end": "11:00"
+    },
+    "screen": "No answer: the request timed out",
+    "inside": [
+     "the request reached Booking",
+     "B-001 stored as Confirmed",
+     "the response was lost on the way back"
+    ]
+   },
+   "deck_shows": [
+    "B-001",
+    "C202"
+   ]
   },
   "w07/commit-graph": {
    "commits": [
@@ -5997,7 +6382,183 @@
     "retry_rule_ref": "w06/retry-and-idempotency",
     "standard_source": "S52",
     "limit": "Schema describes shape; behavioral and security claims need separate evidence"
-   }
+   },
+   "reviewed_deck_values": "20 October 2026",
+   "contract": {
+    "operation": "POST /bookings",
+    "request": [
+     {
+      "field": "room_id",
+      "example": "C101"
+     },
+     {
+      "field": "start",
+      "example": "10:00"
+     },
+     {
+      "field": "end",
+      "example": "11:00"
+     },
+     {
+      "field": "operation_key",
+      "example": "K1"
+     }
+    ],
+    "identity": "the signed-in requester, from Identity; never a field the browser fills in",
+    "response": [
+     {
+      "field": "booking_id",
+      "example": "B-001"
+     },
+     {
+      "field": "outcome",
+      "example": "Confirmed"
+     }
+    ],
+    "errors": [
+     {
+      "meaning": "invalid request",
+      "when": "a field is missing or the times are malformed"
+     },
+     {
+      "meaning": "not permitted",
+      "when": "the requester may not do this"
+     },
+     {
+      "meaning": "booking conflict",
+      "when": "R-01 or R-02 says no"
+     },
+     {
+      "meaning": "service unavailable",
+      "when": "sent only before any decision"
+     }
+    ],
+    "retry_rule": "Repeat the same operation_key with the same request to get the original result; the same key with a different request is a conflict."
+   },
+   "openapi": {
+    "source": "S52",
+    "describes": "the operation, its fields, their types and the error responses",
+    "does_not_establish": [
+     "who owns the booking",
+     "that bookings never overlap",
+     "that a retry is safe"
+    ]
+   },
+   "consumers": [
+    {
+     "id": "web",
+     "name": "Booking web app",
+     "reads": "booking_id and outcome",
+     "style": "ignores fields it does not know",
+     "release": "released with the producer"
+    },
+    {
+     "id": "display",
+     "name": "Room door display",
+     "reads": "outcome",
+     "style": "ignores fields it does not know; shows a room as booked when outcome is \"Confirmed\"",
+     "release": "updated separately"
+    },
+    {
+     "id": "export",
+     "name": "Nightly export",
+     "reads": "every field",
+     "style": "rejects any field or value it does not know",
+     "release": "updated separately"
+    }
+   ],
+   "changes": [
+    {
+     "id": "add-field",
+     "label": "Add a response field: room_name",
+     "field": "room_name",
+     "example": "Room C101",
+     "results": {
+      "web": [
+       "works",
+       "shows the room name"
+      ],
+      "display": [
+       "works",
+       "ignores room_name"
+      ],
+      "export": [
+       "fails",
+       "rejects the unknown field room_name"
+      ]
+     }
+    },
+    {
+     "id": "new-meaning",
+     "label": "Same field, new meaning: outcome \"Confirmed\" is sent as soon as a request arrives, before R-01 is checked",
+     "results": {
+      "web": [
+       "silently wrong",
+       "tells Bo the overlapping request is booked"
+      ],
+      "display": [
+       "silently wrong",
+       "shows a booking that R-01 later rejects"
+      ],
+      "export": [
+       "silently wrong",
+       "exports rejected requests as bookings"
+      ]
+     }
+    },
+    {
+     "id": "new-status-abrupt",
+     "label": "outcome \"Confirmed\" becomes \"CONFIRMED\" in one release",
+     "from": "Confirmed",
+     "to": "CONFIRMED",
+     "results": {
+      "web": [
+       "works",
+       "released together with the producer"
+      ],
+      "display": [
+       "silently wrong",
+       "shows C101 as free"
+      ],
+      "export": [
+       "fails",
+       "rejects the unknown value"
+      ]
+     }
+    },
+    {
+     "id": "new-status-transition",
+     "label": "add status beside outcome; remove outcome only when no consumer reads it",
+     "new_field": "status",
+     "value": "CONFIRMED",
+     "steps": [
+      "The export learns the new field and value first",
+      "The producer sends status beside outcome",
+      "Each consumer moves to status in its own release",
+      "outcome is removed once no consumer reads it"
+     ],
+     "results": {
+      "web": [
+       "works",
+       "moves to status"
+      ],
+      "display": [
+       "works",
+       "keeps reading outcome until it moves"
+      ],
+      "export": [
+       "works",
+       "accepts status before it appears"
+      ]
+     }
+    }
+   ],
+   "deck_shows": [
+    "room_id",
+    "operation_key",
+    "OpenAPI",
+    "Room door display"
+   ]
   },
   "w06/async-and-consistency": {
    "curriculum_refinement": {
@@ -6011,7 +6572,92 @@
     "crash_after_commit": "pending work remains discoverable",
     "crash_after_send_before_ack": "a delivery attempt can repeat",
     "guarantee_limit": "No exactly-once email guarantee"
-   }
+   },
+   "reviewed_deck_values": "20 October 2026",
+   "booking": {
+    "id": "B-001",
+    "timeline": [
+     "Submitted",
+     "Confirmed"
+    ]
+   },
+   "notification": {
+    "id": "N-001",
+    "for": "B-001",
+    "to": "Ari (U-01)",
+    "timeline": [
+     "Pending",
+     "Attempt 1 failed: mail provider unavailable",
+     "Attempt 2 delivered"
+    ]
+   },
+   "combinations": [
+    {
+     "booking": "Confirmed",
+     "notification": "Pending",
+     "user": "Your booking is confirmed; the email is on its way",
+     "support": "N-001 waiting for delivery"
+    },
+    {
+     "booking": "Confirmed",
+     "notification": "Failed delivery",
+     "user": "Your booking is confirmed; the email is late",
+     "support": "N-001 failed once, retry scheduled"
+    },
+    {
+     "booking": "Confirmed",
+     "notification": "Delivered",
+     "user": "Confirmed, and the email arrived",
+     "support": "N-001 delivered"
+    },
+    {
+     "booking": "Rejected",
+     "notification": "none",
+     "user": "No booking, so no confirmation email",
+     "support": "no notification record"
+    }
+   ],
+   "duplicate_attempt": {
+    "tolerant": {
+     "name": "Handler that checks first",
+     "does": "finds N-001 already delivered and does nothing",
+     "effect": "one email"
+    },
+    "naive": {
+     "name": "Handler that always sends",
+     "does": "sends N-001 again",
+     "effect": "a second email to Ari and two sends in the log"
+    },
+    "booking": "B-001 stays Confirmed in both"
+   },
+   "crash_points": [
+    {
+     "id": "separate-writes",
+     "design": "two separate writes",
+     "where": "after B-001 is committed, before the notification is written",
+     "survives": "B-001 Confirmed and no notification record",
+     "meaning": "the email is never attempted, and nothing shows that it is missing"
+    },
+    {
+     "id": "after-commit",
+     "design": "transactional outbox",
+     "where": "after the commit of B-001 and N-001, before delivery",
+     "survives": "B-001 Confirmed and N-001 Pending",
+     "meaning": "after the restart the worker finds N-001 and delivers it"
+    },
+    {
+     "id": "after-send",
+     "design": "transactional outbox",
+     "where": "after sending, before N-001 is marked delivered",
+     "survives": "B-001 Confirmed and N-001 still Pending",
+     "meaning": "the worker sends N-001 again: a repeated delivery attempt"
+    }
+   ],
+   "deck_shows": [
+    "N-001",
+    "Failed delivery",
+    "Your booking is confirmed; the email is late"
+   ]
   },
   "w09/security-through-change": {
    "curriculum_refinement": {
@@ -6747,6 +7393,367 @@
    "deck_shows": [
     "R-02",
     "Revisit when"
+   ]
+  },
+  "w06/architecture-zoom": {
+   "kind": "authored example: three C4-style views of Campus Rooms",
+   "reviewed": "20 October 2026",
+   "source": "S08",
+   "question_box": "Booking",
+   "levels": [
+    {
+     "id": "context",
+     "level": 1,
+     "name": "System context",
+     "boundary": "the whole system, seen from outside: who uses it and what it depends on",
+     "booking_means": "the whole booking system people use",
+     "elements": [
+      {
+       "name": "Ari",
+       "id": "U-01",
+       "kind": "person",
+       "role": "books rooms"
+      },
+      {
+       "name": "Bo",
+       "id": "U-02",
+       "kind": "person",
+       "role": "books rooms"
+      },
+      {
+       "name": "Campus Rooms",
+       "kind": "system",
+       "role": "the booking system"
+      },
+      {
+       "name": "Identity",
+       "kind": "external",
+       "role": "signs people in and vouches for who they are"
+      },
+      {
+       "name": "Mail provider",
+       "kind": "external",
+       "role": "delivers email"
+      }
+     ]
+    },
+    {
+     "id": "containers",
+     "level": 2,
+     "name": "Containers",
+     "boundary": "separately running applications and data stores",
+     "booking_means": "one running application you deploy, start and restart",
+     "elements": [
+      {
+       "name": "Browser app",
+       "kind": "container",
+       "tech": "runs in the browser",
+       "role": "the booking screens"
+      },
+      {
+       "name": "Campus Rooms application",
+       "kind": "container",
+       "tech": "one server process",
+       "role": "decides and records bookings"
+      },
+      {
+       "name": "Booking database",
+       "kind": "store",
+       "tech": "database",
+       "role": "the authoritative record of bookings"
+      }
+     ],
+     "note": "In the C4 model a container is an application or a data store, not necessarily a Docker container."
+    },
+    {
+     "id": "components",
+     "level": 3,
+     "name": "Components",
+     "boundary": "modules inside one application",
+     "booking_means": "one module with one responsibility, inside one process",
+     "elements": [
+      {
+       "name": "Booking",
+       "role": "receives a booking request and answers it"
+      },
+      {
+       "name": "Policy",
+       "role": "owns the booking rules"
+      },
+      {
+       "name": "Room Catalog",
+       "role": "knows the rooms"
+      },
+      {
+       "name": "Notification",
+       "role": "sends confirmations"
+      },
+      {
+       "name": "Storage",
+       "role": "reads and writes the booking database"
+      }
+     ]
+    }
+   ],
+   "request_trace": {
+    "request": "Ari books C101 from 10:00 to 11:00",
+    "hops": [
+     {
+      "n": 1,
+      "from": "Browser app",
+      "to": "Booking",
+      "crossing": "network",
+      "what": "the booking request"
+     },
+     {
+      "n": 2,
+      "from": "Booking",
+      "to": "Identity",
+      "crossing": "network",
+      "what": "check who is asking"
+     },
+     {
+      "n": 3,
+      "from": "Booking",
+      "to": "Policy",
+      "crossing": "function call",
+      "what": "check the rules"
+     },
+     {
+      "n": 4,
+      "from": "Booking",
+      "to": "Storage",
+      "crossing": "function call",
+      "what": "decide and store"
+     },
+     {
+      "n": 5,
+      "from": "Storage",
+      "to": "Booking database",
+      "crossing": "network",
+      "what": "the database write"
+     },
+     {
+      "n": 6,
+      "from": "Booking",
+      "to": "Notification",
+      "crossing": "function call",
+      "what": "record the email"
+     },
+     {
+      "n": 7,
+      "from": "Notification",
+      "to": "Mail provider",
+      "crossing": "network",
+      "what": "deliver, after the answer"
+     }
+    ],
+    "summary": "three function calls inside one process; four network connections: the browser, Identity, the database and the mail provider"
+   },
+   "separate_worker": {
+    "change": "Notification moves into a separate worker process; Booking, Policy, Room Catalog and Storage stay in one application",
+    "new_container": {
+     "name": "Notification worker",
+     "tech": "a second server process",
+     "role": "delivers pending notifications"
+    },
+    "handoff": "Booking records a pending notification in the booking database; the worker reads it and delivers it",
+    "changed_operationally": [
+     "Two server processes to deploy, start and watch, instead of one",
+     "The worker restarts and scales without touching bookings",
+     "A handoff through the database replaces a function call",
+     "The worker can be down while bookings still confirm, so pending work must stay visible"
+    ],
+    "same_logically": [
+     "The same five responsibilities",
+     "The same rules, R-01 to R-04",
+     "Booking still decides; Policy still owns the rules",
+     "Ari still gets the same answer: Confirmed, B-001"
+    ]
+   },
+   "deck_shows": [
+    "System context",
+    "Containers",
+    "Components",
+    "inside one process"
+   ]
+  },
+  "w06/monolith-and-services": {
+   "kind": "authored comparison: qualitative judgments for one small team, no measurements and no winner label",
+   "reviewed": "20 October 2026",
+   "team": "one small team builds and runs Campus Rooms",
+   "alternatives": {
+    "modular": {
+     "name": "Modular application",
+     "deployables": 1,
+     "parts": [
+      "Booking",
+      "Policy",
+      "Room Catalog",
+      "Notification",
+      "Storage"
+     ],
+     "data": "one booking database"
+    },
+    "services": {
+     "name": "Every component a service",
+     "deployables": 4,
+     "parts": [
+      "Booking service",
+      "Policy service",
+      "Room Catalog service",
+      "Notification service"
+     ],
+     "data": "Booking and Room Catalog each own their data"
+    },
+    "targeted": {
+     "name": "Modular application and a Notification worker",
+     "deployables": 2,
+     "parts": [
+      "Booking",
+      "Policy",
+      "Room Catalog",
+      "Storage"
+     ],
+     "worker": "Notification worker",
+     "data": "one booking database, with pending notifications beside the bookings"
+    }
+   },
+   "rows": [
+    {
+     "id": "release",
+     "aspect": "Independent release",
+     "modular": "every change ships as one release of the whole application",
+     "services": "a service can ship on its own, while its contracts stay compatible"
+    },
+    {
+     "id": "scaling",
+     "aspect": "Independent scaling",
+     "modular": "the whole application scales as one unit",
+     "services": "one busy service can scale on its own"
+    },
+    {
+     "id": "calls",
+     "aspect": "Calls between parts",
+     "modular": "function calls, which fail together with the process",
+     "services": "network calls, each of which can be slow, fail or end with an unknown outcome"
+    },
+    {
+     "id": "contracts",
+     "aspect": "Contract changes",
+     "modular": "a changed function and its callers change in one commit",
+     "services": "a changed API needs a transition plan across releases"
+    },
+    {
+     "id": "data",
+     "aspect": "Data ownership",
+     "modular": "one database holds the one no-overlap decision",
+     "services": "each service owns its data; a rule that spans services needs coordination"
+    },
+    {
+     "id": "operations",
+     "aspect": "Operational work",
+     "modular": "one deployment to build, run and watch",
+     "services": "four deployments, their logs and alerts, and the network between them"
+    }
+   ],
+   "steady_judgment": "For one small team under steady load, the extra boundaries answer no need that has appeared.",
+   "changed_condition": {
+    "change": "Notification volume grows independently of booking writes",
+    "rows": [
+     {
+      "id": "need",
+      "aspect": "The growing workload",
+      "targeted": "the Notification worker scales and fails on its own",
+      "services": "the Notification service scales and fails on its own"
+     },
+     {
+      "id": "added",
+      "aspect": "Boundaries added",
+      "targeted": "one handoff, through pending notifications in the database",
+      "services": "network calls between all four services, and split data"
+     },
+     {
+      "id": "booking",
+      "aspect": "The booking path",
+      "targeted": "unchanged: one process decides and stores",
+      "services": "now crosses the network to Policy and Room Catalog"
+     }
+    ],
+    "judgment": "Separating the one workload that grew targets the need; splitting every component adds boundaries the need did not ask for."
+   },
+   "deck_shows": [
+    "Independent release",
+    "Data ownership",
+    "Operational work"
+   ]
+  },
+  "w06/architecture-decision": {
+   "kind": "authored example: one architecture decision record for Campus Rooms",
+   "reviewed": "20 October 2026",
+   "record": {
+    "id": "DR-002",
+    "title": "One modular application, an authoritative booking store, recoverable notification work",
+    "status": "Accepted",
+    "requirements": [
+     "R-01",
+     "R-04"
+    ],
+    "context": "One campus and one small team. Bookings must never overlap, even when requests race (R-01); a failed email must never undo a booking (R-04); a lost response must not create a second booking.",
+    "decision": "One modular application decides every booking in one database with an atomic interval rule. Each booking commits a pending notification beside it, and a worker delivers it. Requests carry operation keys.",
+    "scenarios": [
+     {
+      "id": "QS-1",
+      "situation": "Two people book overlapping times in C101 at once",
+      "expected": "exactly one is Confirmed; the other gets a conflict",
+      "protected_by": "one atomic interval decision in the booking database"
+     },
+     {
+      "id": "QS-2",
+      "situation": "The mail provider is down for an hour",
+      "expected": "bookings keep confirming; emails stay pending, then go out",
+      "protected_by": "notifications committed with the booking and delivered by a worker"
+     },
+     {
+      "id": "QS-3",
+      "situation": "A response is lost and the browser retries",
+      "expected": "the original result comes back; no second booking",
+      "protected_by": "operation keys scoped to the requester and the action"
+     }
+    ],
+    "tradeoffs": [
+     "One deployable is simple to release and watch, but scales as one unit",
+     "The database is one shared dependency: while it is down, no booking is decided",
+     "Notification can move into its own worker later without changing the booking logic"
+    ],
+    "ownership": "One team owns the application and the booking data; Identity and the mail provider are outside dependencies with their own contracts.",
+    "failures": [
+     "Mail provider down: confirm, keep N-001 pending, retry",
+     "Database down: answer service unavailable and decide nothing",
+     "Response lost: the browser retries with the same key"
+    ],
+    "revisit_when": [
+     "Notification volume grows independently of booking writes",
+     "Several independently operated campuses",
+     "Another team needs to release a part on its own schedule"
+    ],
+    "baseline_note": "A teaching baseline for this case, not a prescription for every system"
+   },
+   "changed_scope": {
+    "change": "several independently operated campuses, each with its own rooms, staff and operations",
+    "trigger": "Several independently operated campuses",
+    "reconsider": [
+     "Who owns each campus's booking data",
+     "Where the authoritative no-overlap decision lives for each room",
+     "What a booking means while two campuses cannot reach each other",
+     "Which contracts each campus offers, and who may change them"
+    ],
+    "not_solved": "Consistency across distant sites is not solved in this lecture; the record names the questions and keeps the decision open."
+   },
+   "deck_shows": [
+    "DR-002",
+    "Revisit when",
+    "QS-1"
    ]
   }
  },
