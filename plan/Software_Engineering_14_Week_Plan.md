@@ -1544,7 +1544,7 @@ Move from the structure of the software to the structure of shared work. The cen
 
 Keep the interface neutral: a commit graph, readable diffs, review comments, and a small evidence panel. Explain version control, code review, configuration management, and documentation as complementary forms of coordination. Students do not need accounts on a hosting platform. [S01, S02, S06, S07]
 
-In practice (dated examples, 2026): Git records the history; GitHub and GitLab host the pull or merge requests where review happens; lockfiles such as package-lock.json or uv.lock record the resolved dependency set; linters and formatters such as Ruff, ESLint and Prettier run before a human reviews the change.
+In practice (dated examples, 2026): Git records the history; GitHub and GitLab host the pull or merge requests where review happens; lockfiles such as package-lock.json or uv.lock record the resolved dependency set; linters and formatters such as Ruff, ESLint and Prettier run before a human reviews the change. [S62, S63]
 
 ## 2. OBSERVABLE LEARNING OUTCOMES
 
@@ -1692,7 +1692,7 @@ Bridge scene | ID: history-as-explanation
 
 **VISUAL IDEA:** A short change description and decision record are linked to the commit and requirement.
 
-**SITUATION, PREDICTION, AND MECHANISM:** Ask what a maintainer learns from “fix stuff.” Reveal an alternative explaining the observed problem, intended behavior, and a constraint that ruled out an obvious solution. Separate durable rationale from a transcript of every discussion. Then show history as a debugging tool: when the boundary error appears and nobody knows which change introduced it, bisection checks the middle commit of the suspect range and halves the range until one change remains.
+**SITUATION, PREDICTION, AND MECHANISM:** Ask what a maintainer learns from “fix stuff.” Reveal an alternative explaining the observed problem, intended behavior, and a constraint that ruled out an obvious solution. Separate durable rationale from a transcript of every discussion. Then show history as a debugging tool: when the boundary error appears and nobody knows which change introduced it, bisection checks the middle commit of the suspect range and halves the range until one change remains. [S61]
 
 **CHANGE ONE CONDITION AND COMPARE:** Remove the original author from the scenario. Compare how much each record helps a future reviewer understand whether the constraint still applies.
 
@@ -1772,7 +1772,7 @@ Carry the review packet and its unanswered question into Week 8: what makes a ve
 
 ## 11. SOURCES AND CURRENCY NOTES
 
-Primary references: S01, S02, S06, S07. Full titles, URLs, dated status, and access limitations appear in the source register. Curriculum review: 22 September 2026. See each source entry for its actual retrieval date; unchanged references retain earlier dates. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S06, S07, S61, S62, S63. Full titles, URLs, dated status, and access limitations appear in the source register. Curriculum review: 22 September 2026. Week 7 source re-verification: 28 October 2026; Git bisection and the two lockfile references were added to support those explanations. S01 returned HTTP 403; its last recorded edition is retained. See each source entry for its actual retrieval date; unchanged references retain earlier dates. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
 
 # WEEK 08 | TESTING BEHAVIOR AND BUILDING CREDIBLE EVIDENCE
 
@@ -3604,6 +3604,8 @@ Worked examples and questions with their answers follow the public lecture-only 
 
 ### REFRESH POLICY FOR FUTURE RELEASES
 
+Week 7 authoring, 28 October 2026: rechecked S01, S02, S06 and S07; S01 returned HTTP 403 and keeps its last recorded status. Added primary references S61 (Git bisection), S62 (npm package-lock.json) and S63 (uv lockfile); these additions support Week 7. The In practice examples remain factual, dated examples and require no accounts or installations. No curriculum mechanism changed.
+
 Before a new run, check the official source status for SWEBOK, curriculum guidance, OWASP (including the agentic list), NIST, workflow guides, accessibility guidance, ISO/IEC 25010, the delivery-measure definitions, and the application dates of the laws named in Week 9. Record edition, publication or update date, retrieval date, and final-versus-draft status. Review each week's "In practice" tool names at the same time and replace names that have fallen out of common use. Preserve the conceptual lesson unless the evidence gives a reason to change it. The DORA publication index is the entry point for newer delivery and AI-assistance research; the re-verification task template is ../tasks/50_source_reverification.md. Recheck volatile references again immediately before authoring their lecture; do not silently update the dated research claims. [S36]
 
 During visual authoring, verify supported stable versions of the selected local libraries and a supported Node.js LTS release if Node is used. Pin the tested versions for the course release instead of silently following floating “latest” dependencies. Recheck the affected scenes and PDF output after a dependency update. Sources are dated evidence, not a promise that their live pages can never change. [S26–S32, S38, S39]
@@ -3742,7 +3744,7 @@ Do not let visual invention change a rule, invent a measurement, hide a failure,
 
 # PRIMARY SOURCE REGISTER
 
-Register updated: 22 September 2026; retrieval dates are recorded per entry
+Register updated: 28 October 2026; retrieval dates are recorded per entry
 
 The original references were checked on 16-17 September 2026. Selected status checks and new references were reviewed on 22 September 2026 as recorded below; unchanged entries retain their earlier retrieval dates. Living documentation can change. Source keys identify supporting concepts and technical guardrails, not copied lesson text. Most sources were read as HTML; access limitations are recorded explicitly. No full external reference PDF audit is claimed.
 
@@ -3754,6 +3756,8 @@ https://www.computer.org/education/bodies-of-knowledge/software-engineering
 
 V4.0a identified in official indexed material; version update indicated 25 September 2025. Rechecked 22 September 2026: the official /v4 indexed page still identifies V4.0a as newest; direct retrieval failed. Used for high-level curriculum scope; no claim of a full guide audit. The official indexed topic outline below was also checked on 22 September 2026 for the knowledge-area coverage map; direct retrieval returned HTTP 403. The depth judgments and week mapping are the course author's.
 
+Week 7 check, 28 October 2026: the main landing page again returned HTTP 403 Forbidden. Retain the last recorded edition; no new edition claim is made from this retrieval.
+
 https://www.computer.org/education/bodies-of-knowledge/software-engineering/topics
 
 Use: curriculum.
@@ -3763,6 +3767,8 @@ Use: curriculum.
 https://csed.acm.org/final-report/
 
 Final curriculum reference, published in 2024. Final-report landing page rechecked 22 September 2026; the official indexed HTML report supports teamwork, construction, requirements and professional-context coverage. Full HTML retrieval exceeded the browser text size limit. Used for broad scope and competencies; not a formal course accreditation mapping or a full-report audit. Do not substitute the older gamma-draft knowledge-area download for the final report.
+
+Week 7 check, 28 October 2026: the official final-report landing page was accessible and still identifies CS2023 as the final report. The linked full report was not re-audited.
 
 Use: curriculum.
 
@@ -3796,6 +3802,8 @@ https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
 
 Officially hosted book chapter. Supports ancestry, branching, and merge concepts; no hosting-platform dependence.
 
+Rechecked 28 October 2026: the official Pro Git, second-edition chapter remains accessible and explains fast-forward integration, divergent histories, three-way merges and conflict resolution. No lesson mechanism changed.
+
 Use: curriculum.
 
 ### S07 | GOOGLE ENGINEERING PRACTICES — WHAT TO LOOK FOR IN A CODE REVIEW
@@ -3803,6 +3811,8 @@ Use: curriculum.
 https://google.github.io/eng-practices/review/reviewer/looking-for.html
 
 Primary engineering guidance. Used for focused review questions, not a universal mandate for one organization’s workflow.
+
+Rechecked 28 October 2026: the primary page remains accessible. Its design, functionality, tests, complexity and documentation guidance supports the focused review example. The course's people, comments and policy changes are original fictional data.
 
 Use: curriculum.
 
@@ -4229,6 +4239,30 @@ Use: curriculum.
 https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf
 
 Version 4.0.1, dated 15 September 2024. Section 4.4.2, page 44, retrieved 22 September 2026. Used for the relationship between exploration, learning and test design in Week 8. The status-recovery comparison is original course-authored material; no certification syllabus, exam preparation or training durations are adopted. Only the relevant section was reviewed, not the full external PDF.
+
+Use: curriculum.
+
+### S61 | GIT - BISECT DOCUMENTATION
+
+https://git-scm.com/docs/git-bisect
+
+Official living documentation retrieved 28 October 2026. Supports narrowing a history between known good and bad commits by testing intermediate revisions. The linear h1-h8 example, persistent-failure assumption and boundary predicate are original fictional teaching data; no Git command catalogue is required.
+
+Use: curriculum.
+
+### S62 | NPM - PACKAGE-LOCK.JSON
+
+https://docs.npmjs.com/cli/v11/configuring-npm/package-lock-json/
+
+Official npm CLI v11 documentation retrieved 28 October 2026. Supports the distinction between allowed dependency constraints and the resolved dependency tree recorded by package-lock.json. The lesson's teaching-range versions are invented; they describe no actual npm package or release.
+
+Use: curriculum.
+
+### S63 | ASTRAL UV - PROJECT STRUCTURE AND THE LOCKFILE
+
+https://docs.astral.sh/uv/concepts/projects/layout/#the-lockfile
+
+Official living documentation retrieved 28 October 2026. Supports uv.lock as a record of resolved dependency selections used to reproduce an environment. It is a dated tool example, not a requirement to use Python or uv.
 
 Use: curriculum.
 

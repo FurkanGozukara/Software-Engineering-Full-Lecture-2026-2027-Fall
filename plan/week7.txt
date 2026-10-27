@@ -13,7 +13,7 @@ Move from the structure of the software to the structure of shared work. The cen
 
 Keep the interface neutral: a commit graph, readable diffs, review comments, and a small evidence panel. Explain version control, code review, configuration management, and documentation as complementary forms of coordination. Students do not need accounts on a hosting platform. [S01, S02, S06, S07]
 
-In practice (dated examples, 2026): Git records the history; GitHub and GitLab host the pull or merge requests where review happens; lockfiles such as package-lock.json or uv.lock record the resolved dependency set; linters and formatters such as Ruff, ESLint and Prettier run before a human reviews the change.
+In practice (dated examples, 2026): Git records the history; GitHub and GitLab host the pull or merge requests where review happens; lockfiles such as package-lock.json or uv.lock record the resolved dependency set; linters and formatters such as Ruff, ESLint and Prettier run before a human reviews the change. [S62, S63]
 
 2. OBSERVABLE LEARNING OUTCOMES
 -------------------------------
@@ -172,7 +172,7 @@ Bridge scene | ID: history-as-explanation
 
 VISUAL IDEA: A short change description and decision record are linked to the commit and requirement.
 
-SITUATION, PREDICTION, AND MECHANISM: Ask what a maintainer learns from “fix stuff.” Reveal an alternative explaining the observed problem, intended behavior, and a constraint that ruled out an obvious solution. Separate durable rationale from a transcript of every discussion. Then show history as a debugging tool: when the boundary error appears and nobody knows which change introduced it, bisection checks the middle commit of the suspect range and halves the range until one change remains.
+SITUATION, PREDICTION, AND MECHANISM: Ask what a maintainer learns from “fix stuff.” Reveal an alternative explaining the observed problem, intended behavior, and a constraint that ruled out an obvious solution. Separate durable rationale from a transcript of every discussion. Then show history as a debugging tool: when the boundary error appears and nobody knows which change introduced it, bisection checks the middle commit of the suspect range and halves the range until one change remains. [S61]
 
 CHANGE ONE CONDITION AND COMPARE: Remove the original author from the scenario. Compare how much each record helps a future reviewer understand whether the constraint still applies.
 
@@ -261,4 +261,4 @@ Carry the review packet and its unanswered question into Week 8: what makes a ve
 11. SOURCES AND CURRENCY NOTES
 ------------------------------
 
-Primary references: S01, S02, S06, S07. Full titles, URLs, dated status, and access limitations appear in the source register. Curriculum review: 22 September 2026. See each source entry for its actual retrieval date; unchanged references retain earlier dates. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S06, S07, S61, S62, S63. Full titles, URLs, dated status, and access limitations appear in the source register. Curriculum review: 22 September 2026. Week 7 source re-verification: 28 October 2026; Git bisection and the two lockfile references were added to support those explanations. S01 returned HTTP 403; its last recorded edition is retained. See each source entry for its actual retrieval date; unchanged references retain earlier dates. The examples and visual teaching sequences are original proposals; no live service behavior is implied.

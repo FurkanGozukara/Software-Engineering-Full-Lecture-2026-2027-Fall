@@ -4220,7 +4220,93 @@
      "shared remote reference"
     ],
     "claim": "Committing and sharing are separate actions"
-   }
+   },
+   "kind": "Simulated, original course-authored example; not measured data",
+   "reviewed": "28 October 2026",
+   "snapshots": {
+    "c1": {
+     "max_minutes": 120,
+     "ownership": false,
+     "message_max": null
+    },
+    "c2": {
+     "max_minutes": 120,
+     "ownership": true,
+     "message_max": null
+    },
+    "c3": {
+     "max_minutes": 90,
+     "ownership": true,
+     "message_max": null
+    },
+    "c4": {
+     "max_minutes": 120,
+     "ownership": true,
+     "message_max": 120
+    },
+    "c5": {
+     "max_minutes": 90,
+     "ownership": true,
+     "message_max": 120
+    },
+    "c6": {
+     "max_minutes": 120,
+     "ownership": true,
+     "message_max": 120
+    }
+   },
+   "location_demo": {
+    "file": "policy.py",
+    "unsaved": "An unsaved editor buffer is outside this strip.",
+    "before": "MAX_MINUTES = 120",
+    "after": "MAX_MINUTES = 90",
+    "local_before": "c2",
+    "local_after": "c3",
+    "shared_ref": "origin/policy-90",
+    "branch": "policy-90",
+    "locations": [
+     {
+      "id": "working",
+      "name": "Working tree",
+      "action": "Save the edit",
+      "detail": "Files saved on your machine; further edits can still change them."
+     },
+     {
+      "id": "selected",
+      "name": "Selected changes",
+      "action": "Select this change",
+      "detail": "The next snapshot is prepared here. In Git this is the staging area."
+     },
+     {
+      "id": "local",
+      "name": "Local commit",
+      "action": "Record locally",
+      "detail": "A commit records the prepared snapshot and its parent. Your branch reference moves."
+     },
+     {
+      "id": "shared",
+      "name": "Shared history",
+      "action": "Share the commit",
+      "detail": "Pushing sends commits to a remote and requests its branch update. Your remote-tracking reference records the observed position."
+     }
+    ]
+   },
+   "legend": [
+    "Circle: a recorded commit",
+    "Arrow: parent to child",
+    "Pill: a movable branch name",
+    "Left to right: teaching order; read the parent links"
+   ],
+   "deck_shows": [
+    "c1",
+    "c2",
+    "c3",
+    "c4",
+    "c5",
+    "c6",
+    "policy-90",
+    "limit-message"
+   ]
   },
   "w07/conflict-and-intent": {
    "ancestor": "MAX_MINUTES = 120\nif minutes > MAX_MINUTES:\n    reject()\n",
@@ -4237,7 +4323,251 @@
      "91 rejected",
      "121 rejected"
     ]
-   }
+   },
+   "kind": "Simulated, original course-authored example; not measured data",
+   "reviewed": "28 October 2026",
+   "min_minutes": 30,
+   "variant_max": 90,
+   "original_max": 120,
+   "reason": "A temporary shorter-booking trial; restore the approved 120-minute baseline afterward.",
+   "display": {
+    "ancestor": "MAX_MINUTES = 120\ndef duration_ok(minutes):\n    if minutes < 30:\n        return False\n    if minutes > MAX_MINUTES:\n        return False\n    return True",
+    "policy": "MAX_MINUTES = 90\ndef duration_ok(minutes):\n    if minutes < 30:\n        return False\n    if not minutes <= MAX_MINUTES:\n        return False\n    return True",
+    "structure": "MAX_MINUTES = 120\ndef duration_ok(minutes):\n    return (\n        minutes >= 30\n        and minutes <= MAX_MINUTES\n    )",
+    "bad": "MAX_MINUTES = 90\ndef duration_ok(minutes):\n    return 30 <= minutes",
+    "good": "MAX_MINUTES = 90\ndef duration_ok(minutes):\n    return 30 <= minutes <= MAX_MINUTES"
+   },
+   "check_values": [
+    29,
+    30,
+    90,
+    91,
+    120,
+    121
+   ],
+   "snippets": [
+    {
+     "name": "ancestor duration predicate",
+     "function": "duration_ok",
+     "code": "MAX_MINUTES = 120\ndef duration_ok(minutes):\n    if minutes < 30:\n        return False\n    if minutes > MAX_MINUTES:\n        return False\n    return True",
+     "cases": [
+      {
+       "args": [
+        29
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        30
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        90
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        91
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        120
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        121
+       ],
+       "expected": false
+      }
+     ]
+    },
+    {
+     "name": "policy duration predicate",
+     "function": "duration_ok",
+     "code": "MAX_MINUTES = 90\ndef duration_ok(minutes):\n    if minutes < 30:\n        return False\n    if not minutes <= MAX_MINUTES:\n        return False\n    return True",
+     "cases": [
+      {
+       "args": [
+        29
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        30
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        90
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        91
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        120
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        121
+       ],
+       "expected": false
+      }
+     ]
+    },
+    {
+     "name": "structure duration predicate",
+     "function": "duration_ok",
+     "code": "MAX_MINUTES = 120\ndef duration_ok(minutes):\n    return (\n        minutes >= 30\n        and minutes <= MAX_MINUTES\n    )",
+     "cases": [
+      {
+       "args": [
+        29
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        30
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        90
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        91
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        120
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        121
+       ],
+       "expected": false
+      }
+     ]
+    },
+    {
+     "name": "bad duration predicate",
+     "function": "duration_ok",
+     "code": "MAX_MINUTES = 90\ndef duration_ok(minutes):\n    return 30 <= minutes",
+     "cases": [
+      {
+       "args": [
+        29
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        30
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        90
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        91
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        120
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        121
+       ],
+       "expected": true
+      }
+     ]
+    },
+    {
+     "name": "good duration predicate",
+     "function": "duration_ok",
+     "code": "MAX_MINUTES = 90\ndef duration_ok(minutes):\n    return 30 <= minutes <= MAX_MINUTES",
+     "cases": [
+      {
+       "args": [
+        29
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        30
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        90
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        91
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        120
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        121
+       ],
+       "expected": false
+      }
+     ]
+    }
+   ],
+   "deck_shows": [
+    "90",
+    "91",
+    "121",
+    "MAX_MINUTES"
+   ]
   },
   "w07/review-with-context": {
    "packet": {
@@ -4261,6 +4591,10 @@
      {
       "category": "correctness",
       "text": "The message still says 120; derive it from the policy value."
+     },
+     {
+      "category": "security",
+      "text": "Retain R-03. Show the owner and non-owner cancellation results."
      },
      {
       "category": "design",
@@ -4295,7 +4629,70 @@
      "asynchronous review",
      "paired investigation"
     ]
-   }
+   },
+   "kind": "Simulated, original course-authored example; not measured data",
+   "reviewed": "28 October 2026",
+   "constraint": "A temporary shorter-booking trial; restore the approved 120-minute baseline afterward.",
+   "author": "Ari",
+   "reviewer": "Bo",
+   "alternatives": [
+    "Copy the limit into every message",
+    "Read the approved limit from Policy"
+   ],
+   "decision": "Read the limit from Policy; keep the ownership check; review the helper rename separately.",
+   "ownership": {
+    "rule": "R-03: only the booking owner may cancel",
+    "booking": "B-001",
+    "owner": "Ari (U-01)",
+    "other": "Bo (U-02)",
+    "evidence": "Ari can cancel B-001; Bo is rejected; the ownership check is retained.",
+    "snippet": "def can_cancel(requester_id, owner_id):\n    return requester_id == owner_id"
+   },
+   "comment_levels": {
+    "correctness": "Required",
+    "security": "Required",
+    "design": "Required",
+    "understandability": "Required",
+    "optional preference": "Optional"
+   },
+   "disagreement": {
+    "claim": "The duration change preserves cancellation ownership.",
+    "missing": "Owner and non-owner cancellation results on the combined change.",
+    "owner": "Ari owns the change decision; Bo reviews the evidence.",
+    "record": "Both results are linked to the change; the approval explains the retained R-03 check."
+   },
+   "deck_shows": [
+    "R-02",
+    "90",
+    "91",
+    "correctness",
+    "security",
+    "Optional",
+    "R-03"
+   ],
+   "snippets": [
+    {
+     "name": "retained owner-only cancellation",
+     "function": "can_cancel",
+     "code": "def can_cancel(requester_id, owner_id):\n    return requester_id == owner_id",
+     "cases": [
+      {
+       "args": [
+        "U-01",
+        "U-01"
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        "U-02",
+        "U-01"
+       ],
+       "expected": false
+      }
+     ]
+    }
+   ]
   },
   "w08/friendly-example": {
    "snippets": [
@@ -7754,6 +8151,292 @@
     "DR-002",
     "Revisit when",
     "QS-1"
+   ]
+  },
+  "w07/clean-merge-wrong-behavior": {
+   "kind": "Simulated, original course-authored example; not measured data",
+   "reviewed": "28 October 2026",
+   "policy_file": "policy.py",
+   "message_file": "messages.py",
+   "variant_max": 90,
+   "hard_coded_max": 120,
+   "request_minutes": 100,
+   "policy_code": "MAX_MINUTES = 90\ndef duration_ok(minutes):\n    return 30 <= minutes <= MAX_MINUTES",
+   "copied_code": "def limit_message():\n    return \"Choose 30 to 120 minutes\"",
+   "derived_code": "def limit_message(policy):\n    low = policy.minimum\n    high = policy.maximum\n    return f\"Choose {low} to {high} minutes\"",
+   "copied_message": "Choose 30 to 120 minutes",
+   "derived_message": "Choose 30 to 90 minutes",
+   "outcome": "Rejected by R-02",
+   "merge_result": "Text merged cleanly",
+   "deck_shows": [
+    "policy.py",
+    "messages.py",
+    "90",
+    "120",
+    "100",
+    "Rejected by R-02"
+   ]
+  },
+  "w07/integration-frequency": {
+   "kind": "Simulated, original course-authored example; not measured data",
+   "reviewed": "28 October 2026",
+   "events": [
+    {
+     "id": "A",
+     "label": "Start from shared contract"
+    },
+    {
+     "id": "B",
+     "label": "Policy contract changes"
+    },
+    {
+     "id": "C",
+     "label": "Message work continues"
+    },
+    {
+     "id": "D",
+     "label": "Combined change checked"
+    }
+   ],
+   "contract_before": "A message stores its own duration limit.",
+   "contract_after": "A message reads the approved duration limit from Policy.",
+   "short_discovery": "The next small integration exposes the old message assumption.",
+   "long_discovery": "The final integration exposes the same old message assumption.",
+   "unfinished": "A feature flag keeps the unfinished message path unavailable; both flag states need checks.",
+   "checks": [
+    "Text combines",
+    "Message agrees with Policy",
+    "R-02 boundary behavior holds"
+   ],
+   "deck_shows": [
+    "Policy",
+    "Small integrations",
+    "Long-lived branch",
+    "feature flag"
+   ]
+  },
+  "w07/same-code-different-result": {
+   "kind": "Simulated, original course-authored example; not measured data",
+   "reviewed": "28 October 2026",
+   "source": "demo-r1",
+   "runtime": "Teaching runtime 1",
+   "dependency": "teaching-range",
+   "constraint": ">=1.0,<2.0",
+   "resolved": "1.0",
+   "changed_resolved": "1.1",
+   "config_key": "MAX_MINUTES",
+   "config": 120,
+   "changed_config": 90,
+   "request_minutes": 120,
+   "data_fixture": "duration-boundary-v1",
+   "artifact": "rooms-demo-r1",
+   "secret_ref": "ROOMS_TOKEN → secret store reference",
+   "manifest_rows": [
+    "Source revision",
+    "Resolved dependency",
+    "Runtime",
+    "Configuration",
+    "Data fixture",
+    "Build artifact"
+   ],
+   "baseline_code": "def accepts(minutes, maximum):\n    return 30 <= minutes <= maximum",
+   "changed_code": "def accepts(minutes, maximum):\n    return 30 <= minutes < maximum",
+   "note": "teaching-range is an invented dependency. Its two versions deliberately differ at the upper boundary.",
+   "deck_shows": [
+    "demo-r1",
+    "teaching-range",
+    "1.0",
+    "MAX_MINUTES",
+    "120",
+    "secret store"
+   ],
+   "snippets": [
+    {
+     "name": "teaching-range 1.0 inclusive",
+     "function": "accepts",
+     "code": "def accepts(minutes, maximum):\n    return 30 <= minutes <= maximum",
+     "cases": [
+      {
+       "args": [
+        120,
+        120
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        120,
+        90
+       ],
+       "expected": false
+      }
+     ]
+    },
+    {
+     "name": "teaching-range 1.1 changed upper boundary",
+     "function": "accepts",
+     "code": "def accepts(minutes, maximum):\n    return 30 <= minutes < maximum",
+     "cases": [
+      {
+       "args": [
+        120,
+        120
+       ],
+       "expected": false
+      }
+     ]
+    }
+   ]
+  },
+  "w07/history-as-explanation": {
+   "kind": "Simulated, original course-authored example; not measured data",
+   "reviewed": "28 October 2026",
+   "weak": "fix stuff",
+   "title": "Derive the duration message from the approved policy",
+   "problem": "The temporary policy rejects 100 minutes while the message still offers 120.",
+   "intended": "The message and duration predicate use the same approved limit.",
+   "constraint": "Keep R-03 ownership unchanged; restore 120 minutes after the temporary trial.",
+   "alternative": "A second hard-coded message was rejected because the two copies drift independently.",
+   "checks": "90 accepted; 91 rejected; the message says 90; Bo cannot cancel Ari's B-001.",
+   "decision_id": "DR-07",
+   "change_id": "message-policy-fix",
+   "author_unavailable": "The original author is unavailable.",
+   "bisect": {
+    "note": "A separate linear diagnostic example; the h labels are not the c commit graph.",
+    "predicate": "Does the 91-minute boundary check fail under the temporary 90-minute rule?",
+    "commits": [
+     {
+      "id": "h1",
+      "bad": false
+     },
+     {
+      "id": "h2",
+      "bad": false
+     },
+     {
+      "id": "h3",
+      "bad": false
+     },
+     {
+      "id": "h4",
+      "bad": false
+     },
+     {
+      "id": "h5",
+      "bad": true
+     },
+     {
+      "id": "h6",
+      "bad": true
+     },
+     {
+      "id": "h7",
+      "bad": true
+     },
+     {
+      "id": "h8",
+      "bad": true
+     }
+    ],
+    "known_good": "h1",
+    "known_bad": "h8",
+    "first_bad": "h5",
+    "probes": [
+     {
+      "id": "h4",
+      "result": "Good",
+      "remaining": [
+       "h5",
+       "h6",
+       "h7",
+       "h8"
+      ]
+     },
+     {
+      "id": "h6",
+      "result": "Bad",
+      "remaining": [
+       "h5",
+       "h6"
+      ]
+     },
+     {
+      "id": "h5",
+      "result": "Bad",
+      "remaining": [
+       "h5"
+      ]
+     }
+    ],
+    "finding": "h5 removed the upper bound. The result identifies where to investigate; the rationale explains why.",
+    "assumption": "The check is repeatable and the failure persists from its introduction through the bad endpoint."
+   },
+   "deck_shows": [
+    "fix stuff",
+    "DR-07",
+    "90",
+    "R-03"
+   ]
+  },
+  "w07/ready-to-integrate": {
+   "kind": "Simulated, original course-authored example; not measured data",
+   "reviewed": "28 October 2026",
+   "rows": [
+    {
+     "key": "intent",
+     "name": "Intended behavior",
+     "detail": "R-02 temporary 90-minute limit; restore the canonical limit afterward."
+    },
+    {
+     "key": "boundary",
+     "name": "Boundary checks",
+     "detail": "90 accepted; 91 rejected."
+    },
+    {
+     "key": "message",
+     "name": "Combined behavior",
+     "detail": "The displayed limit agrees with Policy."
+    },
+    {
+     "key": "ownership",
+     "name": "Authorization concern",
+     "detail": "Ari can cancel B-001; Bo is rejected under R-03."
+    },
+    {
+     "key": "review",
+     "name": "Human review",
+     "detail": "Required concerns resolved; the decision and rationale are recorded."
+    },
+    {
+     "key": "integration",
+     "name": "Integration check",
+     "detail": "The combined change passes its relevant checks."
+    }
+   ],
+   "canonical": {
+    "min": 30,
+    "max": 120,
+    "message": "Choose 30 to 120 minutes",
+    "checks": [
+     "120 accepted",
+     "121 rejected",
+     "message says 120",
+     "ownership unchanged"
+    ]
+   },
+   "statuses": [
+    "Evidence missing",
+    "Concern resolved",
+    "Ready to integrate",
+    "Canonical baseline restored"
+   ],
+   "handoff": "What makes a verification check useful, and what can a passing suite still fail to establish?",
+   "deck_shows": [
+    "R-02",
+    "R-03",
+    "120",
+    "121",
+    "Canonical baseline restored"
    ]
   }
  },

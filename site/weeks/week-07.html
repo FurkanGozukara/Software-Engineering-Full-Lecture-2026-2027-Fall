@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Week 07 · Collaboration, version history, and reviewable change</title>
+<meta name="description" content="Software Engineering, Week 7: how several people change one system without losing intent or trust. Interactive commit graphs, meaningful conflict resolution, clean merges with contradictory behavior, focused review, integration, reproducible inputs, durable rationale, and history as a debugging tool.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../shared/theme.css">
+<link rel="stylesheet" href="../shared/print.css">
+<style>
+/* Week-local compositions. Shared controls, type, palette, modes and print remain Week 6's shell. */
+.w7-stack { display:flex; flex-direction:column; gap:14px; height:100%; min-height:0; }
+.w7-grid { display:grid; gap:16px; min-width:0; min-height:0; }
+.w7-two { grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
+.w7-three { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.w7-card { padding:12px 16px; min-width:0; }
+.w7-title { font-size:16px; font-weight:800; text-transform:uppercase; letter-spacing:.065em; color:var(--text-soft); margin-bottom:7px; }
+.w7-body { font-size:20px; line-height:1.35; }
+.w7-small { font-size:17px; line-height:1.34; color:var(--text-muted); }
+.w7-big { font-size:29px; font-weight:650; line-height:1.24; }
+.w7-mono { font-family:var(--font-mono); }
+.w7-ok { color:var(--ok); } .w7-bad { color:var(--bad); } .w7-warn { color:var(--warn); }
+.w7-note { border-left:4px solid var(--accent); padding:9px 14px; font-size:19px; line-height:1.34; background:var(--accent-fill); border-radius:0 10px 10px 0; }
+.w7-note--warn { border-color:var(--warn); background:var(--warn-fill); }
+.w7-card.is-focus { border-color:var(--warn); box-shadow:inset 0 0 0 1px var(--warn); }
+.w7-card.is-bad { border-color:var(--bad); background:var(--bad-fill); }
+.w7-card.is-ok { border-color:var(--ok); }
+.w7-tag { display:inline-flex; align-items:center; padding:3px 9px; border:1.5px solid var(--line-strong); border-radius:7px; font-size:15px; font-weight:700; background:var(--surface-2); }
+.w7-variant { border-color:var(--warn); color:var(--warn); }
+.w7-code { border:1px solid var(--line); border-radius:10px; background:var(--surface-2); padding:8px 0; overflow:hidden; font-family:var(--font-mono); font-size:19px; line-height:1.48; min-width:0; }
+.w7-code--small { font-size:16.5px; }
+.w7-line { display:grid; grid-template-columns:28px minmax(0,1fr); padding:0 12px 0 4px; border-left:4px solid transparent; }
+.w7-ln { font-size:.76em; color:var(--text-soft); text-align:right; padding-right:8px; user-select:none; }
+.w7-src { white-space:pre; }
+.w7-line.is-focus { border-left-color:var(--warn); background:var(--warn-fill); }
+.w7-code .kw { color:var(--violet); } .w7-code .num { color:var(--warn); } .w7-code .str { color:var(--ok); }
+.w7-diff { padding:10px 12px; border-radius:10px; background:var(--surface-2); font-family:var(--font-mono); font-size:19px; line-height:1.5; }
+.w7-diff-row { display:grid; grid-template-columns:24px minmax(0,1fr); border-left:3px solid transparent; padding:2px 9px; }
+.w7-diff-row--remove { border-color:var(--bad); background:var(--bad-fill); }
+.w7-diff-row--add { border-color:var(--ok); background:var(--ok-fill); }
+.w7-diff-sign { font-weight:900; }
+.w7-diff-source { white-space:pre; }
+.w7-table { width:100%; font-size:18px; line-height:1.3; }
+.w7-table th,.w7-table td { text-align:left; padding:9px 12px; border-bottom:1px solid var(--line); vertical-align:top; }
+.w7-table thead th { text-transform:uppercase; font-size:14px; color:var(--text-soft); letter-spacing:.04em; }
+.w7-table tbody th { font-weight:600; }
+.w7-table tr.is-focus { background:var(--warn-fill); }
+.w7-table tr.is-bad { background:var(--bad-fill); }
+.w7-table tr.is-ok { background:var(--ok-fill); }
+.w7-status { display:flex; gap:12px; align-items:center; border:1.5px solid var(--line-strong); border-radius:10px; padding:11px 14px; background:var(--surface-2); min-height:62px; font-size:20px; font-weight:650; }
+.w7-status--ok { color:var(--ok); border-color:var(--ok); background:var(--ok-fill); }
+.w7-status--bad { color:var(--bad); border-color:var(--bad); background:var(--bad-fill); }
+.w7-status--warn { color:var(--warn); border-color:var(--warn); background:var(--warn-fill); }
+.w7-symbol { flex:0 0 auto; width:30px; height:30px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; background:var(--surface-3); border:1.5px solid currentColor; font-size:20px; font-weight:900; }
+.w7-branch rect { fill:var(--accent-fill); stroke:var(--accent); stroke-width:1.8; }
+.w7-branch text { font-family:var(--font-mono); font-size:16px; font-weight:700; fill:var(--accent-strong); }
+.w7-branch--policy rect { fill:var(--warn-fill); stroke:var(--warn); } .w7-branch--policy text { fill:var(--warn); }
+.w7-branch--message rect { fill:var(--violet-fill); stroke:var(--violet); } .w7-branch--message text { fill:var(--violet); }
+.w7-commit circle { fill:var(--surface-2); stroke:var(--accent); stroke-width:3; }
+.w7-commit.is-now circle { fill:var(--warn-fill); stroke:var(--warn); stroke-width:4; }
+.w7-commit .w7-cid { font-size:20px; font-weight:750; text-anchor:middle; font-family:var(--font-mono); }
+.w7-commit .w7-cmsg { font-size:17px; fill:var(--text-muted); text-anchor:middle; }
+.w7-commit.w7-merge circle { stroke:var(--violet); }
+.w7-graph { height:376px; flex:0 0 auto; }
+.w7-graph .a-line { stroke-width:3; }
+.w7-location { padding:18px; border:1.5px solid var(--line-strong); border-radius:16px; background:var(--surface); min-width:0; position:relative; }
+.w7-location.is-now { border-color:var(--warn); background:var(--warn-fill); }
+.w7-location.is-done { border-color:var(--ok); }
+.w7-location-num { display:inline-flex; align-items:center; justify-content:center; height:34px; width:34px; border-radius:50%; border:1.5px solid var(--line-strong); font-size:18px; font-weight:750; margin-bottom:12px; }
+.w7-location-detail { font-size:18px; line-height:1.34; color:var(--text-muted); margin:10px 0 14px; min-height:76px; }
+.w7-location-value { border:1px solid var(--line); padding:12px 10px; border-radius:8px; background:var(--surface-2); font-family:var(--font-mono); font-size:18px; min-height:58px; }
+.w7-action { height:48px; padding:0 16px; font-size:20px; }
+.w7-location-btn { width:100%; min-height:48px; font-size:19px; margin-top:14px; }
+.w7-stitch { display:flex; align-items:center; gap:14px; justify-content:center; min-height:68px; font-size:23px; font-weight:650; }
+.w7-join-arrow { color:var(--accent); font-size:34px; }
+.w7-comment { display:grid; grid-template-columns:155px minmax(0,1fr); gap:8px 14px; padding:9px 12px; border-radius:10px; border:1px solid var(--line); background:var(--surface-2); }
+.w7-comment-category { font-size:15px; font-weight:750; color:var(--accent-strong); }
+.w7-comment-level { display:block; font-size:14px; color:var(--warn); margin-top:3px; }
+.w7-comment-level.is-optional { color:var(--text-soft); }
+.w7-comment-text { font-size:16.5px; line-height:1.28; }
+.w7-review-row { display:grid; grid-template-columns:165px minmax(0,1fr); gap:14px; padding:7px 0; border-bottom:1px solid var(--line); font-size:17px; line-height:1.28; }
+.w7-review-row b { color:var(--accent-strong); }
+.w7-timeline { padding:12px 16px; }
+.w7-tl-head { display:flex; align-items:baseline; gap:16px; margin-bottom:8px; }
+.w7-tl-head b { font-size:22px; }
+.w7-tl-head span { color:var(--text-muted); font-size:17px; }
+.w7-event { display:flex; flex-direction:column; gap:4px; padding:12px; min-height:98px; border:1.5px solid var(--line); border-radius:10px; background:var(--surface-2); }
+.w7-event b { font-size:19px; } .w7-event span { font-size:17px; color:var(--text-muted); line-height:1.25; }
+.w7-event.is-hit { border-color:var(--bad); background:var(--bad-fill); }
+.w7-event.is-change { border-color:var(--warn); }
+.w7-event.is-ok { border-color:var(--ok); }
+.w7-manifest { padding:10px 14px; }
+.w7-manifest .w7-table { font-size:17px; } .w7-manifest .w7-table td,.w7-manifest .w7-table th { padding:8px 10px; }
+.w7-record-row { padding:9px 12px; border:1px solid var(--line); border-radius:10px; background:var(--surface-2); }
+.w7-record-row b { display:block; font-size:14px; letter-spacing:.045em; text-transform:uppercase; color:var(--accent-strong); margin-bottom:3px; }
+.w7-record-row p { font-size:18px; line-height:1.3; }
+.w7-bisect-node { transition:opacity var(--t-reveal),transform var(--t-reveal); }
+.w7-bisect-node circle { fill:var(--surface-2); stroke:var(--line-strong); stroke-width:2.5; }
+.w7-bisect-node text { font-family:var(--font-mono); font-size:20px; text-anchor:middle; font-weight:700; }
+.w7-bisect-node.is-good circle { fill:var(--ok-fill); stroke:var(--ok); }
+.w7-bisect-node.is-bad circle { fill:var(--bad-fill); stroke:var(--bad); }
+.w7-bisect-node.is-probe circle { stroke:var(--warn); stroke-width:5; }
+.w7-bisect-node.is-out { opacity:.24; }
+.w7-bisect-label { font-size:18px; fill:var(--text-muted); text-anchor:middle; }
+.w7-probe-log { display:flex; flex-direction:column; gap:10px; }
+.w7-probe { display:grid; grid-template-columns:65px 70px minmax(0,1fr); gap:12px; padding:10px 14px; border:1px solid var(--line); border-radius:10px; font-size:20px; }
+.w7-ready-row { display:grid; grid-template-columns:220px minmax(0,1fr) 160px; gap:14px; align-items:center; padding:12px 14px; border:1px solid var(--line); border-radius:10px; min-height:68px; }
+.w7-ready-row b { font-size:18px; } .w7-ready-row p { font-size:17px; line-height:1.28; color:var(--text-muted); }
+.w7-ready-tag { font-size:16px; font-weight:750; text-align:right; }
+.w7-ready-row.is-ok { border-color:var(--ok); } .w7-ready-row.is-bad { border-color:var(--bad); background:var(--bad-fill); }
+.w7-ready-row.is-warn { border-color:var(--warn); background:var(--warn-fill); }
+.w7-ready-row.is-ok .w7-ready-tag { color:var(--ok); } .w7-ready-row.is-bad .w7-ready-tag { color:var(--bad); } .w7-ready-row.is-warn .w7-ready-tag { color:var(--warn); }
+.w7-flying { position:absolute; left:0; top:0; opacity:0; pointer-events:none; padding:9px 14px; border:2px solid var(--warn); border-radius:10px; background:var(--surface-2); color:var(--warn); font-family:var(--font-mono); font-size:18px; font-weight:650; box-shadow:var(--shadow); z-index:4; white-space:nowrap; }
+body[data-print="true"] .w7-branch { transition:none; }
+html[data-print-mode="true"] { background:#fff; color-scheme:light; }
+</style>
+</head>
+<body>
+<noscript><p style="padding:24px;font-family:sans-serif;color:#eaf0f6">This lecture deck needs JavaScript. The printable reading copy is ../pdf/week-07.pdf.</p></noscript>
+<script src="../assets/fixtures/demo-fixtures.js"></script>
+<script src="../shared/visual-components.js"></script>
+<script src="../shared/lecture-controls.js"></script>
+<script src="week-07.js"></script>
+</body>
+</html>

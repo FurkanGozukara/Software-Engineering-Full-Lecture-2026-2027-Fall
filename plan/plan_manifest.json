@@ -1128,7 +1128,10 @@
     "S01",
     "S02",
     "S06",
-    "S07"
+    "S07",
+    "S61",
+    "S62",
+    "S63"
    ],
    "rules_cited": [],
    "scenes": [
@@ -1234,12 +1237,14 @@
      "link": "week-07.html#/history-as-explanation",
      "fixture_key": "w07/history-as-explanation",
      "visual_idea": "A short change description and decision record are linked to the commit and requirement.",
-     "situation": "Ask what a maintainer learns from “fix stuff.” Reveal an alternative explaining the observed problem, intended behavior, and a constraint that ruled out an obvious solution. Separate durable rationale from a transcript of every discussion. Then show history as a debugging tool: when the boundary error appears and nobody knows which change introduced it, bisection checks the middle commit of the suspect range and halves the range until one change remains.",
+     "situation": "Ask what a maintainer learns from “fix stuff.” Reveal an alternative explaining the observed problem, intended behavior, and a constraint that ruled out an obvious solution. Separate durable rationale from a transcript of every discussion. Then show history as a debugging tool: when the boundary error appears and nobody knows which change introduced it, bisection checks the middle commit of the suspect range and halves the range until one change remains. [S61]",
      "changed_condition": "Remove the original author from the scenario. Compare how much each record helps a future reviewer understand whether the constraint still applies.",
      "principle": "Documentation earns its place by preserving information that cannot be reliably reconstructed from the code.",
      "pdf_treatment": "Print the weak and improved descriptions with the useful information highlighted in words, and the bisection steps that located the change.",
      "rules": [],
-     "sources": []
+     "sources": [
+      "S61"
+     ]
     },
     {
      "order": 8,
