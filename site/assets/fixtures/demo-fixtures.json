@@ -8161,9 +8161,36 @@
    "variant_max": 90,
    "hard_coded_max": 120,
    "request_minutes": 100,
-   "policy_code": "MAX_MINUTES = 90\ndef duration_ok(minutes):\n    return 30 <= minutes <= MAX_MINUTES",
+   "policy_code": "MIN_MINUTES = 30\nMAX_MINUTES = 90\ndef duration_ok(minutes):\n    return MIN_MINUTES <= minutes <= MAX_MINUTES",
    "copied_code": "def limit_message():\n    return \"Choose 30 to 120 minutes\"",
-   "derived_code": "def limit_message(policy):\n    low = policy.minimum\n    high = policy.maximum\n    return f\"Choose {low} to {high} minutes\"",
+   "derived_code": "from policy import MIN_MINUTES, MAX_MINUTES\ndef limit_message():\n    low, high = MIN_MINUTES, MAX_MINUTES\n    return f\"Choose {low} to {high} minutes\"",
+   "snippets": [
+    {
+     "name": "temporary policy predicate",
+     "function": "duration_ok",
+     "code": "MIN_MINUTES = 30\nMAX_MINUTES = 90\ndef duration_ok(minutes):\n    return MIN_MINUTES <= minutes <= MAX_MINUTES",
+     "cases": [
+      {
+       "args": [
+        30
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        90
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        100
+       ],
+       "expected": false
+      }
+     ]
+    }
+   ],
    "copied_message": "Choose 30 to 120 minutes",
    "derived_message": "Choose 30 to 90 minutes",
    "outcome": "Rejected by R-02",

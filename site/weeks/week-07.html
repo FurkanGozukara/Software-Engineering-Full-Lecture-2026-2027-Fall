@@ -101,8 +101,9 @@
 .w7-bisect-node.is-good circle { fill:var(--ok-fill); stroke:var(--ok); }
 .w7-bisect-node.is-bad circle { fill:var(--bad-fill); stroke:var(--bad); }
 .w7-bisect-node.is-probe circle { stroke:var(--warn); stroke-width:5; }
-.w7-bisect-node.is-out { opacity:.24; }
-.w7-bisect-label { font-size:18px; fill:var(--text-muted); text-anchor:middle; }
+.w7-bisect-node.is-out { opacity:.36; }
+.w7-bisect-node .w7-bisect-label { font-family:var(--font-text); font-size:18px; font-weight:650; fill:var(--text-muted); text-anchor:middle; }
+.w7-bisect-node.is-good .w7-bisect-label { fill:var(--ok); } .w7-bisect-node.is-bad .w7-bisect-label { fill:var(--bad); }
 .w7-probe-log { display:flex; flex-direction:column; gap:10px; }
 .w7-probe { display:grid; grid-template-columns:65px 70px minmax(0,1fr); gap:12px; padding:10px 14px; border:1px solid var(--line); border-radius:10px; font-size:20px; }
 .w7-ready-row { display:grid; grid-template-columns:220px minmax(0,1fr) 160px; gap:14px; align-items:center; padding:12px 14px; border:1px solid var(--line); border-radius:10px; min-height:68px; }
@@ -112,7 +113,89 @@
 .w7-ready-row.is-warn { border-color:var(--warn); background:var(--warn-fill); }
 .w7-ready-row.is-ok .w7-ready-tag { color:var(--ok); } .w7-ready-row.is-bad .w7-ready-tag { color:var(--bad); } .w7-ready-row.is-warn .w7-ready-tag { color:var(--warn); }
 .w7-flying { position:absolute; left:0; top:0; opacity:0; pointer-events:none; padding:9px 14px; border:2px solid var(--warn); border-radius:10px; background:var(--surface-2); color:var(--warn); font-family:var(--font-mono); font-size:18px; font-weight:650; box-shadow:var(--shadow); z-index:4; white-space:nowrap; }
+/* page buttons that are not available yet look unavailable, like Week 6's aria-disabled buttons */
+.btn-reserve:disabled, .preset-btn:disabled { opacity:.42; cursor:default; }
+.btn-reserve:disabled:hover { filter:none; }
+.preset-btn:disabled:hover { background:var(--surface-2); border-color:var(--line-strong); }
+.w7-comment-level.w7-ok { color:var(--ok); }
+.w7-mark { display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%; font-size:16px; font-weight:900; margin-right:8px; vertical-align:-3px; border:1.5px solid currentColor; }
+.w7-table td .w7-mark { vertical-align:middle; }
+.w7-mark.is-ok { background:var(--ok); border-color:var(--ok); color:var(--ink-on-light); }
+.w7-mark.is-bad { background:var(--bad); border-color:var(--bad); color:var(--ink-on-light); }
+
+/* opening: the two edits join, and Ari's screen makes a promise */
+.w7-join { height:92px; flex:0 0 auto; }
+.w7-join-node circle { fill:var(--surface-2); stroke:var(--line-strong); stroke-width:3; transition:fill var(--t-reveal), stroke var(--t-reveal); }
+.w7-join-node .w7-join-t { font-size:21px; font-weight:700; fill:var(--text-muted); }
+.w7-join-node .w7-join-tick { font-size:24px; font-weight:900; fill:var(--ok); }
+.w7-join-node.is-merged circle { fill:var(--ok-fill); stroke:var(--ok); }
+.w7-join-node.is-merged .w7-join-t { fill:var(--ok); }
+.w7-screen .browser-body { gap:10px; padding:14px 16px 16px; }
+.w7-screen .field { padding:7px 14px; font-size:19px; }
+.w7-screen .field.is-bad { border-color:var(--bad); background:var(--bad-fill); }
+.w7-screen-msg { display:flex; gap:10px; align-items:center; font-size:20px; font-weight:650; color:var(--warn); padding:8px 12px; border:1.5px dashed var(--warn); border-radius:10px; background:var(--warn-fill); }
+.w7-screen-msg small { font-size:15px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--text-soft); }
+.w7-fake-btn { align-self:flex-start; min-height:44px; padding:0 18px; border-radius:10px; background:var(--accent); color:var(--ink-on-light); font-weight:700; font-size:19px; display:inline-flex; align-items:center; }
+
+/* conflict: the requirement beside the edits */
+.w7-req { display:flex; flex-direction:column; gap:6px; }
+.w7-req-rule { font-size:22px; font-weight:650; line-height:1.28; }
+.w7-req-rule b { color:var(--warn); }
+
+/* clean merge: one promise, two values */
+.w7-compare { display:flex; align-items:center; justify-content:center; gap:14px; min-height:44px; }
+.w7-compare-op { font-size:30px; font-weight:900; line-height:1; width:42px; height:42px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; border:2px solid currentColor; }
+.w7-compare-op.is-bad { color:var(--bad); background:var(--bad-fill); }
+.w7-compare-op.is-ok { color:var(--ok); background:var(--ok-fill); }
+.w7-compare .chip { font-family:var(--font-mono); font-size:18px; }
+
+/* SVG marks grow from their own centre when revealed, not from the diagram's corner */
+svg .rv--scale { transform-box:fill-box; transform-origin:center; }
+
+/* integration: two timelines against shared work */
+.w7-tl { height:372px; flex:0 0 auto; }
+.w7-tl-lane { fill:none; stroke-width:5; stroke-linecap:round; stroke-linejoin:round; }
+.w7-tl-lane--small { stroke:var(--accent); }
+.w7-tl-lane--long { stroke:var(--violet); }
+.w7-tl-shared { stroke:var(--line-strong); stroke-width:9; stroke-linecap:round; }
+.w7-tl-name { font-size:20px; font-weight:800; fill:var(--text); }
+.w7-tl-sub { font-size:15.5px; fill:var(--text-muted); }
+.w7-tl-guide { stroke:var(--line); stroke-width:1.5; stroke-dasharray:4 7; }
+.w7-tl-ev { font-size:20px; font-weight:800; fill:var(--text-soft); text-anchor:middle; }
+.w7-tl-evl { font-size:15px; fill:var(--text-muted); text-anchor:middle; }
+.w7-tl-contract rect { fill:var(--surface-2); stroke:var(--line-strong); stroke-width:2; }
+.w7-tl-contract text { font-size:16px; font-weight:700; fill:var(--text-muted); text-anchor:middle; }
+.w7-tl-contract.is-change rect { fill:var(--warn-fill); stroke:var(--warn); }
+.w7-tl-contract.is-change text { fill:var(--warn); }
+.w7-tl-dot { stroke:var(--bg); stroke-width:3; }
+.w7-tl-dot.is-ok { fill:var(--ok); } .w7-tl-dot.is-bad { fill:var(--bad); }
+.w7-tl-mark { font-size:17px; font-weight:900; fill:var(--ink-on-light); text-anchor:middle; }
+.w7-tl-label { font-size:16px; font-weight:750; }
+.w7-tl-label.is-ok { fill:var(--ok); } .w7-tl-label.is-bad { fill:var(--bad); } .w7-tl-label.is-warn { fill:var(--warn); }
+.w7-tl-rework { stroke:var(--bad); stroke-width:1.5; }
+.w7-tl-flag path { fill:var(--ok-fill); stroke:var(--ok); stroke-width:2; }
+.w7-tl-flag line { stroke:var(--ok); stroke-width:3; }
+.w7-now line { stroke:var(--accent); stroke-width:2.5; stroke-dasharray:6 5; }
+.w7-now text { font-size:15px; font-weight:800; fill:var(--accent-strong); text-transform:uppercase; letter-spacing:.08em; text-anchor:middle; }
+.w7-now { transition:transform var(--t-move) var(--ease); }
+.w7-found { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.w7-found .w7-note b { display:block; font-size:15px; letter-spacing:.06em; text-transform:uppercase; margin-bottom:2px; }
+
+/* history: what each record is linked to */
+.w7-links { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:10px; }
+.w7-link { display:inline-flex; flex-direction:column; padding:5px 12px; border-radius:10px; border:1.5px solid var(--accent); background:var(--accent-fill); }
+.w7-link small { font-size:13px; font-weight:800; letter-spacing:.07em; text-transform:uppercase; color:var(--text-soft); }
+.w7-link span { font-family:var(--font-mono); font-size:17px; font-weight:700; color:var(--accent-strong); }
+.w7-link--none { border-style:dashed; border-color:var(--line-strong); background:transparent; }
+.w7-link--none span { color:var(--text-muted); font-family:var(--font-text); font-weight:600; }
+.w7-link-arrow { color:var(--accent); font-size:22px; font-weight:800; }
+
+/* bisection: the suspect range narrows */
+.w7-range rect { fill:var(--warn-fill); stroke:var(--warn); stroke-width:2; stroke-dasharray:8 6; }
+.w7-range text { font-size:17px; font-weight:800; fill:var(--warn); text-anchor:middle; }
 body[data-print="true"] .w7-branch { transition:none; }
+body[data-print="true"] .w7-now { transition:none; }
+body[data-print="true"] .w7-bisect-node.is-out { opacity:.55; }
 html[data-print-mode="true"] { background:#fff; color-scheme:light; }
 </style>
 </head>
