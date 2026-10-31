@@ -2,7 +2,7 @@
 
 Date: 28 October 2026. Branch: `week/07-collaboration`, based on accepted Week 6 state `9dc89fd`. The user requested complete Week 7 material, specifically the quality, style and animations of Week 6, and actual Chrome verification. Video production is deferred.
 
-Status: complete material, browser-verified and visually reviewed, then revised after a review against Week 6 (section "Review revision" below). Tutorial video deferred as requested.
+Status: complete material, browser-verified and visually reviewed, then revised after a review against Week 6 (section "Review revision" below). Lecture video recorded and delivered on 31 October 2026 (section "Lecture video" below).
 
 ## Files and scope
 
@@ -116,3 +116,7 @@ The layout inspector reports content in the optional presenter corner in 20 stat
 The deck provides the frozen shell's `record=1` behavior, individually named pointer targets, deterministic states, reduced motion and print panels. No narration, shot list, timing budget, recording route or video has been created. The later recording agent generates those within the tutorial workspace.
 
 The PDF is a browser reading copy with selectable text and vector diagrams; tagged-PDF conformance is not claimed. Weeks 8–10 and 12–14 remain in preparation; Week 11 retains its earlier shell sample. Optional shared-history rewriting is outside this deck's core explanation.
+
+## Lecture video (31 October 2026)
+
+The Week 7 lecture was recorded from this deck in the tutorial workspace (Chrome full screen at 3840 by 2160, 60 fps; the narration synthesized first and every action paced to it, in short takes of at most 90 seconds), edited, checked and rendered with the presenter avatars: 41:46.8, 233 narration units, 60 chapters, 630 caption cues, every page, condition and scene state shown. All 42 accepted takes were recorded from the deck as committed in `6d2a8cd`. Two short explanatory animations, an eight-second cold open and 6 readability zooms were added to the footage. Brief covers hide two deck defects the recording exposed, which were then fixed here in `5ed8db3`: a condition preset briefly rendered the new condition's final results (about 0.3 s, which gave a prediction's answer away; 8 covers), and the Focused-change caption stated answer B while its prediction was open (2 covers); 2 covers in the commit-graph scene hide a desktop taskbar and a terminal window that appeared over the browser during that take. Master file: `SE_W07_4K60_avatars_v1.mp4` (in the workspace). The recording state, checks and the render evidence live in the workspace handoff (`projects/software_engineering/week07/HANDOFF.md` there). The video and its captions are English.
