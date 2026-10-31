@@ -71,6 +71,20 @@
   function textRows(api, rows, prefix) {
     return rows.map(([k, v], i) => cue(api, el('div', { class: 'w7-review-row' }, [el('b', {}, k), el('span', {}, v)]), `${prefix}-${i + 1}`));
   }
+  // A condition change opens the new condition directly at its first state. Its render already writes the
+  // new condition's results into the revealed elements, so letting their fades, line drawing and moves play
+  // from the previous state would show those results (the answer to the next prediction) for a moment.
+  // Every motion the switch starts is settled before the next frame; Step, Back and Replay keep theirs.
+  function instantConditionChange(scene) {
+    const { setup, render } = scene, last = new WeakMap();
+    scene.setup = (stage, api) => { const h = setup(stage, api) || {}; last.set(h, { stage, condition: null }); return h; };
+    scene.render = (h, v, api) => {
+      const seen = last.get(h), changed = seen.condition !== null && seen.condition !== v.conditionId;
+      seen.condition = v.conditionId;
+      render(h, v, api);
+      if (changed) seen.stage.getAnimations({ subtree: true }).forEach((anim) => anim.cancel());
+    };
+  }
 
   // Opening: two collaborators touch different files, and the promise drifts.
   const opening = {
@@ -488,8 +502,8 @@
       automated: { question: 'An assistant drafted this diff as “fix stuff”. What changes for the reviewer?', options: ['Nothing: the requirement, checks and rationale are still needed', 'Less: the assistant checked its own change', 'Only the style needs a human'] },
     };
     return [
-      { caption: kind === 'automated' ? 'The assistant draft says “fix stuff.” Its code still needs an intended behavior.' : kind === 'focused' ? 'The rename has its own change. The policy claim is easier to follow.' : 'A policy edit and an unrelated rename arrive together.', prompt: prompts[kind] },
-      { caption: kind === 'automated' ? `Nothing changes for the reviewer. The claim is still **R-02 at ${CI.variant_max} minutes, temporarily**, and “${RV.ai_beat.description_shown}” states none of it.` : `The claim is **R-02 at ${CI.variant_max} minutes, temporarily**. Read why the variant exists and which behavior must stay the same.` },
+      { caption: kind === 'automated' ? 'The assistant draft says “fix stuff.” Its code still needs an intended behavior.' : kind === 'focused' ? 'The policy edit now arrives alone. The unrelated helper rename is reviewed in its own change.' : 'A policy edit and an unrelated rename arrive together.', prompt: prompts[kind] },
+      { caption: kind === 'automated' ? `Nothing changes for the reviewer. The claim is still **R-02 at ${CI.variant_max} minutes, temporarily**, and “${RV.ai_beat.description_shown}” states none of it.` : `${kind === 'focused' ? 'With the rename separate, the policy claim and its checks are easier to follow. ' : ''}The claim is **R-02 at ${CI.variant_max} minutes, temporarily**. Read why the variant exists and which behavior must stay the same.` },
       { caption: 'Classify the comments by their reason. Each one addresses the change, not the person. **Required correctness and security concerns** differ from an **optional preference**.' },
       { caption: 'The message is repaired and checked. The **R-03 authorization concern stays open** until its missing evidence arrives.' },
       { caption: '**Ari can cancel B-001; Bo is rejected.** The combined change retains ownership. The substantive disagreement now has evidence and a decision owner.' },
@@ -835,6 +849,7 @@
   }
 
   const SCENES = [commitGraph, conflict, cleanMerge, review, integration, reproducibility, history, ready];
+  SCENES.forEach(instantConditionChange);
   const CHECKS = [   // plan Section 8, questions 1 to 5, and the answered transfer question (fixtures transfer_checks.w07)
     { q: 'What distinguishes a branch label from a commit?', a: 'A branch label points to a commit and can move; the recorded commit represents a particular snapshot and ancestry.' },
     { q: 'Can two changes merge cleanly and still conflict?', a: 'Yes. Their behavior or assumptions can contradict even when the edited text does not overlap.' },
