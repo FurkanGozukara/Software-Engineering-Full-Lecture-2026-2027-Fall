@@ -1,5 +1,9 @@
 # Week 05 · completion record
 
+## Watch the lecture
+
+[Watch Lecture 5](https://www.youtube.com/watch?v=V26mbmrSUCk) (48:21) · [Full course playlist](https://www.youtube.com/playlist?list=PLS3U3BEQ-9C0).
+
 Date: 10 October 2026. Author: Claude Code (Opus 5.5) on the instructor's workstation; the plan package is the source of truth (`plan/`). Branch `week/05-modularity`, started from `main` at `71154be`.
 
 ## Files

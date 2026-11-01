@@ -1,5 +1,9 @@
 # Week 02 · completion record
 
+## Watch the lecture
+
+[Watch Lecture 2](https://www.youtube.com/watch?v=wJibevFLxqg) (1:00:11) · [Full course playlist](https://www.youtube.com/playlist?list=PLS3U3BEQ-9C0).
+
 Date: 22 September 2026. Author: Claude Code (Fable 5.1) on the instructor's workstation; the plan package is the source of truth (`plan/`). Branch `week/02-requirements` on top of the 22 September curriculum-review checkpoint.
 
 ## Files

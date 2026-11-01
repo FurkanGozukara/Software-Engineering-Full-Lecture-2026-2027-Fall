@@ -21,6 +21,7 @@ ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "plan" / "plan_manifest.json"
 SITE = ROOT / "site"
 OUT = SITE / "index.html"
+VIDEO_LINKS = SITE / "assets" / "video_links.json"
 
 
 def scenes_present(week_html: Path, ids: list[str]) -> list[str]:
@@ -35,6 +36,10 @@ def scenes_present(week_html: Path, ids: list[str]) -> list[str]:
 
 def render() -> str:
     m = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    videos = json.loads(VIDEO_LINKS.read_text(encoding="utf-8")) if VIDEO_LINKS.exists() else {}
+    playlist = videos.get("playlist", {}).get("url")
+    playlist_link = (f'<p><a href="{html.escape(playlist, quote=True)}">Watch the full course playlist</a></p>'
+                     if playlist else '')
     rows = []
     for w in m["weeks"]:
         n = w["number"]
@@ -57,6 +62,9 @@ def render() -> str:
         pdf_link = (f'<a class="btn" href="pdf/week-{n:02d}.pdf">Student PDF</a>' if pdf.exists()
                     else '<span class="btn is-disabled" aria-disabled="true">PDF not yet exported</span>')
         tr_deck, tr_pdf = SITE / "weeks" / f"week-{n:02d}.tr.html", SITE / "pdf" / f"week-{n:02d}.tr.pdf"
+        video = videos.get("videos", {}).get(str(n))
+        video_link = (f'<a class="btn" href="{html.escape(video["url"], quote=True)}">Watch video · {html.escape(video["duration"])}</a>'
+                      if video else '')
         if complete and tr_deck.exists() and len(scenes_present(tr_deck, ids)) == len(ids):
             pdf_link += f'<a class="btn" lang="tr" hreflang="tr" href="weeks/week-{n:02d}.tr.html#/{ids[0]}">Türkçe ders</a>'
         if complete and tr_pdf.exists():
@@ -69,7 +77,7 @@ def render() -> str:
           <p class="question">{html.escape(w['question'])}</p>
           <p class="scope">{scope}</p>
         </div>
-        <div class="links">{deck_link}{pdf_link}{status}</div>
+        <div class="links">{deck_link}{video_link}{pdf_link}{status}</div>
       </li>""")
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -87,6 +95,7 @@ def render() -> str:
     <h1>Fourteen questions about one room-booking service</h1>
     <p>Every lecture follows the same rhythm: a situation you can picture, a prediction, the mechanism revealed step by step, one changed condition, a comparison, and the principle that explains the difference. The recurring example is Campus Rooms, a fictional service that reserves campus rooms.</p>
     <p>Each week is one interactive deck and one printable PDF. Open a deck at any scene through its link, such as <code>weeks/week-01.html#/two-confirmations</code>.</p>
+    {playlist_link}
   </header>
   <section class="how" aria-label="How to use the decks">
     <div><b>Pages and steps are different controls.</b> Right and Left arrows change the page. Down and Up arrows step the demonstration on the page; Step never changes the page.</div>

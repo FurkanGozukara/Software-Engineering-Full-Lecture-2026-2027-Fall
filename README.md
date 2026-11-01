@@ -1,5 +1,19 @@
 # Software Engineering course site
 
+## Watch the lectures
+
+[Open the full course playlist](https://www.youtube.com/playlist?list=PLS3U3BEQ-9C0).
+
+| Lecture | Video | Materials |
+|---|---|---|
+| 1 — Engineering Software That People Can Depend On | [Watch](https://www.youtube.com/watch?v=36YhAfCZrB4) · 45:55 | [Deck](site/weeks/week-01.html) · [PDF](site/pdf/week-01.pdf) |
+| 2 — From Ambiguous Requests To Verifiable Requirements | [Watch](https://www.youtube.com/watch?v=wJibevFLxqg) · 1:00:11 | [Deck](site/weeks/week-02.html) · [PDF](site/pdf/week-02.pdf) |
+| 3 — Modeling Behavior, Data, and User Interaction | [Watch](https://www.youtube.com/watch?v=0zo0d3tKydU) · 57:45 | [Deck](site/weeks/week-03.html) · [PDF](site/pdf/week-03.pdf) |
+| 4 — Development Flow, Uncertainty, and Engineering Decisions | [Watch](https://www.youtube.com/watch?v=SQ6TDGisaC0) · 53:02 | [Deck](site/weeks/week-04.html) · [PDF](site/pdf/week-04.pdf) |
+| 5 — Modularity, Interfaces, and the Cost of Change | [Watch](https://www.youtube.com/watch?v=V26mbmrSUCk) · 48:21 | [Deck](site/weeks/week-05.html) · [PDF](site/pdf/week-05.pdf) |
+| 6 — Architecture, Interactions, and Distributed Failure | [Watch](https://www.youtube.com/watch?v=r3lQevA-vtY) · 53:06 | [Deck](site/weeks/week-06.html) · [PDF](site/pdf/week-06.pdf) |
+| 7 — Collaboration, Version History, and Reviewable Change | [Watch](https://www.youtube.com/watch?v=6aCc7uEiLO0) · 41:47 | [Deck](site/weeks/week-07.html) · [PDF](site/pdf/week-07.pdf) |
+
 ## Quick start (no installation)
 
 ```

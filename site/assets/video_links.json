@@ -1,0 +1,52 @@
+{
+  "verified_on": "2026-11-01",
+  "playlist": {
+    "url": "https://www.youtube.com/playlist?list=PLS3U3BEQ-9C0",
+    "title": "Software Engineering Full Course: Requirements, Design, Testing & Delivery (14 Lectures)",
+    "id": "PLS3U3BEQ-9C0"
+  },
+  "videos": {
+    "1": {
+      "url": "https://www.youtube.com/watch?v=36YhAfCZrB4",
+      "title": "Software Engineering Tutorial - Full Course, Lecture 1: Build Software People Can Trust",
+      "duration": "45:55",
+      "length_seconds": 2754
+    },
+    "2": {
+      "url": "https://www.youtube.com/watch?v=wJibevFLxqg",
+      "title": "Turn Stakeholder Requests into Verifiable Requirements | Full Course, Lecture 2",
+      "duration": "1:00:11",
+      "length_seconds": 3610
+    },
+    "3": {
+      "url": "https://www.youtube.com/watch?v=0zo0d3tKydU",
+      "title": "Pick the Right Diagram Before You Draw | Software Engineering Full Course, Lecture 3",
+      "duration": "57:45",
+      "length_seconds": 3465
+    },
+    "4": {
+      "url": "https://www.youtube.com/watch?v=SQ6TDGisaC0",
+      "title": "Bottlenecks Explained: Why Faster Coding Is Not Enough | Software Engineering Full Course, Lecture 4",
+      "duration": "53:02",
+      "length_seconds": 3182
+    },
+    "5": {
+      "url": "https://www.youtube.com/watch?v=V26mbmrSUCk",
+      "title": "Why Did We Build It This Way? Decision Records | Software Engineering Full Course, Lecture 5",
+      "duration": "48:21",
+      "length_seconds": 2900
+    },
+    "6": {
+      "url": "https://www.youtube.com/watch?v=r3lQevA-vtY",
+      "title": "Monolith or Microservices? Follow One Lost Answer | Software Engineering Full Course, Lecture 6",
+      "duration": "53:06",
+      "length_seconds": 3186
+    },
+    "7": {
+      "url": "https://www.youtube.com/watch?v=6aCc7uEiLO0",
+      "title": "All Checks Pass. Is the Change Ready to Merge? | Software Engineering Full Course, Lecture 7",
+      "duration": "41:47",
+      "length_seconds": 2507
+    }
+  }
+}

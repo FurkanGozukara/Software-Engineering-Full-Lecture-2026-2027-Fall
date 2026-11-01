@@ -1,5 +1,9 @@
 # Week 03 · completion record
 
+## Watch the lecture
+
+[Watch Lecture 3](https://www.youtube.com/watch?v=0zo0d3tKydU) (57:45) · [Full course playlist](https://www.youtube.com/playlist?list=PLS3U3BEQ-9C0).
+
 Date: 26 September 2026. Author: Claude Code (Opus 5.5) on the instructor's workstation; the plan package is the source of truth (`plan/`). Branch `week/03-models`, started from `main` at `6abf59a`.
 
 ## Files

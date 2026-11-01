@@ -1,5 +1,9 @@
 # Week 06 · completion record
 
+## Watch the lecture
+
+[Watch Lecture 6](https://www.youtube.com/watch?v=r3lQevA-vtY) (53:06) · [Full course playlist](https://www.youtube.com/playlist?list=PLS3U3BEQ-9C0).
+
 Date: 20 October 2026. Author: Claude Code (Opus 5.5) on the instructor's workstation; the plan package is the source of truth (`plan/`). Branch `week/06-architecture`, started from `week/05-modularity` at `bb43ef2` (Week 5 is not yet merged into `main`).
 
 ## Files

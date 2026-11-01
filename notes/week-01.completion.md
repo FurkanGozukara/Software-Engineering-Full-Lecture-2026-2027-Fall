@@ -1,5 +1,9 @@
 # Week 01 · completion record (Phase 0)
 
+## Watch the lecture
+
+[Watch Lecture 1](https://www.youtube.com/watch?v=36YhAfCZrB4) (45:55) · [Full course playlist](https://www.youtube.com/playlist?list=PLS3U3BEQ-9C0).
+
 Date: 17 September 2026. Author: Claude Code (Fable 5.1) on the instructor's workstation; the plan package is the source of truth (`plan/`).
 
 ## Files

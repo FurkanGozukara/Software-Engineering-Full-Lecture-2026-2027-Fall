@@ -1,5 +1,9 @@
 # Week 07 · completion record
 
+## Watch the lecture
+
+[Watch Lecture 7](https://www.youtube.com/watch?v=6aCc7uEiLO0) (41:47) · [Full course playlist](https://www.youtube.com/playlist?list=PLS3U3BEQ-9C0).
+
 Date: 28 October 2026. Branch: `week/07-collaboration`, based on accepted Week 6 state `9dc89fd`. The user requested complete Week 7 material, specifically the quality, style and animations of Week 6, and actual Chrome verification. Video production is deferred.
 
 Status: complete material, browser-verified and visually reviewed, then revised after a review against Week 6 (section "Review revision" below). Lecture video recorded and delivered on 31 October 2026 (section "Lecture video" below).

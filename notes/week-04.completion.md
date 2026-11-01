@@ -1,5 +1,9 @@
 # Week 04 · completion record
 
+## Watch the lecture
+
+[Watch Lecture 4](https://www.youtube.com/watch?v=SQ6TDGisaC0) (53:02) · [Full course playlist](https://www.youtube.com/playlist?list=PLS3U3BEQ-9C0).
+
 Date: 29 September 2026. Author: Claude Code (Opus 5.5) on the instructor's workstation; the plan package is the source of truth (`plan/`). Branch `week/04-flow`, started from `main` at `6c683f2`.
 
 ## Files
