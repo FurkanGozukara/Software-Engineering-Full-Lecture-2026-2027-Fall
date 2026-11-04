@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Week 08 · Testing behavior and building credible evidence</title>
+<meta name="description" content="Software Engineering, Week 8: which checks challenge your assumptions rather than repeat them. Interactive boundary cases, input groups, test scope and doubles, exploration, independent expected results, properties and counterexamples, coverage and mutation, repeatable observations, and checks as feedback.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../shared/theme.css">
+<link rel="stylesheet" href="../shared/print.css">
+<style>
+/* Week-local compositions. Shared controls, type, palette, modes and print remain the shell of Weeks 6 and 7. */
+.w8-stack { display:flex; flex-direction:column; gap:12px; height:100%; min-height:0; }
+.w8-grid { display:grid; gap:14px; min-width:0; min-height:0; }
+.w8-two { grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
+.w8-three { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.w8-card { padding:11px 15px; min-width:0; }
+.w8-title { font-size:16px; font-weight:800; text-transform:uppercase; letter-spacing:.065em; color:var(--text-soft); margin-bottom:6px; }
+.w8-body { font-size:20px; line-height:1.33; }
+.w8-small { font-size:17px; line-height:1.32; color:var(--text-muted); }
+.w8-big { font-size:27px; font-weight:650; line-height:1.24; }
+.w8-mono { font-family:var(--font-mono); }
+.w8-ok { color:var(--ok); } .w8-bad { color:var(--bad); } .w8-warn { color:var(--warn); }
+.w8-note { border-left:4px solid var(--accent); padding:8px 14px; font-size:19px; line-height:1.32; background:var(--accent-fill); border-radius:0 10px 10px 0; }
+.w8-note--warn { border-color:var(--warn); background:var(--warn-fill); }
+.w8-note--bad { border-color:var(--bad); background:var(--bad-fill); }
+.w8-note--ok { border-color:var(--ok); background:var(--ok-fill); }
+.w8-card.is-focus { border-color:var(--warn); box-shadow:inset 0 0 0 1px var(--warn); }
+.w8-card.is-bad { border-color:var(--bad); background:var(--bad-fill); }
+.w8-card.is-ok { border-color:var(--ok); }
+.w8-tag { display:inline-flex; align-items:center; padding:3px 9px; border:1.5px solid var(--line-strong); border-radius:7px; font-size:15px; font-weight:700; background:var(--surface-2); }
+.w8-variant { border-color:var(--warn); color:var(--warn); }
+.w8-rule { display:flex; align-items:center; gap:14px; padding:9px 16px; border:1.5px solid var(--accent); border-radius:12px; background:var(--accent-fill); font-size:22px; font-weight:600; min-height:52px; }
+.w8-rule-id { font-family:var(--font-mono); font-weight:800; color:var(--accent-strong); font-size:20px; }
+/* code */
+.w8-code { border:1px solid var(--line); border-radius:10px; background:var(--surface-2); padding:7px 0; overflow:hidden; font-family:var(--font-mono); font-size:19px; line-height:1.45; min-width:0; }
+.w8-code--small { font-size:16.5px; }
+.w8-line { display:grid; grid-template-columns:28px minmax(0,1fr); padding:0 12px 0 4px; border-left:4px solid transparent; }
+.w8-ln { font-size:.76em; color:var(--text-soft); text-align:right; padding-right:8px; user-select:none; }
+.w8-src { white-space:pre; }
+.w8-line.is-focus { border-left-color:var(--warn); background:var(--warn-fill); }
+.w8-line.is-ran { border-left-color:var(--ok); background:var(--ok-fill); }
+.w8-line.is-bad { border-left-color:var(--bad); background:var(--bad-fill); }
+.w8-code .kw { color:var(--violet); } .w8-code .num { color:var(--warn); } .w8-code .str { color:var(--ok); } .w8-code .cm { color:var(--text-soft); font-style:italic; }
+.w8-diff { padding:9px 12px; border-radius:10px; background:var(--surface-2); font-family:var(--font-mono); font-size:19px; line-height:1.5; }
+.w8-diff-row { display:grid; grid-template-columns:24px minmax(0,1fr); border-left:3px solid transparent; padding:2px 9px; }
+.w8-diff-row--remove { border-color:var(--bad); background:var(--bad-fill); }
+.w8-diff-row--add { border-color:var(--ok); background:var(--ok-fill); }
+.w8-diff-sign { font-weight:900; }
+.w8-diff-source { white-space:pre; }
+/* tables */
+.w8-table { width:100%; font-size:19px; line-height:1.27; }
+.w8-table th,.w8-table td { text-align:left; padding:6px 12px; border-bottom:1px solid var(--line); vertical-align:top; }
+.w8-table thead th { font-size:15px; color:var(--text-soft); letter-spacing:.02em; font-weight:700; }
+.w8-table thead th.w8-up { text-transform:uppercase; font-size:14px; letter-spacing:.04em; }
+.w8-table tbody th { font-weight:600; }
+.w8-table tr.is-focus { background:var(--warn-fill); }
+.w8-table tr.is-bad { background:var(--bad-fill); }
+.w8-table tr.is-ok { background:var(--ok-fill); }
+.w8-table--tight th,.w8-table--tight td { padding:4px 12px; }
+.w8-exec { display:grid; grid-template-columns:auto minmax(0,1fr) auto; gap:8px 12px; align-items:center; font-size:17px; padding:9px 13px; border:1px solid var(--line); border-radius:11px; background:var(--surface); }
+.w8-table--big { font-size:20px; }
+.w8-table--big th,.w8-table--big td { padding:10px 12px; }
+.w8-code--big { font-size:23px; }
+.w8-table .w8-mono { font-size:.97em; }
+/* status */
+.w8-status { display:flex; gap:12px; align-items:center; border:1.5px solid var(--line-strong); border-radius:10px; padding:9px 14px; background:var(--surface-2); min-height:54px; font-size:20px; font-weight:650; line-height:1.25; }
+.w8-status--ok { color:var(--ok); border-color:var(--ok); background:var(--ok-fill); }
+.w8-status--bad { color:var(--bad); border-color:var(--bad); background:var(--bad-fill); }
+.w8-status--warn { color:var(--warn); border-color:var(--warn); background:var(--warn-fill); }
+.w8-symbol { flex:0 0 auto; width:30px; height:30px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; background:var(--surface-3); border:1.5px solid currentColor; font-size:20px; font-weight:900; }
+.w8-mark { display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:50%; font-size:15px; font-weight:900; margin-right:7px; vertical-align:-2px; border:1.5px solid currentColor; }
+.w8-mark.is-ok { background:var(--ok); border-color:var(--ok); color:var(--ink-on-light); }
+.w8-mark.is-bad { background:var(--bad); border-color:var(--bad); color:var(--ink-on-light); }
+.w8-action { height:48px; padding:0 16px; font-size:20px; }
+.w8-flying { position:absolute; left:0; top:0; opacity:0; pointer-events:none; padding:7px 14px; border:2px solid var(--warn); border-radius:10px; background:var(--surface-2); color:var(--warn); font-family:var(--font-mono); font-size:18px; font-weight:650; box-shadow:var(--shadow); z-index:4; white-space:nowrap; }
+.btn-reserve:disabled, .preset-btn:disabled { opacity:.42; cursor:default; }
+.btn-reserve:disabled:hover { filter:none; }
+.preset-btn:disabled:hover { background:var(--surface-2); border-color:var(--line-strong); }
+svg .rv--scale { transform-box:fill-box; transform-origin:center; }
+
+/* opening */
+.w8-runbar { height:14px; border-radius:7px; background:var(--surface-3); overflow:hidden; }
+.w8-runbar i { display:block; height:100%; width:0; background:var(--ok); transition:width var(--t-move) var(--ease); }
+.w8-runbar.is-on i { width:100%; }
+.w8-screen .browser-body { gap:9px; padding:13px 16px 15px; }
+.w8-screen .field { padding:9px 14px; font-size:21px; }
+.w8-screen .field.is-bad { border-color:var(--bad); background:var(--bad-fill); }
+.w8-screen-msg { display:flex; gap:10px; align-items:center; font-size:20px; font-weight:650; color:var(--warn); padding:7px 12px; border:1.5px dashed var(--warn); border-radius:10px; background:var(--warn-fill); }
+.w8-screen-msg small { font-size:15px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--text-soft); }
+.w8-fake-btn { align-self:flex-start; min-height:42px; padding:0 18px; border-radius:10px; background:var(--accent); color:var(--ink-on-light); font-weight:700; font-size:19px; display:inline-flex; align-items:center; }
+
+/* scene 1: the conveyor */
+.w8-belt { height:226px; flex:0 0 auto; }
+.w8-belt-label { font-size:16px; font-weight:800; letter-spacing:.06em; fill:var(--text-soft); }
+.w8-pred rect { fill:var(--surface-2); stroke:var(--line-strong); stroke-width:2; }
+.w8-pred .w8-pred-k { font-size:14px; font-weight:800; letter-spacing:.07em; fill:var(--text-soft); }
+.w8-pred .w8-pred-c { font-family:var(--font-mono); font-size:22px; font-weight:650; fill:var(--text); }
+.w8-pred .w8-op { fill:var(--warn); font-weight:800; }
+.w8-pred.is-bad rect { stroke:var(--bad); stroke-width:3; fill:var(--bad-fill); }
+.w8-pred.is-bad .w8-op { fill:var(--bad); }
+.w8-pred.is-ok rect { stroke:var(--ok); stroke-width:3; }
+.w8-pred.is-ok .w8-op { fill:var(--ok); }
+.w8-tray rect { fill:var(--surface); stroke-width:2; stroke-dasharray:7 6; }
+.w8-tray--ok rect { stroke:var(--ok); } .w8-tray--bad rect { stroke:var(--bad); }
+.w8-tray text { font-size:15px; font-weight:800; letter-spacing:.06em; }
+.w8-tray--ok text { fill:var(--ok); } .w8-tray--bad text { fill:var(--bad); }
+.w8-num rect { fill:var(--surface-3); stroke:var(--line-strong); stroke-width:2; transition:fill var(--t-reveal), stroke var(--t-reveal); }
+.w8-num text { font-family:var(--font-mono); font-size:21px; font-weight:700; text-anchor:middle; fill:var(--text); }
+.w8-num.is-accepted rect { fill:var(--ok-fill); stroke:var(--ok); }
+.w8-num.is-rejected rect { fill:var(--bad-fill); stroke:var(--bad); }
+.w8-num.is-wrong rect { stroke:var(--warn); stroke-width:4; }
+.w8-num.is-next rect { stroke:var(--warn); stroke-dasharray:5 4; }
+
+/* scene 2: groups on a number line */
+.w8-line-svg { height:190px; flex:0 0 auto; }
+.w8-band rect { stroke-width:2; }
+.w8-band--ok rect { fill:var(--ok-fill); stroke:var(--ok); }
+.w8-band--bad rect { fill:var(--bad-fill); stroke:var(--bad); }
+.w8-band text { text-anchor:middle; }
+.w8-band .w8-band-t { font-size:21px; font-weight:750; fill:var(--text); }
+.w8-band .w8-band-s { font-size:16px; fill:var(--text-muted); }
+.w8-axis { stroke:var(--line-strong); stroke-width:2.5; }
+.w8-tick { stroke:var(--line-strong); stroke-width:2; }
+.w8-tick-t { font-size:15px; fill:var(--text-soft); text-anchor:middle; font-family:var(--font-mono); }
+.w8-rep circle { fill:var(--accent); stroke:var(--bg); stroke-width:3; }
+.w8-rep text { font-family:var(--font-mono); font-size:18px; font-weight:750; fill:var(--accent-strong); text-anchor:middle; }
+.w8-pin line { stroke:var(--warn); stroke-width:3.5; }
+.w8-pin rect { fill:var(--bg); stroke:var(--warn); stroke-width:2; }
+.w8-pin text { font-family:var(--font-mono); font-size:18px; font-weight:800; fill:var(--warn); text-anchor:middle; }
+
+/* scene 3: what a check can observe */
+.w8-scope { height:282px; flex:0 0 auto; }
+.w8-lens { fill:rgba(255,209,102,.09); stroke:var(--warn); stroke-width:3; stroke-dasharray:10 7; transition:x var(--t-move) var(--ease), y var(--t-move) var(--ease), width var(--t-move) var(--ease), height var(--t-move) var(--ease); }
+.w8-race rect { fill:var(--bad-fill); stroke:var(--bad); stroke-width:2; }
+.w8-race text { font-size:16px; font-weight:750; fill:var(--bad); text-anchor:middle; font-family:var(--font-mono); }
+.w8-scope-note { font-size:17px; font-weight:750; fill:var(--bad); }
+.n-ext.is-unrun rect { stroke-dasharray:8 7; opacity:.7; }
+.w8-double rect { fill:var(--violet-fill) !important; stroke:var(--violet) !important; }
+
+/* scene 4: where the expected answer comes from */
+.w8-tri { height:342px; flex:0 0 auto; }
+.w8-token rect { fill:var(--warn-fill); stroke:var(--warn); stroke-width:2; }
+.w8-token text { font-family:var(--font-mono); font-size:19px; font-weight:800; fill:var(--warn); text-anchor:middle; }
+.w8-tri .n-box.is-bad rect { stroke:var(--bad); stroke-width:3.5; fill:var(--bad-fill); }
+.w8-tri .n-box.is-ok rect { stroke:var(--ok); stroke-width:3.5; }
+.w8-tri .n-box.is-focus rect { stroke:var(--warn); stroke-width:3.5; }
+
+/* scene 5: properties on a calendar */
+.w8-cal { height:212px; flex:0 0 auto; }
+.w8-cal-lane { fill:var(--surface); stroke:var(--line); stroke-width:1.5; }
+.w8-cal-room { font-family:var(--font-mono); font-size:19px; font-weight:750; fill:var(--text-muted); }
+.w8-cal-hour { stroke:var(--line); stroke-width:1.5; stroke-dasharray:4 6; }
+.w8-cal-t { font-size:15px; fill:var(--text-soft); text-anchor:middle; font-family:var(--font-mono); }
+.w8-bar rect { fill:var(--ok-fill); stroke:var(--ok); stroke-width:2; }
+.w8-bar text { font-size:17px; font-weight:700; fill:var(--text); text-anchor:middle; }
+.w8-bar.is-refused rect { stroke:var(--line-strong); stroke-dasharray:6 5; fill:var(--surface-2); }
+.w8-bar.is-wrong rect { stroke:var(--bad); stroke-width:3; stroke-dasharray:none; }
+.w8-bar.is-out { opacity:.25; }
+.w8-prop { display:grid; grid-template-columns:48px minmax(0,1fr) auto; gap:10px; align-items:center; padding:9px 14px; border:1.5px solid var(--line-strong); border-radius:11px; background:var(--surface); min-height:62px; }
+.w8-prop b { font-family:var(--font-mono); font-size:21px; color:var(--accent-strong); }
+.w8-prop span.t { font-size:20px; line-height:1.24; }
+.w8-prop.is-ok { border-color:var(--ok); } .w8-prop.is-bad { border-color:var(--bad); background:var(--bad-fill); }
+.w8-pill { font-size:15px; font-weight:800; padding:3px 11px; border-radius:999px; border:1.5px solid var(--line-strong); color:var(--text-muted); white-space:nowrap; }
+.w8-pill.is-ok { color:var(--ok); border-color:var(--ok); } .w8-pill.is-bad { color:var(--bad); border-color:var(--bad); } .w8-pill.is-warn { color:var(--warn); border-color:var(--warn); }
+.w8-input { display:flex; align-items:center; gap:14px; padding:8px 14px; border:1px solid var(--line); border-radius:10px; background:var(--surface-2); font-size:19px; }
+.w8-input code { min-width:130px; color:var(--accent-strong); font-weight:700; white-space:pre; }
+.w8-input.is-bad { border-color:var(--bad); background:var(--bad-fill); }
+.w8-input.is-ok { border-color:var(--ok); }
+
+/* scene 6: coverage and mutation */
+.w8-meter { display:grid; grid-template-columns:auto minmax(0,1fr); gap:12px; align-items:center; font-size:19px; font-weight:700; }
+.w8-meter .w8-runbar { height:16px; }
+.w8-metric { padding:10px 14px; border:1.5px solid var(--line-strong); border-radius:12px; background:var(--surface); min-height:88px; }
+.w8-metric b { display:block; font-size:14px; letter-spacing:.06em; text-transform:uppercase; color:var(--text-soft); margin-bottom:5px; }
+.w8-metric span { font-size:30px; font-weight:750; }
+.w8-metric.is-ok { border-color:var(--ok); } .w8-metric.is-ok span { color:var(--ok); }
+.w8-metric.is-bad { border-color:var(--bad); background:var(--bad-fill); } .w8-metric.is-bad span { color:var(--bad); }
+.w8-metric.is-warn { border-color:var(--warn); background:var(--warn-fill); } .w8-metric.is-warn span { color:var(--warn); }
+
+/* scene 7: clocks */
+.w8-clock { height:158px; flex:0 0 auto; }
+.w8-zone--ok { fill:var(--ok-fill); } .w8-zone--bad { fill:var(--bad-fill); }
+.w8-zone-t { font-size:17px; font-weight:700; text-anchor:middle; }
+.w8-start { stroke:var(--warn); stroke-width:4; }
+.w8-start-t { font-size:17px; font-weight:800; fill:var(--warn); text-anchor:middle; }
+.w8-hand { transition:transform var(--t-move) var(--ease); }
+.w8-hand path { fill:var(--accent); stroke:var(--bg); stroke-width:2; }
+.w8-hand line { stroke:var(--accent); stroke-width:3; }
+.w8-hand text { font-family:var(--font-mono); font-size:18px; font-weight:800; fill:var(--accent-strong); text-anchor:middle; }
+.w8-run { display:flex; flex-direction:column; align-items:center; gap:5px; padding:12px 6px; border:1.5px solid var(--line); border-radius:10px; background:var(--surface-2); font-size:16px; min-width:0; }
+.w8-run b { font-size:15px; letter-spacing:.05em; text-transform:uppercase; color:var(--text-soft); }
+.w8-run .v { font-family:var(--font-mono); font-size:22px; font-weight:700; }
+.w8-run .r { font-size:20px; font-weight:800; }
+.w8-run.is-ok { border-color:var(--ok); } .w8-run.is-ok .r { color:var(--ok); }
+.w8-run.is-bad { border-color:var(--bad); background:var(--bad-fill); } .w8-run.is-bad .r { color:var(--bad); }
+.w8-strip { display:grid; gap:9px; }
+
+/* scene 8: feedback */
+.w8-move { padding:10px 13px; border:1.5px solid var(--line); border-radius:12px; background:var(--surface); min-width:0; }
+.w8-move .n { display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px; border-radius:50%; border:1.5px solid var(--line-strong); font-weight:800; font-size:16px; margin-right:8px; }
+.w8-move .h { font-size:20px; font-weight:750; }
+.w8-move p { font-size:17.5px; line-height:1.27; color:var(--text-muted); margin-top:6px; }
+.w8-move.is-now { border-color:var(--warn); background:var(--warn-fill); }
+.w8-move.is-done { border-color:var(--ok); }
+.w8-loop { height:120px; flex:0 0 auto; }
+.w8-loop .n-box.is-now rect { stroke:var(--warn); stroke-width:3.5; fill:var(--warn-fill); }
+.w8-loop .n-box.is-done rect { stroke:var(--ok); stroke-width:2.5; }
+.w8-loop .n-label { font-size:20px; }
+.w8-loop .a-label { font-size:16px; }
+
+/* evidence page */
+.w8-kind { display:flex; flex-direction:column; gap:5px; padding:10px 14px; border:1.5px solid var(--line); border-radius:12px; background:var(--surface); min-width:0; }
+.w8-kind .when { font-size:14px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--text-soft); }
+.w8-kind .h { font-size:21px; font-weight:750; }
+.w8-kind p { font-size:18.5px; line-height:1.28; color:var(--text-muted); }
+.w8-kind .found { color:var(--text); font-weight:600; }
+.w8-contract { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+.w8-clause { padding:8px 13px; border:1.5px solid var(--violet); border-radius:11px; background:var(--violet-fill); }
+.w8-clause b { font-size:14px; letter-spacing:.05em; text-transform:uppercase; color:var(--violet); }
+.w8-clause p { font-size:19px; line-height:1.26; margin-top:3px; }
+.w8-clause small { font-size:15px; color:var(--text-muted); }
+.w8-log { display:flex; flex-direction:column; gap:7px; }
+.w8-log-row { padding:7px 12px; border:1px solid var(--line); border-radius:10px; background:var(--surface-2); }
+.w8-log-row p { font-size:20px; line-height:1.27; }
+.w8-log-row .q { color:var(--accent-strong); font-weight:600; margin-top:2px; }
+
+body[data-print="true"] .w8-lens, body[data-print="true"] .w8-hand, body[data-print="true"] .w8-num rect { transition:none; }
+html[data-print-mode="true"] { background:#fff; color-scheme:light; }
+</style>
+</head>
+<body>
+<noscript><p style="padding:24px;font-family:sans-serif;color:#eaf0f6">This lecture deck needs JavaScript. The printable reading copy is ../pdf/week-08.pdf.</p></noscript>
+<script src="../assets/fixtures/demo-fixtures.js"></script>
+<script src="../shared/visual-components.js"></script>
+<script src="../shared/lecture-controls.js"></script>
+<script src="week-08.js"></script>
+</body>
+</html>

@@ -127,6 +127,8 @@ Worked examples and questions with their answers follow the public lecture-only 
 REFRESH POLICY FOR FUTURE RELEASES
 ----------------------------------
 
+Week 8 authoring, 4 November 2026: rechecked S01, S02, S11, S12, S40 and S60; S01 is accessible again and identifies SWEBOK v4.0a. Added primary reference S64 (Pact, contract testing). The In practice examples remain factual, dated examples and require no accounts or installations. No curriculum mechanism changed.
+
 Week 7 authoring, 28 October 2026: rechecked S01, S02, S06 and S07; S01 returned HTTP 403 and keeps its last recorded status. Added primary references S61 (Git bisection), S62 (npm package-lock.json) and S63 (uv lockfile); these additions support Week 7. The In practice examples remain factual, dated examples and require no accounts or installations. No curriculum mechanism changed.
 
 Before a new run, check the official source status for SWEBOK, curriculum guidance, OWASP (including the agentic list), NIST, workflow guides, accessibility guidance, ISO/IEC 25010, the delivery-measure definitions, and the application dates of the laws named in Week 9. Record edition, publication or update date, retrieval date, and final-versus-draft status. Review each week's "In practice" tool names at the same time and replace names that have fallen out of common use. Preserve the conceptual lesson unless the evidence gives a reason to change it. The DORA publication index is the entry point for newer delivery and AI-assistance research; the re-verification task template is ../tasks/50_source_reverification.md. Recheck volatile references again immediately before authoring their lecture; do not silently update the dated research claims. [S36]

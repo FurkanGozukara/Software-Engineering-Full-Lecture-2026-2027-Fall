@@ -1,5 +1,5 @@
 PRIMARY SOURCE REGISTER
-Register updated: 28 October 2026; retrieval dates are recorded per entry
+Register updated: 4 November 2026; retrieval dates are recorded per entry
 ==============================================================================
 
 The original references were checked on 16-17 September 2026. Selected status checks and new references were reviewed on 22 September 2026 as recorded below; unchanged entries retain their earlier retrieval dates. Living documentation can change. Source keys identify supporting concepts and technical guardrails, not copied lesson text. Most sources were read as HTML; access limitations are recorded explicitly. No full external reference PDF audit is claimed.
@@ -15,6 +15,8 @@ V4.0a identified in official indexed material; version update indicated 25 Septe
 
 Week 7 check, 28 October 2026: the main landing page again returned HTTP 403 Forbidden. Retain the last recorded edition; no new edition claim is made from this retrieval.
 
+Week 8 check, 4 November 2026: the main landing page was accessible and identifies SWEBOK Guide Version 4.0, updated as v4.0a. The guide itself was not re-audited.
+
 https://www.computer.org/education/bodies-of-knowledge/software-engineering/topics
 
 Use: curriculum.
@@ -27,6 +29,8 @@ https://csed.acm.org/final-report/
 Final curriculum reference, published in 2024. Final-report landing page rechecked 22 September 2026; the official indexed HTML report supports teamwork, construction, requirements and professional-context coverage. Full HTML retrieval exceeded the browser text size limit. Used for broad scope and competencies; not a formal course accreditation mapping or a full-report audit. Do not substitute the older gamma-draft knowledge-area download for the final report.
 
 Week 7 check, 28 October 2026: the official final-report landing page was accessible and still identifies CS2023 as the final report. The linked full report was not re-audited.
+
+Week 8 check, 4 November 2026: the landing page was accessible and still presents CS2023 as the final report.
 
 Use: curriculum.
 
@@ -111,7 +115,7 @@ S11 | HYPOTHESIS — PROPERTY-BASED TESTING DOCUMENTATION
 
 https://hypothesis.readthedocs.io/en/latest/
 
-Living primary tool documentation. Supports the testing concept; the course does not require Python or Hypothesis.
+Living primary tool documentation. Supports the testing concept; the course does not require Python or Hypothesis. Rechecked 4 November 2026: the home page describes property-based testing with generated inputs; the API reference at /en/latest/reference/api.html names shrinking failing test cases and reporting the minimal failing case.
 
 Use: curriculum.
 
@@ -120,7 +124,7 @@ S12 | STRYKER — MUTANT STATES AND METRICS
 
 https://stryker-mutator.io/docs/mutation-testing-elements/mutant-states-and-metrics/
 
-Primary mutation-testing documentation. Supports diagnostic interpretation, not a promise that a score proves correctness.
+Primary mutation-testing documentation. Supports diagnostic interpretation, not a promise that a score proves correctness. Rechecked 4 November 2026: the page defines Killed, Survived, No coverage and Ignored states and the score as detected / valid.
 
 Use: curriculum.
 
@@ -372,7 +376,7 @@ S40 | SOFTWARE ENGINEERING AT GOOGLE — TESTING OVERVIEW
 
 https://abseil.io/resources/swe-book/html/ch11.html
 
-Primary chapter on testing concepts. Used for evidence and scope framing; no universal test-ratio prescription.
+Primary chapter on testing concepts. Used for evidence and scope framing; no universal test-ratio prescription. Rechecked 4 November 2026: the chapter separates test size from scope, says code coverage measures that a line was invoked rather than what happened as a result, and describes the cost of flaky tests. Its stated team ratio is not adopted.
 
 Use: curriculum.
 
@@ -554,7 +558,7 @@ S60 | ISTQB - FOUNDATION LEVEL SYLLABUS, EXPLORATORY TESTING
 
 https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf
 
-Version 4.0.1, dated 15 September 2024. Section 4.4.2, page 44, retrieved 22 September 2026. Used for the relationship between exploration, learning and test design in Week 8. The status-recovery comparison is original course-authored material; no certification syllabus, exam preparation or training durations are adopted. Only the relevant section was reviewed, not the full external PDF.
+Version 4.0.1, dated 15 September 2024. Section 4.4.2, page 44, retrieved 22 September 2026. Used for the relationship between exploration, learning and test design in Week 8. The status-recovery comparison is original course-authored material; no certification syllabus, exam preparation or training durations are adopted. Only the relevant section was reviewed, not the full external PDF. Rechecked 4 November 2026: the PDF was retrieved and page 44 was read again; exploratory testing is described with test charters, sessions and recorded discoveries.
 
 Use: curriculum.
 
@@ -582,5 +586,14 @@ S63 | ASTRAL UV - PROJECT STRUCTURE AND THE LOCKFILE
 https://docs.astral.sh/uv/concepts/projects/layout/#the-lockfile
 
 Official living documentation retrieved 28 October 2026. Supports uv.lock as a record of resolved dependency selections used to reproduce an environment. It is a dated tool example, not a requirement to use Python or uv.
+
+Use: curriculum.
+
+S64 | PACT - INTRODUCTION TO CONTRACT TESTING
+---------------------------------------------
+
+https://docs.pact.io/
+
+Official living documentation retrieved 4 November 2026. Supports contract testing as checking an integration point by testing each application in isolation against a shared contract between a consumer and a provider. The Campus Rooms notification mismatch is original fictional teaching data; no Pact account or installation is needed.
 
 Use: curriculum.

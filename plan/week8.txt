@@ -13,7 +13,7 @@ Build testing from the behavior students already understand. Start with a bookin
 
 The lecture should make evidence visible without presenting one test taxonomy, framework, or fixed test-pyramid ratio as a universal formula. Treat testability, independent expected results, representative conditions, and useful failure messages as engineering choices. [S01, S02, S40]
 
-In practice (dated examples, 2026): pytest and JUnit run example checks, Hypothesis generates property-based cases, Stryker and mutmut run mutation analysis, coverage.py measures executed lines, and Playwright drives complete browser journeys.
+In practice (dated examples, 2026): pytest and JUnit run example checks, Hypothesis generates property-based cases, Stryker and mutmut run mutation analysis, coverage.py measures executed lines, Playwright drives complete browser journeys, and Pact checks a consumer's expectations against a provider.
 
 2. OBSERVABLE LEARNING OUTCOMES
 -------------------------------
@@ -114,7 +114,7 @@ VISUAL IDEA: A layered system view highlights a pure policy function, component 
 
 SITUATION, PREDICTION, AND MECHANISM: Ask whether a unit check of overlap arithmetic proves that concurrent requests cannot double-book. Reveal the missing shared-storage behavior. Place focused function checks, integration checks, and a complete booking journey where they observe their respective claims. Use the same keyboard booking journey to explain exploratory testing: start with the question of how someone recovers from a lost response, then choose the next check from what the interface reveals. In the authored comparison, reopening the stored booking retrieves confirmation but the interface still says Submitting. Inspect the corrected Confirmed state and capture the discovered mismatch as a repeatable regression example. This is guided investigation with recorded observations; scripted checks preserve known expectations. A separate usability study would ask representative people to attempt the task and explain what they understood. The scene is a simulated example, not a claim that such a study occurred. [S60]
 
-CHANGE ONE CONDITION AND COMPARE: Replace the real notification boundary with a controlled test double. Compare faster isolation of booking behavior with the remaining uncertainty about actual integration. Show a separate contract or integration check for that uncertainty. Use a consumer expectation that the actual provider violates to explain contract testing, then keep the cross-component journey check for behavior that neither side can establish alone. A mock returning the desired value is not evidence that the real boundary behaves that way.
+CHANGE ONE CONDITION AND COMPARE: Replace the real notification boundary with a controlled test double. Compare faster isolation of booking behavior with the remaining uncertainty about actual integration. Show a separate contract or integration check for that uncertainty. Use a consumer expectation that the actual provider violates to explain contract testing, then keep the cross-component journey check for behavior that neither side can establish alone. A mock returning the desired value is not evidence that the real boundary behaves that way. [S64]
 
 PRINCIPLE TO REVEAL: The appropriate test scope follows the claim and failure risk, not the prestige of a test label.
 
@@ -261,4 +261,4 @@ Carry independent checks and explicit invariants into Week 9. Correctness now in
 11. SOURCES AND CURRENCY NOTES
 ------------------------------
 
-Primary references: S01, S02, S11, S12, S40, S60. Full titles, URLs, dated status, and access limitations appear in the source register. Curriculum review: 22 September 2026. See each source entry for its actual retrieval date; unchanged references retain earlier dates. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S11, S12, S40, S60, S64. Full titles, URLs, dated status, and access limitations appear in the source register. Curriculum review: 22 September 2026. Week 8 source re-verification: 4 November 2026; the Pact reference was added to support the contract-testing comparison. See each source entry for its actual retrieval date; unchanged references retain earlier dates. The examples and visual teaching sequences are original proposals; no live service behavior is implied.

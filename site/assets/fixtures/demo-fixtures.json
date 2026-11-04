@@ -3,7 +3,7 @@
   "kind": "Original fictional teaching fixtures, not real performance data",
   "date": "16 September 2026",
   "purpose": "Inputs and independently checked expected values for later authoring; not executable lecture scenes.",
-  "extended": "16 September 2026: pseudocode_language, cancellation_matrix, retry_model and an anchors block with structured data for all 42 Anchor scenes and the numeric Bridges (Proposal 4). Keys are wNN/scene-id. week_text_shows lists strings the week TXT must contain; deck_shows lists strings the rendered scene must show; snippets are executable Python-like fixtures recomputed by tools/check_plan.py. 17 September 2026 (Phase 0 authoring): w01 Bridge fixtures added for system-boundary, quality-tradeoffs (simulated example values), evidence-not-confidence, responsibility-and-impact and course-evidence-map so that every Week 1 scene renders from this file. 17 September 2026 (plan revision): w02/ambiguous-request week_text_shows; booking_SLO expected_burn_rate and expected_days_to_exhaust_budget (recomputed by tools/check_plan.py); w10/change-through-gates static checks gate; w13/bounded-actions unreviewed tool connector capability; w13/provenance-and-understanding invented dependency. 17 September 2026 (Week 1 plan coverage): w01/quality-tradeoffs standard_vocabulary (sourced, S46) with week_text_shows and a deck_shows value; w01/feedback-lifecycle feedback_paths (authored structure: the path each discovery point's information takes and what it changes) with deck_shows. 22 September 2026: scoped curriculum refinements for Weeks 2-14; qualitative fixture additions; Week 1 data unchanged. 22 September 2026 public-course follow-up: thirteen qualitative transfer checks and a Week 14 professional-judgment comparison; canonical case, Week 1 data and numerical fixtures retained. 22 September 2026 foundation follow-up: qualitative elicitation and optional lookup/index comparisons; no new measured values. 22 September 2026 teaching review: qualitative acceptance and exploratory status-recovery comparison added; existing fixture values retained. 22 September 2026 (Week 2 authoring): w02 Bridge fixtures added for acceptance-and-validation, priority-and-risk and requirements-under-change (authored structures, fictional dates, no measurements); w02/ambiguous-request gains simulated example requests, stakeholder wording, the developer's rewrite, the open questions and the easy-for-whom routing; w02/elicitation-and-scope the boundary questions, the fact/assumption register and the visitor comparison; w02/observable-behavior the rule parts, the widget note and the two candidate snippets of the AI beat; w02/quality-with-conditions the two workloads (latency fixture datasets, illustrative), the boundary span, the S46 vocabulary rows and the keyboard path; w02/traceability-matrix an R-02 row and the blank-row note; deck_shows values for every Week 2 scene. 26 September 2026 (Week 3 authoring): w03 Bridge fixtures for journey-before-boxes, decision-table, interface-states, model-consistency and abstraction-and-zoom (authored structures and simulated example values, labeled); w03/identity-and-data bookings (B-003 simulated), rename lookup and identifier examples; w03/state-machine stored entry, repeated-cancel contrast and the invariant and progress examples; w03/sequence-not-state recovery actions; deck_shows for the three Week 3 Anchors. 29 September 2026 (Week 4 authoring): w04 Bridge fixtures added for methods-not-rituals, wip-and-time, estimates-with-assumptions, definition-of-done and retrospective-as-test (authored comparisons and labeled simulated example values; the WIP-limit schedule is computed from the flow baseline and recomputed by tools/check_plan.py); w04/queue-and-bottleneck gains the mapping of the eight work cards to W01-W08 and the transfer rule; w04/feedback-batches the three slices, the feedback points with the cards to reconsider, the coordination task; w04/risk-and-learning notes per option and alternative, both decisions, the lifecycle example and what stays uncertain; deck_shows values for all eight scenes. No existing value changed. 10 October 2026 (Week 5 authoring): w05 Bridge fixtures added for same-behavior-different-design (the shared screen, the request paths, the rule holders and the opening search of Design A's code lines), dependency-direction (the direct and interface versions, the storage change, an executable overlap snippet) and design-rationale (one decision record and its changed scope); w05/cohesion-and-responsibility gains the Utilities tasks, groups, the request pipeline with its stages and effects, an executable decide snippet, the new-format change and the over-splitting cost; w05/abstraction-cost the three structures with qualitative judgments under two conditions and the build/reuse/buy comparison; w05/dependency-example a second, independent change (the email provider); w05/interface-contract a third implementation (failures reported), the contract rows and verdicts, the failed-delivery screens and the result kinds with examples and the four separate claims; w05/refactoring-under-checks the Reminder's copy as an executable snippet and the callers after step 1; deck_shows values for every Week 5 scene. Authored comparisons and labeled example values only; no measurement. No existing value changed. 20 October 2026 (Week 6 authoring): w06 Bridge fixtures added for architecture-zoom (three C4-style views, the request's crossings and the separate notification worker), monolith-and-services (qualitative comparison rows for one small team and the growing-notification condition, no winner label) and architecture-decision (decision record DR-002 with quality scenarios and the several-campuses trigger); w06/request-journey gains the simulated request label REQ-17, the pending notification N-001 and the outage outcomes of both designs; w06/concurrent-booking the two requests, the read-committed transaction and unique-key conditions (S10) and executable snippets for check-then-write, a unique start key and one atomic decision per room; w06/retry-and-idempotency the plain retry, the operation record, the HTTP note (S09), an executable key handler, the four answers a requester can observe and the opening's lost response; w06/async-and-consistency the two timelines, the user-facing combinations, the duplicate attempt and three crash points; w06/contracts-and-evolution the concrete booking contract, the OpenAPI limits (S52), three consumers and four changes; deck_shows values for every Week 6 scene. Authored comparisons and labeled example values only; no measurement. No existing value changed."
+  "extended": "16 September 2026: pseudocode_language, cancellation_matrix, retry_model and an anchors block with structured data for all 42 Anchor scenes and the numeric Bridges (Proposal 4). Keys are wNN/scene-id. week_text_shows lists strings the week TXT must contain; deck_shows lists strings the rendered scene must show; snippets are executable Python-like fixtures recomputed by tools/check_plan.py. 17 September 2026 (Phase 0 authoring): w01 Bridge fixtures added for system-boundary, quality-tradeoffs (simulated example values), evidence-not-confidence, responsibility-and-impact and course-evidence-map so that every Week 1 scene renders from this file. 17 September 2026 (plan revision): w02/ambiguous-request week_text_shows; booking_SLO expected_burn_rate and expected_days_to_exhaust_budget (recomputed by tools/check_plan.py); w10/change-through-gates static checks gate; w13/bounded-actions unreviewed tool connector capability; w13/provenance-and-understanding invented dependency. 17 September 2026 (Week 1 plan coverage): w01/quality-tradeoffs standard_vocabulary (sourced, S46) with week_text_shows and a deck_shows value; w01/feedback-lifecycle feedback_paths (authored structure: the path each discovery point's information takes and what it changes) with deck_shows. 22 September 2026: scoped curriculum refinements for Weeks 2-14; qualitative fixture additions; Week 1 data unchanged. 22 September 2026 public-course follow-up: thirteen qualitative transfer checks and a Week 14 professional-judgment comparison; canonical case, Week 1 data and numerical fixtures retained. 22 September 2026 foundation follow-up: qualitative elicitation and optional lookup/index comparisons; no new measured values. 22 September 2026 teaching review: qualitative acceptance and exploratory status-recovery comparison added; existing fixture values retained. 22 September 2026 (Week 2 authoring): w02 Bridge fixtures added for acceptance-and-validation, priority-and-risk and requirements-under-change (authored structures, fictional dates, no measurements); w02/ambiguous-request gains simulated example requests, stakeholder wording, the developer's rewrite, the open questions and the easy-for-whom routing; w02/elicitation-and-scope the boundary questions, the fact/assumption register and the visitor comparison; w02/observable-behavior the rule parts, the widget note and the two candidate snippets of the AI beat; w02/quality-with-conditions the two workloads (latency fixture datasets, illustrative), the boundary span, the S46 vocabulary rows and the keyboard path; w02/traceability-matrix an R-02 row and the blank-row note; deck_shows values for every Week 2 scene. 26 September 2026 (Week 3 authoring): w03 Bridge fixtures for journey-before-boxes, decision-table, interface-states, model-consistency and abstraction-and-zoom (authored structures and simulated example values, labeled); w03/identity-and-data bookings (B-003 simulated), rename lookup and identifier examples; w03/state-machine stored entry, repeated-cancel contrast and the invariant and progress examples; w03/sequence-not-state recovery actions; deck_shows for the three Week 3 Anchors. 29 September 2026 (Week 4 authoring): w04 Bridge fixtures added for methods-not-rituals, wip-and-time, estimates-with-assumptions, definition-of-done and retrospective-as-test (authored comparisons and labeled simulated example values; the WIP-limit schedule is computed from the flow baseline and recomputed by tools/check_plan.py); w04/queue-and-bottleneck gains the mapping of the eight work cards to W01-W08 and the transfer rule; w04/feedback-batches the three slices, the feedback points with the cards to reconsider, the coordination task; w04/risk-and-learning notes per option and alternative, both decisions, the lifecycle example and what stays uncertain; deck_shows values for all eight scenes. No existing value changed. 10 October 2026 (Week 5 authoring): w05 Bridge fixtures added for same-behavior-different-design (the shared screen, the request paths, the rule holders and the opening search of Design A's code lines), dependency-direction (the direct and interface versions, the storage change, an executable overlap snippet) and design-rationale (one decision record and its changed scope); w05/cohesion-and-responsibility gains the Utilities tasks, groups, the request pipeline with its stages and effects, an executable decide snippet, the new-format change and the over-splitting cost; w05/abstraction-cost the three structures with qualitative judgments under two conditions and the build/reuse/buy comparison; w05/dependency-example a second, independent change (the email provider); w05/interface-contract a third implementation (failures reported), the contract rows and verdicts, the failed-delivery screens and the result kinds with examples and the four separate claims; w05/refactoring-under-checks the Reminder's copy as an executable snippet and the callers after step 1; deck_shows values for every Week 5 scene. Authored comparisons and labeled example values only; no measurement. No existing value changed. 20 October 2026 (Week 6 authoring): w06 Bridge fixtures added for architecture-zoom (three C4-style views, the request's crossings and the separate notification worker), monolith-and-services (qualitative comparison rows for one small team and the growing-notification condition, no winner label) and architecture-decision (decision record DR-002 with quality scenarios and the several-campuses trigger); w06/request-journey gains the simulated request label REQ-17, the pending notification N-001 and the outage outcomes of both designs; w06/concurrent-booking the two requests, the read-committed transaction and unique-key conditions (S10) and executable snippets for check-then-write, a unique start key and one atomic decision per room; w06/retry-and-idempotency the plain retry, the operation record, the HTTP note (S09), an executable key handler, the four answers a requester can observe and the opening's lost response; w06/async-and-consistency the two timelines, the user-facing combinations, the duplicate attempt and three crash points; w06/contracts-and-evolution the concrete booking contract, the OpenAPI limits (S52), three consumers and four changes; deck_shows values for every Week 6 scene. Authored comparisons and labeled example values only; no measurement. No existing value changed. 4 November 2026 (Week 8 authoring): w08 Bridge fixtures added for partition-the-inputs (groups, one value per group, boundaries, the 2D shape table, the labeled 90-minute trial), oracle-independence (a shared helper, the self-confirming and independent checks, a hand-checked interval and executable results for four helper values), repeatable-observation (simulated clock readings and message delays, the injected notification failure, the repaired state) and testing-as-feedback (the four debugging moves, the loop, the refactoring, verification before and during execution, contract statements and the claim-evidence table); w08/friendly-example gains the walk, the case 31 row, an overcorrected snippet and the opening; w08/choose-test-scope the double, the contract comparison and the exploration steps; w08/properties-and-counterexamples a generated sequence with its reduction steps, the two properties computed under both comparisons and the malformed-text fuzz example; w08/coverage-and-mutation the shipped code, the suites, the equivalent mutant and a two-mutant score; deck_shows values for every Week 8 scene. Authored comparisons and labeled example values only; no measurement. No existing value changed."
  },
  "case": {
   "service": "Campus Rooms",
@@ -4715,6 +4715,12 @@
       },
       {
        "args": [
+        31
+       ],
+       "expected": true
+      },
+      {
+       "args": [
         60
        ],
        "expected": true
@@ -4758,6 +4764,12 @@
       },
       {
        "args": [
+        31
+       ],
+       "expected": true
+      },
+      {
+       "args": [
         60
        ],
        "expected": true
@@ -4781,6 +4793,55 @@
        "expected": false
       }
      ]
+    },
+    {
+     "name": "overcorrected: no upper limit",
+     "function": "duration_ok",
+     "code": "def duration_ok(minutes):\n    return 30 <= minutes\n",
+     "cases": [
+      {
+       "args": [
+        29
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        30
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        31
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        60
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        119
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        120
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        121
+       ],
+       "expected": true
+      }
+     ]
     }
    ],
    "friendly_case": 60,
@@ -4791,8 +4852,52 @@
    ],
    "deck_shows": [
     "120",
-    "121"
-   ]
+    "121",
+    "R-02",
+    "30 <= minutes < 120",
+    "30 <= minutes <= 120"
+   ],
+   "kind": "Simulated, original course-authored example; not measured data",
+   "reviewed": "4 November 2026",
+   "rule": {
+    "id": "R-02",
+    "text": "A booking lasts 30 through 120 minutes, both included."
+   },
+   "walk": [
+    60,
+    29,
+    30,
+    31,
+    119,
+    120,
+    121
+   ],
+   "display": {
+    "exclusive": "30 <= minutes < 120",
+    "inclusive": "30 <= minutes <= 120",
+    "no_limit": "30 <= minutes"
+   },
+   "opening": {
+    "check_name": "check_sixty_minutes",
+    "check_code": "assert duration_ok(60) == True",
+    "report": "1 of 1 checks passed",
+    "lines": "Lines executed: 2 of 2",
+    "function_code": "def duration_ok(minutes):\n    ...",
+    "request": {
+     "user": "Ari",
+     "user_id": "U-01",
+     "room": "C101",
+     "start": "10:00",
+     "end": "12:00",
+     "minutes": 120
+    },
+    "message": "Choose 30 to 120 minutes",
+    "outcome": "Rejected"
+   },
+   "assert_reading": {
+    "code": "assert duration_ok(60) == True",
+    "plain": "Call the function with 60. The answer must be True. If it is anything else, the check fails."
+   }
   },
   "w08/choose-test-scope": {
    "rows": [
@@ -4843,7 +4948,53 @@
     "discovery": "retrieved confirmation and the displayed status disagree",
     "regression_expectation": "display Confirmed after retrieving confirmed status",
     "usability_question": "Can a representative person complete recovery and explain the outcome?"
-   }
+   },
+   "kind": "Simulated, original course-authored example; not measured data",
+   "reviewed": "4 November 2026",
+   "unit_check": "overlaps([10:00,11:00), [10:30,11:30)) == True",
+   "concurrent_result": "Two confirmations for an overlapping time",
+   "journey_result": "Booked by keyboard; the screen says Confirmed",
+   "double": {
+    "label": "Controlled double",
+    "behavior": "fails on request",
+    "gain": "Fast and repeatable: the booking behavior runs in isolation, and the failure happens on command.",
+    "assumes": "A notification failure stays separate from the booking outcome.",
+    "unknown": "The real provider never ran. Its actual failures are still unobserved."
+   },
+   "contract": {
+    "consumer": "Booking",
+    "provider": "Notification provider",
+    "result": "Contract check fails",
+    "journey": "Keep one journey check too: the booking stays Confirmed and the failed notification stays visible. Neither side can observe that alone."
+   },
+   "exploration_steps": [
+    {
+     "button": "Submit by keyboard",
+     "observed": "The screen says Submitting.",
+     "next": "The response never arrives. What can Ari do now?"
+    },
+    {
+     "button": "Reopen the booking",
+     "observed": "The stored booking comes back Confirmed, and the screen still says Submitting.",
+     "next": "Is the mismatch in the storage, or in the screen?"
+    },
+    {
+     "button": "Check the correction",
+     "observed": "After the correction, reopening shows Confirmed.",
+     "next": "Which check keeps this from coming back?"
+    },
+    {
+     "button": "Keep it as a check",
+     "observed": "The discovery is now a repeatable regression example.",
+     "next": "What else would this journey reveal?"
+    }
+   ],
+   "regression_code": "reopen(booking)\nassert shown_status() == \"Confirmed\"",
+   "deck_shows": [
+    "unit: pure function",
+    "storage-boundary concurrent check",
+    "end-to-end journey"
+   ]
   },
   "w08/properties-and-counterexamples": {
    "properties": [
@@ -4944,6 +5095,368 @@
        "expected": true
       }
      ]
+    },
+    {
+     "name": "P2 under the comparison that rejects touching bookings",
+     "function": "wrongly_rejected",
+     "code": "def overlaps(a, b):\n    return a[0] <= b[1] and b[0] <= a[1]\n\ndef truly_overlaps(a, b):\n    return a[0] < b[1] and b[0] < a[1]\n\ndef wrongly_rejected(candidates):\n    confirmed = []\n    count = 0\n    for c in candidates:\n        rejected = False\n        for b in confirmed:\n            if overlaps(c, b):\n                rejected = True\n        if rejected:\n            real = False\n            for b in confirmed:\n                if truly_overlaps(c, b):\n                    real = True\n            if not real:\n                count = count + 1\n        else:\n            confirmed.append(c)\n    return count\n",
+     "cases": [
+      {
+       "args": [
+        [
+         [
+          540,
+          570
+         ],
+         [
+          750,
+          810
+         ],
+         [
+          615,
+          675
+         ],
+         [
+          675,
+          720
+         ],
+         [
+          825,
+          870
+         ],
+         [
+          585,
+          615
+         ]
+        ]
+       ],
+       "expected": 2
+      },
+      {
+       "args": [
+        [
+         [
+          615,
+          675
+         ],
+         [
+          675,
+          720
+         ],
+         [
+          585,
+          615
+         ]
+        ]
+       ],
+       "expected": 2
+      },
+      {
+       "args": [
+        [
+         [
+          615,
+          675
+         ],
+         [
+          675,
+          720
+         ]
+        ]
+       ],
+       "expected": 1
+      },
+      {
+       "args": [
+        [
+         [
+          600,
+          660
+         ],
+         [
+          660,
+          720
+         ]
+        ]
+       ],
+       "expected": 1
+      }
+     ]
+    },
+    {
+     "name": "P2 under strict overlap",
+     "function": "wrongly_rejected",
+     "code": "def overlaps(a, b):\n    return a[0] < b[1] and b[0] < a[1]\n\ndef truly_overlaps(a, b):\n    return a[0] < b[1] and b[0] < a[1]\n\ndef wrongly_rejected(candidates):\n    confirmed = []\n    count = 0\n    for c in candidates:\n        rejected = False\n        for b in confirmed:\n            if overlaps(c, b):\n                rejected = True\n        if rejected:\n            real = False\n            for b in confirmed:\n                if truly_overlaps(c, b):\n                    real = True\n            if not real:\n                count = count + 1\n        else:\n            confirmed.append(c)\n    return count\n",
+     "cases": [
+      {
+       "args": [
+        [
+         [
+          540,
+          570
+         ],
+         [
+          750,
+          810
+         ],
+         [
+          615,
+          675
+         ],
+         [
+          675,
+          720
+         ],
+         [
+          825,
+          870
+         ],
+         [
+          585,
+          615
+         ]
+        ]
+       ],
+       "expected": 0
+      },
+      {
+       "args": [
+        [
+         [
+          600,
+          660
+         ],
+         [
+          630,
+          690
+         ],
+         [
+          660,
+          720
+         ]
+        ]
+       ],
+       "expected": 0
+      },
+      {
+       "args": [
+        [
+         [
+          600,
+          660
+         ],
+         [
+          660,
+          720
+         ]
+        ]
+       ],
+       "expected": 0
+      }
+     ]
+    },
+    {
+     "name": "P1 under the comparison that rejects touching bookings",
+     "function": "confirmed_overlap",
+     "code": "def overlaps(a, b):\n    return a[0] <= b[1] and b[0] <= a[1]\n\ndef truly_overlaps(a, b):\n    return a[0] < b[1] and b[0] < a[1]\n\ndef confirmed_overlap(candidates):\n    confirmed = []\n    for c in candidates:\n        rejected = False\n        for b in confirmed:\n            if overlaps(c, b):\n                rejected = True\n        if not rejected:\n            confirmed.append(c)\n    for i in range(len(confirmed)):\n        for j in range(i):\n            if truly_overlaps(confirmed[i], confirmed[j]):\n                return True\n    return False\n",
+     "cases": [
+      {
+       "args": [
+        [
+         [
+          540,
+          570
+         ],
+         [
+          750,
+          810
+         ],
+         [
+          615,
+          675
+         ],
+         [
+          675,
+          720
+         ],
+         [
+          825,
+          870
+         ],
+         [
+          585,
+          615
+         ]
+        ]
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        [
+         [
+          600,
+          660
+         ],
+         [
+          660,
+          720
+         ]
+        ]
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        [
+         [
+          600,
+          660
+         ],
+         [
+          630,
+          690
+         ],
+         [
+          660,
+          720
+         ]
+        ]
+       ],
+       "expected": false
+      }
+     ]
+    },
+    {
+     "name": "P1 under strict overlap",
+     "function": "confirmed_overlap",
+     "code": "def overlaps(a, b):\n    return a[0] < b[1] and b[0] < a[1]\n\ndef truly_overlaps(a, b):\n    return a[0] < b[1] and b[0] < a[1]\n\ndef confirmed_overlap(candidates):\n    confirmed = []\n    for c in candidates:\n        rejected = False\n        for b in confirmed:\n            if overlaps(c, b):\n                rejected = True\n        if not rejected:\n            confirmed.append(c)\n    for i in range(len(confirmed)):\n        for j in range(i):\n            if truly_overlaps(confirmed[i], confirmed[j]):\n                return True\n    return False\n",
+     "cases": [
+      {
+       "args": [
+        [
+         [
+          540,
+          570
+         ],
+         [
+          750,
+          810
+         ],
+         [
+          615,
+          675
+         ],
+         [
+          675,
+          720
+         ],
+         [
+          825,
+          870
+         ],
+         [
+          585,
+          615
+         ]
+        ]
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        [
+         [
+          600,
+          660
+         ],
+         [
+          630,
+          690
+         ],
+         [
+          660,
+          720
+         ]
+        ]
+       ],
+       "expected": false
+      }
+     ]
+    },
+    {
+     "name": "empty text crashes the parser",
+     "function": "outcome",
+     "code": "def parse_minutes(raw):\n    text = raw.strip()\n    if text[0] in \"0123456789\":\n        return \"number\"\n    return \"rejected\"\n\ndef outcome(raw):\n    try:\n        parse_minutes(raw)\n        return \"handled\"\n    except:\n        return \"crash\"\n",
+     "cases": [
+      {
+       "args": [
+        "90"
+       ],
+       "expected": "handled"
+      },
+      {
+       "args": [
+        "ninety"
+       ],
+       "expected": "handled"
+      },
+      {
+       "args": [
+        "   "
+       ],
+       "expected": "crash"
+      },
+      {
+       "args": [
+        " "
+       ],
+       "expected": "crash"
+      },
+      {
+       "args": [
+        ""
+       ],
+       "expected": "crash"
+      }
+     ]
+    },
+    {
+     "name": "the corrected parser",
+     "function": "outcome",
+     "code": "def parse_minutes(raw):\n    text = raw.strip()\n    if text == \"\":\n        return \"rejected\"\n    if text[0] in \"0123456789\":\n        return \"number\"\n    return \"rejected\"\n\ndef outcome(raw):\n    try:\n        parse_minutes(raw)\n        return \"handled\"\n    except:\n        return \"crash\"\n",
+     "cases": [
+      {
+       "args": [
+        "90"
+       ],
+       "expected": "handled"
+      },
+      {
+       "args": [
+        "ninety"
+       ],
+       "expected": "handled"
+      },
+      {
+       "args": [
+        "   "
+       ],
+       "expected": "handled"
+      },
+      {
+       "args": [
+        " "
+       ],
+       "expected": "handled"
+      },
+      {
+       "args": [
+        ""
+       ],
+       "expected": "handled"
+      }
+     ]
     }
    ],
    "counterexample": {
@@ -4951,7 +5464,85 @@
     "candidate": "[11:00,12:00)",
     "wrong_predicate_says": "overlap",
     "rule_says": "adjacent, allowed"
-   }
+   },
+   "kind": "Simulated, original course-authored example; not measured data",
+   "reviewed": "4 November 2026",
+   "calendar": {
+    "from": "09:00",
+    "to": "15:00"
+   },
+   "display": {
+    "strict": "a.start < b.end and b.start < a.end",
+    "touching": "a.start <= b.end and b.start <= a.end"
+   },
+   "generated_sequence": [
+    "[09:00,09:30)",
+    "[12:30,13:30)",
+    "[10:15,11:15)",
+    "[11:15,12:00)",
+    "[13:45,14:30)",
+    "[09:45,10:15)"
+   ],
+   "shrink_steps": [
+    {
+     "label": "The generated sequence",
+     "intervals": [
+      "[09:00,09:30)",
+      "[12:30,13:30)",
+      "[10:15,11:15)",
+      "[11:15,12:00)",
+      "[13:45,14:30)",
+      "[09:45,10:15)"
+     ],
+     "wrongly_rejected": 2
+    },
+    {
+     "label": "Without the bookings that touch nothing",
+     "intervals": [
+      "[10:15,11:15)",
+      "[11:15,12:00)",
+      "[09:45,10:15)"
+     ],
+     "wrongly_rejected": 2
+    },
+    {
+     "label": "Two bookings still fail",
+     "intervals": [
+      "[10:15,11:15)",
+      "[11:15,12:00)"
+     ],
+     "wrongly_rejected": 1
+    },
+    {
+     "label": "Simpler times still fail",
+     "intervals": [
+      "[10:00,11:00)",
+      "[11:00,12:00)"
+     ],
+     "wrongly_rejected": 1
+    }
+   ],
+   "fuzz": {
+    "property": "Any text gets a clear answer, and nothing crashes.",
+    "generated": [
+     "90",
+     "ninety",
+     "   "
+    ],
+    "reduced": [
+     "   ",
+     " ",
+     ""
+    ],
+    "fixed": "Rejected: enter a whole number of minutes."
+   },
+   "deck_shows": [
+    "P1",
+    "P2",
+    "[10:00,11:00)",
+    "[11:00,12:00)",
+    "[10:30,11:30)"
+   ]
   },
   "w08/coverage-and-mutation": {
    "mutation": {
@@ -4960,7 +5551,162 @@
     "kind": "boundary"
    },
    "without_120_case": "mutant survives",
-   "with_120_case": "mutant detected"
+   "with_120_case": "mutant detected",
+   "kind": "Simulated, original course-authored example; not measured data",
+   "reviewed": "4 November 2026",
+   "shipped_code": "def duration_ok(minutes):\n    return 30 <= minutes < 120",
+   "source_code": "def duration_ok(minutes):\n    return 30 <= minutes <= 120",
+   "equivalent": {
+    "from": "<= 120",
+    "to": "< 121",
+    "kind": "equivalent for whole minutes"
+   },
+   "coverage": {
+    "executed": 2,
+    "total": 2
+   },
+   "no_assert_suite": [
+    "duration_ok(60)",
+    "duration_ok(120)"
+   ],
+   "added_assertion": "assert duration_ok(120) == True",
+   "suite_without_120": [
+    29,
+    30,
+    60,
+    121
+   ],
+   "suite_with_120": [
+    29,
+    30,
+    60,
+    120,
+    121
+   ],
+   "score": {
+    "detected": 1,
+    "valid": 2,
+    "percent": 50,
+    "formula": "detected / valid"
+   },
+   "snippets": [
+    {
+     "name": "the correct comparison",
+     "function": "duration_ok",
+     "code": "def duration_ok(minutes):\n    return 30 <= minutes <= 120\n",
+     "cases": [
+      {
+       "args": [
+        29
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        30
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        60
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        120
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        121
+       ],
+       "expected": false
+      }
+     ]
+    },
+    {
+     "name": "the boundary mutant",
+     "function": "duration_ok",
+     "code": "def duration_ok(minutes):\n    return 30 <= minutes < 120\n",
+     "cases": [
+      {
+       "args": [
+        29
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        30
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        60
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        120
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        121
+       ],
+       "expected": false
+      }
+     ]
+    },
+    {
+     "name": "the equivalent mutant",
+     "function": "duration_ok",
+     "code": "def duration_ok(minutes):\n    return 30 <= minutes < 121\n",
+     "cases": [
+      {
+       "args": [
+        29
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        30
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        60
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        120
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        121
+       ],
+       "expected": false
+      }
+     ]
+    }
+   ],
+   "deck_shows": [
+    "2 of 2",
+    "duration_ok(120)",
+    "assert duration_ok(120) == True"
+   ]
   },
   "w09/assets-and-boundaries": {
    "assets": [
@@ -8464,6 +9210,756 @@
     "120",
     "121",
     "Canonical baseline restored"
+   ]
+  },
+  "w08/partition-the-inputs": {
+   "kind": "Simulated, original course-authored example; not measured data",
+   "reviewed": "4 November 2026",
+   "axis": {
+    "from": 0,
+    "to": 180,
+    "unit": "minutes"
+   },
+   "every_minute": {
+    "from": 1,
+    "to": 180,
+    "checks": 180
+   },
+   "partitions": [
+    {
+     "id": "short",
+     "label": "Too short",
+     "range": "below 30",
+     "expected": "Rejected"
+    },
+    {
+     "id": "valid",
+     "label": "Allowed",
+     "range": "30 through 120",
+     "expected": "Accepted"
+    },
+    {
+     "id": "long",
+     "label": "Too long",
+     "range": "above 120",
+     "expected": "Rejected"
+    }
+   ],
+   "representatives": [
+    10,
+    60,
+    150
+   ],
+   "boundaries": [
+    {
+     "below": 29,
+     "above": 30,
+     "change": "Rejected becomes Accepted"
+    },
+    {
+     "below": 120,
+     "above": 121,
+     "change": "Accepted becomes Rejected"
+    }
+   ],
+   "just_inside": [
+    31,
+    119
+   ],
+   "shapes": {
+    "ordered": {
+     "label": "Start before end",
+     "example": "[10:00,11:00)",
+     "short": "Rejected: duration",
+     "valid": "Accepted",
+     "long": "Rejected: duration"
+    },
+    "reversed": {
+     "label": "End before start",
+     "example": "[11:00,10:00)",
+     "answer": "Rejected: order",
+     "reason": "End must be later than start. There is no duration to judge."
+    },
+    "malformed": {
+     "label": "Not whole minutes",
+     "example": "45.5 · “soon” · missing",
+     "answer": "Rejected: shape",
+     "reason": "The value is not a whole number of minutes."
+    }
+   },
+   "variant": {
+    "max": 90,
+    "label": "Temporary trial: the upper limit is 90 minutes",
+    "restored": "The trial is over. R-02 is 30 through 120 minutes again, inclusive.",
+    "cases": [
+     {
+      "minutes": 29,
+      "note": "Same answer, same job"
+     },
+     {
+      "minutes": 30,
+      "note": "Same answer, same job"
+     },
+     {
+      "minutes": 31,
+      "note": "Same answer, same job"
+     },
+     {
+      "minutes": 89,
+      "note": "New: just inside the new edge"
+     },
+     {
+      "minutes": 90,
+      "note": "New: the last allowed value"
+     },
+     {
+      "minutes": 91,
+      "note": "New: the first refused value"
+     },
+     {
+      "minutes": 119,
+      "note": "Answer changes; no longer near an edge"
+     },
+     {
+      "minutes": 120,
+      "note": "Answer changes; no longer the edge"
+     },
+     {
+      "minutes": 121,
+      "note": "Same answer; no longer the edge"
+     }
+    ]
+   },
+   "snippets": [
+    {
+     "name": "the comparison that excludes 120, on one value per group",
+     "function": "duration_ok",
+     "code": "def duration_ok(minutes):\n    return 30 <= minutes < 120\n",
+     "cases": [
+      {
+       "args": [
+        10
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        60
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        150
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        120
+       ],
+       "expected": false
+      }
+     ]
+    },
+    {
+     "name": "R-02 with a named maximum",
+     "function": "allowed",
+     "code": "def allowed(minutes, maximum):\n    return 30 <= minutes <= maximum\n",
+     "cases": [
+      {
+       "args": [
+        29,
+        120
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        30,
+        120
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        31,
+        120
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        89,
+        120
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        90,
+        120
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        91,
+        120
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        119,
+        120
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        120,
+        120
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        121,
+        120
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        29,
+        90
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        30,
+        90
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        31,
+        90
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        89,
+        90
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        90,
+        90
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        91,
+        90
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        119,
+        90
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        120,
+        90
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        121,
+        90
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        10,
+        120
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        60,
+        120
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        150,
+        120
+       ],
+       "expected": false
+      }
+     ]
+    }
+   ],
+   "deck_shows": [
+    "Too short",
+    "Allowed",
+    "Too long",
+    "29",
+    "30",
+    "120",
+    "121"
+   ]
+  },
+  "w08/oracle-independence": {
+   "kind": "Simulated, original course-authored example; not measured data",
+   "reviewed": "4 November 2026",
+   "requirement": "R-02: 30 through 120 minutes, both included.",
+   "misreading": "“up to 120” read as “under 120”",
+   "helper_code": "def longest_allowed():\n    return 119\n\ndef duration_ok(minutes):\n    return 30 <= minutes <= longest_allowed()",
+   "self_check_code": "expected = 120 <= longest_allowed()\nassert duration_ok(120) == expected",
+   "independent_code": "assert duration_ok(120) == True   # R-02 includes 120\nassert duration_ok(121) == False  # R-02 excludes 121",
+   "hand_example": {
+    "interval": "[10:00,12:00)",
+    "working": "10:00 to 11:00 is 60 minutes, and 11:00 to 12:00 is 60 more",
+    "minutes": 120,
+    "expected": "Accepted"
+   },
+   "helper_values": [
+    119,
+    90,
+    150,
+    120
+   ],
+   "snippets": [
+    {
+     "name": "expected value computed from the helper",
+     "function": "self_confirming",
+     "code": "def self_confirming(limit):\n    def duration_ok(minutes):\n        return 30 <= minutes <= limit\n    expected = 120 <= limit\n    return duration_ok(120) == expected\n",
+     "cases": [
+      {
+       "args": [
+        119
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        90
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        150
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        120
+       ],
+       "expected": true
+      }
+     ]
+    },
+    {
+     "name": "expected values derived from R-02",
+     "function": "independent",
+     "code": "def independent(limit):\n    def duration_ok(minutes):\n        return 30 <= minutes <= limit\n    return duration_ok(120) == True and duration_ok(121) == False\n",
+     "cases": [
+      {
+       "args": [
+        119
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        90
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        150
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        120
+       ],
+       "expected": true
+      }
+     ]
+    }
+   ],
+   "deck_shows": [
+    "R-02",
+    "120",
+    "test oracle"
+   ]
+  },
+  "w08/repeatable-observation": {
+   "kind": "Simulated, original course-authored example; not measured data",
+   "reviewed": "4 November 2026",
+   "rule": "R-03: you can cancel your own future booking. Future means its start is later than the current time.",
+   "booking": {
+    "id": "B-001",
+    "owner": "Ari",
+    "start": "10:00"
+   },
+   "wall_code": "now = wall_clock()\nassert may_cancel(ari, b_001, now) == True",
+   "fixed_code": "now = teaching_clock(\"09:00\")\nassert may_cancel(ari, b_001, now) == True\n\nnow = teaching_clock(\"10:00\")\nassert may_cancel(ari, b_001, now) == False",
+   "wall_runs": [
+    {
+     "run": 1,
+     "clock": "09:58"
+    },
+    {
+     "run": 2,
+     "clock": "09:59"
+    },
+    {
+     "run": 3,
+     "clock": "10:00"
+    },
+    {
+     "run": 4,
+     "clock": "10:01"
+    }
+   ],
+   "fixed_clocks": [
+    {
+     "clock": "09:00",
+     "expected": "Allowed"
+    },
+    {
+     "clock": "10:00",
+     "expected": "Denied",
+     "reason": "start is not later than now"
+    }
+   ],
+   "fixed_runs": 5,
+   "wait_code": "send_notification(booking)\nwait(2)   # seconds, and then hope\nassert notification_arrived()",
+   "fake_code": "provider = FakeProvider(fail_next=True)\nbook(request, provider)\nassert booking.state == \"Confirmed\"\nassert notification.state == \"Failed\"",
+   "wait_runs": [
+    {
+     "run": 1,
+     "delay_ms": 1200
+    },
+    {
+     "run": 2,
+     "delay_ms": 2600
+    },
+    {
+     "run": 3,
+     "delay_ms": 1700
+    },
+    {
+     "run": 4,
+     "delay_ms": 3100
+    },
+    {
+     "run": 5,
+     "delay_ms": 900
+    }
+   ],
+   "defect_message": "R-04: the failed notification undid the booking",
+   "repaired_state": {
+    "booking": "Confirmed",
+    "notification": "Failed, visible, and ready to retry"
+   },
+   "snippets": [
+    {
+     "name": "may Ari cancel at this clock reading (minutes since midnight)",
+     "function": "may_cancel",
+     "code": "def may_cancel(now, start):\n    return start > now\n",
+     "cases": [
+      {
+       "args": [
+        598,
+        600
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        599,
+        600
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        600,
+        600
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        601,
+        600
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        540,
+        600
+       ],
+       "expected": true
+      }
+     ]
+    },
+    {
+     "name": "a check that waits two seconds",
+     "function": "arrived_in_time",
+     "code": "def arrived_in_time(delay_ms):\n    return delay_ms <= 2000\n",
+     "cases": [
+      {
+       "args": [
+        1200
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        2600
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        1700
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        3100
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        900
+       ],
+       "expected": true
+      }
+     ]
+    },
+    {
+     "name": "booking and notification after a failed notification",
+     "function": "after_failure",
+     "code": "def after_failure(undo_on_failure):\n    booking = \"Confirmed\"\n    if undo_on_failure:\n        booking = \"Cancelled\"\n    return [booking, \"Failed\"]\n",
+     "cases": [
+      {
+       "args": [
+        true
+       ],
+       "expected": [
+        "Cancelled",
+        "Failed"
+       ]
+      },
+      {
+       "args": [
+        false
+       ],
+       "expected": [
+        "Confirmed",
+        "Failed"
+       ]
+      }
+     ]
+    }
+   ],
+   "deck_shows": [
+    "09:58",
+    "10:00",
+    "10:01",
+    "R-03"
+   ]
+  },
+  "w08/testing-as-feedback": {
+   "kind": "Simulated, original course-authored example; not measured data",
+   "reviewed": "4 November 2026",
+   "moves": [
+    {
+     "id": "reproduce",
+     "label": "Reproduce",
+     "detail": "Ari books C101, 10:00 to 12:00. The answer is Rejected, every time."
+    },
+    {
+     "id": "shrink",
+     "label": "Shrink",
+     "detail": "Room and time make no difference. duration_ok(120) alone returns False."
+    },
+    {
+     "id": "hypothesis",
+     "label": "One hypothesis",
+     "detail": "The upper comparison leaves out its own endpoint."
+    },
+    {
+     "id": "confirm",
+     "label": "Confirm",
+     "detail": "One targeted look: 119 returns True, 120 returns False. The change is exactly at the upper bound."
+    }
+   ],
+   "loop": [
+    "Requirement",
+    "Failing check",
+    "Smallest change",
+    "Recheck"
+   ],
+   "failing_check": "assert duration_ok(120) == True",
+   "before": "    return 30 <= minutes < 120",
+   "after": "    return 30 <= minutes <= 120",
+   "refactored": "MIN_MINUTES = 30\nMAX_MINUTES = 120\n\ndef duration_ok(minutes):\n    return MIN_MINUTES <= minutes <= MAX_MINUTES",
+   "check_cases": [
+    29,
+    30,
+    31,
+    119,
+    120,
+    121
+   ],
+   "wrong_requirement": "If the requirement itself said “under 120”, a check written first would carry that mistake faithfully.",
+   "untested": [
+    "A duration that arrives as text",
+    "Two requests at the same moment",
+    "The keyboard journey and its status messages"
+   ],
+   "before_running": {
+    "review": {
+     "label": "Review",
+     "when": "Before running",
+     "does": "A person compares < with “both included” in R-02.",
+     "finds": "The operator contradicts the rule."
+    },
+    "static": {
+     "label": "Static analysis",
+     "when": "Before running",
+     "does": "A tool reads every path without running the service.",
+     "finds": "request.get(\"minutes\") can be None at this comparison."
+    },
+    "dynamic": {
+     "label": "Dynamic check",
+     "when": "While running",
+     "does": "One execution with one input.",
+     "finds": "duration_ok(120) returns False."
+    }
+   },
+   "contract": [
+    {
+     "kind": "Precondition",
+     "text": "minutes is a whole number",
+     "from": "R-02"
+    },
+    {
+     "kind": "Postcondition",
+     "text": "True exactly when 30 <= minutes <= 120",
+     "from": "R-02"
+    },
+    {
+     "kind": "Invariant",
+     "text": "No two confirmed bookings for one room overlap",
+     "from": "R-01"
+    }
+   ],
+   "claims": [
+    {
+     "claim": "120 is accepted and 121 is rejected.",
+     "evidence": "The boundary table and a detected boundary mutant.",
+     "remaining": "Parsing the value at the request boundary."
+    },
+    {
+     "claim": "Concurrent requests cannot confirm an overlap.",
+     "evidence": "A concurrent check at the storage boundary.",
+     "remaining": "Interleavings the check did not exercise."
+    },
+    {
+     "claim": "A failed notification leaves the booking confirmed.",
+     "evidence": "A controlled double and a contract check against the provider.",
+     "remaining": "A later provider version, until the contract check runs again."
+    },
+    {
+     "claim": "Reopening after a lost response shows Confirmed.",
+     "evidence": "The regression example found by exploration.",
+     "remaining": "Whether people understand the status. That is a separate study."
+    }
+   ],
+   "handoff": "What must remain true when a request, dependency, or assumption cannot be trusted?",
+   "snippets": [
+    {
+     "name": "the corrected predicate after the refactoring",
+     "function": "duration_ok",
+     "code": "MIN_MINUTES = 30\nMAX_MINUTES = 120\n\ndef duration_ok(minutes):\n    return MIN_MINUTES <= minutes <= MAX_MINUTES\n",
+     "cases": [
+      {
+       "args": [
+        29
+       ],
+       "expected": false
+      },
+      {
+       "args": [
+        30
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        31
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        119
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        120
+       ],
+       "expected": true
+      },
+      {
+       "args": [
+        121
+       ],
+       "expected": false
+      }
+     ]
+    }
+   ],
+   "deck_shows": [
+    "Reproduce",
+    "Shrink",
+    "One hypothesis",
+    "Confirm",
+    "assert duration_ok(120) == True"
    ]
   }
  },

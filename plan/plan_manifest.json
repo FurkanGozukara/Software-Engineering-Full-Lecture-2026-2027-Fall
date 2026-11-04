@@ -1308,7 +1308,8 @@
     "S11",
     "S12",
     "S40",
-    "S60"
+    "S60",
+    "S64"
    ],
    "rules_cited": [
     "R-02"
@@ -1353,12 +1354,13 @@
      "fixture_key": "w08/choose-test-scope",
      "visual_idea": "A layered system view highlights a pure policy function, component interaction, storage enforcement, and complete user journey.",
      "situation": "Ask whether a unit check of overlap arithmetic proves that concurrent requests cannot double-book. Reveal the missing shared-storage behavior. Place focused function checks, integration checks, and a complete booking journey where they observe their respective claims. Use the same keyboard booking journey to explain exploratory testing: start with the question of how someone recovers from a lost response, then choose the next check from what the interface reveals. In the authored comparison, reopening the stored booking retrieves confirmation but the interface still says Submitting. Inspect the corrected Confirmed state and capture the discovered mismatch as a repeatable regression example. This is guided investigation with recorded observations; scripted checks preserve known expectations. A separate usability study would ask representative people to attempt the task and explain what they understood. The scene is a simulated example, not a claim that such a study occurred. [S60]",
-     "changed_condition": "Replace the real notification boundary with a controlled test double. Compare faster isolation of booking behavior with the remaining uncertainty about actual integration. Show a separate contract or integration check for that uncertainty. Use a consumer expectation that the actual provider violates to explain contract testing, then keep the cross-component journey check for behavior that neither side can establish alone. A mock returning the desired value is not evidence that the real boundary behaves that way.",
+     "changed_condition": "Replace the real notification boundary with a controlled test double. Compare faster isolation of booking behavior with the remaining uncertainty about actual integration. Show a separate contract or integration check for that uncertainty. Use a consumer expectation that the actual provider violates to explain contract testing, then keep the cross-component journey check for behavior that neither side can establish alone. A mock returning the desired value is not evidence that the real boundary behaves that way. [S64]",
      "principle": "The appropriate test scope follows the claim and failure risk, not the prestige of a test label.",
      "pdf_treatment": "Print a claim-to-check-scope matrix with one explicit limitation per row, and retain the exploration question, discovered status mismatch and resulting regression example.",
      "rules": [],
      "sources": [
-      "S60"
+      "S60",
+      "S64"
      ]
     },
     {

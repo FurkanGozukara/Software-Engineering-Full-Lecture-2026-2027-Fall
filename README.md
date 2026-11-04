@@ -13,6 +13,7 @@
 | 5 — Modularity, Interfaces, and the Cost of Change | [Watch](https://www.youtube.com/watch?v=V26mbmrSUCk) · 48:21 | [Deck](site/weeks/week-05.html) · [PDF](site/pdf/week-05.pdf) |
 | 6 — Architecture, Interactions, and Distributed Failure | [Watch](https://www.youtube.com/watch?v=r3lQevA-vtY) · 53:06 | [Deck](site/weeks/week-06.html) · [PDF](site/pdf/week-06.pdf) |
 | 7 — Collaboration, Version History, and Reviewable Change | [Watch](https://www.youtube.com/watch?v=6aCc7uEiLO0) · 41:47 | [Deck](site/weeks/week-07.html) · [PDF](site/pdf/week-07.pdf) |
+| 8 — Testing Behavior and Building Credible Evidence | Video to follow | [Deck](site/weeks/week-08.html) · [PDF](site/pdf/week-08.pdf) |
 
 ## Quick start (no installation)
 
@@ -26,7 +27,7 @@ printable notes are in `site/pdf/`. Keyboard: Right/Left arrows change the page,
 the demonstration, `?` shows the help. Optional local server for clean links:
 `python scripts/serve.py --root site` and open `http://127.0.0.1:8000/`.
 
-Status: Weeks 1, 2, 3, 4, 5, 6 and 7 are complete (deck, PDF, scene guide, completion record). The other weeks are
+Status: Weeks 1, 2, 3, 4, 5, 6, 7 and 8 are complete (deck, PDF, scene guide, completion record); the Week 8 video is recorded and awaiting publication. The other weeks are
 added one at a time; the index marks them as in preparation until then.
 
 A fourteen-lecture introduction to software engineering for a general audience, with interactive decks and printable reading copies. Campus Rooms is the fictional worked example, with short comparisons showing how the principles apply to other software. The teaching plan is in `plan/`; the student-facing site is `site/`.

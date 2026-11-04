@@ -1788,7 +1788,7 @@ Build testing from the behavior students already understand. Start with a bookin
 
 The lecture should make evidence visible without presenting one test taxonomy, framework, or fixed test-pyramid ratio as a universal formula. Treat testability, independent expected results, representative conditions, and useful failure messages as engineering choices. [S01, S02, S40]
 
-In practice (dated examples, 2026): pytest and JUnit run example checks, Hypothesis generates property-based cases, Stryker and mutmut run mutation analysis, coverage.py measures executed lines, and Playwright drives complete browser journeys.
+In practice (dated examples, 2026): pytest and JUnit run example checks, Hypothesis generates property-based cases, Stryker and mutmut run mutation analysis, coverage.py measures executed lines, Playwright drives complete browser journeys, and Pact checks a consumer's expectations against a provider.
 
 ## 2. OBSERVABLE LEARNING OUTCOMES
 
@@ -1882,7 +1882,7 @@ Anchor scene | ID: choose-test-scope
 
 **SITUATION, PREDICTION, AND MECHANISM:** Ask whether a unit check of overlap arithmetic proves that concurrent requests cannot double-book. Reveal the missing shared-storage behavior. Place focused function checks, integration checks, and a complete booking journey where they observe their respective claims. Use the same keyboard booking journey to explain exploratory testing: start with the question of how someone recovers from a lost response, then choose the next check from what the interface reveals. In the authored comparison, reopening the stored booking retrieves confirmation but the interface still says Submitting. Inspect the corrected Confirmed state and capture the discovered mismatch as a repeatable regression example. This is guided investigation with recorded observations; scripted checks preserve known expectations. A separate usability study would ask representative people to attempt the task and explain what they understood. The scene is a simulated example, not a claim that such a study occurred. [S60]
 
-**CHANGE ONE CONDITION AND COMPARE:** Replace the real notification boundary with a controlled test double. Compare faster isolation of booking behavior with the remaining uncertainty about actual integration. Show a separate contract or integration check for that uncertainty. Use a consumer expectation that the actual provider violates to explain contract testing, then keep the cross-component journey check for behavior that neither side can establish alone. A mock returning the desired value is not evidence that the real boundary behaves that way.
+**CHANGE ONE CONDITION AND COMPARE:** Replace the real notification boundary with a controlled test double. Compare faster isolation of booking behavior with the remaining uncertainty about actual integration. Show a separate contract or integration check for that uncertainty. Use a consumer expectation that the actual provider violates to explain contract testing, then keep the cross-component journey check for behavior that neither side can establish alone. A mock returning the desired value is not evidence that the real boundary behaves that way. [S64]
 
 **PRINCIPLE TO REVEAL:** The appropriate test scope follows the claim and failure risk, not the prestige of a test label.
 
@@ -2016,7 +2016,7 @@ Carry independent checks and explicit invariants into Week 9. Correctness now in
 
 ## 11. SOURCES AND CURRENCY NOTES
 
-Primary references: S01, S02, S11, S12, S40, S60. Full titles, URLs, dated status, and access limitations appear in the source register. Curriculum review: 22 September 2026. See each source entry for its actual retrieval date; unchanged references retain earlier dates. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
+Primary references: S01, S02, S11, S12, S40, S60, S64. Full titles, URLs, dated status, and access limitations appear in the source register. Curriculum review: 22 September 2026. Week 8 source re-verification: 4 November 2026; the Pact reference was added to support the contract-testing comparison. See each source entry for its actual retrieval date; unchanged references retain earlier dates. The examples and visual teaching sequences are original proposals; no live service behavior is implied.
 
 # WEEK 09 | SECURITY, PRIVACY, AND TRUSTWORTHY DEPENDENCIES
 
@@ -3604,6 +3604,8 @@ Worked examples and questions with their answers follow the public lecture-only 
 
 ### REFRESH POLICY FOR FUTURE RELEASES
 
+Week 8 authoring, 4 November 2026: rechecked S01, S02, S11, S12, S40 and S60; S01 is accessible again and identifies SWEBOK v4.0a. Added primary reference S64 (Pact, contract testing). The In practice examples remain factual, dated examples and require no accounts or installations. No curriculum mechanism changed.
+
 Week 7 authoring, 28 October 2026: rechecked S01, S02, S06 and S07; S01 returned HTTP 403 and keeps its last recorded status. Added primary references S61 (Git bisection), S62 (npm package-lock.json) and S63 (uv lockfile); these additions support Week 7. The In practice examples remain factual, dated examples and require no accounts or installations. No curriculum mechanism changed.
 
 Before a new run, check the official source status for SWEBOK, curriculum guidance, OWASP (including the agentic list), NIST, workflow guides, accessibility guidance, ISO/IEC 25010, the delivery-measure definitions, and the application dates of the laws named in Week 9. Record edition, publication or update date, retrieval date, and final-versus-draft status. Review each week's "In practice" tool names at the same time and replace names that have fallen out of common use. Preserve the conceptual lesson unless the evidence gives a reason to change it. The DORA publication index is the entry point for newer delivery and AI-assistance research; the re-verification task template is ../tasks/50_source_reverification.md. Recheck volatile references again immediately before authoring their lecture; do not silently update the dated research claims. [S36]
@@ -3744,7 +3746,7 @@ Do not let visual invention change a rule, invent a measurement, hide a failure,
 
 # PRIMARY SOURCE REGISTER
 
-Register updated: 28 October 2026; retrieval dates are recorded per entry
+Register updated: 4 November 2026; retrieval dates are recorded per entry
 
 The original references were checked on 16-17 September 2026. Selected status checks and new references were reviewed on 22 September 2026 as recorded below; unchanged entries retain their earlier retrieval dates. Living documentation can change. Source keys identify supporting concepts and technical guardrails, not copied lesson text. Most sources were read as HTML; access limitations are recorded explicitly. No full external reference PDF audit is claimed.
 
@@ -3758,6 +3760,8 @@ V4.0a identified in official indexed material; version update indicated 25 Septe
 
 Week 7 check, 28 October 2026: the main landing page again returned HTTP 403 Forbidden. Retain the last recorded edition; no new edition claim is made from this retrieval.
 
+Week 8 check, 4 November 2026: the main landing page was accessible and identifies SWEBOK Guide Version 4.0, updated as v4.0a. The guide itself was not re-audited.
+
 https://www.computer.org/education/bodies-of-knowledge/software-engineering/topics
 
 Use: curriculum.
@@ -3769,6 +3773,8 @@ https://csed.acm.org/final-report/
 Final curriculum reference, published in 2024. Final-report landing page rechecked 22 September 2026; the official indexed HTML report supports teamwork, construction, requirements and professional-context coverage. Full HTML retrieval exceeded the browser text size limit. Used for broad scope and competencies; not a formal course accreditation mapping or a full-report audit. Do not substitute the older gamma-draft knowledge-area download for the final report.
 
 Week 7 check, 28 October 2026: the official final-report landing page was accessible and still identifies CS2023 as the final report. The linked full report was not re-audited.
+
+Week 8 check, 4 November 2026: the landing page was accessible and still presents CS2023 as the final report.
 
 Use: curriculum.
 
@@ -3844,7 +3850,7 @@ Use: curriculum.
 
 https://hypothesis.readthedocs.io/en/latest/
 
-Living primary tool documentation. Supports the testing concept; the course does not require Python or Hypothesis.
+Living primary tool documentation. Supports the testing concept; the course does not require Python or Hypothesis. Rechecked 4 November 2026: the home page describes property-based testing with generated inputs; the API reference at /en/latest/reference/api.html names shrinking failing test cases and reporting the minimal failing case.
 
 Use: curriculum.
 
@@ -3852,7 +3858,7 @@ Use: curriculum.
 
 https://stryker-mutator.io/docs/mutation-testing-elements/mutant-states-and-metrics/
 
-Primary mutation-testing documentation. Supports diagnostic interpretation, not a promise that a score proves correctness.
+Primary mutation-testing documentation. Supports diagnostic interpretation, not a promise that a score proves correctness. Rechecked 4 November 2026: the page defines Killed, Survived, No coverage and Ignored states and the score as detected / valid.
 
 Use: curriculum.
 
@@ -4076,7 +4082,7 @@ Use: authoring.
 
 https://abseil.io/resources/swe-book/html/ch11.html
 
-Primary chapter on testing concepts. Used for evidence and scope framing; no universal test-ratio prescription.
+Primary chapter on testing concepts. Used for evidence and scope framing; no universal test-ratio prescription. Rechecked 4 November 2026: the chapter separates test size from scope, says code coverage measures that a line was invoked rather than what happened as a result, and describes the cost of flaky tests. Its stated team ratio is not adopted.
 
 Use: curriculum.
 
@@ -4238,7 +4244,7 @@ Use: curriculum.
 
 https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf
 
-Version 4.0.1, dated 15 September 2024. Section 4.4.2, page 44, retrieved 22 September 2026. Used for the relationship between exploration, learning and test design in Week 8. The status-recovery comparison is original course-authored material; no certification syllabus, exam preparation or training durations are adopted. Only the relevant section was reviewed, not the full external PDF.
+Version 4.0.1, dated 15 September 2024. Section 4.4.2, page 44, retrieved 22 September 2026. Used for the relationship between exploration, learning and test design in Week 8. The status-recovery comparison is original course-authored material; no certification syllabus, exam preparation or training durations are adopted. Only the relevant section was reviewed, not the full external PDF. Rechecked 4 November 2026: the PDF was retrieved and page 44 was read again; exploratory testing is described with test charters, sessions and recorded discoveries.
 
 Use: curriculum.
 
@@ -4263,6 +4269,14 @@ Use: curriculum.
 https://docs.astral.sh/uv/concepts/projects/layout/#the-lockfile
 
 Official living documentation retrieved 28 October 2026. Supports uv.lock as a record of resolved dependency selections used to reproduce an environment. It is a dated tool example, not a requirement to use Python or uv.
+
+Use: curriculum.
+
+### S64 | PACT - INTRODUCTION TO CONTRACT TESTING
+
+https://docs.pact.io/
+
+Official living documentation retrieved 4 November 2026. Supports contract testing as checking an integration point by testing each application in isolation against a shared contract between a consumer and a provider. The Campus Rooms notification mismatch is original fictional teaching data; no Pact account or installation is needed.
 
 Use: curriculum.
 
